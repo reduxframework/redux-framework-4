@@ -214,7 +214,7 @@
                 //*****************************************************************
                 wp_register_script(
                   'redux-select2-sortable-js',
-                  ReduxCore::$_url . 'assets/js/vendor/redux.select2.sortable' . $this->min . '.js',
+                  ReduxCore::$_url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.js',
                   array( 'jquery' ),
                   $this->timestamp,
                   true
@@ -225,11 +225,11 @@
                 //*****************************************************************
 
                 // JWp6 plugin giving us problems.  They need to update.
-                if ( wp_script_is( 'jquerySelect2' ) ) {
-                    wp_deregister_script( 'jquerySelect2' );
-                    wp_dequeue_script( 'jquerySelect2' );
-                    wp_dequeue_style( 'jquerySelect2Style' );
-                }
+//                if ( wp_script_is( 'jquerySelect2' ) ) {
+//                    wp_deregister_script( 'jquerySelect2' );
+//                    wp_dequeue_script( 'jquerySelect2' );
+//                    wp_dequeue_style( 'jquerySelect2Style' );
+//                }
 
 
                 Redux_CDN::register_script(
