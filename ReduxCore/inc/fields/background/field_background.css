@@ -1,0 +1,53 @@
+.redux-main .redux-container-background .redux-background-position,
+.redux-main .redux-container-background .redux-background-position select,
+.redux-main .redux-container-background .redux-background-attachment,
+.redux-main .redux-container-background .redux-background-attachment select,
+.redux-main .redux-container-background .redux-background-clip,
+.redux-main .redux-container-background .redux-background-clip select,
+.redux-main .redux-container-background .redux-background-origin,
+.redux-main .redux-container-background .redux-background-origin select,
+.redux-main .redux-container-background .redux-background-size,
+.redux-main .redux-container-background .redux-background-size select,
+.redux-main .redux-container-background .redux-background-repeat,
+.redux-main .redux-container-background .redux-background-repeat select {
+  width: 200px !important;
+  margin-right: 10px;
+  margin-bottom: 7px;
+}
+
+.redux-main .redux-container-background .background-preview {
+  display: block;
+  width: 100%;
+  margin: 5px 0 10px;
+  border: 1px dotted lightgray;
+}
+
+.redux-main .redux-container-background .select2-container {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.redux-main .redux-container-background .wp-picker-container {
+  margin-bottom: 10px;
+}
+
+.redux-main .redux-container-background .upload {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.redux-main .redux-container-select li.ui-state-highlight {
+  height: 20px;
+  margin-top: 2px;
+  margin-left: 5px;
+  width: 64px;
+  margin-bottom: 0;
+}
+
+.wp-customizer .redux-container-background .redux-background-position, .wp-customizer .redux-container-background .redux-background-position select, .wp-customizer .redux-container-background .redux-background-attachment, .wp-customizer .redux-container-background .redux-background-attachment select, .wp-customizer .redux-container-background .redux-background-clip, .wp-customizer .redux-container-background .redux-background-clip select, .wp-customizer .redux-container-background .redux-background-origin, .wp-customizer .redux-container-background .redux-background-origin select, .wp-customizer .redux-container-background .redux-background-size, .wp-customizer .redux-container-background .redux-background-size select, .wp-customizer .redux-container-background .redux-background-repeat, .wp-customizer .redux-container-background .redux-background-repeat select {
+  width: 100% !important;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmllbGRfYmFja2dyb3VuZC5jc3MiLCJzb3VyY2VzIjpbImZpZWxkX2JhY2tncm91bmQuc2NzcyJdLCJtYXBwaW5ncyI6IkFBQUEsQUFFUSxXQUZHLENBQ1AsMkJBQTJCLENBQ3ZCLDBCQUEwQjtBQUZsQyxBQUdtQyxXQUh4QixDQUNQLDJCQUEyQixDQUV2QiwwQkFBMEIsQ0FBQyxNQUFNO0FBSHpDLEFBSVEsV0FKRyxDQUNQLDJCQUEyQixDQUd2Qiw0QkFBNEI7QUFKcEMsQUFLcUMsV0FMMUIsQ0FDUCwyQkFBMkIsQ0FJdkIsNEJBQTRCLENBQUMsTUFBTTtBQUwzQyxBQU1RLFdBTkcsQ0FDUCwyQkFBMkIsQ0FLdkIsc0JBQXNCO0FBTjlCLEFBTytCLFdBUHBCLENBQ1AsMkJBQTJCLENBTXZCLHNCQUFzQixDQUFDLE1BQU07QUFQckMsQUFRUSxXQVJHLENBQ1AsMkJBQTJCLENBT3ZCLHdCQUF3QjtBQVJoQyxBQVNpQyxXQVR0QixDQUNQLDJCQUEyQixDQVF2Qix3QkFBd0IsQ0FBQyxNQUFNO0FBVHZDLEFBVVEsV0FWRyxDQUNQLDJCQUEyQixDQVN2QixzQkFBc0I7QUFWOUIsQUFXK0IsV0FYcEIsQ0FDUCwyQkFBMkIsQ0FVdkIsc0JBQXNCLENBQUMsTUFBTTtBQVhyQyxBQVlRLFdBWkcsQ0FDUCwyQkFBMkIsQ0FXdkIsd0JBQXdCO0FBWmhDLEFBYWlDLFdBYnRCLENBQ1AsMkJBQTJCLENBWXZCLHdCQUF3QixDQUFDLE1BQU0sQ0FBQztFQUM1QixLQUFLLEVBQUMsZ0JBQWlCO0VBQ3ZCLFlBQVksRUFBRSxJQUFLO0VBQ25CLGFBQWEsRUFBRSxHQUFJO0NBQ3RCOztBQWpCVCxBQW1CUSxXQW5CRyxDQUNQLDJCQUEyQixDQWtCdkIsbUJBQW1CLENBQUM7RUFDaEIsT0FBTyxFQUFDLEtBQU07RUFDZCxLQUFLLEVBQUUsSUFBSztFQUNaLE1BQU0sRUFBRSxVQUFXO0VBQ25CLE1BQU0sRUFBQyxvQkFBcUI7Q0FDL0I7O0FBeEJULEFBMEJRLFdBMUJHLENBQ1AsMkJBQTJCLENBeUJ2QixrQkFBa0IsQ0FBQztFQUNmLFlBQVksRUFBRSxJQUFLO0VBQ25CLGFBQWEsRUFBRSxJQUFLO0NBQ3ZCOztBQTdCVCxBQStCUSxXQS9CRyxDQUNQLDJCQUEyQixDQThCdkIsb0JBQW9CLENBQUM7RUFDakIsYUFBYSxFQUFFLElBQUs7Q0FDdkI7O0FBakNULEFBbUNRLFdBbkNHLENBQ1AsMkJBQTJCLENBa0N2QixPQUFPLENBQUM7RUFDSixLQUFLLEVBQUUsSUFBSztFQUNaLGFBQWEsRUFBRSxHQUFJO0NBQ3RCOztBQXRDVCxBQTBDVSxXQTFDQyxDQXlDUCx1QkFBdUIsQ0FDbkIsRUFBRSxBQUFBLG1CQUFtQixDQUFDO0VBQ2xCLE1BQU0sRUFBRSxJQUFLO0VBQ2IsVUFBVSxFQUFDLEdBQUk7RUFDZixXQUFXLEVBQUUsR0FBSTtFQUNqQixLQUFLLEVBQUUsSUFBSztFQUNaLGFBQWEsRUFBRSxDQUFFO0NBQ3BCOztBQUlULEFBRVEsY0FGTSxDQUNWLDJCQUEyQixDQUN2QiwwQkFBMEIsRUFGbEMsQUFFK0QsY0FGakQsQ0FDViwyQkFBMkIsQ0FDSywwQkFBMEIsQ0FBQyxNQUFNLEVBRnJFLEFBRXVFLGNBRnpELENBQ1YsMkJBQTJCLENBQ3dDLDRCQUE0QixFQUZuRyxBQUVrSSxjQUZwSCxDQUNWLDJCQUEyQixDQUNzRSw0QkFBNEIsQ0FBQyxNQUFNLEVBRnhJLEFBRTBJLGNBRjVILENBQ1YsMkJBQTJCLENBQzJHLHNCQUFzQixFQUZoSyxBQUV5TCxjQUYzSyxDQUNWLDJCQUEyQixDQUNtSSxzQkFBc0IsQ0FBQyxNQUFNLEVBRi9MLEFBRWlNLGNBRm5MLENBQ1YsMkJBQTJCLENBQ2tLLHdCQUF3QixFQUZ6TixBQUVvUCxjQUZ0TyxDQUNWLDJCQUEyQixDQUM0TCx3QkFBd0IsQ0FBQyxNQUFNLEVBRjFQLEFBRTRQLGNBRjlPLENBQ1YsMkJBQTJCLENBQzZOLHNCQUFzQixFQUZsUixBQUUyUyxjQUY3UixDQUNWLDJCQUEyQixDQUNxUCxzQkFBc0IsQ0FBQyxNQUFNLEVBRmpULEFBRW1ULGNBRnJTLENBQ1YsMkJBQTJCLENBQ29SLHdCQUF3QixFQUYzVSxBQUVzVyxjQUZ4VixDQUNWLDJCQUEyQixDQUM4Uyx3QkFBd0IsQ0FBQyxNQUFNLENBQUM7RUFDalcsS0FBSyxFQUFFLGVBQWdCO0NBQzFCIiwibmFtZXMiOltdfQ== */
+
+/*# sourceMappingURL=field_background.css.map */

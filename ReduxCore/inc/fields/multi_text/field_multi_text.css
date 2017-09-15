@@ -1,0 +1,48 @@
+.redux-container-multi_text ul.redux-multi-text {
+  margin: 0;
+  padding: 0;
+}
+
+.redux-container-multi_text .redux-multi-text-add {
+  clear: both;
+  margin: 5px 0;
+}
+
+.redux-container-multi_text a.redux-multi-text-remove.deletion {
+  color: #F00;
+  padding: 2px 4px;
+  margin-left: 5px;
+}
+
+.redux-container-multi_text a.redux-multi-text-remove.deletion:hover {
+  background: red;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 782px) {
+  .redux-container-multi_text input {
+    clear: both;
+  }
+  .redux-container-multi_text .redux-multi-text-remove {
+    margin: 0;
+    float: right;
+  }
+}
+
+.wp-customizer .redux-container-multi_text .button {
+  float: right;
+}
+
+.wp-customizer .redux-container-multi_text .redux-multi-text-remove {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.wp-customizer .redux-container-multi_text ul.redux-multi-text input {
+  width: 100% !important;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmllbGRfbXVsdGlfdGV4dC5jc3MiLCJzb3VyY2VzIjpbImZpZWxkX211bHRpX3RleHQuc2NzcyJdLCJtYXBwaW5ncyI6IkFBQUEsQUFDTSwyQkFEcUIsQ0FDdkIsRUFBRSxBQUFBLGlCQUFpQixDQUFDO0VBQ2hCLE1BQU0sRUFBRSxDQUFFO0VBQ1YsT0FBTyxFQUFFLENBQUU7Q0FDZDs7QUFKTCxBQU1JLDJCQU51QixDQU12QixxQkFBcUIsQ0FBQztFQUNsQixLQUFLLEVBQUUsSUFBSztFQUNaLE1BQU0sRUFBRSxLQUFNO0NBQ2pCOztBQVRMLEFBV0ssMkJBWHNCLENBV3ZCLENBQUMsQUFBQSx3QkFBd0IsQUFDcEIsU0FBUyxDQUFDO0VBQ1AsS0FBSyxFQUFFLElBQUs7RUFDWixPQUFPLEVBQUUsT0FBUTtFQUNqQixXQUFXLEVBQUUsR0FBSTtDQU9wQjs7QUF0QlQsQUFXSywyQkFYc0IsQ0FXdkIsQ0FBQyxBQUFBLHdCQUF3QixBQUNwQixTQUFTLEFBS0wsTUFBTSxDQUFDO0VBQ0osVUFBVSxFQUFFLEdBQUk7RUFDaEIsS0FBSyxFQUFFLElBQUs7RUFDWixlQUFlLEVBQUUsSUFBSztDQUN6Qjs7QUFLYixNQUFNLENBQU4sTUFBTSxNQUFNLFNBQVMsRUFBRSxLQUFLO0VBQ3hCLEFBQ0ksMkJBRHVCLENBQ3ZCLEtBQUssQ0FBQztJQUNGLEtBQUssRUFBRSxJQUFLO0dBQ2Y7RUFITCxBQUtJLDJCQUx1QixDQUt2Qix3QkFBd0IsQ0FBQztJQUNyQixNQUFNLEVBQUUsQ0FBRTtJQUNWLEtBQUssRUFBRSxLQUFNO0dBQ2hCOzs7QUFJVCxBQUVRLGNBRk0sQ0FDViwyQkFBMkIsQ0FDdkIsT0FBTyxDQUFDO0VBQ0osS0FBSyxFQUFFLEtBQU07Q0FDaEI7O0FBSlQsQUFLUSxjQUxNLENBQ1YsMkJBQTJCLENBSXZCLHdCQUF3QixDQUFDO0VBQ3JCLEtBQUssRUFBRSxLQUFNO0VBQ2IsYUFBYSxFQUFFLEdBQUk7Q0FDdEI7O0FBUlQsQUFTNEIsY0FUZCxDQUNWLDJCQUEyQixDQVF2QixFQUFFLEFBQUEsaUJBQWlCLENBQUMsS0FBSyxDQUFDO0VBQ3RCLEtBQUssRUFBRSxlQUFnQjtDQUMxQiIsIm5hbWVzIjpbXX0= */
+
+/*# sourceMappingURL=field_multi_text.css.map */

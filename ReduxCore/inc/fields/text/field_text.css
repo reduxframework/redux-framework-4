@@ -1,0 +1,40 @@
+.redux-container-text label {
+  display: block;
+  position: relative;
+  font-size: 12px !important;
+  text-align: left;
+  color: #999999;
+  margin: 4px 0 2px 0 !important;
+  cursor: default;
+  top: 5px;
+  width: 100px;
+}
+
+.redux-container-text input {
+  clear: left;
+}
+
+.redux-container-text .input_wrapper {
+  display: block;
+  position: relative;
+  padding: 0;
+  width: 23%;
+  max-width: 23%;
+  min-width: 70px;
+  float: left;
+  clear: left;
+  height: 57px;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+.wp-customizer .redux-container-text .input_wrapper {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmllbGRfdGV4dC5jc3MiLCJzb3VyY2VzIjpbImZpZWxkX3RleHQuc2NzcyJdLCJtYXBwaW5ncyI6IkFBQUEsQUFDSSxxQkFEaUIsQ0FDakIsS0FBSyxDQUFDO0VBQ0YsT0FBTyxFQUFFLEtBQU07RUFDZixRQUFRLEVBQUUsUUFBUztFQUNuQixTQUFTLEVBQUUsZUFBZ0I7RUFDM0IsVUFBVSxFQUFFLElBQUs7RUFDakIsS0FBSyxFQUFFLE9BQVE7RUFDZixNQUFNLEVBQUUsc0JBQXVCO0VBQy9CLE1BQU0sRUFBRSxPQUFRO0VBQ2hCLEdBQUcsRUFBRSxHQUFJO0VBQ1QsS0FBSyxFQUFFLEtBQU07Q0FDaEI7O0FBWEwsQUFhSSxxQkFiaUIsQ0FhakIsS0FBSyxDQUFDO0VBQ0YsS0FBSyxFQUFFLElBQUs7Q0FDZjs7QUFmTCxBQWlCSSxxQkFqQmlCLENBaUJqQixjQUFjLENBQUM7RUFDWCxPQUFPLEVBQUUsS0FBTTtFQUNmLFFBQVEsRUFBRSxRQUFTO0VBQ25CLE9BQU8sRUFBRSxDQUFFO0VBQ1gsS0FBSyxFQUFFLEdBQUk7RUFDWCxTQUFTLEVBQUUsR0FBSTtFQUNmLFNBQVMsRUFBRSxJQUFLO0VBQ2hCLEtBQUssRUFBRSxJQUFLO0VBQ1osS0FBSyxFQUFFLElBQUs7RUFDWixNQUFNLEVBQUUsSUFBSztFQUNiLGtCQUFrQixFQUFFLFVBQVc7RUFDL0IsZUFBZSxFQUFFLFVBQVc7RUFDNUIsYUFBYSxFQUFFLFVBQVc7RUFDMUIsVUFBVSxFQUFFLFVBQVc7RUFDdkIsY0FBYyxFQUFFLFFBQVM7Q0FDNUI7O0FBR0wsQUFFUSxjQUZNLENBQ1YscUJBQXFCLENBQ2pCLGNBQWMsQ0FBQztFQUNYLEtBQUssRUFBRSxJQUFLO0VBQ1osU0FBUyxFQUFFLElBQUs7RUFDaEIsTUFBTSxFQUFFLElBQUs7Q0FDaEIiLCJuYW1lcyI6W119 */
+
+/*# sourceMappingURL=field_text.css.map */

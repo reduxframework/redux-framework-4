@@ -1,0 +1,40 @@
+{
+  "description": "Redux is a simple, truly extensible options framework for WordPress themes and plugins.",
+  "main": "gulpfile.js",
+  "name": "Redux-Framework",
+  "author": "Team Redux",
+  "version": "4.0.0",
+  "license": "GPL-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ReduxFramework/ReduxFramework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ReduxFramework/ReduxFramework/issues"
+  },
+  "homepage": "http://reduxframework.com",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.5.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sass-packager": "0.0.5",
+    "gulp-sort": "^2.0.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-uglifycss": "^1.0.6",
+    "gulp-wait": "0.0.2",
+    "gulp-wp-pot": "^1.2.2",
+    "vinyl-paths": "^2.1.0"
+  }
+}

@@ -1,0 +1,45 @@
+<?php
+
+if ( !defined ( 'ABSPATH' ) ) {
+    exit;
+}
+
+if ( ! class_exists( 'Redux_Validation_date' ) ) {
+    
+    class Redux_Validation_date extends Redux_Validate {
+
+        /**
+         * Field Validation Function.
+         * Takes the vars and validates them.
+         *
+         * @since ReduxFramework 1.0.0
+         */
+        function validate() {
+            $this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'This field must be a valid date.', 'redux-framework' );
+
+            $string = str_replace( '/', '', $this->value );
+
+            if ( ! is_numeric( $string ) ) {
+                $this->value = ( isset( $this->current ) ) ? $this->current : '';
+                $this->field['current'] = $this->value;
+                $this->error = $this->field;
+
+                return;
+            }
+
+            if ( $this->value[2] != '/' ) {
+                $this->value = ( isset( $this->current ) ) ? $this->current : '';
+                $this->field['current'] = $this->value;
+                $this->error = $this->field;
+
+                return;
+            }
+
+            if ( $this->value[5] != '/' ) {
+                $this->value = ( isset( $this->current ) ) ? $this->current : '';
+                $this->field['current'] = $this->value;
+                $this->error = $this->field;
+            }
+        }
+    }
+}

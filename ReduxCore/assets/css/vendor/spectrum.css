@@ -1,0 +1,548 @@
+/***
+Spectrum Colorpicker v1.5.1
+https://github.com/bgrins/spectrum
+Author: Brian Grinstead
+License: MIT
+***/
+.sp-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  /* https://github.com/bgrins/spectrum/issues/40 */
+  z-index: 9999994;
+  overflow: hidden;
+}
+
+.sp-container.sp-flat {
+  position: relative;
+}
+
+/* Fix for * { box-sizing: border-box; } */
+.sp-container,
+.sp-container * {
+  box-sizing: content-box;
+}
+
+/* http://ansciath.tumblr.com/post/7347495869/css-aspect-ratio */
+.sp-top {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.sp-top-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.sp-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 20%;
+}
+
+.sp-hue {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 84%;
+  height: 100%;
+}
+
+.sp-clear-enabled .sp-hue {
+  top: 33px;
+  height: 77.5%;
+}
+
+.sp-fill {
+  padding-top: 80%;
+}
+
+.sp-sat, .sp-val {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sp-alpha-enabled .sp-top {
+  margin-bottom: 18px;
+}
+
+.sp-alpha-enabled .sp-alpha {
+  display: block;
+}
+
+.sp-alpha-handle {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 6px;
+  left: 50%;
+  cursor: pointer;
+  border: 1px solid black;
+  background: white;
+  opacity: .8;
+}
+
+.sp-alpha {
+  display: none;
+  position: absolute;
+  bottom: -14px;
+  right: 0;
+  left: 0;
+  height: 8px;
+}
+
+.sp-alpha-inner {
+  border: solid 1px #333;
+}
+
+.sp-clear {
+  display: none;
+}
+
+.sp-clear.sp-clear-display {
+  background-position: center;
+}
+
+.sp-clear-enabled .sp-clear {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 84%;
+  height: 28px;
+}
+
+/* Don't allow text selection */
+.sp-container, .sp-replacer, .sp-preview, .sp-dragger, .sp-slider, .sp-alpha, .sp-clear, .sp-alpha-handle, .sp-container.sp-dragging .sp-input, .sp-container button {
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+
+.sp-container.sp-input-disabled .sp-input-container {
+  display: none;
+}
+
+.sp-container.sp-buttons-disabled .sp-button-container {
+  display: none;
+}
+
+.sp-container.sp-palette-buttons-disabled .sp-palette-button-container {
+  display: none;
+}
+
+.sp-palette-only .sp-picker-container {
+  display: none;
+}
+
+.sp-palette-disabled .sp-palette-container {
+  display: none;
+}
+
+.sp-initial-disabled .sp-initial {
+  display: none;
+}
+
+/* Gradients for hue, saturation and value instead of images.  Not pretty... but it works */
+.sp-sat {
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#FFF), to(rgba(204, 154, 129, 0)));
+  background-image: -webkit-linear-gradient(left, #FFF, rgba(204, 154, 129, 0));
+  background-image: -webkit-linear-gradient(left, #fff, rgba(204, 154, 129, 0));
+  background-image: linear-gradient(to right, #fff, rgba(204, 154, 129, 0));
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr=#FFFFFFFF, endColorstr=#00CC9A81)";
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr='#FFFFFFFF', endColorstr='#00CC9A81');
+}
+
+.sp-val {
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000000), to(rgba(204, 154, 129, 0)));
+  background-image: -webkit-linear-gradient(bottom, #000000, rgba(204, 154, 129, 0));
+  background-image: -webkit-linear-gradient(bottom, #000, rgba(204, 154, 129, 0));
+  background-image: linear-gradient(to top, #000, rgba(204, 154, 129, 0));
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00CC9A81, endColorstr=#FF000000)";
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CC9A81', endColorstr='#FF000000');
+}
+
+.sp-hue {
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), color-stop(0.17, #ffff00), color-stop(0.33, #00ff00), color-stop(0.5, #00ffff), color-stop(0.67, #0000ff), color-stop(0.83, #ff00ff), to(#ff0000));
+  background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  background: linear-gradient(to bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+}
+
+/* IE filters do not support multiple color stops.
+   Generate 6 divs, line them up, and do two color gradients for each.
+   Yes, really.
+ */
+.sp-1 {
+  height: 17%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#ffff00');
+}
+
+.sp-2 {
+  height: 16%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff00', endColorstr='#00ff00');
+}
+
+.sp-3 {
+  height: 17%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ff00', endColorstr='#00ffff');
+}
+
+.sp-4 {
+  height: 17%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffff', endColorstr='#0000ff');
+}
+
+.sp-5 {
+  height: 16%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000ff', endColorstr='#ff00ff');
+}
+
+.sp-6 {
+  height: 17%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00ff', endColorstr='#ff0000');
+}
+
+.sp-hidden {
+  display: none !important;
+}
+
+/* Clearfix hack */
+.sp-cf:before, .sp-cf:after {
+  content: "";
+  display: table;
+}
+
+.sp-cf:after {
+  clear: both;
+}
+
+.sp-cf {
+  *zoom: 1;
+}
+
+/* Mobile devices, make hue slider bigger so it is easier to slide */
+@media (max-device-width: 480px) {
+  .sp-color {
+    right: 40%;
+  }
+  .sp-hue {
+    left: 63%;
+  }
+  .sp-fill {
+    padding-top: 60%;
+  }
+}
+
+.sp-dragger {
+  border-radius: 5px;
+  height: 5px;
+  width: 5px;
+  border: 1px solid #fff;
+  background: #000;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sp-slider {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  height: 3px;
+  left: -1px;
+  right: -1px;
+  border: 1px solid #000;
+  background: white;
+  opacity: .8;
+}
+
+/*
+Theme authors:
+Here are the basic themeable display options (colors, fonts, global widths).
+See http://bgrins.github.io/spectrum/themes/ for instructions.
+*/
+.sp-container {
+  border-radius: 0;
+  background-color: #ECECEC;
+  border: solid 1px #f0c49B;
+  padding: 0;
+}
+
+.sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
+  font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.sp-top {
+  margin-bottom: 3px;
+}
+
+.sp-color, .sp-hue, .sp-clear {
+  border: solid 1px #666;
+}
+
+/* Input */
+.sp-input-container {
+  float: right;
+  width: 100px;
+  margin-bottom: 4px;
+}
+
+.sp-initial-disabled .sp-input-container {
+  width: 100%;
+}
+
+.sp-input {
+  font-size: 12px !important;
+  border: 1px inset;
+  padding: 4px 5px;
+  margin: 0;
+  width: 100%;
+  background: transparent;
+  border-radius: 3px;
+  color: #222;
+}
+
+.sp-input:focus {
+  border: 1px solid orange;
+}
+
+.sp-input.sp-validation-error {
+  border: 1px solid red;
+  background: #fdd;
+}
+
+.sp-picker-container, .sp-palette-container {
+  float: left;
+  position: relative;
+  padding: 10px;
+  padding-bottom: 300px;
+  margin-bottom: -290px;
+}
+
+.sp-picker-container {
+  width: 172px;
+  border-left: solid 1px #fff;
+}
+
+/* Palettes */
+.sp-palette-container {
+  border-right: solid 1px #ccc;
+}
+
+.sp-palette-only .sp-palette-container {
+  border: 0;
+}
+
+.sp-palette .sp-thumb-el {
+  display: block;
+  position: relative;
+  float: left;
+  width: 24px;
+  height: 15px;
+  margin: 3px;
+  cursor: pointer;
+  border: solid 2px transparent;
+}
+
+.sp-palette .sp-thumb-el:hover, .sp-palette .sp-thumb-el.sp-thumb-active {
+  border-color: orange;
+}
+
+.sp-thumb-el {
+  position: relative;
+}
+
+/* Initial */
+.sp-initial {
+  float: left;
+  border: solid 1px #333;
+}
+
+.sp-initial span {
+  width: 30px;
+  height: 25px;
+  border: none;
+  display: block;
+  float: left;
+  margin: 0;
+}
+
+.sp-initial .sp-clear-display {
+  background-position: center;
+}
+
+/* Buttons */
+.sp-palette-button-container,
+.sp-button-container {
+  float: right;
+}
+
+/* Replacer (the little preview div that shows up instead of the <input>) */
+.sp-replacer {
+  margin: 0;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-block;
+  *zoom: 1;
+  *display: inline;
+  border: solid 1px #91765d;
+  background: #eee;
+  color: #333;
+  vertical-align: middle;
+}
+
+.sp-replacer:hover, .sp-replacer.sp-active {
+  border-color: #F0C49B;
+  color: #111;
+}
+
+.sp-replacer.sp-disabled {
+  cursor: default;
+  border-color: silver;
+  color: silver;
+}
+
+.sp-dd {
+  padding: 2px 0;
+  height: 16px;
+  line-height: 16px;
+  float: left;
+  font-size: 10px;
+}
+
+.sp-preview {
+  position: relative;
+  width: 25px;
+  height: 20px;
+  border: solid 1px #222;
+  margin-right: 5px;
+  float: left;
+  z-index: 0;
+}
+
+.sp-palette {
+  *width: 220px;
+  max-width: 220px;
+}
+
+.sp-palette .sp-thumb-el {
+  width: 16px;
+  height: 16px;
+  margin: 2px 1px;
+  border: solid 1px #d0d0d0;
+}
+
+.sp-container {
+  padding-bottom: 0;
+}
+
+/* Buttons: http://hellohappy.org/css3-buttons/ */
+.sp-container button {
+  background-color: #eeeeee;
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(to bottom, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  border-radius: 3px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1;
+  padding: 5px 4px;
+  text-align: center;
+  text-shadow: 0 1px 0 #eee;
+  vertical-align: middle;
+}
+
+.sp-container button:hover {
+  background-color: #dddddd;
+  background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: linear-gradient(to bottom, #dddddd, #bbbbbb);
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+  text-shadow: 0 1px 0 #ddd;
+}
+
+.sp-container button:active {
+  border: 1px solid #aaa;
+  border-bottom: 1px solid #888;
+  -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+}
+
+.sp-cancel {
+  font-size: 11px;
+  color: #d93f3f !important;
+  margin: 0;
+  padding: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.sp-cancel:hover {
+  color: #d93f3f !important;
+  text-decoration: underline;
+}
+
+.sp-palette span:hover, .sp-palette span.sp-thumb-active {
+  border-color: #000;
+}
+
+.sp-preview, .sp-alpha, .sp-thumb-el {
+  position: relative;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+}
+
+.sp-preview-inner, .sp-alpha-inner, .sp-thumb-inner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.sp-palette .sp-thumb-inner {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);
+}
+
+.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);
+}
+
+.sp-clear-display {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(data:image/gif;base64,R0lGODlhFAAUAPcAAAAAAJmZmZ2dnZ6enqKioqOjo6SkpKWlpaampqenp6ioqKmpqaqqqqurq/Hx8fLy8vT09PX19ff39/j4+Pn5+fr6+vv7+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAUABQAAAihAP9FoPCvoMGDBy08+EdhQAIJCCMybCDAAYUEARBAlFiQQoMABQhKUJBxY0SPICEYHBnggEmDKAuoPMjS5cGYMxHW3IiT478JJA8M/CjTZ0GgLRekNGpwAsYABHIypcAgQMsITDtWJYBR6NSqMico9cqR6tKfY7GeBCuVwlipDNmefAtTrkSzB1RaIAoXodsABiZAEFB06gIBWC1mLVgBa0AAOw==);
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3BlY3RydW0uY3NzIiwic291cmNlcyI6WyJzcGVjdHJ1bS5zY3NzIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7SUFLSTtBQUVKLEFBQUEsYUFBYSxDQUFDO0VBQ1YsUUFBUSxFQUFFLFFBQVM7RUFDbkIsR0FBRyxFQUFFLENBQUU7RUFDUCxJQUFJLEVBQUUsQ0FBRTtFQUNSLE9BQU8sRUFBRSxZQUFhO0VBQ3RCLFFBQVEsRUFBRSxNQUFPO0VBQ2pCLEtBQUssRUFBRSxDQUFFO0VBQ1Qsa0RBQWtEO0VBQ2xELE9BQU8sRUFBRSxPQUFRO0VBQ2pCLFFBQVEsRUFBRSxNQUFPO0NBQ3BCOztBQUdELEFBQWEsYUFBQSxBQUFBLFFBQVEsQ0FBQztFQUNsQixRQUFRLEVBQUUsUUFBUztDQUN0Qjs7QUFFRCwyQ0FBMkM7QUFDM0MsQUFBQSxhQUFhO0FBQ2IsQUFBYyxhQUFELENBQUMsQ0FBQyxDQUFDO0VBQ1osa0JBQWtCLEVBQUUsV0FBWTtFQUNoQyxlQUFlLEVBQUUsV0FBWTtFQUM3QixVQUFVLEVBQUUsV0FBWTtDQUMzQjs7QUFFRCxpRUFBaUU7QUFDakUsQUFBQSxPQUFPLENBQUM7RUFDSixRQUFRLEVBQUUsUUFBUztFQUNuQixLQUFLLEVBQUUsSUFBSztFQUNaLE9BQU8sRUFBRSxZQUFhO0NBQ3pCOztBQUVELEFBQUEsYUFBYSxDQUFDO0VBQ1YsUUFBUSxFQUFFLFFBQVM7RUFDbkIsR0FBRyxFQUFFLENBQUU7RUFDUCxJQUFJLEVBQUUsQ0FBRTtFQUNSLE1BQU0sRUFBRSxDQUFFO0VBQ1YsS0FBSyxFQUFFLENBQUU7Q0FDWjs7QUFFRCxBQUFBLFNBQVMsQ0FBQztFQUNOLFFBQVEsRUFBRSxRQUFTO0VBQ25CLEdBQUcsRUFBRSxDQUFFO0VBQ1AsSUFBSSxFQUFFLENBQUU7RUFDUixNQUFNLEVBQUUsQ0FBRTtFQUNWLEtBQUssRUFBRSxHQUFJO0NBQ2Q7O0FBRUQsQUFBQSxPQUFPLENBQUM7RUFDSixRQUFRLEVBQUUsUUFBUztFQUNuQixHQUFHLEVBQUUsQ0FBRTtFQUNQ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 */
+
+/*# sourceMappingURL=spectrum.css.map */

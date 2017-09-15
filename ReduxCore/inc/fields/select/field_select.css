@@ -1,0 +1,20 @@
+.redux-container-select li.ui-state-highlight {
+  height: 20px;
+  margin-top: 2px;
+  margin-left: 5px;
+  width: 64px;
+  margin-bottom: 0;
+}
+
+.select2-search__field {
+  width: none !important;
+}
+
+.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove,
+.select2-container--classic .select2-selection--single .select2-selection__clear {
+  font-size: 1.2em;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmllbGRfc2VsZWN0LmNzcyIsInNvdXJjZXMiOlsiZmllbGRfc2VsZWN0LnNjc3MiXSwibWFwcGluZ3MiOiJBQUFBLEFBQ00sdUJBRGlCLENBQ25CLEVBQUUsQUFBQSxtQkFBbUIsQ0FBQztFQUNsQixNQUFNLEVBQUUsSUFBSztFQUNiLFVBQVUsRUFBRSxHQUFJO0VBQ2hCLFdBQVcsRUFBRSxHQUFJO0VBQ2pCLEtBQUssRUFBRSxJQUFLO0VBQ1osYUFBYSxFQUFFLENBQUU7Q0FDcEI7O0FBR0wsQUFBQSxzQkFBc0IsQ0FBQztFQUNuQixLQUFLLEVBQUUsZUFBZ0I7Q0FDMUI7O0FBRUQsQUFDaUMsMkJBRE4sQ0FDdkIsNEJBQTRCLENBQUMsa0NBQWtDO0FBRG5FLEFBRStCLDJCQUZKLENBRXZCLDBCQUEwQixDQUFDLHlCQUF5QixDQUFDO0VBQ2pELFNBQVMsRUFBRSxLQUFNO0NBQ3BCIiwibmFtZXMiOltdfQ== */
+
+/*# sourceMappingURL=field_select.css.map */

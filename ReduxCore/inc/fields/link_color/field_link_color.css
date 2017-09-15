@@ -1,0 +1,18 @@
+.redux-container-link_color .linkColor {
+  display: inline-block;
+  padding-right: 10px;
+  padding-bottom: 7px;
+}
+
+.redux-container-link_color .linkColor strong {
+  display: table;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #999;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmllbGRfbGlua19jb2xvci5jc3MiLCJzb3VyY2VzIjpbImZpZWxkX2xpbmtfY29sb3Iuc2NzcyJdLCJtYXBwaW5ncyI6IkFBQUEsQUFDSSwyQkFEdUIsQ0FDdkIsVUFBVSxDQUFDO0VBQ1AsT0FBTyxFQUFFLFlBQWE7RUFDdEIsYUFBYSxFQUFFLElBQUs7RUFDcEIsY0FBYyxFQUFFLEdBQUk7Q0FVdkI7O0FBZEwsQUFNUSwyQkFObUIsQ0FDdkIsVUFBVSxDQUtOLE1BQU0sQ0FBQztFQUNILE9BQU8sRUFBRSxLQUFNO0VBQ2YsYUFBYSxFQUFFLEdBQUk7RUFDbkIsV0FBVyxFQUFFLEdBQUk7RUFDakIsU0FBUyxFQUFFLElBQUs7RUFDaEIsV0FBVyxFQUFFLE1BQU87RUFDcEIsS0FBSyxFQUFFLElBQUs7Q0FDZiIsIm5hbWVzIjpbXX0= */
+
+/*# sourceMappingURL=field_link_color.css.map */
