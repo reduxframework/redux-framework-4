@@ -172,10 +172,6 @@ var path         = require('path');
 var merge        = require('merge-stream');
 var del          = require('del');
 var sassPackager = require('gulp-sass-packager');
-var replace      = require( 'gulp-replace' );
-var removeCode   = require( 'gulp-remove-code' );
-var clean        = require('gulp-clean');
-var wait         = require('gulp-wait');
 
 /**
  * Task: `browser-sync`.
@@ -326,48 +322,6 @@ function process_scss(source, dest, add_min) {
 
  });
 
-gulp.task( 'core', ['compile-core','clean-core']);
-
-gulp.task('clean-core', function () {
-    gulp.src('./dist/redux-framework/ReduxCore/inc/fields/box_shadow', {read: false})
-    .pipe(wait(1000))
-    .pipe(clean());
-});
-
-gulp.task( 'compile-core', function() {
-    gulp.src( 'ReduxCore/**/*' )
-
-    .pipe( removeCode( {core: true} ) )
-    
-    .pipe( replace( '//removeIf(pro)\n', '' ) )
-    .pipe( replace( '//endRemoveIf(pro)\n', '' ) )
-    
-    .pipe( gulp.dest( '../redux-framework/ReduxCore' ) )
-});
-
-gulp.task( 'pro', function() {
-    gulp.src( 'ReduxCore/**/*' )
-
-    .pipe( removeCode( {pro: true} ) )
-    
-    .pipe( replace( '//removeIf(core)\n', '' ) )
-    .pipe( replace( '//endRemoveIf(core)\n', '' ) )
-    
-    .pipe( gulp.dest( './dist/redux-pro' ) )
-});
-
-gulp.task( 'images', function() {
-    gulp.src( imagesSRC )
-        .pipe( imagemin( {
-            progressive: true,
-            optimizationLevel: 3, // 0-7 low-high
-            interlaced: true,
-            svgoPlugins: [{removeViewBox: false}]
-        } ) )
-        .pipe(gulp.dest( imagesDestination ))
-        .pipe( notify( { message: 'TASK: "images" Completed!', onLast: true } ) );
-});
-
  gulp.task( 'fieldsJS', function() {
     var field_dirs = getFolders('ReduxCore/inc/fields');
     var fields = field_dirs.map(function(folder) {
@@ -512,5 +466,3 @@ gulp.task('reduxCombineModules', function() {
     gulp.watch( vendorJSWatchFiles, [ 'vendorsJS', reload ] ); // Reload on vendorsJs file changes.
     gulp.watch( reduxJSWatchFiles, [ 'reduxJS', reload ] ); // Reload on reduxJS file changes.
  });
-
-  gulp.task( 'build', ['core', 'pro']);

@@ -518,7 +518,6 @@ function colorNameToHex( colour ) {
                 var type = $( this ).attr( 'data-type' );
 
                 if ( typeof redux.field_objects !== 'undefined' && redux.field_objects[type] && redux.field_objects[type] ) {
-                    //console.log(type + ' loading');
                     redux.field_objects[type].init();
                 }
                 
