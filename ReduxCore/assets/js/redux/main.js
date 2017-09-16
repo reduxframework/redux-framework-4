@@ -51,7 +51,6 @@
                 redux.optName = window['redux_' + opt_name];
             });
 
-            $.redux.flyoutSubmenus();
             $.redux.hideFields();    
             $.redux.initQtip();
             $.redux.tabCheck();
