@@ -322,6 +322,7 @@
 
                     if (ReduxCore::$_pro_loaded) {
                         $pro_path = ReduxPro::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+                        
                         if (file_exists( $pro_path ) ) {
                             $filter_path = $pro_path;
                         } else {
