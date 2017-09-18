@@ -58,7 +58,11 @@ if ( ! class_exists( 'ReduxFramework_color_rgba' ) ) {
             );
 
             $this->value = wp_parse_args( $this->value, $defaults );
-
+            
+            if (isset($this->field) && !is_array($this->field) ) {
+                return;
+            }
+            
             $this->field['options'] = isset( $this->field['options'] ) ? wp_parse_args( $this->field['options'], $option_defaults ) : $option_defaults;
 
             // Convert empty array to null, if there.
