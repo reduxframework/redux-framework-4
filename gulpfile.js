@@ -460,9 +460,9 @@ gulp.task('reduxCombineModules', function() {
   *
   * Watches for file changes and runs specific tasks.
   */
- gulp.task( 'default', ['styles', 'vendorsJS', 'reduxJS', 'fieldsJS', 'images', 'browser-sync'], function () {
-    gulp.watch( projectPHPWatchFiles, reload ); // Reload on PHP file changes.
-    gulp.watch( styleWatchFiles, [ 'styles' ] ); // Reload on SCSS file changes.
-    gulp.watch( vendorJSWatchFiles, [ 'vendorsJS', reload ] ); // Reload on vendorsJs file changes.
-    gulp.watch( reduxJSWatchFiles, [ 'reduxJS', reload ] ); // Reload on reduxJS file changes.
+ gulp.task( 'default', ['styles', 'vendorsJS', 'reduxJS', 'fieldsJS', 'images' ], function () {
+//    gulp.watch( projectPHPWatchFiles, reload ); // Reload on PHP file changes.
+//    gulp.watch( styleWatchFiles, [ 'styles' ] ); // Reload on SCSS file changes.
+//    gulp.watch( vendorJSWatchFiles, [ 'vendorsJS', reload ] ); // Reload on vendorsJs file changes.
+//    gulp.watch( reduxJSWatchFiles, [ 'reduxJS', reload ] ); // Reload on reduxJS file changes.
  });

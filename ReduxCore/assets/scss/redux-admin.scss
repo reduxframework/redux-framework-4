@@ -775,21 +775,6 @@
                 -o-transition: 0.1s ease-in-out;
                 transition: 0.1s ease-in-out;            
             }
-            
-            &:hover {
-                .el-rotate {
-                    -webkit-transition: 0.1s ease-in-out;
-                    -moz-transition: 0.1s ease-in-out;
-                    -o-transition: 0.1s ease-in-out;
-                    transition: 0.1s ease-in-out;            
-
-                    -webkit-transform: rotate(270deg);
-                    -moz-transform: rotate(270deg);
-                    -ms-transform: rotate(270deg);
-                    -o-transform: rotate(270deg);
-                    transform: rotate(270deg);   
-                }
-            }
         }
     }
     
