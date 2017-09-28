@@ -423,7 +423,8 @@
                     $core->localize_data['last_tab'] = $core->args['last_tab'];
                 }
 
-                $core->localize_data['core_instance'] = $core->core_instance;
+                $core->localize_data['core_instance']  = $core->core_instance;
+                $core->localize_data['core_thread']    = $core->core_thread;
                 
                 $core->localize_data['required']       = $core->required;
                 $core->localize_data['fonts']          = $core->fonts;

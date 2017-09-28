@@ -740,13 +740,14 @@ function colorNameToHex( colour ) {
                     function() {
                         var el;
                         var instance = redux.optName.core_instance;
+                        var thread   = redux.optName.core_thread;
                         
                         if ( $( '#redux-header' ).length > 0 ) {
                             $( '#redux-header' ).append( '<div id="' + instance + '"></div>' );
                             el = $( '#redux-header' );
                         } else {
-                            $( '#customize-theme-controls ul' ).first().prepend( '<li id="redux_rAds" class="accordion-section rAdsContainer" style="position: relative;"><div id="' + instance + '"></div></li>' );
-                            el = $( '#redux_rAds' );
+                            $( '#customize-theme-controls ul' ).first().prepend( '<li id="' + thread + '" class="accordion-section" style="position: relative;"><div id="' + instance + '"></div></li>' );
+                            el = $( '#' + thread );
                         }
 
                         el.css( 'position', 'relative' );
