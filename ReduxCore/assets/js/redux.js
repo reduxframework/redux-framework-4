@@ -1341,10 +1341,10 @@ function redux_hook( object, functionName, callback, before ) {
         }
 
         var container = current.parents( '.redux-field-container:first' );
-        var is_hidden = container.parents( 'tr:first' ).hasClass( '.hide' );
+        var is_hidden = container.parents( 'tr:first' ).hasClass( 'hide' );
 
         if ( !container.parents( 'tr:first' ).length ) {
-            is_hidden = container.parents( '.customize-control:first' ).hasClass( '.hide' );
+            is_hidden = container.parents( '.customize-control:first' ).hasClass( 'hide' );
         }
 
 //console.log('check deps: ' + redux.optName.args.opt_name);
@@ -1459,7 +1459,7 @@ function redux_hook( object, functionName, callback, before ) {
         if ( redux.optName.required_child.hasOwnProperty( id ) ) {
             $.each(
                 redux.optName.required_child[id], function( i, parentData ) {
-                    if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'tr:first' ).hasClass( '.hide' ) ) {
+                    if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'tr:first' ).hasClass( 'hide' ) ) {
                         show = false;
                     } else {
                         if ( show !== false ) {

@@ -22,7 +22,7 @@
 
             protected function render() {
                 ?>
-                    <li data-fucked="" id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="accordion-section rAdsContainer"></li>
+                    <li id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="accordion-section rAdsContainer"></li>
                 <?php
             }
         }
