@@ -544,7 +544,7 @@ function colorNameToHex( colour ) {
                 var li = $('.panel-meta.customize-info.redux-panel.accordion-section');
                 
                 opt_name = li.data('opt-name');
-console.log ('whatever');
+
                 redux.optName = window['redux_' + opt_name];
             }
             
