@@ -90,30 +90,6 @@
     z-index: 999999;
 }
 
-.rAdsContainer {
-    line-height: 0;
-    border: 0;
-    /*margin-top: -15px;*/
-    /*margin-bottom: -15px;*/
-}
-
 .customize-control-redux-raw {
     list-style: none;
-}
-
-.rAds {
-    position: inherit !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    text-align: center;
-    margin-bottom: 0;
-    line-height: 0;
-    -webkit-transition: left ease-in-out .18s;
-    transition: left ease-in-out .18s;
-    img {
-        -webkit-transition: left ease-in-out .18s;
-        transition: left ease-in-out .18s;
-    }
 }

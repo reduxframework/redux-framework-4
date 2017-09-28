@@ -739,23 +739,26 @@ function colorNameToHex( colour ) {
                 setTimeout(
                     function() {
                         var el;
+                        var instance = redux.optName.core_instance;
+                        
                         if ( $( '#redux-header' ).length > 0 ) {
-                            $( '#redux-header' ).append( '<div class="rAds"></div>' );
+                            $( '#redux-header' ).append( '<div id="' + instance + '"></div>' );
                             el = $( '#redux-header' );
                         } else {
-                            $( '#customize-theme-controls ul' ).first().prepend( '<li id="redux_rAds" class="accordion-section rAdsContainer" style="position: relative;"><div class="rAds"></div></li>' );
+                            $( '#customize-theme-controls ul' ).first().prepend( '<li id="redux_rAds" class="accordion-section rAdsContainer" style="position: relative;"><div id="' + instance + '"></div></li>' );
                             el = $( '#redux_rAds' );
                         }
 
                         el.css( 'position', 'relative' );
 
-                        el.find( '.rAds' ).attr(
+                        el.find( '#' + instance ).attr(
                             'style',
                             'position:absolute; top: 6px; right: 6px; display:block !important;overflow:hidden;'
                         ).css( 'left', '-99999px' );
-                        el.find( '.rAds' ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
-                        var rAds = el.find( '.rAds' );
-
+                
+                        el.find( '#' + instance ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
+                        
+                        var rAds = el.find( '#' + instance );
                         var maxHeight = el.height();
                         var maxWidth = el.width() - el.find( '.display_header' ).width() - 30;
 
@@ -858,7 +861,7 @@ function colorNameToHex( colour ) {
     $.redux.resizeAds = function() {
         var el          = $( '#redux-header' );
         var maxHeight   = el.height();
-        var rAds        = el.find( '.rAds' );
+        var rAds        = el.find( '#' + redux.optName.core_instance );
         var maxWidth;
         
         if ( el.length ) {

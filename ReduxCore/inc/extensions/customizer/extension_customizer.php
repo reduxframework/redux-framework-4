@@ -125,6 +125,8 @@
                 add_action( 'customize_controls_print_scripts', array( $this, 'enqueue_controls_css' ) );
 
                 add_action( 'customize_controls_init', array( $this, 'enqueue_panel_css' ) );
+                
+                add_action ( 'wp_enqueue_styles', array( $this, 'custom_css' ), 11 );
 
 
                 //add_action( 'wp_enqueue_scripts', array( &$this, '_enqueue_previewer_css' ) ); // Enqueue previewer css
@@ -133,24 +135,37 @@
                 //$this->_enqueue_new();
             }
 
+            public function custom_css () {
+                $custom_css_trimmed = '.fuck-it-dude{' . $this->parent->core_instance . '}';
+                
+                wp_add_inline_style ( 'redux-admin-css', $custom_css_trimmed );
+            }
+            
             function enqueue_controls_css() {
                 $this->parent->enqueue_class->get_warnings_and_errors_array();
                 $this->parent->enqueue_class->init();
                 
-                wp_enqueue_style( 'redux-extension-advanced-customizer', $this->_extension_url . 'extension_customizer.css', '', time() );
+                wp_enqueue_style( 'redux-extension-customizer-css', $this->_extension_url . 'extension_customizer.css', array(), ReduxFramework_extension_customizer::$version, 'all' );
 
                 wp_enqueue_script(
-                    'redux-extension-customizer',
+                    'redux-extension-customizer-js',
                     $this->_extension_url . 'extension_customizer' . Redux_Functions::isMin() . '.js',
                     array( 'jquery', 'redux-js' ),
                     ReduxFramework_extension_customizer::$version,
                     true
                 );
-                wp_localize_script( 'redux-extension-customizer', 'redux_customizer', array( 'body_class' => sanitize_html_class( 'admin-color-' . get_user_option( 'admin_color' ), 'fresh' ) ) );
+                
+                $custom_css = '.rAdsContainer{line-height:0;border:0;}';
+                $custom_css .= '#' . $this->parent->core_instance . '{position:inherit!important;right:0!important;top:0!important;bottom:0!important;';
+                $custom_css .= 'left:0!important;text-align:center;margin-bottom:0;line-height:0;-webkit-transition:left ease-in-out .18s;transition:left ease-in-out .18s;}';
+                $custom_css .= '#' . $this->parent->core_instance . ' img{-webkit-transition:left ease-in-out .18s;transition:left ease-in-out .18s;}';
+                
+                wp_add_inline_style ( 'redux-extension-customizer-css', $custom_css );
+                
+                wp_localize_script( 'redux-extension-customizer-js', 'redux_customizer', array( 'body_class' => sanitize_html_class( 'admin-color-' . get_user_option( 'admin_color' ), 'fresh' ) ) );
             }
 
             function enqueue_panel_css() {
-
             }
 
             function remove_core_customizer_class( $path ) {

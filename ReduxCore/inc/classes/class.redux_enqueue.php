@@ -423,6 +423,8 @@
                     $core->localize_data['last_tab'] = $core->args['last_tab'];
                 }
 
+                $core->localize_data['core_instance'] = $core->core_instance;
+                
                 $core->localize_data['required']       = $core->required;
                 $core->localize_data['fonts']          = $core->fonts;
                 $core->localize_data['required_child'] = $core->required_child;
@@ -493,7 +495,9 @@
                  * @param       string        preset confirm string
                  */
                 $preset_confirm = apply_filters( "redux/{$core->args['opt_name']}/localize/preset", esc_html__( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'redux-framework' ) );
+                
                 global $pagenow;
+                
                 $core->localize_data['args'] = array(
                   'save_pending'          => $save_pending,
                   'reset_confirm'         => $reset_all,
