@@ -18,6 +18,7 @@
          * @var string
          */
         public $type = 'redux';
+public $opt_name = '';
 
         /**
          * Constructor.
@@ -123,6 +124,19 @@
             <?php
         }
 
+	public function json() {
+		$array = wp_array_slice_assoc( (array) $this, array( 'id', 'description', 'priority', 'type' ) );
+		$array['title'] = html_entity_decode( $this->title, ENT_QUOTES, get_bloginfo( 'charset' ) );
+		$array['content'] = $this->get_content();
+		$array['active'] = $this->active();
+		$array['instanceNumber'] = $this->instance_number;
+		$array['autoExpandSoleSection'] = $this->auto_expand_sole_section;
+                $array['opt_name'] = $this->opt_name;
+                
+		return $array;
+	}
+        
+        
         /**
          * An Underscore (JS) template for this panel's content (but not its container).
          * Class variables for this panel class are available in the `data` JS object;
@@ -133,7 +147,7 @@
          */
         protected function content_template() {
             ?>
-            <li class="panel-meta customize-info redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>">
+            <li class="panel-meta customize-info redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>" data-opt-name="{{{ data.opt_name }}}">
                 <button class="customize-panel-back" tabindex="-1">
                     <span class="screen-reader-text"><?php esc_attr_e( 'Back', 'redux-framework' ); ?></span></button>
                 <div class="accordion-section-title">

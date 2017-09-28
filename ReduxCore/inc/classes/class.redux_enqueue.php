@@ -55,13 +55,6 @@
                 //*****************************************************************
                 // Redux Admin CSS
                 //*****************************************************************
-                wp_enqueue_style(
-                  'redux-admin-css',
-                  ReduxCore::$_url."assets/css/redux-admin{$this->min}.css",
-                  array(),
-                  $this->timestamp,
-                  'all'
-                );
 
                 if ( $core->args['admin_theme'] == 'wordpress' || $core->args['admin_theme'] == 'wp' ) {
                     $color_scheme = get_user_option( 'admin_color' );
@@ -76,7 +69,7 @@
 
                 $css = apply_filters( 'redux/enqueue/' . $core->args['opt_name'] . '/args/admin_theme/css_url', $css );
 
-                wp_enqueue_style(
+                wp_register_style(
                   'redux-admin-theme-css',
                   $css,
                   array(),
@@ -84,6 +77,13 @@
                   'all'
                 );
 
+                wp_enqueue_style(
+                  'redux-admin-css',
+                  ReduxCore::$_url."assets/css/redux-admin{$this->min}.css",
+                  array('redux-admin-theme-css'),
+                  $this->timestamp,
+                  'all'
+                );
 
                 //*****************************************************************
                 // Redux Fields CSS

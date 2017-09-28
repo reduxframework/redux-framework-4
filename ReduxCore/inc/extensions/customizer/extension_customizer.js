@@ -340,7 +340,7 @@
             }
         );
 
-        redux.args.disable_save_warn = true;
+        redux.optName.args.disable_save_warn = true;
         var reduxChange = redux_change;
         redux_change = function( variable ) {
             variable = $( variable );

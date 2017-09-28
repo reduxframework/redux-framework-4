@@ -32,6 +32,14 @@
             var tempArr = [];
             var opt_name;
             
+            if ($('body').hasClass('wp-customizer')) {
+                var li = $('.panel-meta.customize-info.redux-panel.accordion-section');
+                
+                opt_name = li.data('opt-name');
+
+                redux.optName = window['redux_' + opt_name];
+            }
+            
             $( '.redux-container' ).each( function(idx, val){
                 opt_name = $(this).data('opt-name');
 
@@ -47,7 +55,8 @@
             
 
             $( '.redux-container' ).on('click', function() {
-                var opt_name = $(this).data('opt-name');
+                opt_name = $(this).data('opt-name');
+                
                 redux.optName = window['redux_' + opt_name];
             });
 

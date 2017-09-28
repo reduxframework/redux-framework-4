@@ -131,8 +131,6 @@
                 //add_action( 'wp_enqueue_scripts', array( &$this, '_enqueue_previewer_js' ) ); // Enqueue previewer javascript
                 //add_action( "wp_footer", array( $this, '_enqueue_new' ), 100 );
                 //$this->_enqueue_new();
-
-
             }
 
             function enqueue_controls_css() {

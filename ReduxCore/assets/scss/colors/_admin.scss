@@ -40,8 +40,8 @@
     .redux-group-menu {
         li {
             &.divide {
-                border-bottom-color: lighten($primary, 20%);
-                border-top-color: lighten($primary, 20%);
+                border-bottom-color: lighten($primary, 20%)!important;
+                border-top-color: lighten($primary, 20%)!important;
             }
             
             &.activeChild {
@@ -100,14 +100,14 @@
             // Inactive menu item, no subsection
             a {
                 font-weight: 400!important;
-                color: $text;
-                opacity: 0.9;
-                border-style: hidden;
-                -webkit-transition: all 0.2s ease-in-out;
-                -moz-transition: all 0.2s ease-in-out;
-                -ms-transition: all 0.2s ease-in-out;
-                -o-transition: all 0.2s ease-in-out;
-                transition: all 0.2s ease-in-out;
+                color: $text!important;
+                opacity: 0.9!important;
+                border-style: hidden!important;
+                -webkit-transition: all 0.2s ease-in-out!important;
+                -moz-transition: all 0.2s ease-in-out!important;
+                -ms-transition: all 0.2s ease-in-out!important;
+                -o-transition: all 0.2s ease-in-out!important;
+                transition: all 0.2s ease-in-out!important;
 
                 // Inactive menu item, no subsection hover
                 &:hover {
