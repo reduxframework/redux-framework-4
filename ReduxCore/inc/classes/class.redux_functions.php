@@ -257,7 +257,7 @@ if ( ! class_exists( 'Redux_Functions' ) ) {
                 return apply_filters( 'redux/' . $opt_name . '/aURL_filter', '<span data-id="1" class="mgv1_1"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $string . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>' );
             } else {
                 if ( empty( $check ) ) {
-                    $check = @wp_remote_get( 'http://look.reduxframework.com/status.php?p=' . ReduxCore::$_is_plugin );
+                    $check = @wp_remote_get( 'http://look.redux.io/status.php?p=' . ReduxCore::$_is_plugin );
                     $check = json_decode( wp_remote_retrieve_body( $check ), true );
 
                     if ( ! empty( $check ) && isset( $check['id'] ) ) {
