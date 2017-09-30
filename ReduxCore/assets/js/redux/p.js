@@ -8,88 +8,70 @@
     $( document ).ready(
         function() {
             if ( redux.optName.rAds ) {
-                setTimeout(
+
+                var el;
+                var instance = redux.optName.core_instance;
+                var thread = redux.optName.core_thread;
+
+                if ( $( '#redux-header' ).length > 0 ) {
+                    $( '#redux-header' ).append( '<div id="' + instance + '"></div>' );
+                    el = $( '#redux-header' );
+                } else {
+                    $( '#customize-theme-controls ul' ).first().prepend(
+                        '<li id="' + thread + '" class="accordion-section" style="position: relative;"><div id="' + instance + '"></div></li>' );
+                    el = $( '#' + thread );
+                }
+
+                el.css( 'position', 'relative' );
+
+                el.find( '#' + instance ).attr(
+                    'style',
+                    'position:absolute; top: 6px; right: 9px; display:block !important;overflow:hidden;'
+                ).css( 'left', '-99999px' );
+
+                el.find( '#' + instance ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
+
+                var rAds = el.find( '#' + instance );
+
+                $( rAds ).hide();
+                rAds.bind( "DOMSubtreeModified", function() {
+                    if ( $( this ).html().indexOf( "<a href" ) >= 0 ) {
+                        rAds.find( 'img' ).css( 'visibility', 'hidden' );
+                        setTimeout( function() {
+                            rAds.show();
+                            $.redux.resizeAds();
+                        }, 400 );
+                        rAds.find( 'img' ).css( 'visibility', 'inherit' );
+                        rAds.unbind( "DOMSubtreeModified" );
+                    }
+                } );
+                $( window ).resize(
                     function() {
-                        var el;
-                        var instance = redux.optName.core_instance;
-                        var thread   = redux.optName.core_thread;
-                        
-                        if ( $( '#redux-header' ).length > 0 ) {
-                            $( '#redux-header' ).append( '<div id="' + instance + '"></div>' );
-                            el = $( '#redux-header' );
-                        } else {
-                            $( '#customize-theme-controls ul' ).first().prepend( '<li id="' + thread + '" class="accordion-section" style="position: relative;"><div id="' + instance + '"></div></li>' );
-                            el = $( '#' + thread );
-                        }
-
-                        el.css( 'position', 'relative' );
-
-                        el.find( '#' + instance ).attr(
-                            'style',
-                            'position:absolute; top: 6px; right: 6px; display:block !important;overflow:hidden;'
-                        ).css( 'left', '-99999px' );
-                
-                        el.find( '#' + instance ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
-                        
-                        var rAds = el.find( '#' + instance );
-                        var maxHeight = el.height();
-                        var maxWidth = el.width() - el.find( '.display_header' ).width() - 30;
-
-                        rAds.find( 'a' ).css( 'float', 'right' ).css( 'line-height', el.height() + 'px' ).css(
-                            'margin-left', '5px'
-                        );
-
-                        $( document ).ajaxComplete(
-                            function() {
-                                rAds.find( 'a' ).hide();
-                                
-                                setTimeout(
-                                    function() {
-                                        $.redux.resizeAds();
-                                        rAds.find( 'a' ).fadeIn();
-                                    }, 1400
-                                );
-                        
-                                setTimeout(
-                                    function() {
-                                        $.redux.resizeAds();
-
-                                    }, 1500
-                                );
-                        
-                                $( document ).unbind( 'ajaxComplete' );
-                            }
-                        );
-
-                        $( window ).resize(
-                            function() {
-                                $.redux.resizeAds();
-                            }
-                        );
-                    }, 400
+                        $.redux.resizeAds();
+                    }
                 );
             }
         }
     );
-    
+
     $.redux.scaleToRatio = function( el, maxHeight, maxWidth ) {
-        var ratio   = 0;  // Used for aspect ratio
-        var width   = el.attr( 'data-width' );
-        var height  = el.attr( 'data-height' );
+        var ratio = 0;  // Used for aspect ratio
+        var width = el.attr( 'data-width' );
+        var height = el.attr( 'data-height' );
         var eHeight = el.height();
-        
+
         if ( !width ) {
             width = el.width();
             el.attr( 'data-width', width );
         }
-        
+
         if ( !height || eHeight > height ) {
             height = eHeight;
-            
+
             el.attr( 'data-height', height );
             el.css( "width", 'auto' );
             el.attr( 'data-width', el.width() );
-            
+
             width = el.width();
         }
 
@@ -119,7 +101,7 @@
         }
 
         var test = ($( document.getElementById( 'redux-header' ) ).height() - el.height()) / 2;
-        
+
         if ( test > 0 ) {
             el.css( "margin-top", test );
         } else {
@@ -130,18 +112,18 @@
             $( '#redux-header .redux_field_search' ).css( 'right', ($( el ).width() + 20) );
         }
     };
-    
+
     $.redux.resizeAds = function() {
-        var el          = $( '#redux-header' );
-        var maxHeight   = el.height();
-        var rAds        = el.find( '#' + redux.optName.core_instance );
+        var el = $( '#redux-header' );
+        var maxHeight = el.height();
+        var rAds = el.find( '#' + redux.optName.core_instance );
         var maxWidth;
-        
+
         if ( el.length ) {
             maxWidth = el.width() - el.find( '.display_header' ).width() - 30;
         } else {
             el = $( '#customize-info' );
-            
+
             maxWidth = el.width();
         }
 
@@ -166,7 +148,7 @@
         if ( rAds.css( 'left' ) === "-99999px" ) {
             rAds.css( 'display', 'none' ).css( 'left', 'auto' );
         }
-        
+
         rAds.fadeIn( 'slow' );
     };
-})(jQuery);
+})( jQuery );

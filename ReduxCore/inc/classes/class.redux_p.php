@@ -259,7 +259,7 @@ if (!class_exists('Redux_P')) {
                 }
 
                 if ( isset( $contents ) ) {
-                    print str_replace( 'ads.reduxframework.com', 'look.reduxframework.com', $contents );
+                    print str_replace( 'ads.redux.io', 'look.redux.io', $contents );
                     //print str_replace( 'ads.redux.io', 'look.redux.io', $contents );
                 }
 
