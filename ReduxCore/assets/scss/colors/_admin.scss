@@ -111,8 +111,8 @@
 
                 // Inactive menu item, no subsection hover
                 &:hover {
-                    color: $menu_hover_text;
-                    background-color: $primary;
+                    color: $menu_hover_text!important;
+                    background-color: $primary!important;
                 }
             }
 
