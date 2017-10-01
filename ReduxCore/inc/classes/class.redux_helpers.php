@@ -934,17 +934,10 @@
                 $path = trailingslashit( ReduxCore::$_upload_dir ) . 'google_fonts.json';
                 $now  = time();
                 $secs = 60 * 60 * 24 * 7;
-
                 if ( file_exists( $path ) ) {
-
-                    // Keep the fonts updated weekly
-                    //echo date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) );
                     if ( ($now - filemtime( $path )) < $secs ) {
                         return false;
                     }
-                    //if ( time() - filemtime( $path ) < 60 * 60 * 24 * 7 ) {
-                    //    return false;
-                    //}
                 }
                 return true;
             }
