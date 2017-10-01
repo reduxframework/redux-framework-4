@@ -496,7 +496,7 @@
             }
 
             public static function record_caller( $opt_name = "", $caller = "" ) {
-                if ( ! in_array( $caller, self::$args[ $opt_name ]['callers'] ) ) {
+                if ( !empty(self::$args[ $opt_name ]['callers']) && ! in_array( $caller, self::$args[ $opt_name ]['callers'] ) ) {
                     self::$args[ $opt_name ]['callers'][] = $caller;
                 }
             }
