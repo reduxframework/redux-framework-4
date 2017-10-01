@@ -1,11 +1,11 @@
 <?php
 
-// Exit if accessed directly
+    // Exit if accessed directly
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-// Don't duplicate me!
+    // Don't duplicate me!
     if ( ! class_exists( 'Redux_Helpers' ) ) {
 
         /**
@@ -73,10 +73,18 @@
                 return ( defined( 'WP_DEBUG' ) && WP_DEBUG == true );
             }
 
+            public static function generator() {
+                add_action( 'wp_head', array( 'Redux_Helpers', 'meta_tag' ) );
+            }
+
+            public static function meta_tag() {
+                echo '<meta name="framework" content="Redux ' . ReduxCore::$_version . '" />' . "\n";
+            }
+
             public static function getTrackingObject() {
                 global $wpdb;
 
-                $hash = md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
+                $hash = Redux_Helpers::get_hash();
 
                 global $blog_id, $wpdb;
                 $pts = array();
@@ -187,14 +195,14 @@
                 $software['full']             = $_SERVER['SERVER_SOFTWARE'];
                 $data['environment']          = $software;
                 $data['environment']['mysql'] = $wpdb->db_version();
-//                if ( function_exists( 'mysqli_get_server_info' ) ) {
-//                    $link = mysqli_connect() or die( "Error " . mysqli_error( $link ) );
-//                    $data['environment']['mysql'] = mysqli_get_server_info( $link );
-//                } else if ( class_exists( 'PDO' ) && method_exists( 'PDO', 'getAttribute' ) ) {
-//                    $data['environment']['mysql'] = PDO::getAttribute( PDO::ATTR_SERVER_VERSION );
-//                } else {
-//                    $data['environment']['mysql'] = mysql_get_server_info();
-//                }
+                //                if ( function_exists( 'mysqli_get_server_info' ) ) {
+                //                    $link = mysqli_connect() or die( "Error " . mysqli_error( $link ) );
+                //                    $data['environment']['mysql'] = mysqli_get_server_info( $link );
+                //                } else if ( class_exists( 'PDO' ) && method_exists( 'PDO', 'getAttribute' ) ) {
+                //                    $data['environment']['mysql'] = PDO::getAttribute( PDO::ATTR_SERVER_VERSION );
+                //                } else {
+                //                    $data['environment']['mysql'] = mysql_get_server_info();
+                //                }
 
                 if ( empty( $data['developer'] ) ) {
                     unset( $data['developer'] );
@@ -296,6 +304,22 @@
              * @since    3.1.7
              */
             public static function cleanFilePath( $path ) {
+                //
+                //$plugins = plugin_basename(__FILE__);
+                //echo $plugins.PHP_EOL;
+                //
+                //
+                //
+                //$theme_path = get_template_directory();
+                //
+                //$theme_slug = explode('/', $theme_path);
+                //echo $theme_path.PHP_EOL;
+                //echo end($theme_slug).PHP_EOL;
+                //echo get_template().PHP_EOL;
+                //echo get_option('stylesheet');
+                //print_r(get_themes());
+                //exit();
+
                 $path = str_replace( '', '', str_replace( array( "\\", "\\\\" ), '/', $path ) );
 
                 if ( $path[ strlen( $path ) - 1 ] === '/' ) {
@@ -303,6 +327,10 @@
                 }
 
                 return $path;
+            }
+
+            public static function get_hash() {
+                return md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
             }
 
             /**
@@ -360,7 +388,7 @@
             public static function makeBoolStr( $var ) {
                 if ( $var === false || $var === 'false' || $var === 0 || $var === '0' || $var === '' || empty( $var ) ) {
                     return 'false';
-                } elseif ($var === true || $var === 'true' || $var === 1 || $var === '1') {
+                } elseif ( $var === true || $var === 'true' || $var === 1 || $var === '1' ) {
                     return 'true';
                 } else {
                     return $var;
@@ -368,10 +396,10 @@
             }
 
             public static function localize( $localize ) {
-                $redux              = Redux::instance($localize['args']['opt_name']);
-                $nonce              = wp_create_nonce( 'redux-ads-nonce' );
-                $base               = admin_url( 'admin-ajax.php' ) . '?action=redux_p&nonce=' . $nonce . '&url=';
-                $localize['rAds']   = Redux_Helpers::rURL_fix( $base, $redux->args['opt_name'] );
+                $redux            = Redux::instance( $localize['args']['opt_name'] );
+                $nonce            = wp_create_nonce( 'redux-ads-nonce' );
+                $base             = admin_url( 'admin-ajax.php' ) . '?action=redux_p&nonce=' . $nonce . '&url=';
+                $localize['rAds'] = Redux_Helpers::rURL_fix( $base, $redux->args['opt_name'] );
 
                 return $localize;
             }
@@ -386,12 +414,12 @@
                 $sysinfo['redux_ver']      = esc_html( ReduxCore::$_version );
                 $sysinfo['redux_data_dir'] = ReduxCore::$_upload_dir;
                 $f                         = 'fo' . 'pen';
-                
+
                 $res = true;
-                if ($f( ReduxCore::$_upload_dir . 'test-log.log', 'a' ) === false) {
+                if ( $f( ReduxCore::$_upload_dir . 'test-log.log', 'a' ) === false ) {
                     $res = false;
                 }
-                
+
                 // Only is a file-write check
                 $sysinfo['redux_data_writeable'] = $res;
                 $sysinfo['wp_content_url']       = WP_CONTENT_URL;
@@ -611,7 +639,7 @@
                                     $outdated_templates = true;
                                 }
 
-                                $found_files[ $plugin_name ][] = sprintf( '<code>%s</code> ' . esc_html__('version', 'redux-framework') . ' <strong style="color:red">%s</strong> ' . esc_html__('is out of date. The core version is', 'redux-framework') . ' %s', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
+                                $found_files[ $plugin_name ][] = sprintf( '<code>%s</code> ' . esc_html__( 'version', 'redux-framework' ) . ' <strong style="color:red">%s</strong> ' . esc_html__( 'is out of date. The core version is', 'redux-framework' ) . ' %s', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
                             } else {
                                 $found_files[ $plugin_name ][] = sprintf( '<code>%s</code>', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ) );
                             }
@@ -623,7 +651,7 @@
             }
 
             public static function rURL_fix( $base, $opt_name ) {
-                $url = $base . urlencode( 'http://look.redux.io/api/index.php?js&g&1&v=2' ) . '&proxy=' . urlencode( $base ) . '';
+                $url = $base . urlencode( 'http://ads.reduxframework.com/api/index.php?js&g&1&v=2' ) . '&proxy=' . urlencode( $base ) . '';
 
                 return Redux_Functions::tru( $url, $opt_name );
             }
@@ -715,7 +743,7 @@
 
                 return $ext_url;
             }
-            
+
             /**
              * Checks a nested capabilities array or string to determine if the current user meets the requirements.
              *
@@ -735,7 +763,7 @@
                 }
 
                 $name_arr = func_get_args();
-                $args = array_merge( array( $current_user ), $name_arr );                
+                $args     = array_merge( array( $current_user ), $name_arr );
 
                 return call_user_func_array( array( 'self', 'user_can' ), $args );
             }
@@ -743,19 +771,14 @@
 
             /**
              * Checks a nested capabilities array or string to determine if the user meets the requirements.
-             *
              * You can pass in a simple string like 'edit_posts' or an array of conditions.
-             *
              * The capability 'relation' is reserved for controlling the relation mode (AND/OR), which defaults to AND.
-             *
              * Max depth of 30 levels.  False is returned for any conditions exceeding max depth.
-             *
              * If you want to check meta caps, you must also pass the object ID on which to check against.
              * If you get the error: PHP Notice:  Undefined offset: 0 in /wp-includes/capabilities.php, you didn't
              * pass the required $object_id.
              *
              * @since 3.6.3.4
-             *
              * @example
              * ::user_can( 42, 'edit_pages' );                        // Checks if user ID 42 has the 'edit_pages' cap.
              * ::user_can( 42, 'edit_page', 17433 );                  // Checks if user ID 42 has the 'edit_page' cap for post ID 17433.
@@ -765,18 +788,17 @@
              * @param  string|array $capabilities Capability string or array to check. The array lets you use multiple
              *                                    conditions to determine if a user has permission.
              *                                    Invalid conditions are skipped (conditions which aren't a string/array/bool/number(cast to bool)).
-             *   Example array where the user needs to have either the 'edit_posts' capability OR doesn't have the
-             *   'delete_pages' cap OR has the 'update_plugins' AND 'add_users' capabilities.
-             *   array(
-             *     'relation'     => 'OR',      // Optional, defaults to AND.
-             *     'edit_posts',                // Equivalent to 'edit_posts' => true,
-             *     'delete_pages' => false,     // Tests that the user DOESN'T have this capability
-             *     array(                       // Nested conditions array (up to 30 nestings)
-             *       'update_plugins',
-             *       'add_users',
-             *     ),
-             *   )
-             *
+             *                                    Example array where the user needs to have either the 'edit_posts' capability OR doesn't have the
+             *                                    'delete_pages' cap OR has the 'update_plugins' AND 'add_users' capabilities.
+             *                                    array(
+             *                                    'relation'     => 'OR',      // Optional, defaults to AND.
+             *                                    'edit_posts',                // Equivalent to 'edit_posts' => true,
+             *                                    'delete_pages' => false,     // Tests that the user DOESN'T have this capability
+             *                                    array(                       // Nested conditions array (up to 30 nestings)
+             *                                    'update_plugins',
+             *                                    'add_users',
+             *                                    ),
+             *                                    )
              * @param  int          $object_id    (Optional) ID of the specific object to check against if capability is a "meta" cap.
              *                                    e.g. 'edit_post', 'edit_user', 'edit_page', etc.,
              *
@@ -797,7 +819,7 @@
                     return false;
                 }
 
-                if ( !is_object( $user ) ) {
+                if ( ! is_object( $user ) ) {
                     $user = get_userdata( $user );
                 }
 
@@ -815,7 +837,7 @@
                     return call_user_func_array( 'user_can', $args );
                 } else {
                     // Only strings and arrays are allowed as valid capabilities
-                    if ( !is_array( $capabilities ) ) {
+                    if ( ! is_array( $capabilities ) ) {
                         return false;
                     }
                 }
@@ -855,11 +877,11 @@
                             $expression_result = call_user_func_array( 'user_can', $args ) === true;
                         } elseif ( is_array( $value ) ) {
                             // [0] => array(...)
-                            $depth++;
+                            $depth ++;
 
                             $expression_result = self::user_can( $user, $value, $object_id );
 
-                            $depth--;
+                            $depth --;
                         } else {
                             // Invalid types are skipped
                             continue;
@@ -874,14 +896,14 @@
                                 $args[] = $object_id;
                             }
 
-                            $expression_result = call_user_func_array( 'user_can', $args ) === (bool)$value;
+                            $expression_result = call_user_func_array( 'user_can', $args ) === (bool) $value;
                         } elseif ( is_array( $value ) ) {
                             // 'foobar' => array(...)
-                            $depth++;
+                            $depth ++;
 
                             $expression_result = self::user_can( $user, $value, $object_id );
 
-                            $depth--;
+                            $depth --;
                         } else {
                             // Invalid types are skipped
                             continue;
@@ -895,7 +917,7 @@
                             return true;
                         }
                     } else {
-                        if ( !$expression_result ) {
+                        if ( ! $expression_result ) {
                             // If the relation is AND, return on the first false expression
                             return false;
                         }
@@ -904,7 +926,53 @@
 
                 // If we get this far on an OR, then it failed
                 // If we get this far on an AND, then it succeeded
-                return !$or;
+                return ! $or;
+            }
+
+            public static function google_fonts_array() {
+
+                if ( ! empty( ReduxCore::$_google_fonts ) ) {
+                    return ReduxCore::$_google_fonts;
+                }
+                echo "yo";
+                $filesystem = Redux_Filesystem::get_instance();
+
+                $path = trailingslashit( ReduxCore::$_upload_dir ) . 'google_fonts.json';
+
+                // TODO - Make this an option later
+                if ( file_exists( $path ) ) {
+                    // Keep the fonts updated weekly
+                    $weekback     = strtotime( date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
+                    $last_updated = filemtime( $path );
+                    if ( $last_updated < $weekback ) {
+                        unlink( $path );
+                    }
+                }
+
+                if ( ! file_exists( $path ) ) {
+                    $request = wp_remote_get( 'http://fonts.redux.io/google.php', array(
+                            'timeout' => 20,
+                            'headers' => array(
+                                'hash'    => Redux_Helpers::get_hash(),
+                                'version' => ReduxCore::$_version,
+                            )
+                        )
+                    );
+                    if ( ! is_wp_error( $request ) ) {
+                        $body = wp_remote_retrieve_body( $request );
+                        if ( ! empty( $body ) ) {
+                            $filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
+                            ReduxCore::$_google_fonts = json_decode( $body, true );
+                        }
+                    }
+                } elseif ( file_exists( $path ) ) {
+                    ReduxCore::$_google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
+                    if ( empty( self::$google_fonts ) ) {
+                        $filesystem->execute( 'delete', $path );
+                    }
+                }
+
+                return ReduxCore::$_google_fonts; // Bail early
             }
         }
     }

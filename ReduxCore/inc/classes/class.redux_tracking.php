@@ -57,7 +57,7 @@
                 $this->options['dev_mode'] = $parent->args['dev_mode'];
 
                 if ( ! isset( $this->options['hash'] ) || ! $this->options['hash'] || empty( $this->options['hash'] ) ) {
-                    $this->options['hash'] = md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
+                    $this->options['hash'] = Redux_Helpers::get_hash();
                     update_option( 'redux-framework-tracking', $this->options );
                 }
 

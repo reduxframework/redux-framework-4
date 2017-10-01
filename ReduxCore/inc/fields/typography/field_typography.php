@@ -1,46 +1,46 @@
 <?php
 
-/**
- * Redux Framework is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * any later version.
- * Redux Framework is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Redux Framework. If not, see <http://www.gnu.org/licenses/>.
- *
- * @package     ReduxFramework
- * @subpackage  Field_Typogrpahy
- * @author      Kevin Provance (kprovance)
- * @author      Dovy Paukstys
- * @version     4.0.0
- */
+    /**
+     * Redux Framework is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU General Public License as published by
+     * the Free Software Foundation, either version 2 of the License, or
+     * any later version.
+     * Redux Framework is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     * GNU General Public License for more details.
+     * You should have received a copy of the GNU General Public License
+     * along with Redux Framework. If not, see <http://www.gnu.org/licenses/>.
+     *
+     * @package     ReduxFramework
+     * @subpackage  Field_Typogrpahy
+     * @author      Kevin Provance (kprovance)
+     * @author      Dovy Paukstys
+     * @version     4.0.0
+     */
 
     if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
         class ReduxFramework_typography extends Redux_Field {
 
             private $std_fonts = array(
-              "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
-              "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
-              "'Bookman Old Style', serif"                           => "'Bookman Old Style', serif",
-              "'Comic Sans MS', cursive"                             => "'Comic Sans MS', cursive",
-              "Courier, monospace"                                   => "Courier, monospace",
-              "Garamond, serif"                                      => "Garamond, serif",
-              "Georgia, serif"                                       => "Georgia, serif",
-              "Impact, Charcoal, sans-serif"                         => "Impact, Charcoal, sans-serif",
-              "'Lucida Console', Monaco, monospace"                  => "'Lucida Console', Monaco, monospace",
-              "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"   => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-              "'MS Sans Serif', Geneva, sans-serif"                  => "'MS Sans Serif', Geneva, sans-serif",
-              "'MS Serif', 'New York', sans-serif"                   => "'MS Serif', 'New York', sans-serif",
-              "'Palatino Linotype', 'Book Antiqua', Palatino, serif" => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
-              "Tahoma,Geneva, sans-serif"                            => "Tahoma, Geneva, sans-serif",
-              "'Times New Roman', Times,serif"                       => "'Times New Roman', Times, serif",
-              "'Trebuchet MS', Helvetica, sans-serif"                => "'Trebuchet MS', Helvetica, sans-serif",
-              "Verdana, Geneva, sans-serif"                          => "Verdana, Geneva, sans-serif",
+                "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
+                "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
+                "'Bookman Old Style', serif"                           => "'Bookman Old Style', serif",
+                "'Comic Sans MS', cursive"                             => "'Comic Sans MS', cursive",
+                "Courier, monospace"                                   => "Courier, monospace",
+                "Garamond, serif"                                      => "Garamond, serif",
+                "Georgia, serif"                                       => "Georgia, serif",
+                "Impact, Charcoal, sans-serif"                         => "Impact, Charcoal, sans-serif",
+                "'Lucida Console', Monaco, monospace"                  => "'Lucida Console', Monaco, monospace",
+                "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"   => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
+                "'MS Sans Serif', Geneva, sans-serif"                  => "'MS Sans Serif', Geneva, sans-serif",
+                "'MS Serif', 'New York', sans-serif"                   => "'MS Serif', 'New York', sans-serif",
+                "'Palatino Linotype', 'Book Antiqua', Palatino, serif" => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+                "Tahoma,Geneva, sans-serif"                            => "Tahoma, Geneva, sans-serif",
+                "'Times New Roman', Times,serif"                       => "'Times New Roman', Times, serif",
+                "'Trebuchet MS', Helvetica, sans-serif"                => "'Trebuchet MS', Helvetica, sans-serif",
+                "Verdana, Geneva, sans-serif"                          => "Verdana, Geneva, sans-serif",
             );
 
             private $user_fonts = true;
@@ -54,53 +54,53 @@
 
                 // Set field array defaults.  No errors please
                 $defaults = array(
-                  'font-family'       => true,
-                  'font-size'         => true,
-                  'font-weight'       => true,
-                  'font-style'        => true,
-                  'font-backup'       => false,
-                  'subsets'           => true,
-                  'custom_fonts'      => true,
-                  'text-align'        => true,
-                  'text-transform'    => false,
-                  'font-variant'      => false,
-                  'text-decoration'   => false,
-                  'color'             => true,
-                  'preview'           => true,
-                  'line-height'       => true,
-                  'multi'             => array(
-                    'subset' => false,
-                    'weight' => false,
-                  ),
-                  'word-spacing'      => false,
-                  'letter-spacing'    => false,
-                  'google'            => true,
-                  'update_weekly'     => false,    // Enable to force updates of Google Fonts to be weekly
-                  'font_family_clear' => true,
-                  );
+                    'font-family'       => true,
+                    'font-size'         => true,
+                    'font-weight'       => true,
+                    'font-style'        => true,
+                    'font-backup'       => false,
+                    'subsets'           => true,
+                    'custom_fonts'      => true,
+                    'text-align'        => true,
+                    'text-transform'    => false,
+                    'font-variant'      => false,
+                    'text-decoration'   => false,
+                    'color'             => true,
+                    'preview'           => true,
+                    'line-height'       => true,
+                    'multi'             => array(
+                        'subset' => false,
+                        'weight' => false,
+                    ),
+                    'word-spacing'      => false,
+                    'letter-spacing'    => false,
+                    'google'            => true,
+                    'update_weekly'     => false,    // Enable to force updates of Google Fonts to be weekly
+                    'font_family_clear' => true,
+                );
 
                 $this->field = wp_parse_args( $this->field, $defaults );
 
                 // Set value defaults.
                 $defaults = array(
-                  'font-family'       => '',
-                  'font-options'      => '',
-                  'font-backup'       => '',
-                  'text-align'        => '',
-                  'text-transform'    => '',
-                  'font-variant'      => '',
-                  'text-decoration'   => '',
-                  'line-height'       => '',
-                  'word-spacing'      => '',
-                  'letter-spacing'    => '',
-                  'subsets'           => '',
-                  'google'            => false,
-                  'font-script'       => '',
-                  'font-weight'       => '',
-                  'font-style'        => '',
-                  'color'             => '',
-                  'font-size'         => '',
-                  );
+                    'font-family'     => '',
+                    'font-options'    => '',
+                    'font-backup'     => '',
+                    'text-align'      => '',
+                    'text-transform'  => '',
+                    'font-variant'    => '',
+                    'text-decoration' => '',
+                    'line-height'     => '',
+                    'word-spacing'    => '',
+                    'letter-spacing'  => '',
+                    'subsets'         => '',
+                    'google'          => false,
+                    'font-script'     => '',
+                    'font-weight'     => '',
+                    'font-style'      => '',
+                    'color'           => '',
+                    'font-size'       => '',
+                );
 
                 $this->value = wp_parse_args( $this->value, $defaults );
 
@@ -150,11 +150,11 @@
                 }
 
                 if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array(
-                    'px',
-                    'em',
-                    'rem',
-                    '%'
-                  ) )
+                        'px',
+                        'em',
+                        'rem',
+                        '%'
+                    ) )
                 ) {
                     $this->field['units'] = 'px';
                 }
@@ -164,9 +164,9 @@
                 echo '<div id="' . esc_attr( $this->field['id'] ) . '" class="redux-typography-container" data-id="' . esc_attr( $this->field['id'] ) . '" data-units="' . esc_attr( $unit ) . '">';
 
                 $select2_default = array(
-                  'width'      => '100%',
-                  'allowClear' => true,
-                  'theme'      => 'classic'
+                    'width'      => '100%',
+                    'allowClear' => true,
+                    'theme'      => 'classic'
                 );
 
                 if ( isset( $this->field['select2'] ) ) {
@@ -288,10 +288,10 @@
                     }
 
                     $nonGStyles = array(
-                      '200' => esc_html__( 'Lighter', 'redux-framework' ),
-                      '400' => esc_html__( 'Normal', 'redux-framework' ),
-                      '700' => esc_html__( 'Bold', 'redux-framework' ),
-                      '900' => esc_html__( 'Bolder', 'redux-framework' )
+                        '200' => esc_html__( 'Lighter', 'redux-framework' ),
+                        '400' => esc_html__( 'Normal', 'redux-framework' ),
+                        '700' => esc_html__( 'Bold', 'redux-framework' ),
+                        '900' => esc_html__( 'Bolder', 'redux-framework' )
                     );
 
                     if ( isset( $gfonts[ $this->value['font-family'] ] ) ) {
@@ -348,12 +348,12 @@
                     echo '<option value=""></option>';
 
                     $align = array(
-                      esc_html__( 'inherit', 'redux-framework' ),
-                      esc_html__( 'left', 'redux-framework' ),
-                      esc_html__( 'right', 'redux-framework' ),
-                      esc_html__( 'center', 'redux-framework' ),
-                      esc_html__( 'justify', 'redux-framework' ),
-                      esc_html__( 'initial', 'redux-framework' )
+                        esc_html__( 'inherit', 'redux-framework' ),
+                        esc_html__( 'left', 'redux-framework' ),
+                        esc_html__( 'right', 'redux-framework' ),
+                        esc_html__( 'center', 'redux-framework' ),
+                        esc_html__( 'justify', 'redux-framework' ),
+                        esc_html__( 'initial', 'redux-framework' )
                     );
 
                     foreach ( $align as $v ) {
@@ -371,12 +371,12 @@
                     echo '<option value=""></option>';
 
                     $values = array(
-                      esc_html__( 'none', 'redux-framework' ),
-                      esc_html__( 'capitalize', 'redux-framework' ),
-                      esc_html__( 'uppercase', 'redux-framework' ),
-                      esc_html__( 'lowercase', 'redux-framework' ),
-                      esc_html__( 'initial', 'redux-framework' ),
-                      esc_html__( 'inherit', 'redux-framework' )
+                        esc_html__( 'none', 'redux-framework' ),
+                        esc_html__( 'capitalize', 'redux-framework' ),
+                        esc_html__( 'uppercase', 'redux-framework' ),
+                        esc_html__( 'lowercase', 'redux-framework' ),
+                        esc_html__( 'initial', 'redux-framework' ),
+                        esc_html__( 'inherit', 'redux-framework' )
                     );
 
                     foreach ( $values as $v ) {
@@ -394,9 +394,9 @@
                     echo '<option value=""></option>';
 
                     $values = array(
-                      esc_html__( 'inherit', 'redux-framework' ),
-                      esc_html__( 'normal', 'redux-framework' ),
-                      esc_html__( 'small-caps', 'redux-framework' )
+                        esc_html__( 'inherit', 'redux-framework' ),
+                        esc_html__( 'normal', 'redux-framework' ),
+                        esc_html__( 'small-caps', 'redux-framework' )
                     );
 
                     foreach ( $values as $v ) {
@@ -414,12 +414,12 @@
                     echo '<option value=""></option>';
 
                     $values = array(
-                      esc_html__( 'none', 'redux-framework' ),
-                      esc_html__( 'inherit', 'redux-framework' ),
-                      esc_html__( 'underline', 'redux-framework' ),
-                      esc_html__( 'overline', 'redux-framework' ),
-                      esc_html__( 'line-through', 'redux-framework' ),
-                      esc_html__( 'blink', 'redux-framework' )
+                        esc_html__( 'none', 'redux-framework' ),
+                        esc_html__( 'inherit', 'redux-framework' ),
+                        esc_html__( 'underline', 'redux-framework' ),
+                        esc_html__( 'overline', 'redux-framework' ),
+                        esc_html__( 'line-through', 'redux-framework' ),
+                        esc_html__( 'blink', 'redux-framework' )
                     );
 
                     foreach ( $values as $v ) {
@@ -472,7 +472,7 @@
                 }
 
                 echo '<div class="clearfix"></div>';
-                
+
                 /* Font Color */
                 if ( $this->field['color'] === true ) {
                     $default = "";
@@ -514,8 +514,8 @@
                         if ( true === filter_var( $this->field['preview']['always_display'], FILTER_VALIDATE_BOOLEAN ) ) {
                             if ( $isGoogleFont == true ) {
                                 $this->parent->typography_preview[ $fontFamily[0] ] = array(
-                                  'font-style' => array( $this->value['font-weight'] . $this->value['font-style'] ),
-                                  'subset'     => array( $this->value['subsets'] )
+                                    'font-style' => array( $this->value['font-weight'] . $this->value['font-style'] ),
+                                    'subset'     => array( $this->value['subsets'] )
                                 );
 
                                 $protocol = ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https:" : "http:";
@@ -553,7 +553,7 @@
              */
             function enqueue() {
                 $min = Redux_Functions::isMin();
-                
+
                 if ( ! wp_style_is( 'select2-css' ) ) {
                     wp_enqueue_style( 'select2-css' );
                 }
@@ -565,28 +565,28 @@
                 $dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js' );
 
                 wp_enqueue_script(
-                  'redux-field-typography-js',
-                  ReduxCore::$_url . "inc/fields/typography/field_typography$min.js",
-                  $dep_array,
-                  ReduxCore::$_version,
-                  true
+                    'redux-field-typography-js',
+                    ReduxCore::$_url . "inc/fields/typography/field_typography$min.js",
+                    $dep_array,
+                    ReduxCore::$_version,
+                    true
                 );
 
                 wp_localize_script(
-                  'redux-field-typography-js',
-                  'redux_ajax_script',
-                  array( 'ajaxurl' => esc_url( admin_url( 'admin-ajax.php' ) ) )
+                    'redux-field-typography-js',
+                    'redux_ajax_script',
+                    array( 'ajaxurl' => esc_url( admin_url( 'admin-ajax.php' ) ) )
                 );
 
                 if ( $this->parent->args['dev_mode'] ) {
                     wp_enqueue_style( 'redux-color-picker-css' );
 
                     wp_enqueue_style(
-                      'redux-field-typography-css',
-                      ReduxCore::$_url . 'inc/fields/typography/field_typography.css',
-                      array(),
-                      time(),
-                      'all'
+                        'redux-field-typography-css',
+                        ReduxCore::$_url . 'inc/fields/typography/field_typography.css',
+                        array(),
+                        time(),
+                        'all'
                     );
                 }
             }
@@ -689,9 +689,9 @@
                 return "'" . $link . "'";
             }
 
-            public function css_style($data){
+            public function css_style( $data ) {
                 $style = '';
-                
+
                 $font = $data;
 
                 // Shim out old arg to new
@@ -745,9 +745,9 @@
                         }
 
                         if ( empty( $value ) && in_array( $key, array(
-                            'font-weight',
-                            'font-style'
-                          ) ) && $fontValueSet == true
+                                'font-weight',
+                                'font-style'
+                            ) ) && $fontValueSet == true
                         ) {
                             $value = "normal";
                         }
@@ -767,18 +767,18 @@
 
                         $style .= $key . ':' . $value . ';';
                     }
-                    
+
                     if ( isset( $this->parent->args['async_typography'] ) && $this->parent->args['async_typography'] ) {
                         $style .= 'opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;';
                     }
                 }
-                
+
                 return $style;
             }
-            
-            public function output($style = '') {
+
+            public function output( $style = '' ) {
                 $font = $this->value;
-                
+
                 if ( $style != '' ) {
                     if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
                         $keys                    = implode( ",", $this->field['output'] );
@@ -817,10 +817,10 @@
                     }
                 }
 
-                $this->set_google_fonts($font);
+                $this->set_google_fonts( $font );
             }
 
-            private function set_google_fonts($font) {
+            private function set_google_fonts( $font ) {
                 // Google only stuff!
                 if ( ! empty( $font['font-family'] ) && ! empty( $this->field['google'] ) && filter_var( $this->field['google'], FILTER_VALIDATE_BOOLEAN ) ) {
 
@@ -936,7 +936,7 @@
                     }
                 }
             }
-            
+
             private function localize_std_fonts() {
                 if ( false == $this->user_fonts ) {
                     if ( isset( $this->parent->fonts['std'] ) && ! empty( $this->parent->fonts['std'] ) ) {
@@ -944,15 +944,15 @@
                     }
 
                     $this->parent->font_groups['std'] = array(
-                      'text'     => esc_html__( 'Standard Fonts', 'redux-framework' ),
-                      'children' => array(),
+                        'text'     => esc_html__( 'Standard Fonts', 'redux-framework' ),
+                        'children' => array(),
                     );
 
                     foreach ( $this->field['fonts'] as $font => $extra ) {
                         $this->parent->font_groups['std']['children'][] = array(
-                          'id'          => $font,
-                          'text'        => $font,
-                          'data-google' => 'false',
+                            'id'          => $font,
+                            'text'        => $font,
+                            'data-google' => 'false',
                         );
                     }
                 }
@@ -963,15 +963,15 @@
                     if ( ! empty( $this->field['custom_fonts'] ) ) {
                         foreach ( $this->field['custom_fonts'] as $group => $fonts ) {
                             $this->parent->font_groups['customfonts'] = array(
-                              'text'     => $group,
-                              'children' => array(),
+                                'text'     => $group,
+                                'children' => array(),
                             );
 
                             foreach ( $fonts as $family => $v ) {
                                 $this->parent->font_groups['customfonts']['children'][] = array(
-                                  'id'          => $family,
-                                  'text'        => $family,
-                                  'data-google' => 'false',
+                                    'id'          => $family,
+                                    'text'        => $family,
+                                    'data-google' => 'false',
                                 );
                             }
                         }
@@ -984,15 +984,15 @@
                 if ( ! empty( $typekit_fonts ) ) {
                     foreach ( $typekit_fonts as $group => $fonts ) {
                         $this->parent->font_groups['typekitfonts'] = array(
-                          'text'     => $group,
-                          'children' => array(),
+                            'text'     => $group,
+                            'children' => array(),
                         );
 
                         foreach ( $fonts as $family => $v ) {
                             $this->parent->font_groups['typekitfonts']['children'][] = array(
-                              'text'        => $family,
-                              'id'          => $family,
-                              'data-google' => 'false',
+                                'text'        => $family,
+                                'id'          => $family,
+                                'data-google' => 'false',
                             );
                         }
                     }
@@ -1007,73 +1007,34 @@
                     return;
                 }
 
-                $gFile = dirname( __FILE__ ) . '/googlefonts.php';
-
-                // Weekly update
-                if ( isset( $this->parent->args['google_update_weekly'] ) && $this->parent->args['google_update_weekly'] && ! empty( $this->parent->args['google_api_key'] ) ) {
-
-                    if ( file_exists( $gFile ) ) {
-                        // Keep the fonts updated weekly
-                        $weekback     = strtotime( date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
-                        $last_updated = filemtime( $gFile );
-                        if ( $last_updated < $weekback ) {
-                            unlink( $gFile );
-                        }
-                    }
+                $fonts = Redux_Helpers::google_fonts_array();
+                if ( empty( $fonts ) ) {
+                    return;
                 }
 
-                if ( ! file_exists( $gFile ) ) {
-
-                    $result = @wp_remote_get( apply_filters( 'redux-google-fonts-api-url', 'https://www.googleapis.com/webfonts/v1/webfonts?key=' ) . $this->parent->args['google_api_key'], array( 'sslverify' => false ) );
-
-                    if ( ! is_wp_error( $result ) && $result['response']['code'] == 200 ) {
-                        $result = json_decode( $result['body'] );
-                        foreach ( $result->items as $font ) {
-                            $this->parent->googleArray[ $font->family ] = array(
-                              'variants' => $this->get_variants( $font->variants ),
-                              'subsets'  => $this->get_subsets( $font->subsets )
-                            );
-                        }
-
-                        if ( ! empty( $this->parent->googleArray ) ) {
-                            $this->parent->filesystem->execute( 'put_contents', $gFile, array( 'content' => "<?php return json_decode( '" . json_encode( $this->parent->googleArray ) . "', true );" ) );
-                        }
-                    }
-                }
-
-                if ( ! file_exists( $gFile ) ) {
+                if ( $fonts === true ) {
                     $this->parent->fonts['google'] = false;
 
                     return;
                 }
 
-                if ( ! isset( $this->parent->fonts['google'] ) || empty( $this->parent->fonts['google'] ) ) {
-                    $fonts = include $gFile;
+                if ( isset( $fonts ) && ! empty( $fonts ) && is_array( $fonts ) && $fonts != false ) {
+                    $this->parent->fonts['google'] = $fonts;
+                    $this->parent->googleArray     = $fonts;
 
-                    if ( $fonts === true ) {
-                        $this->parent->fonts['google'] = false;
+                    // optgroup
+                    $this->parent->font_groups['google'] = array(
+                        'text'     => esc_html__( 'Google Webfonts', 'redux-framework' ),
+                        'children' => array(),
+                    );
 
-                        return;
-                    }
-
-                    if ( isset( $fonts ) && ! empty( $fonts ) && is_array( $fonts ) && $fonts != false ) {
-                        $this->parent->fonts['google'] = $fonts;
-                        $this->parent->googleArray     = $fonts;
-
-                        // optgroup
-                        $this->parent->font_groups['google'] = array(
-                          'text'     => esc_html__( 'Google Webfonts', 'redux-framework' ),
-                          'children' => array(),
+                    // options
+                    foreach ( $this->parent->fonts['google'] as $font => $extra ) {
+                        $this->parent->font_groups['google']['children'][] = array(
+                            'id'          => $font,
+                            'text'        => $font,
+                            'data-google' => 'true'
                         );
-
-                        // options
-                        foreach ( $this->parent->fonts['google'] as $font => $extra ) {
-                            $this->parent->font_groups['google']['children'][] = array(
-                              'id'          => $font,
-                              'text'        => $font,
-                              'data-google' => 'true'
-                            );
-                        }
                     }
                 }
             }
@@ -1095,8 +1056,8 @@
                     }
 
                     array_push( $result, array(
-                      'id'   => $v,
-                      'name' => $name
+                        'id'   => $v,
+                        'name' => $name
                     ) );
                 }
 
@@ -1146,13 +1107,13 @@
                             $v = "400italic";
                         }
                         $italic[] = array(
-                          'id'   => $v,
-                          'name' => $name
+                            'id'   => $v,
+                            'name' => $name
                         );
                     } else {
                         $result[] = array(
-                          'id'   => $v,
-                          'name' => $name
+                            'id'   => $v,
+                            'name' => $name
                         );
                     }
                 }

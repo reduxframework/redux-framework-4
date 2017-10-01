@@ -19,6 +19,7 @@
             public static $_is_plugin = true;
             public static $_as_plugin = false;
             public static $_pro_loaded = false;
+            public static $_google_fonts = array();
 
             public static $third_party_fixes = null;
 
@@ -40,6 +41,8 @@
                 }                
                 
                 $dir = Redux_Helpers::cleanFilePath( dirname( __FILE__ ) );
+
+                Redux_Helpers::generator();
 
                 self::$_dir = trailingslashit( $dir );
 
