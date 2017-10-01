@@ -114,6 +114,12 @@
 
                 // Localize std fonts
                 $this->localize_std_fonts();
+
+
+            }
+
+            public function google_fonts_update() {
+                echo "here";
             }
 
             function localize( $field, $value = "" ) {
@@ -539,14 +545,13 @@
                         $inUse = '0';
                     }
 
+                    if ( Redux_Helpers::google_fonts_update_needed() && ! get_option( 'auto_update_redux_google_fonts', false ) ) {
+                        $nonce = wp_create_nonce( "redux_update_google_fonts" );
+                        echo '<div data-nonce="' . $nonce . '" class="redux-update-google-fonts update-message notice inline notice-warning notice-alt"><p>' . esc_html__( 'Your Google Fonts are out of date.', 'redux-framework' ) . ' <a href="#" class="update-google-fonts" data-action="automatic" aria-label="' . esc_attr__( 'Keep updated', 'redux-framework' ) . '">' . esc_html__( 'Keep updated', 'redux-framework' ) . '</a> or <a href="#" class="update-google-fonts" data-action="manual" aria-label="' . esc_attr__( 'one-time update', 'redux-framework' ) . '">' . esc_html__( 'one-time update', 'redux-framework' ) . '</a>.</p></div>';
+                    }
+
                     echo '<p data-preview-size="' . $inUse . '" class="clear ' . esc_attr( $this->field['id'] ) . '_previewer typography-preview" ' . 'style="' . esc_attr( $style ) . '">' . esc_html( $g_text ) . '</p>';
 
-                    echo '<div class="update-message notice inline notice-warning notice-alt"><p>Your Google Fonts are out of date. <a href="" class="" aria-label="Keep updated">Keep updated</a> or <a href="" class="update-link" aria-label="Update only once">update only once</a>.</p></div>';
-
-                    echo '<div class="update-message notice inline notice-warning notice-alt updating-message"><p aria-label="Updating Redux Framework...">Downloading Google Fonts...</p></div>';
-
-                    echo '<div class="update-message notice inline notice-alt updated-message notice-success"><p aria-label="Redux Framework updated!">Updated!</p></div>';
-                    echo '<div class="update-message notice inline notice-alt notice-error"><p aria-label="Redux Framework update failed">Update Failed: cURL error 6: Couldn\'t resolve host \'downloads.wordpress.org\'</p></div>';
 
                     echo '</div>'; // end typography container
                 }
@@ -559,6 +564,7 @@
              * @since ReduxFramework 1.0.0
              */
             function enqueue() {
+
                 $min = Redux_Functions::isMin();
 
                 if ( ! wp_style_is( 'select2-css' ) ) {
@@ -582,7 +588,17 @@
                 wp_localize_script(
                     'redux-field-typography-js',
                     'redux_ajax_script',
-                    array( 'ajaxurl' => esc_url( admin_url( 'admin-ajax.php' ) ) )
+                    array(
+                        'ajaxurl'             => esc_url(
+                            admin_url( 'admin-ajax.php' )
+                        ),
+                        'update_google_fonts' => array(
+                            'updating' => __( 'Downloading Google Fonts...', 'redux-framework' ),
+                            'success'  => __( 'Updated!', 'redux-framework' ),
+                            'error'    => __( 'Update Failed', 'redux-framework' ),
+                            'success'  => sprintf( wp_kses( __( 'Updated! <a href="%s">Reload the page</a> to view your updated fonts.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'javascript:location.reload();' ) )
+                        )
+                    )
                 );
 
                 if ( $this->parent->args['dev_mode'] ) {
@@ -1014,7 +1030,7 @@
                     return;
                 }
 
-                $fonts = Redux_Helpers::google_fonts_array();
+                $fonts = Redux_Helpers::google_fonts_array( get_option( 'auto_update_redux_google_fonts', false ) );
                 if ( empty( $fonts ) ) {
                     return;
                 }
@@ -1130,6 +1146,26 @@
                 }
 
                 return array_filter( $result );
+            }
+
+            public function google_fonts_update_ajax() {
+                if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( $_POST['nonce'], 'redux_update_google_fonts' ) ) ) {
+
+                    die( 'Security check' );
+                }
+
+                if ( $_POST['data'] == "automatic" ) {
+                    update_option( 'auto_update_redux_google_fonts', true );
+                }
+
+                $fonts = Redux_Helpers::google_fonts_array( true );
+                if ( ! empty( $fonts ) ) {
+                    echo json_encode( array( 'status' => 'success', 'fonts' => $fonts ) );
+                } else {
+                    echo json_encode( array( 'status' => 'error' ) );
+                }
+
+                die();
             }
         }
     }

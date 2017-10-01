@@ -929,50 +929,62 @@
                 return ! $or;
             }
 
-            public static function google_fonts_array() {
+            public static function google_fonts_update_needed() {
+
+                $path = trailingslashit( ReduxCore::$_upload_dir ) . 'google_fonts.json';
+                $now  = time();
+                $secs = 60 * 60 * 24 * 7;
+
+                if ( file_exists( $path ) ) {
+
+                    // Keep the fonts updated weekly
+                    //echo date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) );
+                    if ( ($now - filemtime( $path )) < $secs ) {
+                        return false;
+                    }
+                    //if ( time() - filemtime( $path ) < 60 * 60 * 24 * 7 ) {
+                    //    return false;
+                    //}
+                }
+                return true;
+            }
+
+            public static function google_fonts_array( $download = false ) {
 
                 if ( ! empty( ReduxCore::$_google_fonts ) ) {
                     return ReduxCore::$_google_fonts;
                 }
-                echo "yo";
+
                 $filesystem = Redux_Filesystem::get_instance();
 
                 $path = trailingslashit( ReduxCore::$_upload_dir ) . 'google_fonts.json';
 
-                // TODO - Make this an option later
-                if ( file_exists( $path ) ) {
-                    // Keep the fonts updated weekly
-                    $weekback     = strtotime( date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
-                    $last_updated = filemtime( $path );
-                    if ( $last_updated < $weekback ) {
-                        unlink( $path );
-                    }
-                }
-
-                if ( ! file_exists( $path ) ) {
-                    $request = wp_remote_get( 'http://fonts.redux.io/google.php', array(
-                            'timeout' => 20,
-                            'headers' => array(
-                                'hash'    => Redux_Helpers::get_hash(),
-                                'version' => ReduxCore::$_version,
+                if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
+                    if ( $download ) {
+                        $request = wp_remote_get( 'http://fonts.redux.io/google.php', array(
+                                'timeout' => 20,
+                                'headers' => array(
+                                    'hash'    => Redux_Helpers::get_hash(),
+                                    'version' => ReduxCore::$_version,
+                                )
                             )
-                        )
-                    );
-                    if ( ! is_wp_error( $request ) ) {
-                        $body = wp_remote_retrieve_body( $request );
-                        if ( ! empty( $body ) ) {
-                            $filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
-                            ReduxCore::$_google_fonts = json_decode( $body, true );
+                        );
+                        if ( ! is_wp_error( $request ) ) {
+                            $body = wp_remote_retrieve_body( $request );
+                            if ( ! empty( $body ) ) {
+                                $filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
+                                ReduxCore::$_google_fonts = json_decode( $body, true );
+                            }
                         }
                     }
                 } elseif ( file_exists( $path ) ) {
                     ReduxCore::$_google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
-                    if ( empty( self::$google_fonts ) ) {
+                    if ( empty( ReduxCore::$_google_fonts ) ) {
                         $filesystem->execute( 'delete', $path );
                     }
                 }
 
-                return ReduxCore::$_google_fonts; // Bail early
+                return ReduxCore::$_google_fonts;
             }
         }
     }

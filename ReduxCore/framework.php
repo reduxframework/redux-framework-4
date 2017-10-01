@@ -190,6 +190,7 @@ if ( ! class_exists( 'ReduxFramework' ) ) {
                 new Redux_Dev($this);
                 new Redux_AJAX_Save($this);
                 new Redux_AJAX_Select2($this);
+                new Redux_AJAX_Typography($this);
             }
 
             /**
