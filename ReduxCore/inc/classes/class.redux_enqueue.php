@@ -64,7 +64,11 @@
                 } else {
                     $color_scheme = $core->args['admin_theme'];
                 }
-
+                
+                if (!file_exists(ReduxCore::$_dir . "assets/css/colors/$color_scheme/colors{$this->min}.css")) {
+                    $color_scheme = 'fresh';
+                }
+                
                 $css = ReduxCore::$_url . "assets/css/colors/$color_scheme/colors{$this->min}.css";
 
                 $css = apply_filters( 'redux/enqueue/' . $core->args['opt_name'] . '/args/admin_theme/css_url', $css );
