@@ -541,6 +541,13 @@
 
                     echo '<p data-preview-size="' . $inUse . '" class="clear ' . esc_attr( $this->field['id'] ) . '_previewer typography-preview" ' . 'style="' . esc_attr( $style ) . '">' . esc_html( $g_text ) . '</p>';
 
+                    echo '<div class="update-message notice inline notice-warning notice-alt"><p>Your Google Fonts are out of date. <a href="" class="" aria-label="Keep updated">Keep updated</a> or <a href="" class="update-link" aria-label="Update only once">update only once</a>.</p></div>';
+
+                    echo '<div class="update-message notice inline notice-warning notice-alt updating-message"><p aria-label="Updating Redux Framework...">Downloading Google Fonts...</p></div>';
+
+                    echo '<div class="update-message notice inline notice-alt updated-message notice-success"><p aria-label="Redux Framework updated!">Updated!</p></div>';
+                    echo '<div class="update-message notice inline notice-alt notice-error"><p aria-label="Redux Framework update failed">Update Failed: cURL error 6: Couldn\'t resolve host \'downloads.wordpress.org\'</p></div>';
+
                     echo '</div>'; // end typography container
                 }
             }
