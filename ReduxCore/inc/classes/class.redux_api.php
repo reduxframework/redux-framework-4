@@ -48,6 +48,10 @@
                 add_action( 'after_setup_theme', array( 'Redux', 'createRedux' ) );
                 add_action( 'init', array( 'Redux', 'createRedux' ) );
                 add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
+                
+                if (version_compare(PHP_VERSION, '5.5.0', '<')) {
+                    include_once ReduxCore::$_dir . 'inc/lib/array_column.php';
+                }
             }
 
             public static function init( $opt_name = "" ) {
