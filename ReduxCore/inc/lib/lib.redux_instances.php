@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ReduxFrameworkInstances Functions
+ * Redux_Instances Functions
  *
  * @package     Redux_Framework
  * @subpackage  Core

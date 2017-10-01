@@ -48,8 +48,8 @@
                 add_action( 'after_setup_theme', array( 'Redux', 'createRedux' ) );
                 add_action( 'init', array( 'Redux', 'createRedux' ) );
                 add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
-                
-                if (version_compare(PHP_VERSION, '5.5.0', '<')) {
+
+                if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
                     include_once ReduxCore::$_dir . 'inc/lib/array_column.php';
                 }
             }
@@ -62,11 +62,11 @@
             }
 
             public static function instance( $opt_name ) {
-                return ReduxFrameworkInstances::get_instance( $opt_name );
+                return Redux_Instances::get_instance( $opt_name );
             }
 
             public static function all_instances() {
-                return ReduxFrameworkInstances::get_all_instances();
+                return Redux_Instances::get_all_instances();
             }
 
             public static function loadExtensions( $ReduxFramework ) {
@@ -496,7 +496,7 @@
             }
 
             public static function record_caller( $opt_name = "", $caller = "" ) {
-                if ( !empty(self::$args[ $opt_name ]['callers']) && ! in_array( $caller, self::$args[ $opt_name ]['callers'] ) ) {
+                if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'] ) ) {
                     self::$args[ $opt_name ]['callers'][] = $caller;
                 }
             }

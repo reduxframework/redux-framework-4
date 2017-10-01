@@ -102,7 +102,7 @@
                 self::$_upload_dir = apply_filters( "redux/_upload_dir", self::$_upload_dir );
                 self::$_upload_url = apply_filters( "redux/_upload_url", self::$_upload_url );
 
-                ReduxFrameworkInstances::get_instance();
+                Redux_Instances::get_instance();
 
             }
 
@@ -138,7 +138,7 @@
                 if ( ! class_exists( $class_name ) ) {
 
                     // Backward compatibility for extensions sucks!
-                    if ( $class_name == 'ReduxFrameworkInstances' ) {
+                    if ( $class_name == 'Redux_Instances' ) {
                         require_once( Redux_Path::get_path( '/inc/classes/class.redux_instances.php' ) );
                         require_once( Redux_Path::get_path( '/inc/lib/lib.redux_instances.php' ) );
 
