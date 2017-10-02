@@ -1032,7 +1032,8 @@
 
                 $fonts = Redux_Helpers::google_fonts_array( get_option( 'auto_update_redux_google_fonts', false ) );
                 if ( empty( $fonts ) ) {
-                    return;
+                    $gFile = dirname( __FILE__ ) . '/googlefonts.php';
+                    $fonts = include $gFile;
                 }
 
                 if ( $fonts === true ) {
