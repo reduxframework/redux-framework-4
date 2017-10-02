@@ -961,7 +961,7 @@
                                     'hash'    => Redux_Helpers::get_hash(),
                                     'version' => ReduxCore::$_version,
                                 ),
-                                'local'      => Redux_Helpers::isisLocalHost(),
+                                'local'      => Redux_Helpers::isLocalHost(),
                                 'developers' => json_encode( apply_filters( 'redux/tracking/developer', array() ) )
                             )
                         );
