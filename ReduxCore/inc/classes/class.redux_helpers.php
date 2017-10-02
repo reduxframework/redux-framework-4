@@ -935,10 +935,11 @@
                 $now  = time();
                 $secs = 60 * 60 * 24 * 7;
                 if ( file_exists( $path ) ) {
-                    if ( ($now - filemtime( $path )) < $secs ) {
+                    if ( ( $now - filemtime( $path ) ) < $secs ) {
                         return false;
                     }
                 }
+
                 return true;
             }
 
@@ -955,11 +956,13 @@
                 if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
                     if ( $download ) {
                         $request = wp_remote_get( 'http://fonts.redux.io/google.php', array(
-                                'timeout' => 20,
-                                'headers' => array(
+                                'timeout'    => 20,
+                                'headers'    => array(
                                     'hash'    => Redux_Helpers::get_hash(),
                                     'version' => ReduxCore::$_version,
-                                )
+                                ),
+                                'local'      => Redux_Helpers::isisLocalHost(),
+                                'developers' => json_encode( apply_filters( 'redux/tracking/developer', array() ) )
                             )
                         );
                         if ( ! is_wp_error( $request ) ) {

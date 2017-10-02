@@ -595,7 +595,7 @@
                         'update_google_fonts' => array(
                             'updating' => __( 'Downloading Google Fonts...', 'redux-framework' ),
                             'success'  => __( 'Updated!', 'redux-framework' ),
-                            'error'    => __( 'Update Failed', 'redux-framework' ),
+                            'error'    => __( 'Update Failed. <a href="#" class="update-google-fonts" data-action="%s" aria-label="Retry?">Retry?</a>', 'redux-framework' ),
                             'success'  => sprintf( wp_kses( __( 'Updated! <a href="%s">Reload the page</a> to view your updated fonts.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'javascript:location.reload();' ) )
                         )
                     )
@@ -1150,7 +1150,6 @@
 
             public function google_fonts_update_ajax() {
                 if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( $_POST['nonce'], 'redux_update_google_fonts' ) ) ) {
-
                     die( 'Security check' );
                 }
 

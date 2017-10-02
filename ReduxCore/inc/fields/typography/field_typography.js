@@ -279,12 +279,18 @@
     redux.field_objects.typography.updates = function( obj ) {
         obj.find( '.update-google-fonts' ).bind( "click", function( e ) {
             var $action = $( this ).data( 'action' );
-            var $update_parent = $(this).parent().parent();
+            var $update_parent = $( this ).parent().parent();
             var $nonce = $update_parent.attr( "data-nonce" );
 
-            $(this).parent().parent().addClass('updating-message');
-            $update_parent.find('p').text(redux_ajax_script.update_google_fonts.updating);
-            $update_parent.find('p').attr('aria-label', redux_ajax_script.update_google_fonts.updating);
+            // $( this ).parent().parent().addClass( 'updating-message' );
+            $update_parent.find( 'p' ).text( redux_ajax_script.update_google_fonts.updating );
+            $update_parent.find( 'p' ).attr( 'aria-label', redux_ajax_script.update_google_fonts.updating );
+            // ''
+            $update_parent.removeClass(
+                'updating-message updated-message notice-success notice-warning notice-error'
+            ).addClass(
+                'update-message notice-warning updating-message'
+            );
             $.ajax(
                 {
                     type: "post",
@@ -296,21 +302,41 @@
                         data: $action
                     },
                     error: function( response ) {
-                        console.log(response);
-                        $update_parent.removeClass('notice-warning updating-message updated-message notice-success').addClass('notice-error');
-                        $update_parent.find('p').text(redux_ajax_script.update_google_fonts.error+': ' + response);
-                        $update_parent.find('p').attr('aria-label', redux_ajax_script.update_google_fonts.error);
+                        console.log( response );
+                        $update_parent.removeClass(
+                            'notice-warning updating-message updated-message notice-success'
+                        ).addClass(
+                            'notice-error'
+                        );
+                        $update_parent.find( 'p' ).html(
+                            redux_ajax_script.update_google_fonts.error.replace( '%s', $action ) );
+                        $update_parent.find( 'p' ).attr( 'aria-label', redux_ajax_script.update_google_fonts.error );
+                        redux.field_objects.typography.updates( obj );
                     },
                     success: function( response ) {
-                        console.log(response);
-                        if (response.status === "success") {
-                            $update_parent.find('p').html(redux_ajax_script.update_google_fonts.success);
-                            $update_parent.find('p').attr('aria-label', redux_ajax_script.update_google_fonts.success);
-                            $update_parent.removeClass('updating-message notice-warning').addClass('updated-message notice-success');
+                        console.log( response );
+                        if ( response.status === "success" ) {
+                            $update_parent.find( 'p' ).html( redux_ajax_script.update_google_fonts.success );
+                            $update_parent.find( 'p' ).attr(
+                                'aria-label', redux_ajax_script.update_google_fonts.success );
+                            $update_parent.removeClass(
+                                'updating-message notice-warning'
+                            ).addClass(
+                                'updated-message notice-success'
+                            );
+                            $('.redux-update-google-fonts').not(".notice-success").remove();
+
                         } else {
-                            $update_parent.removeClass('notice-warning updating-message updated-message notice-success').addClass('notice-error');
-                            $update_parent.find('p').text(redux_ajax_script.update_google_fonts.error+': ' + response);
-                            $update_parent.find('p').attr('aria-label', redux_ajax_script.update_google_fonts.error);
+                            $update_parent.removeClass(
+                                'notice-warning updating-message updated-message notice-success'
+                            ).addClass(
+                                'notice-error'
+                            );
+                            $update_parent.find( 'p' ).html(
+                                redux_ajax_script.update_google_fonts.error.replace( '%s', $action ) );
+                            $update_parent.find( 'p' ).attr(
+                                'aria-label', redux_ajax_script.update_google_fonts.error );
+                            redux.field_objects.typography.updates( obj );
                         }
                     }
                 }
