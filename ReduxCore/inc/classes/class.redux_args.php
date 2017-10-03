@@ -116,8 +116,8 @@ if (!class_exists('Redux_Args')) {
 
             $args = $this->filters($args);
             
-            $this->parent->core_instance    = chr(64 + rand( 0, 26 )) . time() . '_' . rand(0,1000000);
-            $this->parent->core_thread      = chr(64 + rand( 0, 26 )) . time() . '_' . rand(0,1000000);
+            $this->parent->core_instance    = chr(64 + rand( 1, 26 )) . time() . '_' . rand(0,1000000);
+            $this->parent->core_thread      = chr(64 + rand( 1, 26 )) . time() . '_' . rand(0,1000000);
             
             if ( $args['opt_name'] == $this->parent->old_opt_name ) {
                 $this->parent->old_opt_name = null;
