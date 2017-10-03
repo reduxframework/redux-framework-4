@@ -726,7 +726,7 @@
         if ( letter === '' || letter === undefined ) {
             $( '#' + mainID + ' .typography-letter-spacing' ).val( '' );
         } else {
-            $( '#' + mainID + ' .typography-letter-spacingg' ).val( letter + units );
+            $( '#' + mainID + ' .typography-letter-spacing' ).val( letter + units );
         }
 
         // Show more preview stuff
