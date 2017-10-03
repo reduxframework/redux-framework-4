@@ -552,7 +552,6 @@
 
                     echo '<p data-preview-size="' . $inUse . '" class="clear ' . esc_attr( $this->field['id'] ) . '_previewer typography-preview" ' . 'style="' . esc_attr( $style ) . '">' . esc_html( $g_text ) . '</p>';
 
-
                     echo '</div>'; // end typography container
                 }
             }
@@ -575,7 +574,14 @@
                     wp_enqueue_style( 'wp-color-picker' );
                 }
 
-                $dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js' );
+                wp_enqueue_script(
+                    'redux-webfont-js',
+                    "https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js?ver=1.5.0",
+                    ReduxCore::$_version,
+                    true
+                );
+
+                $dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js', 'redux-webfont-js' );
 
                 wp_enqueue_script(
                     'redux-field-typography-js',
