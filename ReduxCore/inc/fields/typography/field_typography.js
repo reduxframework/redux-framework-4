@@ -726,7 +726,7 @@
         if ( letter === '' || letter === undefined ) {
             $( '#' + mainID + ' .typography-letter-spacing' ).val( '' );
         } else {
-            $( '#' + mainID + ' .typography-letter-spacing' ).val( letter + units );
+            $( '#' + mainID + ' .typography-letter-spacingg' ).val( letter + units );
         }
 
         // Show more preview stuff
@@ -738,6 +738,7 @@
             }
 
             $( '#' + mainID + ' .typography-preview' ).css( 'font-weight', style );
+            $( '#' + mainID + ' .typography-preview' ).css( 'text-align', align );
 
             //show in the preview box the font
             $( '#' + mainID + ' .typography-preview' ).css( 'font-family', family + ', sans-serif' );
