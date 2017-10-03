@@ -733,7 +733,7 @@
         if ( $( '#' + mainID ).hasClass( 'typography-initialized' ) ) {
             var isPreviewSize = $( '#' + mainID + ' .typography-preview' ).data( 'preview-size' );
 
-            if ( isPreviewSize === '0' ) {
+            if ( isPreviewSize === 0 ) {
                 $( '#' + mainID + ' .typography-preview' ).css( 'font-size', size + units );
             }
 
