@@ -5,12 +5,12 @@ if ( !defined ( 'ABSPATH' ) ) {
 }
 
 if (!class_exists('Redux_Output')) {
-    
+
     class Redux_Output extends Redux_Class {
 
         public function __construct ($parent) {
             parent::__construct($parent);
-            
+
             // Output dynamic CSS
             // Frontend: Maybe enqueue dynamic CSS and Google fonts
             if ( empty ( $this->args['output_location'] ) || in_array( 'frontend', $this->args['output_location'] ) ) {
@@ -68,7 +68,21 @@ if (!class_exists('Redux_Output')) {
                                  * @param       string        field class file
                                  * @param array $field        field config data
                                  */
-                                $class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", ReduxCore::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php", $field );
+                                $core_path = ReduxCore::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+
+                                if (ReduxCore::$_pro_loaded) {
+                                    $pro_path = ReduxPro::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+
+                                    if (file_exists( $pro_path ) ) {
+                                        $filter_path = $pro_path;
+                                    } else {
+                                        $filter_path = $core_path;
+                                    }
+                                } else {
+                                    $filter_path = $core_path;
+                                }
+
+                                $class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", $filter_path, $field );
 
                                 if ( $class_file && file_exists( $class_file ) && ! class_exists( $field_class ) ) {
                                     /** @noinspection PhpIncludeInspection */
@@ -87,17 +101,17 @@ if (!class_exists('Redux_Output')) {
                                 $enqueue = new $field_class ( $field, $value, $core );
 
                                 $style_data = '';
-                                
+
                                 if ( ( ( isset ( $field['output'] ) && ! empty ( $field['output'] ) ) || ( isset ( $field['compiler'] ) && ! empty ( $field['compiler'] ) ) || isset ( $field['media_query'] ) && ! empty ( $field['media_query'] ) || $field['type'] == "typography" || $field['type'] == "icon_select" ) ) {
                                     if ( method_exists($enqueue, 'css_style')) {
                                         $style_data = $enqueue->css_style($enqueue->value);
                                     }
                                 }
-                                
+
                                 if ( ( ( isset ( $field['output'] ) && ! empty ( $field['output'] ) ) || ( isset ( $field['compiler'] ) && ! empty ( $field['compiler'] ) ) || $field['type'] == "typography" || $field['type'] == "icon_select" ) ) {
                                     $enqueue->output($style_data);
                                 }
-                                
+
                                 if ( isset ( $field['media_query'] ) && ! empty ( $field['media_query'] ) ) {
                                     $enqueue->media_query($style_data);
                                 }
@@ -118,7 +132,7 @@ if (!class_exists('Redux_Output')) {
 
                 if ( $core->args['async_typography'] && ! empty ( $core->typography ) ) {
                     $families = array();
-                    
+
                     foreach ( $core->typography as $key => $value ) {
                         $families[] = $key;
                     }
@@ -127,7 +141,7 @@ if (!class_exists('Redux_Output')) {
                         if ( typeof WebFontConfig === "undefined" ) {
                             WebFontConfig = new Object();
                         }
-                        
+
                         WebFontConfig['google'] = {families: [<?php echo $typography->make_google_web_font_string ( $core->typography ) ?>]};
 
                         (function(d) {
@@ -142,7 +156,7 @@ if (!class_exists('Redux_Output')) {
                 } elseif ( ! $core->args['disable_google_fonts_link'] ) {
                     $protocol = ( ! empty ( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https:" : "http:";
 
-                    wp_enqueue_style( 
+                    wp_enqueue_style(
                         'redux-google-fonts-' . $core->args['opt_name'],
                         $protocol . $typography->make_google_web_font_link( $core->typography ),
                         array(),
@@ -152,7 +166,7 @@ if (!class_exists('Redux_Output')) {
                 }
             }
         }
-        
+
         /**
          * Output dynamic CSS at bottom of HEAD
          *
@@ -162,7 +176,7 @@ if (!class_exists('Redux_Output')) {
          */
         public function output_css() {
             $core = $this->core();
-                    
+
             if ( $core->args['output'] == false && $core->args['compiler'] == false ) {
                 return;
             }
@@ -175,7 +189,7 @@ if (!class_exists('Redux_Output')) {
                 echo '<style type="text/css" id="' . $core->args['opt_name'] . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
             }
         }
-        
+
         /**
          * Can Output CSS
          * Check if a field meets its requirements before outputting to CSS
