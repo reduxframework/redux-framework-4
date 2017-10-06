@@ -454,8 +454,6 @@ if (!class_exists('Redux_Page_Render')) {
                         $field['name_suffix'] = "";
                     }
 
-                    $render = new $field_class ( $field, $value, $core );
-
                     if (ReduxCore::$_pro_loaded) {
                         $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/' . $field['type'] . '_filters.php';
                         if (file_exists($field_filter)) {
@@ -469,6 +467,8 @@ if (!class_exists('Redux_Page_Render')) {
                         }
                     }  
                     
+                    $render = new $field_class ( $field, $value, $core );
+
                     ob_start();
 
                     $render->render();

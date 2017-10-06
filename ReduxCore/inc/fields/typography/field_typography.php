@@ -110,6 +110,10 @@
 
                 $this->value = wp_parse_args( $this->value, $defaults );
 
+                if (ReduxCore::$_pro_loaded) {
+                    $this->field = apply_filters('redux/pro/typography/field/set_defaults',$this->field);
+                }
+                
                 // Get the google array
                 $this->getGoogleArray();
 
