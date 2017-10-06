@@ -955,7 +955,7 @@
 
                 if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
                     if ( $download ) {
-                        $url = "https://us-central1-redux-framework.cloudfunctions.net/googlefonts";
+                        $url = "http://api.redux.io/googlefonts";
 
                         $developers = array( apply_filters( 'redux/tracking/developer', array() ) );
                         if ( empty( $developers ) ) {
