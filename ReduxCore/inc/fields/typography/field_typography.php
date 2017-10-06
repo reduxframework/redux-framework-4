@@ -22,7 +22,7 @@
     if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
         class ReduxFramework_typography extends Redux_Field {
-
+            public $whatever = 'kev';
             private $std_fonts = array(
                 "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
                 "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
@@ -45,7 +45,13 @@
 
             private $user_fonts = true;
 
+            public function __construct ($field, $value, $parent) {
+                var_dump('typo construct');
+                parent::__construct($field, $value, $parent);
+            }
+            
             function set_defaults() {
+                var_dump('typo defaults');
                 // Shim out old arg to new
                 if ( isset( $this->field['all_styles'] ) && ! empty( $this->field['all_styles'] ) ) {
                     $this->field['all-styles'] = $this->field['all_styles'];
@@ -479,6 +485,8 @@
 
                 echo '<div class="clearfix"></div>';
 
+                echo apply_filters('redux/pro/typography/render/extra_inputs', null);
+                
                 /* Font Color */
                 if ( $this->field['color'] === true ) {
                     $default = "";

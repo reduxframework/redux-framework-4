@@ -391,13 +391,28 @@ if (!class_exists('Redux_Page_Render')) {
                 $field_class = "ReduxFramework_{$field['type']}";
 
                 if ( ! class_exists( $field_class ) ) {
+
                     /**
                      * filter 'redux/{opt_name}/field/class/{field.type}'
                      *
                      * @param       string        field class file path
                      * @param array $field        field data
                      */
-                    $class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", ReduxCore::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php", $field );
+                    $core_path = ReduxCore::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+
+                    if (ReduxCore::$_pro_loaded) {
+                        $pro_path = ReduxPro::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+
+                        if (file_exists( $pro_path ) ) {
+                            $filter_path = $pro_path;
+                        } else {
+                            $filter_path = $core_path;
+                        }
+                    } else {
+                        $filter_path = $core_path;
+                    }
+                    
+                    $class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", $filter_path, $field );
 
                     if ( $class_file ) {
                         if ( file_exists( $class_file ) ) {
@@ -440,6 +455,19 @@ if (!class_exists('Redux_Page_Render')) {
                     }
 
                     $render = new $field_class ( $field, $value, $core );
+
+                    if (ReduxCore::$_pro_loaded) {
+                        $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/' . $field['type'] . '_filters.php';
+                        if (file_exists($field_filter)) {
+                            require_once $field_filter;
+                            
+                            $filter_class_name = 'Redux_' . $field['type'] . '_filters';
+                            
+                            if (class_exists($filter_class_name)) {
+                                new $filter_class_name ( $field, $value, $core );
+                            }
+                        }
+                    }  
                     
                     ob_start();
 
