@@ -955,16 +955,32 @@
 
                 if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
                     if ( $download ) {
-                        $request = wp_remote_get( 'http://fonts.redux.io/google.php', array(
+                        $url = "http://api.redux.io/googlefonts";
+
+                        $developers = array( apply_filters( 'redux/tracking/developer', array() ) );
+                        if ( empty( $developers ) ) {
+                            $developers = "";
+                        } else {
+                            if ( count( $developers ) == 1 ) {
+                                if ( empty( $developers[0] ) ) {
+                                    $developers = "";
+                                }
+                            }
+                        }
+                        $instances = Redux_Instances::get_all_instances();
+
+                        $request = wp_remote_get( $url, array(
                                 'timeout' => 20,
                                 'headers' => array(
                                     'hash'       => Redux_Helpers::get_hash(),
                                     'version'    => ReduxCore::$_version,
                                     'local'      => Redux_Helpers::isLocalHost(),
-                                    'developers' => json_encode( apply_filters( 'redux/tracking/developer', array() ) )
+                                    'developers' => $developers,
+                                    'opt_names'=> join('|',array_keys($instances))
                                 ),
                             )
                         );
+                        
                         if ( ! is_wp_error( $request ) ) {
                             $body = wp_remote_retrieve_body( $request );
                             if ( ! empty( $body ) ) {
