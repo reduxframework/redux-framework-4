@@ -121,6 +121,15 @@
                 // Localize std fonts
                 $this->localize_std_fonts();
 
+                if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array(
+                        'px',
+                        'em',
+                        'rem',
+                        '%'
+                    ) )
+                ) {
+                    $this->field['units'] = 'px';
+                }
 
             }
 
@@ -159,16 +168,6 @@
 
                 if ( empty( $this->field['units'] ) && ! empty( $this->field['default']['units'] ) ) {
                     $this->field['units'] = $this->field['default']['units'];
-                }
-
-                if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array(
-                        'px',
-                        'em',
-                        'rem',
-                        '%'
-                    ) )
-                ) {
-                    $this->field['units'] = 'px';
                 }
 
                 $unit = $this->field['units'];
