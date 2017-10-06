@@ -955,7 +955,7 @@
 
                 if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
                     if ( $download ) {
-                        $url = "http://api.redux.io/googlefonts";
+                        $url = "https://us-central1-redux-framework.cloudfunctions.net/googlefonts";
 
                         $developers = array( apply_filters( 'redux/tracking/developer', array() ) );
                         if ( empty( $developers ) ) {
@@ -980,7 +980,7 @@
                                 ),
                             )
                         );
-                        
+
                         if ( ! is_wp_error( $request ) ) {
                             $body = wp_remote_retrieve_body( $request );
                             if ( ! empty( $body ) ) {
