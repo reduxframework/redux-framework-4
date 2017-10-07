@@ -498,7 +498,7 @@ if (!class_exists('Redux_Page_Render')) {
                      */
                     $_render = apply_filters( "redux/field/{$core->args['opt_name']}/render/after", $_render, $field );
 
-                    ob_end_clean();
+                    ob_clean();
 
                     //save the values into a unique array in case we need it for dependencies
                     $core->fieldsValues[ $field['id'] ] = ( isset ( $value['url'] ) && is_array( $value ) ) ? $value['url'] : $value;

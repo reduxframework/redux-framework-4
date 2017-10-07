@@ -22,7 +22,7 @@
     if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
         class ReduxFramework_typography extends Redux_Field {
-            public $whatever = 'kev';
+
             private $std_fonts = array(
                 "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
                 "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
@@ -45,13 +45,7 @@
 
             private $user_fonts = true;
 
-            public function __construct ($field, $value, $parent) {
-                var_dump('typo construct');
-                parent::__construct($field, $value, $parent);
-            }
-            
             function set_defaults() {
-                var_dump('typo defaults');
                 // Shim out old arg to new
                 if ( isset( $this->field['all_styles'] ) && ! empty( $this->field['all_styles'] ) ) {
                     $this->field['all-styles'] = $this->field['all_styles'];
@@ -110,8 +104,19 @@
 
                 $this->value = wp_parse_args( $this->value, $defaults );
 
+                if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array(
+                        'px',
+                        'em',
+                        'rem',
+                        '%'
+                    ) )
+                ) {
+                    $this->field['units'] = 'px';
+                }
+                
                 if (ReduxCore::$_pro_loaded) {
-                    $this->field = apply_filters('redux/pro/typography/field/set_defaults',$this->field);
+                    $this->field = apply_filters('redux/pro/typography/field/set_defaults', $this->field);
+                    $this->value = apply_filters('redux/pro/typography/value/set_defaults', $this->value);
                 }
                 
                 // Get the google array
@@ -124,17 +129,6 @@
 
                 // Localize std fonts
                 $this->localize_std_fonts();
-
-                if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array(
-                        'px',
-                        'em',
-                        'rem',
-                        '%'
-                    ) )
-                ) {
-                    $this->field['units'] = 'px';
-                }
-
             }
 
             public function google_fonts_update() {
@@ -487,9 +481,9 @@
                 }
 
                 echo '<div class="clearfix"></div>';
-
-                echo apply_filters('redux/pro/typography/render/extra_inputs', null);
-                
+                $output = apply_filters('redux/pro/typography/render/extra_inputs', $this->field['id']);
+                echo $output; //apply_filters('redux/pro/typography/render/extra_inputs', null);
+                //var_dump($output);
                 /* Font Color */
                 if ( $this->field['color'] === true ) {
                     $default = "";
