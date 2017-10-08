@@ -454,19 +454,14 @@ if (!class_exists('Redux_Page_Render')) {
                         $field['name_suffix'] = "";
                     }
 
-                    if (ReduxCore::$_pro_loaded) {
-                        $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/pro_field_' . $field['type'] . '.php';
-                        
-                        if (file_exists($field_filter)) {
-                            require_once $field_filter;
-                            
-                            $filter_class_name = 'ReduxFramework_Pro_' . $field['type'];
-                            
-                            if (class_exists($filter_class_name)) {
-                                $extend = new $filter_class_name ( $field, $value, $core );
-                            }
-                        }
-                    }  
+                    $data = array(
+                        'field' => $field,
+                        'value' => $value,
+                        'core' => $core,
+                        'mode' => 'render'
+                    );
+
+                    $pro_field_loaded = Redux_Functions::load_pro_field($data);
                     
                     $render = new $field_class ( $field, $value, $core );
 
@@ -543,6 +538,12 @@ if (!class_exists('Redux_Page_Render')) {
 
                     if ( isset ( $field['fieldset_class'] ) && ! empty( $field['fieldset_class'] ) ) {
                         $class_string .= ' ' . $field['fieldset_class'];
+                    }
+                    
+                    if (ReduxCore::$_pro_loaded) {
+                        if ($pro_field_loaded) {
+                            $class_string .= ' redux-pro-field-init';
+                        }
                     }
 
                     echo '<fieldset id="' . esc_attr($core->args['opt_name'] . '-' . $field['id']) . '" class="' . esc_attr($hidden . 'redux-field-container redux-field redux-field-init redux-container-' . $field['type'] . ' ' . $class_string) . '" data-id="' . esc_attr($field['id']) . '" data-type="' . esc_attr($field['type']) . '">';

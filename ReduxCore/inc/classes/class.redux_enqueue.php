@@ -352,7 +352,32 @@
                             }
 
                             $theField = new $field_class( $field, $core->options[ $field['id'] ], $core );
+                            
+                            $data = array(
+                                'field' => $field,
+                                'value' => $core->options[ $field['id'] ],
+                                'core' => $core,
+                                'mode' => 'enqueue'
+                            );
+                            
+                            Redux_Functions::load_pro_field($data);
 
+                    if (ReduxCore::$_pro_loaded) {
+                        $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/pro_field_' . $field['type'] . '.php';
+                        
+                        if (file_exists($field_filter)) {
+                            require_once $field_filter;
+                            
+                            $filter_class_name = 'ReduxFramework_Pro_' . $field['type'];
+                            
+                            if (class_exists($filter_class_name)) {
+                                $extend = new $filter_class_name ( $field, $core->options[ $field['id'] ], $core );
+                                $extend->init('enqueue');
+                            }
+                        }
+                    }  
+                            
+                            
                             // Move dev_mode check to a new if/then block
                             if ( ! wp_script_is( 'redux-field-' . $field['type'] . '-js', 'enqueued' ) && class_exists( $field_class ) && method_exists( $field_class, 'enqueue' ) ) {
                                 $theField->enqueue();

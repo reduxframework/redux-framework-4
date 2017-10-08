@@ -100,6 +100,15 @@ if (!class_exists('Redux_Output')) {
                                 $value   = isset ( $core->options[ $field['id'] ] ) ? $core->options[ $field['id'] ] : '';
                                 $enqueue = new $field_class ( $field, $value, $core );
 
+                                $data = array(
+                                    'field' => $field,
+                                    'value' => $value,
+                                    'core' => $core,
+                                    'mode' => 'output'
+                                );
+
+                                Redux_Functions::load_pro_field($data);
+                                
                                 $style_data = '';
 
                                 if ( ( ( isset ( $field['output'] ) && ! empty ( $field['output'] ) ) || ( isset ( $field['compiler'] ) && ! empty ( $field['compiler'] ) ) || isset ( $field['media_query'] ) && ! empty ( $field['media_query'] ) || $field['type'] == "typography" || $field['type'] == "icon_select" ) ) {

@@ -25,6 +25,34 @@ if ( ! class_exists( 'Redux_Functions' ) ) {
 
         public static $_parent;
 
+        // extract data:
+        // $field = field_array
+        // $value = field values
+        // $core = Redux instance
+        // $mode = pro field init mode
+        public static function load_pro_field($data) {
+            extract($data);
+            
+            if (ReduxCore::$_pro_loaded) {
+                $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/pro_field_' . $field['type'] . '.php';
+
+                if (file_exists($field_filter)) {
+                    require_once $field_filter;
+
+                    $filter_class_name = 'ReduxFramework_Pro_' . $field['type'];
+
+                    if (class_exists($filter_class_name)) {
+                        $extend = new $filter_class_name ( $field, $value, $core );
+                        $extend->init($mode);
+                        
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
         public static function parse_args($args, $defaults = ''){
             $args = (array) $args;
             $defaults = (array) $defaults;
