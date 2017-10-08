@@ -117,6 +117,9 @@
                 if (ReduxCore::$_pro_loaded) {
                     $this->field = apply_filters('redux/pro/typography/field/set_defaults', $this->field);
                     $this->value = apply_filters('redux/pro/typography/value/set_defaults', $this->value);
+                } else {
+                    $this->field['color_alpha']['color'] = false;
+                    $this->field['color_alpha']['shadow-color'] = false;
                 }
                 
                 // Get the google array
@@ -481,9 +484,11 @@
                 }
 
                 echo '<div class="clearfix"></div>';
-                $output = apply_filters('redux/pro/typography/render/extra_inputs', $this->field['id']);
-                echo $output; //apply_filters('redux/pro/typography/render/extra_inputs', null);
-                //var_dump($output);
+
+                if (ReduxCore::$_pro_loaded) {
+                    echo apply_filters('redux/pro/typography/render/extra_inputs', null);
+                }
+
                 /* Font Color */
                 if ( $this->field['color'] === true ) {
                     $default = "";
@@ -506,6 +511,7 @@
                         type="text" 
                         value="' . esc_attr( $this->value['color'] ) . '"
                         data-id="' . esc_attr( $this->field['id'] ) . '"
+                        data-alpha="' . $this->field['color_alpha']['color'] . '"
                         />';
                     echo '</div>';
                 }
@@ -557,6 +563,10 @@
 
                     echo '<p data-preview-size="' . $inUse . '" class="clear ' . esc_attr( $this->field['id'] ) . '_previewer typography-preview" ' . 'style="' . esc_attr( $style ) . '">' . esc_html( $g_text ) . '</p>';
 
+                    if (ReduxCore::$_pro_loaded) {
+                        echo apply_filters('redux/pro/typography/render/text_shadow', null);
+                    }
+                    
                     echo '</div>'; // end typography container
                 }
             }
@@ -612,6 +622,8 @@
                     )
                 );
 
+                do_action ('redux/pro/typography/enqueue');
+                
                 if ( $this->parent->args['dev_mode'] ) {
                     wp_enqueue_style( 'redux-color-picker-css' );
 

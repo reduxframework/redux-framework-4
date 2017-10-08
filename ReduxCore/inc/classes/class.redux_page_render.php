@@ -455,14 +455,15 @@ if (!class_exists('Redux_Page_Render')) {
                     }
 
                     if (ReduxCore::$_pro_loaded) {
-                        $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/' . $field['type'] . '_filters.php';
+                        $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/pro_field_' . $field['type'] . '.php';
+                        
                         if (file_exists($field_filter)) {
                             require_once $field_filter;
                             
-                            $filter_class_name = 'Redux_' . $field['type'] . '_filters';
+                            $filter_class_name = 'ReduxFramework_Pro_' . $field['type'];
                             
                             if (class_exists($filter_class_name)) {
-                                new $filter_class_name ( $field, $value, $core );
+                                $extend = new $filter_class_name ( $field, $value, $core );
                             }
                         }
                     }  
@@ -498,7 +499,7 @@ if (!class_exists('Redux_Page_Render')) {
                      */
                     $_render = apply_filters( "redux/field/{$core->args['opt_name']}/render/after", $_render, $field );
 
-                    ob_clean();
+                    ob_end_clean();
 
                     //save the values into a unique array in case we need it for dependencies
                     $core->fieldsValues[ $field['id'] ] = ( isset ( $value['url'] ) && is_array( $value ) ) ? $value['url'] : $value;
