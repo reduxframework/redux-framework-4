@@ -7,11 +7,6 @@
         width: 100%;
         max-width: 660px;
 
-        .redux-typography-slider {
-            margin-top: 7px;
-            width: auto;            
-        }
-        
         .clearfix {
             clear: both;
 
@@ -110,8 +105,7 @@
             box-sizing: border-box;
             vertical-align: baseline;
 
-            &.font-size,
-            &.margin-top {
+            &.font-size {
                 margin-left: 0px;
             }
 
