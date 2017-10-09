@@ -76,25 +76,22 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                 if ($multi != '') {
                     $select2_width = '100%';
                 }
+                $this->select2_config['width'] = $select2_width;
+                $this->select2_config['allowClear'] = true;
 
-                $select2_default = array(
-                    'width'         => $select2_width,
-                    'allowClear'    => true,
-                    'theme'         => 'classic'
-                );
                 if ( isset( $this->field['ajax'] ) && $this->field['ajax'] ) {
-                    $select2_default['ajax'] = true;
-                    //$select2_default['escapeMarkup']       = "<div class='select2-result-repository clearfix'><div class='select2-result-repository__avatar'><img src='\" + repo.owner.avatar_url + \"' /></div><div class='select2-result-repository__meta'><div class='select2-result-repository__title'>\" + repo.full_name + \"</div>";
-                    $select2_default['minimumInputLength'] = 1;
-                    $select2_default['ajax_url']           = "?action=redux_{$this->parent->args['opt_name']}_select2";
-                    $select2_default['nonce'] = wp_create_nonce( "redux_{$this->parent->args['opt_name']}_select2" );
-                    $select2_default['data'] = $this->field['data'];
+                    $this->select2_config['ajax'] = true;
+                    //$this->select2_config['escapeMarkup']       = "<div class='select2-result-repository clearfix'><div class='select2-result-repository__avatar'><img src='\" + repo.owner.avatar_url + \"' /></div><div class='select2-result-repository__meta'><div class='select2-result-repository__title'>\" + repo.full_name + \"</div>";
+                    $this->select2_config['minimumInputLength'] = 1;
+                    $this->select2_config['ajax_url']           = "?action=redux_{$this->parent->args['opt_name']}_select2";
+                    $this->select2_config['nonce'] = wp_create_nonce( "redux_{$this->parent->args['opt_name']}_select2" );
+                    $this->select2_config['data'] = $this->field['data'];
                 }
 
                 if ( isset( $this->field['select2'] ) ) {
-                    $this->field['select2'] = wp_parse_args($this->field['select2'], $select2_default);
+                    $this->field['select2'] = wp_parse_args($this->field['select2'], $this->select2_config);
                 } else {
-                    $this->field['select2'] = $select2_default;
+                    $this->field['select2'] = $this->select2_config;
                 }
 
                 $this->field['select2'] = Redux_Functions::sanitize_camel_case_array_keys($this->field['select2']);

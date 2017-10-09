@@ -115,17 +115,11 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             if ( $this->field['mode'] != '' ) {
                 $this->field['mode'] = $this->field['mode'] . "-";
             }
-
-            $select2_default = array(
-                'width'         => 'resolve',
-                'allowClear'    => false,
-                'theme'         => 'classic'
-            );
             
             if ( isset( $this->field['select2'] ) ) {
-                $this->field['select2'] = wp_parse_args($this->field['select2'], $select2_default);
+                $this->field['select2'] = wp_parse_args($this->field['select2'], $this->select2_config);
             } else {
-                $this->field['select2'] = $select2_default;
+                $this->field['select2'] = $this->select2_config;
             }
             
             $this->field['select2'] = Redux_Functions::sanitize_camel_case_array_keys($this->field['select2']);

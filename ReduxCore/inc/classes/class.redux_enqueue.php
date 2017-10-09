@@ -82,7 +82,7 @@
                 );
 
                 wp_enqueue_style(
-                  'redux-admin-css',
+                  'redux-admin',
                   ReduxCore::$_url."assets/css/redux-admin{$this->min}.css",
                   array('redux-admin-theme-css'),
                   $this->timestamp,
@@ -94,7 +94,7 @@
                 //*****************************************************************
                 if ( ! $core->args['dev_mode'] ) {
                     wp_enqueue_style(
-                      'redux-fields-css',
+                      'redux-fields',
                       ReduxCore::$_url . 'assets/css/redux-fields.min.css',
                       array(),
                       $this->timestamp,
@@ -105,9 +105,9 @@
                 //*****************************************************************
                 // Select2 CSS
                 //*****************************************************************
-                Redux_CDN::register_style(
-                  'select2-css',
-                  "//cdn.jsdelivr.net/select2/4.0.3/css/select2{$this->min}.css",
+                wp_enqueue_style(
+                  'select2',
+                    ReduxCore::$_url . 'assets/css/vendor/select2.min.css',
                   array(),
                   '4.0.3',
                   'all'
@@ -218,7 +218,7 @@
                 //*****************************************************************
                 wp_register_script(
                   'redux-select2-sortable-js',
-                  ReduxCore::$_url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.js',
+                  ReduxCore::$_url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.j`',
                   array( 'jquery' ),
                   $this->timestamp,
                   true
@@ -236,7 +236,7 @@
 //                }
 
 
-                Redux_CDN::register_script(
+                wp_enqueue_script(
                   'select2-js',
                   '//cdn.jsdelivr.net/select2/4.0.3/js/select2' . $this->min . '.js',
                   array( 'jquery', 'redux-select2-sortable-js' ),
