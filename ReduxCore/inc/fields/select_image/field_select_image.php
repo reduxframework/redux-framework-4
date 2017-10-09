@@ -42,16 +42,12 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 // Process placeholder
                 $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'redux-framework' );
 
-                $select2_default = array(
-                    'width'         => 'resolve',
-                    'allowClear'    => true,
-                    'theme'         => 'classic'
-                );
+                $this->select2_config['allowClear'] = true;
 
                 if ( isset( $this->field['select2'] ) ) {
-                    $this->field['select2'] = wp_parse_args($this->field['select2'], $select2_default);
+                    $this->field['select2'] = wp_parse_args($this->field['select2'], $this->select2_config);
                 } else {
-                    $this->field['select2'] = $select2_default;
+                    $this->field['select2'] = $this->select2_config;
                 }
 
                 $this->field['select2'] = Redux_Functions::sanitize_camel_case_array_keys($this->field['select2']);
