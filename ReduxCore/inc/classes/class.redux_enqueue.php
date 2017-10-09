@@ -351,8 +351,6 @@
                                 $core->options[ $field['id'] ] = "";
                             }
 
-                            $theField = new $field_class( $field, $core->options[ $field['id'] ], $core );
-                            
                             $data = array(
                                 'field' => $field,
                                 'value' => $core->options[ $field['id'] ],
@@ -361,6 +359,8 @@
                             );
                             
                             Redux_Functions::load_pro_field($data);
+                            
+                            $theField = new $field_class( $field, $core->options[ $field['id'] ], $core );
 
                     if (ReduxCore::$_pro_loaded) {
                         $field_filter = ReduxPro::$_dir . 'inc/fields/' . $field['type'] . '/pro_field_' . $field['type'] . '.php';

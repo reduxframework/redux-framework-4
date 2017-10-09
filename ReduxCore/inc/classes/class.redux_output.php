@@ -98,7 +98,7 @@ if (!class_exists('Redux_Output')) {
                                 }
 
                                 $value   = isset ( $core->options[ $field['id'] ] ) ? $core->options[ $field['id'] ] : '';
-                                $enqueue = new $field_class ( $field, $value, $core );
+                                
 
                                 $data = array(
                                     'field' => $field,
@@ -108,6 +108,8 @@ if (!class_exists('Redux_Output')) {
                                 );
 
                                 Redux_Functions::load_pro_field($data);
+                                
+                                $enqueue = new $field_class ( $field, $value, $core );
                                 
                                 $style_data = '';
 

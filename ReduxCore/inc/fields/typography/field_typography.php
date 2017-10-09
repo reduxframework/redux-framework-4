@@ -815,6 +815,27 @@
                             continue;
                         }
 
+//                        if ( $key == 'shadow-color' ) {
+//                            if ( $this->field['text-shadow'] ) {
+//                                $key   = 'text-shadow';
+//                                $value = $data['shadow-horizontal'] . 'px ' . $data['shadow-vertical'] . 'px ' . $data['shadow-blur'] . 'px ' . $data['shadow-color'];
+//                            } else {
+//                                continue;
+//                            }
+//                        }
+//
+//                        if ( $key == 'shadow-horizontal' || $key == 'shadow-vertical' || $key == 'shadow-blur' ) {
+//                            continue;
+//                        }
+                        
+                        $pro_data = apply_filters('redux/pro/typography/output', $data, $key, $value);
+                        
+                        extract($pro_data);
+                        
+                        if ($continue) {
+                            continue;
+                        }
+                        
                         $style .= $key . ':' . $value . ';';
                     }
 
