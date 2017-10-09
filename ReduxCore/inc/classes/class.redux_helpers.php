@@ -353,40 +353,61 @@
                 );
             }
 
+            public static function is_inside_plugin( $file ) {
+                $plugin_basename = plugin_basename( $file );
+                if ( $file != "/" . $plugin_basename ) {
+                    $slug = explode( '/', $plugin_basename )[0];
+
+                    return array(
+                        'slug' => $slug,
+                        'path' => $plugin_basename
+                    );
+                }
+
+                return false;
+            }
+
+            public static function is_inside_theme( $file ) {
+
+                $theme_paths = array(
+                    wp_normalize_path( dirname( realpath( get_template_directory() ) ) ),
+                    wp_normalize_path( dirname( realpath( get_stylesheet_directory() ) ) )
+                );
+                $theme_paths = array_unique( $theme_paths );
+                foreach ( $theme_paths as $theme ) {
+                    if ( strpos( $file, $theme ) !== false ) {
+                        $slug = explode( '/', str_replace( $theme, '', $file ) )[1];
+
+                        return array(
+                            'slug' => $slug,
+                            'path' => $theme
+                        );
+                    }
+                }
+
+                return false;
+            }
+
+
             public static function process_redux_callers() {
                 $data = array();
                 foreach ( ReduxCore::$_callers as $opt_name => $callers ) {
                     foreach ( $callers as $caller ) {
-                        // Tests for plugin
-                        $plugin_basename = plugin_basename( $caller );
 
-                        if ( $caller != "/" . $plugin_basename ) {
-                            $slug = explode( '/', $plugin_basename )[0];
-                            //echo $slug;
-                            if ( ! isset( $data['plugins'][ $slug ] ) ) {
-                                $data['plugins'][ $slug ] = array();
+                        if ( $plugin_info = self::is_inside_plugin( $caller ) ) {
+                            if ( ! isset( $data['plugins'][ $plugin_info['slug'] ] ) ) {
+                                $data['plugins'][ $plugin_info['slug'] ] = array();
                             }
-                            if ( ! in_array( $opt_name, $data['plugins'][ $slug ] ) ) {
-                                $data['plugins'][ $slug ][] = $opt_name;
+                            if ( ! in_array( $opt_name, $data['plugins'][ $plugin_info['slug'] ] ) ) {
+                                $data['plugins'][ $plugin_info['slug'] ][] = $opt_name;
                             }
-                            continue;
+                        } elseif ( $theme_info = self::is_inside_theme( $caller ) ) {
+                            if ( ! isset( $data['themes'][ $theme_info['slug'] ] ) ) {
+                                $data['themes'][ $theme_info['slug'] ] = array();
+                            }
+                            $data['themes'][ $theme_info['slug'] ][] = $opt_name;
                         } else {
-                            // Tests for Themes
-                            $theme_paths = array(
-                                wp_normalize_path( dirname( realpath( get_template_directory() ) ) ),
-                                wp_normalize_path( dirname( realpath( get_stylesheet_directory() ) ) )
-                            );
-                            $theme_paths = array_unique( $theme_paths );
-                            foreach ( $theme_paths as $theme ) {
-                                if ( strpos( $caller, $theme ) !== false ) {
-                                    $slug = explode( '/', str_replace( $theme, '', $caller ) )[1];
-                                    //print_r( explode( '/', str_replace( $theme_root, '', $caller ) ) );
-                                    if ( ! isset( $data['themes'][ $slug ] ) ) {
-                                        $data['themes'][ $slug ] = array();
-                                    }
-                                    $data['themes'][ $slug ][] = $opt_name;
-                                }
-                            }
+                            continue;
                         }
                     }
                 }
