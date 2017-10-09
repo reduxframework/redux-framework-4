@@ -623,13 +623,12 @@
                     )
                 );
 
-                var_dump(ReduxCore::$_pro_loaded);
                 if (ReduxCore::$_pro_loaded) {
                     do_action ('redux/pro/typography/enqueue');
                 }
                 
                 if ( $this->parent->args['dev_mode'] ) {
-                    wp_enqueue_style( 'redux-color-picker-css' );
+                    //wp_enqueue_style( 'redux-color-picker-css' );
 
                     wp_enqueue_style(
                         'redux-field-typography-css',
