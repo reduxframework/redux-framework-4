@@ -17,10 +17,13 @@
 
     redux.field_objects = redux.field_objects || {};
     redux.field_objects.typography = redux.field_objects.typography || {};
-
-    var selVals = [];
+    //redux.field_objects.pro = redux.field_objects.pro || {};
+    //redux.field_objects.pro.typography = redux.field_objects.pro.typography || {};
+    
+    var selVals     = [];
     var isSelecting = false;
-
+    var proLoaded   = true;
+    
     redux.field_objects.typography.init = function( selector, skipCheck ) {
         if ( !selector ) {
             selector = $( document ).find( ".redux-group-tab:visible" ).find( '.redux-container-typography:visible' );
@@ -43,6 +46,10 @@
                     parent.removeClass( 'redux-field-init' );
                 } else {
                     return;
+                }
+
+                if (redux.field_objects.pro === undefined) {
+                    proLoaded = false;
                 }
 
                 el.each(
@@ -205,23 +212,28 @@
 
                                 //init when value is changed
                                 $( this ).find(
-                                    '.redux-typography-margin-top, .redux-typography-margin-bottom, .redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter' ).keyup(
+                                    '.redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter' ).keyup(
                                     function() {
                                         redux.field_objects.typography.select(
                                             $( this ).parents( '.redux-container-typography:first' ) );
                                     }
                                 );
 
+                                if (proLoaded) {
+                                    redux.field_objects.pro.typography.fieldChange($(this));
+                                    redux.field_objects.pro.typography.colorPicker ($(this));
+                                }
+
                                 // Have to redeclare the wpColorPicker to get a callback function
                                 $( this ).find(
-                                    '.redux-typography-color, .redux-typography-shadow-color' ).wpColorPicker( {
+                                    '.redux-typography-color' ).wpColorPicker( {
                                     change: function( e, ui ) {
                                         $( this ).val( ui.color.toString() );
                                         redux.field_objects.typography.select(
                                             $( this ).parents( '.redux-container-typography:first' ) );
                                     }
                                 } );
-
+                                
                                 // Don't allow negative numbers for size field
                                 $( this ).find( ".redux-typography-size" ).numeric( {allowMinus: false} );
 
@@ -418,8 +430,6 @@
 
         var familyBackup = $( '#' + mainID + ' select.redux-typography-family-backup' ).val();
         var size = $( '#' + mainID + ' .redux-typography-size' ).val();
-        var margin_top = $( '#' + mainID + ' .redux-typography-margin-top' ).val();
-        var margin_bottom = $( '#' + mainID + ' .redux-typography-margin-bottom' ).val();
         var height = $( '#' + mainID + ' .redux-typography-height' ).val();
         var word = $( '#' + mainID + ' .redux-typography-word' ).val();
         var letter = $( '#' + mainID + ' .redux-typography-letter' ).val();
@@ -698,19 +708,6 @@
             $( '#' + mainID + ' .typography-font-size' ).val( size + units );
         }
 
-        if ( margin_top === '' || margin_top === undefined ) {
-            $( '#' + mainID + ' .typography-margin-top' ).val( '' );
-        } else {
-            $( '#' + mainID + ' .typography-margin-top' ).val( margin_top );
-        }
-
-
-        if ( margin_bottom === '' || margin_bottom === undefined ) {
-            $( '#' + mainID + ' .typography-margin-bottom' ).val( '' );
-        } else {
-            $( '#' + mainID + ' .typography-margin-bottom' ).val( margin_bottom );
-        }
-
         if ( height === '' || height === undefined ) {
             $( '#' + mainID + ' .typography-line-height' ).val( '' );
         } else {
@@ -727,6 +724,10 @@
             $( '#' + mainID + ' .typography-letter-spacing' ).val( '' );
         } else {
             $( '#' + mainID + ' .typography-letter-spacing' ).val( letter + units );
+        }
+
+        if (proLoaded) {
+            redux.field_objects.pro.typography.select(mainID);
         }
 
         // Show more preview stuff
@@ -757,6 +758,10 @@
                 //                $( '#' + mainID + ' .typography-preview' ).css(
                 //                    'background-color', redux.field_objects.typography.contrastColour( color )
                 //                );
+            }
+
+            if (proLoaded) {
+                redux.field_objects.typography.previewShadow(mainID);
             }
 
             $( '#' + mainID + ' .typography-style select2-selection__rendered' ).text(

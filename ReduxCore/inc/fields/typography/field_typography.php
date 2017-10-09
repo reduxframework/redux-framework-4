@@ -118,6 +118,7 @@
                     $this->field = apply_filters('redux/pro/typography/field/set_defaults', $this->field);
                     $this->value = apply_filters('redux/pro/typography/value/set_defaults', $this->value);
                 } else {
+                    $this->field['color_alpha'] = array();
                     $this->field['color_alpha']['color'] = false;
                     $this->field['color_alpha']['shadow-color'] = false;
                 }

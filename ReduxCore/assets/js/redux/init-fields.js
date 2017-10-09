@@ -14,7 +14,7 @@
                     redux.field_objects[type].init();
                 }
 
-                if ( typeof redux.field_objects.pro !== 'undefined' && redux.field_objects.pro[type] && redux.field_objects.pro[type] ) {
+                if ( typeof redux.field_objects.pro !== 'undefined' && !$.isEmptyObject(redux.field_objects.pro[type]) && redux.field_objects.pro[type] ) {
                     redux.field_objects.pro[type].init();
                 }
                 
