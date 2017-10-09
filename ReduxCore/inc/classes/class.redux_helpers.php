@@ -333,6 +333,67 @@
                 return md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
             }
 
+            public static function get_wp_themes() {
+                global $wp_theme_paths;
+                $wp_theme_paths = array();
+                $themes         = wp_get_themes();
+                $theme_paths    = array();
+                foreach ( $themes as $theme ) {
+                    $path          = wp_normalize_path( trailingslashit( $theme->get_theme_root() ) . $theme->get_template() );
+                    $theme_paths[] = $path;
+                    if ( $path != wp_normalize_path( realpath( $path ) ) ) {
+                        $theme_paths[] = wp_normalize_path( realpath( $path ) );
+                    }
+                    $wp_theme_paths[ $path ] = wp_normalize_path( realpath( $path ) );
+                }
+
+                return array(
+                    'full_paths'  => $wp_theme_paths,
+                    'theme_paths' => $theme
+                );
+            }
+
+            public static function process_redux_callers() {
+                $data = array();
+                foreach ( ReduxCore::$_callers as $opt_name => $callers ) {
+                    foreach ( $callers as $caller ) {
+                        // Tests for plugin
+                        $plugin_basename = plugin_basename( $caller );
+
+                        if ( $caller != "/" . $plugin_basename ) {
+                            $slug = explode( '/', $plugin_basename )[0];
+                            //echo $slug;
+                            if ( ! isset( $data['plugins'][ $slug ] ) ) {
+                                $data['plugins'][ $slug ] = array();
+                            }
+                            if ( ! in_array( $opt_name, $data['plugins'][ $slug ] ) ) {
+                                $data['plugins'][ $slug ][] = $opt_name;
+                            }
+                            continue;
+                        } else {
+                            // Tests for Themes
+                            $theme_paths = array(
+                                wp_normalize_path( dirname( realpath( get_template_directory() ) ) ),
+                                wp_normalize_path( dirname( realpath( get_stylesheet_directory() ) ) )
+                            );
+                            $theme_paths = array_unique( $theme_paths );
+                            foreach ( $theme_paths as $theme ) {
+                                if ( strpos( $caller, $theme ) !== false ) {
+                                    $slug = explode( '/', str_replace( $theme, '', $caller ) )[1];
+                                    //print_r( explode( '/', str_replace( $theme_root, '', $caller ) ) );
+                                    if ( ! isset( $data['themes'][ $slug ] ) ) {
+                                        $data['themes'][ $slug ] = array();
+                                    }
+                                    $data['themes'][ $slug ][] = $opt_name;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return $data;
+            }
+
             /**
              * Take a path and delete it
              *
@@ -976,7 +1037,7 @@
                                     'version'    => ReduxCore::$_version,
                                     'local'      => Redux_Helpers::isLocalHost(),
                                     'developers' => $developers,
-                                    'opt_names'=> join('|',array_keys($instances))
+                                    'opt_names'  => join( '|', array_keys( $instances ) )
                                 ),
                             )
                         );

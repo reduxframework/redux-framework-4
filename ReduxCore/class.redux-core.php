@@ -20,6 +20,7 @@
             public static $_as_plugin = false;
             public static $_pro_loaded = false;
             public static $_google_fonts = array();
+            public static $_callers = array();
 
             public static $third_party_fixes = null;
 

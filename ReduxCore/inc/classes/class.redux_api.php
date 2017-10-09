@@ -234,8 +234,10 @@
             }
 
             public static function setSections( $opt_name = '', $sections = array() ) {
+                if ( empty( $sections ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
-
                 self::record_caller(
                     $opt_name,
                     debug_backtrace()[ array_search(
@@ -294,12 +296,10 @@
             }
 
             public static function setSection( $opt_name = '', $section = array() ) {
-                self::check_opt_name( $opt_name );
-
                 if ( empty( $section ) ) {
                     return;
                 }
-
+                self::check_opt_name( $opt_name );
                 self::record_caller(
                     $opt_name,
                     debug_backtrace()[ array_search(
@@ -408,6 +408,9 @@
             }
 
             public static function setField( $opt_name = '', $field = array() ) {
+                if ( empty( $field ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
 
                 if ( ! empty( $opt_name ) && is_array( $field ) && ! empty( $field ) ) {
@@ -448,7 +451,19 @@
             }
 
             public static function setHelpTab( $opt_name = "", $tab = array() ) {
+                if ( empty( $tab ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
+                self::record_caller(
+                    $opt_name,
+                    debug_backtrace()[ array_search(
+                        __FUNCTION__, array_column(
+                            debug_backtrace(), 'function'
+                        )
+                    ) ]['file']
+                );
+
                 if ( ! empty( $opt_name ) && ! empty( $tab ) ) {
                     if ( ! isset( self::$args[ $opt_name ]['help_tabs'] ) ) {
                         self::$args[ $opt_name ]['help_tabs'] = array();
@@ -465,7 +480,18 @@
             }
 
             public static function setHelpSidebar( $opt_name = "", $content = "" ) {
+                if ( empty( $content ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
+                self::record_caller(
+                    $opt_name,
+                    debug_backtrace()[ array_search(
+                        __FUNCTION__, array_column(
+                            debug_backtrace(), 'function'
+                        )
+                    ) ]['file']
+                );
 
                 if ( ! empty( $opt_name ) && ! empty( $content ) ) {
                     self::$args[ $opt_name ]['help_sidebar'] = $content;
@@ -473,7 +499,18 @@
             }
 
             public static function setArgs( $opt_name = "", $args = array() ) {
+                if ( empty( $args ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
+                self::record_caller(
+                    $opt_name,
+                    debug_backtrace()[ array_search(
+                        __FUNCTION__, array_column(
+                            debug_backtrace(), 'function'
+                        )
+                    ) ]['file']
+                );
 
                 if ( ! empty( $opt_name ) && ! empty( $args ) && is_array( $args ) ) {
                     if ( isset( self::$args[ $opt_name ] ) && isset( self::$args[ $opt_name ]['clearArgs'] ) ) {
@@ -484,18 +521,18 @@
                     self::$args[ $opt_name ]['callers'] = array();
                 }
 
-                self::record_caller(
-                    $opt_name,
-                    debug_backtrace()[ array_search(
-                        __FUNCTION__, array_column(
-                            debug_backtrace(), 'function'
-                        )
-                    ) ]['file']
-                );
-
             }
 
             public static function record_caller( $opt_name = "", $caller = "" ) {
+                if ( ! empty( $caller ) && ! empty( $opt_name ) ) {
+                    if ( ! isset( ReduxCore::$_callers[ $opt_name ] ) ) {
+                        ReduxCore::$_callers[ $opt_name ] = array();
+                    }
+                    if ( ! in_array( $caller, ReduxCore::$_callers[ $opt_name ] ) ) {
+                        ReduxCore::$_callers[ $opt_name ][] = $caller;
+                    }
+                }
+
                 if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'] ) ) {
                     self::$args[ $opt_name ]['callers'][] = $caller;
                 }
@@ -536,7 +573,18 @@
             }
 
             public static function setOption( $opt_name = "", $key = "", $option = "" ) {
+                if ( empty( $key ) ) {
+                    return;
+                }
                 self::check_opt_name( $opt_name );
+                self::record_caller(
+                    $opt_name,
+                    debug_backtrace()[ array_search(
+                        __FUNCTION__, array_column(
+                            debug_backtrace(), 'function'
+                        )
+                    ) ]['file']
+                );
 
                 if ( ! empty( $opt_name ) && ! empty( $key ) ) {
                     $redux         = get_option( $opt_name );
@@ -624,6 +672,10 @@
 
             public static function setExtensions( $opt_name, $path ) {
                 //var_dump($opt_name . ' ' . $path);
+                if ( empty( $path ) ) {
+                    return;
+                }
+                self::check_opt_name( $opt_name );
                 self::record_caller(
                     $opt_name,
                     debug_backtrace()[ array_search(
@@ -632,6 +684,7 @@
                         )
                     ) ]['file']
                 );
+
                 if ( is_dir( $path ) ) {
                     $path   = trailingslashit( $path );
                     $folder = str_replace( '.php', '', basename( $path ) );
