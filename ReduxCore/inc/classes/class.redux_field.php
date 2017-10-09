@@ -13,6 +13,12 @@ if (!class_exists('Redux_Field')) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            
+            $this->select2_config = array(
+                'width'         => 'resolve',
+                'allowClear'    => false,
+                'theme'         => 'default'
+            );
 
             $this->set_defaults();
         }
