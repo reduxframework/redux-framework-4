@@ -82,7 +82,7 @@
                 );
 
                 wp_enqueue_style(
-                  'redux-admin',
+                  'redux-admin-css',
                   ReduxCore::$_url."assets/css/redux-admin{$this->min}.css",
                   array('redux-admin-theme-css'),
                   $this->timestamp,
@@ -94,7 +94,7 @@
                 //*****************************************************************
                 if ( ! $core->args['dev_mode'] ) {
                     wp_enqueue_style(
-                      'redux-fields',
+                      'redux-fields-css',
                       ReduxCore::$_url . 'assets/css/redux-fields.min.css',
                       array(),
                       $this->timestamp,
@@ -226,7 +226,7 @@
 
                 wp_enqueue_script(
                   'select2-js',
-                  '//cdn.jsdelivr.net/select2/4.0.3/js/select2' . $this->min . '.js',
+                    ReduxCore::$_url . 'assets/js/vendor/select2' . $this->min . '.js`',
                   array( 'jquery', 'redux-select2-sortable-js' ),
                   '4.0.3',
                   true
