@@ -218,7 +218,7 @@
                 //*****************************************************************
                 wp_register_script(
                   'redux-select2-sortable-js',
-                  ReduxCore::$_url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.j`',
+                  ReduxCore::$_url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.js',
                   array( 'jquery' ),
                   $this->timestamp,
                   true
@@ -226,7 +226,7 @@
 
                 wp_enqueue_script(
                   'select2-js',
-                    ReduxCore::$_url . 'assets/js/vendor/select2' . $this->min . '.js`',
+                    ReduxCore::$_url . 'assets/js/vendor/select2/select2' . $this->min . '.js`',
                   array( 'jquery', 'redux-select2-sortable-js' ),
                   '4.0.3',
                   true
