@@ -106,11 +106,11 @@
                 // Select2 CSS
                 //*****************************************************************
                 wp_enqueue_style(
-                  'select2',
+                    'select2',
                     ReduxCore::$_url . 'assets/css/vendor/select2.min.css',
-                  array(),
-                  '4.0.3',
-                  'all'
+                    array(),
+                    '4.0.4',
+                    'all'
                 );
 
                 //*****************************************************************
@@ -225,11 +225,11 @@
                 );
 
                 wp_enqueue_script(
-                  'select2-js',
+                    'select2-js',
                     ReduxCore::$_url . 'assets/js/vendor/select2/select2' . $this->min . '.js`',
-                  array( 'jquery', 'redux-select2-sortable-js' ),
-                  '4.0.3',
-                  true
+                    array( 'jquery', 'redux-select2-sortable-js' ),
+                    '4.0.4',
+                    true
                 );
 
                 //*****************************************************************

@@ -19,11 +19,11 @@
     redux.field_objects.typography = redux.field_objects.typography || {};
     //redux.field_objects.pro = redux.field_objects.pro || {};
     //redux.field_objects.pro.typography = redux.field_objects.pro.typography || {};
-    
+
     var selVals     = [];
     var isSelecting = false;
     var proLoaded   = true;
-    
+
     redux.field_objects.typography.init = function( selector, skipCheck ) {
         if ( !selector ) {
             selector = $( document ).find( ".redux-group-tab:visible" ).find( '.redux-container-typography:visible' );
@@ -233,7 +233,7 @@
                                             $( this ).parents( '.redux-container-typography:first' ) );
                                     }
                                 } );
-                                
+
                                 // Don't allow negative numbers for size field
                                 $( this ).find( ".redux-typography-size" ).numeric( {allowMinus: false} );
 
@@ -242,8 +242,16 @@
                                     ".redux-typography-height, .redux-typography-word, .redux-typography-letter" ).numeric(
                                     {allowMinus: true} );
 
-                                $( this ).find( ".redux-typography" ).on(
-                                    'select2:unselecting', function( val, choice ) {
+                                var reduxTypography = $( this ).find( ".redux-typography" );
+                                reduxTypography.on(
+                                    'select2:unselecting', function( e, val, choice ) {
+                                        var opts = $(this).data('select2').options;
+
+                                        opts.set('disabled', true);
+                                        setTimeout(function() {
+                                            opts.set('disabled', false);
+                                        }, 1);
+
                                         var thisID = $( this ).attr( 'id' );
 
                                         $( '#' + thisID ).data( 'value', '' );
