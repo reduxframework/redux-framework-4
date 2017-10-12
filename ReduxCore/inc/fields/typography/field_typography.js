@@ -244,7 +244,7 @@
 
                                 var reduxTypography = $( this ).find( ".redux-typography" );
                                 reduxTypography.on(
-                                    'select2:unselecting', function( e, val, choice ) {
+                                    'select2:unselecting', function() {
                                         var opts = $(this).data('select2').options;
 
                                         opts.set('disabled', true);
