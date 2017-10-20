@@ -158,7 +158,7 @@ if (!class_exists('Redux_Args')) {
             }
 
             if ( empty ( $args['footer_credit'] ) ) {
-                $args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Options panel created using %1$s', 'redux-framework' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . ReduxCore::$_version ) . '</span>';
+                $args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Psowered by  %1$s', 'redux-framework' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . ReduxCore::$_version ) . '</span>';
             }
 
             if ( empty ( $args['menu_title'] ) ) {

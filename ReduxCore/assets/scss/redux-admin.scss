@@ -1219,7 +1219,12 @@ pre {
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 400px) {
+    #redux-defaults {
+        display: none;
+    }
+}
+@media screen and (max-width: 700px) {
     #redux-defaults-section {
         display: none;
     }
