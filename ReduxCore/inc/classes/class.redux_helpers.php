@@ -66,7 +66,7 @@
             }
 
             public static function isLocalHost() {
-                return ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['REMOTE_ADDR'] === 'localhost' ) ? 1 : 0;
+                return ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['REMOTE_ADDR'] === 'localhost' || $_SERVER['SERVER_ADDR'] === "::1" ) ? 1 : 0;
             }
 
             public static function isWpDebug() {
@@ -233,8 +233,8 @@
             }
 
             public static function isParentTheme( $file ) {
-                $file = self::cleanFilePath( $file );
-                $dir  = self::cleanFilePath( get_template_directory() );
+                $file = wp_normalize_path( $file );
+                $dir  = wp_normalize_path( get_template_directory() );
 
                 $file = str_replace( '//', '/', $file );
                 $dir  = str_replace( '//', '/', $dir );
@@ -247,8 +247,8 @@
             }
 
             public static function isChildTheme( $file ) {
-                $file = self::cleanFilePath( $file );
-                $dir  = self::cleanFilePath( get_stylesheet_directory() );
+                $file = wp_normalize_path( $file );
+                $dir  = wp_normalize_path( get_stylesheet_directory() );
 
                 $file = str_replace( '//', '/', $file );
                 $dir  = str_replace( '//', '/', $dir );
@@ -304,27 +304,13 @@
              * @since    3.1.7
              */
             public static function cleanFilePath( $path ) {
-                //
-                //$plugins = plugin_basename(__FILE__);
-                //echo $plugins.PHP_EOL;
-                //
-                //
-                //
-                //$theme_path = get_template_directory();
-                //
-                //$theme_slug = explode('/', $theme_path);
-                //echo $theme_path.PHP_EOL;
-                //echo end($theme_slug).PHP_EOL;
-                //echo get_template().PHP_EOL;
-                //echo get_option('stylesheet');
-                //print_r(get_themes());
-                //exit();
 
-                $path = str_replace( '', '', str_replace( array( "\\", "\\\\" ), '/', $path ) );
-
-                if ( $path[ strlen( $path ) - 1 ] === '/' ) {
-                    $path = rtrim( $path, '/' );
-                }
+                $path = wp_normalize_path( $path );
+                //$path = str_replace( '', '', str_replace( array( "\\", "\\\\" ), '/', $path ) );
+                //
+                //if ( $path[ strlen( $path ) - 1 ] === '/' ) {
+                //    $path = rtrim( $path, '/' );
+                //}
 
                 return $path;
             }
@@ -355,12 +341,16 @@
 
             public static function is_inside_plugin( $file ) {
                 $plugin_basename = plugin_basename( $file );
+
                 if ( $file != "/" . $plugin_basename ) {
                     $slug = explode( '/', $plugin_basename )[0];
 
                     return array(
-                        'slug' => $slug,
-                        'path' => $plugin_basename
+                        'slug'     => $slug,
+                        'basename' => $plugin_basename,
+                        'path'     => wp_normalize_path( $file ),
+                        'url'      => plugins_url( $file ),
+                        'realpath' => wp_normalize_path( dirname( realpath( $file ) ) )
                     );
                 }
 
@@ -368,20 +358,31 @@
             }
 
             public static function is_inside_theme( $file ) {
-
                 $theme_paths = array(
-                    wp_normalize_path( dirname( realpath( get_template_directory() ) ) ),
-                    wp_normalize_path( dirname( realpath( get_stylesheet_directory() ) ) )
+                    wp_normalize_path( get_template_directory() )   => get_template_directory_uri(), #parent
+                    wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(), #child
                 );
                 $theme_paths = array_unique( $theme_paths );
-                foreach ( $theme_paths as $theme ) {
-                    if ( strpos( $file, $theme ) !== false ) {
-                        $slug = explode( '/', str_replace( $theme, '', $file ) )[1];
-
-                        return array(
-                            'slug' => $slug,
-                            'path' => $theme
+                $file_path   = wp_normalize_path( $file );
+                foreach ( $theme_paths as $theme_path => $url ) {
+                    $real_path = wp_normalize_path( realpath( $theme_path ) );
+                    if ( strpos( $file_path, $real_path ) !== false ) {
+                        $slug          = end( explode( '/', $theme_path ) );
+                        $relative_path = explode( $slug . "/", dirname( $file_path ) )[1];
+                        $data          = array(
+                            'slug'     => $slug,
+                            'path'     => trailingslashit( $theme_path ) . $relative_path,
+                            'realpath' => trailingslashit( $real_path ) . $relative_path,
+                            'url'      => trailingslashit( $url ) . $relative_path
                         );
+                        if ( count( $theme_paths ) > 1 ) {
+                            if ( ( $key = array_search( $theme_path, $theme_paths ) ) !== false ) {
+                                unset( $theme_paths[ $key ] );
+                            }
+                            $data['parentslug'] = end( explode( '/', end( $theme_paths ) ) );
+                        }
+
+                        return $data;
                     }
                 }
 

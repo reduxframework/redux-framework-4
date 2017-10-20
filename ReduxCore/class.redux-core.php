@@ -18,6 +18,7 @@
             public static $_upload_url = null;
             public static $_is_plugin = true;
             public static $_as_plugin = false;
+            public static $_in_theme = false;
             public static $_pro_loaded = false;
             public static $_google_fonts = array();
             public static $_callers = array();
@@ -39,54 +40,21 @@
             private function init() {
                 if ( class_exists( 'ReduxPro' ) && isset( ReduxPro::$_dir ) ) {
                     self::$_pro_loaded = true;
-                }                
-                
-                $dir = Redux_Helpers::cleanFilePath( dirname( __FILE__ ) );
+                }
+
+                self::$_dir = $dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
 
                 Redux_Helpers::generator();
 
-                self::$_dir = trailingslashit( $dir );
-
                 // See if Redux is a plugin or not
-                if ( strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_stylesheet_directory() ) ) !== false || strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_template_directory_uri() ) ) !== false || strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( WP_CONTENT_DIR . '/themes/' ) ) !== false ) {
-                    self::$_is_plugin = false;
-                } else {
-                    // Check if plugin is a symbolic link, see if it's a plugin. If embedded, we can't do a thing.
-                    if ( strpos( self::$_dir, ABSPATH ) === false ) {
-                        if ( ! function_exists( 'get_plugins' ) ) {
-                            require_once ABSPATH . 'wp-admin/includes/plugin.php';
-                        }
+                if ( $plugin_info = Redux_Helpers::is_inside_plugin( __FILE__ ) ) {
+                    self::$_is_plugin = class_exists( 'ReduxFrameworkPlugin' );
+                    self::$_as_plugin = true;
+                    self::$_url       = plugin_dir_url( __FILE__ );
 
-                        $is_plugin = false;
-                        foreach ( get_plugins() as $key => $value ) {
-                            if ( is_plugin_active( $key ) && strpos( $key, 'redux-framework.php' ) !== false ) {
-                                self::$_dir = trailingslashit( Redux_Helpers::cleanFilePath( WP_CONTENT_DIR . '/plugins/' . plugin_dir_path( $key ) . 'ReduxCore/' ) );
-                                $is_plugin  = true;
-                            }
-                        }
-                        if ( ! $is_plugin ) {
-                            self::$_is_plugin = false;
-                        }
-                    }
-                }
-
-
-                if ( self::$_is_plugin == true || self::$_as_plugin == true ) {
-                    self::$_url = plugin_dir_url( __FILE__ );
-                } else {
-                    if ( strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_template_directory() ) ) !== false ) {
-                        $relative_url = str_replace( Redux_Helpers::cleanFilePath( get_template_directory() ), '', self::$_dir );
-                        self::$_url   = trailingslashit( get_template_directory_uri() . $relative_url );
-                    } else if ( strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_stylesheet_directory() ) ) !== false ) {
-                        $relative_url = str_replace( Redux_Helpers::cleanFilePath( get_stylesheet_directory() ), '', self::$_dir );
-                        self::$_url   = trailingslashit( get_stylesheet_directory_uri() . $relative_url );
-                    } else {
-                        $wp_content_dir = trailingslashit( Redux_Helpers::cleanFilePath( WP_CONTENT_DIR ) );
-                        $wp_content_dir = trailingslashit( str_replace( '//', '/', $wp_content_dir ) );
-                        $relative_url   = str_replace( $wp_content_dir, '', self::$_dir );
-                        $wp_content_url = trailingslashit( Redux_Helpers::cleanFilePath( ( is_ssl() ? str_replace( 'http://', 'https://', WP_CONTENT_URL ) : WP_CONTENT_URL ) ) );
-                        self::$_url     = trailingslashit( $wp_content_url . $relative_url );
-                    }
+                } elseif ( $theme_info = Redux_Helpers::is_inside_theme( __FILE__ ) ) {
+                    self::$_url      = trailingslashit( $theme_info['url'] );
+                    self::$_in_theme = true;
                 }
 
                 self::$_url       = apply_filters( "redux/_url", self::$_url );
@@ -96,15 +64,14 @@
                 $upload_dir        = wp_upload_dir();
                 self::$_upload_dir = $upload_dir['basedir'] . '/redux/';
                 self::$_upload_url = str_replace( array(
-                  'https://',
-                  'http://'
+                    'https://',
+                    'http://'
                 ), '//', $upload_dir['baseurl'] . '/redux/' );
 
                 self::$_upload_dir = apply_filters( "redux/_upload_dir", self::$_upload_dir );
                 self::$_upload_url = apply_filters( "redux/_upload_url", self::$_upload_url );
 
                 Redux_Instances::get_instance();
-
             }
 
             public static function core_construct( $parent, $args ) {
