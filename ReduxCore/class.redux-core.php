@@ -17,6 +17,7 @@
             public static $_upload_dir = null;
             public static $_upload_url = null;
             public static $_is_plugin = true;
+            public static $_installed = '';
             public static $_as_plugin = false;
             public static $_in_theme = false;
             public static $_pro_loaded = false;
@@ -48,13 +49,16 @@
 
                 // See if Redux is a plugin or not
                 if ( $plugin_info = Redux_Helpers::is_inside_plugin( __FILE__ ) ) {
+                    self::$_installed = class_exists( 'ReduxFrameworkPlugin' )? 'plugin': 'in_plugin';
+
                     self::$_is_plugin = class_exists( 'ReduxFrameworkPlugin' );
-                    self::$_as_plugin = true;
+                    self::$_as_plugin  = true;
                     self::$_url       = plugin_dir_url( __FILE__ );
 
                 } elseif ( $theme_info = Redux_Helpers::is_inside_theme( __FILE__ ) ) {
                     self::$_url      = trailingslashit( $theme_info['url'] );
                     self::$_in_theme = true;
+                    self::$_installed = "in_theme";
                 }
 
                 self::$_url       = apply_filters( "redux/_url", self::$_url );

@@ -29,9 +29,8 @@
     <div class="about-text">
         <?php esc_html_e( 'Our core mantra at Redux is backwards compatibility. With hundreds of thousands of instances worldwide, you can be assured that we will take care of you and your clients.', 'redux-framework' ); ?></div>
     <div class="redux-badge">
-        <i class="el el-redux"></i>
-        <span>
-            <?php printf( esc_html__( 'Version', 'redux-framework') . ' %s', ReduxCore::$_version ); ?>
+        <i class="el el-redux"></i> <span>
+            <?php printf( esc_html__( 'Version', 'redux-framework' ) . ' %s', ReduxCore::$_version ); ?>
         </span>
     </div>
 
@@ -40,25 +39,24 @@
 
     <div class="updated redux-message">
         <p>
-            <?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'redux-framework' ); ?> 
+            <?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'redux-framework' ); ?>
         </p>
 
         <p class="submit">
             <a href="#" class="button-primary debug-report">
                 <?php esc_html_e( 'Get System Report', 'redux-framework' ); ?>
-            </a>
-            <a class="skip button-primary"
-               href="http://docs.reduxframework.com/core/support/understanding-the-redux-framework-system-status-report/"
-               target="_blank">
-                   <?php esc_html_e( 'Understanding the Status Report', 'redux-framework' ); ?>
+            </a> <a class="skip button-primary"
+                    href="http://docs.reduxframework.com/core/support/understanding-the-redux-framework-system-status-report/"
+                    target="_blank">
+                <?php esc_html_e( 'Understanding the Status Report', 'redux-framework' ); ?>
             </a>
         </p>
 
         <div id="debug-report">
             <textarea readonly="readonly"></textarea>
             <p class="submit">
-                <button id="copy-for-support" 
-                        class="button-primary redux-hint-qtip" 
+                <button id="copy-for-support"
+                        class="button-primary redux-hint-qtip"
                         href="#" qtip-content="<?php esc_html_e( 'Copied!', 'redux-framework' ); ?>">
                     <?php esc_html_e( 'Copy for Support', 'redux-framework' ); ?>
                 </button>
@@ -82,7 +80,7 @@
             <td class="help">
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The URL of your site\'s homepage.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
-            <td><?php echo esc_url($sysinfo['home_url']); ?></td>
+            <td><?php echo esc_url( $sysinfo['home_url'] ); ?></td>
         </tr>
         <tr>
             <td data-export-label="Site URL">
@@ -92,7 +90,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The root URL of your site.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_url($sysinfo['site_url']); ?>
+                <?php echo esc_url( $sysinfo['site_url'] ); ?>
             </td>
         </tr>
         <tr>
@@ -103,7 +101,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The version of Redux Framework installed on your site.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['redux_ver']); ?>
+                <?php echo esc_html( $sysinfo['redux_ver'] ); ?>
             </td>
         </tr>
         <tr>
@@ -113,11 +111,11 @@
             <td class="help">
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
-            <td><?php 
+            <td><?php
                     if ( $sysinfo['redux_data_writeable'] == 'true' ) {
                         echo '<mark class="yes">' . '&#10004; <code>' . $sysinfo['redux_data_dir'] . '</code></mark> ';
                     } else {
-                        printf( '<mark class="error">' . '&#10005; ' . esc_html__( 'To allow data saving, make', 'redux framework') . ' <code>%s</code> ' . esc_html__('writable.', 'redux-framework' ) . '</mark>', $sysinfo['redux_data_dir'] );
+                        printf( '<mark class="error">' . '&#10005; ' . esc_html__( 'To allow data saving, make', 'redux framework' ) . ' <code>%s</code> ' . esc_html__( 'writable.', 'redux-framework' ) . '</mark>', $sysinfo['redux_data_dir'] );
                     }
                 ?></td>
         </tr>
@@ -129,9 +127,9 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The location of Wordpress\'s content URL.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo '<code>' . esc_url($sysinfo['wp_content_url']) . '</code> '; ?>
+                <?php echo '<code>' . esc_url( $sysinfo['wp_content_url'] ) . '</code> '; ?>
             </td>
-        </tr>        
+        </tr>
         <tr>
             <td data-export-label="WP Version">
                 <?php esc_html_e( 'WP Version', 'redux-framework' ); ?>:
@@ -165,7 +163,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The current permalink structure as defined in Wordpress Settings->Permalinks.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['permalink_structure']); ?>
+                <?php echo esc_html( $sysinfo['permalink_structure'] ); ?>
             </td>
         </tr>
         <?php $sof = $sysinfo['front_page_display']; ?>
@@ -174,12 +172,12 @@
                 <?php esc_html_e( 'Front Page Display', 'redux-framework' ); ?>:
             </td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The current Reading mode of Wordpress.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-            <td><?php echo esc_html($sof); ?></td>
+            <td><?php echo esc_html( $sof ); ?></td>
         </tr>
 
         <?php
             if ( $sof == 'page' ) {
-?>
+                ?>
                 <tr>
                     <td data-export-label="Front Page">
                         <?php esc_html_e( 'Front Page', 'redux-framework' ); ?>:
@@ -188,7 +186,7 @@
                         <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The currently selected page which acts as the site\'s Front Page.', 'redux-framework' ) . '">[?]</a>'; ?>
                     </td>
                     <td>
-                        <?php echo esc_html($sysinfo['front_page']); ?>
+                        <?php echo esc_html( $sysinfo['front_page'] ); ?>
                     </td>
                 </tr>
                 <tr>
@@ -199,12 +197,12 @@
                         <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The currently selected page in where blog posts are displayed.', 'redux-framework' ) . '">[?]</a>'; ?>
                     </td>
                     <td>
-                        <?php echo esc_html($sysinfo['posts_page']); ?>
+                        <?php echo esc_html( $sysinfo['posts_page'] ); ?>
                     </td>
                 </tr>
-<?php
+                <?php
             }
-?>
+        ?>
         <tr>
             <td data-export-label="WP Memory Limit">
                 <?php esc_html_e( 'WP Memory Limit', 'redux-framework' ); ?>:
@@ -213,15 +211,15 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The maximum amount of memory (RAM) that your site can use at one time.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-<?php
+                <?php
                     $memory = $sysinfo['wp_mem_limit']['raw'];
 
                     if ( $memory < 40000000 ) {
-                        echo '<mark class="error">' . sprintf( '%s - ' . esc_html__('We recommend setting memory to at least 40MB. See:', 'redux-framework') . ' <a href="%s" target="_blank">' . esc_html__('Increasing memory allocated to PHP', 'redux-framework') . '</a>', $sysinfo['wp_mem_limit']['size'], 'http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
+                        echo '<mark class="error">' . sprintf( '%s - ' . esc_html__( 'We recommend setting memory to at least 40MB. See:', 'redux-framework' ) . ' <a href="%s" target="_blank">' . esc_html__( 'Increasing memory allocated to PHP', 'redux-framework' ) . '</a>', $sysinfo['wp_mem_limit']['size'], 'http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
                     } else {
                         echo '<mark class="yes">' . $sysinfo['wp_mem_limit']['size'] . '</mark>';
                     }
-?>
+                ?>
             </td>
         </tr>
         <tr>
@@ -232,7 +230,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The prefix structure of the current Wordpress database.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['db_table_prefix']); ?>
+                <?php echo esc_html( $sysinfo['db_table_prefix'] ); ?>
             </td>
         </tr>
         <tr>
@@ -258,7 +256,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The current language used by WordPress. Default = English', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['wp_lang']); ?>
+                <?php echo esc_html( $sysinfo['wp_lang'] ); ?>
             </td>
         </tr>
         </tbody>
@@ -280,11 +278,11 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Information about web browser current in use.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-<?php
-                foreach ( $sysinfo['browser'] as $key => $value ) {
-                    echo '<strong>' . esc_html(ucfirst( $key )) . '</strong>: ' . esc_html($value) . '<br/>';
-                }
-?>
+                <?php
+                    foreach ( $sysinfo['browser'] as $key => $value ) {
+                        echo '<strong>' . esc_html( ucfirst( $key ) ) . '</strong>: ' . esc_html( $value ) . '<br/>';
+                    }
+                ?>
             </td>
         </tr>
         </tbody>
@@ -307,7 +305,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Information about the web server that is currently hosting your site.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['server_info']); ?>
+                <?php echo esc_html( $sysinfo['server_info'] ); ?>
             </td>
         </tr>
         <tr>
@@ -318,13 +316,13 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Is the server running in a localhost environment.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-<?php
-                if ( $sysinfo['localhost'] === 'true' ) {
-                    echo '<mark class="yes">' . '&#10004;' . '</mark>';
-                } else {
-                    echo '<mark class="no">' . '&ndash;' . '</mark>';
-                }
-?>            
+                <?php
+                    if ( $sysinfo['localhost'] === 'true' ) {
+                        echo '<mark class="yes">' . '&#10004;' . '</mark>';
+                    } else {
+                        echo '<mark class="no">' . '&ndash;' . '</mark>';
+                    }
+                ?>
             </td>
         </tr>
         <tr>
@@ -335,7 +333,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The version of PHP installed on your hosting server.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['php_ver']); ?>
+                <?php echo esc_html( $sysinfo['php_ver'] ); ?>
             </td>
         </tr>
         <tr>
@@ -346,30 +344,30 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The ABSPATH variable on the server.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo '<code>' . esc_html($sysinfo['abspath']) . '</code>'; ?>
+                <?php echo '<code>' . esc_html( $sysinfo['abspath'] ) . '</code>'; ?>
             </td>
         </tr>
-        
+
         <?php if ( function_exists( 'ini_get' ) ) { ?>
             <tr>
                 <td data-export-label="PHP Memory Limit"><?php esc_html_e( 'PHP Memory Limit', 'redux-framework' ); ?>:</td>
                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                <td><?php echo esc_html($sysinfo['php_mem_limit']); ?></td>
+                <td><?php echo esc_html( $sysinfo['php_mem_limit'] ); ?></td>
             </tr>
             <tr>
                 <td data-export-label="PHP Post Max Size"><?php esc_html_e( 'PHP Post Max Size', 'redux-framework' ); ?>:</td>
                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                <td><?php echo esc_html($sysinfo['php_post_max_size']); ?></td>
+                <td><?php echo esc_html( $sysinfo['php_post_max_size'] ); ?></td>
             </tr>
             <tr>
                 <td data-export-label="PHP Time Limit"><?php esc_html_e( 'PHP Time Limit', 'redux-framework' ); ?>:</td>
                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups)', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                <td><?php echo esc_html($sysinfo['php_time_limit']); ?></td>
+                <td><?php echo esc_html( $sysinfo['php_time_limit'] ); ?></td>
             </tr>
             <tr>
                 <td data-export-label="PHP Max Input Vars"><?php esc_html_e( 'PHP Max Input Vars', 'redux-framework' ); ?>:</td>
                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The maximum number of variables your server can use for a single function to avoid overloads.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                <td><?php echo esc_html($sysinfo['php_max_input_var']); ?></td>
+                <td><?php echo esc_html( $sysinfo['php_max_input_var'] ); ?></td>
             </tr>
             <tr>
                 <td data-export-label="PHP Display Errors"><?php esc_html_e( 'PHP Display Errors', 'redux-framework' ); ?>:</td>
@@ -398,12 +396,12 @@
         <tr>
             <td data-export-label="MySQL Version"><?php esc_html_e( 'MySQL Version', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The version of MySQL installed on your hosting server.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-            <td><?php echo esc_html($sysinfo['mysql_ver']); ?></td>
+            <td><?php echo esc_html( $sysinfo['mysql_ver'] ); ?></td>
         </tr>
         <tr>
             <td data-export-label="Max Upload Size"><?php esc_html_e( 'Max Upload Size', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The largest filesize that can be uploaded to your WordPress installation.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-            <td><?php echo esc_html($sysinfo['max_upload_size']); ?></td>
+            <td><?php echo esc_html( $sysinfo['max_upload_size'] ); ?></td>
         </tr>
         <tr>
             <td data-export-label="Default Timezone is UTC">
@@ -411,13 +409,13 @@
             </td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The default timezone for your server.', 'redux-framework' ) . '">[?]</a>'; ?></td>
             <td>
-<?php
-                if ( $sysinfo['def_tz_is_utc'] === 'false' ) {
-                    echo '<mark class="error">' . '&#10005; ' . sprintf( esc_html__( 'Default timezone is', 'redux-framework') . ' %s - ' . esc_html__('it should be UTC', 'redux-framework' ), date_default_timezone_get()) . '</mark>';
-                } else {
-                    echo '<mark class="yes">' . '&#10004;' . '</mark>';
-                } 
-?>
+                <?php
+                    if ( $sysinfo['def_tz_is_utc'] === 'false' ) {
+                        echo '<mark class="error">' . '&#10005; ' . sprintf( esc_html__( 'Default timezone is', 'redux-framework' ) . ' %s - ' . esc_html__( 'it should be UTC', 'redux-framework' ), date_default_timezone_get() ) . '</mark>';
+                    } else {
+                        echo '<mark class="yes">' . '&#10004;' . '</mark>';
+                    }
+                ?>
             </td>
         </tr>
         <?php
@@ -444,7 +442,7 @@
                 $posting['wp_remote_post']['note'] = esc_html__( 'wp_remote_post() failed. Many advanced features may not function. Contact your hosting provider.', 'redux-framework' );
 
                 if ( $sysinfo['wp_remote_post_error'] ) {
-                    $posting['wp_remote_post']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'redux-framework') . ' %s', redux_clean( $sysinfo['wp_remote_post_error'] ) );
+                    $posting['wp_remote_post']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'redux-framework' ) . ' %s', redux_clean( $sysinfo['wp_remote_post_error'] ) );
                 }
 
                 $posting['wp_remote_post']['success'] = false;
@@ -459,7 +457,7 @@
             } else {
                 $posting['wp_remote_get']['note'] = esc_html__( 'wp_remote_get() failed. This is needed to get information from remote servers. Contact your hosting provider.', 'redux-framework' );
                 if ( $sysinfo['wp_remote_get_error'] ) {
-                    $posting['wp_remote_get']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'redux-framework') . ' %s', redux_clean( $sysinfo['wp_remote_get_error'] ) );
+                    $posting['wp_remote_get']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'redux-framework' ) . ' %s', redux_clean( $sysinfo['wp_remote_get_error'] ) );
                 }
 
                 $posting['wp_remote_get']['success'] = false;
@@ -478,13 +476,13 @@
                         <?php echo isset( $post['help'] ) ? $post['help'] : ''; ?>
                     </td>
                     <td class="help">
-                        <mark class="<?php echo esc_attr($mark); ?>">
+                        <mark class="<?php echo esc_attr( $mark ); ?>">
                             <?php echo ! empty( $post['success'] ) ? '&#10004' : '&#10005'; ?>
                             <?php echo ! empty( $post['note'] ) ? wp_kses_data( $post['note'] ) : ''; ?>
                         </mark>
                     </td>
                 </tr>
-            <?php
+                <?php
             }
         ?>
         </tbody>
@@ -492,8 +490,8 @@
     <table class="redux_status_table widefat" cellspacing="0" id="status">
         <thead>
         <tr>
-            <th colspan="3" data-export-label="Active Plugins (<?php echo esc_html(count( (array) get_option( 'active_plugins' ) ) ); ?>)">
-                <?php esc_html_e( 'Active Plugins', 'redux-framework' ); ?> (<?php echo esc_html(count( (array) get_option( 'active_plugins' ) ) ); ?>)
+            <th colspan="3" data-export-label="Active Plugins (<?php echo esc_html( count( (array) get_option( 'active_plugins' ) ) ); ?>)">
+                <?php esc_html_e( 'Active Plugins', 'redux-framework' ); ?> (<?php echo esc_html( count( (array) get_option( 'active_plugins' ) ) ); ?>)
             </th>
         </tr>
         </thead>
@@ -508,9 +506,9 @@
                     $plugin_name = esc_html( $plugin_data['Name'] );
 
                     if ( ! empty( $plugin_data['PluginURI'] ) ) {
-                        $plugin_name = '<a href="' . esc_url( $plugin_data['PluginURI'] ) . '" title="' . esc_attr__( 'Visit plugin homepage', 'redux-framework' ) . '">' . esc_html($plugin_name) . '</a>';
+                        $plugin_name = '<a href="' . esc_url( $plugin_data['PluginURI'] ) . '" title="' . esc_attr__( 'Visit plugin homepage', 'redux-framework' ) . '">' . esc_html( $plugin_name ) . '</a>';
                     }
-?>
+                    ?>
                     <tr>
                         <td><?php echo $plugin_name; ?></td>
                         <td class="help">&nbsp;</td>
@@ -518,13 +516,14 @@
                             <?php echo sprintf( _x( 'by %s', 'by author', 'redux-framework' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ) . $version_string . $network_string; ?>
                         </td>
                     </tr>
-<?php
+                    <?php
                 }
             }
         ?>
         </tbody>
     </table>
     <?php
+
         if ( ! empty( $sysinfo['redux_instances'] ) && is_array( $sysinfo['redux_instances'] ) ) {
             foreach ( $sysinfo['redux_instances'] as $inst => $data ) {
                 $inst_name = ucwords( str_replace( array( '_', '-' ), ' ', $inst ) );
@@ -533,16 +532,16 @@
                 <table class="redux_status_table widefat" cellspacing="0" id="status">
                     <thead>
                     <tr>
-                        <th colspan="3" data-export-label="Redux Instance: <?php echo esc_html($inst_name); ?>">
+                        <th colspan="3" data-export-label="Redux Instance: <?php echo esc_html( $inst_name ); ?>">
                             <?php esc_html_e( 'Redux Instance: ', 'redux-framework' );
-                            echo esc_html($inst_name); ?></th>
+                                echo esc_html( $inst_name ); ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td data-export-label="opt_name">opt_name:</td>
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The opt_name argument for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                        <td><?php echo esc_html($args['opt_name']); ?></td>
+                        <td><?php echo esc_html( $args['opt_name'] ); ?></td>
                     </tr>
                     <?php
                         if ( isset( $args['global_variable'] ) && $args['global_variable'] != '' ) {
@@ -550,9 +549,9 @@
                             <tr>
                                 <td data-export-label="global_variable">global_variable:</td>
                                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The global_variable argument for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                                <td><?php echo esc_html($args['global_variable']); ?></td>
+                                <td><?php echo esc_html( $args['global_variable'] ); ?></td>
                             </tr>
-                        <?php
+                            <?php
                         }
                     ?>
                     <tr>
@@ -568,22 +567,22 @@
                     <tr>
                         <td data-export-label="page_slug">page_slug:</td>
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The page slug denotes the string used for the options panel page for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                        <td><?php echo esc_html($args['page_slug']); ?></td>
+                        <td><?php echo esc_html( $args['page_slug'] ); ?></td>
                     </tr>
                     <tr>
                         <td data-export-label="page_permissions">page_permissions:</td>
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The page permissions variable sets the permission level required to access the options panel for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                        <td><?php echo esc_html($args['page_permissions']); ?></td>
+                        <td><?php echo esc_html( $args['page_permissions'] ); ?></td>
                     </tr>
                     <tr>
                         <td data-export-label="menu_type">menu_type:</td>
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'This variable set whether or not the menu is displayed as an admin menu item for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                        <td><?php echo esc_html($args['menu_type']); ?></td>
+                        <td><?php echo esc_html( $args['menu_type'] ); ?></td>
                     </tr>
                     <tr>
                         <td data-export-label="page_parent">page_parent:</td>
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The page parent variable sets where the options menu will be placed on the WordPress admin sidebar for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                        <td><?php echo esc_html($args['page_parent']); ?></td>
+                        <td><?php echo esc_html( $args['page_parent'] ); ?></td>
                     </tr>
 
                     <tr>
@@ -601,6 +600,32 @@
                         <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The output_tag variable sets whether or not dynamic CSS will be generated for the customizer and Google fonts for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
                         <td><?php echo true == $args['output_tag'] ? '<mark class="yes">' . '&#10004;' . '</mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
                     </tr>
+                    <?php if ( isset( ReduxCore::$_callers[ $inst ] ) && ! empty( ReduxCore::$_callers[ $inst ] ) ) ?>
+                    <tr>
+                        <td data-export-label="output_tag">Calling Files</td>
+                        <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'These files are calling this opt_name. If you want to alter the config of this opt_name, modify these files.', 'redux-framework' ) . '">[?]</a>'; ?></td>
+                        <td><?php
+                                $last_slug = "";
+                                foreach ( ReduxCore::$_callers[ $inst ] as $caller ) {
+                                    if ( $plugin_info = Redux_Helpers::is_inside_plugin( $caller ) ) {
+                                        if ( $plugin_info['slug'] != $last_slug ) {
+                                            echo "Plugin: <strong>" . $plugin_info['slug'] . "</strong><br />";
+                                        }
+                                        $last_slug = $plugin_info['slug'];
+                                        echo "&nbsp;&nbsp;&nbsp;&nbsp;~/" . $plugin_info['basename'] . '<br />';
+                                    } elseif ( $theme_info = Redux_Helpers::is_inside_theme( $caller ) ) {
+                                        if ( $theme_info['slug'] != $last_slug ) {
+                                            echo "Theme: <strong>" . $theme_info['slug'] . "</strong><br />";
+                                        }
+                                        $last_slug = $theme_info['slug'];
+                                        echo "&nbsp;&nbsp;&nbsp;&nbsp;~/" . $theme_info['basename'] . '<br />';
+                                    }
+                                }
+                            ?>
+
+                        </td>
+                    </tr>
+
 
                     <?php
                         if ( isset( $args['templates_path'] ) && $args['templates_path'] != '' ) {
@@ -608,62 +633,63 @@
                             <tr>
                                 <td data-export-label="template_path">template_path:</td>
                                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The specified template path containing custom template files for this instance of Redux.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                                <td><?php echo '<code>' . esc_html($args['templates_path']) . '</code>'; ?></td>
+                                <td><?php echo '<code>' . esc_html( $args['templates_path'] ) . '</code>'; ?></td>
                             </tr>
                             <tr>
                                 <td data-export-label="Templates">Templates:</td>
                                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'List of template files overriding the default Redux template files.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-<?php
+                                <?php
                                     $found_files = $data['templates'];
                                     if ( $found_files ) {
                                         foreach ( $found_files as $plugin_name => $found_plugin_files ) {
-?>
+                                            ?>
                                             <td>
                                                 <?php echo implode( ', <br/>', $found_plugin_files ); ?>
                                             </td>
-                                        <?php
+                                            <?php
                                         }
                                     } else {
-?>
+                                        ?>
                                         <td>&ndash;</td>
-<?php
+                                        <?php
                                     }
-?>
+                                ?>
                             </tr>
-<?php
+                            <?php
                         }
-                        
+
                         $ext = $data['extensions'];
                         if ( ! empty( $ext ) && is_array( $ext ) ) {
-?>
+                            ?>
                             <tr>
                                 <td data-export-label="Extensions">Extensions</td>
                                 <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Indicates the installed Redux extensions and their version numbers.', 'redux-framework' ) . '">[?]</a>'; ?></td>
                                 <td>
-<?php
-                                    foreach ( $ext as $name => $arr ) {
-                                        $ver = $arr['version'];
+                                    <?php
+                                        ksort($ext);
+                                        foreach ( $ext as $name => $arr ) {
+                                            $ver = $arr['version'];
 
-                                        echo '<a href="http://reduxframework.com/extensions/' . str_replace( array(
-                                                '_',
-                                            ), '-', $name ) . '" target="blank">' . ucwords( str_replace( array(
-                                                '_',
-                                                '-'
-                                            ), ' ', $name ) ) . '</a> - ' . esc_html($ver); ?><br/>
-<?php
-                                    }
-?>
+                                            echo '<a href="http://reduxframework.com/extensions/' . str_replace( array(
+                                                    '_',
+                                                ), '-', $name ) . '" target="blank">' . ucwords( str_replace( array(
+                                                    '_',
+                                                    '-'
+                                                ), ' ', $name ) ) . '</a> - ' . esc_html( $ver ); ?><br/>
+                                            <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
-<?php
+                            <?php
                         }
-?>
+                    ?>
                     </tbody>
                 </table>
-<?php
+                <?php
             }
         }
-?>
+    ?>
     <table class="redux_status_table widefat" cellspacing="0" id="status">
         <thead>
         <tr>
@@ -674,57 +700,57 @@
         <tr>
             <td data-export-label="Name"><?php esc_html_e( 'Name', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The name of the current active theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-            <td><?php echo esc_html($sysinfo['theme']['name']); ?></td>
+            <td><?php echo esc_html( $sysinfo['theme']['name'] ); ?></td>
         </tr>
         <tr>
             <td data-export-label="Version"><?php esc_html_e( 'Version', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The installed version of the current active theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
             <td>
-<?php
-                echo esc_html($sysinfo['theme']['version']);
+                <?php
+                    echo esc_html( $sysinfo['theme']['version'] );
 
-                if ( ! empty( $theme_version_data['version'] ) && version_compare( $theme_version_data['version'], $active_theme->Version, '!=' ) ) {
-                    echo ' &ndash; <strong style="color:red;">' . esc_html($theme_version_data['version']) . ' ' . esc_html__( 'is available', 'redux-framework' ) . '</strong>';
-                }
-?>
+                    if ( ! empty( $theme_version_data['version'] ) && version_compare( $theme_version_data['version'], $active_theme->Version, '!=' ) ) {
+                        echo ' &ndash; <strong style="color:red;">' . esc_html( $theme_version_data['version'] ) . ' ' . esc_html__( 'is available', 'redux-framework' ) . '</strong>';
+                    }
+                ?>
             </td>
         </tr>
         <tr>
             <td data-export-label="Author URL"><?php esc_html_e( 'Author URL', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The theme developers URL.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-            <td><?php echo esc_url($sysinfo['theme']['author_uri']); ?></td>
+            <td><?php echo esc_url( $sysinfo['theme']['author_uri'] ); ?></td>
         </tr>
         <tr>
             <td data-export-label="Child Theme"><?php esc_html_e( 'Child Theme', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Displays whether or not the current theme is a child theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
             <td>
-<?php
-                echo is_child_theme() ? '<mark class="yes">' . '&#10004;' . '</mark>' : '&#10005; <br /><em>' . sprintf( esc_html__( "If you're modifying", 'redux-framework') . ' Redux Framework ' . esc_html__("or a parent theme you didn't build personally, we recommend using a child theme. See:", 'redux-framework') . ' <a href="%s" target="_blank">' . esc_html__('How to create a child theme', 'redux-framework') . '</a>', 'http://codex.wordpress.org/Child_Themes' ) . '</em>';
-?>
+                <?php
+                    echo is_child_theme() ? '<mark class="yes">' . '&#10004;' . '</mark>' : '&#10005; <br /><em>' . sprintf( esc_html__( "If you're modifying", 'redux-framework' ) . ' Redux Framework ' . esc_html__( "or a parent theme you didn't build personally, we recommend using a child theme. See:", 'redux-framework' ) . ' <a href="%s" target="_blank">' . esc_html__( 'How to create a child theme', 'redux-framework' ) . '</a>', 'http://codex.wordpress.org/Child_Themes' ) . '</em>';
+                ?>
             </td>
         </tr>
-<?php
+        <?php
             if ( is_child_theme() ) {
-?>
+                ?>
                 <tr>
                     <td data-export-label="Parent Theme Name"><?php esc_html_e( 'Parent Theme Name', 'redux-framework' ); ?>:
                     </td>
                     <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The name of the parent theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                    <td><?php echo esc_html($sysinfo['theme']['parent_name']); ?></td>
+                    <td><?php echo esc_html( $sysinfo['theme']['parent_name'] ); ?></td>
                 </tr>
                 <tr>
                     <td data-export-label="Parent Theme Version">
                         <?php esc_html_e( 'Parent Theme Version', 'redux-framework' ); ?>:
                     </td>
                     <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The installed version of the parent theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                    <td><?php echo esc_html($sysinfo['theme']['parent_version']); ?></td>
+                    <td><?php echo esc_html( $sysinfo['theme']['parent_version'] ); ?></td>
                 </tr>
                 <tr>
                     <td data-export-label="Parent Theme Author URL">
                         <?php esc_html_e( 'Parent Theme Author URL', 'redux-framework' ); ?>:
                     </td>
                     <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'The parent theme developers URL.', 'redux-framework' ) . '">[?]</a>'; ?></td>
-                    <td><?php echo esc_url($sysinfo['theme']['parent_author_uri']); ?></td>
+                    <td><?php echo esc_url( $sysinfo['theme']['parent_author_uri'] ); ?></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -743,12 +769,14 @@
                 jQuery( '#status thead, #status tbody' ).each(
                     function() {
                         if ( jQuery( this ).is( 'thead' ) ) {
-                            var label = jQuery( this ).find( 'th:eq(0)' ).data( 'export-label' ) || jQuery( this ).text();
+                            var label = jQuery( this ).find( 'th:eq(0)' ).data( 'export-label' ) || jQuery(
+                                    this ).text();
                             report = report + "\n### " + jQuery.trim( label ) + " ###\n\n";
                         } else {
                             jQuery( 'tr', jQuery( this ) ).each(
                                 function() {
-                                    var label = jQuery( this ).find( 'td:eq(0)' ).data( 'export-label' ) || jQuery( this ).find( 'td:eq(0)' ).text();
+                                    var label = jQuery( this ).find( 'td:eq(0)' ).data( 'export-label' ) || jQuery(
+                                            this ).find( 'td:eq(0)' ).text();
                                     var the_name = jQuery.trim( label ).replace( /(<([^>]+)>)/ig, '' ); // Remove HTML
                                     var the_value = jQuery.trim( jQuery( this ).find( 'td:eq(2)' ).text() );
                                     var value_array = the_value.split( ', ' );

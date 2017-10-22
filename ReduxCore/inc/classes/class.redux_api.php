@@ -516,17 +516,36 @@
                     if ( isset( self::$args[ $opt_name ] ) && isset( self::$args[ $opt_name ]['clearArgs'] ) ) {
                         self::$args[ $opt_name ] = array();
                     }
-
-                    self::$args[ $opt_name ]            = wp_parse_args( $args, self::$args[ $opt_name ] );
-                    self::$args[ $opt_name ]['callers'] = array();
+                    self::$args[ $opt_name ] = wp_parse_args( $args, self::$args[ $opt_name ] );
                 }
+            }
 
+            public static function setDeveloper( $opt_name = "", $arg = '' ) {
+                if ( empty( $arg ) ) {
+                    return;
+                }
+                self::check_opt_name( $opt_name );
+                self::record_caller(
+                    $opt_name,
+                    debug_backtrace()[ array_search(
+                        __FUNCTION__, array_column(
+                            debug_backtrace(), 'function'
+                        )
+                    ) ]['file']
+                );
+
+                if ( ! empty( $opt_name ) && ! empty( $args ) ) {
+                    self::$args[ $opt_name ]['developer'] = $arg;
+                }
             }
 
             public static function record_caller( $opt_name = "", $caller = "" ) {
                 if ( ! empty( $caller ) && ! empty( $opt_name ) ) {
                     if ( ! isset( ReduxCore::$_callers[ $opt_name ] ) ) {
                         ReduxCore::$_callers[ $opt_name ] = array();
+                    }
+                    if ( strpos( $caller, 'class.redux_api.php' ) !== false ) {
+                        return;
                     }
                     if ( ! in_array( $caller, ReduxCore::$_callers[ $opt_name ] ) ) {
                         ReduxCore::$_callers[ $opt_name ][] = $caller;
@@ -648,12 +667,10 @@
 
             public static function checkExtensionClassFile( $opt_name, $name = "", $class_file = "", $instance = "" ) {
                 if ( file_exists( $class_file ) ) {
-
                     self::$uses_extensions[ $opt_name ] = isset( self::$uses_extensions[ $opt_name ] ) ? self::$uses_extensions[ $opt_name ] : array();
                     if ( ! in_array( $name, self::$uses_extensions[ $opt_name ] ) ) {
                         self::$uses_extensions[ $opt_name ][] = $name;
                     }
-
                     self::$extensions[ $name ] = isset( self::$extensions[ $name ] ) ? self::$extensions[ $name ] : array();
                     $version                   = Redux_Helpers::get_template_version( $class_file );
                     if ( empty( $version ) && ! empty( $instance ) ) {
@@ -662,8 +679,7 @@
                         }
                     }
                     self::$extensions[ $name ][ $version ] = isset( self::$extensions[ $name ][ $version ] ) ? self::$extensions[ $name ][ $version ] : $class_file;
-
-                    $api_check = str_replace( 'extension_' . $name, $name . '_api', $class_file );
+                    $api_check                             = str_replace( 'extension_' . $name, $name . '_api', $class_file );
                     if ( file_exists( $api_check ) && ! class_exists( 'Redux_' . ucfirst( $name ) ) ) {
                         include_once( $api_check );
                     }
@@ -722,7 +738,6 @@
                         continue;
                     }
                     if ( ! empty( $instance['extensions'] ) ) {
-
                         Redux::getInstanceExtensions( $instance['args']['opt_name'], $instance );
                     }
                 }
