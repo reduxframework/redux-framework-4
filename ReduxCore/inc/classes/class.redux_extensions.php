@@ -20,6 +20,7 @@
                 parent::__construct( $parent );
 
                 $this->load();
+
             }
 
             private function load() {
@@ -64,27 +65,53 @@
                     if ( $class_file ) {
                         if ( file_exists( $class_file ) ) {
                             require_once $class_file;
-                            $core->extensions[ $folder ] = new $extension_class ( $core );
-                            try {
-                                $name                                        = str_replace(
-                                    array(
-                                        'ReduxFramework_extension_',
-                                        '_'
-                                    ),
-                                    array(
-                                        '',
-                                        '-'
-                                    ),
-                                    sanitize_title( $extension_class )
-                                );
-                                $this->upload_dir                            = ReduxFramework::$_upload_dir . $name;
-                                $this->upload_url                            = ReduxFramework::$_upload_url . $name;
-                                $path_info                                   = Redux_Helpers::path_info( $class_file );
-                                $core->extensions[ $folder ]->_extension_dir = $core->extensions[ $folder ]->extension_dir = $path_info['realpath'];
-                                $core->extensions[ $folder ]->_extension_url = $core->extensions[ $folder ]->extension_url = $path_info['url'];
-                            } catch ( Exception $e ) {
+                            $obj = new $extension_class ( $core );
 
+                            //$class_name = get_class( $this );
+                            //$reflector  = new ReflectionClass( $class_name );
+                            //$path       = $reflector->getFilename();
+                            //$path_info  = Redux_Helpers::path_info( $path );
+                            //$this->_dir = dirname( $path_info['realpath'] );
+                            //$this->_url = dirname( $path_info['url'] );
+                            //
+
+                            try {
+                                $name             = str_replace( '_', '-', sanitize_title( $folder ) );
+                                $this->upload_dir = ReduxFramework::$_upload_dir . $name;
+                                $this->upload_url = ReduxFramework::$_upload_url . $name;
+                                $path_info        = Redux_Helpers::path_info( dirname( $class_file ) );
+
+                                $obj->_extension_dir = trailingslashit( $path_info['realpath'] );
+                                $obj->_extension_url = trailingslashit( $path_info['url'] );
+                                $obj->extension_url  = $obj->_extension_url;
+                                $obj->extension_dir  = $obj->_extension_dir;
+
+                                //if ($folder == "accordion") {
+                                //    print_r(
+                                    //    array(
+                                    //        'info'       => $path_info,
+                                    //        'url'        => $obj->_extension_url,
+                                    //        'url2'       => $path_info['url'],
+                                    //        'dir'        => $obj->_extension_dir,
+                                    //        'upload_dir' => $this->upload_dir,
+                                    //        'upload_url' => $this->upload_url,
+                                    //
+                                    //        'wp_upload_dir' => wp_upload_dir()['baseurl']
+                                    //    )
+                                    //);
+                                    //exit();
+                                //}
+
+
+
+                            } catch ( Exception $e ) {
+                                echo "HERE!!!";
+                                print( $e );
                             }
+
+                            $core->extensions[ $folder ] = $obj;
+
+
                         }
                     }
                 }

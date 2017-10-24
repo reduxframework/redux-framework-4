@@ -359,7 +359,7 @@
                         'slug'     => $slug,
                         'basename' => $plugin_basename,
                         'path'     => self::wp_normalize_path( $file ),
-                        'url'      => plugins_url( $file ),
+                        'url'      => plugins_url( $plugin_basename ),
                         'realpath' => self::wp_normalize_path( dirname( realpath( $file ) ) )
                     );
                 }
@@ -374,18 +374,18 @@
                 );
                 $theme_paths = array_unique( $theme_paths );
                 $file_path   = self::wp_normalize_path( $file );
-                $filename = end(explode('/', $file));
+                $filename    = end( explode( '/', $file ) );
                 foreach ( $theme_paths as $theme_path => $url ) {
                     $real_path = self::wp_normalize_path( realpath( $theme_path ) );
                     if ( strpos( $file_path, $real_path ) !== false ) {
-                        $slug             = end( explode( '/', $theme_path ) );
-                        $relative_path    = explode( $slug . "/", dirname( $file_path ) )[1];
-                        $data             = array(
-                            'slug'     => $slug,
-                            'path'     => trailingslashit(trailingslashit( $theme_path ) . $relative_path).$filename,
-                            'real_path' => trailingslashit(trailingslashit( $real_path ) . $relative_path).$filename,
-                            'url'      => trailingslashit(trailingslashit( $url ) . $relative_path).$filename,
-                            'basename'=> trailingslashit( $slug ).trailingslashit($relative_path).$filename
+                        $slug          = end( explode( '/', $theme_path ) );
+                        $relative_path = explode( $slug . "/", dirname( $file_path ) )[1];
+                        $data          = array(
+                            'slug'      => $slug,
+                            'path'      => trailingslashit( trailingslashit( $theme_path ) . $relative_path ) . $filename,
+                            'real_path' => trailingslashit( trailingslashit( $real_path ) . $relative_path ) . $filename,
+                            'url'       => trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename,
+                            'basename'  => trailingslashit( $slug ) . trailingslashit( $relative_path ) . $filename
                         );
 
                         //$data['basename'] = trailingslashit( $data['slug'] ) . explode( $data['slug'] . "/", $data['path'] )[1];
@@ -403,12 +403,13 @@
                 return false;
             }
 
-            public static function path_info($file) {
-                if ($theme_info = self::is_inside_theme($file)) {
+            public static function path_info( $file ) {
+                if ( $theme_info = self::is_inside_theme( $file ) ) {
                     return $theme_info;
-                } elseif ($plugin_info = self::is_inside_plugin($file)) {
+                } elseif ( $plugin_info = self::is_inside_plugin( $file ) ) {
                     return $plugin_info;
                 }
+
                 return array();
             }
 
@@ -847,6 +848,16 @@
 
                     return $version;
                 }
+            }
+
+            public static function html_attributes( $attributes = array() ) {
+                $string = join( ' ', array_map( function ( $key ) use ( $attributes ) {
+                        if ( is_bool( $attributes[ $key ] ) ) {
+                            return $attributes[ $key ] ? $key : '';
+                        }
+
+                        return $key . '="' . $attributes[ $key ] . '"';
+                    }, array_keys( $attributes ) ) ) . ' ';
             }
 
             private static function let_to_num( $size ) {

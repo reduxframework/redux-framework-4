@@ -45,9 +45,6 @@ if ( ! class_exists( 'ReduxFramework_options_object' ) ) {
 
             $this->is_field = $this->parent->extensions['options_object']->is_field;
 
-            $this->extension_dir = ReduxCore::$_dir . 'inc/extensions/options_object/';
-            $this->extension_url = ReduxCore::$_url . 'inc/extensions/options_object/';
-
             // Set default args for this field to avoid bad indexes. Change this to anything you use.
             $defaults    = array(
                 'options'          => array(),
@@ -129,7 +126,7 @@ if ( ! class_exists( 'ReduxFramework_options_object' ) ) {
         public function enqueue() {
             wp_enqueue_script(
                 'redux-options-object',
-                $this->extension_url . 'options_object/field_options_object' . Redux_Functions::isMin() . '.js',
+                $this->_url . 'field_options_object' . Redux_Functions::isMin() . '.js',
                 array( 'jquery' ),
                 ReduxFramework_extension_options_object::$version,
                 true
@@ -137,7 +134,7 @@ if ( ! class_exists( 'ReduxFramework_options_object' ) ) {
 
             wp_enqueue_style(
                 'redux-options-object',
-                $this->extension_url . 'options_object/field_options_object.css',
+                $this->_url . 'field_options_object.css',
                 array(),
                 ReduxFramework_extension_options_object::$version,
                 'all'
