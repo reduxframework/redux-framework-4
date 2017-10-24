@@ -403,6 +403,15 @@
                 return false;
             }
 
+            public static function path_info($file) {
+                if ($theme_info = self::is_inside_theme($file)) {
+                    return $theme_info;
+                } elseif ($plugin_info = self::is_inside_plugin($file)) {
+                    return $plugin_info;
+                }
+                return array();
+            }
+
 
             public static function process_redux_callers() {
                 $data = array();

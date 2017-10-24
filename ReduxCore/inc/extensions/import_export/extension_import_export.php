@@ -17,12 +17,12 @@
      * @version     4.0.0
      */
 
-// Exit if accessed directly
+    // Exit if accessed directly
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-// Don't duplicate me!
+    // Don't duplicate me!
     if ( ! class_exists( 'ReduxFramework_extension_import_export' ) ) {
 
 
@@ -35,8 +35,6 @@
 
             // Protected vars
             protected $parent;
-            public $extension_url;
-            public $extension_dir;
             public static $theInstance;
             public static $version = "4.0";
             public $is_field = false;
@@ -55,10 +53,7 @@
              */
             public function __construct( $parent ) {
 
-                $this->parent = $parent;
-                if ( empty( $this->extension_dir ) ) {
-                    //$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
-                }
+                $this->parent     = $parent;
                 $this->field_name = 'import_export';
 
                 self::$theInstance = $this;
@@ -199,9 +194,9 @@
 
             public function remove_cookie() {
                 // Remove the import/export tab cookie.
-                if ( $_COOKIE['redux_current_tab_' . $this->parent->args['opt_name']] == 'import_export_default' ) {
+                if ( $_COOKIE[ 'redux_current_tab_' . $this->parent->args['opt_name'] ] == 'import_export_default' ) {
                     setcookie( 'redux_current_tab_' . $this->parent->args['opt_name'], '', 1, '/' );
-                    $_COOKIE['redux_current_tab_' . $this->parent->args['opt_name']] = 1;
+                    $_COOKIE[ 'redux_current_tab_' . $this->parent->args['opt_name'] ] = 1;
                 }
             }
 
