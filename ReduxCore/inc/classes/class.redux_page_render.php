@@ -33,7 +33,7 @@ if (!class_exists('Redux_Page_Render')) {
          */
         public function options_page() {
             $core = $this->core();
-            
+
             if ( $core->args['menu_type'] == 'hidden' ) {
 
                 // No menu to add!
