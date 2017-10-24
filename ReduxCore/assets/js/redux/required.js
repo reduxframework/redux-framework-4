@@ -32,7 +32,7 @@
             }
         );
 
-        el.find( 'td > fieldset:empty,td > div:empty' ).parent().parent().hide();
+        el.find( '.redux-container td > fieldset:empty,td > div:empty' ).parent().parent().hide();
     };
 
     $.redux.required = function() {

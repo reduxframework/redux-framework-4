@@ -374,22 +374,26 @@
                 );
                 $theme_paths = array_unique( $theme_paths );
                 $file_path   = self::wp_normalize_path( $file );
+                $filename = end(explode('/', $file));
                 foreach ( $theme_paths as $theme_path => $url ) {
                     $real_path = self::wp_normalize_path( realpath( $theme_path ) );
                     if ( strpos( $file_path, $real_path ) !== false ) {
-                        $slug          = end( explode( '/', $theme_path ) );
-                        $relative_path = explode( $slug . "/", dirname( $file_path ) )[1];
-                        $data          = array(
+                        $slug             = end( explode( '/', $theme_path ) );
+                        $relative_path    = explode( $slug . "/", dirname( $file_path ) )[1];
+                        $data             = array(
                             'slug'     => $slug,
-                            'path'     => trailingslashit( $theme_path ) . $relative_path,
-                            'realpath' => trailingslashit( $real_path ) . $relative_path,
-                            'url'      => trailingslashit( $url ) . $relative_path
+                            'path'     => trailingslashit(trailingslashit( $theme_path ) . $relative_path).$filename,
+                            'real_path' => trailingslashit(trailingslashit( $real_path ) . $relative_path).$filename,
+                            'url'      => trailingslashit(trailingslashit( $url ) . $relative_path).$filename,
+                            'basename'=> trailingslashit( $slug ).trailingslashit($relative_path).$filename
                         );
+
+                        //$data['basename'] = trailingslashit( $data['slug'] ) . explode( $data['slug'] . "/", $data['path'] )[1];
                         if ( count( $theme_paths ) > 1 ) {
                             if ( ( $key = array_search( $theme_path, $theme_paths ) ) !== false ) {
                                 unset( $theme_paths[ $key ] );
                             }
-                            $data['parentslug'] = end( explode( '/', end( $theme_paths ) ) );
+                            $data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
                         }
 
                         return $data;
@@ -495,6 +499,36 @@
                 $localize['rAds'] = Redux_Helpers::rURL_fix( $base, $redux->args['opt_name'] );
 
                 return $localize;
+            }
+
+            public static function get_all_extensions() {
+                $instances = Redux_Instances::get_all_instances();
+                foreach ( $instances as $instance ) {
+
+                }
+            }
+
+
+            public static function get_request_headers( $args = array() ) {
+                $instances = Redux_Instances::get_all_instances();
+
+
+                $array = array(
+                    'hash'       => Redux_Helpers::get_hash(),
+                    'redux'      => ReduxCore::$_version,
+                    'site'       => esc_url( home_url( '/' ) ),
+                    'wordpress'  => get_bloginfo( 'version' ),
+                    'local'      => Redux_Helpers::isLocalHost(),
+                    'installed'  => ReduxCore::$_installed,
+                    'developers' => self::get_developer_keys(),
+                    'opt_names'  => join( '|', array_keys( $instances ) ),
+                    'extensions' => ''
+                );
+                if ( ! empty( $args ) ) {
+                    return wp_parse_args( $args, $array );
+                }
+
+                return $array;
             }
 
             public static function compileSystemStatus( $json_output = false, $remote_checks = false ) {
@@ -1036,6 +1070,29 @@
                 return true;
             }
 
+            public static function get_developer_keys() {
+                // TODO - Get shim values for here
+                $developers = array( apply_filters( 'redux/tracking/developer', array() ) );
+                if ( empty( $developers ) ) {
+                    $developers = "";
+                } else {
+                    if ( count( $developers ) == 1 ) {
+                        if ( empty( $developers[0] ) ) {
+                            $developers = "";
+                        }
+                    }
+                }
+                $instances = Redux_Instances::get_all_instances();
+                $data      = array();
+                foreach ( $instances as $instance ) {
+                    if ( isset( $instance->args['developer'] ) ) {
+                        $data[] = $instance->args['developer'];
+                    }
+                }
+
+                return $data;
+            }
+
             public static function google_fonts_array( $download = false ) {
 
                 if ( ! empty( ReduxCore::$_google_fonts ) ) {
@@ -1050,27 +1107,9 @@
                     if ( $download ) {
                         $url = "http://api.redux.io/googlefonts";
 
-                        $developers = array( apply_filters( 'redux/tracking/developer', array() ) );
-                        if ( empty( $developers ) ) {
-                            $developers = "";
-                        } else {
-                            if ( count( $developers ) == 1 ) {
-                                if ( empty( $developers[0] ) ) {
-                                    $developers = "";
-                                }
-                            }
-                        }
-                        $instances = Redux_Instances::get_all_instances();
-
                         $request = wp_remote_get( $url, array(
                                 'timeout' => 20,
-                                'headers' => array(
-                                    'hash'       => Redux_Helpers::get_hash(),
-                                    'version'    => ReduxCore::$_version,
-                                    'local'      => Redux_Helpers::isLocalHost(),
-                                    'developers' => $developers,
-                                    'opt_names'  => join( '|', array_keys( $instances ) )
-                                ),
+                                'headers' => self::get_request_headers()
                             )
                         );
 
