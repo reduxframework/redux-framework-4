@@ -17,8 +17,6 @@
 
     redux.field_objects = redux.field_objects || {};
     redux.field_objects.typography = redux.field_objects.typography || {};
-    //redux.field_objects.pro = redux.field_objects.pro || {};
-    //redux.field_objects.pro.typography = redux.field_objects.pro.typography || {};
 
     var selVals     = [];
     var isSelecting = false;
