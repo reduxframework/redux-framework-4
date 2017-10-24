@@ -76,6 +76,13 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
             );
 
             $this->value['media'] = wp_parse_args( $this->value['media'], $defaults );
+            
+            if (ReduxCore::$_pro_loaded) {
+                $this->field = apply_filters('redux/pro/background/field/set_defaults', $this->field);
+                $this->value = apply_filters('redux/pro/background/value/set_defaults', $this->value);
+            } else {
+                $this->field['color_alpha'] = false;
+            }
         }
         
         /**
@@ -104,27 +111,39 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                     $this->value['background-color'] = $this->value['color'];
                 }
 
-                $def_bg_color = isset( $this->field['default']['background-color'] ) ? $this->field['default']['background-color'] : "";
+                $use_gradient = false;
                 
-                echo '<input
-                            data-id="' . esc_attr($this->field['id']) . '"
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-color]"
-                            id="' . esc_attr($this->field['id']) . '-color"
-                            class="color-picker redux-color redux-background-input redux-color-init ' . esc_attr($this->field['class']) . '"
-                            type="text" value="' . esc_attr($this->value['background-color']) . '"
-                            data-default-color="' . esc_attr( $def_bg_color ) . '"
-                            />';
-                
-                echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr($this->field['id']) . '-saved-color' . '" value="">';
-
-                if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
-                    $tChecked = "";
-                    if ( $this->value['background-color'] == "transparent" ) {
-                        $tChecked = ' checked="checked"';
+                if (ReduxCore::$_pro_loaded) {
+                    if ($this->field['gradient']) {
+                        echo apply_filters('redux/pro/background/render/gradient/input', null);
+                        $use_gradient = true;
                     }
-                    echo '<label for="' . esc_attr($this->field['id']) . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . esc_attr($this->field['class']) . '" id="' . esc_attr($this->field['id']) . '-transparency" data-id="' . esc_attr($this->field['id']) . '-color" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' ) . '</label>';
                 }
+                
+                if (!$use_gradient) {
+                    $def_bg_color = isset( $this->field['default']['background-color'] ) ? $this->field['default']['background-color'] : "";
 
+                    echo '<input
+                                data-id="' . esc_attr($this->field['id']) . '"
+                                name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-color]"
+                                id="' . esc_attr($this->field['id']) . '-color"
+                                class="color-picker redux-color redux-background-input redux-color-init ' . esc_attr($this->field['class']) . '"
+                                type="text" value="' . esc_attr($this->value['background-color']) . '"
+                                data-default-color="' . esc_attr( $def_bg_color ) . '"
+                                data-alpha="' . $this->field['color_alpha'] . '"
+                                />';
+
+                    echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr($this->field['id']) . '-saved-color' . '" value="">';
+
+                    if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
+                        $tChecked = "";
+                        if ( $this->value['background-color'] == "transparent" ) {
+                            $tChecked = ' checked="checked"';
+                        }
+                        echo '<label for="' . esc_attr($this->field['id']) . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . esc_attr($this->field['class']) . '" id="' . esc_attr($this->field['id']) . '-transparency" data-id="' . esc_attr($this->field['id']) . '-color" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' ) . '</label>';
+                    }
+                }
+                
                 if ( $this->field['background-repeat'] === true || $this->field['background-position'] === true || $this->field['background-attachment'] === true ) {
                     echo '<br />';
                 }
@@ -329,6 +348,12 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
 
                 echo '<span class="button removeCSS redux-remove-background' . $hide . '" id="reset_' . esc_attr($this->field['id']) . '" rel="' . esc_attr($this->field['id']) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
 
+                
+                if (ReduxCore::$_pro_loaded) {
+                    echo apply_filters('redux/pro/background/render/gradient/effects', null);
+                    echo apply_filters('redux/pro/background/render/media', null);
+                }
+
                 echo '</div>';
             }
 
@@ -385,6 +410,10 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                 true
             );
 
+            if (ReduxCore::$_pro_loaded) {
+                do_action ('redux/pro/background/enqueue');
+            }
+            
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-background-css',

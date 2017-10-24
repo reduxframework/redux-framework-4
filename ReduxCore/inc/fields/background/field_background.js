@@ -13,6 +13,8 @@
     redux.field_objects             = redux.field_objects || {};
     redux.field_objects.background  = redux.field_objects.background || {};
 
+    var proLoaded   = true;
+    
     redux.field_objects.background.init = function( selector ) {
         if ( !selector ) {
             selector = $( document ).find( ".redux-group-tab:visible" ).find( '.redux-container-background:visible' );
@@ -35,6 +37,10 @@
                     parent.removeClass( 'redux-field-init' );
                 } else {
                     return;
+                }
+                
+                if (redux.field_objects.pro === undefined) {
+                    proLoaded = false;
                 }
                 
                 // Remove the image button
