@@ -814,9 +814,9 @@
                         
                         extract($pro_data);
                         
-                        if ($continue) {
-                            continue;
-                        }
+                        //if ($continue) {
+                        //    continue;
+                        //}
                         
                         $style .= $key . ':' . $value . ';';
                     }

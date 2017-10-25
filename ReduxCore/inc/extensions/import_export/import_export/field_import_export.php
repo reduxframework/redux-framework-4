@@ -45,9 +45,6 @@ if ( ! class_exists( 'ReduxFramework_import_export' ) ) {
 
             $this->is_field = $this->parent->extensions['import_export']->is_field;
 
-            $this->extension_dir = ReduxCore::$_dir . 'inc/extensions/import_export/';
-            $this->extension_url = ReduxCore::$_url . 'inc/extensions/import_export/';
-
             // Set default args for this field to avoid bad indexes. Change this to anything you use.
             $defaults    = array(
                 'options'          => array(),
@@ -136,7 +133,7 @@ if ( ! class_exists( 'ReduxFramework_import_export' ) ) {
         public function enqueue() {
             wp_enqueue_script(
                 'redux-import-export',
-                $this->extension_url . 'import_export/field_import_export' . Redux_Functions::isMin() . '.js',
+                $this->_url . 'field_import_export' . Redux_Functions::isMin() . '.js',
                 array( 'jquery' ),
                 ReduxFramework_extension_import_export::$version,
                 true
@@ -144,7 +141,7 @@ if ( ! class_exists( 'ReduxFramework_import_export' ) ) {
 
             wp_enqueue_style(
                 'redux-import-export',
-                $this->extension_url . 'import_export/field_import_export.css',
+                $this->_url . 'field_import_export.css',
                 array(),
                 ReduxFramework_extension_import_export::$version,
                 'all'

@@ -106,7 +106,7 @@
                 // Select2 CSS
                 //*****************************************************************
                 wp_enqueue_style(
-                    'select2',
+                    'select2-css',
                     ReduxCore::$_url . 'assets/css/vendor/select2.min.css',
                     array(),
                     '4.0.4',
