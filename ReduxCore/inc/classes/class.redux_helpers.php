@@ -369,13 +369,15 @@
 
             public static function is_inside_theme( $file = "" ) {
                 $theme_paths = array(
-                    Redux_Helpers::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(), #parent
-                    Redux_Helpers::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(), #child
+                    Redux_Helpers::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),
+                    #parent
+                    Redux_Helpers::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(),
+                    #child
                 );
                 $theme_paths = array_unique( $theme_paths );
                 $file_path   = Redux_Helpers::wp_normalize_path( $file );
-                $filename = explode( '/', $file );
-                $filename = end( $filename );
+                $filename    = explode( '/', $file );
+                $filename    = end( $filename );
                 foreach ( $theme_paths as $theme_path => $url ) {
                     $real_path = Redux_Helpers::wp_normalize_path( realpath( $theme_path ) );
                     if ( strpos( $file_path, $real_path ) !== false ) {
@@ -395,7 +397,7 @@
                             if ( ( $key = array_search( $theme_path, $theme_paths ) ) !== false ) {
                                 unset( $theme_paths[ $key ] );
                             }
-                            var_dump($theme_paths);
+
                             $data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
                         }
 
@@ -537,6 +539,7 @@
                     'opt_names'  => join( '|', array_keys( $instances ) ),
                     'extensions' => ''
                 );
+
                 if ( ! empty( $args ) ) {
                     return wp_parse_args( $args, $array );
                 }
@@ -1113,12 +1116,14 @@
                     }
                 }
 
+                $data = json_encode( $data );
+
                 return $data;
             }
 
             public static function google_fonts_array( $download = false ) {
 
-                if ( ! empty( ReduxCore::$_google_fonts ) ) {
+                if ( ! empty( ReduxCore::$_google_fonts ) && ! self::google_fonts_update_needed() ) {
                     return ReduxCore::$_google_fonts;
                 }
 
