@@ -81,6 +81,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                 $this->field = apply_filters('redux/pro/background/field/set_defaults', $this->field);
                 $this->value = apply_filters('redux/pro/background/value/set_defaults', $this->value);
             } else {
+                $this->field['color_alpha'] = array();
                 $this->field['color_alpha'] = false;
             }
         }
