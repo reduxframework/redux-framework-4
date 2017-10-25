@@ -233,8 +233,8 @@
             }
 
             public static function isParentTheme( $file ) {
-                $file = self::wp_normalize_path( $file );
-                $dir  = self::wp_normalize_path( get_template_directory() );
+                $file = Redux_Helpers::wp_normalize_path( $file );
+                $dir  = Redux_Helpers::wp_normalize_path( get_template_directory() );
 
                 $file = str_replace( '//', '/', $file );
                 $dir  = str_replace( '//', '/', $dir );
@@ -247,8 +247,8 @@
             }
 
             public static function isChildTheme( $file ) {
-                $file = self::wp_normalize_path( $file );
-                $dir  = self::wp_normalize_path( get_stylesheet_directory() );
+                $file = Redux_Helpers::wp_normalize_path( $file );
+                $dir  = Redux_Helpers::wp_normalize_path( get_stylesheet_directory() );
 
                 $file = str_replace( '//', '/', $file );
                 $dir  = str_replace( '//', '/', $dir );
@@ -322,7 +322,7 @@
              */
             public static function cleanFilePath( $path ) {
                 # Deprecated
-                return self::wp_normalize_path( $path );
+                return Redux_Helpers::wp_normalize_path( $path );
             }
 
             public static function get_hash() {
@@ -335,12 +335,12 @@
                 $themes         = wp_get_themes();
                 $theme_paths    = array();
                 foreach ( $themes as $theme ) {
-                    $path          = self::wp_normalize_path( trailingslashit( $theme->get_theme_root() ) . $theme->get_template() );
+                    $path          = Redux_Helpers::wp_normalize_path( trailingslashit( $theme->get_theme_root() ) . $theme->get_template() );
                     $theme_paths[] = $path;
-                    if ( $path != self::wp_normalize_path( realpath( $path ) ) ) {
-                        $theme_paths[] = self::wp_normalize_path( realpath( $path ) );
+                    if ( $path != Redux_Helpers::wp_normalize_path( realpath( $path ) ) ) {
+                        $theme_paths[] = Redux_Helpers::wp_normalize_path( realpath( $path ) );
                     }
-                    $wp_theme_paths[ $path ] = self::wp_normalize_path( realpath( $path ) );
+                    $wp_theme_paths[ $path ] = Redux_Helpers::wp_normalize_path( realpath( $path ) );
                 }
 
                 return array(
@@ -358,25 +358,26 @@
                     return array(
                         'slug'     => $slug,
                         'basename' => $plugin_basename,
-                        'path'     => self::wp_normalize_path( $file ),
+                        'path'     => Redux_Helpers::wp_normalize_path( $file ),
                         'url'      => plugins_url( $plugin_basename ),
-                        'realpath' => self::wp_normalize_path( dirname( realpath( $file ) ) )
+                        'realpath' => Redux_Helpers::wp_normalize_path( dirname( realpath( $file ) ) )
                     );
                 }
 
                 return false;
             }
 
-            public static function is_inside_theme( $file ) {
+            public static function is_inside_theme( $file = "" ) {
                 $theme_paths = array(
-                    self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(), #parent
-                    self::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(), #child
+                    Redux_Helpers::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(), #parent
+                    Redux_Helpers::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(), #child
                 );
                 $theme_paths = array_unique( $theme_paths );
-                $file_path   = self::wp_normalize_path( $file );
-                $filename    = end( explode( '/', $file ) );
+                $file_path   = Redux_Helpers::wp_normalize_path( $file );
+                $filename = explode( '/', $file );
+                $filename = end( $filename );
                 foreach ( $theme_paths as $theme_path => $url ) {
-                    $real_path = self::wp_normalize_path( realpath( $theme_path ) );
+                    $real_path = Redux_Helpers::wp_normalize_path( realpath( $theme_path ) );
                     if ( strpos( $file_path, $real_path ) !== false ) {
                         $slug          = end( explode( '/', $theme_path ) );
                         $relative_path = explode( $slug . "/", dirname( $file_path ) )[1];
@@ -881,12 +882,12 @@
             }
 
             public static function get_extension_dir( $dir ) {
-                return trailingslashit( self::wp_normalize_path( dirname( $dir ) ) );
+                return trailingslashit( Redux_Helpers::wp_normalize_path( dirname( $dir ) ) );
             }
 
             public static function get_extension_url( $dir ) {
                 $ext_dir = Redux_Helpers::get_extension_dir( $dir );
-                $ext_url = str_replace( self::wp_normalize_path( WP_CONTENT_DIR ), WP_CONTENT_URL, $ext_dir );
+                $ext_url = str_replace( Redux_Helpers::wp_normalize_path( WP_CONTENT_DIR ), WP_CONTENT_URL, $ext_dir );
 
                 return $ext_url;
             }
