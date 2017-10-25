@@ -390,10 +390,12 @@
                         );
 
                         //$data['basename'] = trailingslashit( $data['slug'] ) . explode( $data['slug'] . "/", $data['path'] )[1];
+                        var_dump($theme_paths);
                         if ( count( $theme_paths ) > 1 ) {
                             if ( ( $key = array_search( $theme_path, $theme_paths ) ) !== false ) {
                                 unset( $theme_paths[ $key ] );
                             }
+                            var_dump($theme_paths);
                             $data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
                         }
 
