@@ -241,8 +241,10 @@
                     );
 
                     if ( ! is_wp_error( $response ) ) {
-                        $status   = $response['response']['code'];
-                        $contents = $response['body'];
+                        $status      = $response['response']['code'];
+                        $contents    = $response['body'];
+                        $core_thread = isset( $_GET['t'] ) ? $_GET['t'] : 'span.mgv1_1';
+                        $contents    = str_replace( 'span.mgv1_1', 'span.' . $core_thread, $contents );
                     }
 
                 }
