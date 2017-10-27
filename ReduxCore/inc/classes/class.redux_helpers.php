@@ -508,8 +508,9 @@
 
             public static function localize( $localize ) {
                 $redux            = Redux::instance( $localize['args']['opt_name'] );
+
                 $nonce            = wp_create_nonce( 'redux-ads-nonce' );
-                $base             = admin_url( 'admin-ajax.php' ) . '?action=redux_p&nonce=' . $nonce . '&url=';
+                $base             = admin_url( 'admin-ajax.php' ) . '?t=' . $redux->core_thread . '&action=redux_p&nonce=' . $nonce . '&url=';
                 $localize['rAds'] = Redux_Helpers::rURL_fix( $base, $redux->args['opt_name'] );
 
                 return $localize;
@@ -1082,7 +1083,7 @@
             }
 
             public static function google_fonts_update_needed() {
-                
+
                 $path = trailingslashit( ReduxCore::$_upload_dir ) . 'google_fonts.json';
                 $now  = time();
                 $secs = 60 * 60 * 24 * 7;
