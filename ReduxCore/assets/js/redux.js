@@ -758,7 +758,7 @@ function colorNameToHex( colour ) {
 
                 el.find( '#' + instance ).attr(
                     'style',
-                    'position:absolute; top: 0px; right: 3px; display:block !important;'
+                    'position:absolute; top: 0px; right: 0px; display:block !important;'
                 ).css( 'left', '-99999px' );
 
                 el.find( '#' + instance ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
@@ -791,22 +791,30 @@ function colorNameToHex( colour ) {
         var width = el.attr( 'data-width' );
         var height = el.attr( 'data-height' );
         var eHeight = el.height();
-
         if ( !width ) {
             width = el.width();
             el.attr( 'data-width', width );
         }
-
         if ( !height || eHeight > height ) {
             height = eHeight;
-
             el.attr( 'data-height', height );
             el.css( "width", 'auto' );
             el.attr( 'data-width', el.width() );
-
             width = el.width();
         }
-
+        var test = ($( '#redux-header' ).outerHeight( true ) - el.height() - 5) / 2;
+        if ( $( '#' + redux.optName.core_instance ).css( 'clear' ) === "both" ) {
+            test = 0;
+        }
+        el.css( "margin-top", test );
+        if ( test > 5 ) {
+            el.css( 'margin-right', test + 'px' );
+        } else if ( maxWidth < 520 ) {
+            el.css( 'margin-right', '0px' );
+        } else {
+            el.css( 'margin-right', (test + 3) + 'px' );
+        }
+        maxWidth -= test;
         // Check if the current width is larger than the max
         if ( width > maxWidth ) {
             ratio = maxWidth / width;   // get ratio for scaling image
@@ -820,7 +828,6 @@ function colorNameToHex( colour ) {
         if ( maxWidth < 500 ) {
             maxHeight = height;
         }
-
         // Check if current height is larger than max
         if ( height > maxHeight ) {
             ratio = maxHeight / height; // get ratio for scaling image
@@ -831,22 +838,6 @@ function colorNameToHex( colour ) {
         } else {
             el.css( "height", 'auto' );   // Set new height
         }
-
-
-        var test = ($( '#redux-header' ).outerHeight( true ) - el.height() - 5) / 2;
-
-
-        if ( $( '#' + redux.optName.core_instance ).css( 'clear' ) === "both" ) {
-            test = 0;
-        }
-
-        if ( test > 0 ) {
-            el.css( "margin-top", test );
-        } else {
-            el.css( "margin-top", 0 );
-        }
-        el.css( 'transition', 'all .1s ease-in-out' );
-
         if ( $( '#redux-header .redux_field_search' ) ) {
             $( '#redux-header .redux_field_search' ).css( 'right', ($( el ).width() + 20) );
         }
@@ -871,7 +862,7 @@ function colorNameToHex( colour ) {
                     }
                 }
             }
-            if ( maxWidth < 500 ) {
+            if ( maxWidth < 520 ) {
                 maxWidth = el.width();
                 maxHeight = 500;
                 dhw = 4;
@@ -880,8 +871,6 @@ function colorNameToHex( colour ) {
                 rAds.css( 'clear', 'none' ).css( 'position', 'absolute' ).css( 'text-align', 'left' );
             }
             maxWidth = maxWidth - dhw;
-
-            // maxWidth = el.outerWidth(true) - el.find( '.display_header' ).outerWidth(true) - 30;
         } else {
             el = $( '#customize-info' );
             maxWidth = el.width();

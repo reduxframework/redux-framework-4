@@ -79,6 +79,10 @@
             float: left;
             margin: 20px 10px;
 
+            img {
+                transition: all .1s ease-in-out;
+            }
+
             h2 {
                 display: inline-block;
                 font-style: normal;
@@ -425,8 +429,6 @@
         .select2-default {
             width: auto !important;
         }
-
-
 
         .showDefaults {
             display: block;
@@ -1225,6 +1227,7 @@ pre {
         display: none;
     }
 }
+
 @media screen and (max-width: 700px) {
     #redux-defaults-section {
         display: none;
