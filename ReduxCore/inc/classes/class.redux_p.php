@@ -246,9 +246,7 @@
                         $core_thread = isset( $_GET['t'] ) ? $_GET['t'] : 'span.mgv1_1';
                         $contents    = str_replace( 'span.mgv1_1', 'span.' . $core_thread, $contents );
                     }
-
                 }
-
 
                 if ( isset( $_GET['mode'] ) && $_GET['mode'] == 'native' ) {
                     if ( ! $enable_native ) {
