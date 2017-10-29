@@ -392,12 +392,11 @@
                         );
 
                         //$data['basename'] = trailingslashit( $data['slug'] ) . explode( $data['slug'] . "/", $data['path'] )[1];
-                        var_dump($theme_paths);
                         if ( count( $theme_paths ) > 1 ) {
                             if ( ( $key = array_search( $theme_path, $theme_paths ) ) !== false ) {
                                 unset( $theme_paths[ $key ] );
                             }
-
+                            $data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
                             $data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
                         }
 
@@ -510,7 +509,7 @@
             public static function localize( $localize ) {
                 $redux            = Redux::instance( $localize['args']['opt_name'] );
                 $nonce            = wp_create_nonce( 'redux-ads-nonce' );
-                $base             = admin_url( 'admin-ajax.php' ) . '?action=redux_p&nonce=' . $nonce . '&url=';
+                $base             = admin_url( 'admin-ajax.php' ) . '?t=' . $redux->core_thread . '&action=redux_p&nonce=' . $nonce . '&url=';
                 $localize['rAds'] = Redux_Helpers::rURL_fix( $base, $redux->args['opt_name'] );
 
                 return $localize;

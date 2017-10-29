@@ -475,7 +475,8 @@
         }
 
         .form-table {
-            clear: none;
+            clear: none !important;
+            width: auto !important;
             margin-top: 0px !important;
 
             tr:first-child th,

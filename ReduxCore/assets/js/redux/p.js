@@ -26,7 +26,7 @@
 
                 el.find( '#' + instance ).attr(
                     'style',
-                    'position:absolute; top: 6px; right: 9px; display:block !important;overflow:hidden;'
+                    'position:absolute; top: 0px; right: 3px; display:block !important;'
                 ).css( 'left', '-99999px' );
 
                 el.find( '#' + instance ).html( redux.optName.rAds.replace( /<br\s?\/?>/, '' ) );
@@ -75,7 +75,6 @@
             width = el.width();
         }
 
-
         // Check if the current width is larger than the max
         if ( width > maxWidth ) {
             ratio = maxWidth / width;   // get ratio for scaling image
@@ -86,6 +85,9 @@
         } else {
             el.css( "width", 'auto' );   // Set new height
         }
+        if ( maxWidth < 500 ) {
+            maxHeight = height;
+        }
 
         // Check if current height is larger than max
         if ( height > maxHeight ) {
@@ -94,19 +96,24 @@
             el.css( "width", width * ratio );    // Scale width based on ratio
             width = width * ratio;    // Reset width to match scaled image
             height = height * ratio;    // Reset height to match scaled image
-
-
         } else {
             el.css( "height", 'auto' );   // Set new height
         }
 
-        var test = ($( document.getElementById( 'redux-header' ) ).height() - el.height()) / 2;
+
+        var test = (window.$( '#redux-header' ).outerHeight( true ) - el.height() - 5) / 2;
+
+
+        if ( $( '#' + redux.optName.core_instance ).css( 'clear' ) === "both" ) {
+            test = 0;
+        }
 
         if ( test > 0 ) {
             el.css( "margin-top", test );
         } else {
             el.css( "margin-top", 0 );
         }
+        el.css( 'transition', 'all .1s ease-in-out' );
 
         if ( $( '#redux-header .redux_field_search' ) ) {
             $( '#redux-header .redux_field_search' ).css( 'right', ($( el ).width() + 20) );
@@ -114,16 +121,37 @@
     };
 
     $.redux.resizeAds = function() {
-        var el = $( '#redux-header' );
-        var maxHeight = el.height();
+        var el = window.$( '#redux-header' );
+
+        var maxHeight = el.innerHeight();
+        var el_margin = el.outerWidth( true ) - el.innerWidth();
         var rAds = el.find( '#' + redux.optName.core_instance );
         var maxWidth;
 
         if ( el.length ) {
-            maxWidth = el.width() - el.find( '.display_header' ).width() - 30;
+            maxWidth = el.outerWidth( true ) - 30;
+            var dhw = el.find( '.display_header' ).outerWidth( true );
+            if ( el.find( '.redux-dev-mode-notice-container' ).length && maxWidth < 600 ) {
+                if ( maxWidth > 500 ) {
+                    var dev_mode_header = el.find( '.redux-dev-mode-notice-container' ).outerWidth( true ) + el_margin;
+                    if ( dev_mode_header > dhw ) {
+                        dhw = dev_mode_header;
+                    }
+                }
+            }
+            if ( maxWidth < 500 ) {
+                maxWidth = el.width();
+                maxHeight = 500;
+                dhw = 4;
+                rAds.css( 'clear', 'both' ).css( 'position', 'static' ).css( 'text-align', 'center' );
+            } else {
+                rAds.css( 'clear', 'none' ).css( 'position', 'absolute' ).css( 'text-align', 'left' );
+            }
+            maxWidth = maxWidth - dhw;
+
+            // maxWidth = el.outerWidth(true) - el.find( '.display_header' ).outerWidth(true) - 30;
         } else {
             el = $( '#customize-info' );
-
             maxWidth = el.width();
         }
 
@@ -146,7 +174,7 @@
         );
 
         if ( rAds.css( 'left' ) === "-99999px" ) {
-            rAds.css( 'display', 'none' ).css( 'left', 'auto' );
+            rAds.css( 'display', 'none' ).css( 'left', 'auto' ).css( 'top', '0px' );
         }
 
         rAds.fadeIn( 'slow' );

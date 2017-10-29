@@ -51,13 +51,6 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
             );
 
             $this->value = wp_parse_args( $this->value, $defaults );
-            
-            if (ReduxCore::$_pro_loaded) {
-                $this->field = apply_filters('redux/pro/border/field/set_defaults', $this->field);
-            } else {
-                $this->field['color_alpha'] = array();
-                $this->field['color_alpha'] = false;
-            }            
         }
         
         /**
