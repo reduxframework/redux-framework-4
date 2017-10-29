@@ -51,11 +51,11 @@
                     a {
                         background-color: $primary!important;
                         
-                        @if $text_shadow == 1 {
-                            text-shadow: 1px 1px darken($primary, 30%)!important;
-                        } @else {
-                            text-shadow: 1px 1px transparent!important;
-                        }
+                        //@if $text_shadow == 1 {
+                        //    text-shadow: 1px 1px darken($primary, 30%)!important;
+                        //} @else {
+                        //    text-shadow: 1px 1px transparent!important;
+                        //}
                         
                         color: $active_menu_text!important;
                     }
@@ -69,11 +69,11 @@
                                     font-weight: 700!important;
                                     color: $active_submenu_text!important;
                                     
-                                    @if $text_shadow == 1 {
-                                        text-shadow: 1px 1px darken($primary, 20%)!important;
-                                    } @else {
-                                        text-shadow: 1px 1px transparent!important;
-                                    }
+                                    //@if $text_shadow == 1 {
+                                    //    text-shadow: 1px 1px darken($primary, 20%)!important;
+                                    //} @else {
+                                    //    text-shadow: 1px 1px transparent!important;
+                                    //}
                                 }
                             }
                         }
