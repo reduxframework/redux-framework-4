@@ -239,7 +239,7 @@
              *
              * @return      void - Admin notice is diaplyed if new version is found
              */
-            public static function updateCheck( $curVer ) {
+            public static function updateCheck($core, $curVer ) {
 
                 // If no cookie, check for new ver
                 if ( ! isset( $_COOKIE['redux_update_check'] ) ) { // || 1 == strcmp($_COOKIE['redux_update_check'], self::$_version)) {
