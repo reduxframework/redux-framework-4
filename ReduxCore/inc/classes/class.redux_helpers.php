@@ -321,6 +321,19 @@
              * Deprecated
              */
             public static function cleanFilePath( $path ) {
+                $http = strpos($path, 'http://');
+                $https = strpos($path, 'https://');
+                
+                if ($http !== false || $https !== false) {
+                    $path = str_replace( '', '', str_replace( array( "\\", "\\\\" ), '/', $path ) );
+
+                    if ( $path[ strlen( $path ) - 1 ] === '/' ) {
+                        $path = rtrim( $path, '/' );
+                    }
+
+                    return $path;
+                }
+                
                 # Deprecated
                 return Redux_Helpers::wp_normalize_path( $path );
             }
