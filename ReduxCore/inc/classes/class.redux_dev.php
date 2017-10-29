@@ -11,10 +11,8 @@ if (!class_exists('Redux_Dev')) {
         public function __construct ( $parent = null ) {
             parent::__construct ( $parent );
             
-            if ( true == $parent->args['dev_mode'] ) {
-                if ( true == $parent->args['update_notice'] ) {
-                    add_action( 'admin_init', array( $this, '_update_check' ) );
-                }
+            if ( $parent->args['dev_mode'] && $parent->args['update_notice'] ) {
+                add_action( 'admin_init', array( $this, '_update_check' ) );
             }            
             
             $this->load($parent);
@@ -24,7 +22,7 @@ if (!class_exists('Redux_Dev')) {
             if ( $core->args['dev_mode'] == true || Redux_Helpers::isLocalHost() == true ) {
                 new Redux_Dashboard( $core );
 
-                if ( ! isset ( $GLOBALS['redux_notice_check'] ) ) {
+                if ( ! isset ( $GLOBALS['redux_notice_check'] ) || $GLOBALS['redux_notice_check'] == 0 ) {
                     $params = array(
                         'dir_name'    => 'notice',
                         'server_file' => 'http://reduxframework.com/wp-content/uploads/redux/redux_notice.json',
@@ -43,11 +41,11 @@ if (!class_exists('Redux_Dev')) {
             $core = $this->core();
             
             // Only one notice per instance please
-            if ( ! isset ( $GLOBALS['redux_update_check'] ) ) {
-                $msg = Redux_Functions::updateCheck( ReduxCore::$_version );
+            if ( ! isset ( $GLOBALS['redux_update_check'] ) || $GLOBALS['redux_update_check'] == 0 ) {
+                $msg = Redux_Functions::updateCheck( $core, ReduxCore::$_version );
 
                 if (is_array($msg) && !empty($msg)) {
-                    $core->admin_notices[] = $msg;                        
+                    Redux_Admin_Notices::set_notice($msg);
                 }
 
                 $GLOBALS['redux_update_check'] = 1;

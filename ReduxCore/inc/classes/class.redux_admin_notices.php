@@ -43,6 +43,18 @@ if ( ! class_exists( 'Redux_Admin_Notices' ) ) {
             $this->dismissAdminNotice();
         }
         
+        public static function set_notice($data) {
+            extract($data);
+
+            $parent->admin_notices[$parent->args['page_slug']][] = array(
+                'type'      => $type,
+                'msg'       => $msg,
+                'id'        => $id . '_' . $parent->args['opt_name'],
+                'dismiss'   => $dismiss,
+                'color'     => isset($color) ? $color : '#00A2E3'
+            );
+        }
+        
         /**
          * adminNotices - Evaluates user dismiss option for displaying admin notices
          *
@@ -57,87 +69,86 @@ if ( ! class_exists( 'Redux_Admin_Notices' ) ) {
             if ( ! empty( $notices ) ) {
                 $core = $this->core();
                 
-                // Enum admin notices
-                foreach ( $notices as $notice ) {
+                if (isset($_GET) && isset($_GET['page']) && $_GET['page'] == $core->args['page_slug']) {
+                    
+                    // Enum admin notices
+                    foreach ( $notices[$core->args['page_slug']] as $notice ) {
 
-                    $add_style = '';
-                    if ( strpos( $notice['type'], 'redux-message' ) != false ) {
-                        $add_style = 'style="border-left: 4px solid ' . esc_attr( $notice['color'] ) . '!important;"';
-                    }
-
-                    if ( true == $notice['dismiss'] ) {
-
-                        // Get user ID
-                        $userid = $current_user->ID;
-
-                        if ( ! get_user_meta( $userid, 'ignore_' . $notice['id'] ) ) {
-
-                            // Check if we are on admin.php.  If we are, we have
-                            // to get the current page slug and tab, so we can
-                            // feed it back to Wordpress.  Why>  admin.php cannot
-                            // be accessed without the page parameter.  We add the
-                            // tab to return the user to the last panel they were
-                            // on.
-                            $pageName = '';
-                            $curTab   = '';
-                            if ( $pagenow == 'admin.php' || $pagenow == 'themes.php' ) {
-
-                                // Get the current page.  To avoid errors, we'll set
-                                // the redux page slug if the GET is empty.
-                                $pageName = empty( $_GET['page'] ) ? '&amp;page=' . $core->args['page_slug'] : '&amp;page=' . esc_attr( $_GET['page'] );
-
-                                // Ditto for the current tab.
-                                $curTab = empty( $_GET['tab'] ) ? '&amp;tab=0' : '&amp;tab=' . esc_attr( $_GET['tab'] );
-                            }
-
-                            global $wp_version;
-                            // Print the notice with the dismiss link
-                            if ( version_compare( $wp_version, '4.2', '>' ) ) {
-                                $output    = "";
-                                $css_id    = esc_attr( $notice['id'] ) . $pageName . $curTab;
-                                $css_class = esc_attr( $notice['type'] ) . ' redux-notice notice is-dismissible redux-notice';
-                                $output .= "<div {$add_style} id='$css_id' class='$css_class'> \n";
-                                $nonce = wp_create_nonce( $notice['id'] . $userid . 'nonce' );
-                                $output .= "<input type='hidden' class='dismiss_data' id='" . esc_attr( $notice['id'] ) . $pageName . $curTab . "' value='{$nonce}'> \n";
-                                $output .= '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
-                                $output .= "</div> \n";
-                                echo $output;
-                            } else {
-                                echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $notice['id'] ) . $pageName . $curTab . '">' . esc_html__( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
-                            }
+                        $add_style = '';
+                        if ( strpos( $notice['type'], 'redux-message' ) != false ) {
+                            $add_style = 'style="border-left: 4px solid ' . esc_attr( $notice['color'] ) . '!important;"';
                         }
-                    } else {
-                        // Standard notice
-                        echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice"><p>' . wp_kses_post( $notice['msg'] ) . '</a>.</p></div>';
-                    }
-                    ?>
-                    <script>
-                        jQuery( document ).ready(
-                            function( $ ) {
-                                $( 'body' ).on(
-                                    'click', '.redux-notice.is-dismissible .notice-dismiss', function( event ) {
-                                        var $data = $( this ).parent().find( '.dismiss_data' );
-                                        $.post(
-                                            ajaxurl, {
-                                                action: 'redux_hide_admin_notice',
-                                                id: $data.attr( 'id' ),
-                                                nonce: $data.val()
-                                            }
-                                        );
-                                    }
-                                );
+
+                        if ( true == $notice['dismiss'] ) {
+
+                            // Get user ID
+                            $userid = $current_user->ID;
+
+                            if ( ! get_user_meta( $userid, 'ignore_' . $notice['id'] ) ) {
+
+                                // Check if we are on admin.php.  If we are, we have
+                                // to get the current page slug and tab, so we can
+                                // feed it back to Wordpress.  Why>  admin.php cannot
+                                // be accessed without the page parameter.  We add the
+                                // tab to return the user to the last panel they were
+                                // on.
+                                $pageName = '';
+                                $curTab   = '';
+                                if ( $pagenow == 'admin.php' || $pagenow == 'themes.php' ) {
+
+                                    // Get the current page.  To avoid errors, we'll set
+                                    // the redux page slug if the GET is empty.
+                                    $pageName = empty( $_GET['page'] ) ? '&amp;page=' . $core->args['page_slug'] : '&amp;page=' . esc_attr( $_GET['page'] );
+
+                                    // Ditto for the current tab.
+                                    $curTab = empty( $_GET['tab'] ) ? '&amp;tab=0' : '&amp;tab=' . esc_attr( $_GET['tab'] );
+                                }
+
+                                global $wp_version;
+                                // Print the notice with the dismiss link
+                                if ( version_compare( $wp_version, '4.2', '>' ) ) {
+                                    $output    = "";
+                                    $css_id    = esc_attr( $notice['id'] ) . $pageName . $curTab;
+                                    $css_class = esc_attr( $notice['type'] ) . ' redux-notice notice is-dismissible redux-notice';
+                                    $output .= "<div {$add_style} id='$css_id' class='$css_class'> \n";
+                                    $nonce = wp_create_nonce( $notice['id'] . $userid . 'nonce' );
+                                    $output .= "<input type='hidden' class='dismiss_data' id='" . esc_attr( $notice['id'] ) . $pageName . $curTab . "' value='{$nonce}'> \n";
+                                    $output .= '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
+                                    $output .= "</div> \n";
+                                    echo $output;
+                                } else {
+                                    echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $notice['id'] ) . $pageName . $curTab . '">' . esc_html__( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
+                                }
                             }
-                        );
-                    </script>
-                    <?php
-                    /*
-
-                     */
-
+                        } else {
+                            // Standard notice
+                            echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice"><p>' . wp_kses_post( $notice['msg'] ) . '</a>.</p></div>';
+                        }
+    ?>
+                        <script>
+                            jQuery( document ).ready(
+                                function( $ ) {
+                                    $( 'body' ).on(
+                                        'click', '.redux-notice.is-dismissible .notice-dismiss', function( event ) {
+                                            var $data = $( this ).parent().find( '.dismiss_data' );
+                                            $.post(
+                                                ajaxurl, {
+                                                    action: 'redux_hide_admin_notice',
+                                                    id: $data.attr( 'id' ),
+                                                    nonce: $data.val()
+                                                }
+                                            );
+                                        }
+                                    );
+                                }
+                            );
+                        </script>
+    <?php
+                    }
                 }
-
+                
                 // Clear the admin notice array
-                $core->admin_notices = array();
+                $core->admin_notices[$core->args['opt_name']] = array();
             }
         }
 

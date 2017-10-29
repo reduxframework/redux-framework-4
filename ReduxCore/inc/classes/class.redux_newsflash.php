@@ -112,13 +112,16 @@ if ( ! class_exists( 'Redux_Newsflash' ) ) {
                     $key = get_option( $this->cookie_id );
 
                     // set admin notice array
-                    $this->parent->admin_notices[] = array(
-                        'type'    => $data['type'],
-                        'msg'     => $data['title'] . $data['message'],
-                        'id'      => $this->cookie_id . '_' . $key,
-                        'dismiss' => true,
-                        'color'   => $data['color']
+                    $notice_data = array(
+                        'parent'    => $this->parent,
+                        'type'      => $data['type'],
+                        'msg'       => $data['title'] . $data['message'],
+                        'id'        => $this->cookie_id . '_' .  $key,
+                        'dismiss'   => true,
+                        'color'     => $data['color']
                     );
+
+                    Redux_Admin_Notices::set_notice($notice_data);                    
                 }
             }
         }

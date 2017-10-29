@@ -5,17 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if (!class_exists('Redux_Args')) {
-    
+
     class Redux_Args {
-        
+
         public $get             = array();
-        
+
         private $framework_url  = 'http://www.reduxframework.com/';
         private $parent         = null;
-        
+
         public function __construct ($parent, $args) {
             $this->parent = $parent;
-            
+
             $default = array(
                 'opt_name'                  => '',
                 'google_api_key'            => '',
@@ -98,42 +98,44 @@ if (!class_exists('Redux_Args')) {
                 'flyout_submenus'           => true,
                 'admin_theme'               => 'wordpress'
             );
-            
+
             $args = wp_parse_args( $args, $default );
-            
+
             $args = $this->args($args);
             $args = $this->default_cleanup($args);
-            
+
             $this->get = $args;
-            
+
+            $this->parent->args = $args;
+                    
             $this->change_demo_defaults($args);
         }
-        
+
         private function args($args) {
             $args = $this->no_errors_please($args);
-            
+
             $this->parent->old_opt_name = $args['opt_name'];
 
             $args = $this->filters($args);
-            
+
             $this->parent->core_instance    = chr(64 + rand( 1, 26 )) . time() . '_' . rand(0,1000000);
             $this->parent->core_thread      = chr(64 + rand( 1, 26 )) . time() . '_' . rand(0,1000000);
-            
+
             if ( $args['opt_name'] == $this->parent->old_opt_name ) {
                 $this->parent->old_opt_name = null;
                 unset($this->parent->old_opt_name);
             }
-            
+
             // Do not save the defaults if we're on a live preview!
             if ( $GLOBALS['pagenow'] == "customize" && isset( $_GET['theme'] ) && ! empty( $_GET['theme'] ) ) {
                 $args['save_defaults'] = false;
             }
-            
+
             $args = $this->shim($args);
-            
+
             return $args;
         }
-        
+
         private function filters($args) {
             /**
              * filter 'redux/args/{opt_name}'
@@ -148,10 +150,10 @@ if (!class_exists('Redux_Args')) {
              * @param  array $args ReduxFramework configuration
              */
             $args = apply_filters( "redux/options/{$args['opt_name']}/args", $args );
-            
+
             return $args;
         }
-        
+
         private function no_errors_please($args) {
             if ( empty ( $args['transient_time'] ) ) {
                 $args['transient_time'] = 60 * MINUTE_IN_SECONDS;
@@ -168,16 +170,29 @@ if (!class_exists('Redux_Args')) {
             if ( empty ( $args['page_title'] ) ) {
                 $args['page_title'] = esc_html__( 'Options', 'redux-framework' );
             }
+
+            // Auto create the page_slug appropriately
+            if ( empty( $args['page_slug'] ) ) {
+                if ( ! empty( $args['display_name'] ) ) {
+                    $args['page_slug'] = sanitize_html_class( $args['display_name'] );
+                } else if ( ! empty( $args['page_title'] ) ) {
+                    $args['page_slug'] = sanitize_html_class( $args['page_title'] );
+                } else if ( ! empty( $args['menu_title'] ) ) {
+                    $args['page_slug'] = sanitize_html_class( $args['menu_title'] );
+                } else {
+                    $args['page_slug'] = str_replace( '-', '_', $args['opt_name'] );
+                }
+            }
             
             return $args;
         }
-        
+
         private function shim($args){
             /**
              * SHIM SECTION
              * Old variables and ways of doing things that need correcting.  ;)
              * */
-            
+
             // Variable name change
             if ( ! empty ( $args['page_cap'] ) ) {
                 $args['page_permissions'] = $args['page_cap'];
@@ -193,10 +208,10 @@ if (!class_exists('Redux_Args')) {
                 $args['menu_type'] = $args['page_type'];
                 unset ( $args['page_type'] );
             }
-            
+
             return $args;
         }
-        
+
         private function change_demo_defaults($args) {
             if ( $args['dev_mode'] || Redux_Helpers::isLocalHost() == true ) {
                 if ( ! empty( $args['admin_bar_links'] ) ) {
@@ -229,31 +244,37 @@ if (!class_exists('Redux_Args')) {
                 }
             }
         }
-        
+
         private function display_arg_change_notice( $mode, $msg = '' ) {
             if ( $mode == 'admin' ) {
                 if ( ! $this->parent->omit_admin_items ) {
-                    $this->parent->admin_notices[] = array(
-                        'type'    => 'error',
-                        'msg'     => $msg,
-                        'id'      => 'admin_config',
-                        'dismiss' => true,
+                    $data = array(
+                        'parent'    => $this->parent,
+                        'type'      => 'error',
+                        'msg'       => $msg,
+                        'id'        => 'admin_config',
+                        'dismiss'   => true
                     );
+
+                    Redux_Admin_Notices::set_notice($data);
                 }
             }
 
             if ( $mode == 'share' ) {
                 if ( ! $this->parent->omit_share_icons ) {
-                    $this->parent->admin_notices[] = array(
-                        'type'    => 'error',
-                        'msg'     => $msg,
-                        'id'      => 'share_config',
-                        'dismiss' => true,
+                    $data = array(
+                        'parent'    => $this->parent,
+                        'type'      => 'error',
+                        'msg'       => $msg,
+                        'id'        => 'share_config',
+                        'dismiss'   => true
                     );
+
+                    Redux_Admin_Notices::set_notice($data);
                 }
             }
         }
-        
+
         private function default_cleanup($args) {
 
             // Fix the global variable name
@@ -266,22 +287,9 @@ if (!class_exists('Redux_Args')) {
                 if ( $args['dev_mode'] != true ) {
                     $args['update_notice'] = false;
                 }
-                
+
                 $this->parent->dev_mode_forced = true;
                 $args['dev_mode'] = true;
-            }
-
-            // Auto create the page_slug appropriately
-            if ( empty( $args['page_slug'] ) ) {
-                if ( ! empty( $args['display_name'] ) ) {
-                    $args['page_slug'] = sanitize_html_class( $args['display_name'] );
-                } else if ( ! empty( $args['page_title'] ) ) {
-                    $args['page_slug'] = sanitize_html_class( $args['page_title'] );
-                } else if ( ! empty( $args['menu_title'] ) ) {
-                    $args['page_slug'] = sanitize_html_class( $args['menu_title'] );
-                } else {
-                    $args['page_slug'] = str_replace( '-', '_', $args['opt_name'] );
-                }
             }
 
             if ( isset( $args['customizer_only'] ) && $args['customizer_only'] ) {
@@ -302,7 +310,7 @@ if (!class_exists('Redux_Args')) {
                     $args['use_cdn'] = false;
                 }
             }
-            
+
             return $args;
         }
     }

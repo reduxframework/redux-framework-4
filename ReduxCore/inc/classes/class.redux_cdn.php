@@ -14,9 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Redux_CDN' ) ) {
-    
+
     class Redux_CDN {
-        
+
         static public $_parent;
         static private $_set;
 
@@ -78,12 +78,17 @@ if ( ! class_exists( 'Redux_CDN' ) ) {
                                 $msg = sprintf( esc_html__( 'If you are developing offline, please download and install the','redux-framework') . ' <a href="%s" target="_blank">Redux Vendor Support</a> ' . esc_html__('plugin/extension to bypass the our CDN and avoid this warning', 'redux-framework' ), 'https://github.com/reduxframework/redux-vendor-support' );
                             }
 
-                            self::$_parent->admin_notices[] = array(
-                                'type'    => 'error',
-                                'msg'     => '<strong>' . esc_html__( 'Redux Framework Warning', 'redux-framework' ) . '</strong><br/>' . sprintf( '%s ' . esc_html__( 'CDN unavailable.  Some controls may not render properly.', 'redux-framework' ), $handle ) . '  ' . $msg,
-                                'id'      => $handle . $tran_key,
-                                'dismiss' => false,
+                            $msg = '<strong>' . __( 'Redux Framework Warning', 'redux-framework' ) . '</strong><br/>' . sprintf( __( '%s CDN unavailable.  Some controls may not render properly.', 'redux-framework' ), $handle ) . '  ' . $msg;
+                            
+                            $data = array(
+                                'parent'    => self::$_parent,
+                                'type'      => 'error',
+                                'msg'       => $msg,
+                                'id'        => $handle . $tran_key,
+                                'dismiss'   => false
                             );
+
+                            Redux_Admin_Notices::set_notice($data);
                         }
                     }
                 } else {
@@ -109,12 +114,17 @@ if ( ! class_exists( 'Redux_CDN' ) ) {
                 }
             } else {
                 if ( ! self::$_set ) {
-                    self::$_parent->admin_notices[] = array(
-                        'type'    => 'error',
-                        'msg'     => sprintf( esc_html__( 'The', 'redux-framework') . ' <a href="%s">Vendor Support plugin</a> ' . esc_html__( '(or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and', 'redux-framework') . ' <a href="%s">' . esc_html__( 'activated','redux-framework') . '</a>', 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) ),
-                        'id'      => $handle . '23',
-                        'dismiss' => false,
+                    $msg = sprintf( __( 'The <a href="%s">Vendor Support plugin</a> (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and <a href="%s">activated</a>', 'redux-framework' ), 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) );
+
+                    $data = array(
+                        'parent'    => self::$_parent,
+                        'type'      => 'error',
+                        'msg'       => $msg,
+                        'id'        => $handle,
+                        'dismiss'   => false
                     );
+
+                    Redux_Admin_Notices::set_notice($data);
 
                     self::$_set = true;
                 }
