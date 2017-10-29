@@ -101,7 +101,7 @@
         }
 
 
-        var test = (window.$( '#redux-header' ).outerHeight( true ) - el.height() - 5) / 2;
+        var test = ($( '#redux-header' ).outerHeight( true ) - el.height() - 5) / 2;
 
 
         if ( $( '#' + redux.optName.core_instance ).css( 'clear' ) === "both" ) {
@@ -121,7 +121,7 @@
     };
 
     $.redux.resizeAds = function() {
-        var el = window.$( '#redux-header' );
+        var el = $( '#redux-header' );
 
         var maxHeight = el.innerHeight();
         var el_margin = el.outerWidth( true ) - el.innerWidth();
