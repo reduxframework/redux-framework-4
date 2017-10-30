@@ -17,7 +17,7 @@
  * @author      Luciano "WebCaos" Ubertini
  * @author      Kevin Provance (kprovance)
  * @author      Dovy Paukstys
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -51,7 +51,7 @@ if ( ! class_exists( 'ReduxFramework_link_color' ) ) {
                 'hover'   => '',
                 'visited' => '',
                 'active'  => '',
-                'focus'  => ''
+                'focus'   => ''
             );
 
             $this->value = wp_parse_args( $this->value, $defaults );
@@ -76,70 +76,120 @@ if ( ! class_exists( 'ReduxFramework_link_color' ) ) {
             if ( $this->field['regular'] === true && $this->field['default']['regular'] !== false ) {
                 echo '<span class="linkColor">';
                 echo     '<strong>' . esc_html__( 'Regular', 'redux-framework' ) . '</strong>&nbsp;';
-                echo     '<input 
-                            id="' . esc_attr($this->field['id']) . '-regular" 
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[regular]' . '" 
-                            value="' . esc_attr($this->value['regular']) . '" 
-                            class="color-picker redux-color redux-color-regular redux-color-init ' . esc_attr($this->field['class']) . '"  
-                            type="text" 
-                            data-default-color="' . esc_attr($this->field['default']['regular']) . '"
-                            />';
+                echo     '<input ';
+                echo         'id="' . esc_attr($this->field['id']) . '-regular" ';
+                echo         'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[regular]' . '"';
+                echo         'value="' . esc_attr($this->value['regular']) . '"';
+                echo         'class="color-picker redux-color redux-color-regular redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo         'type="text"';
+                echo         'data-default-color="' . esc_attr($this->field['default']['regular']) . '"';
+                
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => 'regular'
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }                
+                
+                echo     '/>';
                 echo '</span>';
             }
 
             if ( $this->field['hover'] === true && $this->field['default']['hover'] !== false ) {
                 echo '<span class="linkColor">';
                 echo     '<strong>' . esc_html__( 'Hover', 'redux-framework' ) . '</strong>&nbsp;';
-                echo     '<input 
-                            id="' . esc_attr($this->field['id']) . '-hover" 
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[hover]' . '" 
-                            value="' . esc_attr($this->value['hover']) . '" 
-                            class="color-picker redux-color redux-color-hover redux-color-init ' . esc_attr($this->field['class']) . '"
-                            type="text" 
-                            data-default-color="' . esc_attr($this->field['default']['hover']) . '"
-                            />';
+                echo     '<input ';
+                echo         'id="' . esc_attr($this->field['id']) . '-hover"';
+                echo         'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[hover]' . '"';
+                echo         'value="' . esc_attr($this->value['hover']) . '"';
+                echo         'class="color-picker redux-color redux-color-hover redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo         'type="text"';
+                echo         'data-default-color="' . esc_attr($this->field['default']['hover']) . '"';
+                
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => 'hover'
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }                
+                
+                echo     '/>';
                 echo '</span>';
             }
 
             if ( $this->field['visited'] === true && $this->field['default']['visited'] !== false ) {
                 echo '<span class="linkColor">';
                 echo     '<strong>' . esc_html__( 'Visited', 'redux-framework' ) . '</strong>&nbsp;';
-                echo     '<input 
-                            id="' . esc_attr($this->field['id']) . '-visited" 
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[visited]' . '" 
-                            value="' . esc_attr($this->value['visited']) . '" 
-                            class="color-picker redux-color redux-color-visited redux-color-init ' . esc_attr($this->field['class']) . '"
-                            type="text" 
-                            data-default-color="' . esc_attr($this->field['default']['visited']) . '"
-                            />';
+                echo     '<input ';
+                echo         'id="' . esc_attr($this->field['id']) . '-visited"';
+                echo         'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[visited]' . '"';
+                echo         'value="' . esc_attr($this->value['visited']) . '"';
+                echo         'class="color-picker redux-color redux-color-visited redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo         'type="text"';
+                echo         'data-default-color="' . esc_attr($this->field['default']['visited']) . '"';
+                
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => 'visited'
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }                
+                
+                echo     '/>';
                 echo '</span>';
             }
 
             if ( $this->field['active'] === true && $this->field['default']['active'] !== false ) {
                 echo '<span class="linkColor">';
                 echo     '<strong>' . esc_html__( 'Active', 'redux-framework' ) . '</strong>&nbsp;';
-                echo     '<input
-                            id="' . esc_attr($this->field['id']) . '-active" 
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[active]' . '"
-                            value="' . esc_attr($this->value['active']) . '"
-                            class="color-picker redux-color redux-color-active redux-color-init ' . esc_attr($this->field['class']) . '"
-                            type="text" 
-                            data-default-color="' . esc_attr($this->field['default']['active']) . '"
-                            />';
+                echo     '<input ';
+                echo         'id="' . esc_attr($this->field['id']) . '-active"';
+                echo         'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[active]' . '"';
+                echo         'value="' . esc_attr($this->value['active']) . '"';
+                echo         'class="color-picker redux-color redux-color-active redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo         'type="text"';
+                echo         'data-default-color="' . esc_attr($this->field['default']['active']) . '"';
+                
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => 'active'
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }                
+                
+                echo     '/>';
                 echo '</span>';
             }
             
             if ( $this->field['focus'] === true && $this->field['default']['focus'] !== false ) {
                 echo '<span class="linkColor">';
                 echo     '<strong>' . esc_html__( 'Focus', 'redux-framework' ) . '</strong>&nbsp;';
-                echo     '<input
-                            id="' . esc_attr($this->field['id']) . '-focus" 
-                            name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[focus]' . '"
-                            value="' . esc_attr($this->value['focus']) . '"
-                            class="color-picker redux-color redux-color-focus redux-color-init ' . esc_attr($this->field['class']) . '"
-                            type="text" 
-                            data-default-color="' . esc_attr($this->field['default']['focus']) . '"
-                            />';
+                echo     '<input ';
+                echo         'id="' . esc_attr($this->field['id']) . '-focus"';
+                echo         'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[focus]' . '"';
+                echo         'value="' . esc_attr($this->value['focus']) . '"';
+                echo         'class="color-picker redux-color redux-color-focus redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo         'type="text"';
+                echo         'data-default-color="' . esc_attr($this->field['default']['focus']) . '"';
+                
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => 'focus'
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }                
+                
+                echo     '/>';
                 echo '</span>';
             }
         }
@@ -165,6 +215,10 @@ if ( ! class_exists( 'ReduxFramework_link_color' ) ) {
                 true
             );
 
+            if (ReduxCore::$_pro_loaded) {
+                do_action('redux/pro/enqueue/color_alpha', $this->field);
+            }
+            
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style( 'redux-color-picker-css' );
 
