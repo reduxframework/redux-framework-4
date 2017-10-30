@@ -129,7 +129,7 @@ if ( ! class_exists( 'ReduxFramework_dimensions' ) ) {
 
             echo '<fieldset id="' . esc_attr($this->field['id']) . '" class="redux-dimensions-container" data-id="' . esc_attr($this->field['id']) . '">';
 
-            $this->select2_config['allowClear'] = true;
+            $this->select2_config['allowClear'] = false;
             
             if ( isset( $this->field['select2'] ) ) {
                 $this->field['select2'] = wp_parse_args($this->field['select2'], $this->select2_config);
