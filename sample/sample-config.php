@@ -622,6 +622,7 @@
                 'title'    => __( 'Site Title Color', 'your-domain-here' ),
                 'subtitle' => __( 'Pick a title color for the theme (default: #000).', 'your-domain-here' ),
                 'default'  => '#000000',
+                'color_alpha' => true
             ),
             array(
                 'id'       => 'opt-color-footer',
@@ -767,6 +768,7 @@
                 'output'   => array( 'body' ),
                 'title'    => __( 'Body Background', 'your-domain-here' ),
                 'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
+                'color_alpha' => true
             ),
         ),
     ) );
@@ -823,7 +825,8 @@
                     'border-right'  => '3px',
                     'border-bottom' => '3px',
                     'border-left'   => '3px'
-                )
+                ),
+                'color_alpha' => true
             ),
             array(
                 'id'       => 'opt-header-border-expanded',
