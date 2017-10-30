@@ -117,10 +117,6 @@
                 if (ReduxCore::$_pro_loaded) {
                     $this->field = apply_filters('redux/pro/typography/field/set_defaults', $this->field);
                     $this->value = apply_filters('redux/pro/typography/value/set_defaults', $this->value);
-                } else {
-                    $this->field['color_alpha'] = array();
-                    $this->field['color_alpha']['color'] = false;
-                    $this->field['color_alpha']['shadow-color'] = false;
                 }
                 
                 // Get the google array
@@ -499,17 +495,26 @@
                     echo '<div class="picker-wrapper">';
                     echo '<label>' . esc_html__( 'Font Color', 'redux-framework' ) . '</label>';
                     echo '<div id="' . esc_attr( $this->field['id'] ) . '_color_picker" class="colorSelector typography-color"><div style="background-color: ' . esc_attr( $this->value['color'] ) . '"></div></div>';
-                    echo '<input
-                        data-default-color="' . esc_attr( $default ) . '"
-                        class="color-picker redux-color redux-typography-color ' . esc_attr( $this->field['class'] ) . '"
-                        original-title="' . esc_html__( 'Font color', 'redux-framework' ) . '"
-                        id="' . esc_attr( $this->field['id'] ) . '-color" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[color]' . '"
-                        type="text" 
-                        value="' . esc_attr( $this->value['color'] ) . '"
-                        data-id="' . esc_attr( $this->field['id'] ) . '"
-                        data-alpha="' . $this->field['color_alpha']['color'] . '"
-                        />';
+                    echo '<input ';
+                    echo     'data-default-color="' . esc_attr( $default ) . '"';
+                    echo     'class="color-picker redux-color redux-typography-color ' . esc_attr( $this->field['class'] ) . '"';
+                    echo     'original-title="' . esc_html__( 'Font color', 'redux-framework' ) . '"';
+                    echo     'id="' . esc_attr( $this->field['id'] ) . '-color"';
+                    echo     'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[color]' . '"';
+                    echo     'type="text"';
+                    echo     'value="' . esc_attr( $this->value['color'] ) . '"';
+                    echo     'data-id="' . esc_attr( $this->field['id'] ) . '"';
+                    
+                    if (ReduxCore::$_pro_loaded) {
+                        $data = array(
+                            'field' => $this->field,
+                            'index' => 'color'
+                        );
+                        
+                        echo apply_filters('redux/pro/render/color_alpha', $data);
+                    }
+                    
+                    echo '/>';
                     echo '</div>';
                 }
 
@@ -810,13 +815,15 @@
                             continue;
                         }
 
-                        $pro_data = apply_filters('redux/pro/typography/output', $data, $key, $value);
-                        
-                        extract($pro_data);
-                        
-                        //if ($continue) {
-                        //    continue;
-                        //}
+                        if (ReduxCore::$_pro_loaded) {
+                            $pro_data = apply_filters('redux/pro/typography/output', $data, $key, $value);
+
+                            extract($pro_data);
+
+                            if ($continue) {
+                                continue;
+                            }
+                        }
                         
                         $style .= $key . ':' . $value . ';';
                     }
