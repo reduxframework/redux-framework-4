@@ -10,6 +10,8 @@
     redux.field_objects                 = redux.field_objects || {};
     redux.field_objects.color_gradient  = redux.field_objects.color_gradient || {};
 
+    var proLoaded   = true;
+    
     redux.field_objects.color_gradient.init = function( selector ) {
 
         if ( !selector ) {
@@ -35,18 +37,26 @@
                     return;
                 }
 
+                if (redux.field_objects.pro === undefined) {
+                    proLoaded = false;
+                }
+
                 el.find( '.redux-color-init' ).wpColorPicker({
                     change: function( e, ui ) {
                         $( this ).val( ui.color.toString() );
 
-                        redux.field_objects.color_gradient.changeValue($(this), true);
+                        if (proLoaded) {
+                            redux.field_objects.color_gradient.changeValue($(this), true);
+                        }
 
                         el.find( '#' + e.target.getAttribute( 'data-id' ) + '-transparency' ).removeAttr( 'checked' );
                     },
                     clear: function( e, ui ) {
                         $( this ).val( ui.color.toString() );
 
-                        redux.field_objects.color_gradient.changeValue($( this ).parent().find( '.redux-color-init' ), true);
+                        if (proLoaded) {
+                            redux.field_objects.color_gradient.changeValue($( this ).parent().find( '.redux-color-init' ), true);
+                        }
                     }
                 });
 
@@ -128,46 +138,12 @@
                             }
                         }
                         
-                        redux.field_objects.color_gradient.changeValue($( this ), true);
+                        if (proLoaded) {
+                            redux.field_objects.pro.color_gradient.changeValue($( this ), true);
+                        }
                     }
                 );
             }
         );
-    };
-    
-    redux.field_objects.color_gradient.changeValue = function(el, update){
-        var parent      = el.parents('.redux-container-color_gradient');
-        var mainID      = parent.data('id');
-        var preview     = parent.find('.redux-gradient-preview');
-        
-        var colorFrom   = parent.find('#' + mainID + '-from').val();
-        var colorTo     = parent.find('#' + mainID + '-to').val();
-        
-        var angle = 0;
-        var fromReach = 0;
-        var toReach = 100;
-        
-        var w3c_deg     = Math.abs(angle - 450) % 360;
-        var colors      = colorFrom + ' ' + fromReach + '%, ' + colorTo + ' ' + toReach + '%)';
-        var result_w3c  = '';
-        var result      = '';
-        
-        result_w3c  = 'linear-gradient(' + w3c_deg + 'deg,' + colors;
-            result      = 'linear-gradient(' + angle + 'deg,' + colors;
-        var hide = preview.css('display');
-
-        if (hide === 'none') {
-            preview.fadeIn();
-        }
-        
-        preview.css('background', result_w3c);
-        preview.css('background', '-moz-' + result);
-        preview.css('background', '-webkit-' + result);
-        preview.css('background', '-o-' + result);
-        preview.css('background', '-ms-' + result);
-        
-        if (update) {
-            redux_change( el );
-        }
     };
 })( jQuery );
