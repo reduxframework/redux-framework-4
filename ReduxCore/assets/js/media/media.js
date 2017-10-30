@@ -39,10 +39,6 @@
                     return;
                 }
 
-                if (redux.field_objects.media_filter !== undefined) {
-                    redux.field_objects.media_filter.init(el);
-                }
-
                 isFiltered = false;
 
                 // Remove the image button
