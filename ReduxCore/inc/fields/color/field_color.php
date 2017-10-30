@@ -46,14 +46,25 @@ if ( ! class_exists( 'ReduxFramework_color' ) ) {
          * @return        void
          */
         public function render() {
-            echo '<input data-id="' . esc_attr($this->field['id']) . '"
-                         name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '"
-                         id="' . esc_attr($this->field['id']) . '-color"
-                         class="color-picker redux-color redux-color-init ' . esc_attr($this->field['class']) . '"
-                         type="text" value="' . esc_attr($this->value) . '"
-                         data-oldcolor=""
-                         data-default-color="' . ( isset( $this->field['default'] ) ? esc_attr($this->field['default']) : "" ) . '"
-                    />';
+            echo '<input ';
+            echo     'data-id="' . esc_attr($this->field['id']) . '"';
+            echo     'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '"';
+            echo     'id="' . esc_attr($this->field['id']) . '-color"';
+            echo     'class="color-picker redux-color redux-color-init ' . esc_attr($this->field['class']) . '"';
+            echo     'type="text" value="' . esc_attr($this->value) . '"';
+            echo     'data-oldcolor=""';
+            echo     'data-default-color="' . ( isset( $this->field['default'] ) ? esc_attr($this->field['default']) : "" ) . '"';
+            
+            if (ReduxCore::$_pro_loaded) {
+                $data = array(
+                    'field' => $this->field,
+                    'index' => ''
+                );
+
+                echo apply_filters('redux/pro/render/color_alpha', $data);
+            }                
+            
+            echo '/>';
             
             echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr($this->field['id']) . '-saved-color' . '" value="">';
 
@@ -92,6 +103,10 @@ if ( ! class_exists( 'ReduxFramework_color' ) ) {
                 ReduxCore::$_version,
                 true
             );
+            
+            if (ReduxCore::$_pro_loaded) {
+                do_action('redux/pro/enqueue/color_alpha', $this->field);
+            }
         }
 
         public function output($style = '') {
