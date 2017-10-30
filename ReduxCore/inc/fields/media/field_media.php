@@ -43,7 +43,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                 'width'     => '',
                 'height'    => '',
                 'thumbnail' => '',
-                );
+            );
 
             // Since value subarrays do not get parsed in wp_parse_args
             // Fixed that motherfracker, didn't we?  Bitches! - kp
@@ -65,8 +65,12 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             if ($this->field['mode'] == false) {
                 $this->field['mode'] = 0;
             }
-            
+        
+            if (ReduxCore::$_pro_loaded) {
+                $this->field = apply_filters('redux/pro/media/field/set_defaults', $this->field);
+                $this->value = apply_filters('redux/pro/media/value/set_defaults', $this->value);
             }
+        }
 
         /**
          * Field Render Function.
@@ -179,6 +183,10 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             }
 
             $css = '';
+
+            if (ReduxCore::$_pro_loaded) {
+                $css = apply_filters('redux/pro/media/render/preview_css', null);
+            }
             
             echo '<div class="screenshot" style="' . $hide . '">';
             echo     '<a class="of-uploaded-image" href="' . esc_url($this->value['url']) . '" target="_blank">';
@@ -190,17 +198,19 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             echo '<div class="upload_button_div">';
 
             //If the user has WP3.5+ show upload/remove button
-            echo '<span class="button media_upload_button" id="' . esc_attr($this->field['id']) . '-media">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
+            echo     '<span class="button media_upload_button" id="' . esc_attr($this->field['id']) . '-media">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
 
             $hide = '';
             if ( empty( $this->value['url'] ) || $this->value['url'] == '' ) {
                 $hide = ' hide';
             }
 
-            echo '<span class="button remove-image' . $hide . '" id="reset_' . esc_attr($this->field['id']) . '" rel="' . esc_attr($this->field['id']) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
+            echo     '<span class="button remove-image' . $hide . '" id="reset_' . esc_attr($this->field['id']) . '" rel="' . esc_attr($this->field['id']) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
             echo '</div>';
 
-            echo '</div>';
+            if (ReduxCore::$_pro_loaded) {
+                echo apply_filters('redux/pro/media/render/filters', null);
+            }
         }
 
         /**
@@ -226,10 +236,22 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                 true
             );
 
+            if (ReduxCore::$_pro_loaded) {
+                do_action ('redux/pro/media/enqueue');
+            }
+            
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style('redux-field-media-css');
 
-                }
+            }
         }
+        
+        public function css_style($data) {
+            if (ReduxCore::$_pro_loaded) {
+                $pro_data = apply_filters('redux/pro/media/output', $data);
+
+                return $pro_data;
+            }            
+        }        
     }
 }
