@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Don't duplicate me!
 if ( ! class_exists( 'ReduxFramework_border' ) ) {
-    
+
     class ReduxFramework_border extends Redux_Field {
 
         public function set_defaults() {
@@ -52,7 +52,7 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
 
             $this->value = wp_parse_args( $this->value, $defaults );
         }
-        
+
         /**
          * Field Render Function.
          * Takes the vars and outputs the HTML for the field in the settings
@@ -93,18 +93,18 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
 
             $this->value = wp_parse_args( $this->value, $defaults );
 
-            $this->select2_config['allowClear'] = true;
-            
+            $this->select2_config['allowClear'] = false;
+
             if ( isset( $this->field['select2'] ) ) {
                 $this->field['select2'] = wp_parse_args($this->field['select2'], $this->select2_config);
             } else {
                 $this->field['select2'] = $this->select2_config;
             }
-            
+
             $this->field['select2'] = Redux_Functions::sanitize_camel_case_array_keys($this->field['select2']);
-            
+
             $select2_data = Redux_Functions::create_data_string($this->field['select2']);
-            
+
             echo '<input type="hidden" class="field-units" value="px">';
 
             if ( isset( $this->field['all'] ) && $this->field['all'] == true ) {
@@ -177,13 +177,13 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
                     'double' => esc_html__("Double", 'redux-framework'),
                     'none'   => esc_html__('None', 'redux-framework')
                 );
-                
+
                 echo '<select data-placeholder="' . esc_html__( 'Border style', 'redux-framework' ) . '" id="' . esc_attr($this->field['id']) . '[border-style]" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[border-style]" class="tips redux-border-style ' . esc_attr($this->field['class']) . '" rows="6" data-id="' . esc_attr($this->field['id']) . '"' . esc_attr($select2_data) . '>';
-                
+
                 foreach ( $options as $k => $v ) {
                     echo '<option value="' . esc_attr($k) . '"' . selected( $value['style'], $k, false ) . '>' . $v . '</option>';
                 }
-                
+
                 echo '</select>';
             } else {
                 echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '[border-style]" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[border-style]" value="' . esc_attr($this->value['style']) . '" data-id="' . esc_attr($this->field['id']) . '">';
@@ -199,15 +199,25 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
                     $default = ( isset( $this->field['default']['color'] ) ) ? $this->field['default']['color'] : '#ffffff';
                 }
 
-                echo '<input 
-                        name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[border-color]"
-                        id="' . esc_attr($this->field['id']) . '-border"
-                        class="color-picker redux-border-color redux-color redux-color-init ' . esc_attr($this->field['class']) . '"
-                        type="text" 
-                        value="' . esc_attr($this->value['color']) . '"
-                        data-default-color="' . esc_attr($default) . '"
-                        data-id="' . esc_attr($this->field['id']) . '"
-                      />';
+                echo '<input ';
+                echo     'name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[border-color]"';
+                echo     'id="' . esc_attr($this->field['id']) . '-border"';
+                echo     'class="color-picker redux-border-color redux-color redux-color-init ' . esc_attr($this->field['class']) . '"';
+                echo     'type="text"';
+                echo     'value="' . esc_attr($this->value['color']) . '"';
+                echo     'data-default-color="' . esc_attr($default) . '"';
+                echo     'data-id="' . esc_attr($this->field['id']) . '"';
+
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => ''
+                    );
+
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
+                }
+
+                echo '/>';
             } else {
                 echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '[border-color]" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[border-color]" value="' . esc_attr($this->value['color']) . '" data-id="' . esc_attr($this->field['id']) . '">';
             }
@@ -221,17 +231,17 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
          */
         function enqueue() {
             $min = Redux_Functions::isMin();
-            
+
             if (!wp_style_is ( 'select2-css' )) {
                 wp_enqueue_style( 'select2-css' );
             }
-            
+
             if (!wp_style_is ( 'wp-color-picker' )) {
                 wp_enqueue_style( 'wp-color-picker' );
             }
-            
+
             $dep_array = array( 'jquery', 'select2-js', 'wp-color-picker', 'redux-js' );
-            
+
             wp_enqueue_script(
                 'redux-field-border-js',
                 ReduxCore::$_url . 'inc/fields/border/field_border' . $min . '.js',
@@ -240,11 +250,15 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
                 true
             );
 
+            if (ReduxCore::$_pro_loaded) {
+                do_action('redux/pro/enqueue/color_alpha', $this->field);
+            }
+
             if ($this->parent->args['dev_mode']) {
                 if (!wp_style_is ( 'redux-color-picker-css' )) {
                     wp_enqueue_style( 'redux-color-picker-css' );
                 }
-                
+
                 wp_enqueue_style(
                     'redux-field-border-css',
                     ReduxCore::$_url . 'inc/fields/border/field_border.css',
@@ -257,7 +271,7 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
 
         public function css_style ($data) {
             $style = "";
-            
+
             if ( isset( $this->field['all'] ) && true == $this->field['all'] ) {
                 $borderWidth = isset( $data['border-width'] ) ? $data['border-width'] : '0px';
                 $val         = isset( $data['border-top'] ) ? $data['border-top'] : $borderWidth;
@@ -317,11 +331,11 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
 
             return $style;
         }
-        
+
         private function stripAlphas($s) {
 
             // Regex is our friend.  THERE ARE FOUR LIGHTS!!
             return preg_replace('/[^\d.-]/', '', $s);
-        }             
+        }
     }
 }
