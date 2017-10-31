@@ -46,7 +46,7 @@ if (!class_exists('Redux_Welcome')) {
             }
             
             update_option( 'redux_version_upgraded_from', ReduxCore::$_version );
-            set_transient( '_redux_activation_redirect', true, 30 );
+            //set_transient( '_redux_activation_redirect', true, 30 );
         }
 
 
