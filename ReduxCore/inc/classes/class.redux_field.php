@@ -32,7 +32,7 @@
                 $this->_url = trailingslashit( dirname( $path_info['url'] ) );
             }
 
-            protected function getDir() {
+            protected function get_dir() {
                 $rc = new Redux_Field( get_class( $this ) );
 
                 return dirname( $rc->getFileName() );
