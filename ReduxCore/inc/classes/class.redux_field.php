@@ -10,6 +10,7 @@
             public $style = '';
             public $_dir = "";
             public $_url = "";
+            public $timestamp = '';
 
             public function __construct( $field = array(), $value = '', $parent ) {
                 $this->parent = $parent;
@@ -30,6 +31,11 @@
                 $path_info  = Redux_Helpers::path_info( $path );
                 $this->_dir = trailingslashit( dirname( $path_info['realpath'] ) );
                 $this->_url = trailingslashit( dirname( $path_info['url'] ) );
+                
+                $this->timestamp = ReduxCore::$_version;
+                if ($parent->args['dev_mode']) {
+                    $this->timestamp .= '.' . time();
+                }
             }
 
             protected function get_dir() {
