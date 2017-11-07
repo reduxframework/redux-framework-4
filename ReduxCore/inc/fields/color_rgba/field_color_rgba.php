@@ -15,7 +15,7 @@
  * @package     Redux Framework
  * @subpackage  Spectrum Color Picker
  * @author      Kevin Provance (kprovance)
- * @version     1.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -177,7 +177,7 @@ if ( ! class_exists( 'ReduxFramework_color_rgba' ) ) {
                 'redux-field-color-rgba-js',
                 ReduxCore::$_url . 'inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-spectrum-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -191,7 +191,7 @@ if ( ! class_exists( 'ReduxFramework_color_rgba' ) ) {
                     'redux-field-color-rgba-css',
                     ReduxCore::$_url . 'inc/fields/color_rgba/field_color_rgba.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

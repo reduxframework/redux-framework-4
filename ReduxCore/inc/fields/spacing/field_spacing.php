@@ -306,7 +306,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                 'redux-field-spacing-js',
                 ReduxCore::$_url . 'inc/fields/spacing/field_spacing' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -315,7 +315,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                     'redux-field-spacing-css',
                     ReduxCore::$_url . 'inc/fields/spacing/field_spacing.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

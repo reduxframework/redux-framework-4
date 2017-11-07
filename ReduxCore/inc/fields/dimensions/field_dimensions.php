@@ -224,7 +224,7 @@ if ( ! class_exists( 'ReduxFramework_dimensions' ) ) {
                 'redux-field-dimensions-js',
                 ReduxCore::$_url . 'inc/fields/dimensions/field_dimensions' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -233,7 +233,7 @@ if ( ! class_exists( 'ReduxFramework_dimensions' ) ) {
                     'redux-field-dimensions-css',
                     ReduxCore::$_url . 'inc/fields/dimensions/field_dimensions.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

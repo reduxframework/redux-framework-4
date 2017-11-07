@@ -1,6 +1,4 @@
-/* global redux_change, wp */
-
-/*global redux_change, redux*/
+/*global redux_change, redux, wp */
 
 (function( $ ) {
     "use strict";

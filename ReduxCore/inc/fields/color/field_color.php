@@ -14,9 +14,9 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Color
- * @author      Daniel J Griffiths (Ghost1227)
+ * @author      Kevin Provance (kprovance)
  * @author      Dovy Paukstys
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -100,7 +100,7 @@ if ( ! class_exists( 'ReduxFramework_color' ) ) {
                 'redux-field-color-js',
                 ReduxCore::$_url . 'inc/fields/color/field_color' . Redux_Functions::isMin() . '.js',
                 $dep_array,
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
             

@@ -14,7 +14,7 @@
  *
  * @package     Redux_Field
  * @subpackage  Border
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -246,7 +246,7 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
                 'redux-field-border-js',
                 ReduxCore::$_url . 'inc/fields/border/field_border' . $min . '.js',
                 $dep_array,
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -263,7 +263,7 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
                     'redux-field-border-css',
                     ReduxCore::$_url . 'inc/fields/border/field_border.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

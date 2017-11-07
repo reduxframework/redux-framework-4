@@ -232,7 +232,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                 'redux-field-media-js',
                 ReduxCore::$_url . 'assets/js/media/media' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 

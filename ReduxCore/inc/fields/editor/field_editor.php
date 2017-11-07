@@ -14,10 +14,9 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Editor
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
  * @author      Kevin Provance (kprovance)
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -83,7 +82,7 @@ if ( ! class_exists( 'ReduxFramework_editor' ) ) {
                     'redux-field-editor-css',
                     ReduxCore::$_url . 'inc/fields/editor/field_editor.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
@@ -92,7 +91,7 @@ if ( ! class_exists( 'ReduxFramework_editor' ) ) {
                 'redux-field-editor-js',
                 ReduxCore::$_url . 'inc/fields/editor/field_editor' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

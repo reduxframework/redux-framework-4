@@ -594,7 +594,7 @@
                 wp_enqueue_script(
                     'redux-webfont-js',
                     "https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js?ver=1.5.0",
-                    ReduxCore::$_version,
+                    '1.5.0',
                     true
                 );
 
@@ -604,7 +604,7 @@
                     'redux-field-typography-js',
                     ReduxCore::$_url . "inc/fields/typography/field_typography$min.js",
                     $dep_array,
-                    ReduxCore::$_version,
+                    $this->timestamp,
                     true
                 );
 
@@ -627,15 +627,15 @@
                 if (ReduxCore::$_pro_loaded) {
                     do_action ('redux/pro/typography/enqueue');
                 }
-                
+
                 if ( $this->parent->args['dev_mode'] ) {
-                    //wp_enqueue_style( 'redux-color-picker-css' );
+                    wp_enqueue_style( 'redux-color-picker-css' );
 
                     wp_enqueue_style(
                         'redux-field-typography-css',
                         ReduxCore::$_url . 'inc/fields/typography/field_typography.css',
                         array(),
-                        time(),
+                        $this->timestamp,
                         'all'
                     );
                 }

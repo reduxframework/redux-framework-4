@@ -15,7 +15,7 @@
  * @package     ReduxFramework
  * @subpackage  Field_Palette
  * @author      Kevin Provance (kprovance)
- * @version     3.5.4
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -74,7 +74,7 @@ if ( ! class_exists( 'ReduxFramework_palette' ) ) {
                 'redux-field-palette-js',
                 ReduxCore::$_url . 'inc/fields/palette/field_palette' . $min . '.js',
                 array( 'jquery', 'redux-js', 'jquery-ui-button', 'jquery-ui-core' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );  
             
@@ -83,7 +83,7 @@ if ( ! class_exists( 'ReduxFramework_palette' ) ) {
                     'redux-field-palette-css',
                     ReduxCore::$_url . 'inc/fields/palette/field_palette.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }            

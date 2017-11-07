@@ -14,8 +14,9 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Gallery
+ * @author      Kevin Provance (kprovance)
  * @author      Abdullah Almesbahi (cadr-sa)
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -83,7 +84,7 @@ if ( ! class_exists( 'ReduxFramework_gallery' ) ) {
                 'redux-field-gallery-js',
                 ReduxCore::$_url . 'inc/fields/gallery/field_gallery' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

@@ -14,7 +14,6 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Checkbox
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
  * @author      Kevin Provance (kprovance) - always fixin' shit!
  * @version     3.0.0
@@ -126,7 +125,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                     'redux-field-checkbox-css',
                     ReduxCore::$_url . 'inc/fields/checkbox/field_checkbox.css',
                     array(),
-                    time (),
+                    $this->timestamp,
                     'all'
                 );
             }
@@ -135,7 +134,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                 'redux-field-checkbox-js',
                 ReduxCore::$_url . 'inc/fields/checkbox/field_checkbox' . Redux_Functions::isMin () . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

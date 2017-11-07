@@ -15,9 +15,9 @@
  * @package     ReduxFramework
  * @subpackage  Field_slides
  * @author      Luciano "WebCaos" Ubertini
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
- * @version     3.0.0
+ * @author      Kevin Provance (kprovance)
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -239,7 +239,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                     'redux-field-slides-css', 
                     ReduxCore::$_url . 'inc/fields/slides/field_slides.css', 
                     array(),
-                    time (), 
+                    $this->timestamp, 
                     'all'
                 );
             }
@@ -248,7 +248,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 'redux-field-media-js',
                 ReduxCore::$_url . 'assets/js/media/media' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -256,7 +256,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 'redux-field-slides-js', 
                 ReduxCore::$_url . 'inc/fields/slides/field_slides' . Redux_Functions::isMin () . '.js', 
                 array( 'jquery', 'jquery-ui-core', 'jquery-ui-accordion', 'jquery-ui-sortable', 'redux-field-media-js' ),
-                ReduxCore::$_version, 
+                $this->timestamp, 
                 true
             );
         }

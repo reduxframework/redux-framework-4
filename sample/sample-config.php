@@ -765,11 +765,20 @@
             array(
                 'id'       => 'opt-background',
                 'type'     => 'background',
-                'output'   => array( 'body' ),
+                //'output'   => array( 'body' ),
                 'title'    => __( 'Body Background', 'your-domain-here' ),
                 'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
                 'color_alpha' => true
             ),
+            
+            array(
+                'id'       => 'opt-background-gradient',
+                'type'     => 'background_gradient',
+                'output'   => array( 'body' ),
+                'title'    => __( 'Background with Gradient & Image Filters', 'your-domain-here' ),
+                'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
+                'color_alpha' => true
+            ),            
         ),
     ) );
 
@@ -783,6 +792,9 @@
                 'id'       => 'opt-box_shadow',
                 'type'     => 'box_shadow',
                 'output'   => array( '.entry-content' ),
+                'color_alpha' => array(
+                    'inset-shadow' => true
+                ),
                 'media_query' => array(
                     'output' => true,
                     'compiler' => true,

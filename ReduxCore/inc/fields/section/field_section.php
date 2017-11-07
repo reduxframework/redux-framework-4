@@ -14,6 +14,7 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Section
+ * @author      Kevin Provance (kprovance)
  * @author      Tobias Karnetze (athoss.de)
  * @version     1.0.0
  */
@@ -120,7 +121,7 @@ if ( ! class_exists( 'ReduxFramework_section' ) ) {
                     'redux-field-section-css',
                     ReduxCore::$_url . 'inc/fields/section/field_section.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

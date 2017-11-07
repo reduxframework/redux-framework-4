@@ -211,7 +211,7 @@ if ( ! class_exists( 'ReduxFramework_link_color' ) ) {
                 'redux-field-link-color-js',
                 ReduxCore::$_url . 'inc/fields/link_color/field_link_color' . Redux_Functions::isMin() . '.js',
                 $dep_array,
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -226,7 +226,7 @@ if ( ! class_exists( 'ReduxFramework_link_color' ) ) {
                     'redux-field-link_color-js',
                     ReduxCore::$_url . 'inc/fields/link_color/field_link_color.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

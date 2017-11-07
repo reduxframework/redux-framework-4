@@ -161,9 +161,8 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
          * @since ReduxFramework 1.0.0
          */
         public function enqueue() {
-
-
             wp_enqueue_style( 'select2-css' );
+            
             if (isset($this->field['sortable']) && $this->field['sortable']) {
                 wp_enqueue_script('jquery-ui-sortable');
             }
@@ -172,7 +171,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                 'redux-field-select-js',
                 ReduxCore::$_url . 'inc/fields/select/field_select' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -181,7 +180,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                     'redux-field-select-css',
                     ReduxCore::$_url . 'inc/fields/select/field_select.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

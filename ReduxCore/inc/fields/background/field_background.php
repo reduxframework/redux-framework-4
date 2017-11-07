@@ -393,7 +393,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                 'redux-field-background-js',
                 ReduxCore::$_url . 'inc/fields/background/field_background' . Redux_Functions::isMin() . '.js',
                 $dep_array,
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -402,7 +402,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                     'redux-field-background-css',
                     ReduxCore::$_url . 'inc/fields/background/field_background.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
 

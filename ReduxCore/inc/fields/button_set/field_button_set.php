@@ -14,10 +14,9 @@
  *
  * @package     Redux_Field
  * @subpackage  Button_Set
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
  * @author      Kevin Provance (kprovance)
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -137,7 +136,7 @@ if ( ! class_exists( 'ReduxFramework_button_set' ) ) {
                 'redux-field-button-set-js',
                 ReduxCore::$_url . 'inc/fields/button_set/field_button_set' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'jquery-ui-core', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

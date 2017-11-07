@@ -14,9 +14,9 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Divide
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
- * @version     3.0.0
+ * @author      Kevin Provance (kprovance)
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -62,7 +62,7 @@ if ( !class_exists ( 'ReduxFramework_divide' ) ) {
                     'redux-field-divide',
                     ReduxCore::$_url . 'inc/fields/divide/field_divide.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

@@ -69,79 +69,51 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                 echo apply_filters('redux/pro/color_gradient/render/gradient_type', null);
             }
 
-            echo '<div class="colorGradient">';
-            echo '<strong>' . esc_html__( 'From ', 'redux-framework' ) . '</strong>&nbsp;';
-            echo '<input ';
-            echo     'data-id="' . esc_attr( $this->field['id'] ) . '"';
-            echo     'id="' . esc_attr( $this->field['id'] ) . '-from"';
-            echo     'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[from]' . '"';
-            echo     'value="' . esc_attr( $this->value['from'] ) . '"';
-            echo     'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
-            echo     'type="text"';
-            echo     'data-default-color="' . esc_attr( $this->field['default']['from'] ) . '"';
+            $mode_arr = array(
+                'from',
+                'to'
+            );
+            
+            foreach($mode_arr as $idx => $mode){
+                echo '<div class="colorGradient ' . $mode . 'Label">';
+                echo '<strong>' . esc_html__( ucfirst($mode) . ' ', 'redux-framework' ) . '</strong>&nbsp;';
+                echo '<input ';
+                echo     'data-id="' . esc_attr( $this->field['id'] ) . '"';
+                echo     'id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '"';
+                echo     'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . $mode . ']' . '"';
+                echo     'value="' . esc_attr( $this->value[$mode] ) . '"';
+                echo     'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+                echo     'type="text"';
+                echo     'data-default-color="' . esc_attr( $this->field['default'][$mode] ) . '"';
 
-            if (ReduxCore::$_pro_loaded) {
-                $data = array(
-                    'field' => $this->field,
-                    'index' => 'from'
-                );
+                if (ReduxCore::$_pro_loaded) {
+                    $data = array(
+                        'field' => $this->field,
+                        'index' => $mode
+                    );
 
-                echo apply_filters('redux/pro/render/color_alpha', $data);
-            }
-
-            echo '/>';
-
-            echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color' . '" value="">';
-
-            if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
-                $tChecked = "";
-
-                if ( $this->value['from'] == "transparent" ) {
-                    $tChecked = ' checked="checked"';
+                    echo apply_filters('redux/pro/render/color_alpha', $data);
                 }
 
-                echo '<label for="' . esc_attr( $this->field['id'] ) . '-from-transparency" class="color-transparency-check">';
-                echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-from-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-from" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' );
-                echo '</label>';
-            }
-            echo "</div>";
+                echo '/>';
 
-            echo '<div class="colorGradient toLabel">';
-            echo '<strong>' . esc_html__( 'To ', 'redux-framework' ) . '</strong>&nbsp;';
-            echo '<input ';
-            echo     'data-id="' . esc_attr( $this->field['id'] ) . '"';
-            echo     'id="' . esc_attr( $this->field['id'] ) . '-to"';
-            echo     'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[to]' . '"';
-            echo     'value="' . esc_attr( $this->value['to'] ) . '"';
-            echo     'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
-            echo     'type="text"';
-            echo     'data-default-color="' . esc_attr( $this->field['default']['to'] ) . '"';
+                echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color' . '" value="">';
 
-            if (ReduxCore::$_pro_loaded) {
-                $data = array(
-                    'field' => $this->field,
-                    'index' => 'to'
-                );
+                if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
+                    $tChecked = "";
 
-                echo apply_filters('redux/pro/render/color_alpha', $data);
-            }                
+                    if ( $this->value[$mode] == "transparent" ) {
+                        $tChecked = ' checked="checked"';
+                    }
 
-            echo '/>';
-
-            if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
-                $tChecked = "";
-
-                if ( $this->value['to'] == "transparent" ) {
-                    $tChecked = ' checked="checked"';
+                    echo '<label for="' . esc_attr( $this->field['id'] ) . '-' . $mode . '-transparency" class="color-transparency-check">';
+                    echo     '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' );
+                    echo '</label>';
                 }
-
-                echo '<label for="' . esc_attr( $this->field['id'] ) . '-to-transparency" class="color-transparency-check">';
-                echo '<input type="checkbox" class="checkbox color-transparency" id="' . esc_attr( $this->field['id'] ) . '-to-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-to" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' );
-                echo '</label>';
+                
+                echo "</div>";
             }
-
-            echo "</div>";
-
+            
             if (ReduxCore::$_pro_loaded) {
                 echo apply_filters('redux/pro/color_gradient/render/preview', null);
                 echo apply_filters('redux/pro/color_gradient/render/extra_inputs', null);
@@ -163,7 +135,7 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                 'redux-field-color-gradient-js',
                 ReduxCore::$_url . 'inc/fields/color_gradient/field_color_gradient' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'wp-color-picker', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -178,7 +150,7 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                     'redux-field-color_gradient-css',
                     ReduxCore::$_url . 'inc/fields/color_gradient/field_color_gradient.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

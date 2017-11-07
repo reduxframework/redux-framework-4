@@ -139,7 +139,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
                     'redux-field-sortable-css',
                     ReduxCore::$_url . 'inc/fields/sortable/field_sortable.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
@@ -148,7 +148,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
                 'redux-field-sortable-js',
                 ReduxCore::$_url . 'inc/fields/sortable/field_sortable' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js', 'jquery-ui-sortable' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

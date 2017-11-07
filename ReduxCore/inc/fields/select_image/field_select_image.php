@@ -7,6 +7,7 @@
  * @subpackage  ReduxFramework
  * @since       3.1.2
  * @author      Kevin Provance <kprovance>
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -142,7 +143,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 'field-select-image-js',
                 ReduxCore::$_url . 'inc/fields/select_image/field_select_image' . Redux_Functions::isMin() . '.js',
                 array('jquery', 'select2-js', 'redux-js'),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -151,7 +152,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                     'redux-field-select-image-css',
                     ReduxCore::$_url . 'inc/fields/select_image/field_select_image.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

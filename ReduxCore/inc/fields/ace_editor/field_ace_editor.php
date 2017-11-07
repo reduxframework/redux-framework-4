@@ -96,7 +96,7 @@ if ( ! class_exists( 'ReduxFramework_ace_editor' ) ) {
                     'redux-field-ace-editor-css',
                     ReduxCore::$_url . 'inc/fields/ace_editor/field_ace_editor.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
@@ -115,7 +115,7 @@ if ( ! class_exists( 'ReduxFramework_ace_editor' ) ) {
                 'redux-field-ace-editor-js',
                 ReduxCore::$_url . 'inc/fields/ace_editor/field_ace_editor' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'ace-editor-js', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

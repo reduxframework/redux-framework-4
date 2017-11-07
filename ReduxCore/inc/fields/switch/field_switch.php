@@ -49,7 +49,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                 'redux-field-switch-js',
                 ReduxCore::$_url . 'inc/fields/switch/field_switch' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -58,7 +58,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                     'redux-field-switch-css',
                     ReduxCore::$_url . 'inc/fields/switch/field_switch.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

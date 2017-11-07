@@ -103,8 +103,8 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
             wp_enqueue_script(
                 'redux-field-spinner-custom-js',
                 ReduxCore::$_url . 'inc/fields/spinner/vendor/spinner_custom.js',
-                array( 'jquery','redux-js' ),
-                ReduxCore::$_version,
+                array( 'jquery', 'redux-js' ),
+                $this->timestamp,
                 true
             );
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
                     'jquery-ui-dialog',
                     'redux-js'
                 ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
                     'redux-field-spinner-css',
                     ReduxCore::$_url . 'inc/fields/spinner/field_spinner.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }

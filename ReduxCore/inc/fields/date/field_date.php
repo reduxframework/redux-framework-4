@@ -14,10 +14,9 @@
  *
  * @package     ReduxFramework
  * @subpackage  Field_Date
- * @author      Daniel J Griffiths (Ghost1227)
  * @author      Dovy Paukstys
  * @author      Kevin Provance (kprovance)
- * @version     3.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -63,7 +62,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
                     'redux-field-date-css',
                     ReduxCore::$_url . 'inc/fields/date/field_date.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
@@ -72,7 +71,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
                 'redux-field-date-js',
                 ReduxCore::$_url . 'inc/fields/date/field_date' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'redux-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
         }

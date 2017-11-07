@@ -71,7 +71,7 @@ if ( ! class_exists( 'ReduxFramework_text' ) ) {
                     'redux-field-text-css',
                     ReduxCore::$_url . 'inc/fields/text/field_text.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
