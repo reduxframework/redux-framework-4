@@ -15,7 +15,7 @@
  * @package     ReduxFramework
  * @subpackage  Field_Slider
  * @author      Kevin Provance (kprovance)
- * @version     2.0.0
+ * @version     4.0.0
  */
 
 // Exit if accessed directly
@@ -192,7 +192,6 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
          * @since ReduxFramework 3.1.8
          */
         function enqueue() {
-
             $min = Redux_Functions::isMin();
 
             wp_enqueue_style( 'select2-css' );
@@ -217,7 +216,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 'redux-field-slider-js',
                 ReduxCore::$_url . 'inc/fields/slider/field_slider' . $min . '.js',
                 array( 'jquery', 'redux-nouislider-js', 'redux-js', 'select2-js' ),
-                ReduxCore::$_version,
+                $this->timestamp,
                 true
             );
 
@@ -226,7 +225,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                     'redux-field-slider-css',
                     ReduxCore::$_url . 'inc/fields/slider/field_slider.css',
                     array(),
-                    time(),
+                    $this->timestamp,
                     'all'
                 );
             }
