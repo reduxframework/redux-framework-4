@@ -46,8 +46,8 @@
 
             public static function load() {
                 add_action( 'after_setup_theme', array( 'Redux', 'createRedux' ) );
-                add_action( 'init', array( 'Redux', 'createRedux' ) );
-                add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
+                add_action( 'init', array( 'Redux', 'createRedux' ));
+                add_action( 'switch_theme', array( 'Redux', 'createRedux' ));
 
                 if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
                     include_once ReduxCore::$_dir . 'inc/lib/array_column.php';
@@ -149,8 +149,10 @@
 
             public static function createRedux() {
                 foreach ( self::$sections as $opt_name => $theSections ) {
-                    if ( ! self::$init[ $opt_name ] ) {
-                        self::loadRedux( $opt_name );
+                    if (!empty($theSections)) {
+                        if ( ! self::$init[ $opt_name ] ) {
+                            self::loadRedux( $opt_name );
+                        }
                     }
                 }
             }
@@ -623,6 +625,7 @@
             }
 
             public static function check_opt_name( $opt_name = "" ) {
+                
                 if ( empty( $opt_name ) || is_array( $opt_name ) ) {
                     return;
                 }
@@ -687,10 +690,12 @@
             }
 
             public static function setExtensions( $opt_name, $path ) {
-                //var_dump($opt_name . ' ' . $path);
                 if ( empty( $path ) ) {
                     return;
                 }
+                if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
+                    include_once ReduxCore::$_dir . 'inc/lib/array_column.php';
+                }                
                 self::check_opt_name( $opt_name );
                 self::record_caller(
                     $opt_name,

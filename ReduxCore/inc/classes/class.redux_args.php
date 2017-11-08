@@ -107,7 +107,7 @@ if (!class_exists('Redux_Args')) {
             $this->get = $args;
 
             $this->parent->args = $args;
-                    
+
             $this->change_demo_defaults($args);
         }
 
