@@ -37,7 +37,7 @@
                     return;
                 }
 
-                if (redux.field_objects.pro === undefined) {
+                if (redux.field_objects.pro.gradient_filters === undefined) {
                     proLoaded = false;
                 }
 
@@ -46,7 +46,7 @@
                         $( this ).val( ui.color.toString() );
 
                         if (proLoaded) {
-                            redux.field_objects.color_gradient.changeValue($(this), true);
+                            redux.field_objects.pro.gradient_filters.changeValue($(this), true, 'color_gradient');
                         }
 
                         el.find( '#' + e.target.getAttribute( 'data-id' ) + '-transparency' ).removeAttr( 'checked' );
@@ -55,7 +55,7 @@
                         $( this ).val( ui.color.toString() );
 
                         if (proLoaded) {
-                            redux.field_objects.color_gradient.changeValue($( this ).parent().find( '.redux-color-init' ), true);
+                            redux.field_objects.pro.gradient_filters.changeValue($( this ).parent().find( '.redux-color-init' ), true, 'color_gradient');
                         }
                     }
                 });
@@ -139,7 +139,7 @@
                         }
                         
                         if (proLoaded) {
-                            redux.field_objects.pro.color_gradient.changeValue($( this ), true);
+                            redux.field_objects.pro.gradient_filters.changeValue($( this ), true, 'color_gradient');
                         }
                     }
                 );
