@@ -397,7 +397,7 @@
             array(
                 'id'       => 'opt-check-sortable',
                 'type'     => 'sortable',
-                'mode'     => 'checkbox', // checkbox or text
+                'mode'     => 'toggle', // toggle or text
                 'title'    => __( 'Sortable Toggle Option', 'your-domain-here' ),
                 'subtitle' => __( 'Define and reorder these however you want.', 'your-domain-here' ),
                 'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),

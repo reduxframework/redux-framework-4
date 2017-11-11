@@ -20,10 +20,14 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
                 $this->field['mode'] = "text";
             }
 
-            if ( $this->field['mode'] != "checkbox" && $this->field['mode'] != "text" ) {
+            if ( $this->field['mode'] != "checkbox" && $this->field['mode'] != "text" && $this->field['mode'] != "toggle" ) {
                 $this->field['mode'] = "text";
             }
 
+            if ($this->field['mode'] == "toggle") {
+                $this->field['mode'] = "checkbox";
+            }
+            
             $class   = ( isset( $this->field['class'] ) ) ? $this->field['class'] : '';
             $options = $this->field['options'];
 
