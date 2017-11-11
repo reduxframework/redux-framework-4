@@ -1,7 +1,9 @@
 .redux-container-sortable {
     i {
-        &.el {
+        &.el,
+        &.dashicons-menu {
             cursor: move;
+            padding-top: 5px;
         }
     }
 
@@ -21,8 +23,13 @@
     }
 
     .checkbox-container {
-        width: 364px;
+        width: 100%;
 
+        label {
+            margin-bottom: 2px!important;
+            cursor: inherit;
+        }
+        
         .drag {
             float: right;
             margin-left: 10px;
@@ -30,6 +37,31 @@
     }
 
     ul {
+        &.checkbox {
+            li {
+                padding: 5px 10px;
+                border: 1px solid #333;
+                background: #fff;
+                margin-bottom: 5px!important;
+
+                .dashicons.visibility {
+                    padding-top: 4px;
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+                
+                &.invisible {
+                    color: #aaa;
+                    border: 1px dashed #aaa;
+                    
+                    .dashicons.visibility {
+                        color: #aaa;
+                    }
+                }
+
+            }
+        }
+
         &.labeled {
             li {
                 line-height: 1.4em !important;
