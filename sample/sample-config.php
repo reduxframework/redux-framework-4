@@ -727,7 +727,11 @@
                     'options'   => array(
                         'colors' => array( '#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff' ),
                         'style'  => 'round',
-                    )
+                    ),
+                    'output'   => array(
+                        'background-color' => 'body',
+                    ),
+                    
                 ),
 
                 array(
