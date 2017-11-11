@@ -709,83 +709,85 @@
         )
     ) );
 
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Color Palette', 'your-domain-here' ),
-        'heading'      => __( 'Color Palette - REDUX PRO ONLY', 'your-domain-here' ),
-        'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
-        'id'         => 'color-palette',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'       => 'opt-color-palette-grey',
-                'type'     => 'color_palette',
-                'title'    => __( 'Color Palette Control', 'your-domain-here' ),
-                'subtitle' => __( 'User defined colors with round selectors.', 'your-domain-here' ),
-                'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-                'default'  => '#888888',
-                'options'   => array(
-                    'colors' => array( '#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff' ),
-                    'style'  => 'round',
-                )
-            ),
+    if (class_exists('ReduxCore') && ReduxCore::$_pro_loaded) {
+        Redux::setSection( $opt_name, array(
+            'title'      => __( 'Color Palette', 'your-domain-here' ),
+            'heading'      => __( 'Color Palette - REDUX PRO ONLY', 'your-domain-here' ),
+            'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
+            'id'         => 'color-palette',
+            'subsection' => true,
+            'fields'     => array(
+                array(
+                    'id'       => 'opt-color-palette-grey',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'User defined colors with round selectors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#888888',
+                    'options'   => array(
+                        'colors' => array( '#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff' ),
+                        'style'  => 'round',
+                    )
+                ),
 
-            array(
-                'id'       => 'opt-color-palette-mui-all',
-                'type'     => 'color_palette',
-                'title'    => __( 'Color Palette Control', 'your-domain-here' ),
-                'subtitle' => __( 'All Material Dedign Colors.', 'your-domain-here' ),
-                'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-                'default'  => '#F44336',
-                'options'   => array(
-                    'colors' => Redux_Pro_Helpers::get_material_design_colors ('all'),
-                    'size'   => 17,
-                )
-            ),
+                array(
+                    'id'       => 'opt-color-palette-mui-all',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'All Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#F44336',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('all'),
+                        'size'   => 17,
+                    )
+                ),
 
-            array(
-                'id'       => 'opt-color-palette-mui-primary',
-                'type'     => 'color_palette',
-                'title'    => __( 'Color Palette Control', 'your-domain-here' ),
-                'subtitle' => __( 'Primary Material Dedign Colors.', 'your-domain-here' ),
-                'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-                'default'  => '#000000',
-                'options'   => array(
-                    'colors' => Redux_Pro_Helpers::get_material_design_colors ('primary'),
-                    'size'   => 25,
-                    'box-shadow' => true,
-                    'margin' => true
-                )
-            ),
-            
-            array(
-                'id'       => 'opt-color-palette-mui-red',
-                'type'     => 'color_palette',
-                'title'    => __( 'Color Palette Control', 'your-domain-here' ),
-                'subtitle' => __( 'Red Material Dedign Colors.', 'your-domain-here' ),
-                'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-                'default'  => '#FF1744',
-                'options'   => array(
-                    'colors' => Redux_Pro_Helpers::get_material_design_colors ('red'),
-                    'size'   => 25,
-                )
-            ),
-            
-            array(
-                'id'       => 'opt-color-palette-mui-a100',
-                'type'     => 'color_palette',
-                'title'    => __( 'Color Palette Control', 'your-domain-here' ),
-                'subtitle' => __( 'A100 Material Dedign Colors.', 'your-domain-here' ),
-                'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-                'default'  => '#FF80AB',
-                'options'   => array(
-                    'colors' => Redux_Pro_Helpers::get_material_design_colors ('A100'),
-                    'size'   => 60,
-                    'style'  => 'round',
-                )
-            ),            
-        )
-    ) );
+                array(
+                    'id'       => 'opt-color-palette-mui-primary',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'Primary Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#000000',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('primary'),
+                        'size'   => 25,
+                        'box-shadow' => true,
+                        'margin' => true
+                    )
+                ),
 
+                array(
+                    'id'       => 'opt-color-palette-mui-red',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'Red Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#FF1744',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('red'),
+                        'size'   => 25,
+                    )
+                ),
+
+                array(
+                    'id'       => 'opt-color-palette-mui-a100',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'A100 Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#FF80AB',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('A100'),
+                        'size'   => 60,
+                        'style'  => 'round',
+                    )
+                ),            
+            )
+        ) );
+    }
+    
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Palette', 'your-domain-here' ),
         'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
