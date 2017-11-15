@@ -263,6 +263,11 @@ if ( ! class_exists( 'ReduxFramework' ) ) {
             return $this->render_class->get_header_html($field);
         }
 
+        public function current_user_can($permission) {
+            _deprecated_function( __FUNCTION__, '4.0.0', __('Redux 4') );
+            return Redux_Helpers::current_user_can($permission);
+        }
+
         /**
          * @return ReduxFramework
          */
