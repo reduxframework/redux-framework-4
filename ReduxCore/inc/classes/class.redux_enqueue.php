@@ -380,7 +380,13 @@
                                 
                                 $localize_data = $theField->localize( $field );
                                 
-                                if ($field['type'] == 'repeater') {
+                                $shims = array(
+                                    'repeater'
+                                );
+                                
+                                $shims = apply_filters('redux/' . $core->args['opt_name'] . '/localize/shims', $shims);
+                                
+                                if (in_array($field['type'], $shims)) {
                                     $this->repeater_data[ $field['type'] ][ $field['id'] ] = $localize_data;
                                 }
                                 
