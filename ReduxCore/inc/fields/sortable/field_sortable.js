@@ -22,7 +22,7 @@
                     parent = el.parents( '.redux-field-container:first' );
                 }
                 
-                if ( parent.is( ":hidden" ) ) { // Skip hidden fields
+                if ( parent.is( ":hidden" ) ) {
                     return;
                 }
                 
@@ -60,13 +60,22 @@
                     }
                 );
 
-                el.find( '.checkbox_sortable' ).on(
+                el.find( '.redux-sortable i.visibility' ).on(
                     'click', function() {
-                        if ( $( this ).is( ":checked" ) ) {
-                            el.find( '#' + $( this ).attr( 'rel' ) ).val( 1 );
+                        var li = $(this).parents('li');
+                        var val;
+                        
+                        if (li.hasClass('invisible')) {
+                            li.removeClass('invisible');
+                            val = 1;
                         } else {
-                            el.find( '#' + $( this ).attr( 'rel' ) ).val( '' );
+                            li.addClass('invisible');
+                            val = '';
                         }
+                        
+                        var hiddenInput = li.find('input[type="hidden"]');
+
+                        hiddenInput.val(val);
                     }
                 );
             }

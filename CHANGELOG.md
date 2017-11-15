@@ -19,6 +19,7 @@
 * Added:    Image filters to media field.
 * Added:    Gradient type, reach and angle arguments to color_gradient field.
 * Added:    Text shadow property to typography field.
+* Modified: Restyle sortable
 
 
 ## 3.6.4.1

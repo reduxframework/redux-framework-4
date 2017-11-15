@@ -10,7 +10,8 @@
 
             private $min = '';
             private $timestamp = '';
-
+            private $repeater_data = array();
+            
             public function __construct( $parent ) {
                 parent::__construct( $parent );
 
@@ -376,8 +377,14 @@
                                 if ( ! isset( $core->localize_data[ $field['type'] ] ) ) {
                                     $core->localize_data[ $field['type'] ] = array();
                                 }
-
-                                $core->localize_data[ $field['type'] ][ $field['id'] ] = $theField->localize( $field );
+                                
+                                $localize_data = $theField->localize( $field );
+                                
+                                if ($field['type'] == 'repeater') {
+                                    $this->repeater_data[ $field['type'] ][ $field['id'] ] = $localize_data;
+                                }
+                                
+                                $core->localize_data[ $field['type'] ][ $field['id'] ] = $localize_data;
                             }
 
                             unset( $theField );
@@ -544,7 +551,7 @@
                 wp_localize_script(
                   'redux-js',
                   'redux',
-                  array()
+                  $this->repeater_data
                 );
 
                 wp_localize_script(

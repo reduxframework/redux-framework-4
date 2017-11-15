@@ -17,7 +17,7 @@
 
     // Uncomment to disable demo mode
     //Redux::disable_demo();
-    
+
     /*
      *
      * --> Used within different fields. Simply examples. Search for ACTUAL DECLARATION for field examples
@@ -37,7 +37,7 @@
     $sample_patterns_path = ReduxCore::$_dir . '../sample/patterns/';
     $sample_patterns_url  = ReduxCore::$_url . '../sample/patterns/';
     $sample_patterns      = array();
-    
+
     if ( is_dir( $sample_patterns_path ) ) {
 
         if ( $sample_patterns_dir = opendir( $sample_patterns_path ) ) {
@@ -145,7 +145,7 @@
         // If you prefer not to use the CDN for Select2, Ace Editor, and others, you may download the Redux Vendor Support plugin yourself and run locally or embed it in your code.
 
         'admin_theme'          => 'wp',
-        
+
         // HINTS
         'hints'                => array(
             'icon'          => 'el el-question-sign',
@@ -397,14 +397,14 @@
             array(
                 'id'       => 'opt-check-sortable',
                 'type'     => 'sortable',
-                'mode'     => 'checkbox', // checkbox or text
-                'title'    => __( 'Sortable Text Option', 'your-domain-here' ),
+                'mode'     => 'toggle', // toggle or text
+                'title'    => __( 'Sortable Toggle Option', 'your-domain-here' ),
                 'subtitle' => __( 'Define and reorder these however you want.', 'your-domain-here' ),
                 'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
                 'options'  => array(
-                    'cb1' => 'Checkbox One',
-                    'cb2' => 'Checkbox Two',
-                    'cb3' => 'Checkbox Three',
+                    'cb1' => 'Option One',
+                    'cb2' => 'Option Two',
+                    'cb3' => 'Option Three',
                 ),
                 'default'  => array(
                     'cb1' => false,
@@ -615,9 +615,9 @@
             array(
                 'id'       => 'opt-color-title',
                 'type'     => 'color',
-                'output'   => array( 
+                'output'   => array(
                     'background-color' => '.site-background',
-                    'color' => '.site-title' 
+                    'color' => '.site-title'
                 ),
                 'title'    => __( 'Site Title Color', 'your-domain-here' ),
                 'subtitle' => __( 'Pick a title color for the theme (default: #000).', 'your-domain-here' ),
@@ -709,10 +709,93 @@
         )
     ) );
 
+    if (class_exists('ReduxCore') && ReduxCore::$_pro_loaded) {
+        Redux::setSection( $opt_name, array(
+            'title'      => __( 'Color Palette', 'your-domain-here' ),
+            'heading'      => __( 'Color Palette - REDUX PRO ONLY', 'your-domain-here' ),
+            'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
+            'id'         => 'color-palette',
+            'subsection' => true,
+            'fields'     => array(
+                array(
+                    'id'       => 'opt-color-palette-grey',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'User defined colors with round selectors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#888888',
+                    'options'   => array(
+                        'colors' => array( '#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff' ),
+                        'style'  => 'round',
+                    ),
+                    'output'   => array(
+                        'background-color' => 'body',
+                    ),
+                    
+                ),
+
+                array(
+                    'id'       => 'opt-color-palette-mui-all',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'All Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#F44336',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('all'),
+                        'size'   => 17,
+                    )
+                ),
+
+                array(
+                    'id'       => 'opt-color-palette-mui-primary',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'Primary Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#000000',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('primary'),
+                        'size'   => 25,
+                        'box-shadow' => true,
+                        'margin' => true
+                    )
+                ),
+
+                array(
+                    'id'       => 'opt-color-palette-mui-red',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'Red Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#FF1744',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('red'),
+                        'size'   => 25,
+                    )
+                ),
+
+                array(
+                    'id'       => 'opt-color-palette-mui-a100',
+                    'type'     => 'color_palette',
+                    'title'    => __( 'Color Palette Control', 'your-domain-here' ),
+                    'subtitle' => __( 'A100 Material Dedign Colors.', 'your-domain-here' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+                    'default'  => '#FF80AB',
+                    'options'   => array(
+                        'colors' => Redux_Pro_Helpers::get_material_design_colors ('A100'),
+                        'size'   => 60,
+                        'style'  => 'round',
+                    )
+                ),            
+            )
+        ) );
+    }
+    
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Palette Colors', 'your-domain-here' ),
+        'title'      => __( 'Palette', 'your-domain-here' ),
         'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
-        'id'         => 'color-palette',
+        'id'         => 'palette',
         'subsection' => true,
         'fields'     => array(
             array(
@@ -770,7 +853,7 @@
                 'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
                 'color_alpha' => true
             ),
-            
+
             array(
                 'id'       => 'opt-background-gradient',
                 'type'     => 'background_gradient',
@@ -778,12 +861,13 @@
                 'title'    => __( 'Background with Gradient & Image Filters', 'your-domain-here' ),
                 'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
                 'color_alpha' => true
-            ),            
+            ),
         ),
     ) );
 
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Box Shadow', 'your-domain-here' ),
+        'heading'      => __( 'Box Shadow - REDUX PRO ONLY', 'your-domain-here' ),
         'id'         => 'design-box-shadow',
         'desc'       => __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/box-shadow/" target="_blank">docs.reduxframework.com/core/fields/box_shadow/</a>',
         'subsection' => true,
@@ -806,7 +890,7 @@
                         array(
                             'rule' => 'screen and (max-width: 1120px)',
                             'selectors' => array('.bitch-ass-nigga')
-                        )                        
+                        )
                     )
                 ),
                 'title'    => __( 'Box Shadow', 'your-domain-here' ),
@@ -814,8 +898,8 @@
                 'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
             ),
         ),
-    ) );    
-    
+    ) );
+
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Border', 'your-domain-here' ),
         'id'         => 'design-border',
@@ -1001,7 +1085,7 @@
                 //'mode'      => false, // Can be set to false to allow any media type, or can also be set to any mime type.
                 'desc'     => __( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
                 'subtitle' => __( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
-                'default'  => array( 
+                'default'  => array(
                     'url' => 'http://s.wordpress.org/style/images/codeispoetry.png',
                     'filter' => array(
                         'grayscale' => array(
