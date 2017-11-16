@@ -107,8 +107,10 @@ if (!class_exists('Redux_Args')) {
             $this->get = $args;
 
             $this->parent->args = $args;
-
-            $this->change_demo_defaults($args);
+            
+            if ($args['opt_name'] != 'redux_extensions_demo' && $args['opt_name'] != 'redux_demo') {
+                $this->change_demo_defaults($args);
+            }
         }
 
         private function args($args) {
