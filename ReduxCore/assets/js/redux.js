@@ -1872,7 +1872,9 @@ function redux_hook( object, functionName, callback, before ) {
                     }
                     el.find( '#' + relid + '_section_group_li' ).removeClass( 'activeChild' ).addClass( 'active' );
                 } else {
-                    el.find( '#' + relid + '_section_group_li' ).addClass( 'active' ).removeClass( 'activeChild' ).find( 'ul.subsection' ).slideDown();
+                    setTimeout( function() {
+                        el.find( '#' + relid + '_section_group_li' ).addClass( 'active' ).removeClass( 'activeChild' ).find( 'ul.subsection' ).slideDown();
+                    }, 1 );
 
                     if ( el.find( '#' + oldid + '_section_group_li' ).find( 'ul.subsection' ).length ) {
                         //console.log('oldid is parent');
