@@ -65,10 +65,16 @@
         .wp-color-result {
             outline: 0;
             margin: 0;
+            height: 24px!important;
+            margin: 0 6px 6px 0!important;
         }
 
         .wp-picker-default {
             padding: 0 10px 1px;
+        }
+        
+        .wp-color-result-text {
+            line-height: 23px;
         }
     }
 

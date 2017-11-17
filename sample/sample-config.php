@@ -650,6 +650,7 @@
                 'gradient-type' => true,
                 'gradient-reach' => true,
                 'gradient-angle' => true,
+                'color_alpha' => true,
                 'preview' => true,
                 'default'  => array(
                     'from' => '#1e73be',
