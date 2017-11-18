@@ -37,7 +37,7 @@
                     return;
                 }
 
-                if (redux.field_objects.pro.gradient_filters === undefined) {
+                if (redux.field_objects.pro === undefined) {
                     proLoaded = false;
                 }
 

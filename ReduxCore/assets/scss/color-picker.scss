@@ -45,7 +45,7 @@
         .iris-slider-offset {
             position: absolute;
             top: 2px;
-            left: -5px;
+            left: 0px;
             right: 0;
             bottom: 4px;
             width: 28px; //17
@@ -56,6 +56,9 @@
     }
 
     .wp-picker-container {
+        display: inline-block;
+        outline: 0;
+
         input {
             margin-bottom: inherit;
             margin-top: inherit;
@@ -72,7 +75,7 @@
         .wp-picker-default {
             padding: 0 10px 1px;
         }
-        
+
         .wp-color-result-text {
             line-height: 23px;
         }
@@ -84,7 +87,9 @@
 
     .color-transparency-check {
         line-height: 1;
-        margin-top: 0px !important;
+/*        margin-top: 5px !important;*/
+        margin: 0!important;
+        padding-top: 10px;
     }
 
     .wp-picker-clear {
