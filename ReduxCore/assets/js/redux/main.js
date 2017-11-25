@@ -60,10 +60,12 @@
                 redux.optName = window['redux_' + opt_name];
             });
 
-            $.redux.hideFields();    
-            $.redux.initQtip();
-            $.redux.tabCheck();
-            $.redux.notices();
+            if (redux.optName !== undefined) {
+                $.redux.hideFields();    
+                $.redux.initQtip();
+                $.redux.tabCheck();
+                $.redux.notices();
+            }
         }
     );
 })(jQuery);

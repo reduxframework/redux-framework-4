@@ -58,7 +58,6 @@ if (!class_exists('Redux_AJAX_Save')) {
                             unset ( $redux->validation_ran );
                         }
                         $redux->options_class->set( $redux->options_class->_validate_options( $values ) );
-
                         $do_reload = false;
                         if ( isset( $core->reload_fields ) && ! empty( $core->reload_fields ) ) {
                             if ( ! empty( $core->transients['changed_values'] ) ) {
