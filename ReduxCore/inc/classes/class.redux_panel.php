@@ -108,18 +108,6 @@ if ( ! class_exists( 'Redux_Panel' ) ) {
 //                }
 //
 //                if ( !empty ( $api->rating ) ) {
-                    ?>
-<!--                    <style type="text/css">
-                        div.redux-star-holder { position: relative; height:19px; width:100px; font-size:19px;}
-                        div.redux-star {height: 100%; position:absolute; top:0px; left:0px; background-color: transparent; letter-spacing:1ex; border:none;}
-                        .redux-star1 {width:20%;} .redux-star2 {width:40%;} .redux-star3 {width:60%;} .redux-star4 {width:80%;} .redux-star5 {width:100%;}
-                        .redux-star.redux-star-rating {background-color: #fc0;}
-                        .redux-star img{display:block; position:absolute; right:0px; border:none; text-decoration:none;}
-                        div.redux-star img {width:19px; height:19px; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
-                        div.star img {width:19px; height:19px; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
-                    </style>-->
-
-    <?php
 //                }
 //            }
             
