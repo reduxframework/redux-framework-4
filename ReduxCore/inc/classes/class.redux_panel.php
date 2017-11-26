@@ -84,8 +84,65 @@ if ( ! class_exists( 'Redux_Panel' ) ) {
             echo '<div class="clear"></div>';
             echo '</div>';
 
+//            require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+//
+//            // Before, try to access the data, check the cache.
+//            if ( false === ($api = get_transient ( 'redux_framework_info' )) ) {
+//                // The cache data doesn't exist or it's expired.
+//                $api = plugins_api ( 'plugin_information', array( 'slug' => stripslashes ( 'redux-framework' ) ) );
+//
+//                if ( !is_wp_error ( $api ) ) {
+//                    // cache isn't up to date, write this fresh information to it now to avoid the query for xx time.
+//                    $myexpire = 60 * 15; // Cache data for 15 minutes
+//                    set_transient ( 'redux_framework_info', $api, $myexpire );
+//                }
+//            }
+//            
+//            if ( !is_wp_error ( $api ) ) {
+//                foreach ( (array) $api->sections as $section_name => $content ) {
+//                    $api->sections[ $section_name ] = wp_kses_post ( $content );
+//                }
+//
+//                foreach ( array( 'version', 'author', 'requires', 'tested', 'homepage', 'downloaded', 'slug' ) as $key ) {
+//                    $api->$key = wp_kses_post ( $api->$key );
+//                }
+//
+//                if ( !empty ( $api->rating ) ) {
+                    ?>
+<!--                    <style type="text/css">
+                        div.redux-star-holder { position: relative; height:19px; width:100px; font-size:19px;}
+                        div.redux-star {height: 100%; position:absolute; top:0px; left:0px; background-color: transparent; letter-spacing:1ex; border:none;}
+                        .redux-star1 {width:20%;} .redux-star2 {width:40%;} .redux-star3 {width:60%;} .redux-star4 {width:80%;} .redux-star5 {width:100%;}
+                        .redux-star.redux-star-rating {background-color: #fc0;}
+                        .redux-star img{display:block; position:absolute; right:0px; border:none; text-decoration:none;}
+                        div.redux-star img {width:19px; height:19px; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
+                        div.star img {width:19px; height:19px; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
+                    </style>-->
+
+    <?php
+//                }
+//            }
+            
             if ( $this->parent->args['dev_mode'] == true ) {
                 echo '<br /><div class="redux-timer">' . get_num_queries() . ' queries in ' . timer_stop( 0 ) . ' seconds<br/>Redux is currently set to developer mode.</div>';
+                
+//                if ( !empty ( $api->downloaded ) ) {
+//                    echo sprintf ( __ ( 'Downloaded %s times', 'redux-framework' ), number_format_i18n ( $api->downloaded ) );
+//                    echo '.';
+//                }
+?>
+<!--                <div class="redux-star-holder" title="<?php echo esc_attr ( sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ) ); ?>">
+                        <div class="redux-star redux-star-rating" style="width: <?php echo esc_attr ( $api->rating ) ?>px"></div>
+                        <div class="redux-star redux-star5"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '5 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star4"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '4 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star3"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '3 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star2"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '2 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star1"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '1 star', 'redux-framework' ) ?>" /></div>
+                    </div>
+                    <small><?php echo sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ); ?>
+                        <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/redux-framework?rate=5#postform"> <?php _e ( 'rate', 'redux-framework' ) ?></a>
+                    </small>-->
+<?php
             }
 
             /**
