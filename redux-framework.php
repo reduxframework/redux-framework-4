@@ -31,21 +31,12 @@ if( !defined( 'ABSPATH' ) ) {
     die;
 }
 
-    function redux_framework_plugin() {
-        // Require the main plugin class
-        require_once plugin_dir_path( __FILE__ ) . 'class.redux-plugin.php';
+// Require the main plugin class
+require_once plugin_dir_path( __FILE__ ) . 'class.redux-plugin.php';
 
-        // Register hooks that are fired when the plugin is activated and deactivated, respectively.
-        register_activation_hook( __FILE__, array( 'ReduxFrameworkPlugin', 'activate' ) );
-        register_deactivation_hook( __FILE__, array( 'ReduxFrameworkPlugin', 'deactivate' ) );
+// Register hooks that are fired when the plugin is activated and deactivated, respectively.
+register_activation_hook( __FILE__, array( 'ReduxFrameworkPlugin', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'ReduxFrameworkPlugin', 'deactivate' ) );
 
-        // The above line prevents ReduxFramework from instancing until all plugins have loaded.
-        // While this does not matter for themes, any plugin using Redux will not load properly.
-        // Waiting until all plugins have been loaded prevents the ReduxFramework class from
-        // being created, and fails the !class_exists('ReduxFramework') check in the sample_config.php,
-        // and thus prevents any plugin using Redux from loading their config file.
-
-        // Get plugin instance
-        ReduxFrameworkPlugin::instance();
-    }
-    add_action( 'plugins_loaded', 'redux_framework_plugin', 2 );
+// Get plugin instance
+ReduxFrameworkPlugin::instance();
