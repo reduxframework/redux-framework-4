@@ -26,7 +26,8 @@
              * @since       3.0.0
              */
 
-            const VERSION = '3.6.4.1';
+            // depcreciated
+            const VERSION = '';
 
             /**
              * @access      protected
@@ -179,6 +180,7 @@
                 add_filter( 'plugin_row_meta', array( $this, 'plugin_metalinks' ), null, 2 );
 
                 add_action( 'activated_plugin', array( $this, 'load_first' ) );
+                //add_action( 'init', array( $this, 'load_first' ) );
 
                 do_action( 'redux/plugin/hooks', $this );
             }
@@ -195,6 +197,17 @@
                         array_splice( $plugins, $key, 1 );
                         array_unshift( $plugins, $path );
                         update_option( 'active_plugins', $plugins );
+                    }
+                    
+                    if (  class_exists ( 'Redux_Pro' )) {
+                        $self_file = Redux_Helpers::cleanFilePath(Redux_Pro::$_dir);
+                        $path = str_replace( $plugin_dir, '', $self_file );
+                        
+                        if ( $key = array_search( $path . '/redux-pro.php', $plugins ) ) {
+                            array_splice( $plugins, $key, 1 );
+                            array_unshift( $plugins, $path . '/redux-pro.php' );
+                            update_option( 'active_plugins', $plugins );
+                        }                        
                     }
                 }
             }

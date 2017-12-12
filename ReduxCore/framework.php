@@ -22,12 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// I am some base code!! 
-
 require_once( dirname( __FILE__ ) . '/class.redux-core.php' );                     
 
 //new ReduxCore;
-ReduxCore::$_version = '4.0.0.2';
+ReduxCore::$_version = '4.0.0.3';
 ReduxCore::$_path = dirname( __FILE__ );
 ReduxCore::instance();
 
