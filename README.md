@@ -5,3 +5,7 @@ PLEASE do not post code anywhere and post any and all issues in THIS issue track
 If you want to interact with us directly, you can join our slack on http://slack.redux.io.
 
 Thank you!
+
+## Changelog ##
+
+See [Changelog.md](https://github.com/dovy/redux-dev/blob/master/CHANGELOG.md)

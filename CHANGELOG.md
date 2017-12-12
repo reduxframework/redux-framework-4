@@ -1,5 +1,8 @@
 # Redux Framework Changelog
 
+## 4.0.0.3
+* Fixed:    Remove plugins_loaded hook to init plugin.  Broke backward compat with Redux 3.
+
 ## 4.0.0.2
 * Modified: Sorter 'checkbox' now 'toggle' with UI redesign.  Full backward compatibility in place.
 * Added:    Shim for redux localization JS object from 3.x where the optName is not appended.  This broke repeater.
