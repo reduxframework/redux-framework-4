@@ -390,7 +390,7 @@
                         'body' => $this->trackingObject()
                     );
 
-                    $response = wp_remote_post( 'https://redux-tracking.herokuapp.com', $args );
+                    //$response = wp_remote_post( 'https://redux-tracking.herokuapp.com', $args );
 
                     // Store for a week, then push data again.
                     set_transient( 'redux_tracking_cache', true, WEEK_IN_SECONDS );
