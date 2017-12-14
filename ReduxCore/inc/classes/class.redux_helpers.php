@@ -1159,6 +1159,8 @@
                                 $filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
                                 ReduxCore::$_google_fonts = json_decode( $body, true );
                             }
+                        } else {
+                            return $request;
                         }
                     }
                 } elseif ( file_exists( $path ) ) {

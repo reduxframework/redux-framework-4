@@ -1196,10 +1196,17 @@
                 }
 
                 $fonts = Redux_Helpers::google_fonts_array( true );
-                if ( ! empty( $fonts ) ) {
+                if ( ! empty( $fonts ) && !is_wp_error($fonts) ) {
                     echo json_encode( array( 'status' => 'success', 'fonts' => $fonts ) );
                 } else {
-                    echo json_encode( array( 'status' => 'error' ) );
+                    $err_msg = '';
+
+                    if (is_wp_error($fonts)) {
+                        //$err_msg = $fonts->get_error_code();
+                        $err_msg = $fonts;
+                    }
+                    
+                    echo json_encode( array( 'status' => 'error', 'error' => $err_msg ) );
                 }
 
                 die();
