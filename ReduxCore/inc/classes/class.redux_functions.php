@@ -31,6 +31,7 @@
             // $core = Redux instance
             // $mode = pro field init mode
             public static function load_pro_field( $data ) {
+                // TODO - Fix this!!!
                 extract( $data );
 
                 if ( ReduxCore::$_pro_loaded ) {
@@ -174,7 +175,7 @@
             }
 
             /**
-             * verFromGit - Retrives latest Redux version from GIT
+             * verFromGit - Retrieves latest Redux version from GIT
              *
              * @since       3.2.0
              * @access      private
@@ -270,6 +271,7 @@
             }
 
             public static function tru( $string, $opt_name ) {
+
                 $redux = Redux::instance( $opt_name );
 
                 $check = get_user_option( 'r_tru_u_x', array() );

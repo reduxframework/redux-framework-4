@@ -118,19 +118,21 @@ if ( ! class_exists( 'Redux_Panel' ) ) {
 //                    echo sprintf ( __ ( 'Downloaded %s times', 'redux-framework' ), number_format_i18n ( $api->downloaded ) );
 //                    echo '.';
 //                }
+/*
 ?>
-<!--                <div class="redux-star-holder" title="<?php //echo esc_attr ( sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ) ); ?>">
+                <div class="redux-star-holder" title="<?php echo esc_attr ( sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ) ); ?>">
                         <div class="redux-star redux-star-rating" style="width: <?php //echo esc_attr ( $api->rating ) ?>px"></div>
-                        <div class="redux-star redux-star5"><img src="<?php //echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php //_e ( '5 stars', 'redux-framework' ) ?>" /></div>
-                        <div class="redux-star redux-star4"><img src="<?php //echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php //_e ( '4 stars', 'redux-framework' ) ?>" /></div>
-                        <div class="redux-star redux-star3"><img src="<?php //echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php //_e ( '3 stars', 'redux-framework' ) ?>" /></div>
-                        <div class="redux-star redux-star2"><img src="<?php //echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php //_e ( '2 stars', 'redux-framework' ) ?>" /></div>
-                        <div class="redux-star redux-star1"><img src="<?php //echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php //_e ( '1 star', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star5"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '5 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star4"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '4 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star3"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '3 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star2"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '2 stars', 'redux-framework' ) ?>" /></div>
+                        <div class="redux-star redux-star1"><img src="<?php echo ReduxCore::$_url; ?>assets/img/star.png" alt="<?php _e ( '1 star', 'redux-framework' ) ?>" /></div>
                     </div>
-                    <small><?php //echo sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ); ?>
-                        <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/redux-framework?rate=5#postform"> <?php// _e ( 'rate', 'redux-framework' ) ?></a>
-                    </small>-->
+                    <small><?php echo sprintf ( __ ( '(Average rating based on %s ratings)', 'redux-framework' ), number_format_i18n ( $api->num_ratings ) ); ?>
+                        <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/redux-framework?rate=5#postform"> <?php _e ( 'rate', 'redux-framework' ) ?></a>
+                    </small>
 <?php
+*/
             }
 
             /**

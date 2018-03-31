@@ -127,7 +127,7 @@ if ( ! class_exists( 'ReduxFramework_dimensions' ) ) {
                 // nothing to do here, but I'm leaving the construct just in case I have to debug this again.
             }
 
-            echo '<fieldset id="' . esc_attr($this->field['id']) . '" class="redux-dimensions-container" data-id="' . esc_attr($this->field['id']) . '">';
+            echo '<fieldset id="' . esc_attr($this->field['id']) . '-fieldset" class="redux-dimensions-container" data-id="' . esc_attr($this->field['id']) . '">';
 
             $this->select2_config['allowClear'] = false;
             

@@ -168,7 +168,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                         'padding-box' => esc_html__('Padding Box', 'redux-framework')
                     );
 
-                    echo '<select id="' . esc_attr($this->field['id']) . '-repeat-select" data-placeholder="' . esc_html__( 'Background Clip', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
+                    echo '<select id="' . esc_attr($this->field['id']) . '-clip-select" data-placeholder="' . esc_html__( 'Background Clip', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -186,7 +186,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                         'padding-box' => esc_html__('Padding Box', 'redux-framework')
                     );
 
-                    echo '<select id="' . esc_attr($this->field['id']) . '-repeat-select" data-placeholder="' . esc_html__( 'Background Origin', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
+                    echo '<select id="' . esc_attr($this->field['id']) . '-origin-select" data-placeholder="' . esc_html__( 'Background Origin', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -203,7 +203,7 @@ if ( ! class_exists( 'ReduxFramework_background' ) ) {
                         'contain' => esc_html__('Contain', 'redux-framework')
                     );
 
-                    echo '<select id="' . esc_attr($this->field['id']) . '-repeat-select" data-placeholder="' . esc_html__( 'Background Size', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
+                    echo '<select id="' . esc_attr($this->field['id']) . '-size-select" data-placeholder="' . esc_html__( 'Background Size', 'redux-framework' ) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . esc_attr($this->field['class']) . '"' . esc_attr($select2_data) . '>';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {

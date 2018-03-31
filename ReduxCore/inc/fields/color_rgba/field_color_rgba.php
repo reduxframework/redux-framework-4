@@ -103,7 +103,6 @@ if ( ! class_exists( 'ReduxFramework_color_rgba' ) ) {
               >';
 
             // Colour picker layout
-            $opt_name = $this->parent->args['opt_name'];
 
             if ( '' == $this->value['color'] || 'transparent' == $this->value['color'] ) {
                 $color = '';
@@ -117,7 +116,7 @@ if ( ! class_exists( 'ReduxFramework_color_rgba' ) ) {
 
             echo '<input
                     name="' . esc_attr($this->field['name'] . $this->field['name_suffix']) . '[color]"
-                    id="' . esc_attr($field_id) . '-color"
+                    id="' . esc_attr($field_id) . '-color-display"
                     class="redux-color-rgba"
                     type="text"
                     value="' . esc_attr($this->value['color']) . '"

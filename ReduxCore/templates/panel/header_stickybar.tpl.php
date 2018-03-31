@@ -19,12 +19,18 @@
             <span class="spinner"></span>
 <?php
             if ( false === $this->parent->args['hide_save'] ) {
-              submit_button( esc_attr__( 'Save Changes', 'redux-framework' ), 'primary', 'redux_save', false );
+                $extra = array(
+                        'id'=>'testing'
+                );
+              submit_button( esc_attr__( 'Save Changes', 'redux-framework' ), 'primary', 'redux_save', false, array(
+                  'id' => 'redux_top_save'
+              ));
+
             }
 
             if ( false === $this->parent->args['hide_reset'] ) {
-              submit_button( esc_attr__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section' ) );
-              submit_button( esc_attr__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults' ) );
+              submit_button( esc_attr__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-top' ) );
+              submit_button( esc_attr__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults-top' ) );
             }
 ?>
         </div>

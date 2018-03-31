@@ -49,7 +49,7 @@ if ( ! class_exists( 'ReduxFramework_text' ) ) {
 
                     echo '<div class="input_wrapper">';
                     echo '<label for="' . esc_attr($this->field['id'] . '-text-' . $k) . '">' . esc_html($v) . '</label> ';
-                    echo '<input ' . esc_attr($qtip_title) . esc_attr($qtip_text) . 'type="text" id="' . esc_attr($this->field['id'] . '-text-' . $k) . '" name="' . esc_attr($this->field['name'] . $this->field['name_suffix'] . '[' . $k) . ']' . '" ' . esc_attr($placeholder) . 'value="' . esc_attr( $this->value[ $k ] ) . '" class="regular-text ' . esc_attr($this->field['class']) . '"' . $readonly . $autocomplete . ' /><br />';
+                    echo '<input ' . esc_attr($qtip_title) . esc_attr($qtip_text) . 'type="text" name="' . esc_attr($this->field['name'] . $this->field['name_suffix'] . '[' . $k) . ']' . '" ' . esc_attr($placeholder) . 'value="' . esc_attr( $this->value[ $k ] ) . '" class="regular-text ' . esc_attr($this->field['class']) . '"' . $readonly . $autocomplete . ' /><br />';
                     echo '</div>';
                 }
             } else {

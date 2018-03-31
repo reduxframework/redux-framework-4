@@ -73,13 +73,13 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                 'from',
                 'to'
             );
-            
+
             foreach($mode_arr as $idx => $mode){
                 echo '<div class="colorGradient ' . $mode . 'Label">';
                 echo '<strong>' . esc_html__( ucfirst($mode) . ' ', 'redux-framework' ) . '</strong>&nbsp;';
                 echo '<input ';
                 echo     'data-id="' . esc_attr( $this->field['id'] ) . '"';
-                echo     'id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '"';
+                echo     'id="' . esc_attr( $this->field['id'] ) . '-' . $mode .'"';
                 echo     'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . $mode . ']' . '"';
                 echo     'value="' . esc_attr( $this->value[$mode] ) . '"';
                 echo     'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
@@ -97,7 +97,7 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
 
                 echo '/>';
 
-                echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color' . '" value="">';
+                echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '-saved-color' . '" value="">';
 
                 if ( ! isset( $this->field['transparent'] ) || $this->field['transparent'] !== false ) {
                     $tChecked = "";
@@ -110,10 +110,10 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                     echo     '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-' . $mode . '" value="1"' . $tChecked . '> ' . esc_html__( 'Transparent', 'redux-framework' );
                     echo '</label>';
                 }
-                
+
                 echo "</div>";
             }
-            
+
             if (ReduxCore::$_pro_loaded) {
                 echo apply_filters('redux/pro/color_gradient/render/preview', null);
                 echo apply_filters('redux/pro/color_gradient/render/extra_inputs', null);
@@ -155,14 +155,14 @@ if ( ! class_exists( 'ReduxFramework_color_gradient' ) ) {
                 );
             }
         }
-        
+
         public function css_style($data) {
-            
+
             if (ReduxCore::$_pro_loaded) {
                 $pro_data = apply_filters('redux/pro/color_gradient/output', $data);
 
                 return $pro_data;
-            }            
+            }
         }
     }
 }
