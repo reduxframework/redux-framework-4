@@ -1,0 +1,12 @@
+./ReduxCore/assets/js/*.js
+./ReduxCore/assets/js/media/*.min.js
+./ReduxCore/assets/js/vendor/*.js
+./ReduxCore/assets/js/vendor/**/*.js
+./ReduxCore/assets/js/redux/*.js
+./ReduxCore/inc/fields/**/*.min.js
+./ReduxCore/inc/fields/typography/todo/*.*
+./ReduxCore/inc/fields/spinner/vendor/*.*
+./ReduxCore/inc/extensions/**/*.min.js
+./ReduxCore/inc/welcome/js/*.min.js
+./ReduxCore/inc/welcome/js/jquery.easing.min.js
+./ReduxCore/inc/themecheck/js/*.min.js

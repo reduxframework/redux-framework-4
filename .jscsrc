@@ -1,0 +1,49 @@
+{
+  "preset": "wordpress",
+  "fileExtensions": [".js", "jscs"],
+
+  "excludeFiles": [
+    "./gulpfile.js",
+    "./ReduxCore/inc/themecheck/js/*.min.js",
+    "./ReduxCore/inc/welcome/js/jquery.easing.min.js",
+    "./ReduxCore/inc/welcome/js/*.min.js",
+    "./ReduxCore/inc/extensions/**/*.min.js",
+    "./ReduxCore/inc/fields/spinner/vendor/*.min.js",
+    "./ReduxCore/inc/fields/typography/todo/*.*",
+    "./ReduxCore/inc/fields/**/*.min.js",
+    "./ReduxCore/assets/js/vendor/**/*.js",
+    "./ReduxCore/assets/js/vendor/*.js",
+    "./ReduxCore/assets/js/media/*.min.js",
+    "./ReduxCore/assets/js/*.js"
+  ],
+
+  "maxErrors": -1,
+  "requireSemicolons": true,
+  "requireParenthesesAroundIIFE": true,
+  "maximumLineLength": 240,
+  "validateLineBreaks": null,
+  "validateIndentation": "\t",
+  "disallowTrailingComma": true,
+  "disallowUnusedParams": true,
+
+  "disallowSpaceAfterPrefixUnaryOperators": false,
+  "disallowSpacesInsideParentheses": false,
+  "disallowSpacesInsideObjectBrackets": null,
+  "disallowImplicitTypeConversion": ["string"],
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "validateQuoteMarks": false,
+  "safeContextKeyword": "_this",
+
+  "jsDoc": {
+    "checkAnnotations": "closurecompiler",
+    "checkParamNames": true,
+    "requireParamTypes": true,
+    "checkRedundantParams": true,
+    "checkReturnTypes": true,
+    "checkRedundantReturns": true,
+    "requireReturnTypes": true,
+    "checkTypes": "capitalizedNativeCase",
+    "checkRedundantAccess": true,
+    "requireNewlineAfterDescription": true
+  },
+}
