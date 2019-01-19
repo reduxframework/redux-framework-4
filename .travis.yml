@@ -7,10 +7,12 @@ language: php
 
 # Declare versions of PHP to use. Use one decimal max.
 php:
-    # - "7.0"
-    # - "7.1"
-    - "7.2"   
-    
+    - "5.6"
+    - "7.0"
+    - "7.1"
+    - "7.2"
+    - "7.3"
+
 notifications:
     slack: redux:yeR6PY87fwfQ0sBPnJFmCmjY
     
@@ -24,7 +26,8 @@ sudo: false
 env:
     # Trunk (current version in development is 4.7)
     # @link https://github.com/WordPress/WordPress
-    - WP_VERSION=master WP_MULTISITE=0
+    - WP_VERSION=latest WP_MULTISITE=0
+    - WP_VERSION=latest WP_MULTISITE=1
 
 # Use this to prepare your build for testing.
 # e.g. copy database configurations, environment variables, etc.
