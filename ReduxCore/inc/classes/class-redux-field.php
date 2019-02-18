@@ -91,7 +91,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			$reflector  = new ReflectionClass( $class_name );
 			$path       = $reflector->getFilename();
 			$path_info  = Redux_Helpers::path_info( $path );
-			$this->_dir = trailingslashit( dirname( $path_info['realpath'] ) );
+			$this->_dir = trailingslashit( dirname( $path_info['real_path'] ) );
 			$this->_url = trailingslashit( dirname( $path_info['url'] ) );
 
 			$this->timestamp = Redux_Core::$_version;
