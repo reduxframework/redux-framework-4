@@ -78,6 +78,6 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 	}
 }
 
-if ( ! class_exists('ReduxFrameworkInstances') ) {
+if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
 	class_alias( 'Redux_Instances', 'ReduxFrameworkInstances' );
 }
