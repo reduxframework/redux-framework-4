@@ -3,14 +3,14 @@
   "main": "gulpfile.js",
   "name": "Redux-Framework",
   "author": "Team Redux",
-  "version": "4.0.0",
-  "license": "GPL-2.0-or-later",
+  "version": "4.0.1",
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reduxframework/redux-framework.git"
+    "url": "https://github.com/reduxframework/redux-framework-4.git"
   },
   "bugs": {
-    "url": "https://github.com/reduxframework/redux-framework/issues"
+    "url": "https://github.com/reduxframework/redux-framework-4/issues"
   },
   "homepage": "http://reduxframework.com",
   "resolutions": {

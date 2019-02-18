@@ -1,4 +1,7 @@
-# Redux Framework Changelog
+# Redux Framework v4 Changelog
+
+## 4.0.1
+New:        Initial public beta release.
 
 ## 4.0.0.22
 * Added:    `allow_empty_line_height` arg for the typography field to prevent font-size from overriding a blank line-height field.
