@@ -1644,7 +1644,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					'basename' => $plugin_basename,
 					'path'     => Redux_Functions_Ex::wp_normalize_path( $file ),
 					'url'      => plugins_url( $plugin_basename ),
-					'realpath' => Redux_Functions_Ex::wp_normalize_path( dirname( realpath( $file ) ) ),
+					'real_path' => Redux_Functions_Ex::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
 			}
 

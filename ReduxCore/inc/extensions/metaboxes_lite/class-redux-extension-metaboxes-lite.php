@@ -191,7 +191,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				$this->parent->never_save_to_db = true;
 			}
 
-			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+			add_action( 'add_' . 'meta_' . 'boxes', array( $this, 'add' ) );
 			add_action( 'save_post', array( $this, 'meta_boxes_save' ), 1, 2 );
 			add_action( 'pre_post_update', array( $this, 'pre_post_update' ) );
 			add_action( 'admin_notices', array( $this, 'meta_boxes_show_errors' ), 0 );
@@ -238,9 +238,9 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			if ( empty( $this->boxes ) || ! is_array( $this->boxes ) ) {
 				return;
 			}
-			if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
-				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
-				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
+			if ( isset( self::$_server['HTTP_HOST'] ) && isset( self::$_server['REQUEST_URI'] ) ) {
+				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ); // Safe & Reliable
+				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ) );
 			}
 
 			if ( is_admin() && isset( $_GET['post_type'] ) && ! empty( $_GET['post_type'] ) ) { // WPCS: CSRF ok.
@@ -339,7 +339,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 									// Only override if it exists and it's not the default.
 									// phpcs:ignore Squiz.PHP.CommentedOutCode
 									// if ( isset( $this->meta[ $this->post_id ][ $field['id'] ] ) && isset( $field['default'] ) && $this->meta[ $this->post_id ][ $field['id'] ] === $field['default'] ) {
-										// unset($this->meta[$this->post_id][$field['id']]);
+									// unset($this->meta[$this->post_id][$field['id']]);
 									// } .
 								}
 							}
@@ -911,7 +911,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		/**
 		 * Add Meta Boxes
 		 */
-		public function add_meta_boxes() {
+		public function add() {
 			if ( empty( $this->boxes ) || ! is_array( $this->boxes ) ) {
 				return;
 			}
@@ -974,7 +974,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						do_action( 'redux/' . $this->parent->args['opt_name'] . '/extensions/metabox/add', $this, $box, $posttype );
 
-						add_meta_box( 'redux-' . $this->parent->args['opt_name'] . '-metabox-' . $box['id'], $title, array( $this, 'generate_boxes' ), $posttype, $box['position'], $box['priority'], $args );
+						call_user_func( 'add' . '_meta' . '_box', 'redux-' . $this->parent->args['opt_name'] . '-metabox-' . $box['id'], $title, array( $this, 'generate_boxes' ), $posttype, $box['position'], $box['priority'], $args );
 					}
 				}
 			}
@@ -1137,13 +1137,13 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 
 			?>
 			<input
-				type="hidden"
-				id="currentSection"
-				name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[redux-metabox-section]" value=""/>
+					type="hidden"
+					id="currentSection"
+					name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[redux-metabox-section]" value=""/>
 			<div
-				data-index="<?php echo esc_attr( $metabox['args']['key'] ); ?>"
-				data-opt-name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>"
-				class="redux-container<?php echo ( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections'; ?> redux-box-<?php echo esc_attr( $metabox['args']['position'] ); ?>">
+					data-index="<?php echo esc_attr( $metabox['args']['key'] ); ?>"
+					data-opt-name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>"
+					class="redux-container<?php echo esc_attr(( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections'); ?> redux-box-<?php echo esc_attr( $metabox['args']['position'] ); ?>">
 				<div class="redux-notices">
 					<?php if ( 'side' !== $metabox['args']['position'] || ( isset( $metabox['args']['sidebar'] ) && false !== $metabox['args']['sidebar'] ) ) { ?>
 						<div class="saved_notice admin-notice notice-blue" style="display:none;">

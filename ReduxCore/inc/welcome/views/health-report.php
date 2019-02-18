@@ -545,7 +545,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			$mark = ! empty( $single_post['success'] ) ? 'yes' : 'error';
 			?>
 			<tr>
-				<td data-export-label="<?php echo $single_post['name']; // WPCS: XSS ok. ?>">
+				<td data-export-label="<?php echo esc_attr( $single_post['name'] ); // WPCS: XSS ok. ?>">
 					<?php echo esc_html( $single_post['name'] ); ?>:
 				</td>
 				<td>

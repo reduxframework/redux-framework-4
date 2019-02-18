@@ -203,7 +203,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			self::$_upload_url = apply_filters( 'redux/_upload_url', self::$_upload_url );
 
-			self::$_server = filter_input_array( INPUT_SERVER, $_SERVER );
+			self::$_server = filter_input_array( INPUT_SERVER, $_SERVER ); // WPCS: XSS ok.
 		}
 
 		/**
