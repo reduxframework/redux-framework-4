@@ -644,7 +644,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				'import_section_confirm' => $import_confirm,
 				'please_wait'            => esc_html__( 'Please Wait', 'redux-framework' ),
 				'opt_name'               => $core->args['opt_name'],
-				'flyout_submenus'        => $core->args['pro']['flyout_submenus'],
+				'flyout_submenus'        => isset( $core->args['pro']['flyout_submenus'] ) ? $core->args['pro']['flyout_submenus'] : false,
 				'slug'                   => $core->args['page_slug'],
 				'hints'                  => $core->args['hints'],
 				'disable_save_warn'      => $core->args['disable_save_warn'],

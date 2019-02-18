@@ -1055,6 +1055,10 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 			if ( isset( $section['type'] ) && 'divide' === $section['type'] ) {
 				$string .= '<li class="divide' . esc_attr( $section['class'] ) . '">&nbsp;</li>';
 			} elseif ( ! isset( $section['subsection'] ) || true !== $section['subsection'] ) {
+				if ( ! isset( $core->args['pro']['flyout_submenus'] ) ) {
+					$core->args['pro']['flyout_submenus'] = false;
+				}
+				
 				$subsections        = ( isset( $sections[ ( $k + 1 ) ] ) && isset( $sections[ ( $k + 1 ) ]['subsection'] ) && true === $sections[ ( $k + 1 ) ]['subsection'] ) ? true : false;
 				$subsections_class  = $subsections ? ' hasSubSections' : '';
 				$subsections_class .= ( ! isset( $section['fields'] ) || empty( $section['fields'] ) ) ? ' empty_section' : '';

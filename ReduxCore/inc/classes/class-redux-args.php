@@ -140,6 +140,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'allow_tracking'            => true,
 				'admin_theme'               => 'wordpress',
 				'elusive_frontend'          => false,
+				'pro'                       => array(),
 			);
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
