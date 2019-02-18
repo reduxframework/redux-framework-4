@@ -15,7 +15,7 @@ Here are several guidelines to consider when testing:
 
 6. Lastly, we are not accepting pull requests at this time.  The reason for this is because this code is extremely complicated, especially in terms of backward compatibility with v3.  Please propose changes via the issue tracker so they may be evaluated for backward compatibility.
 
-If you would like to interact with us directly, you can join our Slack workspace at [http://slack.redux.io](http://slack.redux.io).  We have a channel dedicated for this beta.  Our handles are @Kev and @dovy.  Message us for access!
+If you would like to interact with us directly, you can join our Slack workspace at [http://slack.redux.io](http://slack.redux.io).  Join us in the [#redux-beta](https://redux.slack.com/messages/CG9F75Y7L) channel.  Our handles are @Kev and @dovy.  Don't be afraid to say hi!
 
 Please check back nightly for new code pushes.
 
