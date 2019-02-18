@@ -89,7 +89,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				'letter-spacing'          => false,
 				'google'                  => true,
 				'font_family_clear'       => true,
-				'allow_empty_line_height' => true,
+				'allow_empty_line_height' => false,
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
