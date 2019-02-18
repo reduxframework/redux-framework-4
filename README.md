@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/reduxframework/redux-framework.png?branch=master)](https://travis-ci.org/reduxframework/redux-framework-4) [![Slack](https://redux-slackin.herokuapp.com/badge.svg)](https://redux-slackin.herokuapp.com) 
 ## Welcome to the Redux 4.0 Beta
 
 Here are several guidelines to consider when testing:
