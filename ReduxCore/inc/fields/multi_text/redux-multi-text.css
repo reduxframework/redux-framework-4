@@ -1,0 +1,20 @@
+.redux-container-multi_text ul.redux-multi-text { margin: 0; padding: 0; }
+
+.redux-container-multi_text .redux-multi-text-add { clear: both; margin: 5px 0; }
+
+.redux-container-multi_text a.redux-multi-text-remove.deletion { color: #F00; padding: 2px 4px; margin-left: 5px; }
+
+.redux-container-multi_text a.redux-multi-text-remove.deletion:hover { background: red; color: #fff; text-decoration: none; }
+
+@media screen and (max-width: 782px) { .redux-container-multi_text input { clear: both; }
+	.redux-container-multi_text .redux-multi-text-remove { margin: 0; float: right; } }
+
+.wp-customizer .redux-container-multi_text .button { float: right; }
+
+.wp-customizer .redux-container-multi_text .redux-multi-text-remove { float: right; margin-bottom: 5px; }
+
+.wp-customizer .redux-container-multi_text ul.redux-multi-text input { width: 100% !important; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVkdXgtbXVsdGktdGV4dC5jc3MiLCJzb3VyY2VzIjpbInJlZHV4LW11bHRpLXRleHQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxBQUNJLDJCQUR1QixDQUN2QixFQUFFLEFBQUEsaUJBQWlCLENBQUMsRUFDaEIsTUFBTSxFQUFFLENBQUMsRUFDVCxPQUFPLEVBQUUsQ0FBQyxHQUNiOztBQUpMLEFBTUksMkJBTnVCLENBTXZCLHFCQUFxQixDQUFDLEVBQ2xCLEtBQUssRUFBRSxJQUFJLEVBQ1gsTUFBTSxFQUFFLEtBQUssR0FDaEI7O0FBVEwsQUFZUSwyQkFabUIsQ0FXdkIsQ0FBQyxBQUFBLHdCQUF3QixBQUNwQixTQUFTLENBQUMsRUFDUCxLQUFLLEVBQUUsSUFBSSxFQUNYLE9BQU8sRUFBRSxPQUFPLEVBQ2hCLFdBQVcsRUFBRSxHQUFHLEdBT25COztBQXRCVCxBQWlCWSwyQkFqQmUsQ0FXdkIsQ0FBQyxBQUFBLHdCQUF3QixBQUNwQixTQUFTLEFBS0wsTUFBTSxDQUFDLEVBQ0osVUFBVSxFQUFFLEdBQUcsRUFDZixLQUFLLEVBQUUsSUFBSSxFQUNYLGVBQWUsRUFBRSxJQUFJLEdBQ3hCOztBQUtiLE1BQU0sQ0FBQyxNQUFNLE1BQU0sU0FBUyxFQUFFLEtBQUssSUFDL0IsQUFDSSwyQkFEdUIsQ0FDdkIsS0FBSyxDQUFDLEVBQ0YsS0FBSyxFQUFFLElBQUksR0FDZDtDQUhMLEFBS0ksMkJBTHVCLENBS3ZCLHdCQUF3QixDQUFDLEVBQ3JCLE1BQU0sRUFBRSxDQUFDLEVBQ1QsS0FBSyxFQUFFLEtBQUssR0FDZjs7QUFJVCxBQUVRLGNBRk0sQ0FDViwyQkFBMkIsQ0FDdkIsT0FBTyxDQUFDLEVBQ0osS0FBSyxFQUFFLEtBQUssR0FDZjs7QUFKVCxBQUtRLGNBTE0sQ0FDViwyQkFBMkIsQ0FJdkIsd0JBQXdCLENBQUMsRUFDckIsS0FBSyxFQUFFLEtBQUssRUFDWixhQUFhLEVBQUUsR0FBRyxHQUNyQjs7QUFSVCxBQVNRLGNBVE0sQ0FDViwyQkFBMkIsQ0FRdkIsRUFBRSxBQUFBLGlCQUFpQixDQUFDLEtBQUssQ0FBQyxFQUN0QixLQUFLLEVBQUUsZUFBZSxHQUN6QiJ9 */
+
+/*# sourceMappingURL=redux-multi-text.css.map */

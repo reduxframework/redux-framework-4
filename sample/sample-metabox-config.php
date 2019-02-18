@@ -3,6 +3,11 @@
  * Redux Framework Sample Metabox Config File
  * For full documentation, please visit: http://docs.reduxframework.com/
  *
+ * Metabox Lite support the following fields only:  checkbox, radio, button_set, switch, text, textarea, media, & color
+ * Post Format and Post Template options are not avaialble in Metabox Lite.
+ *
+ * These advanced options are available in Redux Pro.
+ *
  * @package Redux Framework
  */
 
@@ -15,189 +20,82 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 Redux_Metaboxes::set_box(
 	$opt_name,
 	array(
-		'id'         => 'demo-layout',
-		'title'      => __( 'Cool Options', 'your-domain-here' ),
-		'post_types' => array( 'page', 'post', 'acme_product' ),
+		'id'         => 'opt-metaboxes',
+		'title'      => esc_html__( 'Metabox Options', 'your-domain-here' ),
+		'post_types' => array( 'page', 'post' ),
 		'position'   => 'normal', // normal, advanced, side.
 		'priority'   => 'high', // high, core, default, low.
 		'sections'   => array(
 			array(
-				'title'  => __( 'Home Settings', 'your-domain-here' ),
-				'id'     => 'home-settings',
-				'desc'   => esc_html__( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'your-domain-here' ),
-				'icon'   => 'el-icon-home',
+				'title'  => esc_html__( 'Basic Fields', 'your-domain-here' ),
+				'id'     => 'opt-basic-fields',
+				'desc'   => esc_html__( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at:', 'your-domain-here' ) . '  <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>',
+				'icon'   => 'el-icon-cogs',
 				'fields' => array(
 					array(
-						'id'       => 'webFonts',
-						'type'     => 'media',
-						'title'    => __( 'Web Fonts', 'your-domain-here' ),
-						'compiler' => 'true',
-						'mode'     => false,
-						// Can be set to false to allow any media type, or can also be set to any mime type.
-						'desc'     => __( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
-						'subtitle' => __( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+						'id'       => 'opt-checkbox',
+						'type'     => 'checkbox',
+						'title'    => esc_html__( 'Checkbox', 'your-domain-here' ),
+						'subtitle' => esc_html__( 'Basic Checkbox field.', 'your-domain-here' ),
+						'default'  => true,
 					),
 					array(
-						'id'       => 'section-media-start',
-						'type'     => 'section',
-						'title'    => __( 'Media Options', 'your-domain-here' ),
-						'subtitle' => __( 'With the "section" field you can create indent option sections.' ),
-						'indent'   => true, // Indent all options below until the next 'section' option is set.
+						'id'       => 'opt-radio',
+						'type'     => 'radio',
+						'title'    => esc_html__( 'Radio Button', 'your-domain-here' ),
+						'subtitle' => esc_html__( 'Basic Radio Button field.', 'your-domain-here' ),
+						'options'  => array(
+							'1' => esc_html__( 'Option 1', 'your-domain-here' ),
+							'2' => esc_html__( 'Option 2', 'your-domain-here' ),
+							'3' => esc_html__( 'Option 3', 'your-domain-here' ),
+						),
+						'default'  => '2',
 					),
 					array(
-						'id'       => 'media',
+						'id'       => 'opt-media',
 						'type'     => 'media',
 						'url'      => true,
-						'title'    => __( 'Media w/ URL', 'your-domain-here' ),
+						'title'    => esc_html__( 'Media w/ URL', 'your-domain-here' ),
 						'compiler' => 'true',
-						'desc'     => __( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
-						'subtitle' => __( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+						'desc'     => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
+						'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
 						'default'  => array( 'url' => 'http://s.wordpress.org/style/images/codeispoetry.png' ),
-					),
-					array(
-						'id'     => 'section-media-end',
-						'type'   => 'section',
-						'indent' => false, // Indent all options below until the next 'section' option is set.
-					),
-					array(
-						'id'       => 'media-nourl',
-						'type'     => 'media',
-						'title'    => __( 'Media w/o URL', 'your-domain-here' ),
-						'desc'     => __( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
-						'subtitle' => __( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
-					),
-					array(
-						'id'       => 'media-nopreview',
-						'type'     => 'media',
-						'preview'  => false,
-						'title'    => __( 'Media No Preview', 'your-domain-here' ),
-						'desc'     => __( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
-						'subtitle' => __( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
-					),
-					array(
-						'id'       => 'gallery',
-						'type'     => 'gallery',
-						'title'    => __( 'Add/Edit Gallery', 'so-panels' ),
-						'subtitle' => __( 'Create a new Gallery by selecting existing or uploading new images using the WordPress native uploader', 'so-panels' ),
-						'desc'     => __( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-					),
-					array(
-						'id'      => 'slider1bDOVY23',
-						'type'    => 'slider',
-						'title'   => __( 'JQuery UI Slider Example 1', 'your-domain-here' ),
-						'desc'    => __( 'JQuery UI slider description. Min: 1, max: 500, step: 3, default value: 45', 'your-domain-here' ),
-						'default' => '45',
-						'min'     => '1',
-						'step'    => '3',
-						'max'     => '500',
-					),
-					array(
-						'id'      => 'slider2bc',
-						'type'    => 'slider',
-						'title'   => __( 'JQuery UI Slider Example 2 w/ Steps (5)', 'your-domain-here' ),
-						'desc'    => __( 'JQuery UI slider description. Min: 0, max: 300, step: 5, default value: 75', 'your-domain-here' ),
-						'default' => '0',
-						'min'     => '0',
-						'step'    => '5',
-						'max'     => '300',
-					),
-					array(
-						'id'      => 'spinner1bcd',
-						'type'    => 'spinner',
-						'title'   => __( 'JQuery UI Spinner Example 1', 'your-domain-here' ),
-						'desc'    => __( 'JQuery UI spinner description. Min:20, max: 100, step:20, default value: 40', 'your-domain-here' ),
-						'default' => '40',
-						'min'     => '20',
-						'step'    => '20',
-						'max'     => '100',
-					),
-					array(
-						'id'       => 'switch-on',
-						'type'     => 'switch',
-						'title'    => __( 'Switch On', 'your-domain-here' ),
-						'subtitle' => __( 'Look, it\'s on!', 'your-domain-here' ),
-						'default'  => 1,
-					),
-					array(
-						'id'       => 'switch-off',
-						'type'     => 'switch',
-						'title'    => __( 'Switch Off', 'your-domain-here' ),
-						'subtitle' => __( 'Look, it\'s on!', 'your-domain-here' ),
-						'default'  => 0,
 					),
 				),
 			),
 
 			array(
-				'title'      => __( 'Home Layout Sub', 'your-domain-here' ),
-				'desc'       => __( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'your-domain-here' ),
-				'icon'       => 'el-icon-home',
-				'id'         => 'home-sub',
+				'title'      => esc_html__( 'Text Fields', 'your-domain-here' ),
+				'desc'       => esc_html__( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at:', 'your-domain-here' ) . '  <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>',
+				'icon'       => 'el-icon-cog',
+				'id'         => 'opt-text-fields',
 				'subsection' => true,
 				'fields'     => array(
 					array(
-						'id'    => 'some-text',
+						'title' => esc_html__( 'Text Field', 'your-domain-here' ),
+						'id'    => 'opt-text',
 						'type'  => 'text',
-						'title' => 'whatever',
+					),
+					array(
+						'title' => esc_html__( 'Textarea Field', 'your-domain-here' ),
+						'id'    => 'opt-textarea',
+						'type'  => 'textarea',
 					),
 				),
 			),
 
 			array(
-				'title'  => __( 'Home Layout', 'your-domain-here' ),
-				'desc'   => __( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'your-domain-here' ),
-				'icon'   => 'el-icon-home',
+				'title'  => esc_html__( 'Color Field', 'your-domain-here' ),
+				'desc'   => esc_html__( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at:', 'your-domain-here' ) . '  <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>',
+				'icon'   => 'el-icon-pencil',
 				'id'     => 'home-layout',
 				'fields' => array(
 					array(
-						'id'       => 'homepage_blocks',
-						'type'     => 'sorter',
-						'title'    => 'Homepage Layout Manager',
-						'desc'     => 'Organize how you want the layout to appear on the homepage',
-						'compiler' => 'true',
-						'required' => array( 'layout', '=', '1' ),
-						'options'  => array(
-							'enabled'  => array(
-								'highlights' => 'Highlights',
-								'slider'     => 'Slider',
-								'staticpage' => 'Static Page',
-								'services'   => 'Services',
-							),
-							'disabled' => array(),
-						),
-					),
-
-					array(
-						'id'       => 'slides',
-						'type'     => 'slides',
-						'title'    => __( 'Slides Options', 'your-domain-here' ),
-						'subtitle' => __( 'Unlimited slides with drag and drop sortings.', 'your-domain-here' ),
-						'desc'     => __( 'This field will store all slides values into a multidimensional array to use into a foreach loop.', 'your-domain-here' ),
-					),
-					array(
-						'id'       => 'presets',
-						'type'     => 'image_select',
-						'presets'  => true,
-						'title'    => __( 'Preset', 'your-domain-here' ),
-						'subtitle' => __( 'This allows you to set a json string or array to override multiple preferences in your theme.', 'your-domain-here' ),
-						'default'  => 0,
-						'desc'     => __( 'This allows you to set a json string or array to override multiple preferences in your theme.', 'your-domain-here' ),
-						'options'  => array(
-							'1' => array(
-								'alt'     => 'Preset 1',
-								'img'     => ReduxFramework::$_url . '../sample/presets/preset1.png',
-								'presets' => array(
-									'switch-on'     => 1,
-									'switch-off'    => 1,
-									'switch-custom' => 1,
-								),
-							),
-							'2' => array(
-								'alt'     => 'Preset 2',
-								'img'     => ReduxFramework::$_url . '../sample/presets/preset2.png',
-								'presets' => "{'slider1':'1', 'slider2':'0', 'switch-on':'0'}",
-							),
-						),
+						'id'       => 'opt-color',
+						'type'     => 'color',
+						'title'    => __( 'Color Field', 'your-domain-here' ),
+						'default'  => '#333333',
+						'required' => array( 'opt-layout', '=', true ),
 					),
 				),
 			),
@@ -208,8 +106,8 @@ Redux_Metaboxes::set_box(
 Redux_Metaboxes::set_box(
 	$opt_name,
 	array(
-		'id'         => 'demo-layout2',
-		'post_types' => array( 'page', 'post', 'acme_product' ),
+		'id'         => 'opt-metaboxes-2',
+		'post_types' => array( 'page', 'post' ),
 		'position'   => 'side', // normal, advanced, side.
 		'priority'   => 'high', // high, core, default, low.
 		'sections'   => array(
@@ -218,44 +116,15 @@ Redux_Metaboxes::set_box(
 				'icon'       => 'el-icon-home',
 				'fields'     => array(
 					array(
-						'title'      => __( 'Cross Box Required', 'your-domain-here' ),
-						'desc'       => __( 'Required arguments work across metaboxes! Click on Home Layout under the Cool Options metabox, then adjust this field to see the fields within Home Layout visibility being modified.', 'your-domain-here' ),
-						'id'         => 'layout',
-						'default'    => '1',
-						'type'       => 'image_select',
-						'customizer' => array(),
-						'options'    => array(
-							'0' => ReduxFramework::$_url . 'assets/img/1c.png',
-							'1' => ReduxFramework::$_url . 'assets/img/2cr.png',
+						'title'   => esc_html__( 'Cross Box Required', 'your-domain-here' ),
+						'desc'    => esc_html__( 'Required arguments work across metaboxes! Click on Color Field under Metabox Options then adjust this field to see the fields within show or hide.', 'your-domain-here' ),
+						'id'      => 'opt-layout',
+						'type'    => 'radio',
+						'options' => array(
+							'on'  => esc_html__( 'On', 'your-domain-here' ),
+							'off' => esc_html__( 'Off', 'your-domain-here' ),
 						),
-					),
-				),
-			),
-		),
-	)
-);
-
-Redux_Metaboxes::set_box(
-	$opt_name,
-	array(
-		'id'         => 'page-options',
-		'title'      => __( 'Page Options', 'fusion-framework' ),
-		'post_types' => array( 'page', 'post', 'demo_metaboxes' ),
-		'position'   => 'side', // normal, advanced, side.
-		'priority'   => 'normal', // high, core, default, low.
-		'sidebar'    => false, // enable/disable the sidebar in the normal/advanced positions.
-		'sections'   => array(
-			array(
-				'icon_class' => 'icon-large',
-				'icon'       => 'el-icon-home',
-				'fields'     => array(
-					array(
-						'id'      => 'sidebar',
-						'title'   => __( 'Sidebar', 'fusion-framework' ),
-						'desc'    => 'This metabox is bound to the Post Format. It will only appear when the post format is set to standard.',
-						'type'    => 'select',
-						'data'    => 'sidebars',
-						'default' => 'None',
+						'default' => 'on',
 					),
 				),
 			),

@@ -72,7 +72,7 @@ $kses_exceptions = array(
 
 /**
  * All the possible arguments for Redux.
- * For full documentation on arguments, please refer to: https://github.com/ReduxFramework/ReduxFramework/wiki/Arguments
+ * For full documentation on arguments, please refer to: https://docs.reduxframework.com/core/arguments/
  */
 $theme = wp_get_theme(); // For use with some settings. Not necessary.
 
@@ -94,10 +94,10 @@ $args = array(
 	'allow_sub_menu'            => true,
 
 	// The text to appear in the admin menu.
-	'menu_title'                => __( 'Sample Options', 'your-domain-here' ),
+	'menu_title'                => esc_html__( 'Sample Options', 'your-domain-here' ),
 
 	// The text to appear on the page title.
-	'page_title'                => __( 'Sample Options', 'your-domain-here' ),
+	'page_title'                => esc_html__( 'Sample Options', 'your-domain-here' ),
 
 	// Enabled the Webfonts typography module to use asynchronous fonts.
 	'async_typography'          => true,
@@ -708,24 +708,16 @@ Redux::set_section(
 		'subsection' => true,
 		'fields'     => array(
 			array(
-				'id'             => 'opt-color-header',
-				'type'           => 'color_gradient',
-				'title'          => esc_html__( 'Header Gradient Color Option', 'your-domain-here' ),
-				'subtitle'       => esc_html__( 'Only color validation can be done on this field type', 'your-domain-here' ),
-				'desc'           => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
-				'output'         => '.site-header',
-				'gradient-type'  => true,
-				'gradient-reach' => true,
-				'gradient-angle' => true,
-				'color_alpha'    => true,
-				'preview'        => true,
-				'default'        => array(
-					'from'           => '#1e73be',
-					'to'             => '#00897e',
-					'gradient-reach' => array(
-						'to'   => 50,
-						'from' => 0,
-					),
+				'id'       => 'opt-color-header',
+				'type'     => 'color_gradient',
+				'title'    => esc_html__( 'Header Gradient Color Option', 'your-domain-here' ),
+				'subtitle' => esc_html__( 'Only color validation can be done on this field type', 'your-domain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'output'   => '.site-header',
+				'preview'  => true,
+				'default'  => array(
+					'from' => '#1e73be',
+					'to'   => '#00897e',
 				),
 			),
 		),
@@ -852,13 +844,6 @@ Redux::set_section(
 				'output'   => array( 'body' ),
 				'title'    => __( 'Body Background', 'your-domain-here' ),
 				'subtitle' => __( 'Body background with image, color, etc.', 'your-domain-here' ),
-			),
-			array(
-				'id'       => 'opt-background-gradient',
-				'type'     => 'background_gradient',
-				'output'   => array( 'body' ),
-				'title'    => esc_html__( 'Background with Gradient & Image Filters', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Body background with image, color, etc.', 'your-domain-here' ),
 			),
 		),
 	)
@@ -1630,12 +1615,14 @@ Redux::set_section(
 				'desc'     => esc_html__( 'Here\'s a list of all the elusive icons by name and icon.', 'your-domain-here' ),
 			),
 			array(
-				'id'       => 'opt-select-users',
-				'type'     => 'select',
-				'data'     => 'users',
-				'title'    => esc_html__( 'Users Select Option', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'id'               => 'opt-select-users',
+				'type'             => 'select',
+				'data'             => 'users',
+				'ajax'             => true,
+				'min_input_length' => 3,
+				'title'            => esc_html__( 'Users Select Option', 'your-domain-here' ),
+				'subtitle'         => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
+				'desc'             => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
 			),
 		),
 	)
@@ -1905,8 +1892,6 @@ Redux::set_section(
 				'subtitle'          => esc_html__( 'Specify the body font properties.', 'your-domain-here' ),
 				'google'            => true,
 				'font_family_clear' => false,
-				'color_alpha'       => true,
-				'text-shadow'       => true,
 				'default'           => array(
 					'color'       => '#dd9933',
 					'font-size'   => '30px',
@@ -1932,14 +1917,12 @@ Redux::set_section(
 				'units'       => 'px',
 				'subtitle'    => esc_html__( 'Typography option with each property can be called individually.', 'your-domain-here' ),
 				'default'     => array(
-					'color'         => '#333',
-					'font-style'    => '700',
-					'font-family'   => 'Abel',
-					'google'        => true,
-					'font-size'     => '33px',
-					'line-height'   => '40px',
-					'margin-top'    => '1px',
-					'margin-bottom' => '1px',
+					'color'       => '#333',
+					'font-style'  => '700',
+					'font-family' => 'Abel',
+					'google'      => true,
+					'font-size'   => '33px',
+					'line-height' => '40px',
 				),
 				// Disable google fonts.
 				// 'google'      => false,
