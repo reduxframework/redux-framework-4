@@ -5,7 +5,7 @@ Here are several guidelines to consider when testing:
 
 1. While we feel this version of Redux is fast approaching stable, we must caution you about using this code in production.  At this time - should you chose to do so - it's with no guarantees from us for any given feature or function.
 
-2. Unlike the current v3 of Redux, the plugin slug for v4 is not yet 'redux-framework'.  It is HIGHLY recommended you do not install this version into the current v3 folder.  The slug for this private build is 'redux-framework-4' and os what the plugin folder is titled.  When testing, please disable the v3 plugin.  Remember, the active plugin of Redux will supersede any embedded version.  You are also free to use embedding.
+2. Unlike the current v3 of Redux, the plugin slug for v4 is not yet 'redux-framework'.  It is HIGHLY recommended you do not install this version into the current v3 folder.  The slug for this private build is 'redux-framework-4' and is what the plugin folder is titled.  When testing, please disable the v3 plugin.  Remember, the active plugin of Redux will supersede any embedded version.  You are also free to use embedding.
 
 3. As far as known issues go, there are potentially two we are aware of that will require my further investigating.  The first is a possible 'run in' with an embedded v3 when running v4 as a plugin.  The other is custom styling for the v4 option panel.  Some folks have restyled Redux to their own liking.  Because Redux v4 is now theme aware, current custom CSS may not render properly.  If that should happen, it is possible to turn off the 'theme aware' feature and return to the v3 styling which will not interfere with any custom styling.  To do this, all the following argument to your global arguments array: `'admin_theme' => 'classic'`
 
@@ -43,7 +43,7 @@ Redux now contain a ‘lite’ version of Metaboxes to support basic fields such
 
 Post Format and Page Template features are also not available.  These features plus support for all fields will be available in the Advanced Metaboxes portion of Redux Pro.
 
-Due to the complex nature in which the Metaboxes feature integrates with Redux and existing option panels, it is important that a strict load order be maintained.  The metabox config must be loaded in your option config via a specific action hook, otherwise the metaboxes config will not load properly.  The see `BEGIN METABOX CONFIG` section of the [sample-config.php](https://github.com/kprovance/redux-dev/blob/master/sample/sample-config.php) file.
+Due to the complex nature in which the Metaboxes feature integrates with Redux and existing option panels, it is important that a strict load order be maintained.  The metabox config must be loaded in your option config via a specific action hook, otherwise the metaboxes config will not load properly.  The see `BEGIN METABOX CONFIG` section of the [sample-config.php](https://github.com/reduxframework/redux-framework-4/blob/master/sample/sample-config.php) file.
 
 The current Metabox extension *is* supported and will override the lite version. 
 
@@ -64,7 +64,7 @@ To set AJAX loading, add the `'ajax' => true` argument to your select field.  Th
 ### Field/Section Disabling
 This feature has been request quite a few times over the years.  Fields and sections can now be disabled by adding the `'disabled' => true` argument to either a section or a field.  The section or field will then appear 'greyed out' and not respond to input.  This comes in handy in the event one may want to offer teasers for premium versions of their products.
 
-Since those with a little CSS know-how could easily reactive disabled fields with a little CSS, I took the added precaution of having Redux remove any `name` attributes on disabled fields/sections.  This way, even if a clever user reactivates the field, it will never save.
+Since those with a little CSS know-how could easily reactive disabled fields with a little CSS, we took the added precaution of having Redux remove any `name` attributes on disabled fields/sections.  This way, even if a clever user reactivates the field, it will never save.
 
 ### Updated Panel Interface
 The option panel interface has been brought up to date with the current WordPress admin design.  It is also now ‘theme aware’.  Panel colors will now follow suit with the selected admin theme.
