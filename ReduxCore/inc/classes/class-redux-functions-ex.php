@@ -168,7 +168,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				$real_path = self::wp_normalize_path( realpath( $theme_path ) );
 
 				if ( strpos( $file_path, $real_path ) !== false ) {
-					$slug          = end( explode( '/', $theme_path ) );
+					$slug          = explode( '/', $theme_path );
+					$slug          = end( $slug );
 					$relative_path = explode( $slug . '/', dirname( $file_path ) );
 					$relative_path = $relative_path[1];
 					$data          = array(
