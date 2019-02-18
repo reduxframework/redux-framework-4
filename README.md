@@ -25,16 +25,16 @@ See [Changelog.md](https://github.com/reduxframework/redux-framework-4/blob/mast
 
 ## What's new?
 
-###Core Rewrite
+### Core Rewrite
 Our code base has been rebuilt from the ground up.  With compartmentalized code,  autoloading, and class inheritance, Redux is now faster and more efficient than it’s ever been!
 
-###Top of the Line Security!
+### Top of the Line Security!
 Redux meets security standards laid out by WordPress Coding Standards, WordPress VIP Standards, and ThemeForest Guidelines.  Focus includes escaping, sanitizing, and nonces verification, and database query prep/caching.
 
-###Automatic Google Font Updates.
+### Automatic Google Font Updates.
 This is one of the crown jewels of Redux v4!  Your users will have the ability to update Google Fonts as updates are available or automatic ‘behind the scenes’ updates.  No more waiting for updates and no API key required!
 
-###Basic Metaboxes
+### Basic Metaboxes
 Redux now contain a ‘lite’ version of Metaboxes to support basic fields such as Checkbox, Radio Button, Text, Textarea, Media, and Color.  It’s part of our expanse into the interface builder realm.
 
 Post Format and Page Template features are also not available.  These features plus support for all fields will be available in the Advanced Metaboxes portion of Redux Pro.
@@ -43,7 +43,7 @@ Due to the complex nature in which the Metaboxes feature integrates with Redux a
 
 The current Metabox extension *is* supported and will override the lite version. 
 
-###Field Sanitizing
+### Field Sanitizing
 Field sanitizing allows one to pass an array of function names as an argument to a field in which the return value will be the sanitizing string.  This feature will only work with text based fields including text, textarea, and multi_text (ACE Editor and WP Editor not included).
 
 One may use any existing function including PHP functions, WordPress functions and custom written functions.  The return value of any used function must be that of a string.  Any other return value will be disregarded.
@@ -62,23 +62,23 @@ This feature has been request quite a few times over the years.  Fields and sect
 
 Since those with a little CSS know-how could easily reactive disabled fields with a little CSS, I took the added precaution of having Redux remove any `name` attributes on disabled fields/sections.  This way, even if a clever user reactivates the field, it will never save.
 
-###Updated Panel Interface
+### Updated Panel Interface
 The option panel interface has been brought up to date with the current WordPress admin design.  It is also now ‘theme aware’.  Panel colors will now follow suit with the selected admin theme.
 
-###Improved Field Validation
+### Improved Field Validation
 Due to the need for multiple field validations, Redux now supports an array of validations versus the previously limiting single argument.  Validation results now appear in real time after a save without the need for page refresh.
 
-###Full v3 Backward Compatibility
+### Full v3 Backward Compatibility
 We take backward compatibility very seriously here and strive to maintain it.  Redux v4 has been designed to act as a drop in replacement to offer new functionality without breaking existing functionality.
 
-##A Note About Current Redux Extensions
+## A Note About Current Redux Extensions
 Redux v4 has been tested with our current extension library.  Nothing serious has come up thus far.  However, if you are using extensions and find an issue, please report it on **THIS** issue tracker.  If warranted. updates to extensions will be released for compatibility purposes only.  In order to receive updates to extensions, your subscription **MUST** be current and active.  There are no exceptions.
 
 Future development of our extension library for new features and updates for Redux v4 will come in the form of Redux Pro.  Announcements about this product will be made as they become available.
 
-##Frequently Asked Questions
-####What happens to Redux v3 when v4 is finished?
+## Frequently Asked Questions
+#### What happens to Redux v3 when v4 is finished?
 Upon completion, Redux v4 will completely replace v3 in our primary repository and at wp.org.  At that time, we will no longer be offering v3 in any form nor will we be maintaining any code v3.  Any copies or forks out there will be considered deprecated and should be considered 'as is'. 
 
-####Is Redux v4 free?
+#### Is Redux v4 free?
 Yes.  This is the 'core' and it remains free to use, fork, embed, etc.  However, what you see is what you get.  All new features, extensions, add-ons, etc will come in the form of Redux Pro, which will require a maintained subscription for licensed usage.  We do not yet have details to offer about availability or pricing at this time.  Please join our mailing list for updates on this and other Redux related news as it becomes available: [https://reduxframework.com/subscribe-to-redux-framework](https://reduxframework.com/subscribe-to-redux-framework)
