@@ -191,6 +191,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				$this->parent->never_save_to_db = true;
 			}
 
+			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 			add_action( 'add_' . 'meta_' . 'boxes', array( $this, 'add' ) );
 			add_action( 'save_post', array( $this, 'meta_boxes_save' ), 1, 2 );
 			add_action( 'pre_post_update', array( $this, 'pre_post_update' ) );
@@ -239,7 +240,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				return;
 			}
 			if ( isset( self::$_server['HTTP_HOST'] ) && isset( self::$_server['REQUEST_URI'] ) ) {
-				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ); // Safe & Reliable
+				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ); // Safe & Reliable.
 				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ) );
 			}
 
@@ -974,6 +975,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						do_action( 'redux/' . $this->parent->args['opt_name'] . '/extensions/metabox/add', $this, $box, $posttype );
 
+						// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 						call_user_func( 'add' . '_meta' . '_box', 'redux-' . $this->parent->args['opt_name'] . '-metabox-' . $box['id'], $title, array( $this, 'generate_boxes' ), $posttype, $box['position'], $box['priority'], $args );
 					}
 				}
@@ -1143,7 +1145,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			<div
 					data-index="<?php echo esc_attr( $metabox['args']['key'] ); ?>"
 					data-opt-name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>"
-					class="redux-container<?php echo esc_attr(( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections'); ?> redux-box-<?php echo esc_attr( $metabox['args']['position'] ); ?>">
+					class="redux-container<?php echo esc_attr( ( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections' ); ?> redux-box-<?php echo esc_attr( $metabox['args']['position'] ); ?>">
 				<div class="redux-notices">
 					<?php if ( 'side' !== $metabox['args']['position'] || ( isset( $metabox['args']['sidebar'] ) && false !== $metabox['args']['sidebar'] ) ) { ?>
 						<div class="saved_notice admin-notice notice-blue" style="display:none;">
