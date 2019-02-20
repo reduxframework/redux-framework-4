@@ -170,7 +170,7 @@ if ( ! class_exists( 'Redux_Tour', false ) ) {
 						redux_tour_pointer_options,
 						{
 							buttons: function( event, t ) {
-								button = $( '<a id="tour-pointer-close" style="margin-left:5px" class="button-secondary">' + '<?php echo esc_html( $button1 ); ?>' + '</a>' );
+								button = $( '<a id="pointer-close" style="margin-left:5px" class="button-secondary">' + '<?php echo esc_html( $button1 ); ?>' + '</a>' );
 								button.bind(
 									'click.pointer',
 									function() {
@@ -186,7 +186,7 @@ if ( ! class_exists( 'Redux_Tour', false ) ) {
 
 					setup = function() {
 						$( '<?php echo( esc_html( $selector ) ); ?>' ).pointer( redux_tour_pointer_options ).pointer( 'open' );
-						var ptc = $( '#tour-pointer-close', '#pointer-close' );
+						var ptc = $( '#pointer-close' );
 						ptc.click(
 							function() {
 								<?php if ( '' !== $button1_function ) { ?>
