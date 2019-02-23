@@ -46,6 +46,10 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 		public function render() {
 			$guid = uniqid();
 
+			if ( true === $this->field['indent'] ) {
+				$this->field['class'] .= ' redux-section-indent-start';
+			}
+
 			$add_class = '';
 			if ( isset( $this->field['indent'] ) && true === $this->field['indent'] ) {
 				$add_class = ' form-table-section-indented';
