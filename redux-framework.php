@@ -8,7 +8,7 @@
  *
  * Plugin Name:     Redux Framework
  * Plugin URI:      http://wordpress.org/plugins/redux-framework
- * Github URI:      dovy/redux-dev
+ * Github URI:      reduxframework/redux-framework-4
  * Description:     The most powerful and widely used WordPress interface builder and framework.
  * Author:          Team Redux
  * Author URI:      http://reduxframework.com

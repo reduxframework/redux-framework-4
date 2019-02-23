@@ -44,6 +44,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			$this->options_defaults = array();
 
 			if ( ! is_null( $sections ) ) {
+				
 				// fill the cache.
 				foreach ( $sections as $sk => $section ) {
 					if ( ! isset( $section['id'] ) ) {
