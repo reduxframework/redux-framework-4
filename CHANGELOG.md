@@ -1,5 +1,9 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.1
+Fixed:      Section field not hiding with required calls.
+Fixed:      Tour pointer not remembing closed state.
+
 ## 4.0.1
 New:        Initial public beta release.
 

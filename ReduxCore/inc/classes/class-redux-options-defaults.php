@@ -61,16 +61,6 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 								continue;
 							}
 
-							if ( in_array( $field['type'], array( 'ace_editor' ), true ) && isset( $field['options'] ) ) {
-								$sections[ $sk ]['fields'][ $k ]['args'] = $field['options'];
-								unset( $sections[ $sk ]['fields'][ $k ]['options'] );
-							}
-
-							if ( 'section' === $field['type'] && isset( $field['indent'] ) && true === $field['indent'] ) {
-								$field['class']                  = isset( $field['class'] ) ? $field['class'] : '';
-								$field['class']                 .= ' redux-section-indent-start';
-								$sections[ $sk ]['fields'][ $k ] = $field;
-							}
 							$this->field_default_values( $opt_name, $field, $wp_data_class );
 						}
 					}

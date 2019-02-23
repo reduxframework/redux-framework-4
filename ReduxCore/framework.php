@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
-Redux_Core::$_version = '4.0.1';
+Redux_Core::$_version = '4.0.1.1';
 Redux_Core::$_path    = dirname( __FILE__ );
 Redux_Core::instance();
 
