@@ -27,7 +27,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @param string $opt_name Panel opt_name.
 		 */
 		public static function record_caller( $opt_name = '' ) {
-			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3)[2]['file'];
+			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3 )[ 2 ][ 'file' ];
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
 				if ( ! isset( Redux_Core::$_callers[ $opt_name ] ) ) {
 					Redux_Core::$_callers[ $opt_name ] = array();
