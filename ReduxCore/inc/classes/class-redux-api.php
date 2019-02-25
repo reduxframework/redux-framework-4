@@ -199,13 +199,12 @@ if ( ! class_exists( 'Redux', false ) ) {
 						if ( class_exists( $extension['class'] ) ) {
 							$redux_framework->extensions[ $name ] = new $extension['class']( $redux_framework );
 						} else {
-							// phpcs:ignore Squiz.PHP.CommentedOutCode
-							/*
 							$ext_name = str_replace( 'ReduxFramework_Extension_', '', $extension['class'] );
 							$ext_name = str_replace( '_', ' ', $ext_name );
 							$ext_name = ucwords( $ext_name );
 
-							 _deprecated_file( 'The ' . esc_html( $ext_name ) . ' extension', esc_html( $extension['version'] ) . ' due to incompatibility with Redux v4', 'an updated version from https://reduxframework.com/extensions' ); */
+							// phpcs:ignore Squiz.PHP.CommentedOutCode
+							/* _deprecated_file( 'The ' . esc_html( $ext_name ) . ' extension', esc_html( $extension['version'] ) . ' due to incompatibility with Redux v4', 'an updated version from https://reduxframework.com/extensions' ); */
 
 							$old_class = str_replace( 'ReduxFramework_', 'Redux_', $extension['class'] );
 
@@ -829,7 +828,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $field    Field data.
-		 * @param bool   $no_caller Only use internally
+		 * @param bool   $no_caller Only used internally.
 		 */
 		public static function set_field( $opt_name = '', $field = array(), $no_caller = false ) {
 			if ( empty( $field ) ) {
@@ -1342,7 +1341,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $path     Path to extension folder.
 		 * @param bool   $force    Make extension reload.
-		 * @param bool   $no_caller
+		 * @param bool   $no_caller Only used internally.
 		 */
 		public static function set_extensions( $opt_name, $path, $force = false, $no_caller = false ) {
 			if ( empty( $path ) || empty( $opt_name ) ) {
