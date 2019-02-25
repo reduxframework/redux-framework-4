@@ -25,37 +25,21 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * Records calling function.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $caller   Calling function.
 		 */
-		public static function record_caller( $opt_name = '', $caller = '' ) {
+		public static function record_caller( $opt_name = '' ) {
+			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3)[2]['file'];
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
 				if ( ! isset( Redux_Core::$_callers[ $opt_name ] ) ) {
 					Redux_Core::$_callers[ $opt_name ] = array();
 				}
 
-				if ( strpos( $caller, 'class-redux-api.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-metaboxes-api.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-extensions.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-extension-metaboxes.php' ) !== false ) {
+				if ( strpos( $caller, 'inc/classes/class-redux-' ) !== false ) {
 					return;
 				}
 
 				if ( ! in_array( $caller, Redux_Core::$_callers[ $opt_name ], true ) ) {
 					Redux_Core::$_callers[ $opt_name ][] = $caller;
 				}
-			}
-
-			if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'], true ) ) {
-				self::$args[ $opt_name ]['callers'][] = $caller;
 			}
 		}
 

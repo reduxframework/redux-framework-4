@@ -182,8 +182,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @return mixed
 		 */
 		public static function construct_args( $opt_name ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			$args             = self::$args[ $opt_name ];
 			$args['opt_name'] = $opt_name;
@@ -227,8 +226,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @return array
 		 */
 		public static function construct_boxes( $opt_name ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			$boxes = array();
 			if ( ! isset( self::$boxes[ $opt_name ] ) ) {
@@ -270,8 +268,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @return array
 		 */
 		public static function construct_sections( $opt_name, $box_id ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			$sections = array();
 			if ( ! isset( self::$sections[ $opt_name ] ) ) {
@@ -321,8 +318,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @return array
 		 */
 		public static function construct_fields( $opt_name = '', $section_id = '' ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			$fields = array();
 
@@ -407,8 +403,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @param array  $section Section array.
 		 */
 		public static function set_section( $opt_name = '', $section = array() ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			self::check_opt_name( $opt_name );
 
@@ -581,8 +576,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @param array  $field Field array.
 		 */
 		public static function set_field( $opt_name = '', $field = array() ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			self::check_opt_name( $opt_name );
 
@@ -616,8 +610,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @param array  $box Box array.
 		 */
 		public static function set_box( $opt_name = '', $box = array() ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			self::check_opt_name( $opt_name );
 
@@ -676,8 +669,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @param array  $boxes Boxes array.
 		 */
 		public static function set_boxes( $opt_name = '', $boxes = array() ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			Redux_Functions_Ex::record_caller( $opt_name, debug_backtrace()[ array_search( __FUNCTION__, array_column( debug_backtrace(), 'function' ), true ) ]['file'] );
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			if ( ! empty( $boxes ) && is_array( $boxes ) ) {
 				foreach ( $boxes as $box ) {
