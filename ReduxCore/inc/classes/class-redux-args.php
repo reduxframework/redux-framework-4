@@ -61,8 +61,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 			$default = array(
 				'opt_name'                  => '',
-				'google_api_key'            => '',
-				'google_update_weekly'      => false,
 				'last_tab'                  => '',
 				'menu_icon'                 => '',
 				'menu_title'                => '',
