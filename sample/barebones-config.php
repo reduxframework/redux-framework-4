@@ -65,9 +65,6 @@ $args = array(
 	// Show the time the page took to load, etc.
 	'dev_mode'                  => true,
 
-	// If dev_mode is enabled, will notify developer of updated versions available in the GitHub Repo.
-	'update_notice'             => true,
-
 	// Enable basic customizer support.
 	'customizer'                => true,
 

@@ -91,7 +91,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'transient_time'            => '',
 				'default_show'              => false,
 				'default_mark'              => '',
-				'update_notice'             => false,
 				'disable_save_warn'         => false,
 				'open_expanded'             => false,
 				'hide_expand'               => false,
