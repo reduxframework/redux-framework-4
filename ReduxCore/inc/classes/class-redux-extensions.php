@@ -46,7 +46,7 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 				}
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				$path = apply_filters( 'redux/' . $core->args['opt_name'] . 'extensions/dir', $path );
+				$path = apply_filters( 'redux/' . $core->args['opt_name'] . '/extensions/dir', $path );
 
 				$folders = scandir( $path, 1 );
 

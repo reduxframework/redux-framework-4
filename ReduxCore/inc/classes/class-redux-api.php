@@ -1388,26 +1388,17 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 				$ext_file = Redux_Functions::file_exists_ex( $files );
 
-				if ( file_exists( $ext_file ) ) {
+				if ( $ext_file ) {
 					self::check_extension_class_file( $opt_name, $folder, $ext_file );
 				} else {
 					$folders = scandir( $path, 1 );
 
 					foreach ( $folders as $folder ) {
-						if ( '.' === $folder[0] ) {
+						if ( '.' === $folder || '..' === $folder ) {
 							continue;
 						}
 
-						$files = array(
-							$path . $folder . '/extension_' . $folder . '.php',
-							$path . $folder . '/class-redux-extension-' . $folder_fix . '.php',
-						);
-
-						$ext_file = Redux_Functions::file_exists_ex( $files );
-
-						if ( file_exists( $ext_file ) ) {
-							self::check_extension_class_file( $opt_name, $folder, $ext_file );
-						} elseif ( is_dir( $path . $folder ) ) {
+						if ( is_dir( $path . $folder ) ) {
 							self::set_extensions( $opt_name, $path . $folder );
 							continue;
 						}

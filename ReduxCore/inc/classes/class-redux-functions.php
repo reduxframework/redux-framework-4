@@ -37,7 +37,6 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			foreach ( $class_names as $class_name ) {
 				if ( class_exists( $class_name ) ) {
 					return $class_name;
-					continue; // phpcs:ignore Squiz.PHP.NonExecutableCode.Unreachable
 				}
 			}
 
@@ -53,7 +52,6 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			foreach ( $file_names as $file_name ) {
 				if ( file_exists( $file_name ) ) {
 					return $file_name;
-					continue; // phpcs:ignore Squiz.PHP.NonExecutableCode.Unreachable
 				}
 			}
 
