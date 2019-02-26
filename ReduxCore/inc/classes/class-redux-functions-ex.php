@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
 
-			if ( $pagenow != 'tools.php' && ($_GET['page'] != 'redux-framework' && $_GET['page'] != 'health-check') ) {
+			if ( 'tools.php' != $pagenow && ( 'redux-framework' != $_GET['page'] && 'health-check' != $_GET['page'] ) ) { // WPCS: CSRF ok.
 				return;
 			}
 
@@ -53,7 +53,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
-		 * @var array What is this for ?
+		 * What is this for?
+		 *
+		 * @var array
 		 */
 		public static $args;
 
