@@ -501,7 +501,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! empty( $opt_name ) ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
-			self::set_sections( $opt_name, $sections );
+			self::set_sections( $opt_name, $sections, true );
 		}
 
 		/**
@@ -509,18 +509,21 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $sections Section ID.
+		 * @param bool   $no_caller Only used internally.
 		 */
-		public static function set_sections( $opt_name = '', $sections = array() ) {
+		public static function set_sections( $opt_name = '', $sections = array(), $no_caller = false ) {
 			if ( empty( $sections ) ) {
 				return;
 			}
 			self::check_opt_name( $opt_name );
 
-			Redux_Functions_Ex::record_caller( $opt_name );
+			if ( ! $no_caller ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
 
 			if ( ! empty( $sections ) ) {
 				foreach ( $sections as $section ) {
-					self::set_section( $opt_name, $section );
+					self::set_section( $opt_name, $section, true );
 				}
 			}
 		}
@@ -621,7 +624,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! empty( $opt_name ) ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
-			self::set_section( $opt_name, $section );
+			self::set_section( $opt_name, $section, true );
 		}
 
 		/**
@@ -629,15 +632,18 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $section  Section data.
+		 * @param bool   $no_caller Only used internally.
 		 */
-		public static function set_section( $opt_name = '', $section = array() ) {
+		public static function set_section( $opt_name = '', $section = array(), $no_caller = false ) {
 			if ( empty( $section ) ) {
 				return;
 			}
 
 			self::check_opt_name( $opt_name );
 
-			Redux_Functions_Ex::record_caller( $opt_name );
+			if ( ! $no_caller ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
 
 			if ( ! isset( $section['id'] ) ) {
 				if ( isset( $section['type'] ) && 'divide' === $section['type'] ) {
