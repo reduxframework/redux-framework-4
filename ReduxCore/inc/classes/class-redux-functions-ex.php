@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
 
-			if ( ! ('tools.php' === $pagenow && ! empty( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
+			if ( ! ( 'tools.php' === $pagenow && ! empty( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
 				return;
 			}
 
