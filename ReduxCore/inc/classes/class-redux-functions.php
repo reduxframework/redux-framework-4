@@ -142,18 +142,18 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			$min = '';
 
 			// Sometimes, love ain't enough!
-			if ( ! isset( self::$_parent ) ) {
+			if ( ! isset( self::$parent ) ) {
 				$redux_all = Redux::all_instances();
 
 				if ( $redux_all > 0 ) {
 					foreach ( $redux_all as $opt_name => $arr ) {
-						self::$_parent = $redux_all[ $opt_name ];
+						self::$parent = $redux_all[ $opt_name ];
 						continue;
 					}
 				}
 			}
 
-			if ( false === self::$_parent->args['dev_mode'] ) {
+			if ( false === self::$parent->args['dev_mode'] ) {
 				$min = '.min';
 			}
 

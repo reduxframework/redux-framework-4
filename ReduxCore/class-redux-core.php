@@ -49,7 +49,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 *
 		 * @var string
 		 */
-		public static $path;
+		public static $redux_path;
 
 		/**
 		 * Absolute direction path to WordPress upload directory.

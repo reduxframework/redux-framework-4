@@ -32,7 +32,7 @@ if ( file_exists( dirname( __FILE__ ) . '/info-html.html' ) ) {
 }
 
 // Background Patterns Reader.
-$sample_patterns_path = Redux_Core::$_dir . '../sample/patterns/';
+$sample_patterns_path = Redux_Core::$dir . '../sample/patterns/';
 $sample_patterns_url  = Redux_Core::$url . '../sample/patterns/';
 $sample_patterns      = array();
 
@@ -1770,7 +1770,7 @@ Redux::set_section(
 				'title'    => esc_html__( 'Select Image', 'your-domain-here' ),
 				'subtitle' => esc_html__( 'A preview of the selected image will appear underneath the select box.', 'your-domain-here' ),
 				'options'  => $sample_patterns,
-				'default'  => ReduxFramework::$url . '../sample/patterns/triangular.png',
+				'default'  => Redux_Core::$url . '../sample/patterns/triangular.png',
 			),
 		),
 	)

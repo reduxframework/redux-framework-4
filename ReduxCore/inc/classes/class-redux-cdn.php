@@ -125,7 +125,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 					} else {
 						if ( ! self::is_enqueued( $handle, 'enqueued', $is_script ) ) {
 							$msg = esc_html__( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'redux-framework' );
-							if ( self::$_parent->args['dev_mode'] ) {
+							if ( self::$parent->args['dev_mode'] ) {
 								// translators: %s: URL.
 								$msg = sprintf( esc_html__( 'If you are developing offline, please download and install the %s plugin/extension to bypass our CDN and avoid this warning', 'redux-framework' ), '<a href="https://github.com/reduxframework/redux-vendor-support" target="_blank">Redux Vendor Support</a>' );
 							}
@@ -134,7 +134,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 							$msg = '<strong>' . esc_html__( 'Redux Framework Warning', 'redux-framework' ) . '</strong><br/>' . sprintf( esc_html__( '%s CDN unavailable.  Some controls may not render properly.', 'redux-framework' ), $handle ) . '  ' . $msg;
 
 							$data = array(
-								'parent'  => self::$_parent,
+								'parent'  => self::$parent,
 								'type'    => 'error',
 								'msg'     => $msg,
 								'id'      => $handle . $tran_key,
@@ -145,7 +145,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 						}
 					}
 				} else {
-					set_transient( $handle . $tran_key, true, MINUTE_IN_SECONDS * self::$_parent->args['cdn_check_time'] );
+					set_transient( $handle . $tran_key, true, MINUTE_IN_SECONDS * self::$parent->args['cdn_check_time'] );
 
 					if ( $register ) {
 						self::register( $handle, $src_cdn, $deps, $ver, $footer_or_media, $is_script );
@@ -182,7 +182,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 					$msg = sprintf( esc_html__( 'The %1$s (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and %2$s', 'redux-framework' ), '<a href="https://github.com/reduxframework/redux-vendor-support">Vendor Support plugin</a>', '<a href="' . admin_url( 'plugins.php' ) . '">' . esc_html__( 'activated.', 'redux-framework' ) . '</a>' );
 
 					$data = array(
-						'parent'  => self::$_parent,
+						'parent'  => self::$parent,
 						'type'    => 'error',
 						'msg'     => $msg,
 						'id'      => $handle,
@@ -206,7 +206,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param string $media True or 'all'.
 		 */
 		public static function register_style( $handle, $src_cdn = false, $deps = array(), $ver = false, $media = 'all' ) {
-			if ( self::$_parent->args['use_cdn'] ) {
+			if ( self::$parent->args['use_cdn'] ) {
 				self::cdn( true, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
 			} else {
 				self::vendor_plugin( true, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
@@ -222,7 +222,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param bool   $in_footer Script in footer.
 		 */
 		public static function register_script( $handle, $src_cdn = false, $deps = array(), $ver = false, $in_footer = false ) {
-			if ( self::$_parent->args['use_cdn'] ) {
+			if ( self::$parent->args['use_cdn'] ) {
 				self::cdn( true, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );
 			} else {
 				self::vendor_plugin( true, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );
@@ -239,7 +239,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param string $media Media type.
 		 */
 		public static function enqueue_style( $handle, $src_cdn = false, $deps = array(), $ver = false, $media = 'all' ) {
-			if ( self::$_parent->args['use_cdn'] ) {
+			if ( self::$parent->args['use_cdn'] ) {
 				self::cdn( false, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
 			} else {
 				self::vendor_plugin( false, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
@@ -256,7 +256,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param bool   $in_footer Script in footer.
 		 */
 		public static function enqueue_script( $handle, $src_cdn = false, $deps = array(), $ver = false, $in_footer = false ) {
-			if ( self::$_parent->args['use_cdn'] ) {
+			if ( self::$parent->args['use_cdn'] ) {
 				self::cdn( false, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );
 			} else {
 				self::vendor_plugin( false, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );
