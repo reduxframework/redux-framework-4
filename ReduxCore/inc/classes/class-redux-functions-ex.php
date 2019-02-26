@@ -33,7 +33,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				return;
 			}
 
-			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[ 1 ][ 'file' ];
+			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
 				if ( ! isset( Redux_Core::$_callers[ $opt_name ] ) ) {
 					Redux_Core::$_callers[ $opt_name ] = array();
@@ -46,12 +46,15 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				if ( ! in_array( $caller, Redux_Core::$_callers[ $opt_name ], true ) ) {
 					Redux_Core::$_callers[ $opt_name ][] = $caller;
 				}
-				if ( ! empty( self::$args[ $opt_name ][ 'callers' ] ) && ! in_array( $caller, self::$args[ $opt_name ][ 'callers' ], true ) ) {
-					self::$args[ $opt_name ][ 'callers' ][] = $caller;
+				if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'], true ) ) {
+					self::$args[ $opt_name ]['callers'][] = $caller;
 				}
 			}
 		}
 
+		/**
+		 * @var array What is this for ?
+		 */
 		public static $args;
 
 		/**
@@ -99,7 +102,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return bool
 		 */
 		public static function metabox_boxes( $core ) {
-			if ( isset( $core->extensions[ 'metaboxes_lite' ]->boxes ) && ! empty( $core->extensions[ 'metaboxes_lite' ]->boxes ) ) {
+			if ( isset( $core->extensions['metaboxes_lite']->boxes ) && ! empty( $core->extensions['metaboxes_lite']->boxes ) ) {
 				return true;
 			}
 
@@ -118,13 +121,13 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			if ( '/' . $plugin_basename !== $file ) {
 				$slug = explode( '/', $plugin_basename );
-				$slug = $slug[ 0 ];
+				$slug = $slug[0];
 
 				return array(
-					'slug'      => $slug,
-					'basename'  => $plugin_basename,
-					'path'      => self::wp_normalize_path( $file ),
-					'url'       => plugins_url( $plugin_basename ),
+					'slug'     => $slug,
+					'basename' => $plugin_basename,
+					'path'     => self::wp_normalize_path( $file ),
+					'url'      => plugins_url( $plugin_basename ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
 			}
@@ -168,7 +171,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					$slug          = explode( '/', $theme_path );
 					$slug          = end( $slug );
 					$relative_path = explode( $slug . '/', dirname( $file_path ) );
-					$relative_path = $relative_path[ 1 ];
+					$relative_path = $relative_path[1];
 					$data          = array(
 						'slug'      => $slug,
 						'path'      => trailingslashit( trailingslashit( $theme_path ) . $relative_path ) . $filename,
@@ -184,8 +187,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 							unset( $theme_paths[ $key ] );
 						}
 
-						$data[ 'parent_slug' ] = end( explode( '/', end( $theme_paths ) ) );
-						$data[ 'parent_slug' ] = end( explode( '/', end( $theme_paths ) ) );
+						$data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
+						$data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
 					}
 
 					return $data;
