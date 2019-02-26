@@ -258,16 +258,33 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			}
 
 			$plugins = array();
-			foreach ( wp_get_active_and_valid_plugins() as $plugin_path ) {
-				$plugin_info = get_plugin_data( $plugin_path );
-				$slug             = basename( str_replace( '/' . basename( $plugin_path ), '', $plugin_path ) );
-				$plugins[ $slug ] = array(
-					'version'    => $plugin_info['Version'],
-					'name'       => $plugin_info['Name'],
-					'plugin_uri' => $plugin_info['PluginURI'],
-					'author'     => $plugin_info['AuthorName'],
-					'author_uri' => $plugin_info['AuthorURI'],
-				);
+			foreach ( get_option( 'active_plugins', array() ) as $plugin_path ) {
+				if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
+					$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
+					$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+					$plugins[ $slug ] = array(
+						'version'    => $plugin_info['Version'],
+						'name'       => $plugin_info['Name'],
+						'plugin_uri' => $plugin_info['PluginURI'],
+						'author'     => $plugin_info['AuthorName'],
+						'author_uri' => $plugin_info['AuthorURI'],
+					);
+				}
+			}
+			if ( is_multisite() ) {
+				foreach ( get_option( 'active_sitewide_plugins', array() ) as $plugin_path ) {
+					if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
+						$plugin_info      = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
+						$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+						$plugins[ $slug ] = array(
+							'version'    => $plugin_info['Version'],
+							'name'       => $plugin_info['Name'],
+							'plugin_uri' => $plugin_info['PluginURI'],
+							'author'     => $plugin_info['AuthorName'],
+							'author_uri' => $plugin_info['AuthorURI'],
+						);
+					}
+				}
 			}
 
 			$user_query = new WP_User_Query(
