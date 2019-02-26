@@ -1381,13 +1381,12 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$folders = scandir( $path, 1 );
 
 					foreach ( $folders as $folder ) {
-						if ( '.' === $folder || '..' == $folder ) {
+						if ( '.' === $folder || '..' === $folder ) {
 							continue;
 						}
 
 						if ( is_dir( $path . $folder ) ) {
 							self::set_extensions( $opt_name, $path . $folder, $force, true );
-							continue;
 						}
 					}
 				}
