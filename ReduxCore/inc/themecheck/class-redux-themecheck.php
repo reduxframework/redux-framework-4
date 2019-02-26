@@ -100,7 +100,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		public static function get_redux_instance() {
 
 			// If the single instance hasn't been set, set it now.
-			if ( null === self::$redux && Redux_Core::$_as_plugin ) {
+			if ( null === self::$redux && Redux_Core::$as_plugin ) {
 				self::$redux = new ReduxFramework();
 				self::$redux->init();
 			}
@@ -191,7 +191,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		public function enqueue_admin_styles() {
 			$screen = get_current_screen();
 			if ( 'appearance_page_themecheck' === $screen->id ) {
-				wp_enqueue_style( $this->slug . '-admin-styles', Redux_Core::$_url . 'inc/themecheck/css/admin.css', array(), $this->version );
+				wp_enqueue_style( $this->slug . '-admin-styles', Redux_Core::$url . 'inc/themecheck/css/admin.css', array(), $this->version );
 			}
 		}
 
@@ -207,13 +207,13 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 			if ( 'appearance_page_themecheck' === $screen->id ) {
 				wp_enqueue_script(
 					$this->slug . '-admin-script',
-					Redux_Core::$_url . 'inc/themecheck/js/admin' . Redux_Functions::is_min() . '.js',
+					Redux_Core::$url . 'inc/themecheck/js/admin' . Redux_Functions::is_min() . '.js',
 					array( 'jquery' ),
 					$this->version,
 					true
 				);
 
-				if ( ! isset( $_POST['themename'] ) ) { // WPCS: CSRF ok.
+				if ( ! isset( $_POST['themename'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 
 					$intro  = '';
 					$intro .= '<h2>Redux Theme-Check</h2>';

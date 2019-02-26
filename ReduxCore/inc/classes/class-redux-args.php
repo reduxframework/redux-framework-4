@@ -180,7 +180,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			}
 
 			// Do not save the defaults if we're on a live preview!
-			if ( 'customize' === $GLOBALS['pagenow'] && isset( $_GET['customize_theme'] ) && ! empty( $_GET['customize_theme'] ) ) { // WPCS: CSRF ok.
+			if ( 'customize' === $GLOBALS['pagenow'] && isset( $_GET['customize_theme'] ) && ! empty( $_GET['customize_theme'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				$args['save_defaults'] = false;
 			}
 
@@ -232,7 +232,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 			if ( empty( $args['footer_credit'] ) ) {
 				// translators: Redux URL with title.
-				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Powered by  %1$s', 'redux-framework' ), '<a href="' . esc_url( '//www.reduxframework.com' ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . Redux_Core::$_version ) . '</span>';
+				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Powered by  %1$s', 'redux-framework' ), '<a href="' . esc_url( '//www.reduxframework.com' ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . Redux_Core::$version ) . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {

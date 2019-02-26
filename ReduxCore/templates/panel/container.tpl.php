@@ -13,7 +13,7 @@ $nonce    = wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name'
 $actionn  = ( 'network' === $this->parent->args['database'] && $this->parent->args['network_admin'] && is_network_admin() ? './edit.php?action=redux_' . $this->parent->args['opt_name'] : './options.php' );
 
 // Last tab?
-$this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->parent->transients['last_save_mode'] ) ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : ''; // WPCS: CSRF ok.
+$this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->parent->transients['last_save_mode'] ) ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 ?>
 	<div

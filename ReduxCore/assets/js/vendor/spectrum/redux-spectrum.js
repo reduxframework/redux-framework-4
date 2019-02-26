@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 // Spectrum Colorpicker v1.3.3
 // https://github.com/bgrins/spectrum
 // Author: Brian Grinstead

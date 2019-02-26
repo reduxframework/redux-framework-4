@@ -38,7 +38,7 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 
 			$this->field = wp_parse_args( $this->field, $defaults );
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$this->field = apply_filters( 'redux/pro/color_gradient/field/set_defaults', $this->field );
 
@@ -56,9 +56,9 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 		 * @return      void
 		 */
 		public function render() {
-			if ( Redux_Core::$_pro_loaded ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo apply_filters( 'redux/pro/color_gradient/render/gradient_type', null ); // WPCS: XSS ok.
+			if ( Redux_Core::$pro_loaded ) {
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/color_gradient/render/gradient_type', null );
 			}
 
 			$mode_arr = array(
@@ -80,7 +80,7 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default'][ $mode ] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => $mode,
@@ -109,12 +109,12 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 				echo '</div>';
 			}
 
-			if ( Redux_Core::$_pro_loaded ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo apply_filters( 'redux/pro/color_gradient/render/preview', null ); // WPCS: XSS ok.
+			if ( Redux_Core::$pro_loaded ) {
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/color_gradient/render/preview', null );
 
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo apply_filters( 'redux/pro/color_gradient/render/extra_inputs', null ); // WPCS: XSS ok.
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/color_gradient/render/extra_inputs', null );
 			}
 		}
 
@@ -131,13 +131,13 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-color-gradient-js',
-				Redux_Core::$_url . 'inc/fields/color_gradient/redux-color-gradient' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/color_gradient/redux-color-gradient' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'wp-color-picker', 'redux-js' ),
 				$this->timestamp,
 				true
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/color_gradient/enqueue' );
 			}
@@ -147,7 +147,7 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 
 				wp_enqueue_style(
 					'redux-field-color_gradient-css',
-					Redux_Core::$_url . 'inc/fields/color_gradient/redux-color-gradient.css',
+					Redux_Core::$url . 'inc/fields/color_gradient/redux-color-gradient.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -163,7 +163,7 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 		 * @return mixed|void
 		 */
 		public function css_style( $data ) {
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$pro_data = apply_filters( 'redux/pro/color_gradient/output', $data );

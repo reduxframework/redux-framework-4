@@ -26,7 +26,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @var object
 		 */
-		public static $_parent;
+		public static $parent;
 
 		/**
 		 * Check for existence of class name via array of class names.
@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			// phpcs:ignore WordPress.PHP.DontExtract
 			extract( $data );
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				$field_type = str_replace( '_', '-', $field['type'] );
 
 				$field_filter = Redux_Pro::$dir . 'core/inc/fields/' . $field['type'] . '/class-redux-pro-' . $field_type . '.php';
@@ -397,7 +397,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 				}
 
 				$post_data = array(
-					'hash'          => md5( network_site_url() . '-' . Redux_Core::$_server['REMOTE_ADDR'] ),
+					'hash'          => md5( network_site_url() . '-' . Redux_Core::$server['REMOTE_ADDR'] ),
 					'site'          => esc_url( home_url( '/' ) ),
 					'tracking'      => Redux_Helpers::get_statistics_object(),
 					'system_status' => $system_info,

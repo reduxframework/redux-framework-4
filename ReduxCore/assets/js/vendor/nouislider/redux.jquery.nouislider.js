@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /*! $.noUiSlider
  @version 5.0.0
  @author Leon Gersen https://twitter.com/LeonGersen

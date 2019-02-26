@@ -20,14 +20,14 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 *
 		 * @var object
 		 */
-		public static $_parent;
+		public static $parent;
 
 		/**
 		 * Flag to check for set status.
 		 *
 		 * @var bool
 		 */
-		private static $_set;
+		private static $set;
 
 		/**
 		 * Check for enqueued status of style/script.
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 					self::enqueue( $handle, $src, $deps, $ver, $footer_or_media, $is_script );
 				}
 			} else {
-				if ( ! self::$_set ) {
+				if ( ! self::$set ) {
 					// translators: %s: Vendor support URL. %s: Admin pluygins page.
 					$msg = sprintf( esc_html__( 'The %1$s (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and %2$s', 'redux-framework' ), '<a href="https://github.com/reduxframework/redux-vendor-support">Vendor Support plugin</a>', '<a href="' . admin_url( 'plugins.php' ) . '">' . esc_html__( 'activated.', 'redux-framework' ) . '</a>' );
 
@@ -191,7 +191,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 
 					Redux_Admin_Notices::set_notice( $data );
 
-					self::$_set = true;
+					self::$set = true;
 				}
 			}
 		}

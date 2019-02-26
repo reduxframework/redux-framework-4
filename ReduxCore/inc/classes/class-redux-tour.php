@@ -72,7 +72,7 @@ if ( ! class_exists( 'Redux_Tour', false ) ) {
 		public function load( $parent ) {
 			$this->parent = $parent;
 
-			if ( isset( $_GET['page'] ) && $parent->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['page'] ) && $parent->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( true === $this->parent->args['dev_mode'] || 'redux_demo' === $this->parent->args['page_slug'] ) {
 					$check = get_user_meta( get_current_user_id(), 'redux_tour' );
 					if ( empty( $check ) ) {
@@ -190,7 +190,7 @@ if ( ! class_exists( 'Redux_Tour', false ) ) {
 						ptc.click(
 							function() {
 								<?php if ( '' !== $button1_function ) { ?>
-									<?php echo( $button1_function ); // WPCS: XSS ok. ?>
+									<?php echo( $button1_function ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 								<?php } ?>
 							}
 						);

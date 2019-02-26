@@ -28,14 +28,14 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 *
 		 * @var string
 		 */
-		public $_dir = null;
+		public $dir = null;
 
 		/**
 		 * Class URL.
 		 *
 		 * @var string
 		 */
-		public $_url = null;
+		public $url = null;
 
 		/**
 		 * Timestamp for ver append in dev_mode
@@ -69,7 +69,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 */
 		public function __construct( $field = array(), $value = null, $parent = null ) {
 
-			if ( isset( Redux_Core::$wp_nonce ) && ! empty( Redux_Core::$wp_nonce ) && ( ! Redux_Core::$_pro_loaded ) && Redux_Functions_Ex::metabox_boxes( $parent ) ) {
+			if ( isset( Redux_Core::$wp_nonce ) && ! empty( Redux_Core::$wp_nonce ) && ( ! Redux_Core::$pro_loaded ) && Redux_Functions_Ex::metabox_boxes( $parent ) ) {
 				if ( ! in_array( md5( $field['type'] ), Redux_Helpers::nonces(), true ) ) {
 					return;
 				}
@@ -94,7 +94,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			$this->_dir = trailingslashit( dirname( $path_info['real_path'] ) );
 			$this->_url = trailingslashit( dirname( $path_info['url'] ) );
 
-			$this->timestamp = Redux_Core::$_version;
+			$this->timestamp = Redux_Core::$version;
 			if ( $parent->args['dev_mode'] ) {
 				$this->timestamp .= '.' . time();
 			}

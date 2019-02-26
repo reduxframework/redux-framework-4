@@ -28,91 +28,91 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 *
 		 * @var project string
 		 */
-		public static $_version;
+		public static $version;
 
 		/**
 		 * Project directory.
 		 *
 		 * @var project string.
 		 */
-		public static $_dir;
+		public static $dir;
 
 		/**
 		 * Project URL.
 		 *
 		 * @var project URL.
 		 */
-		public static $_url;
+		public static $url;
 
 		/**
 		 * Base directory path.
 		 *
 		 * @var string
 		 */
-		public static $_path;
+		public static $path;
 
 		/**
 		 * Absolute direction path to WordPress upload directory.
 		 *
 		 * @var null
 		 */
-		public static $_upload_dir = null;
+		public static $upload_dir = null;
 
 		/**
 		 * Full URL to WordPress upload directory.
 		 *
 		 * @var string
 		 */
-		public static $_upload_url = null;
+		public static $upload_url = null;
 
 		/**
 		 * Set when Redux is run as a plugin.
 		 *
 		 * @var bool
 		 */
-		public static $_is_plugin = true;
+		public static $is_plugin = true;
 
 		/**
 		 * Indicated in_theme or in_plugin.
 		 *
 		 * @var string
 		 */
-		public static $_installed = '';
+		public static $installed = '';
 
 		/**
 		 * Set when Redux is run as a plugin.
 		 *
 		 * @var bool
 		 */
-		public static $_as_plugin = false;
+		public static $as_plugin = false;
 
 		/**
 		 * Set when Redux is embedded within a theme.
 		 *
 		 * @var bool
 		 */
-		public static $_in_theme = false;
+		public static $in_theme = false;
 
 		/**
 		 * Set when Redux Pro plugin is loaded and active.
 		 *
 		 * @var bool
 		 */
-		public static $_pro_loaded = false;
+		public static $pro_loaded = false;
 
 		/**
 		 * Pointer to updated google fonts array.
 		 *
 		 * @var array
 		 */
-		public static $_google_fonts = array();
+		public static $google_fonts = array();
 
 		/**
 		 * List of files calling Redux.
 		 *
 		 * @var array
 		 */
-		public static $_callers = array();
+		public static $callers = array();
 
 		/**
 		 * Nonce.
@@ -126,7 +126,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 *
 		 * @var null
 		 */
-		public static $_server = null;
+		public static $server = null;
 
 		/**
 		 * Pointer to the thirdparty fixes class.
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * Class init.
 		 */
 		private function init() {
-			self::$_dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
+			self::$dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
 
 			Redux_Functions_Ex::generator();
 
@@ -173,37 +173,37 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			$theme_info  = Redux_Functions_Ex::is_inside_theme( __FILE__ );
 
 			if ( false !== $plugin_info ) {
-				self::$_installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
+				self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
 
-				self::$_is_plugin = class_exists( 'Redux_Framework_Plugin' );
-				self::$_as_plugin = true;
-				self::$_url       = trailingslashit( dirname( $plugin_info['url'] ) );
+				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
+				self::$as_plugin = true;
+				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
 			} elseif ( false !== $theme_info ) {
-				self::$_url       = trailingslashit( dirname( $theme_info['url'] ) );
-				self::$_in_theme  = true;
-				self::$_installed = 'in_theme';
+				self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
+				self::$in_theme  = true;
+				self::$installed = 'in_theme';
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			self::$_url = apply_filters( 'redux/_url', self::$_url );
+			self::$url = apply_filters( 'redux/url', self::$url );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			self::$_dir = apply_filters( 'redux/_dir', self::$_dir );
+			self::$dir = apply_filters( 'redux/dir', self::$dir );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			self::$_is_plugin = apply_filters( 'redux/_is_plugin', self::$_is_plugin );
+			self::$is_plugin = apply_filters( 'redux/is_plugin', self::$is_plugin );
 
-			$upload_dir        = wp_upload_dir();
-			self::$_upload_dir = $upload_dir['basedir'] . '/redux/';
-			self::$_upload_url = str_replace( array( 'https://', 'http://' ), '//', $upload_dir['baseurl'] . '/redux/' );
-
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			self::$_upload_dir = apply_filters( 'redux/_upload_dir', self::$_upload_dir );
+			$upload_dir       = wp_upload_dir();
+			self::$upload_dir = $upload_dir['basedir'] . '/redux/';
+			self::$upload_url = str_replace( array( 'https://', 'http://' ), '//', $upload_dir['baseurl'] . '/redux/' );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			self::$_upload_url = apply_filters( 'redux/_upload_url', self::$_upload_url );
+			self::$upload_dir = apply_filters( 'redux/upload_dir', self::$upload_dir );
 
-			self::$_server = filter_input_array( INPUT_SERVER, $_SERVER ); // WPCS: XSS ok.
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			self::$upload_url = apply_filters( 'redux/upload_url', self::$upload_url );
+
+			self::$server = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		/**
@@ -231,7 +231,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 */
 		private static function statistics( $parent ) {
 			if ( isset( $parent->args['allow_tracking'] ) && $parent->args['allow_tracking'] ) {
-				if ( file_exists( self::$_dir . '/inc/classes/class-redux-statistics.php' ) && class_exists( 'Redux_Statistics' ) ) {
+				if ( file_exists( self::$dir . '/inc/classes/class-redux-statistics.php' ) && class_exists( 'Redux_Statistics' ) ) {
 					$tracking = Redux_Statistics::get_instance();
 					$tracking->load( $parent );
 				}
@@ -244,7 +244,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @param object $parent ReduxFramework object.
 		 */
 		private static function tour( $parent ) {
-			if ( file_exists( self::$_dir . '/inc/classes/class-redux-tour.php' ) && class_exists( 'Redux_Tour' ) ) {
+			if ( file_exists( self::$dir . '/inc/classes/class-redux-tour.php' ) && class_exists( 'Redux_Tour' ) ) {
 				$tour = Redux_Tour::get_instance();
 				$tour->load( $parent );
 			}
@@ -257,7 +257,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 */
 		private function includes() {
 			if ( class_exists( 'Redux_Pro' ) && isset( Redux_Pro::$dir ) ) {
-				self::$_pro_loaded = true;
+				self::$pro_loaded = true;
 			}
 
 			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
@@ -361,7 +361,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			if ( file_exists( $class ) ) {
 				if ( true === $m && isset( self::$wp_nonce ) && ! empty( self::$wp_nonce ) ) {
 					// phpcs:ignore Squiz.PHP.CommentedOutCode
-					if ( in_array( md5( $t ), Redux_Helpers::nonces(), true ) || ( self::$_pro_loaded && Redux_Functions_Ex::pro_nonce( $c->nonce ) ) ) {
+					if ( in_array( md5( $t ), Redux_Helpers::nonces(), true ) || ( self::$pro_loaded && Redux_Functions_Ex::pro_nonce( $c->nonce ) ) ) {
 						return true;
 					} else {
 						return false;

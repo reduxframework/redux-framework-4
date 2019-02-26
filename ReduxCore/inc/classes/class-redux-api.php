@@ -129,7 +129,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
 
 			if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
-				include_once Redux_Core::$_dir . 'inc/lib/array_column.php';
+				include_once Redux_Core::$dir . 'inc/lib/array_column.php';
 			}
 		}
 
@@ -1368,7 +1368,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return;
 			}
 			if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
-				include_once Redux_Core::$_dir . 'inc/lib/array-column.php';
+				include_once Redux_Core::$dir . 'inc/lib/array-column.php';
 			}
 			self::check_opt_name( $opt_name );
 
@@ -1473,8 +1473,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 				if ( isset( $extension->extension_dir ) ) {
 					self::setExtensions( $opt_name, str_replace( $name, '', $extension->extension_dir ) );
-				} elseif ( isset( $extension->_extension_dir ) ) {
-					self::setExtensions( $opt_name, str_replace( $name, '', $extension->_extension_dir ) );
+				} elseif ( isset( $extension->extension_dir ) ) {
+					self::setExtensions( $opt_name, str_replace( $name, '', $extension->extension_dir ) );
 				}
 			}
 		}

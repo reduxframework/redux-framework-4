@@ -196,7 +196,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-sorder-css',
-					Redux_Core::$_url . 'inc/fields/sorter/redux-sorter.css',
+					Redux_Core::$url . 'inc/fields/sorter/redux-sorter.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -205,7 +205,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-sorter-js',
-				Redux_Core::$_url . 'inc/fields/sorter/redux-sorter' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/sorter/redux-sorter' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js', 'jquery-ui-sortable' ),
 				$this->timestamp,
 				true

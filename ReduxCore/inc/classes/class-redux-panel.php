@@ -44,8 +44,8 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		 */
 		public function __construct( $parent ) {
 			$this->parent        = $parent;
-			$this->template_path = Redux_Core::$_dir . 'templates/panel/';
-			$this->original_path = Redux_Core::$_dir . 'templates/panel/';
+			$this->template_path = Redux_Core::$dir . 'templates/panel/';
+			$this->original_path = Redux_Core::$dir . 'templates/panel/';
 
 			if ( ! empty( $this->parent->args['templates_path'] ) ) {
 				$this->template_path = trailingslashit( $this->parent->args['templates_path'] );

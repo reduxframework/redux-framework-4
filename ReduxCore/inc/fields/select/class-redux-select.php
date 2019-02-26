@@ -35,7 +35,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 				}
 
 				if ( 'elusive-icons' === $this->field['data'] || 'elusive-icon' === $this->field['data'] || 'elusive' === $this->field['data'] ) {
-					$icons_file = Redux_Core::$_dir . 'inc/fields/select/elusive-icons.php';
+					$icons_file = Redux_Core::$dir . 'inc/fields/select/elusive-icons.php';
 
 					/**
 					 * Filter 'redux-font-icons-file}'
@@ -133,9 +133,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 			        data-placeholder="' . esc_attr( $placeholder ) . '" 
 			        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . esc_attr( $name_brackets ) . '" 
 			        class="redux-select-item ' . esc_attr( $this->field['class'] ) . esc_attr( $sortable ) . '"' .
-					$width . ' 
-			        rows="6"' .
-					esc_attr( $select2_data ) . '>'; // WPCS: XSS ok.
+					$width . ' rows="6"' . esc_attr( $select2_data ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 				echo '<option></option>';
 
@@ -195,7 +193,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-select-js',
-				Redux_Core::$_url . 'inc/fields/select/redux-select' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/select/redux-select' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'select2-js', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -204,7 +202,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-select-css',
-					Redux_Core::$_url . 'inc/fields/select/redux-select.css',
+					Redux_Core::$url . 'inc/fields/select/redux-select.css',
 					array(),
 					$this->timestamp,
 					'all'

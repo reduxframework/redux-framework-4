@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /* global console, jsonView */
 
 /*

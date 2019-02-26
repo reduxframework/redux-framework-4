@@ -87,12 +87,12 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 				return;
 			}
 
-			if ( empty( $this->_extension_dir ) ) {
+			if ( empty( $this->extension_dir ) ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				$this->_extension_dir = apply_filters( 'redux/extension/customizer/dir', trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) ) );
+				$this->extension_dir = apply_filters( 'redux/extension/customizer/dir', trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) ) );
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				$this->_extension_url = apply_filters( 'redux/extension/customizer/url', site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->_extension_dir ) ) );
+				$this->extension_url = apply_filters( 'redux/extension/customizer/url', site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) ) );
 			}
 
 			self::get_post_values();
@@ -100,11 +100,11 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			// Create defaults array.
 			$defaults = array();
 
-			if ( isset( $_POST['wp_customize'] ) && 'on' === $_POST['wp_customize'] ) { // WPCS: CSRF ok.
+			if ( isset( $_POST['wp_customize'] ) && 'on' === $_POST['wp_customize'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				$this->parent->args['customizer_only'] = true;
 			}
 
-			if ( isset( $_POST['wp_customize'] ) && 'on' === $_POST['wp_customize'] && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) && ! isset( $_POST['action'] ) ) { // WPCS: CSRF ok.
+			if ( isset( $_POST['wp_customize'] ) && 'on' === $_POST['wp_customize'] && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) && ! isset( $_POST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				add_action(
 					"redux/options/{$this->parent->args['opt_name']}/options",
 					array(
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-extension-customizer',
-					$this->_extension_url . 'redux-extension-customizer.css',
+					$this->extension_url . 'redux-extension-customizer.css',
 					array(),
 					self::$version,
 					'all'
@@ -147,7 +147,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 			wp_enqueue_script(
 				'redux-extension-customizer-js',
-				$this->_extension_url . 'redux-extension-customizer' . Redux_Functions::is_min() . '.js',
+				$this->extension_url . 'redux-extension-customizer' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				self::$version,
 				true
@@ -199,8 +199,8 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 * Get post values.
 		 */
 		protected static function get_post_values() {
-			if ( empty( self::$post_values ) && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) ) { // WPCS: CSRF ok.
-				self::$post_values = json_decode( stripslashes_deep( sanitize_text_field( wp_unslash( $_POST['customized'] ) ) ), true ); // WPCS: CSRF ok.
+			if ( empty( self::$post_values ) && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				self::$post_values = json_decode( stripslashes_deep( sanitize_text_field( wp_unslash( $_POST['customized'] ) ) ), true ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 		}
 
@@ -214,7 +214,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		public function override_values( $data ) {
 			self::get_post_values();
 
-			if ( isset( $_POST['customized'] ) && ! empty( self::$post_values ) ) { // WPCS: CSRF ok.
+			if ( isset( $_POST['customized'] ) && ! empty( self::$post_values ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( is_array( self::$post_values ) ) {
 					foreach ( self::$post_values as $key => $value ) {
 						if ( strpos( $key, $this->parent->args['opt_name'] ) !== false ) {
@@ -484,7 +484,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 						}
 
 						if ( 'elusive-icons' === $option['data'] || 'elusive-icon' === $option['data'] || 'elusive' === $option['data'] ) {
-							$icons_file = Redux_Core::$_dir . 'inc/fields/select/elusive-icons.php';
+							$icons_file = Redux_Core::$dir . 'inc/fields/select/elusive-icons.php';
 
 							// phpcs:ignore WordPress.NamingConventions.ValidHookName
 							$icons_file = apply_filters( 'redux-font-icons-file', $icons_file );
@@ -623,8 +623,8 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 				$this->orig_options = $this->parent->options;
 			}
 
-			if ( isset( $_POST['customized'] ) ) {
-				$options = json_decode( sanitize_text_field( wp_unslash( $_POST['customized'] ) ), true ); // WPCS: CSRF ok.
+			if ( isset( $_POST['customized'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$options = json_decode( sanitize_text_field( wp_unslash( $_POST['customized'] ) ), true ); // phpcs:ignore WordPress.Security.NonceVerification
 
 				$compiler = false;
 				$changed  = false;
@@ -669,7 +669,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 * @return      void
 		 */
 		public function enqueue_previewer() {
-			wp_enqueue_script( 'redux-extension-previewer-js', $this->_extension_url . 'assets/js/preview.js', array(), self::$version, true );
+			wp_enqueue_script( 'redux-extension-previewer-js', $this->extension_url . 'assets/js/preview.js', array(), self::$version, true );
 
 			$localize = array(
 				'save_pending'   => esc_html__( 'You have changes that are not saved. Would you like to save them now?', 'redux-framework' ),

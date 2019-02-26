@@ -42,7 +42,7 @@
 
 			<?php $display = true; ?>
 
-			<?php if ( isset( $_GET['page'] ) && $this->parent->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok. ?>
+			<?php if ( isset( $_GET['page'] ) && $this->parent->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification ?>
 				<?php if ( isset( $section['panel'] ) && false === $section['panel'] ) { ?>
 					<?php $display = false; ?>
 				<?php } ?>

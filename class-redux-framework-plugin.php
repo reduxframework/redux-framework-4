@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				}
 
 				if ( is_plugin_active( 'redux-framework/redux-framework.php' ) && true === $res ) {
-					echo '<div class="error"><p>' . esc_html__( 'Redux Framework version 4 is activated but not loaded.  Redux Framework version 3 is still installed and activated.  Please deactivate Redux Framework version 3.', 'redux-framework' ) . '</p></div>'; // WPCS: XSS ok.
+					echo '<div class="error"><p>' . esc_html__( 'Redux Framework version 4 is activated but not loaded.  Redux Framework version 3 is still installed and activated.  Please deactivate Redux Framework version 3.', 'redux-framework' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 					return;
 				}
 			}
@@ -139,8 +139,8 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				require_once dirname( __FILE__ ) . '/ReduxCore/framework.php';
 			}
 
-			if ( isset( Redux_Core::$_as_plugin ) ) {
-				Redux_Core::$_as_plugin = true;
+			if ( isset( Redux_Core::$as_plugin ) ) {
+				Redux_Core::$as_plugin = true;
 			}
 
 			// Include demo config, if demo mode is active.
@@ -348,7 +348,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 			$notices = get_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES', '' );
 			if ( ! empty( $notices ) ) {
 				foreach ( $notices as $notice ) {
-					echo '<div class="updated notice is-dismissible"><p>' . $notice . '</p></div>'; // WPCS: XSS ok.
+					echo '<div class="updated notice is-dismissible"><p>' . $notice . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 
 				delete_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES' );

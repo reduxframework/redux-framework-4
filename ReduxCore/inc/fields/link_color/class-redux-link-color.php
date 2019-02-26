@@ -71,7 +71,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['regular'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'regular',
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['hover'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'hover',
@@ -121,7 +121,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['visited'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'visited',
@@ -146,7 +146,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['active'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'active',
@@ -171,7 +171,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['focus'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'focus',
@@ -201,13 +201,13 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-link-color-js',
-				Redux_Core::$_url . 'inc/fields/link_color/redux-link-color' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/link_color/redux-link-color' . Redux_Functions::is_min() . '.js',
 				$dep_array,
 				$this->timestamp,
 				true
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/enqueue/color_alpha', $this->field );
 			}
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 				wp_enqueue_style(
 					'redux-field-link_color-js',
-					Redux_Core::$_url . 'inc/fields/link_color/redux-link-color.css',
+					Redux_Core::$url . 'inc/fields/link_color/redux-link-color.css',
 					array(),
 					$this->timestamp,
 					'all'

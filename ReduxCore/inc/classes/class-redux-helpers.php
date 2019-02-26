@@ -179,7 +179,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return bool
 		 */
 		public static function is_local_host() {
-			return ( isset( Redux_Core::$_server['REMOTE_ADDR'] ) && ( '127.0.0.1' === Redux_Core::$_server['REMOTE_ADDR'] || 'localhost' === Redux_Core::$_server['REMOTE_ADDR'] || '::1' === Redux_Core::$_server['SERVER_ADDR'] ) ) ? true : false;
+			return ( isset( Redux_Core::$server['REMOTE_ADDR'] ) && ( '127.0.0.1' === Redux_Core::$server['REMOTE_ADDR'] || 'localhost' === Redux_Core::$server['REMOTE_ADDR'] || '::1' === Redux_Core::$server['SERVER_ADDR'] ) ) ? true : false;
 		}
 
 		/**
@@ -309,7 +309,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'lang'            => get_locale(),
 				'wp_debug'        => ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? true : false : false ),
 				'memory'          => WP_MEMORY_LIMIT,
-				'localhost'       => ( '127.0.0.1' === Redux_Core::$_server['REMOTE_ADDR'] ) ? 1 : 0,
+				'localhost'       => ( '127.0.0.1' === Redux_Core::$server['REMOTE_ADDR'] ) ? 1 : 0,
 				'php'             => PHP_VERSION,
 				'posts'           => $pts,
 				'comments'        => array(
@@ -326,10 +326,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				'options'         => apply_filters( 'redux/tracking/options', array() ), // TODO - What is this?!
 
-				'redux_installed' => Redux_Core::$_installed,
-				'redux_version'   => Redux_Core::$_version,
+				'redux_installed' => Redux_Core::$installed,
+				'redux_version'   => Redux_Core::$version,
 				'redux_demo_mode' => $demo_mode,
-				'redux_plugin'    => Redux_Core::$_as_plugin,
+				'redux_plugin'    => Redux_Core::$as_plugin,
 				'developer'       => self::get_developer_keys(),
 				'plugins'         => $plugins,
 			);
@@ -359,7 +359,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$data = wp_parse_args( $data, $theme );
 
-			$parts    = explode( ' ', Redux_Core::$_server['SERVER_SOFTWARE'] );
+			$parts    = explode( ' ', Redux_Core::$server['SERVER_SOFTWARE'] );
 			$software = array();
 			foreach ( $parts as $part ) {
 				if ( '(' === $part[0] ) {
@@ -370,7 +370,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					$software[ strtolower( $chunk[0] ) ] = $chunk[1];
 				}
 			}
-			$data['server']     = Redux_Core::$_server['SERVER_SOFTWARE'];
+			$data['server']     = Redux_Core::$server['SERVER_SOFTWARE'];
 			$data['db_version'] = $wpdb->db_version();
 
 			$data['callers'] = self::process_redux_callers( true );
@@ -455,13 +455,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		// 'http://verify.redux.io',
 		// array(
 		// 'body' => array(
-		// 'hash' => $_GET['action'], // WPCS: CSRF ok, sanitization ok.
+		// 'hash' => $_GET['action'], // phpcs:ignore WordPress.Security.NonceVerification, sanitization ok.
 		// 'site' => esc_url( home_url( '/' ) ),
 		// ),
 		// )
 		// );
 		// $data['body'] = urldecode( $data['body'] );
-		// if ( ! isset( $_GET['code'] ) || $data['body'] !== $_GET['code'] ) { // WPCS: CSRF ok.
+		// if ( ! isset( $_GET['code'] ) || $data['body'] !== $_GET['code'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 		// die();
 		// }
 		// return self::get_statistics_object();
@@ -537,9 +537,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return Redux_Helpers::()
 		 */
 		private static function reduxAsPlugin() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Core::$_as_plugin()' );
+			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Core::$as_plugin()' );
 
-			return Redux_Core::$_as_plugin;
+			return Redux_Core::$as_plugin;
 		}
 
 		/**
@@ -656,7 +656,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return string
 		 */
 		public static function get_hash() {
-			return md5( network_site_url() . '-' . Redux_Core::$_server['REMOTE_ADDR'] );
+			return md5( network_site_url() . '-' . Redux_Core::$server['REMOTE_ADDR'] );
 		}
 
 		/**
@@ -717,7 +717,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function process_redux_callers( $simple = false ) {
 			$data = array();
-			foreach ( ReduxCore::$_callers as $opt_name => $callers ) {
+			foreach ( ReduxCore::$callers as $opt_name => $callers ) {
 				foreach ( $callers as $caller ) {
 					$plugin_info = self::is_inside_plugin( $caller );
 					$theme_info  = self::is_inside_theme( $caller );
@@ -876,8 +876,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'hash'       => self::get_hash(),
 				'opt_names'  => join( '|', array_keys( $instances ) ),
 				'developers' => wp_json_encode( self::get_developer_keys() ),
-				'redux'      => Redux_Core::$_version,
-				'installed'  => Redux_Core::$_installed,
+				'redux'      => Redux_Core::$version,
+				'installed'  => Redux_Core::$installed,
 				'debug'      => defined( 'WP_DEBUG' ) && WP_DEBUG ? true : false,
 				'local'      => self::is_local_host(),
 				'wordpress'  => get_bloginfo( 'version' ),
@@ -923,14 +923,14 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$sysinfo['home_url']       = home_url();
 			$sysinfo['site_url']       = site_url();
-			$sysinfo['redux_ver']      = esc_html( Redux_Core::$_version );
-			$sysinfo['redux_data_dir'] = Redux_Core::$_upload_dir;
+			$sysinfo['redux_ver']      = esc_html( Redux_Core::$version );
+			$sysinfo['redux_data_dir'] = Redux_Core::$upload_dir;
 
 			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 			$f = 'fo' . 'pen';
 
 			$res = true;
-			if ( $f( Redux_Core::$_upload_dir . 'test-log.log', 'a' ) === false ) {
+			if ( $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) === false ) {
 				$res = false;
 			}
 
@@ -962,7 +962,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$sysinfo['wp_lang'] = get_locale();
 
 			if ( ! class_exists( 'Browser' ) ) {
-				require_once Redux_Core::$_dir . 'inc/lib/browser.php';
+				require_once Redux_Core::$dir . 'inc/lib/browser.php';
 			}
 
 			$browser = new Browser();
@@ -974,7 +974,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'platform' => $browser->getPlatform(),
 			);
 
-			$sysinfo['server_info'] = esc_html( Redux_Core::$_server['SERVER_SOFTWARE'] );
+			$sysinfo['server_info'] = esc_html( Redux_Core::$server['SERVER_SOFTWARE'] );
 			$sysinfo['localhost']   = self::make_bool_str( self::is_local_host() );
 			$sysinfo['php_ver']     = function_exists( 'phpversion' ) ? esc_html( phpversion() ) : 'phpversion() function does not exist.';
 			$sysinfo['abspath']     = ABSPATH;
@@ -1131,7 +1131,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		private static function get_redux_templates( $custom_template_path ) {
 			$filesystem         = Redux_Filesystem::get_instance();
-			$template_paths     = array( 'ReduxFramework' => Redux_Core::$_dir . 'templates/panel' );
+			$template_paths     = array( 'ReduxFramework' => Redux_Core::$dir . 'templates/panel' );
 			$scanned_files      = array();
 			$found_files        = array();
 			$outdated_templates = false;
@@ -1149,7 +1149,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					}
 
 					if ( $theme_file ) {
-						$core_version  = self::get_template_version( Redux_Core::$_dir . 'templates/panel/' . $file );
+						$core_version  = self::get_template_version( Redux_Core::$dir . 'templates/panel/' . $file );
 						$theme_version = self::get_template_version( $theme_file );
 
 						if ( $core_version && ( empty( $theme_version ) || version_compare( $theme_version, $core_version, '<' ) ) ) {
@@ -1518,7 +1518,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function google_fonts_update_needed() {
 
-			$path = trailingslashit( Redux_Core::$_upload_dir ) . 'google_fonts.json';
+			$path = trailingslashit( Redux_Core::$upload_dir ) . 'google_fonts.json';
 			$now  = time();
 			$secs = 60 * 60 * 24 * 7;
 			if ( file_exists( $path ) ) {
@@ -1566,13 +1566,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return array|WP_Error
 		 */
 		public static function google_fonts_array( $download = false ) {
-			if ( ! empty( Redux_Core::$_google_fonts ) && ! self::google_fonts_update_needed() ) {
-				return Redux_Core::$_google_fonts;
+			if ( ! empty( Redux_Core::$google_fonts ) && ! self::google_fonts_update_needed() ) {
+				return Redux_Core::$google_fonts;
 			}
 
 			$filesystem = Redux_Filesystem::get_instance();
 
-			$path = trailingslashit( Redux_Core::$_upload_dir ) . 'google_fonts.json';
+			$path = trailingslashit( Redux_Core::$upload_dir ) . 'google_fonts.json';
 
 			if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
 				if ( $download ) {
@@ -1590,20 +1590,20 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 						$body = wp_remote_retrieve_body( $request );
 						if ( ! empty( $body ) ) {
 							$filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
-							Redux_Core::$_google_fonts = json_decode( $body, true );
+							Redux_Core::$google_fonts = json_decode( $body, true );
 						}
 					} else {
 						return $request;
 					}
 				}
 			} elseif ( file_exists( $path ) ) {
-				Redux_Core::$_google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
-				if ( empty( Redux_Core::$_google_fonts ) ) {
+				Redux_Core::$google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
+				if ( empty( Redux_Core::$google_fonts ) ) {
 					$filesystem->execute( 'delete', $path );
 				}
 			}
 
-			return Redux_Core::$_google_fonts;
+			return Redux_Core::$google_fonts;
 		}
 
 		/**
@@ -1640,10 +1640,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				$slug = $slug[0];
 
 				return array(
-					'slug'     => $slug,
-					'basename' => $plugin_basename,
-					'path'     => Redux_Functions_Ex::wp_normalize_path( $file ),
-					'url'      => plugins_url( $plugin_basename ),
+					'slug'      => $slug,
+					'basename'  => $plugin_basename,
+					'path'      => Redux_Functions_Ex::wp_normalize_path( $file ),
+					'url'       => plugins_url( $plugin_basename ),
 					'real_path' => Redux_Functions_Ex::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
 			}
@@ -1830,10 +1830,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$instances = Redux::all_instances();
 
-			if ( isset( $_REQUEST['i'] ) && ! empty( $_REQUEST['i'] ) ) { // WPCS: CSRF ok.
+			if ( isset( $_REQUEST['i'] ) && ! empty( $_REQUEST['i'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( is_array( $instances ) && ! empty( $instances ) ) {
 					foreach ( $instances as $opt_name => $data ) {
-						if ( md5( $opt_name . '-debug' ) === $_REQUEST['i'] ) { // WPCS: CSRF ok.
+						if ( md5( $opt_name . '-debug' ) === $_REQUEST['i'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 							$array = $data;
 						}
 					}
@@ -1879,9 +1879,12 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				}
 				$array['key'] = md5( AUTH_KEY . SECURE_AUTH_KEY );
 			}
+
 			ksort( $array ); // Let's make that pretty.
-			// phpcs:ignored WordPress.PHP.NoSilencedErrors
-			echo @htmlspecialchars( @wp_json_encode( $array, true ), ENT_QUOTES, 'UTF-8' ); // WPCS: XSS ok.
+
+			// phpcs:ignored WordPress.PHP.NoSilencedErrors, WordPress.Security.EscapeOutput
+			echo @htmlspecialchars( @wp_json_encode( $array, true ), ENT_QUOTES, 'UTF-8' );
+
 			die();
 		}
 	}

@@ -29,8 +29,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 */
 		public static function record_caller( $opt_name = '', $caller = '' ) {
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
-				if ( ! isset( Redux_Core::$_callers[ $opt_name ] ) ) {
-					Redux_Core::$_callers[ $opt_name ] = array();
+				if ( ! isset( Redux_Core::$callers[ $opt_name ] ) ) {
+					Redux_Core::$callers[ $opt_name ] = array();
 				}
 
 				if ( strpos( $caller, 'class-redux-api.php' ) !== false ) {
@@ -49,8 +49,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					return;
 				}
 
-				if ( ! in_array( $caller, Redux_Core::$_callers[ $opt_name ], true ) ) {
-					Redux_Core::$_callers[ $opt_name ][] = $caller;
+				if ( ! in_array( $caller, Redux_Core::$callers[ $opt_name ], true ) ) {
+					Redux_Core::$callers[ $opt_name ][] = $caller;
 				}
 			}
 
@@ -93,7 +93,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * Callback for wp_head hook to add meta tag.
 		 */
 		public static function meta_tag() {
-			echo '<meta name="framework" content="Redux ' . esc_html( Redux_Core::$_version ) . '" />';
+			echo '<meta name="framework" content="Redux ' . esc_html( Redux_Core::$version ) . '" />';
 		}
 
 		/**
@@ -124,10 +124,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				$slug = $slug[0];
 
 				return array(
-					'slug'     => $slug,
-					'basename' => $plugin_basename,
-					'path'     => self::wp_normalize_path( $file ),
-					'url'      => plugins_url( $plugin_basename ),
+					'slug'      => $slug,
+					'basename'  => $plugin_basename,
+					'path'      => self::wp_normalize_path( $file ),
+					'url'       => plugins_url( $plugin_basename ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
 			}

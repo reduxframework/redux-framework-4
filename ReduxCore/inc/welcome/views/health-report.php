@@ -44,7 +44,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
 		<span>
-			<?php printf( esc_html__( 'Version', 'redux-framework' ) . ' %s', esc_html( Redux_Core::$_version ) ); ?>
+			<?php printf( esc_html__( 'Version', 'redux-framework' ) . ' %s', esc_html( Redux_Core::$version ) ); ?>
 		</span>
 	</div>
 
@@ -95,7 +95,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Home URL', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The URL of your site\'s homepage.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The URL of your site\'s homepage.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_url( $sysinfo['home_url'] ); ?></td>
 		</tr>
@@ -104,7 +104,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Site URL', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The root URL of your site.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The root URL of your site.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_url( $sysinfo['site_url'] ); ?>
@@ -115,7 +115,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Redux Version', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of Redux Framework installed on your site.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of Redux Framework installed on your site.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['redux_ver'] ); ?>
@@ -126,7 +126,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Redux Data Directory Writable', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -149,7 +149,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'WP Content URL', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo '<code>' . esc_url( $sysinfo['wp_content_url'] ) . '</code> '; ?>
@@ -160,7 +160,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'WP Version', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of WordPress installed on your site.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of WordPress installed on your site.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php bloginfo( 'version' ); ?>
@@ -171,7 +171,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'WP Multisite', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Whether or not you have WordPress Multisite enabled.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Whether or not you have WordPress Multisite enabled.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -188,7 +188,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Permalink Structure', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current permalink structure as defined in WordPress Settings->Permalinks.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current permalink structure as defined in WordPress Settings->Permalinks.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['permalink_structure'] ); ?>
@@ -200,7 +200,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Front Page Display', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current Reading mode of WordPress.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current Reading mode of WordPress.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sof ); ?></td>
 		</tr>
@@ -212,7 +212,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<?php esc_html_e( 'Front Page', 'redux-framework' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The currently selected page which acts as the site\'s Front Page.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The currently selected page which acts as the site\'s Front Page.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 					<?php echo esc_html( $sysinfo['front_page'] ); ?>
@@ -223,7 +223,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<?php esc_html_e( 'Posts Page', 'redux-framework' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The currently selected page in where blog posts are displayed.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The currently selected page in where blog posts are displayed.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 					<?php echo esc_html( $sysinfo['posts_page'] ); ?>
@@ -237,7 +237,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'WP Memory Limit', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The maximum amount of memory (RAM) that your site can use at one time.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The maximum amount of memory (RAM) that your site can use at one time.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -256,7 +256,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Database Table Prefix', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The prefix structure of the current WordPress database.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The prefix structure of the current WordPress database.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['db_table_prefix'] ); ?>
@@ -267,7 +267,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'WP Debug Mode', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not WordPress is in Debug Mode.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not WordPress is in Debug Mode.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -284,7 +284,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Language', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current language used by WordPress. Default = English', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current language used by WordPress. Default = English', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['wp_lang'] ); ?>
@@ -306,7 +306,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Browser Info', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Information about the current web browser.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Information about the current web browser.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -333,7 +333,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Server Info', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Information about the web server that is currently hosting your site.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Information about the web server that is currently hosting your site.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['server_info'] ); ?>
@@ -344,7 +344,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Localhost Environment', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Is the server running in a localhost environment.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Is the server running in a localhost environment.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -363,7 +363,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'PHP Version', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of PHP installed on your hosting server.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of PHP installed on your hosting server.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['php_ver'] ); ?>
@@ -374,7 +374,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'ABSPATH', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The ABSPATH variable on the server.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The ABSPATH variable on the server.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo '<code>' . esc_html( $sysinfo['abspath'] ) . '</code>'; ?>
@@ -387,7 +387,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_mem_limit'] ); ?></td>
 			</tr>
@@ -396,14 +396,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_post_max_size'] ); ?></td>
 			</tr>
 			<tr>
 				<td data-export-label="PHP Time Limit"><?php esc_html_e( 'PHP Time Limit', 'redux-framework' ); ?>:</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups).', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups).', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_time_limit'] ); ?></td>
 			</tr>
@@ -412,7 +412,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The maximum number of variables your server can use for a single function to avoid overloads.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The maximum number of variables your server can use for a single function to avoid overloads.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_max_input_var'] ); ?></td>
 			</tr>
@@ -421,7 +421,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'Determines if PHP will display errors within the browser.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'Determines if PHP will display errors within the browser.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 				<?php
@@ -440,7 +440,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			<td data-export-label="SUHOSIN Installed"><?php esc_html_e( 'SUHOSIN Installed', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Suhosin is an advanced protection system for PHP installations. It was designed to protect your servers on the one hand against a number of well known problems in PHP applications and on the other hand against potential unknown vulnerabilities within these applications or the PHP core itself.  If enabled on your server, Suhosin may need to be configured to increase its data submission limits.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Suhosin is an advanced protection system for PHP installations. It was designed to protect your servers on the one hand against a number of well known problems in PHP applications and on the other hand against potential unknown vulnerabilities within these applications or the PHP core itself.  If enabled on your server, Suhosin may need to be configured to increase its data submission limits.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -460,14 +460,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<tr>
 			<td data-export-label="MySQL Version"><?php esc_html_e( 'MySQL Version', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of MySQL installed on your hosting server.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of MySQL installed on your hosting server.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['mysql_ver'] ); ?></td>
 		</tr>
 		<tr>
 			<td data-export-label="Max Upload Size"><?php esc_html_e( 'Max Upload Size', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be uploaded to your WordPress installation.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be uploaded to your WordPress installation.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['max_upload_size'] ); ?></td>
 		</tr>
@@ -476,7 +476,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<?php esc_html_e( 'Default Timezone is UTC', 'redux-framework' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The default timezone for your server.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The default timezone for your server.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -545,11 +545,11 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			$mark = ! empty( $single_post['success'] ) ? 'yes' : 'error';
 			?>
 			<tr>
-				<td data-export-label="<?php echo esc_attr( $single_post['name'] ); // WPCS: XSS ok. ?>">
+				<td data-export-label="<?php echo esc_attr( $single_post['name'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>">
 					<?php echo esc_html( $single_post['name'] ); ?>:
 				</td>
 				<td>
-					<?php echo isset( $single_post['help'] ) ? $single_post['help'] : ''; // WPCS: XSS ok. ?>
+					<?php echo isset( $single_post['help'] ) ? $single_post['help'] : ''; // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td class="help">
 					<mark class="<?php echo esc_attr( $mark ); ?>">
@@ -590,7 +590,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<td class="help">&nbsp;</td>
 					<td>
 						<?php // translators: %s Author name and URL. ?>
-						<?php echo sprintf( esc_html_x( 'by %s', 'by author', 'redux-framework' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ); // WPCS: XSS ok. ?>
+						<?php echo sprintf( esc_html_x( 'by %s', 'by author', 'redux-framework' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 				</tr>
 				<?php
@@ -620,7 +620,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="opt_name">opt_name:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The opt_name argument for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'The opt_name argument for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['opt_name'] ); ?></td>
 				</tr>
@@ -630,7 +630,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="global_variable">global_variable:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'The global_variable argument for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+							<?php echo redux_help_tip( esc_attr__( 'The global_variable argument for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td><?php echo esc_html( $args['global_variable'] ); ?></td>
 					</tr>
@@ -640,7 +640,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="dev_mode">dev_mode:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if developer mode is enabled for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if developer mode is enabled for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -659,7 +659,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="ajax_save">ajax_save:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if ajax based saving is enabled for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if ajax based saving is enabled for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -678,28 +678,28 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="page_slug">page_slug:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page slug denotes the string used for the options panel page for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page slug denotes the string used for the options panel page for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_slug'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="page_permissions">page_permissions:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page permissions variable sets the permission level required to access the options panel for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page permissions variable sets the permission level required to access the options panel for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_permissions'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="menu_type">menu_type:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'This variable set whether or not the menu is displayed as an admin menu item for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'This variable set whether or not the menu is displayed as an admin menu item for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['menu_type'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="page_parent">page_parent:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page parent variable sets where the options menu will be placed on the WordPress admin sidebar for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page parent variable sets where the options menu will be placed on the WordPress admin sidebar for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_parent'] ); ?></td>
 				</tr>
@@ -707,7 +707,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="compiler">compiler:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if the compiler flag is enabled for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if the compiler flag is enabled for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -726,7 +726,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="output">output:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if output flag for globally shutting off all CSS output is enabled for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if output flag for globally shutting off all CSS output is enabled for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -745,7 +745,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="output_tag">output_tag:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The output_tag variable sets whether or not dynamic CSS will be generated for the customizer and Google fonts for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+						<?php echo redux_help_tip( esc_attr__( 'The output_tag variable sets whether or not dynamic CSS will be generated for the customizer and Google fonts for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -761,16 +761,16 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					?>
 					</td>
 				</tr>
-				<?php if ( isset( Redux_Core::$_callers[ $inst ] ) && ! empty( Redux_Core::$_callers[ $inst ] ) ) { ?>
+				<?php if ( isset( Redux_Core::$callers[ $inst ] ) && ! empty( Redux_Core::$callers[ $inst ] ) ) { ?>
 					<tr>
 						<td data-export-label="output_tag">Calling Files</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'These files are calling this opt_name. If you want to alter the config of this opt_name, modify these files.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+							<?php echo redux_help_tip( esc_attr__( 'These files are calling this opt_name. If you want to alter the config of this opt_name, modify these files.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td>
 							<?php
 							$last_slug = '';
-							foreach ( Redux_Core::$_callers[ $inst ] as $caller ) {
+							foreach ( Redux_Core::$callers[ $inst ] as $caller ) {
 								$plugin_info = Redux_Helpers::is_inside_plugin( $caller );
 								$theme_info  = Redux_Helpers::is_inside_theme( $caller );
 
@@ -797,14 +797,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="template_path">template_path:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'The specified template path containing custom template files for this instance of Redux.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+							<?php echo redux_help_tip( esc_attr__( 'The specified template path containing custom template files for this instance of Redux.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td><?php echo '<code>' . esc_html( $args['templates_path'] ) . '</code>'; ?></td>
 					</tr>
 					<tr>
 						<td id="panel-templates" data-export-label="Templates">Templates:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'List of template files overriding the default Redux template files.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+							<?php echo redux_help_tip( esc_attr__( 'List of template files overriding the default Redux template files.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<?php
 
@@ -813,7 +813,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 							foreach ( $found_files as $plugin_name => $found_plugin_files ) {
 								?>
 								<td>
-									<?php echo implode( ', <br/>', $found_plugin_files ); // WPCS: XSS ok. ?>
+									<?php echo implode( ', <br/>', $found_plugin_files ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 								</td>
 								<?php
 							}
@@ -832,7 +832,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="Extensions">Extensions</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'Indicates the installed Redux extensions and their version numbers.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+							<?php echo redux_help_tip( esc_attr__( 'Indicates the installed Redux extensions and their version numbers.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td>
 							<?php
@@ -867,14 +867,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<tr>
 			<td data-export-label="Name"><?php esc_html_e( 'Name', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The name of the current active theme.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The name of the current active theme.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['theme']['name'] ); ?></td>
 		</tr>
 		<tr>
 			<td data-export-label="Version"><?php esc_html_e( 'Version', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The installed version of the current active theme.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The installed version of the current active theme.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -890,14 +890,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<tr>
 			<td data-export-label="Author URL"><?php esc_html_e( 'Author URL', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The theme developers URL.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'The theme developers URL.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_url( $sysinfo['theme']['author_uri'] ); ?></td>
 		</tr>
 		<tr>
 			<td data-export-label="Child Theme"><?php esc_html_e( 'Child Theme', 'redux-framework' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not the current theme is a child theme.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not the current theme is a child theme.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -918,7 +918,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The name of the parent theme.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The name of the parent theme.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['theme']['parent_name'] ); ?></td>
 			</tr>
@@ -927,7 +927,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<?php esc_html_e( 'Parent Theme Version', 'redux-framework' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The installed version of the parent theme.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The installed version of the parent theme.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['theme']['parent_version'] ); ?></td>
 			</tr>
@@ -936,7 +936,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<?php esc_html_e( 'Parent Theme Author URL', 'redux-framework' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The parent theme developers URL.', 'redux-framework' ) ); // WPCS: XSS ok. ?>
+					<?php echo redux_help_tip( esc_attr__( 'The parent theme developers URL.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_url( $sysinfo['theme']['parent_author_uri'] ); ?></td>
 			</tr>

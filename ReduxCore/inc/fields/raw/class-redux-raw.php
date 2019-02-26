@@ -36,9 +36,9 @@ if ( ! class_exists( 'Redux_Raw', false ) ) {
 					require_once dirname( __FILE__ ) . '/parsedown.php';
 					$parsedown = new Parsedown();
 
-					echo( $parsedown->text( $this->field['content'] ) ); // WPCS: XSS ok.
+					echo( $parsedown->text( $this->field['content'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 				} else {
-					echo( $this->field['content'] ); // WPCS: XSS ok.
+					echo( $this->field['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 			}
 
