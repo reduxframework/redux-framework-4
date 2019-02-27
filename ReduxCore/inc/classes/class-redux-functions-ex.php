@@ -29,7 +29,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
 
-			$page = get_query_var('page', '');
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$page = ! empty( $_GET['page'] ) ? $_GET['page'] : '';
 			if ( ! ( 'tools.php' === $pagenow && ( 'redux-framework' === $page || 'health-check' === $page ) ) ) {
 				return;
 			}
