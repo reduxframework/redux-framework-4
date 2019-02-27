@@ -29,10 +29,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
 
-			if ( ! ( 'tools.php' === $pagenow && ! empty( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
+			$page = get_query_var('page', '');
+			if ( ! ( 'tools.php' === $pagenow && ( 'redux-framework' === $page || 'health-check' === $page ) ) ) {
 				return;
 			}
 
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
 				if ( ! isset( Redux_Core::$callers[ $opt_name ] ) ) {
