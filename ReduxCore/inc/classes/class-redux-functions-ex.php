@@ -30,8 +30,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			global $pagenow;
 
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$page = ! empty( $_GET['page'] ) ? (string) wp_unslash( $_GET['page'] ) : '';
-			if ( ! ( 'tools.php' === $pagenow && ( 'redux-framework' === $page || 'health-check' === $page ) ) ) {
+			if ( ! ( 'tools.php' === $pagenow && ! empty( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
 				return;
 			}
 
