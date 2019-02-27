@@ -166,9 +166,11 @@ defined( 'ABSPATH' ) || exit;
 									<small>
 										<?php
 										foreach ( $data as $opt_name => $callers ) {
+											echo '<span>Opt name : ' . $opt_name . '</span><br />';
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
+											echo '<br />';
 										}
 										?>
 									</small>
