@@ -501,7 +501,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! empty( $opt_name ) ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
-			self::set_sections( $opt_name, $sections, true );
+			self::set_sections( $opt_name, $sections );
 		}
 
 		/**
@@ -518,7 +518,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( ! empty( $sections ) ) {
 				foreach ( $sections as $section ) {
-					self::set_section( $opt_name, $section, true );
+					self::set_section( $opt_name, $section );
 				}
 			}
 		}
@@ -619,7 +619,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! empty( $opt_name ) ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
-			self::set_section( $opt_name, $section, true );
+			self::set_section( $opt_name, $section );
 		}
 
 		/**
@@ -735,7 +735,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					}
 
 					$field['section_id'] = $section_id;
-					self::set_field( $opt_name, $field, true );
+					self::set_field( $opt_name, $field );
 				}
 			}
 		}
@@ -1253,7 +1253,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( file_exists( $class_file ) ) {
 				self::$uses_extensions[ $opt_name ] = isset( self::$uses_extensions[ $opt_name ] ) ? self::$uses_extensions[ $opt_name ] : array();
 
-				if ( ! in_array( $name, self::$uses_extensions[ $opt_name ], true ) ) {
+				if ( ! in_array( $name, self::$uses_extensions[ $opt_name ] ) ) {
 					self::$uses_extensions[ $opt_name ][] = $name;
 				}
 
@@ -1373,7 +1373,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 						}
 
 						if ( is_dir( $path . $folder ) ) {
-							self::set_extensions( $opt_name, $path . $folder, $force, true );
+							self::set_extensions( $opt_name, $path . $folder, $force );
 						}
 					}
 				}
