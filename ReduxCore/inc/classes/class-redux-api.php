@@ -1253,7 +1253,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( file_exists( $class_file ) ) {
 				self::$uses_extensions[ $opt_name ] = isset( self::$uses_extensions[ $opt_name ] ) ? self::$uses_extensions[ $opt_name ] : array();
 
-				if ( ! in_array( $name, self::$uses_extensions[ $opt_name ] ) ) {
+				if ( ! in_array( $name, self::$uses_extensions[ $opt_name ], true ) ) {
 					self::$uses_extensions[ $opt_name ][] = $name;
 				}
 
