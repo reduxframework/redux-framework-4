@@ -34,12 +34,12 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 
 			$max = 1;
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				$max = 2;
 			}
 
 			for ( $i = 1; $i <= $max; $i ++ ) {
-				$path = Redux_Core::$_dir . 'inc/extensions/';
+				$path = Redux_Core::$dir . 'inc/extensions/';
 
 				if ( 2 === $i ) {
 					$path = Redux_Pro::$dir . 'core/inc/extensions/';
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 					do_action( 'redux/extensions/' . $core->old_opt_name . '/before', $core );
 				}
 
-				require_once Redux_Core::$_dir . 'inc/classes/class-redux-abstract-extension.php';
+				require_once Redux_Core::$dir . 'inc/classes/class-redux-abstract-extension.php';
 
 				$path = untrailingslashit( $path );
 

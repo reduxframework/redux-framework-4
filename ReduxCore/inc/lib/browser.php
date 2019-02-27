@@ -152,7 +152,7 @@ class Browser {
      * Reset all properties
      */
     public function reset() {
-        $this->_agent = isset(Redux_Core::$_server['HTTP_USER_AGENT']) ? Redux_Core::$_server['HTTP_USER_AGENT'] : "";
+        $this->_agent = isset(Redux_Core::$server['HTTP_USER_AGENT']) ? Redux_Core::$server['HTTP_USER_AGENT'] : "";
         $this->_browser_name = self::BROWSER_UNKNOWN;
         $this->_version = self::VERSION_UNKNOWN;
         $this->_platform = self::PLATFORM_UNKNOWN;

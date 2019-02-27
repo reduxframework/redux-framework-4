@@ -59,9 +59,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 						data-placeholder="' . esc_attr( $placeholder ) . '" 
 						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" 
 						class="redux-select-item redux-select-images ' . esc_attr( $this->field['class'] ) . '"' .
-						$width . ' 
-						rows="6"' .
-						esc_attr( $select2_data ) . '>'; // WPCS: XSS ok.
+						$width . ' rows="6"' . esc_attr( $select2_data ) . '>';  // phpcs:ignore WordPress.Security.EscapeOutput
 
 				echo '<option></option>';
 
@@ -147,7 +145,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-select-image-js',
-				Redux_Core::$_url . 'inc/fields/select_image/redux-select-image' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/select_image/redux-select-image' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'select2-js', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -156,7 +154,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-select-image-css',
-					Redux_Core::$_url . 'inc/fields/select_image/redux-select-image.css',
+					Redux_Core::$url . 'inc/fields/select_image/redux-select-image.css',
 					array(),
 					$this->timestamp,
 					'all'

@@ -64,7 +64,7 @@ if ( ! class_exists( 'Redux_Editor', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-editor-css',
-					Redux_Core::$_url . 'inc/fields/editor/redux-editor.css',
+					Redux_Core::$url . 'inc/fields/editor/redux-editor.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Redux_Editor', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-editor-js',
-				Redux_Core::$_url . 'inc/fields/editor/redux-editor' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/editor/redux-editor' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				$this->timestamp,
 				true

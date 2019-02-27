@@ -60,7 +60,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 				$this->field['mode'] = 0;
 			}
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$this->field = apply_filters( 'redux/pro/media/field/set_defaults', $this->field );
 
@@ -151,7 +151,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 
 			echo '<input placeholder="' . esc_attr( $this->field['placeholder'] ) . '" type="text" class="' . esc_attr( $hide ) . 'upload large-text ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[url]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][url]" value="' . esc_attr( $this->value['url'] ) . '"' . esc_html( $read_only ) . '/>';
 			echo '<input type="hidden" class="data" data-preview-size="' . esc_attr( $this->field['preview_size'] ) . '" data-mode="' . esc_attr( $this->field['mode'] ) . '" />';
-			echo '<input type="hidden" class="library-filter" data-lib-filter="' . $lib_filter . '" />'; // WPCS: XSS ok.
+			echo '<input type="hidden" class="library-filter" data-lib-filter="' . $lib_filter . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
 			echo '<input type="hidden" class="upload-id ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[id]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][id]" value="' . esc_attr( $this->value['id'] ) . '" />';
 			echo '<input type="hidden" class="upload-height" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[height]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][height]" value="' . esc_attr( $this->value['height'] ) . '" />';
 			echo '<input type="hidden" class="upload-width" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[width]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][width]" value="' . esc_attr( $this->value['width'] ) . '" />';
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 
 			$css = '';
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$css = apply_filters( 'redux/pro/media/render/preview_css', null );
 			}
@@ -190,7 +190,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 
 			echo '<div class="screenshot" style="' . esc_attr( $hide ) . '">';
 			echo '<a class="of-uploaded-image" href="' . esc_url( $this->value['url'] ) . '" target="_blank">';
-			echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '" src="' . esc_url( $this->value['thumbnail'] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" style="' . $css . '" />'; // WPCS: XSS ok.
+			echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '" src="' . esc_url( $this->value['thumbnail'] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" style="' . $css . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
 			echo '</a>';
 			echo '</div>';
 
@@ -208,9 +208,9 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 			echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
 			echo '</div>';
 
-			if ( Redux_Core::$_pro_loaded ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo apply_filters( 'redux/pro/media/render/filters', null ); // WPCS: XSS ok.
+			if ( Redux_Core::$pro_loaded ) {
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/media/render/filters', null );
 			}
 		}
 
@@ -231,13 +231,13 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-media-js',
-				Redux_Core::$_url . 'assets/js/media/media' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'assets/js/media/media' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				$this->timestamp,
 				true
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/media/enqueue' );
 			}
@@ -255,7 +255,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 		 * @return mixed|null|void
 		 */
 		public function css_style( $data ) {
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$pro_data = apply_filters( 'redux/pro/media/output', $data );
 

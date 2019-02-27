@@ -97,7 +97,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 
 				<h3><?php esc_html_e( 'Options Object', 'redux-framework' ); ?></h3>
 				<div id="redux-object-browser"></div>
-				<div id="redux-object-json" class="hide"><?php echo( $json ); // WPCS: XSS ok. ?></div>
+				<div id="redux-object-json" class="hide"><?php echo( $json ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<a
 					href="#" id="consolePrintObject"
 					class="button">

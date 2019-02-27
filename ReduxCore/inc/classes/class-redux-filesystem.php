@@ -181,11 +181,11 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 
 			$this->filesystem_init( $url, 'direct', dirname( $file ) );
 
-			if ( ! file_exists( Redux_Core::$_upload_dir ) ) {
-				$this->do_action( 'mkdir', Redux_Core::$_upload_dir );
+			if ( ! file_exists( Redux_Core::$upload_dir ) ) {
+				$this->do_action( 'mkdir', Redux_Core::$upload_dir );
 			}
 
-			$hash_path = trailingslashit( Redux_Core::$_upload_dir ) . 'hash';
+			$hash_path = trailingslashit( Redux_Core::$upload_dir ) . 'hash';
 			if ( ! file_exists( $hash_path ) ) {
 				$this->do_action(
 					'put_contents',
@@ -196,18 +196,18 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				);
 			}
 
-			$version_path = trailingslashit( Redux_Core::$_upload_dir ) . 'version';
+			$version_path = trailingslashit( Redux_Core::$upload_dir ) . 'version';
 			if ( ! file_exists( $version_path ) ) {
 				$this->do_action(
 					'put_contents',
 					$version_path,
 					array(
-						'content' => Redux_Core::$_version,
+						'content' => Redux_Core::$version,
 					)
 				);
 			}
 
-			$index_path = trailingslashit( Redux_Core::$_upload_dir ) . 'index.php';
+			$index_path = trailingslashit( Redux_Core::$upload_dir ) . 'index.php';
 			if ( ! file_exists( $index_path ) ) {
 				$this->do_action(
 					'put_contents',

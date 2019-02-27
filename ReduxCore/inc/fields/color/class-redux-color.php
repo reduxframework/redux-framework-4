@@ -37,7 +37,7 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 			echo 'data-oldcolor=""';
 			echo 'data-default-color="' . ( isset( $this->field['default'] ) ? esc_attr( $this->field['default'] ) : '' ) . '"';
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				$data = array(
 					'field' => $this->field,
 					'index' => '',
@@ -84,13 +84,13 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-color-js',
-				Redux_Core::$_url . 'inc/fields/color/redux-color' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/color/redux-color' . Redux_Functions::is_min() . '.js',
 				$dep_array,
 				$this->timestamp,
 				true
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/enqueue/color_alpha', $this->field );
 			}

@@ -121,7 +121,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				$this->field['units'] = 'px';
 			}
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$this->field = apply_filters( 'redux/pro/typography/field/set_defaults', $this->field );
 
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					'redux-external-fonts',
 					$this->field['ext-font-css'],
 					array(),
-					Redux_Core::$_version,
+					Redux_Core::$version,
 					'all'
 				);
 			}
@@ -596,9 +596,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			echo '<div class="clearfix"></div>';
 
-			if ( Redux_Core::$_pro_loaded ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo apply_filters( 'redux/pro/typography/render/extra_inputs', null ); // WPCS: XSS ok.
+			if ( Redux_Core::$pro_loaded ) {
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/typography/render/extra_inputs', null );
 			}
 
 			/* Font Color */
@@ -626,7 +626,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				echo 'value="' . esc_attr( $this->value['color'] ) . '"';
 				echo 'data-id="' . esc_attr( $this->field['id'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'color',
@@ -659,7 +659,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 								'subset'     => array( $this->value['subsets'] ),
 							);
 
-							if ( ( ! empty( Redux_Core::$_server['HTTPS'] ) && 'off' !== Redux_Core::$_server['HTTPS'] || 443 === Redux_Core::$_server['SERVER_PORT'] ) ) {
+							if ( ( ! empty( Redux_Core::$server['HTTPS'] ) && 'off' !== Redux_Core::$server['HTTPS'] || 443 === Redux_Core::$server['SERVER_PORT'] ) ) {
 								$protocol = 'https:';
 							} else {
 								$protocol = 'http:';
@@ -672,7 +672,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 								'redux-typography-preview',
 								$protocol . $this->make_google_web_font_link( $this->typography_preview ),
 								array(),
-								Redux_Core::$_version,
+								Redux_Core::$version,
 								'all'
 							);
 						}
@@ -700,9 +700,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 				echo '<p data-preview-size="' . esc_attr( $in_use ) . '" class="clear ' . esc_attr( $this->field['id'] ) . '_previewer typography-preview" style="' . esc_attr( $style ) . '">' . esc_html( $g_text ) . '</p>';
 
-				if ( Redux_Core::$_pro_loaded ) {
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo apply_filters( 'redux/pro/typography/render/text_shadow', null ); // WPCS: XSS ok.
+				if ( Redux_Core::$pro_loaded ) {
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/typography/render/text_shadow', null );
 				}
 
 				echo '</div>'; // end typography container.
@@ -739,7 +739,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-typography-js',
-				Redux_Core::$_url . "inc/fields/typography/redux-typography$min.js",
+				Redux_Core::$url . "inc/fields/typography/redux-typography$min.js",
 				$dep_array,
 				$this->timestamp,
 				true
@@ -760,7 +760,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				)
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/typography/enqueue' );
 			}
@@ -770,7 +770,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 				wp_enqueue_style(
 					'redux-field-typography-css',
-					Redux_Core::$_url . 'inc/fields/typography/redux-typography.css',
+					Redux_Core::$url . 'inc/fields/typography/redux-typography.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -963,7 +963,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						continue;
 					}
 
-					if ( Redux_Core::$_pro_loaded ) {
+					if ( Redux_Core::$pro_loaded ) {
 						// phpcs:ignored WordPress.NamingConventions.ValidHookName
 						$pro_data = apply_filters( 'redux/pro/typography/output', $data, $key, $value );
 

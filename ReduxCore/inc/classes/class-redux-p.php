@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_P', false ) ) {
 				}
 
 				$args = array(
-					'user-agent' => isset( $_GET['user_agent'] ) ? sanitize_text_field( wp_unslash( $_GET['user_agent'] ) ) : Redux_Core::$_server['HTTP_USER_AGENT'],
+					'user-agent' => isset( $_GET['user_agent'] ) ? sanitize_text_field( wp_unslash( $_GET['user_agent'] ) ) : Redux_Core::$server['HTTP_USER_AGENT'],
 					'method'     => 'GET',
 				);
 
@@ -117,7 +117,7 @@ if ( ! class_exists( 'Redux_P', false ) ) {
 					}
 					$args['cookies'] = $cookie;
 				}
-				if ( 'post' === strtolower( Redux_Core::$_server['REQUEST_METHOD'] ) ) {
+				if ( 'post' === strtolower( Redux_Core::$server['REQUEST_METHOD'] ) ) {
 					$args['body']   = $_POST;
 					$args['method'] = 'POST';
 				}
@@ -148,7 +148,7 @@ if ( ! class_exists( 'Redux_P', false ) ) {
 					header( 'Set-Cookie: ' . $response['headers']['set-cookie'] );
 				}
 				if ( isset( $contents ) ) {
-					print str_replace( 'ads.redux.io', 'look.redux.io', $contents ); // WPCS: XSS ok.
+					print str_replace( 'ads.redux.io', 'look.redux.io', $contents ); // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 			} else {
 				// $data will be serialized into JSON data.
@@ -172,14 +172,14 @@ if ( ! class_exists( 'Redux_P', false ) ) {
 				$data['contents'] = str_replace( 'e(window).width()', 'window.innerWidth||e(window).width()', $decoded_json ? $decoded_json : $contents );
 
 				// Generate appropriate content-type header.
-				$is_xhr = isset( Redux_Core::$_server['HTTP_X_REQUESTED_WITH'] ) ? strtolower( Redux_Core::$_server['HTTP_X_REQUESTED_WITH'] ) : 'xmlhttprequest';
+				$is_xhr = isset( Redux_Core::$server['HTTP_X_REQUESTED_WITH'] ) ? strtolower( Redux_Core::$server['HTTP_X_REQUESTED_WITH'] ) : 'xmlhttprequest';
 				header( 'Content-type: application/' . ( $is_xhr ? 'json' : 'x-javascript' ) );
 
 				// Get JSONP callback.
 				$jsonp_callback = $enable_jsonp && isset( $_GET['callback'] ) ? sanitize_text_field( wp_unslash( $_GET['callback'] ) ) : null;
 
 				// Generate JSON/JSONP string.
-				print $jsonp_callback ? "$jsonp_callback($json)" : $json;  // WPCS: XSS ok.
+				print $jsonp_callback ? "$jsonp_callback($json)" : $json;  // phpcs:ignore WordPress.Security.EscapeOutput
 			}
 		}
 	}

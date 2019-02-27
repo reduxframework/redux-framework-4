@@ -83,13 +83,13 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								 * @param array $field field config data
 								 */
 								$field_type = str_replace( '_', '-', $field['type'] );
-								$core_path  = Redux_Core::$_dir . "inc/fields/{$field['type']}/class-redux-{$field_type}.php";
+								$core_path  = Redux_Core::$dir . "inc/fields/{$field['type']}/class-redux-{$field_type}.php";
 
 								if ( ! file_exists( $core_path ) ) {
-									$core_path = Redux_Core::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+									$core_path = Redux_Core::$dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
 								}
 
-								if ( Redux_Core::$_pro_loaded ) {
+								if ( Redux_Core::$pro_loaded ) {
 									$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-{$field_type}.php";
 
 									if ( file_exists( $pro_path ) ) {
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							WebFontConfig = {};
 						}
 
-						WebFontConfig['google'] = {families: [<?php echo $typography->make_google_web_font_string( $core->typography ); // WPCS: XSS ok. ?>]};
+						WebFontConfig['google'] = {families: [<?php echo $typography->make_google_web_font_string( $core->typography ); // phpcs:ignore WordPress.Security.EscapeOutput ?>]};
 
 						(function( d ) {
 							var wf = d.createElement( 'script' );
@@ -187,7 +187,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					</script>
 					<?php
 				} elseif ( ! $core->args['disable_google_fonts_link'] ) {
-					$protocol = ( ! empty( Redux_Core::$_server['HTTPS'] ) && 'off' !== Redux_Core::$_server['HTTPS'] || 443 === Redux_Core::$_server['SERVER_PORT'] ) ? 'https:' : 'http:';
+					$protocol = ( ! empty( Redux_Core::$server['HTTPS'] ) && 'off' !== Redux_Core::$server['HTTPS'] || 443 === Redux_Core::$server['SERVER_PORT'] ) ? 'https:' : 'http:';
 
 					wp_enqueue_style(
 						'redux-google-fonts-' . $core->args['opt_name'],
@@ -221,8 +221,8 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || ( isset( $_POST['customized'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'preview-customize_' . wp_get_theme()->get_stylesheet() ) ) ) ) {
 
-				// phpcs:ignore WordPress.NamingConventions.ValidVariableName
-				echo '<style type="text/css" id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>'; // WPCS: XSS ok.
+				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
+				echo '<style type="text/css" id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
 			}
 		}
 

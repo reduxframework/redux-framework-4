@@ -101,7 +101,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 			if ( ! empty( $notices ) ) {
 				$core = $this->core();
 
-				if ( isset( $_GET ) && isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+				if ( isset( $_GET ) && isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 
 					if ( isset( $notices[ $core->args['page_slug'] ] ) ) {
 						// Enum admin notices.
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 
 										$nonce = wp_create_nonce( $notice['id'] . $userid . 'nonce' );
 
-										echo '<div ' . $add_style . ' id="' . esc_attr( $css_id ) . '" class="' . esc_attr( $css_class ) . '">'; // WPCS: XSS ok.
+										echo '<div ' . $add_style . ' id="' . esc_attr( $css_id ) . '" class="' . esc_attr( $css_class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
 										echo '<input type="hidden" class="dismiss_data" id="' . esc_attr( $css_id ) . '" value="' . esc_attr( $nonce ) . '">';
 										echo '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
 										echo '</div>';
@@ -210,7 +210,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 
 			if ( isset( $_POST['id'] ) ) {
 				// Get the notice id.
-				$id = explode( '&', sanitize_text_field( wp_unslash( $_POST['id'] ) ) ); // WPCS: CSRF ok.
+				$id = explode( '&', sanitize_text_field( wp_unslash( $_POST['id'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 				$id = $id[0];
 
 				// Get the user id.

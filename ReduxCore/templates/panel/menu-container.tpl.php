@@ -26,7 +26,7 @@
 			}
 
 			if ( false === $skip_sec ) {
-				echo( $this->parent->section_menu( $k, $section ) ); // WPCS: XSS ok.
+				echo( $this->parent->section_menu( $k, $section ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 				$skip_sec = false;
 			}
 		}

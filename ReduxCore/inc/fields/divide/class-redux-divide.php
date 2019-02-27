@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_Divide', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-divide',
-					Redux_Core::$_url . 'inc/fields/divide/redux-divide.css',
+					Redux_Core::$url . 'inc/fields/divide/redux-divide.css',
 					array(),
 					$this->timestamp,
 					'all'

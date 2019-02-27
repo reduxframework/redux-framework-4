@@ -23,8 +23,8 @@ defined( 'ABSPATH' ) || exit;
 
 require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
-Redux_Core::$_version = '4.0.1.1';
-Redux_Core::$_path    = dirname( __FILE__ );
+Redux_Core::$version    = '4.0.1.1';
+Redux_Core::$redux_path = dirname( __FILE__ );
 Redux_Core::instance();
 
 // Don't duplicate me!
@@ -51,7 +51,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @var string
 		 * @access public
 		 */
-		public static $_version = '';
+		public static $_version = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Absolute directory of the Redux instance.
@@ -59,7 +59,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @var string
 		 * @access public
 		 */
-		public static $_dir = '';
+		public static $_dir = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Full URL of the Redux instance.
@@ -67,7 +67,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @var string
 		 * @access public
 		 */
-		public static $_url = '';
+		public static $_url = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Current WordPress upload directory.
@@ -75,7 +75,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @var string
 		 * @access public
 		 */
-		public static $_upload_dir = '';
+		public static $_upload_dir = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Current WordPress upload URL
@@ -83,7 +83,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @var string
 		 * @access public
 		 */
-		public static $_upload_url;
+		public static $_upload_url; // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Init
@@ -93,11 +93,11 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		public static function init() {
 
 			// Backward compatibility for extensions.
-			self::$_version    = Redux_Core::$_version;
-			self::$_dir        = Redux_Core::$_dir;
-			self::$_url        = Redux_Core::$_url;
-			self::$_upload_dir = Redux_Core::$_upload_dir;
-			self::$_upload_url = Redux_Core::$_upload_url;
+			self::$_version    = Redux_Core::$version;
+			self::$_dir        = Redux_Core::$dir;
+			self::$_url        = Redux_Core::$url;
+			self::$_upload_dir = Redux_Core::$upload_dir;
+			self::$_upload_url = Redux_Core::$upload_url;
 		}
 
 		/**

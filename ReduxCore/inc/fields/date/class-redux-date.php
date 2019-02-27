@@ -51,7 +51,7 @@ if ( ! class_exists( 'Redux_Date', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-date-css',
-					Redux_Core::$_url . 'inc/fields/date/redux-date.css',
+					Redux_Core::$url . 'inc/fields/date/redux-date.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Redux_Date', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-date-js',
-				Redux_Core::$_url . 'inc/fields/date/redux-date' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/date/redux-date' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'redux-js' ),
 				$this->timestamp,
 				true

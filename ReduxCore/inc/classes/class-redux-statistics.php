@@ -88,11 +88,11 @@ if ( ! class_exists( 'Redux_Statistics', false ) ) {
 
 			$this->options['dev_mode'] = $parent->args['dev_mode'];
 
-			if ( isset( $_GET['redux_framework_disable_statistics'] ) && ! empty( $_GET['redux_framework_disable_statistics'] ) ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['redux_framework_disable_statistics'] ) && ! empty( $_GET['redux_framework_disable_statistics'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				$this->options['allow_statistics'] = 'no';
 			}
 
-			if ( isset( $_GET['redux_framework_enable_statistics'] ) && ! empty( $_GET['redux_framework_enable_statistics'] ) ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['redux_framework_enable_statistics'] ) && ! empty( $_GET['redux_framework_enable_statistics'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				$this->options['allow_statistics'] = 'yes';
 			}
 
@@ -110,7 +110,7 @@ if ( ! class_exists( 'Redux_Statistics', false ) ) {
 
 			add_action( 'wp_ajax_redux_allow_statistics', array( $this, 'callback' ) );
 
-			if ( isset( $_GET['page'] ) && $this->parent->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['page'] ) && $this->parent->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( empty( $this->options['allow_statistics'] ) ) {
 					add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 				}
@@ -220,7 +220,7 @@ if ( ! class_exists( 'Redux_Statistics', false ) ) {
 							'<a id="pointer-primary" class="button-primary">' + '<?php echo esc_html( $button2 ); ?>' + '</a>' );
 						$( '#pointer-primary' ).click(
 							function() {
-								<?php echo( $button2_function ); // WPCS: XSS ok. ?>
+								<?php echo( $button2_function ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 							}
 						);
 						ptc.click(
@@ -228,7 +228,7 @@ if ( ! class_exists( 'Redux_Statistics', false ) ) {
 								<?php if ( '' === $button1_function ) { ?>
 								redux_store_answer( input, nonce );
 								<?php } else { ?>
-									<?php echo( $button1_function ); // WPCS: XSS ok. ?>
+									<?php echo( $button1_function ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 								<?php } ?>
 							}
 						);
@@ -236,7 +236,7 @@ if ( ! class_exists( 'Redux_Statistics', false ) ) {
 						ptc.click(
 							function() {
 								<?php if ( '' !== $button1_function ) { ?>
-									<?php echo( $button1_function ); // WPCS: XSS ok. ?>
+									<?php echo( $button1_function ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 								<?php } ?>
 							}
 						);

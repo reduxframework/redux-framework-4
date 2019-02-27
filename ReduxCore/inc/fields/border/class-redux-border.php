@@ -201,7 +201,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 				echo 'data-default-color="' . esc_attr( $default ) . '"';
 				echo 'data-id="' . esc_attr( $this->field['id'] ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => '',
@@ -238,13 +238,13 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-border-js',
-				Redux_Core::$_url . 'inc/fields/border/redux-border' . $min . '.js',
+				Redux_Core::$url . 'inc/fields/border/redux-border' . $min . '.js',
 				$dep_array,
 				$this->timestamp,
 				true
 			);
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/enqueue/color_alpha', $this->field );
 			}
@@ -256,7 +256,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 
 				wp_enqueue_style(
 					'redux-field-border-css',
-					Redux_Core::$_url . 'inc/fields/border/redux-border.css',
+					Redux_Core::$url . 'inc/fields/border/redux-border.css',
 					array(),
 					$this->timestamp,
 					'all'

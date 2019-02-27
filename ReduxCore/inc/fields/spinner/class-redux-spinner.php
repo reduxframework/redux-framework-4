@@ -63,7 +63,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 
 			echo '<div id="' . esc_attr( $this->field['id'] ) . '-spinner" class="redux_spinner" rel="' . esc_attr( $this->field['id'] ) . '">';
 
-			echo '<input type="text" ' . $data_string . ' name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" id="' . esc_attr( $this->field['id'] ) . '" value="' . esc_attr( $this->value ) . '" class="mini spinner-input ' . esc_attr( $this->field['class'] ) . '"' . $readonly . '/>'; // WPCS: XSS ok.
+			echo '<input type="text" ' . $data_string . ' name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" id="' . esc_attr( $this->field['id'] ) . '" value="' . esc_attr( $this->value ) . '" class="mini spinner-input ' . esc_attr( $this->field['class'] ) . '"' . $readonly . '/>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 			echo '</div>';
 		}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		public function enqueue() {
 			wp_enqueue_script(
 				'redux-field-spinner-custom-js',
-				Redux_Core::$_url . 'inc/fields/spinner/vendor/jquery.ui.spinner' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/spinner/vendor/jquery.ui.spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -129,7 +129,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-spinner-js',
-				Redux_Core::$_url . 'inc/fields/spinner/redux-spinner' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/spinner/redux-spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-field-spinner-custom-js', 'jquery-ui-core', 'jquery-ui-dialog', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-spinner-css',
-					Redux_Core::$_url . 'inc/fields/spinner/redux-spinner.css',
+					Redux_Core::$url . 'inc/fields/spinner/redux-spinner.css',
 					array(),
 					$this->timestamp,
 					'all'
