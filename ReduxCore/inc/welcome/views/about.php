@@ -153,9 +153,7 @@ defined( 'ABSPATH' ) || exit;
 										$plugin_url = ! empty( $plugin_data['AuthorURI'] ) ? $plugin_data['AuthorURI'] : $plugin_data['PluginURI'];
 										?>
 										<?php echo esc_html__( 'By', 'redux-framework' ); ?>
-										<a href="<?php echo esc_attr( $plugin_url ); ?>">
-											<?php echo esc_html( trim( wp_strip_all_tags( $plugin_data['Author'] ) ) ); ?>
-										</a>
+										<a href="<?php echo esc_attr( $plugin_url ); ?>"><?php echo esc_html( trim( wp_strip_all_tags( $plugin_data['Author'] ) ) ); ?></a>
 									<?php } ?>
 									<span class="type plugin">
 									<?php echo esc_html__( 'Plugin', 'redux-framework' ); ?>
