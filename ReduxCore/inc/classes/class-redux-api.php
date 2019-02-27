@@ -637,7 +637,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-
 			if ( ! isset( $section['id'] ) ) {
 				if ( isset( $section['type'] ) && 'divide' === $section['type'] ) {
 					$section['id'] = time();

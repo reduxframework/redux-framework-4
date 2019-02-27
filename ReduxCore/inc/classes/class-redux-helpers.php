@@ -260,7 +260,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$plugins = array();
 			foreach ( get_option( 'active_plugins', array() ) as $plugin_path ) {
 				if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
-					$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
+					$plugin_info      = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
 					$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
 					$plugins[ $slug ] = array(
 						'version'    => $plugin_info['Version'],
