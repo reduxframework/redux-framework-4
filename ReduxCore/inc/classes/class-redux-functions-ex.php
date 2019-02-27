@@ -25,39 +25,41 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * Records calling function.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $caller   Calling function.
 		 */
-		public static function record_caller( $opt_name = '', $caller = '' ) {
+		public static function record_caller( $opt_name = '' ) {
+			global $pagenow;
+
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( ! ( 'tools.php' === $pagenow && ! empty( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
+				return;
+			}
+
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
+			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
 				if ( ! isset( Redux_Core::$callers[ $opt_name ] ) ) {
 					Redux_Core::$callers[ $opt_name ] = array();
 				}
 
-				if ( strpos( $caller, 'class-redux-api.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-metaboxes-api.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-extensions.php' ) !== false ) {
-					return;
-				}
-
-				if ( strpos( $caller, 'class-redux-extension-metaboxes.php' ) !== false ) {
+				if ( strpos( $caller, 'inc/classes/class-redux-' ) !== false ) {
 					return;
 				}
 
 				if ( ! in_array( $caller, Redux_Core::$callers[ $opt_name ], true ) ) {
 					Redux_Core::$callers[ $opt_name ][] = $caller;
 				}
-			}
-
-			if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'], true ) ) {
-				self::$args[ $opt_name ]['callers'][] = $caller;
+				if ( ! empty( self::$args[ $opt_name ]['callers'] ) && ! in_array( $caller, self::$args[ $opt_name ]['callers'], true ) ) {
+					self::$args[ $opt_name ]['callers'][] = $caller;
+				}
 			}
 		}
+
+		/**
+		 * What is this for?
+		 *
+		 * @var array
+		 */
+		public static $args;
 
 		/**
 		 * Normalize path.
@@ -100,6 +102,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * Get metabox boxes.
 		 *
 		 * @param object $core Metabox object.
+		 *
+		 * @return bool
 		 */
 		public static function metabox_boxes( $core ) {
 			if ( isset( $core->extensions['metaboxes_lite']->boxes ) && ! empty( $core->extensions['metaboxes_lite']->boxes ) ) {
@@ -117,9 +121,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return array|bool
 		 */
 		public static function is_inside_plugin( $file ) {
-			$plugin_basename = plugin_basename( $file );
+			$file            = self::wp_normalize_path( $file );
+			$plugin_basename = self::wp_normalize_path( plugin_basename( $file ) );
 
-			if ( '/' . $plugin_basename !== $file ) {
+			if ( $plugin_basename !== $file ) {
 				$slug = explode( '/', $plugin_basename );
 				$slug = $slug[0];
 
@@ -161,8 +166,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			$theme_paths = array_unique( $theme_paths );
 			$file_path   = self::wp_normalize_path( $file );
-			$filename    = explode( '/', $file );
-			$filename    = end( $filename );
+
+			$filename = explode( '\\', $file );
+
+			end( $filename );
+
+			$filename = prev( $filename );
 
 			foreach ( $theme_paths as $theme_path => $url ) {
 				$real_path = self::wp_normalize_path( realpath( $theme_path ) );
