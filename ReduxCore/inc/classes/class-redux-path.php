@@ -31,9 +31,9 @@ if ( ! class_exists( 'Redux_Path', false ) ) {
 		 * @return string
 		 */
 		public static function get_path( $relative_path ) {
-			$path = Redux_Core::$_path . $relative_path;
+			$path = Redux_Core::$redux_path . $relative_path;
 
-			if ( Redux_Core::$_pro_loaded ) {
+			if ( Redux_Core::$pro_loaded ) {
 
 				$pro_path = Redux_Pro::$dir . '/core' . $relative_path;
 

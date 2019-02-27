@@ -76,7 +76,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-text-css',
-					Redux_Core::$_url . 'inc/fields/text/redux-text.css',
+					Redux_Core::$url . 'inc/fields/text/redux-text.css',
 					array(),
 					$this->timestamp,
 					'all'

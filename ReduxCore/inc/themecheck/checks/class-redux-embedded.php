@@ -37,7 +37,7 @@ class Redux_Embedded implements themecheck {
 		$redux = $check::get_redux_details( $php_files );
 
 		if ( $redux ) {
-			if ( ! isset( $_POST['redux_wporg'] ) ) { // WPCS: CSRF ok.
+			if ( ! isset( $_POST['redux_wporg'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				checkcount();
 				$this->error[] = '<div class="redux-error">' . sprintf( '<span class="tc-lead tc-recommended">' . esc_html__( 'RECOMMENDED', 'redux-framework' ) . '</span>: ' . esc_html__( 'If you are submitting to WordPress.org Theme Repository, it is', 'redux-framework' ) . ' <strong>' . esc_html__( 'strongly', 'redux-framework' ) . '</strong> ' . esc_html__( 'suggested that you read', 'redux-framework' ) . ' <a href="%s" target="_blank">' . esc_html__( 'this document', 'redux-framework' ) . '</a>, ' . esc_html__( 'or your theme will be rejected because of Redux.', 'redux-framework' ), '//docs.reduxframework.com/core/wordpress-org-submissions/' ) . '</div>';
 				$ret           = false;

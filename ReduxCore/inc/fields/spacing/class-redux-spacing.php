@@ -314,7 +314,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-spacing-js',
-				Redux_Core::$_url . 'inc/fields/spacing/redux-spacing' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/spacing/redux-spacing' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'select2-js', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -323,7 +323,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-spacing-css',
-					Redux_Core::$_url . 'inc/fields/spacing/redux-spacing.css',
+					Redux_Core::$url . 'inc/fields/spacing/redux-spacing.css',
 					array(),
 					$this->timestamp,
 					'all'

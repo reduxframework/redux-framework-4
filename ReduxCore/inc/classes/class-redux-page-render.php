@@ -159,13 +159,13 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				$hint_status = get_user_meta( $current_user->ID, 'ignore_hints' ) ? get_user_meta( $current_user->ID, 'ignore_hints', true ) : 'true';
 
 				// current page parameters.
-				if ( isset( $_GET['page'] ) ) {
-					$cur_page = sanitize_text_field( wp_unslash( $_GET['page'] ) ); // WPCS: CSRF ok.
+				if ( isset( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$cur_page = sanitize_text_field( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 				}
 
 				$cur_tab = '0';
-				if ( isset( $_GET['tab'] ) ) {
-					$cur_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) ); // WPCS: CSRF ok.
+				if ( isset( $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$cur_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 				}
 
 				// Default url values for enabling hints.
@@ -461,7 +461,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				// If the field is set not to display in the panel.
 				$display = true;
 
-				if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+				if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 					if ( isset( $field['panel'] ) && false === $field['panel'] ) {
 						$display = false;
 					}
@@ -478,13 +478,13 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 * @param array $field field data
 				 */
 				$field_type = str_replace( '_', '-', $field['type'] );
-				$core_path  = Redux_Core::$_dir . "inc/fields/{$field['type']}/class-redux-{$field_type}.php";
+				$core_path  = Redux_Core::$dir . "inc/fields/{$field['type']}/class-redux-{$field_type}.php";
 
 				// Shim for v3 extension class names.
 				if ( ! file_exists( $core_path ) ) {
-					$core_path = Redux_Core::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
+					$core_path = Redux_Core::$dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
 				}
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-pro-{$field_type}.php";
 
 					if ( file_exists( $pro_path ) ) {
@@ -658,14 +658,14 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 						$class_string .= ' ' . $field['fieldset_class'];
 					}
 
-					if ( Redux_Core::$_pro_loaded ) {
+					if ( Redux_Core::$pro_loaded ) {
 						if ( $pro_field_loaded ) {
 							$class_string .= ' redux-pro-field-init';
 						}
 					}
 
 					echo '<fieldset id="' . esc_attr( $core->args['opt_name'] . '-' . $field['id'] ) . '" class="' . esc_attr( $hidden . esc_attr( $disabled ) . 'redux-field-container redux-field redux-field-init redux-container-' . $field['type'] . ' ' . $class_string ) . '" data-id="' . esc_attr( $field['id'] ) . '" data-type="' . esc_attr( $field['type'] ) . '">';
-					echo $_render; // WPCS: XSS ok.
+					echo $_render; // phpcs:ignore WordPress.Security.EscapeOutput
 
 					if ( ! empty( $field['desc'] ) ) {
 						$field['description'] = $field['desc'];
@@ -1010,7 +1010,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 			$section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';
 
-			if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( isset( $section['panel'] ) && false === $section['panel'] ) {
 					$display = false;
 				}
@@ -1079,7 +1079,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 						$next_k ++;
 						$display = true;
 
-						if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+						if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 							if ( isset( $sections[ $next_k ]['panel'] ) && false === $sections[ $next_k ]['panel'] ) {
 								$display = false;
 							}

@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /**
  * jQuery Select2 Sortable
  * - enable select2 to be sortable via normal select element

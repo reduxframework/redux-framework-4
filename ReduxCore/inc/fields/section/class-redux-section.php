@@ -116,7 +116,7 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-section-css',
-					Redux_Core::$_url . 'inc/fields/section/redux-section.css',
+					Redux_Core::$url . 'inc/fields/section/redux-section.css',
 					array(),
 					$this->timestamp,
 					'all'

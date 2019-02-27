@@ -52,7 +52,7 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 		 */
 		public function label() {
 			// The label has already been sanitized in the Fields class, no need to re-sanitize it.
-			echo( $this->label ); // WPCS: XSS ok.
+			echo( $this->label ); // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		/**

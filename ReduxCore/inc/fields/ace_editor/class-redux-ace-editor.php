@@ -83,7 +83,7 @@ if ( ! class_exists( 'Redux_Ace_Editor', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-ace-editor-css',
-					Redux_Core::$_url . 'inc/fields/ace_editor/redux-ace-editor.css',
+					Redux_Core::$url . 'inc/fields/ace_editor/redux-ace-editor.css',
 					array(),
 					$this->timestamp,
 					'all'
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Redux_Ace_Editor', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-ace-editor-js',
-				Redux_Core::$_url . 'inc/fields/ace_editor/redux-ace-editor' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/ace_editor/redux-ace-editor' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'ace-editor-js', 'redux-js' ),
 				$this->timestamp,
 				true

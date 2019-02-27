@@ -69,7 +69,7 @@ if ( ! class_exists( 'Redux_Palette', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-palette-js',
-				Redux_Core::$_url . 'inc/fields/palette/redux-palette' . $min . '.js',
+				Redux_Core::$url . 'inc/fields/palette/redux-palette' . $min . '.js',
 				array( 'jquery', 'redux-js', 'jquery-ui-button', 'jquery-ui-core' ),
 				$this->timestamp,
 				true
@@ -78,7 +78,7 @@ if ( ! class_exists( 'Redux_Palette', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-palette-css',
-					Redux_Core::$_url . 'inc/fields/palette/redux-palette.css',
+					Redux_Core::$url . 'inc/fields/palette/redux-palette.css',
 					array(),
 					$this->timestamp,
 					'all'

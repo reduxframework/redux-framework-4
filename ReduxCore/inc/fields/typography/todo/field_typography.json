@@ -545,7 +545,7 @@
                 if ( ! wp_script_is( 'redux-field-typography-js' ) ) {
                     wp_enqueue_script(
                         'redux-field-typography-js',
-                        Redux_Core::$_url . 'inc/fields/typography/class-redux-typography' . Redux_Functions::is_min() . '.js',
+                        Redux_Core::$url . 'inc/fields/typography/class-redux-typography' . Redux_Functions::is_min() . '.js',
                         array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js' ),
                         time(),
                         true
@@ -566,7 +566,7 @@
                     if ( ! wp_style_is( 'redux-field-typography-css' ) ) {
                         wp_enqueue_style(
                             'redux-field-typography-css',
-                            Redux_Core::$_url . 'inc/fields/typography/class-redux-typography.css',
+                            Redux_Core::$url . 'inc/fields/typography/class-redux-typography.css',
                             array(),
                             time(),
                             'all'

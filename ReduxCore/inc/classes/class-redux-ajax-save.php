@@ -61,7 +61,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 
 				if ( ! empty( $redux->args['opt_name'] ) ) {
 
-					$post_data = wp_unslash( $_POST['data'] ); // WPCS: XSS ok, sanitization ok.
+					$post_data = wp_unslash( $_POST['data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
 					// New method to avoid input_var nonsense.  Thanks @harunbasic.
 					$values = $this->parse_str( $post_data );

@@ -129,7 +129,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 * Import link options.
 		 */
 		public function link_options() {
-			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // WPCS: CSRF ok.
+			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				wp_die( 'Invalid Secret for options use' );
 				exit;
 			}
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 * Import download options.
 		 */
 		public function download_options() {
-			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // WPCS: CSRF ok.
+			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				wp_die( 'Invalid Secret for options use' );
 				exit;
 			}
@@ -166,7 +166,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 			// No need to escape this, as it's been properly escaped previously and through json_encode.
 			$content = wp_json_encode( $backup_options );
 
-			if ( isset( $_GET['action'] ) && 'redux_download_options-' . $this->parent->args['opt_name'] === $_GET['action'] ) { // WPCS: CSRF ok.
+			if ( isset( $_GET['action'] ) && 'redux_download_options-' . $this->parent->args['opt_name'] === $_GET['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				header( 'Content-Description: File Transfer' );
 				header( 'Content-type: application/txt' );
 				header( 'Content-Disposition: attachment; filename="redux_options_"' . $this->parent->args['opt_name'] . '_backup_' . date( 'd-m-Y' ) . '.json' );
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 				header( 'Cache-Control: must-revalidate' );
 				header( 'Pragma: public' );
 
-				echo( $content ); // WPCS: XSS ok.
+				echo( $content ); // phpcs:ignore WordPress.Security.EscapeOutput
 
 				exit;
 			} else {
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 
 				// Can't include the type. Thanks old Firefox and IE. BAH.
 				// header('Content-type: application/json');.
-				echo( $content ); // WPCS: XSS ok.
+				echo( $content ); // phpcs:ignore WordPress.Security.EscapeOutput
 
 				exit;
 			}

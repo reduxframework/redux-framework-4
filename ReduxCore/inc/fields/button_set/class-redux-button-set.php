@@ -119,7 +119,7 @@ if ( ! class_exists( 'Redux_Button_Set', false ) ) {
 		public function enqueue() {
 			wp_enqueue_script(
 				'redux-field-button-set-js',
-				Redux_Core::$_url . 'inc/fields/button_set/redux-button-set' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/button_set/redux-button-set' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'jquery-ui-core', 'redux-js' ),
 				$this->timestamp,
 				true

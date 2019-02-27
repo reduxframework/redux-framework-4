@@ -32,8 +32,8 @@ if ( file_exists( dirname( __FILE__ ) . '/info-html.html' ) ) {
 }
 
 // Background Patterns Reader.
-$sample_patterns_path = Redux_Core::$_dir . '../sample/patterns/';
-$sample_patterns_url  = Redux_Core::$_url . '../sample/patterns/';
+$sample_patterns_path = Redux_Core::$dir . '../sample/patterns/';
+$sample_patterns_url  = Redux_Core::$url . '../sample/patterns/';
 $sample_patterns      = array();
 
 if ( is_dir( $sample_patterns_path ) ) {
@@ -1647,27 +1647,27 @@ Redux::set_section(
 				'options'  => array(
 					'1' => array(
 						'alt' => '1 Column',
-						'img' => Redux_Core::$_url . 'assets/img/1col.png',
+						'img' => Redux_Core::$url . 'assets/img/1col.png',
 					),
 					'2' => array(
 						'alt' => '2 Column Left',
-						'img' => Redux_Core::$_url . 'assets/img/2cl.png',
+						'img' => Redux_Core::$url . 'assets/img/2cl.png',
 					),
 					'3' => array(
 						'alt' => '2 Column Right',
-						'img' => Redux_Core::$_url . 'assets/img/2cr.png',
+						'img' => Redux_Core::$url . 'assets/img/2cr.png',
 					),
 					'4' => array(
 						'alt' => '3 Column Middle',
-						'img' => Redux_Core::$_url . 'assets/img/3cm.png',
+						'img' => Redux_Core::$url . 'assets/img/3cm.png',
 					),
 					'5' => array(
 						'alt' => '3 Column Left',
-						'img' => Redux_Core::$_url . 'assets/img/3cl.png',
+						'img' => Redux_Core::$url . 'assets/img/3cl.png',
 					),
 					'6' => array(
 						'alt' => '3 Column Right',
-						'img' => Redux_Core::$_url . 'assets/img/3cr.png',
+						'img' => Redux_Core::$url . 'assets/img/3cr.png',
 					),
 				),
 				'default'  => '2',
@@ -1721,7 +1721,7 @@ Redux::set_section(
 				'options'    => array(
 					'1' => array(
 						'alt'     => 'Preset 1',
-						'img'     => Redux_Core::$_url . '../sample/presets/preset1.png',
+						'img'     => Redux_Core::$url . '../sample/presets/preset1.png',
 						'presets' => array(
 							'switch-on'     => 1,
 							'switch-off'    => 1,
@@ -1730,7 +1730,7 @@ Redux::set_section(
 					),
 					'2' => array(
 						'alt'     => 'Preset 2',
-						'img'     => Redux_Core::$_url . '../sample/presets/preset2.png',
+						'img'     => Redux_Core::$url . '../sample/presets/preset2.png',
 						'presets' => '{"opt-slider-label":"1", "opt-slider-text":"10"}',
 					),
 				),
@@ -1755,14 +1755,14 @@ Redux::set_section(
 				'options' => array(
 					array(
 						'alt' => 'Preset 1',
-						'img' => Redux_Core::$_url . '../sample/presets/preset1.png',
+						'img' => Redux_Core::$url . '../sample/presets/preset1.png',
 					),
 					array(
 						'alt' => 'Preset 2',
-						'img' => Redux_Core::$_url . '../sample/presets/preset2.png',
+						'img' => Redux_Core::$url . '../sample/presets/preset2.png',
 					),
 				),
-				'default' => Redux_Core::$_url . '../sample/presets/preset2.png',
+				'default' => Redux_Core::$url . '../sample/presets/preset2.png',
 			),
 			array(
 				'id'       => 'opt-select-image',
@@ -1770,7 +1770,7 @@ Redux::set_section(
 				'title'    => esc_html__( 'Select Image', 'your-domain-here' ),
 				'subtitle' => esc_html__( 'A preview of the selected image will appear underneath the select box.', 'your-domain-here' ),
 				'options'  => $sample_patterns,
-				'default'  => ReduxFramework::$_url . '../sample/patterns/triangular.png',
+				'default'  => Redux_Core::$url . '../sample/patterns/triangular.png',
 			),
 		),
 	)
@@ -2538,7 +2538,7 @@ if ( ! function_exists( 'redux_load_metabox_config' ) ) {
 	function redux_load_metabox_config( $opt_name ) {
 
 		// File containing sample Metabox Lite option arrays.
-		require_once Redux_Core::$_dir . '../sample/sample-metabox-config.php';
+		require_once Redux_Core::$dir . '../sample/sample-metabox-config.php';
 	}
 }
 

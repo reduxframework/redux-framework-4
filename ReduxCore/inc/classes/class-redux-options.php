@@ -258,7 +258,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 
 				$display = true;
 
-				if ( isset( $_GET['page'] ) && $_GET['page'] === $core->args['page_slug'] ) { // WPCS: CSRF ok.
+				if ( isset( $_GET['page'] ) && $_GET['page'] === $core->args['page_slug'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 					if ( isset( $section['panel'] ) && false === $section['panel'] ) {
 						$display = false;
 					}
@@ -368,7 +368,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 
 						$display = true;
 
-						if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // WPCS: CSRF ok.
+						if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 							if ( isset( $field['panel'] ) && false === $field['panel'] ) {
 								$display = false;
 							}

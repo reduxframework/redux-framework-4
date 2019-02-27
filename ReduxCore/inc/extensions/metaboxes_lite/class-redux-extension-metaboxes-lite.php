@@ -124,14 +124,14 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		 *
 		 * @var string|void
 		 */
-		public $_extension_url;
+		public $extension_url;
 
 		/**
 		 * Extension Directory.
 		 *
 		 * @var string
 		 */
-		public $_extension_dir;
+		public $extension_dir;
 
 		/**
 		 * Meta data array.
@@ -168,9 +168,9 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 
 			$this->parent->extensions['metaboxes_lite'] = $this;
 
-			if ( empty( self::$_extension_dir ) ) {
-				$this->_extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
-				$this->_extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->_extension_dir ) );
+			if ( empty( self::$extension_dir ) ) {
+				$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+				$this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
 			}
 
 			// Only run metaboxes on the pages/posts, not the front-end.
@@ -239,13 +239,13 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			if ( empty( $this->boxes ) || ! is_array( $this->boxes ) ) {
 				return;
 			}
-			if ( isset( self::$_server['HTTP_HOST'] ) && isset( self::$_server['REQUEST_URI'] ) ) {
-				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ); // Safe & Reliable.
-				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$_server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$_server['REQUEST_URI'] ) ) );
+			if ( isset( self::$server['HTTP_HOST'] ) && isset( self::$server['REQUEST_URI'] ) ) {
+				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ); // Safe & Reliable.
+				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ) );
 			}
 
-			if ( is_admin() && isset( $_GET['post_type'] ) && ! empty( $_GET['post_type'] ) ) { // WPCS: CSRF ok.
-				$this->post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) ); // WPCS: CSRF ok.
+			if ( is_admin() && isset( $_GET['post_type'] ) && ! empty( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$this->post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			} else {
 				$this->post_type = get_post_type( $this->post_id );
 			}
@@ -547,7 +547,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					if ( $this->parent->args['dev_mode'] ) {
 						wp_enqueue_style(
 							'redux-extension-metaboxes-js',
-							apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->_extension_url . 'redux-metaboxes.css' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
+							apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->extension_url . 'redux-metaboxes.css' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
 							array(),
 							self::$version,
 							'all'
@@ -562,7 +562,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					 */
 					wp_enqueue_script(
 						'redux-extension-metaboxes-js',
-						apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->_extension_url . 'redux-metaboxes' . Redux_Functions::isMin() . '.js' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
+						apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->extension_url . 'redux-metaboxes' . Redux_Functions::isMin() . '.js' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
 						array( 'jquery', 'redux-js' ),
 						self::$version,
 						true
@@ -591,8 +591,8 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				return $this->post_id;
 			}
 
-			if ( isset( $_GET['post'] ) ) {
-				$post = sanitize_text_field( wp_unslash( $_GET['post'] ) );  // WPCS: CSRF ok.
+			if ( isset( $_GET['post'] ) ) {  // phpcs:ignore WordPress.Security.NonceVerification
+				$post = sanitize_text_field( wp_unslash( $_GET['post'] ) );  // phpcs:ignore WordPress.Security.NonceVerification
 
 				if ( ! empty( $post ) && is_numeric( $post ) ) {
 					return $post;
@@ -601,8 +601,8 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				return;
 			}
 
-			if ( is_admin() && 'post.php' === $pagenow && isset( $_POST['post_ID'] ) ) {
-				$post_id = sanitize_text_field( wp_unslash( $_POST['post_ID'] ) ); // WPCS: CSRF ok.
+			if ( is_admin() && 'post.php' === $pagenow && isset( $_POST['post_ID'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$post_id = sanitize_text_field( wp_unslash( $_POST['post_ID'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 
 				if ( ! empty( $post_id ) && is_numeric( $post_id ) ) {
 					return $post_id;
@@ -629,7 +629,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 
 			// Not using rewrite rules, and 'p=N' and 'page_id=N' methods failed, so we're out of options.
 			if ( empty( $rewrite ) ) {
-				if ( isset( $_GET ) && ! empty( $_GET ) ) { // WPCS: CSRF ok.
+				if ( isset( $_GET ) && ! empty( $_GET ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 
 					/************************************************************************
 					 * ADDED: Trys checks URL for ?posttype=postname
@@ -666,9 +666,9 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					}
 
 					foreach ( $GLOBALS['wp_post_types'] as $key => $value ) {
-						if ( isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ) { // WPCS: CSRF ok.
+						if ( isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 							$args = array(
-								'name'      => sanitize_text_field( wp_unslash( $_GET[ $key ] ) ), // WPCS: CSRF ok.
+								'name'      => sanitize_text_field( wp_unslash( $_GET[ $key ] ) ), // phpcs:ignore WordPress.Security.NonceVerification
 								'post_type' => $key,
 								'showposts' => 1,
 							);
@@ -722,7 +722,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			$url = trim( $url, '/' );
 
 			$request = $url;
-			if ( empty( $request ) && ( ! isset( $_GET ) || empty( $_GET ) ) ) { // WPCS: CSRF ok.
+			if ( empty( $request ) && ( ! isset( $_GET ) || empty( $_GET ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return get_option( 'page_on_front' );
 			}
 
@@ -797,10 +797,10 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					foreach ( $wp->public_query_vars as $wpvar ) {
 						if ( isset( $wp->extra_query_vars[ $wpvar ] ) ) {
 							$query[ $wpvar ] = $wp->extra_query_vars[ $wpvar ];
-						} elseif ( isset( $_POST[ $wpvar ] ) ) { // WPCS: CSRF ok.
-							$query[ $wpvar ] = sanitize_text_field( wp_unslash( $_POST[ $wpvar ] ) ); // WPCS: CSRF ok.
-						} elseif ( isset( $_GET[ $wpvar ] ) ) { // WPCS: CSRF ok.
-							$query[ $wpvar ] = sanitize_text_field( wp_unslash( $_GET[ $wpvar ] ) ); // WPCS: CSRF ok.
+						} elseif ( isset( $_POST[ $wpvar ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+							$query[ $wpvar ] = sanitize_text_field( wp_unslash( $_POST[ $wpvar ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+						} elseif ( isset( $_GET[ $wpvar ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+							$query[ $wpvar ] = sanitize_text_field( wp_unslash( $_GET[ $wpvar ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 						} elseif ( isset( $query_vars[ $wpvar ] ) ) {
 							$query[ $wpvar ] = $query_vars[ $wpvar ];
 						}
@@ -1178,7 +1178,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 									continue;
 								}
 
-								echo $this->parent->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ); // WPCS: XSS ok.
+								echo $this->parent->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ); // phpcs:ignore WordPress.Security.EscapeOutput
 							}
 							?>
 						</ul>
@@ -1226,7 +1226,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 									$ex_style  = ' style="border-bottom: none;"';
 								}
 
-								echo '<tr valign="top"' . $ex_style . '>'; // WPCS: XSS ok.
+								echo '<tr valign="top"' . $ex_style . '>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 								$th = $this->parent->get_header_html( $field );
 
@@ -1242,13 +1242,13 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 									if ( ! ( isset( $metabox['args']['sections'] ) && 1 === count( $metabox['args']['sections'] ) && isset( $metabox['args']['sections'][0]['fields'] ) && 1 === count( $metabox['args']['sections'][0]['fields'] ) ) && isset( $field['title'] ) ) {
 										echo '<th scope="row">';
 										if ( ! empty( $th ) ) {
-											echo $th; // WPCS: XSS ok.
+											echo $th; // phpcs:ignore WordPress.Security.EscapeOutput
 										}
 										echo '</th>';
 										echo '<td>';
 									}
 								} else {
-									echo '<td>' . $th . ''; // WPCS: XSS ok.
+									echo '<td>' . $th . ''; // phpcs:ignore WordPress.Security.EscapeOutput
 								}
 
 								if ( 'section' === $field['type'] && ( 'true' === $field['indent'] || true === $field['indent'] ) ) {
@@ -1287,11 +1287,11 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		 */
 		public function meta_boxes_save( $post_id, $post ) {
 
-			if ( isset( $_POST['vc_inline'] ) && sanitize_text_field( wp_unslash( $_POST['vc_inline'] ) ) ) { // WPCS: CSRF ok.
+			if ( isset( $_POST['vc_inline'] ) && sanitize_text_field( wp_unslash( $_POST['vc_inline'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $post_id;
 			}
 
-			if ( isset( $_POST['post_ID'] ) && strval( $post_id ) !== $_POST['post_ID'] ) { // WPCS: CSRF ok.
+			if ( isset( $_POST['post_ID'] ) && strval( $post_id ) !== $_POST['post_ID'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $post_id;
 			}
 
@@ -1324,7 +1324,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				$import = json_decode( sanitize_text_field( wp_unslash( $_POST[ $this->parent->args['opt_name'] ]['import_code'] ) ), true );
 				unset( $_POST[ $this->parent->args['opt_name'] ]['import_code'] );
 
-				foreach ( Redux_Helpers::sanitize_array( wp_unslash( $_POST[ $this->parent->args['opt_name'] ] ) ) as $key => $value ) { // WPCS: sanitization ok.
+				foreach ( Redux_Helpers::sanitize_array( wp_unslash( $_POST[ $this->parent->args['opt_name'] ] ) ) as $key => $value ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 					if ( ! isset( $import[ $key ] ) ) {
 						$import[ $key ] = $value;
 					}
@@ -1342,7 +1342,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 				$dont_save = false;
 			}
 
-			foreach ( Redux_Helpers::sanitize_array( wp_unslash( $_POST[ $this->parent->args['opt_name'] ] ) ) as $key => $value ) { // WPCS: sanitization ok.
+			foreach ( Redux_Helpers::sanitize_array( wp_unslash( $_POST[ $this->parent->args['opt_name'] ] ) ) as $key => $value ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
 				// Have to remove the escaping for array comparison.
 				if ( is_array( $value ) ) {
@@ -1448,12 +1448,12 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		 * @return void
 		 */
 		public function pre_post_update( $post_id ) {
-			if ( isset( $_POST['_visibility'] ) ) { // WPCS: CSRF ok.
-				update_post_meta( $post_id, '_visibility', sanitize_text_field( wp_unslash( $_POST['_visibility'] ) ) ); // WPCS: CSRF ok.
+			if ( isset( $_POST['_visibility'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				update_post_meta( $post_id, '_visibility', sanitize_text_field( wp_unslash( $_POST['_visibility'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 
-			if ( isset( $_POST['_stock_status'] ) ) { // WPCS: CSRF ok.
-				update_post_meta( $post_id, '_stock_status', sanitize_text_field( wp_unslash( $_POST['_stock_status'] ) ) ); // WPCS: CSRF ok.
+			if ( isset( $_POST['_stock_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				update_post_meta( $post_id, '_stock_status', sanitize_text_field( wp_unslash( $_POST['_stock_status'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 		}
 

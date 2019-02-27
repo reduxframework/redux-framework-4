@@ -179,7 +179,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-image-select-js',
-				Redux_Core::$_url . 'inc/fields/image_select/redux-image-select' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/image_select/redux-image-select' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-image-select-css',
-					Redux_Core::$_url . 'inc/fields/image_select/redux-image-select.css',
+					Redux_Core::$url . 'inc/fields/image_select/redux-image-select.css',
 					array(),
 					$this->timestamp,
 					'all'

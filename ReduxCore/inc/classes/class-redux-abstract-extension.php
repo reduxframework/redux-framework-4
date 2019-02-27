@@ -30,28 +30,28 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 *
 		 * @var string
 		 */
-		protected $_extension_url;
+		protected $extension_url;
 
 		/**
 		 * The extension dir.
 		 *
 		 * @var string
 		 */
-		protected $_extension_dir;
+		protected $extension_dir;
 
 		/**
 		 * The instance of the extension
 		 *
 		 * @var static
 		 */
-		protected static $_instance;
+		protected static $instance;
 
 		/**
 		 * The extension's file
 		 *
 		 * @var string
 		 */
-		protected $_file;
+		protected $file;
 
 		/**
 		 * The redux framework instance that spawned the extension
@@ -79,12 +79,12 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 				}
 			}
 
-			$this->_file = $file;
+			$this->file = $file;
 
-			$this->_extension_dir = trailingslashit( str_replace( '\\', '/', dirname( $file ) ) );
-			$this->_extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->_extension_dir ) );
+			$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( $file ) ) );
+			$this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
 
-			static::$_instance = $this;
+			static::$instance = $this;
 		}
 
 		/**
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 * @return Redux_Abstract_Extension
 		 */
 		public static function get_instance() {
-			return static::$_instance;
+			return static::$instance;
 		}
 
 		/**
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 * @return string
 		 */
 		public function get_dir() {
-			return $this->_extension_dir;
+			return $this->extension_dir;
 		}
 
 		/**
@@ -120,7 +120,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 * @return string|void
 		 */
 		public function get_url() {
-			return $this->_extension_url;
+			return $this->extension_url;
 		}
 
 		/**
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 * @param string $field_name Name of field.
 		 */
 		protected function add_field( $field_name ) {
-			$file = $this->_file;
+			$file = $this->file;
 
 			$filename_fix = str_replace( '_', '-', $field_name );
 
@@ -171,8 +171,8 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 			$filename_fix = str_replace( '_', '-', $field['type'] );
 
 			$files = array(
-				trailingslashit( dirname( $this->_file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'field_' . $field['type'] . '.php',
-				trailingslashit( dirname( $this->_file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'class-redux-' . $filename_fix . '.php',
+				trailingslashit( dirname( $this->file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'field_' . $field['type'] . '.php',
+				trailingslashit( dirname( $this->file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'class-redux-' . $filename_fix . '.php',
 			);
 
 			$filename = Redux_Functions::file_exists_ex( $files );
@@ -190,7 +190,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		 * @return bool
 		 */
 		public function is_minimum_version( $min_version = '', $extension_version = '', $friendly_name = '' ) {
-			$redux_ver = Redux_Core::$_version;
+			$redux_ver = Redux_Core::$version;
 
 			if ( '' !== $min_version ) {
 				if ( version_compare( $redux_ver, $min_version ) < 0 ) {
@@ -210,7 +210,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 					} else {
 						echo '<div class="error">';
 						echo '<p>';
-						echo $msg; // WPCS: XSS ok.
+						echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput
 						echo '</p>';
 						echo '</div>';
 					}

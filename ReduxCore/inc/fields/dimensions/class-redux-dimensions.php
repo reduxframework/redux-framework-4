@@ -234,7 +234,7 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-dimensions-js',
-				Redux_Core::$_url . 'inc/fields/dimensions/redux-dimensions' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/dimensions/redux-dimensions' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'select2-js', 'redux-js' ),
 				$this->timestamp,
 				true
@@ -243,7 +243,7 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-dimensions-css',
-					Redux_Core::$_url . 'inc/fields/dimensions/redux-dimensions.css',
+					Redux_Core::$url . 'inc/fields/dimensions/redux-dimensions.css',
 					array(),
 					$this->timestamp,
 					'all'

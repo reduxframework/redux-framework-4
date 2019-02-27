@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Validation', false ) ) {
 									$file = str_replace( '_', '-', $val );
 
 									// phpcs:ignore WordPress.NamingConventions.ValidHookName
-									$class_file = apply_filters( "redux/validate/{$core->args['opt_name']}/class/{$val}", Redux_Core::$_dir . "inc/validation/{$val}/class-redux-validation-{$file}.php", $validate );
+									$class_file = apply_filters( "redux/validate/{$core->args['opt_name']}/class/{$val}", Redux_Core::$dir . "inc/validation/{$val}/class-redux-validation-{$file}.php", $validate );
 
 									if ( $class_file ) {
 										if ( file_exists( $class_file ) ) {

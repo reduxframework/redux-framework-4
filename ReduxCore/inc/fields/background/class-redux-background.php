@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 				echo 'type="text" value="' . esc_attr( $this->value['background-color'] ) . '"';
 				echo 'data-default-color="' . esc_attr( $def_bg_color ) . '"';
 
-				if ( Redux_Core::$_pro_loaded ) {
+				if ( Redux_Core::$pro_loaded ) {
 					$data = array(
 						'field' => $this->field,
 						'index' => 'color',
@@ -390,7 +390,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 
 			wp_enqueue_script(
 				'redux-field-background-js',
-				Redux_Core::$_url . 'inc/fields/background/redux-background' . Redux_Functions::is_min() . '.js',
+				Redux_Core::$url . 'inc/fields/background/redux-background' . Redux_Functions::is_min() . '.js',
 				$dep_array,
 				$this->timestamp,
 				true
@@ -399,7 +399,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
 					'redux-field-background-css',
-					Redux_Core::$_url . 'inc/fields/background/redux-background.css',
+					Redux_Core::$url . 'inc/fields/background/redux-background.css',
 					array(),
 					$this->timestamp,
 					'all'

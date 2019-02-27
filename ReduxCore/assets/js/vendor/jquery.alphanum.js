@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /********************************************************************
  * Limit the characters that may be entered in a text field
  * Common options: alphanumeric, alphabetic or numeric

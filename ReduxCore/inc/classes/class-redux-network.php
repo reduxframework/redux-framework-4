@@ -65,8 +65,8 @@ if ( ! class_exists( 'Redux_Network', false ) ) {
 		public function save_network_page() {
 			$core = $this->core();
 
-			if ( isset( $_POST[ $core->args['opt_name'] ] ) ) { // WPCS: CSRF ok.
-				$opt_name = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name'] ] ) ); // WPCS: CSRF ok.
+			if ( isset( $_POST[ $core->args['opt_name'] ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$opt_name = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name'] ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 
 			$data = $core->options_class->validate_options( $opt_name );

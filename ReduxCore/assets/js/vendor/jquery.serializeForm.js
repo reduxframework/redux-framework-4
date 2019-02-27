@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /*
  * serializeForm
  * https://github.com/danheberden/serializeForm

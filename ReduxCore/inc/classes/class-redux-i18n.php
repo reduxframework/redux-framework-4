@@ -49,9 +49,9 @@ if ( ! class_exists( 'Redux_I18n', false ) ) {
 			$mofile = $domain . '-' . $locale . '.mo';
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$basepath = apply_filters( "redux/textdomain/basepath/{$core->args['opt_name']}", Redux_Core::$_dir );
+			$basepath = apply_filters( "redux/textdomain/basepath/{$core->args['opt_name']}", Redux_Core::$dir );
 
-			$loaded = load_textdomain( $domain, Redux_Core::$_dir . 'languages/' . $mofile );
+			$loaded = load_textdomain( $domain, Redux_Core::$dir . 'languages/' . $mofile );
 
 			if ( ! $loaded ) {
 				$mofile = WP_LANG_DIR . '/plugins/' . $mofile;
