@@ -1,5 +1,8 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.2
+Fixed:      #14 - Malformed enqueue URLs when embedding.
+
 ## 4.0.1.1
 Fixed:      Section field not hiding with required calls.
 Fixed:      Tour pointer not remembing closed state. 
