@@ -258,10 +258,12 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			}
 
 			$plugins = array();
+
 			foreach ( get_option( 'active_plugins', array() ) as $plugin_path ) {
-				$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
 				if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
-					$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+					$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
+					$slug        = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+
 					$plugins[ $slug ] = array(
 						'version'    => $plugin_info['Version'],
 						'name'       => $plugin_info['Name'],
@@ -271,6 +273,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					);
 				}
 			}
+
 			if ( is_multisite() ) {
 				foreach ( get_option( 'active_sitewide_plugins', array() ) as $plugin_path ) {
 					if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
@@ -717,6 +720,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function process_redux_callers( $simple = false ) {
 			$data = array();
+
 			foreach ( Redux_Core::$callers as $opt_name => $callers ) {
 				foreach ( $callers as $caller ) {
 					$plugin_info = self::is_inside_plugin( $caller );

@@ -761,7 +761,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					?>
 					</td>
 				</tr>
-				<?php if ( isset( Redux_Core::$callers[ $inst ] ) && ! empty( Redux_Core::$callers[ $inst ] ) ) { ?>
+				<?php if ( ! empty( Redux_Core::$callers[ $inst ] ) ) { ?>
 					<tr>
 						<td data-export-label="output_tag">Calling Files</td>
 						<td class="help">
