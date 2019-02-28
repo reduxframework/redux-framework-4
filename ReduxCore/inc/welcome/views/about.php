@@ -79,8 +79,6 @@ defined( 'ABSPATH' ) || exit;
 
 		<div class="col">
 			<?php
-
-
 			if ( ! empty( $sysinfo ) && is_array( $sysinfo ) ) {
 				$plugin_index = array();
 				$plugin_data  = get_plugins();
@@ -119,9 +117,13 @@ defined( 'ABSPATH' ) || exit;
 									<?php
 									foreach ( $products as $slug => $data ) {
 										foreach ( $data as $opt_name => $callers ) {
+											echo '<span>Opt name : ' . esc_html( $opt_name ) . '</span><br /><br />';
+
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
+
+											echo '<br />';
 										}
 									}
 									?>
@@ -166,9 +168,12 @@ defined( 'ABSPATH' ) || exit;
 									<small>
 										<?php
 										foreach ( $data as $opt_name => $callers ) {
+											echo '<span>Opt name : ' . esc_html( $opt_name ) . '</span><br /><br />';
+
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
+											echo '<br />';
 										}
 										?>
 									</small>
