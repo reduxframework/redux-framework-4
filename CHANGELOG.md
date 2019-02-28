@@ -1,5 +1,9 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.3
+Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
+Fixed:      Errors on 'Get Support' page.
+
 ## 4.0.1.2
 Fixed:      #14 - Malformed enqueue URLs when embedding.
 
