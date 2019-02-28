@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
-		<span><?php printf( esc_html__( 'Version', 'redux-framework' ) . ' %s', esc_html( ReduxCore::$_version ) ); ?></span>
+		<span><?php printf( esc_html__( 'Version', 'redux-framework' ) . ' %s', esc_html( Redux_Core::$version ) ); ?></span>
 	</div>
 
 	<?php $this->actions(); ?>

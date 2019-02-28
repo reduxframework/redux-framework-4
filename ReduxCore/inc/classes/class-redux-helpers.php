@@ -717,7 +717,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function process_redux_callers( $simple = false ) {
 			$data = array();
-			foreach ( ReduxCore::$callers as $opt_name => $callers ) {
+			foreach ( Redux_Core::$callers as $opt_name => $callers ) {
 				foreach ( $callers as $caller ) {
 					$plugin_info = self::is_inside_plugin( $caller );
 					$theme_info  = self::is_inside_theme( $caller );
