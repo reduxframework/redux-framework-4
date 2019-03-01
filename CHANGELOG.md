@@ -2,6 +2,7 @@
 
 ## 4.0.1.4
 Fixed:      Metabox lite css/js not minifying on compile.
+New:        Redux APIs set_field, set_fields
 
 ## 4.0.1.3
 Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
