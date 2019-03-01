@@ -1521,25 +1521,6 @@ if ( ! function_exists( 'redux_post_meta' ) ) {
 	 * @return string|void
 	 */
 	function redux_post_meta( $opt_name = '', $the_post = array(), $meta_key = '', $def_val = '' ) {
-		global $post;
-
-		if ( empty( $opt_name ) ) {
-			return;
-		}
-
-		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
-
-		if ( isset( $the_post ) && is_array( $the_post ) ) {
-			$the_post = $post;
-		} elseif ( ! isset( $the_post ) || 0 === $the_post ) {
-			return $def_val;
-		} elseif ( is_numeric( $the_post ) ) {
-			$the_post = get_post( $the_post );
-		} elseif ( ! is_object( $the_post ) ) {
-			$the_post = $post;
-		}
-
-		return $metaboxes->get_values( $the_post, $meta_key, $def_val );
+		Redux::get_post_meta( $opt_name, $the_post, $meta_key, $def_val );
 	}
 }

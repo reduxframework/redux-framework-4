@@ -1143,7 +1143,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function get_post_meta( $opt_name = '', $the_post = array(), $key = '', $default = '' ) {
+		public static function get_post_meta( $opt_name = '', $the_post = array(), $key = '', $default = null ) {
 			self::check_opt_name( $opt_name );
 
 			if ( empty( $opt_name ) ) {
@@ -1152,13 +1152,22 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			global $post;
 
-			$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-			$metaboxes = $redux->extensions['metaboxes'];
+			$redux = ReduxFrameworkInstances::get_instance( $opt_name );
+
+			if ( isset( $redux->extensions['metaboxes'] ) ) {
+				$metaboxes = $redux->extensions['metaboxes'];
+			} else {
+				$metaboxes = $redux->extensions['metaboxes_lite'];
+			}
+
+			if ( null === $default ) {
+				$default = self::get_option( $opt_name, $key );
+			}
 
 			if ( isset( $the_post ) && is_array( $the_post ) ) {
 				$the_post = $post;
 			} elseif ( ! isset( $the_post ) || 0 === $the_post ) {
-				return $def_val;
+				return $default;
 			} elseif ( is_numeric( $the_post ) ) {
 				$the_post = get_post( $the_post );
 			} elseif ( ! is_object( $the_post ) ) {
@@ -1206,24 +1215,24 @@ if ( ! class_exists( 'Redux', false ) ) {
 				}
 				if ( ! empty( $subkeys ) && is_array( $subkeys ) ) {
 					$value = $default;
-					if ( isset( $values[ $option ] ) ) {
+					if ( isset( $values[ $key ] ) ) {
 						$count = count( $subkeys );
 						if ( 1 === $count ) {
-							$value = isset( $values[ $option ][ $subkeys[1] ] ) ? $values[ $option ][ $subkeys[1] ] : $default;
+							$value = isset( $values[ $key ][ $subkeys[1] ] ) ? $values[ $key ][ $subkeys[1] ] : $default;
 						} elseif ( 2 === $count ) {
-							if ( isset( $values[ $option ][ $subkeys[1] ] ) ) {
-								$value = isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] ) ? $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] : $default;
+							if ( isset( $values[ $key ][ $subkeys[1] ] ) ) {
+								$value = isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] ) ? $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] : $default;
 							}
 						} elseif ( 3 === $count ) {
-							if ( isset( $values[ $option ][ $subkeys[1] ] ) ) {
-								if ( isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] ) ) {
-									$value = isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] ) ? $values[ $option ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] : $default;
+							if ( isset( $values[ $key ][ $subkeys[1] ] ) ) {
+								if ( isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] ) ) {
+									$value = isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] ) ? $values[ $key ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] : $default;
 								}
 							}
 						}
 					}
 				} else {
-					$value = isset( $values[ $option ] ) ? $values[ $option ] : $default;
+					$value = isset( $values[ $key ] ) ? $values[ $key ] : $default;
 				}
 				return $value;
 			} else {
