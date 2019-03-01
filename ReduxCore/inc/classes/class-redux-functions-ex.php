@@ -10,10 +10,15 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-function microtime_float()
-{
-	list($usec, $sec) = explode(" ", microtime());
-	return ((float)$usec + (float)$sec);
+/**
+ * Get microtime.
+ *
+ * @return float
+ */
+function microtime_float() {
+	list( $usec, $sec ) = explode( ' ', microtime() );
+
+	return ( (float) $usec + (float) $sec );
 }
 
 // Don't duplicate me!
@@ -43,9 +48,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			global $pagenow;
 
 			// phpcs:ignore WordPress.Security.NonceVerification
-			//if ( ! ( 'tools.php' === $pagenow && isset( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
-			//	return;
-			//}
+			// *
+			/* phpcs:ignore Squiz.PHP.CommentedOutCode
+			/* if ( ! ( 'tools.php' === $pagenow && isset( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
+			/* 	return;
+			/* }
+			 */
 
 			$time_start = microtime_float();
 
@@ -73,8 +81,6 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			$time_end = microtime_float();
 
 			$time = $time_end - $time_start;
-			//echo $time;
-			//exit();
 		}
 
 		/**
