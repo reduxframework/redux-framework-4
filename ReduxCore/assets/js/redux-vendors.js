@@ -1,3 +1,6 @@
+// jscs:disable
+// jshint ignore: start
+
 /*!
  * jQuery Cookie Plugin v1.4.1
  * https://github.com/carhartl/jquery-cookie
@@ -103,6 +106,9 @@
 	};
 
 } ));
+
+// jscs:disable
+// jshint ignore: start
 
 /********************************************************************
  * Limit the characters that may be entered in a text field
@@ -966,6 +972,9 @@
 	// for testing
 	$.fn.selection.getCharElement = getCharElement;
 })( jQuery );
+// jscs:disable
+// jshint ignore: start
+
 /*
  * serializeForm
  * https://github.com/danheberden/serializeForm
@@ -1025,6 +1034,9 @@
 		return data;
 	};
 }( jQuery ));
+
+// jscs:disable
+// jshint ignore: start
 
 /*
 *	TypeWatch 3
@@ -1128,6 +1140,9 @@
 		});
 	};
 });
+
+// jscs:disable
+// jshint ignore: start
 
 /* global console, jsonView */
 

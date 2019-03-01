@@ -1,5 +1,8 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.4
+Fixed:      Metabox lite css/js not minifying on compile.
+
 ## 4.0.1.3
 Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
 Fixed:      Errors on 'Get Support' page.
