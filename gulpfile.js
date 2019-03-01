@@ -28,10 +28,10 @@
  * In paths you can add <<glob or array of globs>>. Edit the variables as per your project requirements.
  */
 
-// START Editing Project Variables.
-// Project related.
-// var project    = 'Redux Framework'; // Project Name.
-// var productURL = './'; .
+	// START Editing Project Variables.
+	// Project related.
+	// var project    = 'Redux Framework'; // Project Name.
+	// var productURL = './'; .
 var projectURL = 'http://127.0.0.1/redux-demo'; // Project URL. Could be something like localhost:8888.
 
 // Translation related.
@@ -264,6 +264,11 @@ function reduxStyles() {
 		function( folder ) {
 			var the_path = './ReduxCore/inc/extensions/' + folder + '/';
 			folder       = folder.replace( '_', '-' );
+
+			if ( folder === 'metaboxes-lite') {
+				folder = 'metaboxes';
+			}
+
 			return process_scss( the_path + 'redux-extension-' + folder + '.scss', the_path );
 		}
 	);
@@ -276,7 +281,7 @@ function reduxStyles() {
 		}
 	);
 
-	var redux_files = gulp.src( ['./ReduxCore/inc/fields/**/*.scss', './ReduxCore/inc/extensions/**/*.scss'], { allowEmpty: true } )
+	var redux_files = gulp.src( ['./ReduxCore/inc/fields/**/*.scss', './ReduxCore/inc/extensions/*.scss', './ReduxCore/inc/extensions/**/*.scss'], { allowEmpty: true } )
 
 	.pipe( sassPackager( {} ) )
 	.pipe( concat( 'redux-fields.min.scss' ) )
@@ -346,6 +351,10 @@ function extJS( done ) {
 			var the_path = './ReduxCore/inc/extensions/' + folder + '/';
 
 			folder = folder.replace( '_', '-' );
+
+			if( folder === 'metaboxes-lite') {
+				folder = 'metaboxes';
+			}
 
 			gulp.src( the_path + 'redux-extension-' + folder + '.js', { allowEmpty: true } )
 			.pipe( jshint() )
