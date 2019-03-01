@@ -741,9 +741,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					if ( ! is_array( $field ) ) {
 						continue;
 					}
-
-					$field['section_id'] = $section_id;
-					self::set_field( $opt_name, $field );
+					self::set_field( $opt_name, $field, $section_id );
 				}
 			}
 		}
@@ -822,22 +820,24 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $field    Field data.
+		 * @param array  $section_id    Section ID this field belongs to.
 		 */
-		public static function setField( $opt_name = '', $field = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+		public static function setField( $opt_name = '', $field = array(), $section_id = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
 
-			self::set_field( $opt_name, $field );
+			self::set_field( $opt_name, $field, $section_id );
 		}
 
 		/**
-		 * Creates an option panel field.
+		 * Creates an option panel field and adds to a section.
 		 *
-		 * @param string $opt_name Panel opt_name.
-		 * @param array  $field    Field data.
+		 * @param string $opt_name      Panel opt_name.
+		 * @param array  $field         Field data.
+		 * @param array  $section_id    Section ID this field belongs to.
 		 */
-		public static function set_field( $opt_name = '', $field = array() ) {
+		public static function set_field( $opt_name = '', $field = array(), $section_id = '' ) {
 			if ( empty( $field ) ) {
 				return;
 			}
@@ -846,12 +846,40 @@ if ( ! class_exists( 'Redux', false ) ) {
 			Redux_Functions_Ex::record_caller( $opt_name );
 
 			if ( '' !== $opt_name && is_array( $field ) && ! empty( $field ) ) {
-				if ( ! isset( $field['priority'] ) ) {
-					$field['priority'] = self::get_priority( $opt_name, 'fields' );
+				if ( '' !== $section_id ) {
+					$field['section_id'] = $section_id;
 				}
+				if ( ! isset( $field['section_id'] ) || ( isset( $field['section_id'] ) && ! empty( $field['section_id'] ) ) ) {
+					if ( ! isset( $field['priority'] ) ) {
+						$field['priority'] = self::get_priority( $opt_name, 'fields' );
+					}
 
-				if ( isset( $field['id'] ) ) {
-					self::$fields[ $opt_name ][ $field['id'] ] = $field;
+					if ( isset( $field['id'] ) ) {
+						self::$fields[ $opt_name ][ $field['id'] ] = $field;
+					}
+				}
+			}
+		}
+
+		/**
+		 * Create multiple fields of the option panel and apply to a section.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $fields Array of field arrays.
+		 * @param array  $section_id    Section ID this field belongs to.
+		 */
+		public static function set_fields( $opt_name = '', $fields = array(), $section_id = '' ) {
+			if ( empty( $fields ) ) {
+				return;
+			}
+			self::check_opt_name( $opt_name );
+
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
+			Redux_Functions_Ex::record_caller( $opt_name );
+
+			if ( '' !== $opt_name && is_array( $fields ) && ! empty( $fields ) ) {
+				foreach ( $fields as $field ) {
+					self::set_field( $opt_name, $field, $section_id );
 				}
 			}
 		}
