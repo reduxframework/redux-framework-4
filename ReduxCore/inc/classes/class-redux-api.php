@@ -1134,6 +1134,43 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
+		 * Retrieves meta for a given post page, IE WordPress meta values
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $the_post Post object to denote the current post, or custom.
+		 * @param string $key      Option key.
+		 * @param string $default  Default value.
+		 *
+		 * @return mixed
+		 */
+		public static function get_post_meta( $opt_name = '', $the_post = array(), $key = '', $default = '' ) {
+			self::check_opt_name( $opt_name );
+
+			if ( empty( $opt_name ) ) {
+				return;
+			}
+
+			global $post;
+
+			$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
+			$metaboxes = $redux->extensions['metaboxes'];
+
+			if ( isset( $the_post ) && is_array( $the_post ) ) {
+				$the_post = $post;
+			} elseif ( ! isset( $the_post ) || 0 === $the_post ) {
+				return $def_val;
+			} elseif ( is_numeric( $the_post ) ) {
+				$the_post = get_post( $the_post );
+			} elseif ( ! is_object( $the_post ) ) {
+				$the_post = $post;
+			}
+
+			$default = self::get_option( $opt_name, $key );
+
+			return $metaboxes->get_values( $the_post, $key, $default );
+		}
+
+		/**
 		 * Retrieves single option from the database.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -1193,6 +1230,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return false;
 			}
 		}
+
 
 		/**
 		 * Deprecated Sets an option into the database.

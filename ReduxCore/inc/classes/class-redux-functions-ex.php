@@ -10,6 +10,12 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+function microtime_float()
+{
+	list($usec, $sec) = explode(" ", microtime());
+	return ((float)$usec + (float)$sec);
+}
+
 // Don't duplicate me!
 if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
@@ -37,9 +43,11 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			global $pagenow;
 
 			// phpcs:ignore WordPress.Security.NonceVerification
-			if ( ! ( 'tools.php' === $pagenow && isset( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
-				return;
-			}
+			//if ( ! ( 'tools.php' === $pagenow && isset( $_GET['page'] ) && ( 'redux-framework' === $_GET['page'] || 'health-check' === $_GET['page'] ) ) ) {
+			//	return;
+			//}
+
+			$time_start = microtime_float();
 
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
@@ -61,6 +69,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					self::$args[ $opt_name ]['callers'][] = $caller;
 				}
 			}
+
+			$time_end = microtime_float();
+
+			$time = $time_end - $time_start;
+			//echo $time;
+			//exit();
 		}
 
 		/**
@@ -177,7 +191,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			foreach ( $theme_paths as $theme_path => $url ) {
 				$real_path = self::wp_normalize_path( realpath( $theme_path ) );
-
+				if ( empty( $real_path ) ) {
+					continue;
+				}
 				if ( strpos( $file_path, $real_path ) !== false ) {
 					$slug          = explode( '/', $theme_path );
 					$slug          = end( $slug );
