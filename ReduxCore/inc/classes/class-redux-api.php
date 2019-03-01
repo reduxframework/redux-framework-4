@@ -99,27 +99,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 */
 		public static $extension_paths = array();
 
-		///**
-		// * Comment.
-		// *
-		// * @param object $closure ?.
-		// * @param array  $args    ?.
-		// *
-		// * @return mixed
-		// */
-		//public function __call( $closure, $args ) {
-		//	return call_user_func_array( $this->{$closure}->bindTo( $this ), $args );
-		//}
-		//
-		///**
-		// * Comment.
-		// *
-		// * @return mixed
-		// */
-		//public function __toString() {
-		//	return call_user_func( $this->{'__toString'}->bindTo( $this ) );
-		//}
-
 		/**
 		 * Code to run at creation in instance.
 		 */
