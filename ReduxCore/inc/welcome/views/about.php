@@ -117,7 +117,7 @@ defined( 'ABSPATH' ) || exit;
 									<?php
 									foreach ( $products as $slug => $data ) {
 										foreach ( $data as $opt_name => $callers ) {
-											echo '<span>Opt name : ' . esc_html( $opt_name ) . '</span><br /><br />';
+											echo '<span><strong>opt_name</strong>: <code>' . esc_html( $opt_name ) . '</code></span><br />';
 
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
@@ -163,17 +163,15 @@ defined( 'ABSPATH' ) || exit;
 									<?php echo esc_html__( 'Plugin', 'redux-framework' ); ?>
 								</span>
 								</p>
-								<hr style="margin: 0 0 15px 0;padding:0;">
 								<p class="author">
 									<small>
 										<?php
 										foreach ( $data as $opt_name => $callers ) {
-											echo '<span>Opt name : ' . esc_html( $opt_name ) . '</span><br /><br />';
+											echo '<span><strong>opt_name</strong>: <code>' . esc_html( $opt_name ) . '</code></span><br />';
 
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
-											echo '<br />';
 										}
 										?>
 									</small>

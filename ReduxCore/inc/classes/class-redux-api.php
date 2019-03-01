@@ -99,26 +99,26 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 */
 		public static $extension_paths = array();
 
-		/**
-		 * Comment.
-		 *
-		 * @param object $closure ?.
-		 * @param array  $args    ?.
-		 *
-		 * @return mixed
-		 */
-		public function __call( $closure, $args ) {
-			return call_user_func_array( $this->{$closure}->bindTo( $this ), $args );
-		}
-
-		/**
-		 * Comment.
-		 *
-		 * @return mixed
-		 */
-		public function __toString() {
-			return call_user_func( $this->{'__toString'}->bindTo( $this ) );
-		}
+		///**
+		// * Comment.
+		// *
+		// * @param object $closure ?.
+		// * @param array  $args    ?.
+		// *
+		// * @return mixed
+		// */
+		//public function __call( $closure, $args ) {
+		//	return call_user_func_array( $this->{$closure}->bindTo( $this ), $args );
+		//}
+		//
+		///**
+		// * Comment.
+		// *
+		// * @return mixed
+		// */
+		//public function __toString() {
+		//	return call_user_func( $this->{'__toString'}->bindTo( $this ) );
+		//}
 
 		/**
 		 * Code to run at creation in instance.
@@ -634,8 +634,9 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $section  Section data.
+		 * @param bool   $replace  Replaces section instead of creating a new one.
 		 */
-		public static function set_section( $opt_name = '', $section = array() ) {
+		public static function set_section( $opt_name = '', $section = array(), $replace = false ) {
 			if ( empty( $section ) || '' === $opt_name ) {
 				return;
 			}
@@ -655,13 +656,25 @@ if ( ! class_exists( 'Redux', false ) ) {
 					}
 				}
 
-				if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
+				if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) && ! $replace ) {
 					$orig = $section['id'];
 					$i    = 0;
 
 					while ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
 						$section['id'] = $orig . '_' . $i;
 						$i ++;
+					}
+				} elseif ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) && $replace ) {
+					// If replace is set, let's update the default values with these ones!
+					$fields = false;
+					if ( isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) && ! empty( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) ) {
+						$fields = self::$sections[ $opt_name ][ $section['id'] ]['fields'];
+					}
+					self::$sections[ $opt_name ][ $section['id'] ] = wp_parse_args( $section, self::$sections[ $opt_name ][ $section['id'] ] );
+					if ( ! empty( $fields ) ) {
+						if ( ! isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) || ( isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) && empty( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) ) ) {
+							self::$sections[ $opt_name ][ $section['id'] ]['fields'] = $fields;
+						}
 					}
 				}
 			}
@@ -741,7 +754,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					if ( ! is_array( $field ) ) {
 						continue;
 					}
-					self::set_field( $opt_name, $field, $section_id );
+					self::set_field( $opt_name, $section_id, $field );
 				}
 			}
 		}
@@ -819,25 +832,25 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Creates an option panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $field    Field data.
 		 * @param array  $section_id    Section ID this field belongs to.
+		 * @param array  $field    Field data.
 		 */
-		public static function setField( $opt_name = '', $field = array(), $section_id = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+		public static function setField( $opt_name = '', $section_id = '', $field = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
 
-			self::set_field( $opt_name, $field, $section_id );
+			self::set_field( $opt_name, $section_id, $field );
 		}
 
 		/**
 		 * Creates an option panel field and adds to a section.
 		 *
 		 * @param string $opt_name      Panel opt_name.
-		 * @param array  $field         Field data.
 		 * @param array  $section_id    Section ID this field belongs to.
+		 * @param array  $field         Field data.
 		 */
-		public static function set_field( $opt_name = '', $field = array(), $section_id = '' ) {
+		public static function set_field( $opt_name = '', $section_id = '', $field = array() ) {
 			if ( empty( $field ) ) {
 				return;
 			}
@@ -845,7 +858,14 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( '' !== $opt_name && is_array( $field ) && ! empty( $field ) ) {
+			// Shim for the old method!
+			if ( is_array( $section_id ) ) {
+				$section_id_holder = $field;
+				$field             = $section_id;
+				$section_id        = $section_id_holder;
+			}
+
+			if ( '' !== $opt_name && '' !== $section_id && is_array( $field ) && ! empty( $field ) ) {
 				if ( '' !== $section_id ) {
 					$field['section_id'] = $section_id;
 				}
@@ -865,10 +885,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Create multiple fields of the option panel and apply to a section.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $fields Array of field arrays.
 		 * @param array  $section_id    Section ID this field belongs to.
+		 * @param array  $fields Array of field arrays.
 		 */
-		public static function set_fields( $opt_name = '', $fields = array(), $section_id = '' ) {
+		public static function set_fields( $opt_name = '', $section_id = '', $fields = array() ) {
 			if ( empty( $fields ) ) {
 				return;
 			}
@@ -877,7 +897,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( '' !== $opt_name && is_array( $fields ) && ! empty( $fields ) ) {
+			if ( '' !== $opt_name && '' !== $section_id && is_array( $fields ) && ! empty( $fields ) ) {
 				foreach ( $fields as $field ) {
 					self::set_field( $opt_name, $field, $section_id );
 				}
@@ -946,10 +966,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setHelpTab( $opt_name = '', $tab = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( '' !== $opt_name ) {
-				Redux_Functions_Ex::record_caller( $opt_name );
-			}
-
 			self::set_help_tab( $opt_name, $tab );
 		}
 
@@ -965,8 +981,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 			}
 
 			self::check_opt_name( $opt_name );
-
-			Redux_Functions_Ex::record_caller( $opt_name );
 
 			if ( '' !== $opt_name && ! empty( $tab ) ) {
 				if ( ! isset( self::$args[ $opt_name ]['help_tabs'] ) ) {
@@ -992,10 +1006,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setHelpSidebar( $opt_name = '', $content = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( '' !== $opt_name ) {
-				Redux_Functions_Ex::record_caller( $opt_name );
-			}
-
 			self::set_help_sidebar( $opt_name, $content );
 		}
 
@@ -1010,8 +1020,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return;
 			}
 			self::check_opt_name( $opt_name );
-
-			Redux_Functions_Ex::record_caller( $opt_name );
 
 			self::$args[ $opt_name ]['help_sidebar'] = $content;
 		}
@@ -1155,19 +1163,55 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function get_option( $opt_name = '', $key = '', $default = '' ) {
+		public static function get_option( $opt_name = '', $key = '', $default = null ) {
 			self::check_opt_name( $opt_name );
 
+			// TODO - Add metaboxes magic here!
 			if ( ! empty( $opt_name ) && ! empty( $key ) ) {
-				$redux = get_option( $opt_name );
-
-				if ( isset( $redux[ $key ] ) ) {
-					return $redux[ $key ];
+				global $$opt_name;
+				if ( empty( $$opt_name ) ) {
+					$values    = get_option( $opt_name );
+					$$opt_name = $values;
 				} else {
-					return $default;
+					$values = $$opt_name;
 				}
+				if ( ! isset( $values[ $key ] ) ) {
+					if ( null === $default ) {
+						$field = self::get_field( $opt_name, $key );
+						if ( false !== $field ) {
+							$defaults_class = new Redux_Options_Defaults();
+							$sections       = self::construct_sections( $opt_name );
+							$defaults       = $defaults_class->default_values( $opt_name, $sections );
+							if ( isset( $defaults[ $key ] ) ) {
+								$default = defaults[ $key ];
+							}
+						}
+					}
+				}
+				if ( ! empty( $subkeys ) && is_array( $subkeys ) ) {
+					$value = $default;
+					if ( isset( $values[ $option ] ) ) {
+						$count = count( $subkeys );
+						if ( 1 === $count ) {
+							$value = isset( $values[ $option ][ $subkeys[1] ] ) ? $values[ $option ][ $subkeys[1] ] : $default;
+						} elseif ( 2 === $count ) {
+							if ( isset( $values[ $option ][ $subkeys[1] ] ) ) {
+								$value = isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] ) ? $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] : $default;
+							}
+						} elseif ( 3 === $count ) {
+							if ( isset( $values[ $option ][ $subkeys[1] ] ) ) {
+								if ( isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ] ) ) {
+									$value = isset( $values[ $option ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] ) ? $values[ $option ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] : $default;
+								}
+							}
+						}
+					}
+				} else {
+					$value = isset( $values[ $option ] ) ? $values[ $option ] : $default;
+				}
+				return $value;
 			} else {
-				return null;
+				return false;
 			}
 		}
 
