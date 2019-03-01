@@ -1156,6 +1156,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( isset( $redux->extensions['metaboxes'] ) ) {
 				$metaboxes = $redux->extensions['metaboxes'];
+			} elseif ( isset( $redux->extensions['advanced_metaboxes'] ) ) {
+				$metaboxes = $redux->extensions['advanced_metaboxes'];
 			} else {
 				$metaboxes = $redux->extensions['metaboxes_lite'];
 			}
