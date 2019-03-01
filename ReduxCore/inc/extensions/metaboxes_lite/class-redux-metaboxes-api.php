@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		/**
 		 * Filter Metaboxes function.
 		 *
-		 * @deprecated 4.0.0
+		 * @deprecated 4.0.0 No more camelCase.
 		 */
 		public static function filterMetaboxes() { // phpcs:ignore: WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Metaboxes::filter_metaboxes()' );
@@ -170,7 +170,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 *
-		 * @deprecated 4.0.0
+		 * @deprecated 4.0.0 No more camelCase.
 		 *
 		 * @return mixed
 		 */
