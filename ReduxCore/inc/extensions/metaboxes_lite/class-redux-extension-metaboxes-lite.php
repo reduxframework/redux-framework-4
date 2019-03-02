@@ -1095,6 +1095,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					}
 
 					$meta = wp_parse_args( $this->get_meta( $the_post->ID ), $defaults );
+
 					$this->post_type_fields[ $the_post->post_type ] = $meta;
 				}
 
@@ -1521,6 +1522,6 @@ if ( ! function_exists( 'redux_post_meta' ) ) {
 	 * @return string|void
 	 */
 	function redux_post_meta( $opt_name = '', $the_post = array(), $meta_key = '', $def_val = '' ) {
-		Redux::get_post_meta( $opt_name, $the_post, $meta_key, $def_val );
+		return Redux::get_post_meta( $opt_name, $the_post, $meta_key, $def_val );
 	}
 }

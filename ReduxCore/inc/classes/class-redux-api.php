@@ -1160,9 +1160,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 				$metaboxes = $redux->extensions['advanced_metaboxes'];
 			} else {
 				$metaboxes = $redux->extensions['metaboxes_lite'];
+
 			}
 
-			if ( null === $default ) {
+			if ( null === $default || '' === $default ) {
 				$default = self::get_option( $opt_name, $key );
 			}
 
@@ -1178,7 +1179,9 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			$default = self::get_option( $opt_name, $key );
 
-			return $metaboxes->get_values( $the_post, $key, $default );
+			$val = $metaboxes->get_values( $the_post, $key, $default );
+
+			return $val;
 		}
 
 		/**
