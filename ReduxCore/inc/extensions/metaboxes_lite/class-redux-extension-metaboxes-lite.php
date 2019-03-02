@@ -239,9 +239,10 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			if ( empty( $this->boxes ) || ! is_array( $this->boxes ) ) {
 				return;
 			}
-			if ( isset( self::$server['HTTP_HOST'] ) && isset( self::$server['REQUEST_URI'] ) ) {
-				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ); // Safe & Reliable.
-				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ) );
+
+			if ( isset( Redux_Core::$server['HTTP_HOST'] ) && isset( Redux_Core::$server['REQUEST_URI'] ) ) {
+				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( Redux_Core::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( Redux_Core::$server['REQUEST_URI'] ) ); // Safe & Reliable.
+				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( Redux_Core::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( Redux_Core::$server['REQUEST_URI'] ) ) );
 			}
 
 			if ( is_admin() && isset( $_GET['post_type'] ) && ! empty( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -1287,7 +1288,6 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		 * @return mixed
 		 */
 		public function meta_boxes_save( $post_id, $post ) {
-
 			if ( isset( $_POST['vc_inline'] ) && sanitize_text_field( wp_unslash( $_POST['vc_inline'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $post_id;
 			}
