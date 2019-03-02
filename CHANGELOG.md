@@ -1,22 +1,26 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.5
+* Fixed:    redux_post_meta returning null always.
+* Added:    New Redux API get_post_meta to retrieve Metabox values.
+
 ## 4.0.1.4
-Fixed:      Metabox lite css/js not minifying on compile.
-New:        Redux APIs set_field, set_fields
+* Fixed:      Metabox lite css/js not minifying on compile.
+* New:        Redux APIs set_field, set_fields
 
 ## 4.0.1.3
-Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
-Fixed:      Errors on 'Get Support' page.
+* Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
+* Fixed:      Errors on 'Get Support' page.
 
 ## 4.0.1.2
-Fixed:      #14 - Malformed enqueue URLs when embedding.
+* Fixed:      #14 - Malformed enqueue URLs when embedding.
 
 ## 4.0.1.1
-Fixed:      Section field not hiding with required calls.
-Fixed:      Tour pointer not remembing closed state. 
+* Fixed:      Section field not hiding with required calls.
+* Fixed:      Tour pointer not remembing closed state. 
 
 ## 4.0.1
-New:        Initial public beta release.
+* New:        Initial public beta release.
 
 ## 4.0.0.22
 * Added:    `allow_empty_line_height` arg for the typography field to prevent font-size from overriding a blank line-height field.
