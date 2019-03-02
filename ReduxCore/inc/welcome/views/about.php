@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 	<div class="about-text">
-		<?php esc_html_e( "Redux is world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
+		<?php esc_html_e( "Redux is the world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
 	</div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
