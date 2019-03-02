@@ -24,6 +24,8 @@ jQuery(
 		setTimeout( function() {
 			$( '#publishing-action .button, #save-action .button, .editor-post-publish-button' ).click(
 				function() {
+					$( '.redux-save-warn' ).slideUp();
+
 					window.onbeforeunload = null;
 				}
 			);
