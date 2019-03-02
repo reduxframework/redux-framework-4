@@ -21,10 +21,12 @@ jQuery(
 			$.redux.initFields();
 		};
 
-		$( '#publishing-action .button, #save-action .button, .editor-post-publish-button' ).click(
-			function() {
-				window.onbeforeunload = null;
-			}
-		);
+		setTimeout( function() {
+			$( '#publishing-action .button, #save-action .button, .editor-post-publish-button' ).click(
+				function() {
+					window.onbeforeunload = null;
+				}
+			);
+		}, 1000 );
 	}
 );
