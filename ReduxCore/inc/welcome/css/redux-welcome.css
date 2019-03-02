@@ -1,6 +1,8 @@
 @charset "UTF-8";
 .about-wrap.redux-status .updated, .about-wrap.redux-status .error { margin-top: 10px; }
 
+.about-wrap hr { border: inherit; border-top: 1px solid #ccc; }
+
 .about-wrap.redux-status .updated.redux-message { display: block !important; }
 
 .about-wrap.redux-status .redux-message { position: relative; border-left-color: #00A2E3 !important; overflow: hidden; }

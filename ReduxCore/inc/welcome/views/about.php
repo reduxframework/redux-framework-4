@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 	<div class="about-text">
-		<?php esc_html_e( "Redux is world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
+		<?php esc_html_e( "Redux is the world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
 	</div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
@@ -163,6 +163,7 @@ defined( 'ABSPATH' ) || exit;
 									<?php echo esc_html__( 'Plugin', 'redux-framework' ); ?>
 								</span>
 								</p>
+								<hr style="margin: 0 0 15px 0;padding:0;">
 								<p class="author">
 									<small>
 										<?php
