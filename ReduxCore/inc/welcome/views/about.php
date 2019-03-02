@@ -163,6 +163,7 @@ defined( 'ABSPATH' ) || exit;
 									<?php echo esc_html__( 'Plugin', 'redux-framework' ); ?>
 								</span>
 								</p>
+								<hr style="margin: 0 0 15px 0;padding:0;">
 								<p class="author">
 									<small>
 										<?php

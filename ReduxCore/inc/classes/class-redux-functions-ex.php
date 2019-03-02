@@ -61,7 +61,6 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					self::$args[ $opt_name ]['callers'][] = $caller;
 				}
 			}
-			
 		}
 
 		/**
