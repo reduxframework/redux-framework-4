@@ -1489,7 +1489,7 @@ if ( ! function_exists( 'redux_metaboxes_loop_start' ) ) {
 	 */
 	function redux_metaboxes_loop_start( $opt_name, $the_post = array() ) {
 		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
+		$metaboxes = $redux->extensions['metaboxes_lite'];
 
 		$metaboxes->loop_start( $the_post );
 	}
@@ -1504,7 +1504,7 @@ if ( ! function_exists( 'redux_metaboxes_loop_end' ) ) {
 	 */
 	function redux_metaboxes_loop_end( $opt_name, $the_post = array() ) {
 		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
+		$metaboxes = $redux->extensions['metaboxes_lite'];
 
 		$metaboxes->loop_end();
 	}

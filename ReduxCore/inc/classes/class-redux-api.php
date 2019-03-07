@@ -165,7 +165,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( $instance_extensions ) {
 				foreach ( $instance_extensions as $name => $extension ) {
-					if ( ! class_exists( $extension['class'] ) ) {
+					$old_class = str_replace( 'Redux_', 'ReduxFramework_', $extension['class'] );
+
+					if ( ! class_exists( $extension['class'] ) && ! class_exists( $old_class ) ) {
+
 						// In case you wanted override your override, hah.
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						$extension['path'] = apply_filters( 'redux/extension/' . $redux_framework->args['opt_name'] . '/' . $name, $extension['path'] );
@@ -174,24 +177,15 @@ if ( ! class_exists( 'Redux', false ) ) {
 							require_once $extension['path'];
 						}
 					}
+
 					if ( ! isset( $redux_framework->extensions[ $name ] ) ) {
-						if ( class_exists( $extension['class'] ) ) {
-							$redux_framework->extensions[ $name ] = new $extension['class']( $redux_framework );
+						$field_classes = array( $extension['class'], $old_class );
+						$ext_class     = Redux_Functions::class_exists_ex( $field_classes );
+
+						if ( false !== $ext_class ) {
+							$redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
 						} else {
-							$ext_name = str_replace( 'ReduxFramework_Extension_', '', $extension['class'] );
-							$ext_name = str_replace( '_', ' ', $ext_name );
-							$ext_name = ucwords( $ext_name );
-
-							// phpcs:ignore Squiz.PHP.CommentedOutCode
-							/* _deprecated_file( 'The ' . esc_html( $ext_name ) . ' extension', esc_html( $extension['version'] ) . ' due to incompatibility with Redux v4', 'an updated version from https://reduxframework.com/extensions' ); */
-
-							$old_class = str_replace( 'ReduxFramework_', 'Redux_', $extension['class'] );
-
-							if ( class_exists( $old_class ) ) {
-								$redux_framework->extensions[ $name ] = new $old_class( $redux_framework );
-							} else {
-								echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
-							}
+							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
 						}
 					}
 				}
@@ -1154,13 +1148,12 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			$redux = ReduxFrameworkInstances::get_instance( $opt_name );
 
+			// We don't ever need to specify advanced_metaboxes here as all function for metaboxes are core,
+			// and thus, metabox_lite.  The extension handles it's own functions and is handled by this condition. - kp.
 			if ( isset( $redux->extensions['metaboxes'] ) ) {
 				$metaboxes = $redux->extensions['metaboxes'];
-			} elseif ( isset( $redux->extensions['advanced_metaboxes'] ) ) {
-				$metaboxes = $redux->extensions['advanced_metaboxes'];
 			} else {
 				$metaboxes = $redux->extensions['metaboxes_lite'];
-
 			}
 
 			if ( null === $default || '' === $default ) {
@@ -1623,7 +1616,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				foreach ( self::$uses_extensions[ $opt_name ] as $extension ) {
 					$class_file                        = end( self::$extensions[ $extension ] );
 					$name                              = str_replace( '.php', '', basename( $extension ) );
-					$extension_class                   = 'ReduxFramework_Extension_' . $name;
+					$extension_class                   = 'Redux_Extension_' . $name;
 					$instance_extensions[ $extension ] = array(
 						'path'    => $class_file,
 						'class'   => $extension_class,

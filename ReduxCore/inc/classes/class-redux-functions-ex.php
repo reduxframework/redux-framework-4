@@ -177,10 +177,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			foreach ( $theme_paths as $theme_path => $url ) {
 				$real_path = self::wp_normalize_path( realpath( $theme_path ) );
+
 				if ( empty( $real_path ) ) {
 					continue;
 				}
-				if ( strpos( $file_path, $real_path ) !== false ) {
+
+				if ( ! empty( $real_path ) && strpos( $file_path, $real_path ) !== false ) {
 					$slug          = explode( '/', $theme_path );
 					$slug          = end( $slug );
 					$relative_path = explode( $slug . '/', dirname( $file_path ) );
