@@ -1,5 +1,9 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.6
+* Modified: Metabox lite loop not using correct extension key.
+* Fixed:    Error when no theme is installed, which is possible, apparently.
+
 ## 4.0.1.5
 * Fixed:    redux_post_meta returning null always.
 * Added:    New Redux API get_post_meta to retrieve Metabox values.
