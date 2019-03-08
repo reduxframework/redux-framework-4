@@ -82,7 +82,17 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 			$this->file = $file;
 
 			$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( $file ) ) );
-			$this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
+
+			$plugin_info = Redux_Functions_Ex::is_inside_plugin( $this->file );
+
+			if ( false !== $plugin_info ) {
+				$this->extension_url = trailingslashit( dirname( $plugin_info['url'] ) );
+			} else {
+				$theme_info = Redux_Functions_Ex::is_inside_theme( $this->file );
+				if ( false !== $theme_info ) {
+					$this->extension_url = trailingslashit( dirname( $theme_info['url'] ) );
+				}
+			}
 
 			static::$instance = $this;
 		}
