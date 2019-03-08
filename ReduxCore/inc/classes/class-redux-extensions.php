@@ -71,7 +71,7 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 					do_action( 'redux/extensions/' . $core->old_opt_name . '/before', $core );
 				}
 
-				require_once Redux_Core::$dir . 'inc/classes/class-redux-abstract-extension.php';
+				require_once Redux_Core::$dir . 'inc/classes/class-redux-extension-abstract.php';
 
 				$path = untrailingslashit( $path );
 

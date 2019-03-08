@@ -25,7 +25,7 @@ if ( ! class_exists( 'Redux_Extension_My_Extension', false ) ) {
 	/**
 	 * Class Redux_Extension_My_Extension
 	 */
-	class Redux_Extension_My_Extension extends Redux_Abstract_Extension {
+	class Redux_Extension_My_Extension extends Redux_Extension_Abstract {
 		/**
 		 * Set extension version.
 		 *

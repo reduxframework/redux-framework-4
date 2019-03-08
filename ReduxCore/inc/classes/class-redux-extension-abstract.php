@@ -1,23 +1,23 @@
 <?php
 /**
- * Redux Abstract Extension
+ * Redux Extension Abstract
  *
- * @class   Redux_Abstract_Extension
+ * @class   Redux_Extension_Abstract
  * @version 4.0.0
  * @package Redux Framework/Classes
  */
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
+if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 	/**
-	 * Class Redux_Abstract_Extension
+	 * Class Redux_Extension_Abstract
 	 *
 	 * An abstract class to make the writing of redux extensions easier by allowing users to extend this class
 	 *
 	 * @see the samples directory to find an usage example
 	 */
-	abstract class Redux_Abstract_Extension {
+	abstract class Redux_Extension_Abstract {
 		/**
 		 * The version of the extension (This is a default value you may want to override it)
 		 *
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		public $parent;
 
 		/**
-		 * Redux_Abstract_Extension constructor.
+		 * Redux_Extension_Abstract constructor.
 		 *
 		 * @param object $parent ReduxFramework pointer.
 		 * @param string $file Extension file.
@@ -109,7 +109,7 @@ if ( ! class_exists( 'Redux_Abstract_Extension', false ) ) {
 		/**
 		 * Returns extension instance.
 		 *
-		 * @return Redux_Abstract_Extension
+		 * @return Redux_Extension_Abstract
 		 */
 		public static function get_instance() {
 			return static::$instance;

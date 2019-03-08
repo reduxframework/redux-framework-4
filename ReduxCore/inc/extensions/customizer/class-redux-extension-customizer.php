@@ -18,14 +18,14 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 	 *
 	 * @since       1.0.0
 	 */
-	class Redux_Extension_Customizer extends Redux_Abstract_Extension {
+	class Redux_Extension_Customizer extends Redux_Extension_Abstract {
 
 		/**
 		 * Set extension version.
 		 *
 		 * @var string
 		 */
-		public static $version = '3.0.0';
+		public static $version = '4.0.0';
 
 		/**
 		 * Set the name of the field.  Ideally, this will also be your extension's name.
