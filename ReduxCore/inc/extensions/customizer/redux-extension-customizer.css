@@ -38,7 +38,7 @@
 
 .redux-main .redux-container-password input { width: 100%; }
 
-.select2-drop { z-index: 999999; }
+.select2-drop, .select2-container { z-index: 999999; }
 
 .customize-control-redux-raw { list-style: none; }
 
