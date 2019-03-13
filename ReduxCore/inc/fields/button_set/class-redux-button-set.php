@@ -70,7 +70,7 @@ if ( ! class_exists( 'Redux_Button_Set', false ) ) {
 						$this->value = array( $this->value );
 					}
 
-					if ( is_array( $this->value ) && in_array( $k, $this->value, true ) ) {
+					if ( is_array( $this->value ) && in_array( (string) $k, $this->value, true ) ) {
 						$selected   = 'checked="checked"';
 						$post_value = $k;
 					}
@@ -90,7 +90,7 @@ if ( ! class_exists( 'Redux_Button_Set', false ) ) {
 				if ( $is_multi ) {
 					$the_val     = '';
 					$the_name    = '';
-					$data_val    = ' data-val="' . $k . '"';
+					$data_val    = ' data-val=' . $k;
 					$hidden_name = $name;
 					$multi_class = 'multi ';
 
