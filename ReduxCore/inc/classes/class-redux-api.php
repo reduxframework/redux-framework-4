@@ -1219,7 +1219,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 							$sections       = self::construct_sections( $opt_name );
 							$defaults       = $defaults_class->default_values( $opt_name, $sections );
 							if ( isset( $defaults[ $key ] ) ) {
-								$default = defaults[ $key ];
+								$default = $defaults[ $key ];
 							}
 						}
 					}
