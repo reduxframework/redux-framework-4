@@ -1495,6 +1495,10 @@ function redux_hook( object, functionName, callback, before ) {
 			}
 		);
 
+		if ( redux.customizer ) {
+			el.find( '.customize-control.redux-field.hide' ).hide();
+		}
+
 		el.find( '.redux-container td > fieldset:empty,td > div:empty' ).parent().parent().hide();
 	};
 
@@ -1511,10 +1515,10 @@ function redux_hook( object, functionName, callback, before ) {
 
 				var fieldset = $( '#' + redux.optName.args.opt_name + '-' + i );
 
-				fieldset.parents( 'tr:first' ).addClass( 'fold' );
+				fieldset.parents( 'tr:first, li:first' ).addClass( 'fold' );
 
 				if ( 'hide' === v ) {
-					fieldset.parents( 'tr:first' ).addClass( 'hide' );
+					fieldset.parents( 'tr:first, li:first' ).addClass( 'hide' );
 
 					if ( fieldset.hasClass( 'redux-container-section' ) ) {
 						div = $( '#section-' + i );
@@ -1585,11 +1589,17 @@ function redux_hook( object, functionName, callback, before ) {
 			function( child ) {
 				var div;
 				var rawTable;
+				var tr;
 
 				var current       = $( this );
 				var show          = false;
 				var childFieldset = $( '#' + redux.optName.args.opt_name + '-' + child );
-				var tr            = childFieldset.parents( 'tr:first' );
+
+				tr = childFieldset.parents( 'tr:first' );
+
+				if ( 0 === tr.length ) {
+					tr = childFieldset.parents( 'li:first' );
+				}
 
 				if ( ! isHidden ) {
 					show = $.redux.check_parents_dependencies( child );
@@ -1655,8 +1665,12 @@ function redux_hook( object, functionName, callback, before ) {
 	$.redux.required_recursive_hide = function( id ) {
 		var div;
 		var rawTable;
+		var toFade;
 
-		var toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'tr:first' );
+		toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'tr:first' );
+		if ( 0 === toFade ) {
+			toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'li:first' );
+		}
 
 		toFade.fadeOut(
 			50,
@@ -1709,6 +1723,8 @@ function redux_hook( object, functionName, callback, before ) {
 					i = null;
 
 					if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'tr:first' ).hasClass( 'hide' ) ) {
+						show = false;
+					} else if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'li:first' ).hasClass( 'hide' ) ) {
 						show = false;
 					} else {
 						if ( false !== show ) {
