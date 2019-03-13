@@ -1205,29 +1205,36 @@ if ( ! class_exists( 'Redux', false ) ) {
 			// TODO - Add metaboxes magic here!
 			if ( ! empty( $opt_name ) && ! empty( $key ) ) {
 				global $$opt_name;
+
 				if ( empty( $$opt_name ) ) {
 					$values    = get_option( $opt_name );
 					$$opt_name = $values;
 				} else {
 					$values = $$opt_name;
 				}
+
 				if ( ! isset( $values[ $key ] ) ) {
 					if ( null === $default ) {
 						$field = self::get_field( $opt_name, $key );
+
 						if ( false !== $field ) {
 							$defaults_class = new Redux_Options_Defaults();
 							$sections       = self::construct_sections( $opt_name );
 							$defaults       = $defaults_class->default_values( $opt_name, $sections );
+
 							if ( isset( $defaults[ $key ] ) ) {
 								$default = $defaults[ $key ];
 							}
 						}
 					}
 				}
+
 				if ( ! empty( $subkeys ) && is_array( $subkeys ) ) {
 					$value = $default;
+
 					if ( isset( $values[ $key ] ) ) {
 						$count = count( $subkeys );
+
 						if ( 1 === $count ) {
 							$value = isset( $values[ $key ][ $subkeys[1] ] ) ? $values[ $key ][ $subkeys[1] ] : $default;
 						} elseif ( 2 === $count ) {
@@ -1250,7 +1257,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return false;
 			}
 		}
-
 
 		/**
 		 * Deprecated Sets an option into the database.
