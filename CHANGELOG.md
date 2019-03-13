@@ -1,5 +1,9 @@
 # Redux Framework v4 Changelog
 
+* Fixed:    #20 -  variable mssing $ dev.
+* Fixed:    Customizer not saving.
+* Fixed     Customizer 'required'.
+
 ## 4.0.1.6
 * Modified: Metabox lite loop not using correct extension key.
 * Fixed:    Error when no theme is installed, which is possible, apparently.
