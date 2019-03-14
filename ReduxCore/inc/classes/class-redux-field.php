@@ -8,7 +8,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
+use Redux_Descriptor_Types as RDT;
 if ( ! class_exists( 'Redux_Field', false ) ) {
 
 	/**
@@ -59,6 +59,13 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		public $value;
 
 		/**
+		 * Array of field descriptors.
+		 *
+		 * @var array
+		 */
+		public static $descriptors = array();
+
+		/**
 		 * Redux_Field constructor.
 		 *
 		 * @param array  $field Field array.
@@ -98,6 +105,51 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			if ( $parent->args['dev_mode'] ) {
 				$this->timestamp .= '.' . time();
 			}
+		}
+
+		/**
+		 * Make base descriptor.
+		 *
+		 * @return Redux_Descriptor_Field
+		 */
+		public static function make_base_descriptor() {
+			$d                                       = new Redux_Descriptor_Field( get_called_class() );
+			self::$descriptors[ get_called_class() ] = $d;
+
+			$d->add_field( 'id', __( 'Field ID' ), RDT::TEXT )->set_order( 0 )->set_required();
+
+			$d->add_field( 'required', null, RDT::BOOL, __( 'Should the field be required' ), false )->set_order( 1 );
+
+			$d->add_field( 'readonly', null, RDT::BOOL, __( 'Should the field be readonly' ), false )->set_order( 20 );
+
+			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler' ), false )->set_order( 60 );
+
+			$d->add_field( 'output', __( 'CSS Output' ), RDT::BOOL, '', false );
+
+			return $d;
+		}
+
+		/**
+		 * Get descriptor.
+		 *
+		 * @return Redux_Descriptor_Field
+		 */
+		public static function get_descriptor() {
+			static::make_descriptor();
+			$d = self::$descriptors[ get_called_class() ];
+
+
+
+			// This part is out of opt name because it's non vendor dependant!
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d );
+		}
+
+		/**
+		 * Build the field descriptor in this function.
+		 */
+		public static function make_descriptor() {
+			static::make_base_descriptor();
 		}
 
 		/**
