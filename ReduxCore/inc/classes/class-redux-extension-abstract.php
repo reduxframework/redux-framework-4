@@ -54,17 +54,24 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		protected $file;
 
 		/**
-		 * The redux framework instance that spawned the extension
+		 * The redux framework instance that spawned the extension.
 		 *
 		 * @var ReduxFramework
 		 */
 		public $parent;
 
 		/**
+		 * The ReflectionClass of the extension
+		 *
+		 * @var ReflectionClass
+		 */
+		protected $_reflection_class;
+
+		/**
 		 * Redux_Extension_Abstract constructor.
 		 *
 		 * @param object $parent ReduxFramework pointer.
-		 * @param string $file Extension file.
+		 * @param string $file   Extension file.
 		 */
 		public function __construct( $parent, $file = '' ) {
 			$this->parent = $parent;
@@ -72,8 +79,8 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 			// If the file is not given make sure we have one.
 			if ( empty( $file ) ) {
 				try {
-					$rc   = new ReflectionClass( get_class( $this ) );
-					$file = $rc->getFileName();
+					$this->_reflection_class = new ReflectionClass( get_class( $this ) );
+					$file                    = $this->_reflection_class->getFileName();
 				} catch ( ReflectionException $e ) { // phpcs:ignore
 					// There will never be an exception but annoying warning.
 				}
@@ -86,11 +93,11 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 			$plugin_info = Redux_Functions_Ex::is_inside_plugin( $this->file );
 
 			if ( false !== $plugin_info ) {
-				$this->extension_url = trailingslashit( dirname( $plugin_info['url'] ) );
+				$this->extension_url = trailingslashit( dirname( $plugin_info[ 'url' ] ) );
 			} else {
 				$theme_info = Redux_Functions_Ex::is_inside_theme( $this->file );
 				if ( false !== $theme_info ) {
-					$this->extension_url = trailingslashit( dirname( $theme_info['url'] ) );
+					$this->extension_url = trailingslashit( dirname( $theme_info[ 'url' ] ) );
 				}
 			}
 
@@ -139,7 +146,10 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		 * @param string $field_name Name of field.
 		 */
 		protected function add_overload_field_filter( $field_name ) {
-			add_filter( 'redux/' . $this->parent->args['opt_name'] . '/field/class/' . $field_name, array( &$this, 'overload_field_path' ), 10, 2 );
+			add_filter( 'redux/' . $this->parent->args[ 'opt_name' ] . '/field/class/' . $field_name, array(
+				&$this,
+				'overload_field_path'
+			), 10, 2 );
 		}
 
 		/**
@@ -148,21 +158,12 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		 * @param string $field_name Name of field.
 		 */
 		protected function add_field( $field_name ) {
-			$file = $this->file;
-
-			$filename_fix = str_replace( '_', '-', $field_name );
-
-			$files = array(
-				trailingslashit( dirname( $file ) ) . $field_name . DIRECTORY_SEPARATOR . 'field_' . $field_name . '.php',
-				trailingslashit( dirname( $file ) ) . $field_name . DIRECTORY_SEPARATOR . 'class-redux-' . $filename_fix . '.php',
-			);
-
-			$filename = Redux_Functions::file_exists_ex( $files );
+			$class = $this->_reflection_class->getName();
 
 			add_filter(
 				'redux/fields',
-				function ( $classes ) use ( $field_name, $file ) {
-					$classes[ $field_name ] = $file; // TODO - Fix maybe?
+				function ( $classes ) use ( $field_name, $class ) {
+					$classes[ $field_name ] = $class;
 					return $classes;
 				}
 			);
@@ -173,17 +174,17 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		/**
 		 * Overload field path.
 		 *
-		 * @param string $file Extension file.
+		 * @param string $file  Extension file.
 		 * @param array  $field Field array.
 		 *
 		 * @return string
 		 */
 		public function overload_field_path( $file, $field ) {
-			$filename_fix = str_replace( '_', '-', $field['type'] );
+			$filename_fix = str_replace( '_', '-', $field[ 'type' ] );
 
 			$files = array(
-				trailingslashit( dirname( $this->file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'field_' . $field['type'] . '.php',
-				trailingslashit( dirname( $this->file ) ) . $field['type'] . DIRECTORY_SEPARATOR . 'class-redux-' . $filename_fix . '.php',
+				trailingslashit( dirname( $this->file ) ) . $field[ 'type' ] . DIRECTORY_SEPARATOR . 'field_' . $field[ 'type' ] . '.php',
+				trailingslashit( dirname( $this->file ) ) . $field[ 'type' ] . DIRECTORY_SEPARATOR . 'class-redux-' . $filename_fix . '.php',
 			);
 
 			$filename = Redux_Functions::file_exists_ex( $files );
@@ -194,9 +195,9 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		/**
 		 * Sets the minimum version of Redux to use.  Displays a notice if requirments not met.
 		 *
-		 * @param string $min_version Minimum version to evaluate.
+		 * @param string $min_version       Minimum version to evaluate.
 		 * @param string $extension_version Extension version number.
-		 * @param string $friendly_name Friend extension name for notice display.
+		 * @param string $friendly_name     Friend extension name for notice display.
 		 *
 		 * @return bool
 		 */
