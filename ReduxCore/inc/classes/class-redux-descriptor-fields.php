@@ -7,20 +7,31 @@
  * @author Tofandel
  */
 class Redux_Descriptor_Fields implements ArrayAccess {
+
+	/**
+	 * Options had for this field.
+	 *
+	 * @var array $options Options.
+	 */
 	protected $options;
 
+	/**
+	 * Order number for this field.
+	 *
+	 * @var int $order Order number.
+	 */
 	public static $order = 0;
 
 	/**
 	 * Redux_Descriptor_Fields constructor.
 	 *
-	 * @param string $name
-	 * @param string $title
-	 * @param string $type
-	 * @param string $description
-	 * @param mixed  $default
+	 * @param string $name Name of field.
+	 * @param string $title Field title.
+	 * @param string $type Field Type.
+	 * @param string $description Field Description.
+	 * @param mixed  $default Default vlaue.
 	 *
-	 * @throws Exception
+	 * @throws Exception Throwable.
 	 */
 	public function __construct( $name, $title, $type, $description = '', $default = null ) {
 		if ( ! Redux_Descriptor_Types::is_valid_type( $type ) ) {
@@ -36,16 +47,22 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 			'description' => $description,
 			'default'     => $default,
 			'order'       => static::$order ++,
-			'required'    => (bool) $this->required
+			'required'    => (bool) $this->required,
 		);
 	}
+
+	/**
+	 * Varible to set required for this field descriptor.
+	 *
+	 * @var bool $required Required.
+	 */
 
 	protected $required = false;
 
 	/**
 	 * Set required.
 	 *
-	 * @param bool $required
+	 * @param bool $required Set required for this field.
 	 *
 	 * @return Redux_Descriptor_Fields
 	 */
@@ -58,13 +75,13 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	/**
 	 * Set order.
 	 *
-	 * @param $order
+	 * @param int $order Descriptor order for this field.
 	 *
 	 * @return $this
 	 */
 	public function set_order( $order ) {
-		static::$order            = $order;
-		$this->options[ 'order' ] = (float) $order;
+		static::$order          = $order;
+		$this->options['order'] = (float) $order;
 
 		return $this;
 	}
@@ -72,12 +89,12 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	/**
 	 * Set group.
 	 *
-	 * @param string $group
+	 * @param string $group Set the group.
 	 *
 	 * @return $this
 	 */
 	public function set_group( $group ) {
-		$this->options[ 'group' ] = $group;
+		$this->options['group'] = $group;
 
 		return $this;
 	}
@@ -85,8 +102,8 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	/**
 	 * Set an option.
 	 *
-	 * @param string $option_key
-	 * @param mixed  $option_value
+	 * @param string $option_key Option key.
+	 * @param mixed  $option_value Value to set.
 	 *
 	 * @return $this
 	 */
@@ -99,7 +116,7 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	/**
 	 * Get an option.
 	 *
-	 * @param $option_key
+	 * @param string $option_key Named key of the option.
 	 *
 	 * @return mixed
 	 */
@@ -110,7 +127,7 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	/**
 	 * Remove an option.
 	 *
-	 * @param string $option_key
+	 * @param string $option_key Named key of the option.
 	 */
 	public function remove_option( $option_key ) {
 		unset( $this->options[ $option_key ] );
@@ -122,7 +139,7 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	 * @return string
 	 */
 	public function to_doc() {
-		$doc = $this[ 'name' ] . "(" . $this[ 'type' ] . ")\n" . $this[ 'description' ] . "\n";
+		$doc = $this['name'] . '(' . $this['type'] . ')\n' . $this['description'] . "\n";
 
 		return $doc;
 	}
@@ -138,15 +155,11 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 
 	/**
 	 * Whether a offset exists
+	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetexists.php
-	 *
-	 * @param mixed $offset <p>
-	 *                      An offset to check for.
-	 *                      </p>
-	 *
+	 * @param mixed $offset An offset to check for.
 	 * @return boolean true on success or false on failure.
-	 * </p>
-	 * <p>
+	 *
 	 * The return value will be casted to boolean if non-boolean was returned.
 	 * @since 5.0.0
 	 */
@@ -156,12 +169,9 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 
 	/**
 	 * Offset to retrieve
+	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetget.php
-	 *
-	 * @param mixed $offset <p>
-	 *                      The offset to retrieve.
-	 *                      </p>
-	 *
+	 * @param mixed $offset The offset to retrieve.
 	 * @return mixed Can return all value types.
 	 * @since 5.0.0
 	 */
@@ -171,14 +181,10 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 
 	/**
 	 * Offset to set
-	 * @link  http://php.net/manual/en/arrayaccess.offsetset.php
 	 *
-	 * @param mixed $offset <p>
-	 *                      The offset to assign the value to.
-	 *                      </p>
-	 * @param mixed $value  <p>
-	 *                      The value to set.
-	 *                      </p>
+	 * @link  http://php.net/manual/en/arrayaccess.offsetset.php
+	 * @param mixed $offset The offset to assign the value to.
+	 * @param mixed $value  The value to set.
 	 *
 	 * @return void
 	 * @since 5.0.0
@@ -189,12 +195,9 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 
 	/**
 	 * Offset to unset
+	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetunset.php
-	 *
-	 * @param mixed $offset <p>
-	 *                      The offset to unset.
-	 *                      </p>
-	 *
+	 * @param mixed $offset The offset to unset.
 	 * @return void
 	 * @since 5.0.0
 	 */

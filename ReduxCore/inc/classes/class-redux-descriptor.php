@@ -2,7 +2,6 @@
 
 /**
  * Class Redux_Descriptor
- *
  * Used to describe redux fields
  *
  * @author Tofandel
@@ -26,7 +25,7 @@ class Redux_Descriptor {
 	/**
 	 * Redux_Descriptor constructor.
 	 *
-	 * @param $field
+	 * @param string $field Field name.
 	 */
 	public function __construct( $field ) {
 		Redux_Descriptor_Fields::$order = 0;
@@ -159,13 +158,15 @@ class Redux_Descriptor {
 	 * Sorts the fields by their order field.
 	 */
 	protected function sort_fields() {
-		uksort( $this->fields, function ( $item1, $item2 ) {
-			if ( $item1[ 'order' ] == $item2[ 'order' ] ) {
-				return 0;
+		uksort(
+			$this->fields,
+			function ( $item1, $item2 ) {
+				if ( isset( $item1['order'] ) && $item1['order'] === $item2['order'] ) {
+					return 0;
+				}
+				return isset( $item1['order'] ) && $item1['order'] < $item2['order'] ? - 1 : 1;
 			}
-
-			return $item1[ 'order' ] < $item2[ 'order' ] ? - 1 : 1;
-		} );
+		);
 	}
 
 	/**
@@ -178,7 +179,7 @@ class Redux_Descriptor {
 
 		$this->sort_fields();
 		foreach ( $this->fields as $option ) {
-			$fields[ $option[ 'name' ] ] = $option->to_array();
+			$fields[ $option['name'] ] = $option->to_array();
 		}
 
 		return array(

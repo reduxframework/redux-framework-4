@@ -29,7 +29,8 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @return Redux_Descriptor
 		 */
 		public static function make_base_descriptor() {
-			self::$descriptors[ get_called_class() ] = $d = new Redux_Descriptor( get_called_class() );
+			$d = new Redux_Descriptor( get_called_class() );
+			self::$descriptors[get_called_class()] = $d;
 
 			$d->add_field( 'id', __( 'Field ID' ), RDT::TEXT )
 			  ->set_order( 0 )
@@ -51,6 +52,10 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @return Redux_Descriptor
 		 */
 		public static function get_descriptor() {
+			if ( !isset( self::$descriptors[ get_called_class() ] ) ) {
+				self::make_base_descriptor();
+			}
+
 			$d = self::$descriptors[ get_called_class() ];
 
 			static::make_descriptor();

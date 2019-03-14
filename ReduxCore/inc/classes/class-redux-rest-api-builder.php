@@ -9,7 +9,7 @@
 class Redux_Rest_Api_Builder {
 
 	const ENDPOINT = 'redux/descriptors';
-	const VER = 'v1';
+	const VER      = 'v1';
 
 	/**
 	 * Get the namespace of the api.
@@ -111,7 +111,6 @@ class Redux_Rest_Api_Builder {
 				}
 			}
 		}
-		print_r($classes);
 
 		// phpcs:ignore WordPress.NamingConventions.ValidHookName
 		$classes = apply_filters( 'redux/fields', $classes );
@@ -140,12 +139,11 @@ class Redux_Rest_Api_Builder {
 	 * @return array
 	 */
 	public function get_field( $data = array() ) {
-		$type = $data[ 'type' ];
+		$type = $data['type'];
 
 		if ( ! empty( $type ) ) {
 			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
-
 			if ( $field_class && is_subclass_of( $field_class, 'Redux_Field' ) ) {
 				/**
 				 * Test if the field exists
@@ -153,11 +151,9 @@ class Redux_Rest_Api_Builder {
 				 * @var Redux_Descriptor $descriptor
 				 */
 				$descriptor = call_user_func( array( 'Redux_' . $type, 'get_descriptor' ) );
-
 				return $descriptor->to_array();
 			}
 		}
-
 		return array( 'success' => false );
 	}
 
@@ -172,7 +168,7 @@ class Redux_Rest_Api_Builder {
 	public function render_field( $data = array() ) {
 
 		// TODO MODIFY the function to get the post data from the data object with a post method in the register route!
-		$type = $data[ 'type' ];
+		$type = $data['type'];
 		if ( ! empty( $type ) ) {
 			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
@@ -184,8 +180,8 @@ class Redux_Rest_Api_Builder {
 				}
 				$opt_name = 'my_opt_name';
 				// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
-				if ( ! empty( $_REQUEST[ 'opt_name' ] ) ) {
-					$opt_name = $_REQUEST[ 'opt_name' ];
+				if ( ! empty( $_REQUEST['opt_name'] ) ) {
+					$opt_name = $_REQUEST['opt_name'];
 				}
 
 				/**
