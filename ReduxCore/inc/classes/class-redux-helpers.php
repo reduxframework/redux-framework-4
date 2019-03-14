@@ -19,6 +19,37 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 	 * @since       3.0.0
 	 */
 	class Redux_Helpers {
+
+		/**
+		 * Retrieve section array from field ID.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $field_id Field ID.
+		 */
+		public static function section_from_field_id( $opt_name = '', $field_id = '' ) {
+			if ( '' !== $opt_name ) {
+				$redux = Redux::instance( $opt_name );
+
+				if ( is_object( $redux ) ) {
+					$sections = $redux->sections;
+
+					if ( is_array( $sections ) && ! empty( $sections ) ) {
+						foreach ( $sections as $idx => $section ) {
+							if ( isset( $section['fields'] ) && ! empty( $section['fields'] ) ) {
+								foreach ( $section['fields'] as $i => $field ) {
+									if ( is_array( $field ) && ! empty( $field ) ) {
+										if ( isset( $field['id'] ) && $field['id'] === $field_id ) {
+											return $section;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 		/**
 		 * Verify integer value.
 		 *
