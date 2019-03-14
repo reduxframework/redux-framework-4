@@ -266,6 +266,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			spl_autoload_register( array( $this, 'register_classes' ) );
 
 			self::$welcome = new Redux_Welcome();
+			new Redux_Rest_Api_Builder( $this );
 
 			$support_hash = md5( md5( AUTH_KEY . SECURE_AUTH_KEY . '-redux' ) . '-support' );
 			add_action( 'wp_ajax_nopriv_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );

@@ -162,7 +162,8 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 			add_filter(
 				'redux/fields',
 				function ( $classes ) use ( $field_name, $file ) {
-					$classes[ $field_name ] = $filename;
+					$classes[ $field_name ] = $file; // TODO - Fix maybe?
+					return $classes;
 				}
 			);
 
