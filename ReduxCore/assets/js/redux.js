@@ -390,6 +390,7 @@ function colorNameToHex( colour ) {
 			}
 		);
 
+		// Customizer save hook
 		el.find( '#customize-save-button-wrapper #save' ).on(
 			'click',
 			function() {
