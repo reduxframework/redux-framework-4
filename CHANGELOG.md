@@ -5,6 +5,8 @@
 * Fixed:    Customizer saving.
 * Fixed     Customizer 'required'.
 * Fixed:    button_set field not saving or loading in multi mode.
+* Fixed:    Section disable and section hidde in customizer.
+* Fixed:    Some malformed field ids in sample-config, for some reason.
 * Change:   #19 - `validate_msg` field arg replaces `msg` for validation schemes.  Shim in place for backward compatibility.
 
 ## 4.0.1.6
