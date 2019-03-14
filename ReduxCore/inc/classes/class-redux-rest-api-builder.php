@@ -90,24 +90,28 @@ class Redux_Rest_Api_Builder {
 		$fields_dir = trailingslashit( ReduxCore::$dir ) . 'inc' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR;
 		$dirs       = new RecursiveDirectoryIterator( $fields_dir );
 		$classes    = array();
-		foreach ( $dirs as $file ) {
-			/**
-			 * @var SplFileObject $file
-			 */
-			if ( $file->isFile() && $file->getExtension() == 'php' ) {
-				$filename = $file->getRealPath();
-				// Load it here to save some resources in autoloading!
+		foreach ( $dirs as $path ) {
+			$folder = explode( '/', $path );
+			$folder = end( $folder );
+			if ( in_array( $folder, array( '.', '..' ), true ) ) {
+				continue;
+			}
+			$files    = array(
+				trailingslashit( $path ) . 'field_' . $folder . '.php',
+				trailingslashit( $path ) . 'class-redux-' . $folder . '.php',
+			);
+			$filename = Redux_Functions::file_exists_ex( $files );
+
+			if ( ! empty( $filename ) && file_exists( $filename ) ) {
 				require_once $filename;
-
-				$class = ucwords( str_replace( '-', '_', Redux_Helpers::remove_prefix( 'class-', $file->getBasename( '.php' ) ) ) );
-
+				// Load it here to save some resources in autoloading!
+				$class = 'Redux_' . ucwords( str_replace( '-', '_', $folder ) );
 				if ( class_exists( $class ) && is_subclass_of( $class, 'Redux_Field' ) ) {
-
-					$field_name             = strtolower( basename( dirname( $file->getRealPath() ) ) );
-					$classes[ $field_name ] = $class;
+					$classes[ $folder ] = $class;
 				}
 			}
 		}
+		print_r($classes);
 
 		// phpcs:ignore WordPress.NamingConventions.ValidHookName
 		$classes = apply_filters( 'redux/fields', $classes );
