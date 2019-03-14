@@ -27,7 +27,7 @@ if ( ! class_exists( 'Redux_Validation_Color', false ) ) {
 
 			if ( $sanitized_value !== $this->value ) {
 				// translators: %1$s: santizied value.  %2$s: Old value.
-				$this->field['msg'] = sprintf( esc_html__( 'Sanitized value and saved as %1$s instead of %2$s.', 'redux-framework' ), '<code>' . $sanitized_value . '</code>', '<code>' . $this->value . '</code>' );
+				$this->field['msg'] = isset( $this->field['msg'] ) ? $this->field['msg'] : sprintf( esc_html__( 'Sanitized value and saved as %1$s instead of %2$s.', 'redux-framework' ), '<code>' . $sanitized_value . '</code>', '<code>' . $this->value . '</code>' );
 
 				$this->warning = $this->field;
 			}

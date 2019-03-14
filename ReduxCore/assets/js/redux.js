@@ -393,7 +393,7 @@ function colorNameToHex( colour ) {
 		el.find( '#customize-save-button-wrapper #save' ).on(
 			'click',
 			function() {
-				$.redux.sanitize();
+
 			}
 		);
 
@@ -719,7 +719,6 @@ function colorNameToHex( colour ) {
 	$.redux = $.redux || {};
 
 	$.redux.sanitize = function() {
-		console.log(redux);
 		if ( redux.optName.sanitize && redux.optName.sanitize.sanitize ) {
 			$.each(
 				redux.optName.sanitize.sanitize,
@@ -740,7 +739,7 @@ function colorNameToHex( colour ) {
 		var val;
 
 		var input = $( 'input#' + value.id + '-' + key );
-console.log(input);
+
 		if ( 0 === input.length ) {
 			input = $( 'input#' + value.id );
 		}
