@@ -78,12 +78,7 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 
 			// If the file is not given make sure we have one.
 			if ( empty( $file ) ) {
-				try {
-					$this->_reflection_class = new ReflectionClass( get_class( $this ) );
-					$file                    = $this->_reflection_class->getFileName();
-				} catch ( ReflectionException $e ) { // phpcs:ignore
-					// There will never be an exception but annoying warning.
-				}
+				$file = $this->get_reflection()->getFileName();
 			}
 
 			$this->file = $file;
@@ -102,6 +97,23 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 			}
 
 			static::$instance = $this;
+		}
+
+		/**
+		 * Get the reflection class of the extension.
+		 *
+		 * @return ReflectionClass
+		 */
+		protected function get_reflection() {
+			if ( ! isset( $this->_reflection_class ) ) {
+				try {
+					$this->_reflection_class = new ReflectionClass( $this );
+				} catch ( ReflectionException $e ) { // phpcs:ignore
+					error_log( $e->getMessage() );
+				}
+			}
+
+			return $this->_reflection_class;
 		}
 
 		/**
@@ -134,7 +146,7 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		/**
 		 * Returns extension URL
 		 *
-		 * @return string|void
+		 * @return string
 		 */
 		public function get_url() {
 			return $this->extension_url;
@@ -158,12 +170,13 @@ if ( ! class_exists( 'Redux_Extension_Abstract', false ) ) {
 		 * @param string $field_name Name of field.
 		 */
 		protected function add_field( $field_name ) {
-			$class = $this->_reflection_class->getName();
+			$class = $this->get_reflection()->getName();
 
 			add_filter(
 				'redux/fields',
 				function ( $classes ) use ( $field_name, $class ) {
 					$classes[ $field_name ] = $class;
+
 					return $classes;
 				}
 			);

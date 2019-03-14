@@ -3,6 +3,7 @@
 /**
  * Class Redux_Rest_Api_Builder
  * The rest api to make the redux field builder.
+ *
  * @author Tofandel
  */
 class Redux_Rest_Api_Builder {

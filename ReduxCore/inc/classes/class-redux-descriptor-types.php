@@ -2,6 +2,7 @@
 
 /**
  * Class Redux_Descriptor_Types
+ *
  * @author Tofandel
  */
 abstract class Redux_Descriptor_Types {

@@ -4,6 +4,7 @@
  * Class Redux_Descriptor
  *
  * Used to describe redux fields
+ *
  * @author Tofandel
  */
 class Redux_Descriptor {
@@ -144,7 +145,7 @@ class Redux_Descriptor {
 	 * @return string
 	 */
 	public function to_doc() {
-		$doc = $this->name . "\n" . $this->description . "\n";
+		$doc  = $this->name . "\n" . $this->description . "\n";
 		$doc .= 'Fields:';
 		$this->sort_fields();
 		foreach ( $this->fields as $option ) {
