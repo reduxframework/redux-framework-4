@@ -3,6 +3,7 @@
 /**
  * Class Redux_Field_Descriptor_Fields
  * Used to map fields of field descriptors.
+ * @author Tofandel
  */
 class Redux_Descriptor_Fields implements ArrayAccess {
 	protected $options;

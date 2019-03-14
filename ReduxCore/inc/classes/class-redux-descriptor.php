@@ -4,6 +4,7 @@
  * Class Redux_Descriptor
  *
  * Used to describe redux fields
+ * @author Tofandel
  */
 class Redux_Descriptor {
 	protected $reflection_class;

@@ -3,8 +3,9 @@
 /**
  * Class Redux_Builder_Api
  * The rest api to make the redux field builder.
+ * @author Tofandel
  */
-class Redux_Builder_Api {
+class Redux_Rest_Api_Builder {
 
 	const ENDPOINT = 'redux_framework';
 	const VER = 'v1';
