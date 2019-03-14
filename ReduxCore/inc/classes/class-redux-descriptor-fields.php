@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Redux_Field_Descriptor_Fields
+ * Class Redux_Descriptor_Fields
  * Used to map fields of field descriptors.
  * @author Tofandel
  */
@@ -11,7 +11,7 @@ class Redux_Descriptor_Fields implements ArrayAccess {
 	public static $order = 0;
 
 	/**
-	 * Redux_Field_Descriptor_Fields constructor.
+	 * Redux_Descriptor_Fields constructor.
 	 *
 	 * @param string $name
 	 * @param string $title
