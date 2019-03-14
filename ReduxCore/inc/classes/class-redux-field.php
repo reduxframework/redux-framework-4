@@ -51,9 +51,9 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @return Redux_Descriptor
 		 */
 		public static function get_descriptor() {
-			$d = self::$descriptors[ get_called_class() ];
-
 			static::make_descriptor();
+
+			$d = self::$descriptors[ get_called_class() ];
 
 			//This part is out of opt name because it's non vendor dependant
 			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d );
