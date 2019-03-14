@@ -1,8 +1,11 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.7
 * Fixed:    #20 -  variable mssing $ dev.
-* Fixed:    Customizer not saving.
+* Fixed:    Customizer saving.
 * Fixed     Customizer 'required'.
+* Fixed:    button_set field not saving or loading in multi mode.
+* Change:   #19 - `validate_msg` field arg replaces `msg` for validation schemes.  Shim in place for backward compatibility.
 
 ## 4.0.1.6
 * Modified: Metabox lite loop not using correct extension key.
