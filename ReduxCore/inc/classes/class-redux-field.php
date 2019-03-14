@@ -9,12 +9,63 @@
 
 defined( 'ABSPATH' ) || exit;
 
+use Redux_Descriptor_Types as RDT;
+
 if ( ! class_exists( 'Redux_Field', false ) ) {
 
 	/**
 	 * Class Redux_Field
 	 */
 	abstract class Redux_Field {
+
+		/**
+		 * @var Redux_Descriptor[]
+		 */
+		public static $descriptors = array();
+
+		/**
+		 * Make base descriptor.
+		 *
+		 * @return Redux_Descriptor
+		 */
+		public static function make_base_descriptor() {
+			self::$descriptors[ get_called_class() ] = $d = new Redux_Descriptor( get_called_class() );
+
+			$d->add_field( 'id', __( 'Field ID' ), RDT::TEXT )
+			  ->set_order( 0 )
+			  ->set_required();
+			$d->add_field( 'required', null, RDT::BOOL, __( 'Should the field be required' ), false )
+			  ->set_order( 1 );
+			$d->add_field( 'readonly', null, RDT::BOOL, __( 'Should the field be readonly' ), false )
+			  ->set_order( 20 );
+			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'output', __( 'CSS Output' ), RDT::BOOL, '', false );
+
+			return $d;
+		}
+
+		/**
+		 * Get descriptor.
+		 *
+		 * @return Redux_Descriptor
+		 */
+		public static function get_descriptor() {
+			$d = self::$descriptors[ get_called_class() ];
+
+			static::make_descriptor();
+
+			//This part is out of opt name because it's non vendor dependant
+			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d );
+		}
+
+		/**
+		 * Build the field descriptor in this function.
+		 */
+		public static function make_descriptor() {
+			static::make_base_descriptor();
+		}
+
 
 		/**
 		 * CSS styling per field output/compiler.
