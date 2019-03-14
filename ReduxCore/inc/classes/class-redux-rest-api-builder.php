@@ -87,43 +87,37 @@ class Redux_Rest_Api_Builder {
 	public function list_fields() {
 		$fields     = array();
 		$fields_dir = trailingslashit( ReduxCore::$dir ) . 'inc' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR;
-		$dirs       = scandir( $fields_dir );
+		$dirs       = new RecursiveDirectoryIterator( $fields_dir );
 		$classes    = array();
-		foreach ( $dirs as $folder ) {
-			if ( $folder != '.' && $folder != '..' ) {
-				$files = array(
-					$fields_dir . $folder . DIRECTORY_SEPARATOR . 'field_' . $folder . '.php',
-				);
+		foreach ( $dirs as $file ) {
+			/**
+			 * @var SplFileObject $file
+			 */
+			if ( $file->isFile() && $file->getExtension() == 'php' ) {
+				$filename = $file->getRealPath();
+				// Load it here to save some resources in autoloading!
+				require_once $filename;
 
-				$filename = Redux_Functions::file_exists_ex( $files );
+				$class = ucwords( str_replace( '-', '_', Redux_Helpers::remove_prefix( 'class-', $file->getBasename( '.php' ) ) ) );
 
-				if ( ! empty( $filename ) ) {
-					$classes[ $folder ] = $filename;
-					require_once $filename;
-					// Load it here to save some resources in autoloading!
+				if ( class_exists( $class ) && is_subclass_of( $class, 'Redux_Field' ) ) {
+
+					$field_name             = strtolower( basename( dirname( $file->getRealPath() ) ) );
+					$classes[ $field_name ] = $class;
 				}
 			}
 		}
 
 		// phpcs:ignore WordPress.NamingConventions.ValidHookName
 		$classes = apply_filters( 'redux/fields', $classes );
-		foreach ( $classes as $field => $file ) {
+		foreach ( $classes as $field => $class ) {
 			/**
 			 * Loops over the classes
 			 *
-			 * @var class Redux_Descriptor_Field $descriptor
+			 * @var Redux_Descriptor $descriptor
 			 */
-
-			$field_classes = array( 'Redux_' . ucwords( $field ), 'ReduxFramework_' . ucwords( $field ) );
-			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
-
-			if ( $field_class && file_exists( $file ) ) {
-				require_once $file;
-			}
-
-
-			if ( is_subclass_of( $field_class, 'Redux_Field' ) ) {
-				$descriptor = call_user_func( array( $field_class, 'get_descriptor' ) );
+			if ( is_subclass_of( $class, 'Redux_Field' ) ) {
+				$descriptor = call_user_func( array( $class, 'get_descriptor' ) );
 				if ( ! empty( $descriptor->get_field_type() ) ) {
 					$fields[ $descriptor->get_field_type() ] = $descriptor->to_array();
 				}
@@ -136,11 +130,11 @@ class Redux_Rest_Api_Builder {
 	/**
 	 * Get the information of a field.
 	 *
-	 * @param string $data Pointer to ReduxFramework object.
+	 * @param array $data Pointer to ReduxFramework object.
 	 *
 	 * @return array
 	 */
-	public function get_field( $data = '' ) {
+	public function get_field( $data = array() ) {
 		$type = $data[ 'type' ];
 
 		if ( ! empty( $type ) ) {
@@ -151,7 +145,7 @@ class Redux_Rest_Api_Builder {
 				/**
 				 * Test if the field exists
 				 *
-				 * @var Redux_Descriptor_Field $descriptor
+				 * @var Redux_Descriptor $descriptor
 				 */
 				$descriptor = call_user_func( array( 'Redux_' . $type, 'get_descriptor' ) );
 
@@ -166,46 +160,50 @@ class Redux_Rest_Api_Builder {
 	/**
 	 * Render the html of a field and return it to the api.
 	 *
-	 * @param string $data Name of field.
+	 * @param array $data Name of field.
 	 *
 	 * @return array
 	 */
-	public function render_field( $data = '' ) {
+	public function render_field( $data = array() ) {
 
 		// TODO MODIFY the function to get the post data from the data object with a post method in the register route!
 		$type = $data[ 'type' ];
-		if ( ! empty( $type ) && class_exists( 'ReduxFramework_' . $type ) && is_subclass_of( 'ReduxFramework_' . $type, 'Redux_Field' ) ) {
-			try {
-				$class = new ReflectionClass( 'ReduxFramework_' . $type );
-			} catch ( ReflectionException $e ) {
-				return array( 'success' => false );
+		if ( ! empty( $type ) ) {
+			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
+			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
+			if ( $field_class && is_subclass_of( $field_class, 'Redux_Field' ) ) {
+				try {
+					$class = new ReflectionClass( 'ReduxFramework_' . $type );
+				} catch ( ReflectionException $e ) {
+					return array( 'success' => false );
+				}
+				$opt_name = 'my_opt_name';
+				// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
+				if ( ! empty( $_REQUEST[ 'opt_name' ] ) ) {
+					$opt_name = $_REQUEST[ 'opt_name' ];
+				}
+
+				/**
+				 * Grab the field descriptor
+				 *
+				 * @var Redux_Descriptor $descriptor
+				 */
+				$descriptor = call_user_func( array( 'ReduxFramework_' . $type, 'get_descriptor' ) );
+
+				$redux_instance = new ReduxFramework( array(), array( 'opt_name' => $opt_name ) );
+				$req            = $descriptor->parse_request( $_REQUEST );
+				$field          = $class->newInstance(
+					$req,
+					isset( $_REQUEST[ 'example_values' ] ) ? $_REQUEST[ 'example_values' ] : '', $redux_instance
+				);
+				ob_start();
+				$field->render();
+
+				return array(
+					'success' => true,
+					'render'  => ob_get_clean(),
+				);
 			}
-			$opt_name = 'my_opt_name';
-			// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
-			if ( ! empty( $_REQUEST[ 'opt_name' ] ) ) {
-				$opt_name = $_REQUEST[ 'opt_name' ];
-			}
-
-			/**
-			 * Grab the field descriptor
-			 *
-			 * @var Redux_Descriptor_Field $descriptor
-			 */
-			$descriptor = call_user_func( array( 'ReduxFramework_' . $type, 'get_descriptor' ) );
-
-			$redux_instance = new ReduxFramework( array(), array( 'opt_name' => $opt_name ) );
-			$req            = $descriptor->parse_request( $_REQUEST );
-			$field          = $class->newInstance(
-				$req,
-				isset( $_REQUEST[ 'example_values' ] ) ? $_REQUEST[ 'example_values' ] : '', $redux_instance
-			);
-			ob_start();
-			$field->render();
-
-			return array(
-				'success' => true,
-				'render'  => ob_get_clean(),
-			);
 		}
 
 		return array( 'success' => false );

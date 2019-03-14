@@ -34,7 +34,7 @@ class Redux_Descriptor {
 		} catch ( ReflectionException $e ) {
 			die ( $e->getMessage() );
 		}
-		$this->field_type = strtolower( Redux_Helpers::remove_prefix( $this->reflection_class->getShortName(), 'ReduxFramework_' ) );
+		$this->field_type = strtolower( Redux_Helpers::remove_prefix( $this->reflection_class->getShortName(), 'Redux_' ) );
 		$this->name       = ucfirst( $this->field_type );
 	}
 
