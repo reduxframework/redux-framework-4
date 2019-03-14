@@ -21,10 +21,26 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 	class Redux_Helpers {
 
 		/**
+		 * @param string $text
+		 * @param string $prefix
+		 *
+		 * @return string
+		 */
+		public static function remove_prefix( $text, $prefix ) {
+			if ( 0 === strpos( $text, $prefix ) ) {
+				$text = substr( $text, strlen( $prefix ) );
+			}
+
+			return $text;
+		}
+
+		/**
 		 * Retrieve section array from field ID.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $field_id Field ID.
+		 *
+		 * @return mixed
 		 */
 		public static function section_from_field_id( $opt_name = '', $field_id = '' ) {
 			if ( '' !== $opt_name ) {
@@ -1145,19 +1161,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			return $sysinfo;
 		}
 
-		/**
-		 * Deprecated. Returns array of Redux templates.
-		 *
-		 * @param string $custom_template_path Path to custom template.
-		 *
-		 * @deprecated No longer using camelCase naming convention.
-		 * @return Redux_Helpers::get_redux_templates( $custom_template_path )
-		 */
-		private static function getReduxTemplates( $custom_template_path ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::get_redux_templates( $custom_template_path )' );
-
-			return self::get_redux_templates( $custom_template_path );
-		}
 
 		/**
 		 * Returns array of Redux templates.
@@ -1167,7 +1170,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return array
 		 */
 		private static function get_redux_templates( $custom_template_path ) {
-			$filesystem         = Redux_Filesystem::get_instance();
 			$template_paths     = array( 'ReduxFramework' => Redux_Core::$dir . 'templates/panel' );
 			$scanned_files      = array();
 			$found_files        = array();

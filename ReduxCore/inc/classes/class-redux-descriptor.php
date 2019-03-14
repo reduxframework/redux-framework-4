@@ -23,7 +23,7 @@ class Redux_Descriptor {
 	protected $current_field;
 
 	/**
-	 * Redux_Field_Descriptor constructor.
+	 * Redux_Descriptor constructor.
 	 *
 	 * @param $field
 	 */
