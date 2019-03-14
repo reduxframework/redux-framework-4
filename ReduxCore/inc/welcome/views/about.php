@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 	<div class="about-text">
-		<?php esc_html_e( "Redux is world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
+		<?php esc_html_e( "Redux is the world's most powerful and widely used WordPress interface builder. We are trusted by millions of developers and end users world-wide.", 'redux-framework' ); ?>
 	</div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
@@ -79,8 +79,6 @@ defined( 'ABSPATH' ) || exit;
 
 		<div class="col">
 			<?php
-
-
 			if ( ! empty( $sysinfo ) && is_array( $sysinfo ) ) {
 				$plugin_index = array();
 				$plugin_data  = get_plugins();
@@ -119,9 +117,13 @@ defined( 'ABSPATH' ) || exit;
 									<?php
 									foreach ( $products as $slug => $data ) {
 										foreach ( $data as $opt_name => $callers ) {
+											echo '<span><strong>opt_name</strong>: <code>' . esc_html( $opt_name ) . '</code></span><br />';
+
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
+
+											echo '<br />';
 										}
 									}
 									?>
@@ -153,7 +155,9 @@ defined( 'ABSPATH' ) || exit;
 										$plugin_url = ! empty( $plugin_data['AuthorURI'] ) ? $plugin_data['AuthorURI'] : $plugin_data['PluginURI'];
 										?>
 										<?php echo esc_html__( 'By', 'redux-framework' ); ?>
-										<a href="<?php echo esc_attr( $plugin_url ); ?>"><?php echo esc_html( trim( wp_strip_all_tags( $plugin_data['Author'] ) ) ); ?></a>
+										<a href="<?php echo esc_attr( $plugin_url ); ?>">
+											<?php echo esc_html( trim( wp_strip_all_tags( $plugin_data['Author'] ) ) ); ?>
+										</a>
 									<?php } ?>
 									<span class="type plugin">
 									<?php echo esc_html__( 'Plugin', 'redux-framework' ); ?>
@@ -164,11 +168,11 @@ defined( 'ABSPATH' ) || exit;
 									<small>
 										<?php
 										foreach ( $data as $opt_name => $callers ) {
-											echo '<span>Opt name : ' . esc_html( $opt_name ) . '</span><br />';
+											echo '<span><strong>opt_name</strong>: <code>' . esc_html( $opt_name ) . '</code></span><br />';
+
 											foreach ( $callers as $caller ) {
 												echo '<span>~/' . esc_html( $caller['basename'] ) . '</span><br />';
 											}
-											echo '<br />';
 										}
 										?>
 									</small>

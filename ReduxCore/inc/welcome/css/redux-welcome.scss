@@ -4,6 +4,10 @@ $orange: #ffba00;
 $blue: #2ea2cc;
 
 .about-wrap {
+    hr {
+        border: inherit;
+        border-top: 1px solid #ccc;
+    }
     &.redux-status {
         .updated,
         .error {

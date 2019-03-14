@@ -239,9 +239,10 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 			if ( empty( $this->boxes ) || ! is_array( $this->boxes ) ) {
 				return;
 			}
-			if ( isset( self::$server['HTTP_HOST'] ) && isset( self::$server['REQUEST_URI'] ) ) {
-				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ); // Safe & Reliable.
-				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( self::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( self::$server['REQUEST_URI'] ) ) );
+
+			if ( isset( Redux_Core::$server['HTTP_HOST'] ) && isset( Redux_Core::$server['REQUEST_URI'] ) ) {
+				$this->base_url = ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( Redux_Core::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( Redux_Core::$server['REQUEST_URI'] ) ); // Safe & Reliable.
+				$this->post_id  = $this->url_to_postid( ( is_ssl() ? 'https://' : 'http://' ) . sanitize_text_field( wp_unslash( Redux_Core::$server['HTTP_HOST'] ) ) . sanitize_text_field( wp_unslash( Redux_Core::$server['REQUEST_URI'] ) ) );
 			}
 
 			if ( is_admin() && isset( $_GET['post_type'] ) && ! empty( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -547,7 +548,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					if ( $this->parent->args['dev_mode'] ) {
 						wp_enqueue_style(
 							'redux-extension-metaboxes-js',
-							apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->extension_url . 'redux-metaboxes.css' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
+							apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->extension_url . 'redux-extension-metaboxes.css' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
 							array(),
 							self::$version,
 							'all'
@@ -562,7 +563,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					 */
 					wp_enqueue_script(
 						'redux-extension-metaboxes-js',
-						apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->extension_url . 'redux-metaboxes' . Redux_Functions::isMin() . '.js' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
+						apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->extension_url . 'redux-extension-metaboxes' . Redux_Functions::isMin() . '.js' ), // phpcs:ignore: WordPress.NamingConventions.ValidHookName
 						array( 'jquery', 'redux-js' ),
 						self::$version,
 						true
@@ -1095,6 +1096,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 					}
 
 					$meta = wp_parse_args( $this->get_meta( $the_post->ID ), $defaults );
+
 					$this->post_type_fields[ $the_post->post_type ] = $meta;
 				}
 
@@ -1286,7 +1288,6 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 		 * @return mixed
 		 */
 		public function meta_boxes_save( $post_id, $post ) {
-
 			if ( isset( $_POST['vc_inline'] ) && sanitize_text_field( wp_unslash( $_POST['vc_inline'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $post_id;
 			}
@@ -1488,7 +1489,7 @@ if ( ! function_exists( 'redux_metaboxes_loop_start' ) ) {
 	 */
 	function redux_metaboxes_loop_start( $opt_name, $the_post = array() ) {
 		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
+		$metaboxes = $redux->extensions['metaboxes_lite'];
 
 		$metaboxes->loop_start( $the_post );
 	}
@@ -1503,7 +1504,7 @@ if ( ! function_exists( 'redux_metaboxes_loop_end' ) ) {
 	 */
 	function redux_metaboxes_loop_end( $opt_name, $the_post = array() ) {
 		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
+		$metaboxes = $redux->extensions['metaboxes_lite'];
 
 		$metaboxes->loop_end();
 	}
@@ -1521,25 +1522,6 @@ if ( ! function_exists( 'redux_post_meta' ) ) {
 	 * @return string|void
 	 */
 	function redux_post_meta( $opt_name = '', $the_post = array(), $meta_key = '', $def_val = '' ) {
-		global $post;
-
-		if ( empty( $opt_name ) ) {
-			return;
-		}
-
-		$redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-		$metaboxes = $redux->extensions['metaboxes'];
-
-		if ( isset( $the_post ) && is_array( $the_post ) ) {
-			$the_post = $post;
-		} elseif ( ! isset( $the_post ) || 0 === $the_post ) {
-			return $def_val;
-		} elseif ( is_numeric( $the_post ) ) {
-			$the_post = get_post( $the_post );
-		} elseif ( ! is_object( $the_post ) ) {
-			$the_post = $post;
-		}
-
-		return $metaboxes->get_values( $the_post, $meta_key, $def_val );
+		return Redux::get_post_meta( $opt_name, $the_post, $meta_key, $def_val );
 	}
 }

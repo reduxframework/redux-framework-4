@@ -19,12 +19,25 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 		 * Field render.
 		 */
 		public function render() {
+
 			$this->redux_id = str_replace( 'customize-control-', '', 'customize-control-' . str_replace( '[', '-', str_replace( ']', '', $this->id ) ) );
 			$class          = 'customize-control redux-group-tab redux-field customize-control-' . $this->type;
-			$opt_name       = explode( '[', $this->id );
-			$opt_name       = $opt_name[0];
+			$opt_name_arr   = explode( '[', $this->id );
+			$opt_name       = $opt_name_arr[0];
+			$field_id       = str_replace( ']', '', $opt_name_arr[1] );
+
+			$section = Redux_Helpers::section_from_field_id( $opt_name, $field_id );
+
+			if ( isset( $section['disabled'] ) && true === $section['disabled'] ) {
+				$class .= ' disabled';
+			}
+
+			if ( isset( $section['hidden'] ) && true === $section['hidden'] ) {
+				$class .= ' hidden';
+			}
+
 			?>
-			<li id="<?php echo esc_attr( $this->redux_id ); ?>" class="<?php echo esc_attr( $class ); ?>">
+			<li id="<?php echo esc_attr( $this->redux_id ); ?>-li" class="<?php echo esc_attr( $class ); ?>">
 				<?php if ( 'repeater' !== $this->type ) { ?>
 					<input
 						type="hidden"

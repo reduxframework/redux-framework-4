@@ -41,11 +41,7 @@
 
 			// Weed out multiple instances of duplicate Redux instance.
 			if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
-				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
-
-				opt_name = li.data( 'opt-name' );
-
-				redux.optName = window['redux_' + opt_name];
+				$( '.wp-full-overlay-sidebar' ).addClass( 'redux-container' );
 			}
 
 			$( '.redux-container' ).each(
@@ -114,6 +110,7 @@
 	$.redux.getOptName = function( el ) {
 		var classes;
 		var metabox;
+		var li;
 
 		var optName = $( el ).data( 'opt-name' );
 
@@ -133,6 +130,10 @@
 				classes = classes.trim();
 
 				optName = classes;
+			} else if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
+				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
+
+				optName = li.data( 'opt-name' );
 			} else {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
 			}

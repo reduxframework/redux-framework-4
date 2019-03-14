@@ -100,27 +100,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		public static $extension_paths = array();
 
 		/**
-		 * Comment.
-		 *
-		 * @param object $closure ?.
-		 * @param array  $args    ?.
-		 *
-		 * @return mixed
-		 */
-		public function __call( $closure, $args ) {
-			return call_user_func_array( $this->{$closure}->bindTo( $this ), $args );
-		}
-
-		/**
-		 * Comment.
-		 *
-		 * @return mixed
-		 */
-		public function __toString() {
-			return call_user_func( $this->{'__toString'}->bindTo( $this ) );
-		}
-
-		/**
 		 * Code to run at creation in instance.
 		 */
 		public static function load() {
@@ -129,7 +108,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
 
 			if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
-				include_once Redux_Core::$dir . 'inc/lib/array_column.php';
+				include_once Redux_Core::$dir . 'inc/lib/array-column.php';
 			}
 		}
 
@@ -186,7 +165,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( $instance_extensions ) {
 				foreach ( $instance_extensions as $name => $extension ) {
-					if ( ! class_exists( $extension['class'] ) ) {
+					$old_class = str_replace( 'Redux_', 'ReduxFramework_', $extension['class'] );
+
+					if ( ! class_exists( $extension['class'] ) && ! class_exists( $old_class ) ) {
+
 						// In case you wanted override your override, hah.
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						$extension['path'] = apply_filters( 'redux/extension/' . $redux_framework->args['opt_name'] . '/' . $name, $extension['path'] );
@@ -195,24 +177,15 @@ if ( ! class_exists( 'Redux', false ) ) {
 							require_once $extension['path'];
 						}
 					}
+
 					if ( ! isset( $redux_framework->extensions[ $name ] ) ) {
-						if ( class_exists( $extension['class'] ) ) {
-							$redux_framework->extensions[ $name ] = new $extension['class']( $redux_framework );
+						$field_classes = array( $extension['class'], $old_class );
+						$ext_class     = Redux_Functions::class_exists_ex( $field_classes );
+
+						if ( false !== $ext_class ) {
+							$redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
 						} else {
-							$ext_name = str_replace( 'ReduxFramework_Extension_', '', $extension['class'] );
-							$ext_name = str_replace( '_', ' ', $ext_name );
-							$ext_name = ucwords( $ext_name );
-
-							// phpcs:ignore Squiz.PHP.CommentedOutCode
-							/* _deprecated_file( 'The ' . esc_html( $ext_name ) . ' extension', esc_html( $extension['version'] ) . ' due to incompatibility with Redux v4', 'an updated version from https://reduxframework.com/extensions' ); */
-
-							$old_class = str_replace( 'ReduxFramework_', 'Redux_', $extension['class'] );
-
-							if ( class_exists( $old_class ) ) {
-								$redux_framework->extensions[ $name ] = new $old_class( $redux_framework );
-							} else {
-								echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
-							}
+							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
 						}
 					}
 				}
@@ -220,7 +193,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated function to set extension path.
+		 * Deprecated function to set extension path.
 		 *
 		 * @param      string $extension Path.
 		 * @param      bool   $folder    Set if path is a folder.
@@ -255,7 +228,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated function of Load Redux Framework.
+		 * Deprecated function of Load Redux Framework.
 		 *
 		 * @param string $opt_name Panrl opt_name.
 		 *
@@ -326,6 +299,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			$check = self::instance( $opt_name );
 
+			Redux_Functions_Ex::record_caller( $opt_name );
+
 			if ( isset( $check->api_has_run ) ) {
 				return;
 			}
@@ -347,7 +322,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Create Redux instance.
+		 * Deprecated Create Redux instance.
 		 *
 		 * @deprecated No longer using camelCase naming convention.
 		 */
@@ -362,7 +337,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			foreach ( self::$sections as $opt_name => $the_sections ) {
 				if ( ! empty( $the_sections ) ) {
 					if ( ! self::$init[ $opt_name ] ) {
-						self::load_redux( $opt_name );
+						self::loadRedux( $opt_name );
 					}
 				}
 			}
@@ -455,7 +430,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Retrieve panel section.
+		 * Deprecated Retrieve panel section.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Section ID.
@@ -490,7 +465,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Create a section of the option panel.
+		 * Deprecated Create a section of the option panel.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $sections Section ID.
@@ -498,9 +473,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setSections( $opt_name = '', $sections = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::set_sections( $opt_name, $sections );
 		}
 
@@ -511,10 +487,13 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $sections Section ID.
 		 */
 		public static function set_sections( $opt_name = '', $sections = array() ) {
-			if ( empty( $sections ) ) {
+			if ( empty( $sections ) || '' === $opt_name ) {
 				return;
 			}
+
 			self::check_opt_name( $opt_name );
+
+			Redux_Functions_Ex::record_caller( $opt_name );
 
 			if ( ! empty( $sections ) ) {
 				foreach ( $sections as $section ) {
@@ -524,7 +503,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Retrieve all sections from the option panel.
+		 * Deprecated Retrieve all sections from the option panel.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 *
@@ -553,7 +532,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Remove option panel by ID.
+		 * Deprecated Remove option panel by ID.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Sectio ID.
@@ -562,9 +541,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function removeSection( $opt_name = '', $id = '', $fields = false ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::remove_section( $opt_name, $id, $fields );
 		}
 
@@ -576,8 +556,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param bool   $fields   Remove fields.
 		 */
 		public static function remove_section( $opt_name = '', $id = '', $fields = false ) {
-			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
-
+			if ( '' !== $opt_name && '' !== $id ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 
 				if ( isset( self::$sections[ $opt_name ][ $id ] ) ) {
@@ -610,15 +589,18 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Sets a single option panel section.
+		 * Deprecated Sets a single option panel section.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $section  Section data.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setSection( $opt_name = '', $section = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::set_section( $opt_name, $section );
 		}
 
@@ -627,9 +609,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $section  Section data.
+		 * @param bool   $replace  Replaces section instead of creating a new one.
 		 */
-		public static function set_section( $opt_name = '', $section = array() ) {
-			if ( empty( $section ) ) {
+		public static function set_section( $opt_name = '', $section = array(), $replace = false ) {
+			if ( empty( $section ) || '' === $opt_name ) {
 				return;
 			}
 
@@ -648,13 +631,25 @@ if ( ! class_exists( 'Redux', false ) ) {
 					}
 				}
 
-				if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
+				if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) && ! $replace ) {
 					$orig = $section['id'];
 					$i    = 0;
 
 					while ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
 						$section['id'] = $orig . '_' . $i;
 						$i ++;
+					}
+				} elseif ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) && $replace ) {
+					// If replace is set, let's update the default values with these ones!
+					$fields = false;
+					if ( isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) && ! empty( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) ) {
+						$fields = self::$sections[ $opt_name ][ $section['id'] ]['fields'];
+					}
+					self::$sections[ $opt_name ][ $section['id'] ] = wp_parse_args( $section, self::$sections[ $opt_name ][ $section['id'] ] );
+					if ( ! empty( $fields ) ) {
+						if ( ! isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) || ( isset( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) && empty( self::$sections[ $opt_name ][ $section['id'] ]['fields'] ) ) ) {
+							self::$sections[ $opt_name ][ $section['id'] ]['fields'] = $fields;
+						}
 					}
 				}
 			}
@@ -686,7 +681,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Hides an option panel section.
+		 * Deprecated Hides an option panel section.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Section ID.
@@ -695,9 +690,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function hideSection( $opt_name = '', $id = '', $hide = true ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::hide_section( $opt_name, $id, $hide );
 		}
 
@@ -711,8 +707,9 @@ if ( ! class_exists( 'Redux', false ) ) {
 		public static function hide_section( $opt_name = '', $id = '', $hide = true ) {
 			self::check_opt_name( $opt_name );
 
-			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
+			if ( '' !== $opt_name && '' !== $id ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
+
 				if ( isset( self::$sections[ $opt_name ][ $id ] ) ) {
 					self::$sections[ $opt_name ][ $id ]['hidden'] = $hide;
 				}
@@ -732,15 +729,13 @@ if ( ! class_exists( 'Redux', false ) ) {
 					if ( ! is_array( $field ) ) {
 						continue;
 					}
-
-					$field['section_id'] = $section_id;
-					self::set_field( $opt_name, $field );
+					self::set_field( $opt_name, $section_id, $field );
 				}
 			}
 		}
 
 		/**
-		 * Depreciated Retrieves an option panel field.
+		 * Deprecated Retrieves an option panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Field ID.
@@ -749,7 +744,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return bool
 		 */
 		public static function getField( $opt_name = '', $id = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			Redux_Functions_Ex::record_caller( $opt_name );
 			return self::get_field( $opt_name, $id );
 		}
 
@@ -772,21 +766,24 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Hides an optio panel field.
+		 * Deprecated Hides an optio panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Field ID.
 		 * @param bool   $hide     Set hide/show.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function hideField( $opt_name = '', $id = '', $hide = true ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::hide_field( $opt_name, $id, $hide );
 		}
 
 		/**
-		 * Hides an optio panel field.
+		 * Hides an option panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Field ID.
@@ -795,7 +792,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		public static function hide_field( $opt_name = '', $id = '', $hide = true ) {
 			self::check_opt_name( $opt_name );
 
-			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
+			if ( '' !== $opt_name && '' !== $id ) {
 				if ( isset( self::$fields[ $opt_name ][ $id ] ) ) {
 					Redux_Functions_Ex::record_caller( $opt_name );
 
@@ -809,25 +806,30 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Creates an option panel field.
+		 * Deprecated Creates an option panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
+		 * @param array  $section_id    Section ID this field belongs to.
 		 * @param array  $field    Field data.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
 		 */
-		public static function setField( $opt_name = '', $field = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+		public static function setField( $opt_name = '', $section_id = '', $field = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
-			self::set_field( $opt_name, $field );
+
+			self::set_field( $opt_name, $section_id, $field );
 		}
 
 		/**
-		 * Creates an option panel field.
+		 * Creates an option panel field and adds to a section.
 		 *
-		 * @param string $opt_name Panel opt_name.
-		 * @param array  $field    Field data.
+		 * @param string $opt_name      Panel opt_name.
+		 * @param array  $section_id    Section ID this field belongs to.
+		 * @param array  $field         Field data.
 		 */
-		public static function set_field( $opt_name = '', $field = array() ) {
+		public static function set_field( $opt_name = '', $section_id = '', $field = array() ) {
 			if ( empty( $field ) ) {
 				return;
 			}
@@ -835,19 +837,54 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( ! empty( $opt_name ) && is_array( $field ) && ! empty( $field ) ) {
-				if ( ! isset( $field['priority'] ) ) {
-					$field['priority'] = self::get_priority( $opt_name, 'fields' );
-				}
+			// Shim for the old method!
+			if ( is_array( $section_id ) ) {
+				$section_id_holder = $field;
+				$field             = $section_id;
+				$section_id        = $section_id_holder;
+			}
 
-				if ( isset( $field['id'] ) ) {
-					self::$fields[ $opt_name ][ $field['id'] ] = $field;
+			if ( '' !== $opt_name && '' !== $section_id && is_array( $field ) && ! empty( $field ) ) {
+				if ( '' !== $section_id ) {
+					$field['section_id'] = $section_id;
+				}
+				if ( ! isset( $field['section_id'] ) || ( isset( $field['section_id'] ) && ! empty( $field['section_id'] ) ) ) {
+					if ( ! isset( $field['priority'] ) ) {
+						$field['priority'] = self::get_priority( $opt_name, 'fields' );
+					}
+
+					if ( isset( $field['id'] ) ) {
+						self::$fields[ $opt_name ][ $field['id'] ] = $field;
+					}
 				}
 			}
 		}
 
 		/**
-		 * Depreciated Removes an option panel field.
+		 * Create multiple fields of the option panel and apply to a section.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $section_id    Section ID this field belongs to.
+		 * @param array  $fields Array of field arrays.
+		 */
+		public static function set_fields( $opt_name = '', $section_id = '', $fields = array() ) {
+			if ( empty( $fields ) ) {
+				return;
+			}
+			self::check_opt_name( $opt_name );
+
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
+			Redux_Functions_Ex::record_caller( $opt_name );
+
+			if ( '' !== $opt_name && '' !== $section_id && is_array( $fields ) && ! empty( $fields ) ) {
+				foreach ( $fields as $field ) {
+					self::set_field( $opt_name, $field, $section_id );
+				}
+			}
+		}
+
+		/**
+		 * Deprecated Removes an option panel field.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $id       Field ID.
@@ -856,9 +893,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return bool
 		 */
 		public static function removeField( $opt_name = '', $id = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			return self::remove_field( $opt_name, $id );
 		}
 
@@ -871,9 +909,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return bool
 		 */
 		public static function remove_field( $opt_name = '', $id = '' ) {
-
-			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
-
+			if ( '' !== $opt_name && '' !== $id ) {
 				self::check_opt_name( $opt_name );
 
 				Redux_Functions_Ex::record_caller( $opt_name );
@@ -901,7 +937,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Sets help tabs on option panel admin page.
+		 * Deprecated Sets help tabs on option panel admin page.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $tab      Tab data.
@@ -909,9 +945,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setHelpTab( $opt_name = '', $tab = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
-				Redux_Functions_Ex::record_caller( $opt_name );
-			}
 			self::set_help_tab( $opt_name, $tab );
 		}
 
@@ -925,11 +958,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( empty( $tab ) ) {
 				return;
 			}
+
 			self::check_opt_name( $opt_name );
 
-			Redux_Functions_Ex::record_caller( $opt_name );
-
-			if ( ! empty( $opt_name ) && ! empty( $tab ) ) {
+			if ( '' !== $opt_name && ! empty( $tab ) ) {
 				if ( ! isset( self::$args[ $opt_name ]['help_tabs'] ) ) {
 					self::$args[ $opt_name ]['help_tabs'] = array();
 				}
@@ -945,7 +977,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Depreciated Sets the help sidebar content.
+		 * Deprecated Sets the help sidebar content.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $content  Content.
@@ -953,9 +985,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setHelpSidebar( $opt_name = '', $content = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
-				Redux_Functions_Ex::record_caller( $opt_name );
-			}
 			self::set_help_sidebar( $opt_name, $content );
 		}
 
@@ -966,20 +995,16 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param string $content  Content.
 		 */
 		public static function set_help_sidebar( $opt_name = '', $content = '' ) {
-			if ( empty( $content ) || empty( $opt_name ) ) {
+			if ( '' === $content || '' === $opt_name ) {
 				return;
 			}
 			self::check_opt_name( $opt_name );
 
-			Redux_Functions_Ex::record_caller( $opt_name );
-
-			if ( ! empty( $opt_name ) && ! empty( $content ) ) {
-				self::$args[ $opt_name ]['help_sidebar'] = $content;
-			}
+			self::$args[ $opt_name ]['help_sidebar'] = $content;
 		}
 
 		/**
-		 * Depreciated Sets option panel global arguments.
+		 * Deprecated Sets option panel global arguments.
 		 *
 		 * @param string $opt_name Panel opt_name.
 		 * @param array  $args     Argument data.
@@ -987,9 +1012,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setArgs( $opt_name = '', $args = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::set_args( $opt_name, $args );
 		}
 
@@ -1000,14 +1026,15 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $args     Argument data.
 		 */
 		public static function set_args( $opt_name = '', $args = array() ) {
-			if ( empty( $args ) || empty( $opt_name ) ) {
+			if ( empty( $args ) || '' === $opt_name ) {
 				return;
 			}
+
 			self::check_opt_name( $opt_name );
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( ! empty( $opt_name ) && ! empty( $args ) && is_array( $args ) ) {
+			if ( '' !== $opt_name && ! empty( $args ) && is_array( $args ) ) {
 				if ( isset( self::$args[ $opt_name ] ) && isset( self::$args[ $opt_name ]['clearArgs'] ) ) {
 					self::$args[ $opt_name ] = array();
 				}
@@ -1022,7 +1049,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param string $arg      Args data.
 		 */
 		public static function set_developer( $opt_name = '', $arg = '' ) {
-			if ( empty( $arg ) || empty( $opt_name ) ) {
+			if ( empty( $arg ) || '' === $opt_name ) {
 				return;
 			}
 
@@ -1050,16 +1077,22 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Retrives option panel global arguemnt array.
 		 *
 		 * @param string $opt_name Panel opt_name.
+		 * @param string $key Argument key name to be returned.
 		 *
 		 * @return mixed
 		 */
-		public static function get_args( $opt_name = '' ) {
+		public static function get_args( $opt_name = '', $key = '' ) {
 			self::check_opt_name( $opt_name );
 
-			if ( ! empty( $opt_name ) && ! empty( self::$args[ $opt_name ] ) ) {
+			if ( ! empty( $opt_name ) && ! empty( $key ) ) {
+				if ( ! empty( self::$args[ $opt_name ] ) ) {
+					return self::$args[ $opt_name ][ $key ];
+				} else {
+					return null;
+				}
+			} elseif ( ! empty( $opt_name ) && ! empty( self::$args[ $opt_name ] ) ) {
 				return self::$args[ $opt_name ];
 			}
-			return null;
 		}
 
 		/**
@@ -1068,11 +1101,11 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param string $opt_name Panel opt_name.
 		 * @param string $key      Argument name.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
+		 * @deprecated No longer using camelCase naming convention and using singular function Redux::get_args() now.
 		 * @return mixed
 		 */
 		public static function getArg( $opt_name = '', $key = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			return self::get_arg( $opt_name, $key );
+			return self::get_args( $opt_name, $key );
 		}
 
 		/**
@@ -1108,6 +1141,56 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
+		 * Retrieves meta for a given post page, IE WordPress meta values
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $the_post Post object to denote the current post, or custom.
+		 * @param string $key      Option key.
+		 * @param string $default  Default value.
+		 *
+		 * @return mixed
+		 */
+		public static function get_post_meta( $opt_name = '', $the_post = array(), $key = '', $default = null ) {
+			self::check_opt_name( $opt_name );
+
+			if ( empty( $opt_name ) ) {
+				return;
+			}
+
+			global $post;
+
+			$redux = ReduxFrameworkInstances::get_instance( $opt_name );
+
+			// We don't ever need to specify advanced_metaboxes here as all function for metaboxes are core,
+			// and thus, metabox_lite.  The extension handles it's own functions and is handled by this condition. - kp.
+			if ( isset( $redux->extensions['metaboxes'] ) ) {
+				$metaboxes = $redux->extensions['metaboxes'];
+			} else {
+				$metaboxes = $redux->extensions['metaboxes_lite'];
+			}
+
+			if ( null === $default || '' === $default ) {
+				$default = self::get_option( $opt_name, $key );
+			}
+
+			if ( isset( $the_post ) && is_array( $the_post ) ) {
+				$the_post = $post;
+			} elseif ( ! isset( $the_post ) || 0 === $the_post ) {
+				return $default;
+			} elseif ( is_numeric( $the_post ) ) {
+				$the_post = get_post( $the_post );
+			} elseif ( ! is_object( $the_post ) ) {
+				$the_post = $post;
+			}
+
+			$default = self::get_option( $opt_name, $key );
+
+			$val = $metaboxes->get_values( $the_post, $key, $default );
+
+			return $val;
+		}
+
+		/**
 		 * Retrieves single option from the database.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -1116,19 +1199,62 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function get_option( $opt_name = '', $key = '', $default = '' ) {
+		public static function get_option( $opt_name = '', $key = '', $default = null ) {
 			self::check_opt_name( $opt_name );
 
+			// TODO - Add metaboxes magic here!
 			if ( ! empty( $opt_name ) && ! empty( $key ) ) {
-				$redux = get_option( $opt_name );
+				global $$opt_name;
 
-				if ( isset( $redux[ $key ] ) ) {
-					return $redux[ $key ];
+				if ( empty( $$opt_name ) ) {
+					$values    = get_option( $opt_name );
+					$$opt_name = $values;
 				} else {
-					return $default;
+					$values = $$opt_name;
 				}
+
+				if ( ! isset( $values[ $key ] ) ) {
+					if ( null === $default ) {
+						$field = self::get_field( $opt_name, $key );
+
+						if ( false !== $field ) {
+							$defaults_class = new Redux_Options_Defaults();
+							$sections       = self::construct_sections( $opt_name );
+							$defaults       = $defaults_class->default_values( $opt_name, $sections );
+
+							if ( isset( $defaults[ $key ] ) ) {
+								$default = $defaults[ $key ];
+							}
+						}
+					}
+				}
+
+				if ( ! empty( $subkeys ) && is_array( $subkeys ) ) {
+					$value = $default;
+
+					if ( isset( $values[ $key ] ) ) {
+						$count = count( $subkeys );
+
+						if ( 1 === $count ) {
+							$value = isset( $values[ $key ][ $subkeys[1] ] ) ? $values[ $key ][ $subkeys[1] ] : $default;
+						} elseif ( 2 === $count ) {
+							if ( isset( $values[ $key ][ $subkeys[1] ] ) ) {
+								$value = isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] ) ? $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] : $default;
+							}
+						} elseif ( 3 === $count ) {
+							if ( isset( $values[ $key ][ $subkeys[1] ] ) ) {
+								if ( isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ] ) ) {
+									$value = isset( $values[ $key ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] ) ? $values[ $key ][ $subkeys[1] ][ $subkeys[2] ][ $subkeys[3] ] : $default;
+								}
+							}
+						}
+					}
+				} else {
+					$value = isset( $values[ $key ] ) ? $values[ $key ] : $default;
+				}
+				return $value;
 			} else {
-				return null;
+				return false;
 			}
 		}
 
@@ -1143,9 +1269,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return bool
 		 */
 		public static function setOption( $opt_name = '', $key = '', $option = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			return self::set_option( $opt_name, $key, $option );
 		}
 
@@ -1159,14 +1286,15 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return bool
 		 */
 		public static function set_option( $opt_name = '', $key = '', $option = '' ) {
-			if ( empty( $key ) ) {
+			if ( '' === $key ) {
 				return false;
 			}
+
 			self::check_opt_name( $opt_name );
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( ! empty( $opt_name ) && ! empty( $key ) ) {
+			if ( '' !== $opt_name && '' !== $key ) {
 				$redux         = get_option( $opt_name );
 				$redux[ $key ] = $option;
 
@@ -1197,29 +1325,34 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param string $opt_name Panel opt_name.
 		 */
 		public static function check_opt_name( $opt_name = '' ) {
-
 			if ( empty( $opt_name ) || is_array( $opt_name ) ) {
 				return;
 			}
+
 			if ( ! isset( self::$sections[ $opt_name ] ) ) {
 				self::$sections[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['sections'] = 1;
 			}
+
 			if ( ! isset( self::$args[ $opt_name ] ) ) {
 				self::$args[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['args'] = 1;
 			}
+
 			if ( ! isset( self::$fields[ $opt_name ] ) ) {
 				self::$fields[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['fields'] = 1;
 			}
+
 			if ( ! isset( self::$help[ $opt_name ] ) ) {
 				self::$help[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['help'] = 1;
 			}
+
 			if ( ! isset( self::$errors[ $opt_name ] ) ) {
 				self::$errors[ $opt_name ] = array();
 			}
+
 			if ( ! isset( self::$init[ $opt_name ] ) ) {
 				self::$init[ $opt_name ] = false;
 			}
@@ -1324,9 +1457,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function setExtensions( $opt_name, $path ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			if ( ! empty( $opt_name ) ) {
+			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
+
 			self::set_extensions( $opt_name, $path );
 		}
 
@@ -1338,12 +1472,14 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param bool   $force    Make extension reload.
 		 */
 		public static function set_extensions( $opt_name, $path, $force = false ) {
-			if ( empty( $path ) || empty( $opt_name ) ) {
+			if ( '' === $path || '' === $opt_name ) {
 				return;
 			}
+
 			if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
 				include_once Redux_Core::$dir . 'inc/lib/array-column.php';
 			}
+
 			self::check_opt_name( $opt_name );
 
 			Redux_Functions_Ex::record_caller( $opt_name );
@@ -1372,7 +1508,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 						}
 
 						if ( is_dir( $path . $folder ) ) {
-							self::set_extensions( $opt_name, $path . $folder, $force );
+							self::set_extensions( $opt_name, $path . $folder );
 						}
 					}
 				}
@@ -1445,8 +1581,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 				if ( isset( $extension->extension_dir ) ) {
 					self::set_extensions( $opt_name, str_replace( $name, '', $extension->extension_dir ) );
-				} elseif ( isset( $extension->_extension_dir ) ) {
-					self::set_extensions( $opt_name, str_replace( $name, '', $extension->_extension_dir ) );
+				} elseif ( isset( $extension->extension_dir ) ) {
+					self::set_extensions( $opt_name, str_replace( $name, '', $extension->extension_dir ) );
 				}
 			}
 		}
@@ -1499,7 +1635,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				foreach ( self::$uses_extensions[ $opt_name ] as $extension ) {
 					$class_file                        = end( self::$extensions[ $extension ] );
 					$name                              = str_replace( '.php', '', basename( $extension ) );
-					$extension_class                   = 'ReduxFramework_Extension_' . $name;
+					$extension_class                   = 'Redux_Extension_' . $name;
 					$instance_extensions[ $extension ] = array(
 						'path'    => $class_file,
 						'class'   => $extension_class,
@@ -1514,24 +1650,20 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Disable Redux demo mode.
+		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
 			add_action( 'redux/loaded', 'Redux::remove_demo' );
 		}
 
 		/**
-		 * Callback to remove demo mode from plugin menu.
+		 * Callback used by Redux::disable_demo() to remove the demo mode notice from Redux.
 		 */
 		public static function remove_demo() {
 			if ( class_exists( 'Redux_Framework_Plugin' ) ) {
-				// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-				call_user_func( 'remove' . '_filter', 'plugin_row_meta', array( Redux_Framework_Plugin::instance(), 'plugin_metalinks' ), null, 2 );
-
 				remove_action( 'admin_notices', array( Redux_Framework_Plugin::instance(), 'admin_notices' ) );
 			}
 		}
-
 	}
 
 	Redux::load();

@@ -30,6 +30,12 @@ if ( ! class_exists( 'Redux_Validate', false ) ) {
 			$this->value   = $value;
 			$this->current = $current;
 
+			if ( isset( $this->field['validate_msg'] ) ) {
+				$this->field['msg'] = $this->field['validate_msg'];
+
+				unset( $this->field['validate_msg'] );
+			}
+
 			$this->validate();
 		}
 

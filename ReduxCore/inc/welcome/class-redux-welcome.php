@@ -84,7 +84,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		 * Change Footer.
 		 */
 		public function change_wp_footer() {
-			echo esc_html__( 'If you like', 'redux-framework' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'redux-framework' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you from Redux in advance!', 'redux-framework' );
+			echo esc_html__( 'If you like', 'redux-framework' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'redux-framework' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you in advance!', 'redux-framework' );
 		}
 
 
@@ -273,17 +273,17 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 			<p class="redux-actions">
 				<a href="http://docs.reduxframework.com/" class="docs button button-primary">Docs</a>
 				<a
-					href="http://wordpress.org/plugins/redux-framework/"
+					href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform"
 					class="review-us button button-primary"
 					target="_blank">Review Us</a>
 				<a
-					href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MMFMHWUPKHKPW"
+					href="https://www.paypal.me/reduxframework"
 					class="review-us button button-primary" target="_blank">Donate</a>
 				<a
 					href="https://twitter.com/share"
 					class="twitter-share-button"
-					data-url="http://reduxframework.com"
-					data-text="Reduce your dev time! Redux is the most powerful option framework for WordPress on the web"
+					data-url="https://redux.io"
+					data-text="Supercharge your WordPress experience with Redux.io, the world's most powerful and widely used WordPress interface builder."
 					data-via="ReduxFramework" data-size="large" data-hashtags="Redux">Tweet</a>
 				<?php
 				$options = Redux_Helpers::get_plugin_options();

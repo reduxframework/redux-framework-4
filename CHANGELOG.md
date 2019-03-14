@@ -1,11 +1,39 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.7
+* Fixed:    #20 -  variable mssing $ dev.
+* Fixed:    Customizer saving.
+* Fixed     Customizer 'required'.
+* Fixed:    button_set field not saving or loading in multi mode.
+* Fixed:    Section disable and section hidde in customizer.
+* Fixed:    Some malformed field ids in sample-config, for some reason.
+* Change:   #19 - `validate_msg` field arg replaces `msg` for validation schemes.  Shim in place for backward compatibility.
+
+## 4.0.1.6
+* Modified: Metabox lite loop not using correct extension key.
+* Fixed:    Error when no theme is installed, which is possible, apparently.
+
+## 4.0.1.5
+* Fixed:    redux_post_meta returning null always.
+* Added:    New Redux API get_post_meta to retrieve Metabox values.
+
+## 4.0.1.4
+* Fixed:      Metabox lite css/js not minifying on compile.
+* New:        Redux APIs set_field, set_fields
+
+## 4.0.1.3
+* Improved:   Improvement record caller and warning fixes  Thanks @Torfadel.
+* Fixed:      Errors on 'Get Support' page.
+
+## 4.0.1.2
+* Fixed:      #14 - Malformed enqueue URLs when embedding.
+
 ## 4.0.1.1
-Fixed:      Section field not hiding with required calls.
-Fixed:      Tour pointer not remembing closed state. 
+* Fixed:      Section field not hiding with required calls.
+* Fixed:      Tour pointer not remembing closed state. 
 
 ## 4.0.1
-New:        Initial public beta release.
+* New:        Initial public beta release.
 
 ## 4.0.0.22
 * Added:    `allow_empty_line_height` arg for the typography field to prevent font-size from overriding a blank line-height field.

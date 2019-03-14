@@ -18,14 +18,39 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 	 *
 	 * @since       1.0.0
 	 */
-	class Redux_Extension_Customizer {
+	class Redux_Extension_Customizer extends Redux_Extension_Abstract {
 
 		/**
-		 * ReduxFramework object.
+		 * Set extension version.
 		 *
-		 * @var object
+		 * @var string
 		 */
-		private $parent;
+		public static $version = '4.0.0';
+
+		/**
+		 * Set the name of the field.  Ideally, this will also be your extension's name.
+		 * Please use underscores and NOT dashes.
+		 *
+		 * @var string
+		 */
+		private $field_name = 'customizer';
+
+		/**
+		 * Set the friendly name of the extension.  This is for display purposes.  No underscores or dashes are required.
+		 *
+		 * @var string
+		 */
+		private $extension_name = 'Customizer';
+
+		/**
+		 * Set the minumum required version of Redux here (optional).
+		 *
+		 * Leave blank to require no minimum version.  This allows you to specify a minimum required version of
+		 * Redux in the event you do not want to support older versions.
+		 *
+		 * @var string
+		 */
+		private $minimum_redux_version = '4.0.0';
 
 		/**
 		 * Original options.
@@ -42,13 +67,6 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		private static $post_values = array();
 
 		/**
-		 * Ext version.
-		 *
-		 * @var string
-		 */
-		public static $version = '2.0.0';
-
-		/**
 		 * Options array.
 		 *
 		 * @var array
@@ -56,19 +74,28 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		private $options = array();
 
 		/**
-		 * Class Constructor. Defines the args for the extions class
+		 * Redux_Extension_my_extension constructor.
 		 *
-		 * @since       1.0.0
-		 * @access      public
-		 *
-		 * @param       array $parent Redux oject.
-		 *
-		 * @return      void
+		 * @param object $parent ReduxFramework pointer.
 		 */
 		public function __construct( $parent ) {
-			$this->parent = $parent;
+			parent::__construct( $parent, __FILE__ );
 
-			if ( false === $parent->args['customizer'] ) {
+			if ( is_admin() && ! $this->is_minimum_version( $this->minimum_redux_version, self::$version, $this->extension_name ) ) {
+				return;
+			}
+
+			$this->add_field( 'customizer' );
+
+			$this->load();
+
+		}
+
+		/**
+		 * The customizer load code
+		 */
+		private function load() {
+			if ( false === $this->parent->args['customizer'] ) {
 				return;
 			}
 
@@ -85,14 +112,6 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 			if ( ! isset( $wp_customize ) && 'customize.php' !== $pagenow && 'admin-ajax.php' !== $pagenow ) {
 				return;
-			}
-
-			if ( empty( $this->extension_dir ) ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				$this->extension_dir = apply_filters( 'redux/extension/customizer/dir', trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) ) );
-
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				$this->extension_url = apply_filters( 'redux/extension/customizer/url', site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) ) );
 			}
 
 			self::get_post_values();

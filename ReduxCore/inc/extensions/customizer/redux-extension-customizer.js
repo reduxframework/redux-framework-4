@@ -1,4 +1,4 @@
-/* global jQuery, document, redux, redux_change:true, redux_customizer, wp */
+/* global jQuery, document, redux, redux_change:true, wp */
 
 /**
  * SerializeJSON jQuery plugin.
@@ -384,7 +384,7 @@
 		var reduxChange;
 		var redux_initFields;
 
-		$( 'body' ).addClass( redux_customizer.body_class );
+		$( 'body' ).addClass( redux.customizer.body_class );
 		$( '.accordion-section.redux-section, .accordion-section.redux-panel, .accordion-section-title' ).click(
 			function() {
 				$.redux.initFields();

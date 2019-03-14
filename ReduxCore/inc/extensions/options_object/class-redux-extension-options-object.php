@@ -18,7 +18,7 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 	 *
 	 * @since       3.1.6
 	 */
-	class Redux_Extension_Options_Object extends Redux_Abstract_Extension {
+	class Redux_Extension_Options_Object extends Redux_Extension_Abstract {
 
 		/**
 		 * Ext version.

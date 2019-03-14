@@ -390,6 +390,14 @@ function colorNameToHex( colour ) {
 			}
 		);
 
+		// Customizer save hook
+		el.find( '#customize-save-button-wrapper #save' ).on(
+			'click',
+			function() {
+
+			}
+		);
+
 		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).click(
 			function( e ) {
 				var url;
@@ -602,11 +610,7 @@ function colorNameToHex( colour ) {
 
 			// Weed out multiple instances of duplicate Redux instance.
 			if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
-				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
-
-				opt_name = li.data( 'opt-name' );
-
-				redux.optName = window['redux_' + opt_name];
+				$( '.wp-full-overlay-sidebar' ).addClass( 'redux-container' );
 			}
 
 			$( '.redux-container' ).each(
@@ -675,6 +679,7 @@ function colorNameToHex( colour ) {
 	$.redux.getOptName = function( el ) {
 		var classes;
 		var metabox;
+		var li;
 
 		var optName = $( el ).data( 'opt-name' );
 
@@ -694,6 +699,10 @@ function colorNameToHex( colour ) {
 				classes = classes.trim();
 
 				optName = classes;
+			} else if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
+				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
+
+				optName = li.data( 'opt-name' );
 			} else {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
 			}
@@ -1494,6 +1503,10 @@ function redux_hook( object, functionName, callback, before ) {
 			}
 		);
 
+		if ( redux.customizer ) {
+			el.find( '.customize-control.redux-field.hide' ).hide();
+		}
+
 		el.find( '.redux-container td > fieldset:empty,td > div:empty' ).parent().parent().hide();
 	};
 
@@ -1510,10 +1523,10 @@ function redux_hook( object, functionName, callback, before ) {
 
 				var fieldset = $( '#' + redux.optName.args.opt_name + '-' + i );
 
-				fieldset.parents( 'tr:first' ).addClass( 'fold' );
+				fieldset.parents( 'tr:first, li:first' ).addClass( 'fold' );
 
 				if ( 'hide' === v ) {
-					fieldset.parents( 'tr:first' ).addClass( 'hide' );
+					fieldset.parents( 'tr:first, li:first' ).addClass( 'hide' );
 
 					if ( fieldset.hasClass( 'redux-container-section' ) ) {
 						div = $( '#section-' + i );
@@ -1584,11 +1597,17 @@ function redux_hook( object, functionName, callback, before ) {
 			function( child ) {
 				var div;
 				var rawTable;
+				var tr;
 
 				var current       = $( this );
 				var show          = false;
 				var childFieldset = $( '#' + redux.optName.args.opt_name + '-' + child );
-				var tr            = childFieldset.parents( 'tr:first' );
+
+				tr = childFieldset.parents( 'tr:first' );
+
+				if ( 0 === tr.length ) {
+					tr = childFieldset.parents( 'li:first' );
+				}
 
 				if ( ! isHidden ) {
 					show = $.redux.check_parents_dependencies( child );
@@ -1654,8 +1673,12 @@ function redux_hook( object, functionName, callback, before ) {
 	$.redux.required_recursive_hide = function( id ) {
 		var div;
 		var rawTable;
+		var toFade;
 
-		var toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'tr:first' );
+		toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'tr:first' );
+		if ( 0 === toFade ) {
+			toFade = $( '#' + redux.optName.args.opt_name + '-' + id ).parents( 'li:first' );
+		}
 
 		toFade.fadeOut(
 			50,
@@ -1708,6 +1731,8 @@ function redux_hook( object, functionName, callback, before ) {
 					i = null;
 
 					if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'tr:first' ).hasClass( 'hide' ) ) {
+						show = false;
+					} else if ( $( '#' + redux.optName.args.opt_name + '-' + parentData.parent ).parents( 'li:first' ).hasClass( 'hide' ) ) {
 						show = false;
 					} else {
 						if ( false !== show ) {

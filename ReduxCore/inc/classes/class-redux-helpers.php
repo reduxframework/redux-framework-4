@@ -19,6 +19,37 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 	 * @since       3.0.0
 	 */
 	class Redux_Helpers {
+
+		/**
+		 * Retrieve section array from field ID.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $field_id Field ID.
+		 */
+		public static function section_from_field_id( $opt_name = '', $field_id = '' ) {
+			if ( '' !== $opt_name ) {
+				$redux = Redux::instance( $opt_name );
+
+				if ( is_object( $redux ) ) {
+					$sections = $redux->sections;
+
+					if ( is_array( $sections ) && ! empty( $sections ) ) {
+						foreach ( $sections as $idx => $section ) {
+							if ( isset( $section['fields'] ) && ! empty( $section['fields'] ) ) {
+								foreach ( $section['fields'] as $i => $field ) {
+									if ( is_array( $field ) && ! empty( $field ) ) {
+										if ( isset( $field['id'] ) && $field['id'] === $field_id ) {
+											return $section;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 		/**
 		 * Verify integer value.
 		 *
@@ -258,10 +289,12 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			}
 
 			$plugins = array();
+
 			foreach ( get_option( 'active_plugins', array() ) as $plugin_path ) {
 				if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
-					$plugin_info      = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
-					$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+					$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
+					$slug        = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
+
 					$plugins[ $slug ] = array(
 						'version'    => $plugin_info['Version'],
 						'name'       => $plugin_info['Name'],
@@ -271,6 +304,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					);
 				}
 			}
+
 			if ( is_multisite() ) {
 				foreach ( get_option( 'active_sitewide_plugins', array() ) as $plugin_path ) {
 					if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_path ) ) {
@@ -717,7 +751,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function process_redux_callers( $simple = false ) {
 			$data = array();
-			foreach ( ReduxCore::$callers as $opt_name => $callers ) {
+
+			foreach ( Redux_Core::$callers as $opt_name => $callers ) {
 				foreach ( $callers as $caller ) {
 					$plugin_info = self::is_inside_plugin( $caller );
 					$theme_info  = self::is_inside_theme( $caller );
@@ -1079,9 +1114,11 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 					$sysinfo['redux_instances'][ $inst ]['extensions'] = Redux::get_extensions( $inst );
 
-					if ( isset( $data->extensions['metaboxes'] ) ) {
-						$data->extensions['metaboxes']->init();
-						$sysinfo['redux_instances'][ $inst ]['metaboxes'] = $data->extensions['metaboxes']->boxes;
+					$metabox_key = isset( $data->extensions['metaboxes'] ) ? 'metaboxes' : 'metaboxes_lite';
+
+					if ( isset( $data->extensions[ $metabox_key ] ) ) {
+						$data->extensions[ $metabox_key ]->init();
+						$sysinfo['redux_instances'][ $inst ][ $metabox_key ] = $data->extensions[ $metabox_key ]->boxes;
 					}
 
 					if ( isset( $data->args['templates_path'] ) && '' !== $data->args['templates_path'] ) {

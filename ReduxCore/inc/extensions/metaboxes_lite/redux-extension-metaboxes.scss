@@ -6,6 +6,22 @@
     margin-bottom: 0 !important;
 }
 
+.block-editor-page {
+    .postbox{
+        &.closed .el {
+            &:before {
+                content: ""!important;
+            }
+        }
+
+        .el{
+            &:before{
+                content: ""
+            }
+        }
+    }
+}
+
 .postbox {
     .redux-container {
         filter: none;

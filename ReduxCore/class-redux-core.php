@@ -170,18 +170,19 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			// See if Redux is a plugin or not.
 			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
-			$theme_info  = Redux_Functions_Ex::is_inside_theme( __FILE__ );
-
 			if ( false !== $plugin_info ) {
 				self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
 
 				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
 				self::$as_plugin = true;
 				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
-			} elseif ( false !== $theme_info ) {
-				self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
-				self::$in_theme  = true;
-				self::$installed = 'in_theme';
+			} else {
+				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
+				if ( false !== $theme_info ) {
+					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
+					self::$in_theme  = true;
+					self::$installed = 'in_theme';
+				} // TODO - Can an else ever happen here?
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName

@@ -224,7 +224,7 @@ $args = array(
 // If these are left unchanged, they will not display in your panel!
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-docs',
-	'href'  => '//docs.reduxframework.com/',
+	'href'  => '//docs.redux.io/',
 	'title' => __( 'Documentation', 'your-domain-here' ),
 );
 
@@ -236,7 +236,7 @@ $args['admin_bar_links'][] = array(
 
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-extensions',
-	'href'  => 'reduxframework.com/extensions',
+	'href'  => 'redux.io/extensions',
 	'title' => __( 'Extensions', 'your-domain-here' ),
 );
 
@@ -389,7 +389,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'            => esc_html__( 'Radio', 'your-domain-here' ),
-		'id'               => 'basic-Radio',
+		'id'               => 'basic-radio',
 		'subsection'       => true,
 		'customizer_width' => '500px',
 		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/radio/" target="_blank">docs.reduxframework.com/core/fields/radio/</a>',
@@ -425,7 +425,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Sortable', 'your-domain-here' ),
-		'id'         => 'basic-Sortable',
+		'id'         => 'basic-sortable',
 		'subsection' => true,
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/sortable/" target="_blank">docs.reduxframework.com/core/fields/sortable/</a>',
 		'fields'     => array(
@@ -509,7 +509,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Multi Text', 'your-domain-here' ),
-		'id'         => 'basic-multi Text',
+		'id'         => 'basic-multi-text',
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/multi-text/" target="_blank">docs.reduxframework.com/core/fields/multi-text/</a>',
 		'subsection' => true,
 		'fields'     => array(
@@ -528,7 +528,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Password', 'your-domain-here' ),
-		'id'         => 'basic-Password',
+		'id'         => 'basic-password',
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/password/" target="_blank">docs.reduxframework.com/core/fields/password/</a>',
 		'subsection' => true,
 		'fields'     => array(
@@ -546,7 +546,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Textarea', 'your-domain-here' ),
-		'id'         => 'basic-Textarea',
+		'id'         => 'basic-textarea',
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/textarea/" target="_blank">docs.reduxframework.com/core/fields/textarea/</a>',
 		'subsection' => true,
 		'fields'     => array(
@@ -671,7 +671,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Color', 'your-domain-here' ),
-		'id'         => 'color-Color',
+		'id'         => 'opt-color',
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color/" target="_blank">docs.reduxframework.com/core/fields/color/</a>',
 		'subsection' => true,
 		'fields'     => array(

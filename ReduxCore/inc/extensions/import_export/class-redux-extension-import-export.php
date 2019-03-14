@@ -17,7 +17,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 	 *
 	 * @since       3.1.6
 	 */
-	class Redux_Extension_Import_Export extends Redux_Abstract_Extension {
+	class Redux_Extension_Import_Export extends Redux_Extension_Abstract {
 
 		/**
 		 * Ext version.
