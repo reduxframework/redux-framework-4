@@ -16,7 +16,7 @@ class Redux_Descriptor {
 	protected $required;
 
 	/**
-	 * @var Redux_Descriptor_Fields[]
+	 * @var Redux_Descriptor_Fields[] Array of descriptor_fields.
 	 */
 	protected $fields = array();
 
@@ -73,11 +73,11 @@ class Redux_Descriptor {
 	/**
 	 * Add field to the descriptor.
 	 *
-	 * @param string $name
-	 * @param string $title
-	 * @param string $type
-	 * @param string $description
-	 * @param null   $default
+	 * @param string $name        Name of field.
+	 * @param string $title       Title of field.
+	 * @param string $type        Type of field.
+	 * @param string $description Field Description.
+	 * @param mixed  $default     Field default value.
 	 *
 	 * @return Redux_Descriptor_Fields
 	 */
@@ -93,7 +93,9 @@ class Redux_Descriptor {
 	}
 
 	/**
-	 * @param array $req
+	 * Parse the given request.
+	 *
+	 * @param array $req Request.
 	 *
 	 * @return array
 	 */
@@ -111,7 +113,7 @@ class Redux_Descriptor {
 	/**
 	 * Selects and returns a field or the current field
 	 *
-	 * @param string $field_name
+	 * @param string $field_name Field name.
 	 *
 	 * @return mixed|null
 	 */
@@ -130,7 +132,7 @@ class Redux_Descriptor {
 	/**
 	 * Remove a field.
 	 *
-	 * @param $name
+	 * @param string $name Remove a field from the keys.
 	 */
 	public function remove_field( $name ) {
 		unset( $this->fields[ $name ] );
