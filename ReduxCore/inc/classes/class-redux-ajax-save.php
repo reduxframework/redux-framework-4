@@ -65,7 +65,6 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 
 					// New method to avoid input_var nonsense.  Thanks @harunbasic.
 					$values = $this->parse_str( $post_data );
-
 					$values = $values[ $redux->args['opt_name'] ];
 
 					if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
