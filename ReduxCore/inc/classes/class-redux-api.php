@@ -830,9 +830,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $field         Field data.
 		 */
 		public static function set_field( $opt_name = '', $section_id = '', $field = array() ) {
-			if ( empty( $field ) ) {
+			if ( empty( $field ) && empty( $section_id ) ) {
 				return;
 			}
+
 			self::check_opt_name( $opt_name );
 
 			Redux_Functions_Ex::record_caller( $opt_name );
@@ -841,7 +842,13 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( is_array( $section_id ) ) {
 				$section_id_holder = $field;
 				$field             = $section_id;
-				$section_id        = $section_id_holder;
+				if ( isset( $field['section_id'] ) ) {
+					$section_id = $field['section_id'];
+				}
+			}
+			
+			if ( empty( $field ) ) {
+				return;
 			}
 
 			if ( '' !== $opt_name && '' !== $section_id && is_array( $field ) && ! empty( $field ) ) {
