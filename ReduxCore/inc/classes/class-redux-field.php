@@ -9,6 +9,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+use Redux_Descriptor_Types as RDT; // TODO Require instead!
+
 if ( ! class_exists( 'Redux_Field', false ) ) {
 
 	/**
