@@ -199,10 +199,13 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 					$self_file = Redux_Functions_Ex::wp_normalize_path( Redux_Pro::$dir );
 					$path      = str_replace( $plugin_dir, '', $self_file );
 
-					$key = array_search( $path . '/redux-pro.php', $plugins, true );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					$basename = apply_filters( 'redux/pro/basename', 'redux-pro.php' );
+
+					$key = array_search( $path . '/' . $basename, $plugins, true );
 					if ( false !== $key ) {
 						array_splice( $plugins, $key, 1 );
-						array_unshift( $plugins, $path . '/redux-pro.php' );
+						array_unshift( $plugins, $path . '/' . $basename );
 						update_option( 'active_plugins', $plugins );
 					}
 				}

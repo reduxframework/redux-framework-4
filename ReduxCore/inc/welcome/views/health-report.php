@@ -51,7 +51,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 	<?php $this->actions(); ?>
 	<?php $this->tabs(); ?>
 
-	<div class="updated redux-message">
+	<div class="updated redux-message hidden">
 		<p>
 			<?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'redux-framework' ); ?>
 		</p>
