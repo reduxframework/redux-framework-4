@@ -140,7 +140,6 @@ class Redux_Rest_Api_Builder {
 	 */
 	public function get_field( $data = array() ) {
 		$type = $data['type'];
-
 		if ( ! empty( $type ) ) {
 			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
@@ -150,7 +149,7 @@ class Redux_Rest_Api_Builder {
 				 *
 				 * @var Redux_Descriptor $descriptor
 				 */
-				$descriptor = call_user_func( array( 'Redux_' . $type, 'get_descriptor' ) );
+				$descriptor = call_user_func( array( $field_class, 'get_descriptor' ) );
 				return $descriptor->to_array();
 			}
 		}

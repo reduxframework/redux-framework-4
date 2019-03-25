@@ -30,18 +30,27 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 */
 		public static function make_base_descriptor() {
 			$d = new Redux_Descriptor( get_called_class() );
-			self::$descriptors[get_called_class()] = $d;
+			self::$descriptors[ get_called_class() ] = $d;
 
-			$d->add_field( 'id', __( 'Field ID' ), RDT::TEXT )
+			$d->add_field( 'id', __( 'ID' , 'redux-framework' ), RDT::TEXT )
 			  ->set_order( 0 )
 			  ->set_required();
-			$d->add_field( 'required', null, RDT::BOOL, __( 'Should the field be required' ), false )
+			$d->add_field( 'title', __( 'Title' , 'redux-framework' ), RDT::TEXT, __( 'Title of the field.', 'redux-framework' ) )
 			  ->set_order( 1 );
-			$d->add_field( 'readonly', null, RDT::BOOL, __( 'Should the field be readonly' ), false )
-			  ->set_order( 20 );
-			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler' ), false )
+			$d->add_field( 'subtitle', __( 'Subtitle', 'redux-framework' ), RDT::TEXT, __( 'Subtitle of the field.', 'redux-framework' ) )
+			  ->set_order( 2 );
+			$d->add_field( 'desc', __( 'Description', 'redux-framework' ), RDT::TEXT, __( 'Description below the field.', 'redux-framework' ) )
+			  ->set_order( 3 );
+			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, __( 'Class name to be appended to the field container.', 'redux-framework' ) )
+			  ->set_order( 3 );
+			$d->add_field( 'required', null, RDT::BOOL, __( 'Affect the visibility of this field by other fields.', 'redux-framework' ), false )
 			  ->set_order( 60 );
-			$d->add_field( 'output', __( 'CSS Output' ), RDT::BOOL, '', false );
+			$d->add_field( 'readonly', null, RDT::BOOL, __( 'Should the field be readonly', 'redux-framework' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'disabled', null, RDT::BOOL, __( 'Should the field be disabled', 'redux-framework' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler', 'redux-framework' ), false )
+			  ->set_order( 60 );
 
 			return $d;
 		}

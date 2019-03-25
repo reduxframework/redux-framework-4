@@ -9,12 +9,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
+use Redux_Descriptor_Types as RDT;
+
 if ( ! class_exists( 'Redux_Text', false ) ) {
 
 	/**
 	 * Class Redux_Text
 	 */
 	class Redux_Text extends Redux_Field {
+
+		/**
+		 * Set the field's custom descriptors.
+		 */
+		public static function make_descriptor() {
+			$d = static::make_base_descriptor();
+
+			$d->add_field( 'testing', __( 'Testing' , 'redux-framework' ), RDT::TEXT )
+			  ->set_order( 100 )
+			  ->set_required();
+		}
 
 		/**
 		 * Field Render Function.
