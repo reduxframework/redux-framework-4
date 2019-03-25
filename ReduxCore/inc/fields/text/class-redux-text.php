@@ -24,6 +24,8 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 		public static function make_descriptor() {
 			$d = static::make_base_descriptor();
 
+			$d->set_info( 'Text', __( 'The Text field accepts any form of text and optionally validates the text before saving the value.', 'redux-framework' ) );
+
 			$d->add_field( 'testing', __( 'Testing' , 'redux-framework' ), RDT::TEXT )
 			  ->set_order( 100 )
 			  ->set_required();
