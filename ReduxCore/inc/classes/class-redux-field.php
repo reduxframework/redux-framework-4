@@ -62,7 +62,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 */
 		public static function get_descriptor() {
 			if ( !isset( self::$descriptors[ get_called_class() ] ) ) {
-				self::make_base_descriptor();
+				static::make_base_descriptor();
 			}
 
 			$d = self::$descriptors[ get_called_class() ];
