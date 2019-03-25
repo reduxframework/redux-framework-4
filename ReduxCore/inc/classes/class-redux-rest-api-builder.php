@@ -42,54 +42,48 @@ class Redux_Rest_Api_Builder {
 	 * Init the rest api.
 	 */
 	public function rest_api_init() {
-		register_rest_route(
-			$this->get_namespace(),
-			'/fields',
-			array(
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'list_fields' ),
-			)
-		);
-		register_rest_route(
-			$this->get_namespace(),
-			'/field/(?P<type>[a-z0-9]+)',
-			array(
-				'args'     => array(
-					'name' => array(
-						'description' => __( 'The field type' ),
-						'type'        => 'string',
-					),
+		register_rest_route( $this->get_namespace(), '/fields', array(
+			'methods'  => WP_REST_Server::READABLE,
+			'callback' => array( $this, 'list_fields' ),
+		) );
+		register_rest_route( $this->get_namespace(), '/field/(?P<type>[a-z0-9-_]+)', array(
+			'args'     => array(
+				'type' => array(
+					'description' => __( 'The field type' ),
+					'type'        => 'string',
 				),
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'get_field' ),
-			)
-		);
-		register_rest_route(
-			$this->get_namespace(),
-			'/field/(?P<type>[a-z0-9]+)/render',
-			array(
-				'args'     => array(
-					'name' => array(
-						'description' => __( 'The field type' ),
-						'type'        => 'string',
-					),
+			),
+			'methods'  => WP_REST_Server::READABLE,
+			'callback' => array( $this, 'get_field' ),
+		) );
+		register_rest_route( $this->get_namespace(), '/field/(?P<type>[a-z0-9]+)/render', array(
+			'args'     => array(
+				'name' => array(
+					'description' => __( 'The field type' ),
+					'type'        => 'string',
 				),
-				'methods'  => WP_REST_Server::ALLMETHODS,
-				'callback' => array( $this, 'render_field' ),
-			)
-		);
+			),
+			'methods'  => WP_REST_Server::ALLMETHODS,
+			'callback' => array( $this, 'render_field' ),
+		) );
 	}
 
 	/**
-	 * List the available fields.
+	 * Fetch the folders in the field directory
 	 *
-	 * @return array
+	 * @return RecursiveDirectoryIterator
 	 */
-	public function list_fields() {
+	public function field_directories() {
+
+		return $dirs;
+	}
+
+	public function get_field_paths() {
 		$fields     = array();
 		$fields_dir = trailingslashit( ReduxCore::$dir ) . 'inc' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR;
 		$dirs       = new RecursiveDirectoryIterator( $fields_dir );
-		$classes    = array();
+
+		$data = array();
 		foreach ( $dirs as $path ) {
 			$folder = explode( '/', $path );
 			$folder = end( $folder );
@@ -102,25 +96,33 @@ class Redux_Rest_Api_Builder {
 			);
 			$filename = Redux_Functions::file_exists_ex( $files );
 
-			if ( ! empty( $filename ) && file_exists( $filename ) ) {
-				require_once $filename;
-				// Load it here to save some resources in autoloading!
-				$class = 'Redux_' . ucwords( str_replace( '-', '_', $folder ) );
-				if ( class_exists( $class ) && is_subclass_of( $class, 'Redux_Field' ) ) {
-					$classes[ $folder ] = $class;
-				}
+			if ( $filename ) {
+				$data[ $folder ] = $filename;
 			}
 		}
-
 		// phpcs:ignore WordPress.NamingConventions.ValidHookName
-		$classes = apply_filters( 'redux/fields', $classes );
-		foreach ( $classes as $field => $class ) {
-			/**
-			 * Loops over the classes
-			 *
-			 * @var Redux_Descriptor $descriptor
-			 */
-			if ( is_subclass_of( $class, 'Redux_Field' ) ) {
+		$data = apply_filters( 'redux/fields', $data );
+
+		return $data;
+	}
+
+	/**
+	 * List the available fields.
+	 *
+	 * @return array
+	 */
+	public function list_fields() {
+		$field_classes = $this->get_field_paths();
+		$fields        = array();
+
+		foreach ( $field_classes as $folder => $filename ) {
+			$class = 'Redux_' . ucwords( str_replace( '-', '_', $folder ) );
+			if ( ! class_exists( $class ) ) {
+				require_once $filename;
+			}
+			$field_class = Redux_Functions::class_exists_ex( $field_classes );
+			// Load it here to save some resources in autoloading!
+			if ( $field_class && is_subclass_of( $class, 'Redux_Field' ) ) {
 				$descriptor = call_user_func( array( $class, 'get_descriptor' ) );
 				if ( ! empty( $descriptor->get_field_type() ) ) {
 					$fields[ $descriptor->get_field_type() ] = $descriptor->to_array();
@@ -138,11 +140,18 @@ class Redux_Rest_Api_Builder {
 	 *
 	 * @return array
 	 */
-	public function get_field( $data = array() ) {
-		$type = $data['type'];
-		if ( ! empty( $type ) ) {
-			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
-			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
+	public function get_field( $request = array() ) {
+		$type = $request['type'];
+
+		$field_classes = $this->get_field_paths();
+		if ( isset( $field_classes[ strtolower( $type ) ] ) ) {
+			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
+			if ( ! class_exists( $class ) ) {
+				require_once $field_classes[ strtolower( $type ) ];
+			}
+			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
+			$field_class = Redux_Functions::class_exists_ex( $field_class );
+
 			if ( $field_class && is_subclass_of( $field_class, 'Redux_Field' ) ) {
 				/**
 				 * Test if the field exists
@@ -150,9 +159,11 @@ class Redux_Rest_Api_Builder {
 				 * @var Redux_Descriptor $descriptor
 				 */
 				$descriptor = call_user_func( array( $field_class, 'get_descriptor' ) );
+
 				return $descriptor->to_array();
 			}
 		}
+
 		return array( 'success' => false );
 	}
 
@@ -192,10 +203,7 @@ class Redux_Rest_Api_Builder {
 
 				$redux_instance = new ReduxFramework( array(), array( 'opt_name' => $opt_name ) );
 				$req            = $descriptor->parse_request( $_REQUEST );
-				$field          = $class->newInstance(
-					$req,
-					isset( $_REQUEST[ 'example_values' ] ) ? $_REQUEST[ 'example_values' ] : '', $redux_instance
-				);
+				$field          = $class->newInstance( $req, isset( $_REQUEST['example_values'] ) ? $_REQUEST['example_values'] : '', $redux_instance );
 				ob_start();
 				$field->render();
 

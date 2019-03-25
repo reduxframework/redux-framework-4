@@ -61,15 +61,15 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @return Redux_Descriptor
 		 */
 		public static function get_descriptor() {
-			if ( !isset( self::$descriptors[ get_called_class() ] ) ) {
-				static::make_base_descriptor();
+			if ( ! isset( static::$descriptors[ get_called_class() ] ) ) {
+				static::make_descriptor();
 			}
 
 			$d = self::$descriptors[ get_called_class() ];
 
 			static::make_descriptor();
 
-			//This part is out of opt name because it's non vendor dependant
+			//This part is out of opt name because it's non vendor dependant!
 			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d );
 		}
 
