@@ -3,6 +3,12 @@ $red: #a00;
 $orange: #ffba00;
 $blue: #2ea2cc;
 
+#wpbody-content .wrap {
+    height:auto!important;
+    overflow: initial!important;
+    max-width: initial!important;
+}
+
 .about-wrap {
     hr {
         border: inherit;

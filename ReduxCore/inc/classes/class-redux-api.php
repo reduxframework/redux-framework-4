@@ -846,6 +846,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$section_id = $field['section_id'];
 				}
 			}
+
 			if ( empty( $field ) ) {
 				return;
 			}
