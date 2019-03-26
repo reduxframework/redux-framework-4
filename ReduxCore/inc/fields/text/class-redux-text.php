@@ -38,7 +38,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 		 */
 		public function render() {
 
-			$this->field['attributes'] = wp_parse_args(
+			$this->field['attributes']            = wp_parse_args(
 				isset( $this->field['attributes'] ) ? $this->field['attributes'] : array(),
 				array(
 					'qtip_title'   => '',
