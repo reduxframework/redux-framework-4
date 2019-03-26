@@ -63,7 +63,7 @@ abstract class Redux_Extension_Abstract {
 	 *
 	 * @var ReflectionClass
 	 */
-	protected $_reflection_class;
+	protected $reflection_class;
 
 	/**
 	 * Redux_Extension_Abstract constructor.
@@ -103,15 +103,15 @@ abstract class Redux_Extension_Abstract {
 	 * @return ReflectionClass
 	 */
 	protected function get_reflection() {
-		if ( ! isset( $this->_reflection_class ) ) {
+		if ( ! isset( $this->reflection_class ) ) {
 			try {
-				$this->_reflection_class = new ReflectionClass( $this );
+				$this->reflection_class = new ReflectionClass( $this );
 			} catch ( ReflectionException $e ) { // phpcs:ignore
 				error_log( $e->getMessage() ); // phpcs:ignore
 			}
 		}
 
-		return $this->_reflection_class;
+		return $this->reflection_class;
 	}
 
 	/**
