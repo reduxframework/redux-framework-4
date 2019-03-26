@@ -1,10 +1,18 @@
 <?php
+/**
+ * Redux Descriptor Fields Class
+ *
+ * @class Redux_Descriptor_Fields
+ * @version 4.0.0
+ * @package Redux Framework
+ * @author Tofandel
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Redux_Descriptor_Fields
- * Used to map fields of field descriptors.
- *
- * @author Tofandel
+ * Class Redux_Descriptor
  */
 class Redux_Descriptor_Fields implements ArrayAccess {
 

@@ -1,9 +1,18 @@
 <?php
+/**
+ * Redux Descriptor Types Class
+ *
+ * @class Redux_Descriptor_Types
+ * @version 4.0.0
+ * @package Redux Framework
+ * @author Tofandel
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Redux_Descriptor_Types
- *
- * @author Tofandel
  */
 abstract class Redux_Descriptor_Types {
 	const TEXT     = 'text';
