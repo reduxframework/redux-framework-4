@@ -43,16 +43,52 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			  ->set_order( 3 );
 			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, __( 'Class name to be appended to the field container.', 'redux-framework' ) )
 			  ->set_order( 3 );
-			$d->add_field( 'required', null, RDT::BOOL, __( 'Affect the visibility of this field by other fields.', 'redux-framework' ), false )
+			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a readonly state.', 'redux-framework' ), false )
 			  ->set_order( 60 );
-			$d->add_field( 'readonly', null, RDT::BOOL, __( 'Should the field be readonly', 'redux-framework' ), false )
+			$d->add_field( 'required', __( 'Required', 'redux-framework' ), RDT::BOOL, __( 'Link the visibility of this field to the values of others.', 'redux-framework' ), false )
 			  ->set_order( 60 );
-			$d->add_field( 'disabled', null, RDT::BOOL, __( 'Should the field be disabled', 'redux-framework' ), false )
+			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::BOOL, __( 'Hint array of suggestions.', 'redux-framework' ), false )
 			  ->set_order( 60 );
-			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler', 'redux-framework' ), false )
+			$d->add_field( 'readonly', __( 'Readonly', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a readonly state.', 'redux-framework' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a disabled state.', 'redux-framework' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler.', 'redux-framework' ), false )
+			  ->set_order( 60 );
+			$d->add_field( 'default', __( 'Default' ), RDT::BOOL, __( 'Default value of the field.', 'redux-framework' ), false )
 			  ->set_order( 60 );
 
+
 			return $d;
+		}
+
+		/**
+		 * Renders an attribute array into an html attributes string.
+		 *
+		 * @param array $attributes HTML attributes.
+		 *
+		 * @return string
+		 */
+		public static function render_attributes( $attributes = array() ) {
+			$output = '';
+
+			if ( empty( $attributes ) ) {
+				return $output;
+			}
+
+			foreach ( $attributes as $key => $value ) {
+				if ( false === $value || '' === $value ) {
+					continue;
+				}
+
+				if ( is_array( $value ) ) {
+					$value = wp_json_encode( $value );
+				}
+
+				$output .= sprintf( true === $value ? ' %s' : ' %s="%s"', $key, esc_attr( $value ) );
+			}
+
+			return $output;
 		}
 
 		/**
