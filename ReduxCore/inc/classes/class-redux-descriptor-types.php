@@ -6,42 +6,41 @@
  * @author Tofandel
  */
 abstract class Redux_Descriptor_Types {
-	const TEXT = 'text';
+	const TEXT     = 'text';
 	const TEXTAREA = 'textarea';
-	const BOOL = 'bool';
-	const SLIDER = 'slider';
-	const NUMBER = 'number';
-	const RANGE = 'range';
-	const OPTIONS = 'array';
-	const WP_DATA = 'wp_data';
-	const RADIO = 'radio';
-	//Todo add more field types for the builder
+	const BOOL     = 'bool';
+	const SLIDER   = 'slider';
+	const NUMBER   = 'number';
+	const RANGE    = 'range';
+	const OPTIONS  = 'array';
+	const ARRAY    = 'array';
+	const WP_DATA  = 'wp_data';
+	const RADIO    = 'radio';
+	// Todo add more field types for the builder!
 
 	/**
 	 * Get the available types of field.
 	 *
 	 * @return array
-	 * @throws ReflectionException
 	 */
 	public static function get_types() {
-		static $constCache;
+		static $const_cache;
 
-		if ( ! isset( $constCache ) ) {
-			$reflect    = new ReflectionClass( __CLASS__ );
-			$constCache = $reflect->getConstants();
+		if ( ! isset( $const_cache ) ) {
+			$reflect     = new ReflectionClass( __CLASS__ );
+			$const_cache = $reflect->getConstants();
 		}
 
-		return $constCache;
+		return $const_cache;
 	}
 
 
 	/**
 	 * Check if a type is in the list of available types.
 	 *
-	 * @param string $value
+	 * @param string $value Check if it's a valid type.
 	 *
 	 * @return bool
-	 * @throws ReflectionException
 	 */
 	public static function is_valid_type( $value ) {
 		return in_array( $value, self::get_types(), true );

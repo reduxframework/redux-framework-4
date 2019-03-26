@@ -19,6 +19,8 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 	abstract class Redux_Field {
 
 		/**
+		 * Array of descriptors.
+		 *
 		 * @var Redux_Descriptor[]
 		 */
 		public static $descriptors = array();
@@ -29,35 +31,20 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @return Redux_Descriptor
 		 */
 		public static function make_base_descriptor() {
-			$d = new Redux_Descriptor( get_called_class() );
+			$d                                       = new Redux_Descriptor( get_called_class() );
 			self::$descriptors[ get_called_class() ] = $d;
 
-			$d->add_field( 'id', __( 'ID' , 'redux-framework' ), RDT::TEXT )
-			  ->set_order( 0 )
-			  ->set_required();
-			$d->add_field( 'title', __( 'Title' , 'redux-framework' ), RDT::TEXT, __( 'Title of the field.', 'redux-framework' ) )
-			  ->set_order( 1 );
-			$d->add_field( 'subtitle', __( 'Subtitle', 'redux-framework' ), RDT::TEXT, __( 'Subtitle of the field.', 'redux-framework' ) )
-			  ->set_order( 2 );
-			$d->add_field( 'desc', __( 'Description', 'redux-framework' ), RDT::TEXT, __( 'Description below the field.', 'redux-framework' ) )
-			  ->set_order( 3 );
-			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, __( 'Class name to be appended to the field container.', 'redux-framework' ) )
-			  ->set_order( 3 );
-			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a readonly state.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'required', __( 'Required', 'redux-framework' ), RDT::BOOL, __( 'Link the visibility of this field to the values of others.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::BOOL, __( 'Hint array of suggestions.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'readonly', __( 'Readonly', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a readonly state.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, __( 'Set the field to a disabled state.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'compiler', __( 'CSS Compiler' ), RDT::BOOL, __( 'Should the field be sent to the compiler.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-			$d->add_field( 'default', __( 'Default' ), RDT::BOOL, __( 'Default value of the field.', 'redux-framework' ), false )
-			  ->set_order( 60 );
-
+			$d->add_field( 'id', __( 'Field ID', 'redux-framework' ), RDT::TEXT )->set_order( 0 )->set_required();
+			$d->add_field( 'title', __( 'Title', 'redux-framework' ), RDT::TEXT, '' )->set_order( 1 );
+			$d->add_field( 'subtitle', __( 'Subtitle', 'redux-framework' ), RDT::TEXT, '' )->set_order( 2 );
+			$d->add_field( 'desc', __( 'Description', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
+			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
+			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'default', __( 'Default' ), RDT::ARRAY, '', false )->set_order( 60 );
+			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::ARRAY, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Permissions', 'redux-framework' ), RDT::ARRAY, '', false )->set_order( 60 );
+			$d->add_field( 'required', __( 'Required', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
 
 			return $d;
 		}
@@ -105,8 +92,8 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 
 			static::make_descriptor();
 
-			//This part is out of opt name because it's non vendor dependant!
-			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d );
+			// This part is out of opt name because it's non vendor dependant!
+			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 		}
 
 		/**
