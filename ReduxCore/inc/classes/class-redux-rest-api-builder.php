@@ -1,10 +1,18 @@
 <?php
+/**
+ * Redux Build API Class
+ *
+ * @class Redux_Rest_Api_Builder
+ * @version 4.0.0
+ * @package Redux Framework
+ * @author Tofandel & Dovy
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Redux_Rest_Api_Builder
- * The rest api to make the redux field builder.
- *
- * @author Tofandel
  */
 class Redux_Rest_Api_Builder {
 
@@ -234,7 +242,7 @@ class Redux_Rest_Api_Builder {
 	 * @return array
 	 */
 	public function render_field( $request = array() ) {
-		$type = $request['type'];
+		$type          = $request['type'];
 		$field_classes = $this->get_field_paths();
 		if ( isset( $field_classes[ strtolower( $type ) ] ) ) {
 			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
@@ -285,7 +293,6 @@ class Redux_Rest_Api_Builder {
 				);
 			}
 		}
-
 
 		return array( 'success' => false );
 	}

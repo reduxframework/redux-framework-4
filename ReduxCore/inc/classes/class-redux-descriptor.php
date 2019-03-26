@@ -1,26 +1,69 @@
 <?php
+/**
+ * Redux Descriptor Class
+ *
+ * @class Redux_Descriptor
+ * @version 4.0.0
+ * @package Redux Framework
+ * @author Tofandel
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Redux_Descriptor
- * Used to describe redux fields
- *
- * @author Tofandel
  */
 class Redux_Descriptor {
+	/**
+	 * Stores the Reflection class object.
+	 *
+	 * @var object ReflectionClass object.
+	 */
 	protected $reflection_class;
+	/**
+	 * Field type.
+	 *
+	 * @var string $field_type Type of field.
+	 */
 	protected $field_type;
-
+	/**
+	 * Name of the field.
+	 *
+	 * @var string $name Name of field.
+	 */
 	protected $name;
+	/**
+	 * Description of the field.
+	 *
+	 * @var string $description Description of field.
+	 */
 	protected $description;
+	/**
+	 * Icon of the field.
+	 *
+	 * @var string $icon Icon of field.
+	 */
 	protected $icon;
+	/**
+	 * Icon of the field.
+	 *
+	 * @var bool $required Is field required?
+	 */
 	protected $required;
 
 	/**
-	 * @var Redux_Descriptor_Fields[] Array of descriptor_fields.
+	 * Array of Redux_Descriptor_Fields.
+	 *
+	 * @var array Redux_Descriptor_Fields[] Array of descriptor_fields.
 	 */
 	protected $fields = array();
 
-	protected $current_field;
+	/**
+	 * Current field
+	 *
+	 * @var array Redux_Descriptor_Fields[] Array of descriptor_fields.
+	 */
 
 	/**
 	 * Redux_Descriptor constructor.
@@ -32,12 +75,11 @@ class Redux_Descriptor {
 		try {
 			$this->reflection_class = new ReflectionClass( $field );
 		} catch ( ReflectionException $e ) {
-			die ( $e->getMessage() );
+			die ( $e->getMessage() ); // phpcs:ignore
 		}
 		$this->field_type = strtolower( Redux_Helpers::remove_prefix( $this->reflection_class->getShortName(), 'Redux_' ) );
 		$this->name       = ucfirst( $this->field_type );
 	}
-
 
 	/**
 	 * Get field type.
@@ -51,9 +93,9 @@ class Redux_Descriptor {
 	/**
 	 * Set the basic required information.
 	 *
-	 * @param        $name
-	 * @param string $description
-	 * @param string $icon
+	 * @param string $name Set name for the descriptor.
+	 * @param string $description Set description for the descriptor.
+	 * @param string $icon Set icon for the descriptor.
 	 */
 	public function set_info( $name, $description = '', $icon = '' ) {
 		$this->name        = $name;
