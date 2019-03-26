@@ -60,7 +60,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					}
 				}
 
-				$this->field['options'] = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], 'bitch ass ' . $this->value );
+				$this->field['options'] = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value );
 			}
 
 			if ( ! empty( $this->field['data'] ) && ( 'elusive-icons' === $this->field['data'] || 'elusive-icon' === $this->field['data'] || 'elusive' === $this->field['data'] ) ) {
