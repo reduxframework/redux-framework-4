@@ -23,18 +23,26 @@ if ( ! class_exists( 'Redux_Textarea', false ) ) {
 		 * @since ReduxFramework 1.0.0
 		 * */
 		public function render() {
-			$this->field['placeholder'] = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : '';
-			$this->field['rows']        = isset( $this->field['rows'] ) ? $this->field['rows'] : 6;
 
-			$readonly = ( isset( $this->field['readonly'] ) && $this->field['readonly'] ) ? ' readonly="readonly"' : '';
-			?>
-			<textarea <?php echo esc_html( $readonly ); ?>
-					name="<?php echo esc_attr( $this->field['name'] . $this->field['name_suffix'] ); ?>"
-					id="<?php echo esc_attr( $this->field['id'] ); ?>-textarea"
-					placeholder="<?php echo esc_attr( $this->field['placeholder'] ); ?>"
-					class="large-text <?php echo esc_attr( $this->field['class'] ); ?>"
-					rows="<?php echo esc_attr( $this->field['rows'] ); ?>"><?php echo esc_textarea( $this->value ); ?></textarea>
-			<?php
+			$this->field['attributes'] = wp_parse_args(
+				isset( $this->field['attributes'] ) ? $this->field['attributes'] : array(),
+				array(
+					'placeholder'  => isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : '',
+					'rows'         => isset( $this->field['rows'] ) ? $this->field['rows'] : 6,
+					'autocomplete' => ( isset( $this->field['autocomplete'] ) && false === $this->field['autocomplete'] ) ? 'off' : '',
+					'readonly'     => isset( $this->field['readonly'] ) && $this->field['readonly'] ? 'readonly' : '',
+					'name'         => esc_attr( $this->field['name'] . $this->field['name_suffix'] ),
+					'id'           => esc_attr( $this->field['id'] ),
+					'class'        => isset( $this->field['class'] ) && ! empty( $this->field['class'] ) ? array( trim( $this->field['class'] ) ) : array(),
+				)
+			);
+
+			$this->field['attributes']['class'][] = 'large-text';
+
+			$this->field['attributes']['class'] = implode( ' ', $this->field['attributes']['class'] );
+
+			$attributes_string = $this->render_attributes( $this->field['attributes'] );
+			echo '<textarea ' . $attributes_string . '>' . esc_textarea( $this->value ) . '</textarea>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		/**

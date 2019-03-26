@@ -43,12 +43,14 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 				array(
 					'qtip_title'   => '',
 					'qtip_text'    => '',
-					'class'        => '',
-					'readonly'     => ( isset( $this->field['readonly'] ) && $this->field['readonly'] ) ? 'readonly' : '',
-					'autocomplete' => ( isset( $this->field['autocomplete'] ) && false === $this->field['autocomplete'] ) ? 'off' : '',
+					'class'        => isset( $this->field['class'] ) && ! empty( $this->field['class'] ) ? array( trim( $this->field['class'] ) ) : array(),
+					'readonly'     => isset( $this->field['readonly'] ) && $this->field['readonly'] ? 'readonly' : '',
+					'autocomplete' => isset( $this->field['autocomplete'] ) && false === $this->field['autocomplete'] ? 'off' : '',
 				)
 			);
+			$this->field['attributes']['class'][] = 'regular-text';
 
+			// Deprecated from the docs. Left as not to break user's code!
 			if ( isset( $this->field['text_hint'] ) && ! empty( $this->field['text_hint'] ) ) {
 				if ( ! is_array( $this->field['text_hint'] ) && is_string( $this->field['text_hint'] ) ) {
 					$this->field['text_hint'] = array(
@@ -65,9 +67,6 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 				$this->field['attributes']['qtip_title'] = isset( $this->field['text_hint']['title'] ) ? 'qtip-title="' . $this->field['text_hint']['title'] . '" ' : '';
 				$this->field['attributes']['qtip_text']  = isset( $this->field['text_hint']['content'] ) ? 'qtip-content="' . $this->field['text_hint']['content'] . '" ' : '';
 			}
-
-			$this->field['attributes']['class']   = isset( $this->field['class'] ) && ! empty( $this->field['class'] ) ? array( trim( $this->field['class'] ) ) : array();
-			$this->field['attributes']['class'][] = 'regular-text';
 
 			if ( ! empty( $this->field['data'] ) && empty( $this->field['options'] ) ) {
 				if ( empty( $this->field['args'] ) ) {
@@ -97,6 +96,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 						$attributes['placeholder'] = ( is_array( $this->field['placeholder'] ) && isset( $this->field['placeholder'][ $k ] ) ) ? esc_attr( $this->field['placeholder'][ $k ] ) : '';
 					}
 					$attributes['name'] = esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . esc_attr( $k ) ) . ']';
+					$attributes['id']   = esc_attr( $this->field['id'] . $k );
 
 					$attributes['type'] = ! isset( $attributes['type'] ) ? 'text' : $attributes['type'];
 					$attributes_string  = $this->render_attributes( $attributes );
@@ -104,6 +104,8 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 
 				}
 			} else {
+				$this->field['attributes']['id']          = $this->field['id'];
+				$this->field['attributes']['name']        = esc_attr( $this->field['name'] . $this->field['name_suffix'] );
 				$this->field['attributes']['value']       = $this->value;
 				$this->field['attributes']['placeholder'] = ( isset( $this->field['placeholder'] ) && ! is_array( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : '';
 				$attributes_string                        = $this->render_attributes( $this->field['attributes'] );
