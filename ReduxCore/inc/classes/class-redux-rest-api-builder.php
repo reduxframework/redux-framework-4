@@ -66,7 +66,7 @@ class Redux_Rest_Api_Builder {
 		);
 		register_rest_route(
 			$this->get_namespace(),
-			'/field/(?P<type>[a-z0-9]+)/render',
+			'/field/(?P<type>[a-z0-9-_]+)/render',
 			array(
 				'args'     => array(
 					'name' => array(
@@ -142,11 +142,11 @@ class Redux_Rest_Api_Builder {
 			if ( $field_class && is_subclass_of( $class, 'Redux_Field' ) ) {
 				$descriptor = call_user_func( array( $class, 'get_descriptor' ) );
 				if ( ! empty( $descriptor->get_field_type() ) ) {
-					//$field_data = $descriptor->to_array();
-					//if ( isset( $field_data['fields'] ) ) {
-					//	$field_data['fields'] = $this->prepare_fields_output( array_values( $field_data ) );
-					//}
-					$fields[ $descriptor->get_field_type() ] = $descriptor->to_array();
+					$field_data = $descriptor->to_array();
+					if ( isset( $field_data['fields'] ) && ! empty( $field_data['fields'] ) ) {
+						$field_data['fields'] = $this->prepare_fields_output( $field_data['fields'] );
+					}
+					$fields[ $descriptor->get_field_type() ] = $field_data;
 				}
 			}
 		}
@@ -234,22 +234,22 @@ class Redux_Rest_Api_Builder {
 	 * @return array
 	 */
 	public function render_field( $request = array() ) {
+		$type = $request['type'];
+		$field_classes = $this->get_field_paths();
+		if ( isset( $field_classes[ strtolower( $type ) ] ) ) {
+			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
+			if ( ! class_exists( $class ) ) {
+				require_once $field_classes[ strtolower( $type ) ];
+			}
+			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
+			$field_class = Redux_Functions::class_exists_ex( $field_class );
 
-		// TODO MODIFY the function to get the post data from the data object with a post method in the register route!
-		$type = $data['type'];
-		if ( ! empty( $type ) ) {
-			$field_classes = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
-			$field_class   = Redux_Functions::class_exists_ex( $field_classes );
 			if ( $field_class && is_subclass_of( $field_class, 'Redux_Field' ) ) {
+				// TODO MODIFY the function to get the post data from the data object with a post method in the register route!
 				try {
 					$class = new ReflectionClass( 'ReduxFramework_' . $type );
 				} catch ( ReflectionException $e ) {
 					return array( 'success' => false );
-				}
-				$opt_name = 'my_opt_name';
-				// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
-				if ( ! empty( $request['opt_name'] ) ) {
-					$opt_name = $request['opt_name'];
 				}
 
 				/**
@@ -258,10 +258,24 @@ class Redux_Rest_Api_Builder {
 				 * @var Redux_Descriptor $descriptor
 				 */
 				$descriptor = call_user_func( array( 'ReduxFramework_' . $type, 'get_descriptor' ) );
+				$opt_name   = 'redux_builder_api';
 
 				$redux_instance = new ReduxFramework( array(), array( 'opt_name' => $opt_name ) );
 				$req            = $descriptor->parse_request( $request );
-				$field          = $class->newInstance( $req, isset( $request['example_values'] ) ? $request['example_values'] : '', $redux_instance );
+
+				$req = wp_parse_args(
+					$req,
+					array(
+						'class'          => '',
+						'example_values' => '',
+						'name_suffix'    => '',
+					)
+				);
+
+				$req['id']   = isset( $request['id'] ) ? $request['id'] : 'redux_field';
+				$req['name'] = isset( $request['name'] ) ? $request['name'] : $req['id'];
+
+				$field = $class->newInstance( $req, $request['example_values'], $redux_instance );
 				ob_start();
 				$field->render();
 
@@ -271,6 +285,7 @@ class Redux_Rest_Api_Builder {
 				);
 			}
 		}
+
 
 		return array( 'success' => false );
 	}
