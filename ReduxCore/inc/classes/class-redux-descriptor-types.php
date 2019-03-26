@@ -22,7 +22,6 @@ abstract class Redux_Descriptor_Types {
 	const NUMBER   = 'number';
 	const RANGE    = 'range';
 	const OPTIONS  = 'array';
-	const ARRAY    = 'array';
 	const WP_DATA  = 'wp_data';
 	const RADIO    = 'radio';
 	// Todo add more field types for the builder!

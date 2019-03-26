@@ -42,8 +42,8 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
 			$d->add_field( 'default', __( 'Default' ), RDT::ARRAY, '', false )->set_order( 60 );
 			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
-			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::ARRAY, '', false )->set_order( 60 );
-			$d->add_field( 'hint', __( 'Permissions', 'redux-framework' ), RDT::ARRAY, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Permissions', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
 			$d->add_field( 'required', __( 'Required', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
 
 			return $d;
