@@ -40,7 +40,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			$d->add_field( 'desc', __( 'Description', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
 			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
 			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
-			$d->add_field( 'default', __( 'Default' ), RDT::ARRAY, '', false )->set_order( 60 );
+			$d->add_field( 'default', __( 'Default' ), RDT::OPTIONS, '', false )->set_order( 60 );
 			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
 			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
 			$d->add_field( 'hint', __( 'Permissions', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
