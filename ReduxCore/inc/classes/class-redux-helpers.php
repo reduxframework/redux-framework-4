@@ -1908,6 +1908,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				}
 			} else {
 				$array = self::get_statistics_object();
+
 				if ( is_array( $instances ) && ! empty( $instances ) ) {
 					$array['instances'] = array();
 					foreach ( $instances as $opt_name => $data ) {
