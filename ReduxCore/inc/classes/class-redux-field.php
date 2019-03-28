@@ -19,6 +19,92 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 	abstract class Redux_Field {
 
 		/**
+		 * Array of descriptors.
+		 *
+		 * @var Redux_Descriptor[]
+		 */
+		public static $descriptors = array();
+
+		/**
+		 * Make base descriptor.
+		 *
+		 * @return Redux_Descriptor
+		 */
+		public static function make_base_descriptor() {
+			$d                                       = new Redux_Descriptor( get_called_class() );
+			self::$descriptors[ get_called_class() ] = $d;
+
+			$d->add_field( 'id', __( 'Field ID', 'redux-framework' ), RDT::TEXT )->set_order( 0 )->set_required();
+			$d->add_field( 'title', __( 'Title', 'redux-framework' ), RDT::TEXT, '' )->set_order( 1 );
+			$d->add_field( 'subtitle', __( 'Subtitle', 'redux-framework' ), RDT::TEXT, '' )->set_order( 2 );
+			$d->add_field( 'desc', __( 'Description', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
+			$d->add_field( 'class', __( 'Class', 'redux-framework' ), RDT::TEXT, '' )->set_order( 3 );
+			$d->add_field( 'compiler', __( 'Compiler', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'default', __( 'Default' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'disabled', __( 'Disabled', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Hint', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Permissions', 'redux-framework' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'required', __( 'Required', 'redux-framework' ), RDT::BOOL, '', false )->set_order( 60 );
+
+			return $d;
+		}
+
+		/**
+		 * Renders an attribute array into an html attributes string.
+		 *
+		 * @param array $attributes HTML attributes.
+		 *
+		 * @return string
+		 */
+		public static function render_attributes( $attributes = array() ) {
+			$output = '';
+
+			if ( empty( $attributes ) ) {
+				return $output;
+			}
+
+			foreach ( $attributes as $key => $value ) {
+				if ( false === $value || '' === $value ) {
+					continue;
+				}
+
+				if ( is_array( $value ) ) {
+					$value = wp_json_encode( $value );
+				}
+
+				$output .= sprintf( true === $value ? ' %s' : ' %s="%s"', $key, esc_attr( $value ) );
+			}
+
+			return $output;
+		}
+
+		/**
+		 * Get descriptor.
+		 *
+		 * @return Redux_Descriptor
+		 */
+		public static function get_descriptor() {
+			if ( ! isset( static::$descriptors[ get_called_class() ] ) ) {
+				static::make_descriptor();
+			}
+
+			$d = self::$descriptors[ get_called_class() ];
+
+			static::make_descriptor();
+
+			// This part is out of opt name because it's non vendor dependant!
+			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		}
+
+		/**
+		 * Build the field descriptor in this function.
+		 */
+		public static function make_descriptor() {
+			static::make_base_descriptor();
+		}
+
+
+		/**
 		 * CSS styling per field output/compiler.
 		 *
 		 * @var string

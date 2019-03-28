@@ -39,8 +39,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 				'thumbnail' => '',
 			);
 
-			// Since value subarrays do not get parsed in wp_parse_args
-			// Fixed that motherfracker, didn't we?  Bitches! - kp.
+			// Since value subarrays do not get parsed in wp_parse_args!
 			$this->value = Redux_Functions::parse_args( $this->value, $defaults );
 
 			$defaults = array(
