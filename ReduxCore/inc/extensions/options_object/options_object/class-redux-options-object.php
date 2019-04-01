@@ -127,7 +127,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_script(
 					'redux-extension-options-object-js',
-					$this->_url . 'redux-options-object' . Redux_Functions::is_min() . '.js',
+					$this->url . 'redux-options-object' . Redux_Functions::is_min() . '.js',
 					array( 'jquery', 'redux-js' ),
 					Redux_Extension_Options_Object::$version,
 					true
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 
 			wp_enqueue_style(
 				'redux-options-object',
-				$this->_url . 'redux-options-object.css',
+				$this->url . 'redux-options-object.css',
 				array(),
 				Redux_Extension_Options_Object::$version,
 				'all'

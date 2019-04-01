@@ -64,7 +64,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 					$post_data = wp_unslash( $_POST['data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
 					// New method to avoid input_var nonsense.  Thanks @harunbasic.
-					$values = $this->parse_str( $post_data );
+					$values = Redux_Functions_Ex::parse_str( $post_data );
 					$values = $values[ $redux->args['opt_name'] ];
 
 					if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
@@ -173,71 +173,6 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			}
 
 			die();
-		}
-
-		/**
-		 * Parses the string into variables without the max_input_vars limitation.
-		 *
-		 * @since   3.5.7.11
-		 * @author  harunbasic
-		 * @access  private
-		 *
-		 * @param   string $string String of data.
-		 *
-		 * @return  array|false $result
-		 */
-		private function parse_str( $string ) {
-			if ( '' === $string ) {
-				return false;
-			}
-
-			$result = array();
-			$pairs  = explode( '&', $string );
-
-			foreach ( $pairs as $key => $pair ) {
-				// use the original parse_str() on each element.
-				parse_str( $pair, $params );
-
-				$k = key( $params );
-
-				if ( ! isset( $result[ $k ] ) ) {
-					$result += $params;
-				} elseif ( is_array( $result[ $k ] ) && is_array( $params[ $k ] ) ) {
-					$result[ $k ] = $this->array_merge_recursive_distinct( $result[ $k ], $params[ $k ] );
-				}
-			}
-
-			return $result;
-		}
-
-		/**
-		 * Merge arrays without converting values with duplicate keys to arrays as array_merge_recursive does.
-		 * As seen here http://php.net/manual/en/function.array-merge-recursive.php#92195
-		 *
-		 * @since   3.5.7.11
-		 * @author  harunbasic
-		 * @access  private
-		 *
-		 * @param   array $array1 array one.
-		 * @param   array $array2 array two.
-		 *
-		 * @return  array $merged
-		 */
-		private function array_merge_recursive_distinct( array $array1, array $array2 ) {
-			$merged = $array1;
-
-			foreach ( $array2 as $key => $value ) {
-
-				if ( is_array( $value ) && isset( $merged[ $key ] ) && is_array( $merged[ $key ] ) ) {
-					$merged[ $key ] = $this->array_merge_recursive_distinct( $merged[ $key ], $value );
-				} elseif ( is_numeric( $key ) && isset( $merged[ $key ] ) ) {
-					$merged[] = $value;
-				} else {
-					$merged[ $key ] = $value;
-				}
-			}
-
-			return $merged;
 		}
 	}
 }
