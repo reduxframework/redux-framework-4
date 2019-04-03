@@ -2,7 +2,7 @@
 /**
  * Redux Validation Class
  *
- * @class Redux_Validation
+ * @class   Redux_Validation
  * @version 4.0.0
  * @package Redux Framework
  */
@@ -23,9 +23,9 @@ if ( ! class_exists( 'Redux_Validation', false ) ) {
 		 * @since       1.0.0
 		 * @access      public
 		 *
-		 * @param       array $plugin_options PLugin Options.
-		 * @param       array $options Options.
-		 * @param       array $sections Sections array.
+		 * @param       array $plugin_options Plugin Options.
+		 * @param       array $options        Options.
+		 * @param       array $sections       Sections array.
 		 *
 		 * @return      array $plugin_options
 		 */
@@ -219,9 +219,15 @@ if ( ! class_exists( 'Redux_Validation', false ) ) {
 							$callback = $field['validate_callback'];
 							unset( $field['validate_callback'] );
 
-							$plugin_option                  = isset( $plugin_options[ $field['id'] ] ) ? $plugin_options[ $field['id'] ] : null;
-							$option                         = isset( $options[ $field['id'] ] ) ? $options[ $field['id'] ] : null;
-							$callbackvalues                 = call_user_func( $callback, $field, $plugin_option, $option );
+							$plugin_option = isset( $plugin_options[ $field['id'] ] ) ? $plugin_options[ $field['id'] ] : null;
+							$option        = isset( $options[ $field['id'] ] ) ? $options[ $field['id'] ] : null;
+
+							if ( isset( $field['validate_callback_all'] ) && true === $field['validate_callback_all'] ) {
+								$callbackvalues = call_user_func( $callback, $field, $plugin_option, $option, $options );
+							} else {
+								$callbackvalues = call_user_func( $callback, $field, $plugin_option, $option );
+							}
+
 							$plugin_options[ $field['id'] ] = $callbackvalues['value'];
 
 							if ( isset( $callbackvalues['error'] ) ) {
