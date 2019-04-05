@@ -222,11 +222,7 @@ if ( ! class_exists( 'Redux_Validation', false ) ) {
 							$plugin_option = isset( $plugin_options[ $field['id'] ] ) ? $plugin_options[ $field['id'] ] : null;
 							$option        = isset( $options[ $field['id'] ] ) ? $options[ $field['id'] ] : null;
 
-							if ( isset( $field['validate_callback_all'] ) && true === $field['validate_callback_all'] ) {
-								$callbackvalues = call_user_func( $callback, $field, $plugin_option, $option, $options );
-							} else {
-								$callbackvalues = call_user_func( $callback, $field, $plugin_option, $option );
-							}
+							$callbackvalues = call_user_func( $callback, $field, $plugin_option, $option );
 
 							$plugin_options[ $field['id'] ] = $callbackvalues['value'];
 
