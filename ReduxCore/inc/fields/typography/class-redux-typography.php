@@ -63,7 +63,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 * @param string $value Field values.
 		 * @param null   $parent ReduxFramework object pointer.
 		 */
-		public function __construct( $field = array(), $value = null, $parent = null ) {
+		public function __construct( $field = array(), $value = null, $parent = null ) { // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod
 			parent::__construct( $field, $value, $parent );
 		}
 
