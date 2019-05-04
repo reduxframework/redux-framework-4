@@ -20,7 +20,7 @@
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.typography = redux.field_objects.typography || {};
 
-	redux.field_objects.typography.init = function( selector ) {
+	redux.field_objects.typography.init = function( selector, skipCheck ) {
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-typography:visible' );
 		}

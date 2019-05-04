@@ -156,6 +156,10 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 * @throws ReflectionException Comment.
 		 */
 		public function __construct( $field = array(), $value = null, $parent = null ) {
+			/*
+			TODO - Fix me!
+
+			*/
 
 			if ( isset( Redux_Core::$wp_nonce ) && ! empty( Redux_Core::$wp_nonce ) && ( ! Redux_Core::$pro_loaded ) && Redux_Functions_Ex::metabox_boxes( $parent ) ) {
 				if ( ! in_array( md5( $field['type'] ), Redux_Helpers::nonces(), true ) ) {

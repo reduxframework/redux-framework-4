@@ -57,6 +57,17 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		private $user_fonts = true;
 
 		/**
+		 * Redux_Field constructor.
+		 *
+		 * @param array  $field Field array.
+		 * @param string $value Field values.
+		 * @param null   $parent ReduxFramework object pointer.
+		 */
+		public function __construct( $field = array(), $value = null, $parent = null ) {
+			parent::__construct( $field, $value, $parent );
+		}
+
+		/**
 		 * Sets default values for field.
 		 */
 		public function set_defaults() {

@@ -20,6 +20,17 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 	class Redux_Color_Gradient extends Redux_Field {
 
 		/**
+		 * Redux_Field constructor.
+		 *
+		 * @param array  $field Field array.
+		 * @param string $value Field values.
+		 * @param null   $parent ReduxFramework object pointer.
+		 */
+		public function __construct( $field = array(), $value = null, $parent = null ) {
+			parent::__construct( $field, $value, $parent );
+		}
+
+		/**
 		 * Set field and value defaults.
 		 */
 		public function set_defaults() {
