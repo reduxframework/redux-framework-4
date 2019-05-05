@@ -31,21 +31,21 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 */
 		private $std_fonts = array(
 			'Arial, Helvetica, sans-serif'          => 'Arial, Helvetica, sans-serif',
-			"'Arial Black', Gadget, sans-serif"     => "'Arial Black', Gadget, sans-serif",
-			"'Bookman Old Style', serif"            => "'Bookman Old Style', serif",
-			"'Comic Sans MS', cursive"              => "'Comic Sans MS', cursive",
+			'"Arial Black", Gadget, sans-serif'     => '"Arial Black", Gadget, sans-serif',
+			"'Bookman Old Style', serif"            => '"Bookman Old Style", serif',
+			'"Comic Sans MS", cursive'              => '"Comic Sans MS", cursive',
 			'Courier, monospace'                    => 'Courier, monospace',
 			'Garamond, serif'                       => 'Garamond, serif',
 			'Georgia, serif'                        => 'Georgia, serif',
 			'Impact, Charcoal, sans-serif'          => 'Impact, Charcoal, sans-serif',
-			"'Lucida Console', Monaco, monospace"   => "'Lucida Console', Monaco, monospace",
-			"'Lucida Sans Unicode', 'Lucida Grande', sans-serif" => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-			"'MS Sans Serif', Geneva, sans-serif"   => "'MS Sans Serif', Geneva, sans-serif",
-			"'MS Serif', 'New York', sans-serif"    => "'MS Serif', 'New York', sans-serif",
-			"'Palatino Linotype', 'Book Antiqua', Palatino, serif" => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+			'"Lucida Console", Monaco, monospace'   => '"Lucida Console", Monaco, monospace',
+			'"Lucida Sans Unicode", "Lucida Grande", sans-serif' => '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+			'"MS Sans Serif", Geneva, sans-serif'   => '"MS Sans Serif", Geneva, sans-serif',
+			'"MS Serif", "New York", sans-serif'    => '"MS Serif", "New York", sans-serif',
+			'"Palatino Linotype", "Book Antiqua", Palatino, serif' => '"Palatino Linotype", "Book Antiqua", Palatino, serif',
 			'Tahoma,Geneva, sans-serif'             => 'Tahoma, Geneva, sans-serif',
-			"'Times New Roman', Times,serif"        => "'Times New Roman', Times, serif",
-			"'Trebuchet MS', Helvetica, sans-serif" => "'Trebuchet MS', Helvetica, sans-serif",
+			'"Times New Roman", Times,serif'        => '"Times New Roman", Times, serif',
+			'"Trebuchet MS", Helvetica, sans-serif' => '"Trebuchet MS", Helvetica, sans-serif',
 			'Verdana, Geneva, sans-serif'           => 'Verdana, Geneva, sans-serif',
 		);
 
@@ -59,12 +59,25 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		/**
 		 * Redux_Field constructor.
 		 *
-		 * @param array  $field Field array.
-		 * @param string $value Field values.
+		 * @param array  $field  Field array.
+		 * @param string $value  Field values.
 		 * @param null   $parent ReduxFramework object pointer.
 		 */
 		public function __construct( $field = array(), $value = null, $parent = null ) { // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod
-			parent::__construct( $field, $value, $parent );
+			$this->parent = $parent;
+			$this->field  = $field;
+			$this->value  = $value;
+
+			$this->set_defaults();
+
+			$path_info = Redux_Helpers::path_info( __file__ );
+			$this->dir = trailingslashit( dirname( $path_info['real_path'] ) );
+			$this->url = trailingslashit( dirname( $path_info['url'] ) );
+
+			$this->timestamp = Redux_Core::$version;
+			if ( $parent->args['dev_mode'] ) {
+				$this->timestamp .= '.' . time();
+			}
 		}
 
 		/**
@@ -128,7 +141,13 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			$this->value = wp_parse_args( $this->value, $defaults );
 
-			if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], array( 'px', 'em', 'rem', '%' ), true ) ) {
+			$units = array(
+				'px',
+				'em',
+				'rem',
+				'%',
+			);
+			if ( empty( $this->field['units'] ) || ! in_array( $this->field['units'], $units, true ) ) {
 				$this->field['units'] = 'px';
 			}
 
@@ -184,13 +203,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			// declarations.
 			// If field is set and not blank, then enqueue field.
 			if ( isset( $this->field['ext-font-css'] ) && '' !== $this->field['ext-font-css'] ) {
-				wp_enqueue_style(
-					'redux-external-fonts',
-					$this->field['ext-font-css'],
-					array(),
-					Redux_Core::$version,
-					'all'
-				);
+				wp_enqueue_style( 'redux-external-fonts', $this->field['ext-font-css'], array(), Redux_Core::$version, 'all' );
 			}
 
 			if ( empty( $this->field['units'] ) && ! empty( $this->field['default']['units'] ) ) {
@@ -355,8 +368,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						value="' . esc_attr( $this->value['font-style'] ) . '" 
 						data-id="' . esc_attr( $this->field['id'] ) . '"  /> ';
 				$multi = ( isset( $this->field['multi']['weight'] ) && $this->field['multi']['weight'] ) ? ' multiple="multiple"' : '';
-				echo '<select' .
-						esc_html( $multi ) . ' 
+				echo '<select' . esc_html( $multi ) . ' 
 				        data-placeholder="' . esc_html__( 'Style', 'redux-framework' ) . '" 
 				        class="redux-typography redux-typography-style select ' . esc_attr( $this->field['class'] ) . '" 
 				        original-title="' . esc_html__( 'Font style', 'redux-framework' ) . '" 
@@ -382,8 +394,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 				echo '<label>' . esc_html__( 'Font Subsets', 'redux-framework' ) . '</label>';
 				$multi = ( isset( $this->field['multi']['subset'] ) && $this->field['multi']['subset'] ) ? ' multiple="multiple"' : '';
-				echo '<select' .
-						esc_html( $multi ) . ' 
+				echo '<select' . esc_html( $multi ) . ' 
 						data-placeholder="' . esc_html__( 'Subsets', 'redux-framework' ) . '" 
 						class="redux-typography redux-typography-subsets ' . esc_attr( $this->field['class'] ) . '" 
 						original-title="' . esc_html__( 'Font script', 'redux-framework' ) . '"  
@@ -679,13 +690,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 							wp_deregister_style( 'redux-typography-preview' );
 							wp_dequeue_style( 'redux-typography-preview' );
 
-							wp_enqueue_style(
-								'redux-typography-preview',
-								$protocol . $this->make_google_web_font_link( $this->typography_preview ),
-								array(),
-								Redux_Core::$version,
-								'all'
-							);
+							wp_enqueue_style( 'redux-typography-preview', $protocol . $this->make_google_web_font_link( $this->typography_preview ), array(), Redux_Core::$version, 'all' );
 						}
 
 						$style = 'display: block; font-family: ' . esc_attr( $this->value['font-family'] ) . '; font-weight: ' . esc_attr( $this->value['font-weight'] ) . ';';
@@ -737,24 +742,11 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				wp_enqueue_style( 'wp-color-picker' );
 			}
 
-			wp_enqueue_script(
-				'redux-webfont-js',
-				// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-				'//' . 'ajax' . '.googleapis' . '.com/ajax/libs/webfont/1.6.26/webfont.js',
-				array(),
-				'1.6.26',
-				true
-			);
+			wp_enqueue_script( 'redux-webfont-js', '//' . 'ajax' . '.googleapis' . '.com/ajax/libs/webfont/1.6.26/webfont.js', array(), '1.6.26', true ); // phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 
 			$dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js', 'redux-webfont-js' );
 
-			wp_enqueue_script(
-				'redux-field-typography-js',
-				Redux_Core::$url . "inc/fields/typography/redux-typography$min.js",
-				$dep_array,
-				$this->timestamp,
-				true
-			);
+			wp_enqueue_script( 'redux-field-typography-js', Redux_Core::$url . "inc/fields/typography/redux-typography$min.js", $dep_array, $this->timestamp, true );
 
 			wp_localize_script(
 				'redux-field-typography-js',
@@ -779,13 +771,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style( 'redux-color-picker-css' );
 
-				wp_enqueue_style(
-					'redux-field-typography-css',
-					Redux_Core::$url . 'inc/fields/typography/redux-typography.css',
-					array(),
-					$this->timestamp,
-					'all'
-				);
+				wp_enqueue_style( 'redux-field-typography-css', Redux_Core::$url . 'inc/fields/typography/redux-typography.css', array(), $this->timestamp, 'all' );
 			}
 		}
 
@@ -958,7 +944,14 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						}
 					}
 
-					if ( empty( $value ) && in_array( $key, array( 'font-weight', 'font-style' ), true ) && true === $font_value_set ) {
+					if ( empty( $value ) && in_array(
+						$key,
+						array(
+							'font-weight',
+							'font-style',
+						),
+						true
+					) && true === $font_value_set ) {
 						$value = 'normal';
 					}
 
@@ -1296,7 +1289,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 * Clean up the Google Webfonts subsets to be human readable
 		 *
 		 * @since ReduxFramework 0.2.0
+		 *
 		 * @param array $var Font subset array.
+		 *
 		 * @return array
 		 */
 		private function get_subsets( $var ) {
