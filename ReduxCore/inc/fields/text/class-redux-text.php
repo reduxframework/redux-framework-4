@@ -99,7 +99,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 					$attributes['name'] = esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . esc_attr( $k ) ) . ']';
 					$attributes['id']   = esc_attr( $this->field['id'] . $k );
 
-					$attributes_string  = $this->render_attributes( $attributes );
+					$attributes_string = $this->render_attributes( $attributes );
 					echo '<div class="input_wrapper"><label for="' . $attributes['name'] . '">' . $this->value[ $k ] . '</label><input ' . $attributes_string . '></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 				}
