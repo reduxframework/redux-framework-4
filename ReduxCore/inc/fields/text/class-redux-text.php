@@ -46,6 +46,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 					'class'        => isset( $this->field['class'] ) && ! empty( $this->field['class'] ) ? array( trim( $this->field['class'] ) ) : array(),
 					'readonly'     => isset( $this->field['readonly'] ) && $this->field['readonly'] ? 'readonly' : '',
 					'autocomplete' => isset( $this->field['autocomplete'] ) && false === $this->field['autocomplete'] ? 'off' : '',
+					'type'         => ! isset( $this->field['type'] ) ? 'text' : $this->field['type'],
 				)
 			);
 			$this->field['attributes']['class'][] = 'regular-text';
@@ -98,7 +99,6 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 					$attributes['name'] = esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . esc_attr( $k ) ) . ']';
 					$attributes['id']   = esc_attr( $this->field['id'] . $k );
 
-					$attributes['type'] = ! isset( $attributes['type'] ) ? 'text' : $attributes['type'];
 					$attributes_string  = $this->render_attributes( $attributes );
 					echo '<div class="input_wrapper"><label for="' . $attributes['name'] . '">' . $this->value[ $k ] . '</label><input ' . $attributes_string . '></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
