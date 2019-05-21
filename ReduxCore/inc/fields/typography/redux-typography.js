@@ -20,7 +20,7 @@
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.typography = redux.field_objects.typography || {};
 
-	redux.field_objects.typography.init = function( selector ) {
+	redux.field_objects.typography.init = function( selector, skipCheck ) {
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-typography:visible' );
 		}
@@ -35,12 +35,6 @@
 				}
 
 				if ( parent.is( ':hidden' ) ) {
-					return;
-				}
-
-				if ( parent.hasClass( 'redux-field-init' ) ) {
-					parent.removeClass( 'redux-field-init' );
-				} else {
 					return;
 				}
 
@@ -67,6 +61,11 @@
 								var data             = [{ id: 'none', text: 'none' }];
 								var thisID           = $( this ).find( '.redux-typography-family' ).parents( '.redux-container-typography:first' ).data( 'id' );
 								var usingGoogleFonts = $( '#' + thisID + ' .redux-typography-google' ).val();
+								var parent = $( '#'+thisID ).parent();
+
+								if ( ! parent.hasClass( 'redux-field-init' ) ) {
+									return;
+								}
 
 								// Set up data array.
 								var buildData = [];
@@ -292,6 +291,7 @@
 								redux.field_objects.typography.updates( $( this ) );
 
 								window.onbeforeunload = null;
+								parent.removeClass( 'redux-field-init' );
 							}
 						);
 					}

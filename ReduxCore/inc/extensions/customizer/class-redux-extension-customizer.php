@@ -33,14 +33,14 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 *
 		 * @var string
 		 */
-		private $field_name = 'customizer';
+		public $field_name = 'customizer';
 
 		/**
 		 * Set the friendly name of the extension.  This is for display purposes.  No underscores or dashes are required.
 		 *
 		 * @var string
 		 */
-		private $extension_name = 'Customizer';
+		public $extension_name = 'Customizer';
 
 		/**
 		 * Set the minumum required version of Redux here (optional).
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 *
 		 * @var array
 		 */
-		private $options = array();
+		public $options = array();
 
 		/**
 		 * Redux_Extension_my_extension constructor.

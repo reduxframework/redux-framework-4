@@ -1,7 +1,14 @@
 # Redux Framework v4 Changelog
 
+## 4.0.1.8
+* Fixed:    #30 - Typography field causing a "save" notice.
+* Added:    Start of Redux Builder API for fields.
+* Modified: Moved some methods to new classes.
+* Fixed:    Fix underscore naming convention in in Redux_Field,
+* Modified: Move two ajax saves routines to Redux_Functions_Ex for advanced customizer validation on save.
+
 ## 4.0.1.7
-* Fixed:    #20 -  variable mssing $ dev.
+* Fixed:    #20 - variable mssing $ dev.
 * Fixed:    Customizer saving.
 * Fixed     Customizer 'required'.
 * Fixed:    button_set field not saving or loading in multi mode.
