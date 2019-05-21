@@ -20,7 +20,7 @@
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.typography = redux.field_objects.typography || {};
 
-	redux.field_objects.typography.init = function( selector, skipCheck ) {
+	redux.field_objects.typography.init = function( selector ) {
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-typography:visible' );
 		}
@@ -61,11 +61,7 @@
 								var data             = [{ id: 'none', text: 'none' }];
 								var thisID           = $( this ).find( '.redux-typography-family' ).parents( '.redux-container-typography:first' ).data( 'id' );
 								var usingGoogleFonts = $( '#' + thisID + ' .redux-typography-google' ).val();
-								var parent = $( '#'+thisID ).parent();
-
-								if ( ! parent.hasClass( 'redux-field-init' ) ) {
-									return;
-								}
+								var parent           = $( '#' + thisID ).parent();
 
 								// Set up data array.
 								var buildData = [];
@@ -73,6 +69,10 @@
 
 								// User included fonts?
 								var isUserFonts = $( '#' + thisID + ' .redux-typography-font-family' ).data( 'user-fonts' );
+
+								if ( ! parent.hasClass( 'redux-field-init' ) ) {
+									return;
+								}
 
 								if ( undefined === familyData ) {
 									family = $( this );
@@ -141,8 +141,12 @@
 
 								val = $( this ).find( '.redux-typography-family' ).data( 'value' );
 
+								$( this ).find( '.redux-typography-family' ).addClass( 'ignore-change' );
+
 								$( this ).find( '.redux-typography-family' ).select2( { data: data } );
 								$( this ).find( '.redux-typography-family' ).val( val ).trigger( 'change' );
+
+								$( this ).find( '.redux-typography-family' ).removeClass( 'ignore-change' );
 
 								xx = el.find( '.redux-typography-family' );
 								if ( ! xx.hasClass( 'redux-typography-family' ) ) {
@@ -262,7 +266,9 @@
 										that.data( 'value', '' );
 
 										if ( $( this ).hasClass( 'redux-typography-family' ) ) {
+											$( this ).find( '.redux-typography-family' ).addClass( 'ignore-change' );
 											$( this ).val( null ).trigger( 'change' );
+											$( this ).find( '.redux-typography-family' ).removeClass( 'ignore-change' );
 
 											redux.field_objects.typography.select( that, true, false, null, true );
 										} else {
@@ -280,7 +286,9 @@
 											}
 
 											if ( $( this ).hasClass( 'redux-typography-family-backup' ) ) {
+												$( this ).find( '.redux-typography-family-backup' ).addClass( 'ignore-change' );
 												that.val( null ).trigger( 'change' );
+												$( this ).find( '.redux-typography-family-backup' ).removeClass( 'ignore-change' );
 											}
 
 											redux.field_objects.typography.select( $( this ), true, false, null, false );
@@ -451,10 +459,10 @@
 		var link;
 		var isPreviewSize;
 
-		var typekit  = false;
-		var details  = '';
-		var html     = '<option value=""></option>';
-		var selected = '';
+		var typekit              = false;
+		var details              = '';
+		var html                 = '<option value=""></option>';
+		var selected             = '';
 		var allowEmptyLineHeight = false;
 
 		// Main id for selected field.
@@ -660,6 +668,8 @@
 
 		if ( active ) {
 
+			that.find( '.redux-typography-style' ).addClass( 'ignore-change' );
+
 			// Check if the selected value exists. If not, empty it. Else, apply it.
 			if ( 0 === that.find( 'select.redux-typography-style option[value=\'' + style + '\']' ).length ) {
 				style = '';
@@ -668,11 +678,16 @@
 				that.find( 'select.redux-typography-style' ).val( style ).trigger( 'change' );
 			}
 
+			that.find( '.redux-typography-style' ).removeClass( 'ignore-change' );
+
 			// Handle empty subset select.
 			if ( 0 === that.find( 'select.redux-typography-subsets option[value=\'' + script + '\']' ).length ) {
 				script = '';
+
+				that.find( '.redux-typography-style' ).addClass( 'ignore-change' );
 				that.find( 'select.redux-typography-subsets' ).val( '' ).trigger( 'change' );
 				that.find( 'input.typography-subsets' ).val( script );
+				that.find( '.redux-typography-style' ).removeClass( 'ignore-change' );
 			}
 		}
 

@@ -390,6 +390,14 @@ function colorNameToHex( colour ) {
 			}
 		);
 
+		// Customizer save hook.
+		el.find( '#customize-save-button-wrapper #save' ).on(
+			'click',
+			function() {
+
+			}
+		);
+
 		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).click(
 			function( e ) {
 				var url;
@@ -486,6 +494,9 @@ function colorNameToHex( colour ) {
 			'change',
 			'.redux-field input, .redux-field textarea, .redux-field select',
 			function() {
+				if ( $( '.redux-container-typography select' ).hasClass( 'ignore-change' ) ) {
+					return;
+				}
 				if ( ! $( this ).hasClass( 'noUpdate' ) && ! $( this ).hasClass( 'no-update' ) ) {
 					redux_change( $( this ) );
 				}
