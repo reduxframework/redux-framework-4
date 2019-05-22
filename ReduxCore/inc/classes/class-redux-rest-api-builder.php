@@ -105,7 +105,7 @@ class Redux_Rest_Api_Builder {
 	 */
 	public function get_field_paths() {
 		$fields     = array();
-		$fields_dir = trailingslashit( ReduxCore::$dir ) . 'inc' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR;
+		$fields_dir = trailingslashit( Redux_Core::$dir ) . 'inc' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR;
 		$dirs       = new RecursiveDirectoryIterator( $fields_dir );
 
 		$data = array();
