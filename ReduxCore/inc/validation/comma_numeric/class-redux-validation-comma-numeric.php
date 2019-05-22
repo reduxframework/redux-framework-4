@@ -23,6 +23,14 @@ if ( ! class_exists( 'Redux_Validation_Comma_Numeric', false ) ) {
 		 * @since ReduxFramework 1.0.0
 		 */
 		public function validate() {
+
+			$this->value = preg_replace( '/\s/', '', $this->value );
+			$parts       = explode( ',', $this->value );
+
+			if ( empty( $this->value ) || 0 === $this->value || 1 === count( $parts ) ) {
+				return;
+			}
+
 			$this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'You must provide a comma separated list of numerical values for this option.', 'redux-framework' );
 
 			if ( ! is_numeric( str_replace( ',', '', $this->value ) ) || false === strpos( $this->value, ',' ) ) {

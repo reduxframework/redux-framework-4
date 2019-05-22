@@ -23,6 +23,22 @@ if ( ! class_exists( 'Redux_Validation_Color', false ) ) {
 		 * @since ReduxFramework 3.0.0
 		 */
 		public function validate() {
+
+			if ( empty( $this->value ) ) {
+				return;
+			}
+
+			$test = str_replace( '#', '', $this->value );
+			if ( ! in_array( strlen( $test ), [ 3, 6 ], true ) ) {
+				// translators: %1$s: santizied value.  %2$s: Old value.
+				$this->field['msg'] = isset( $this->field['msg'] ) ? $this->field['msg'] : sprintf( esc_html__( 'Invalid HTML color code %1$s. Please enter a valid code. No value was saved.', 'redux-framework' ), '<code>' . $this->value . '</code>' );
+
+				$this->warning = $this->field;
+				$this->value   = '';
+
+				return;
+			}
+
 			$sanitized_value = Redux_Colors::sanitize_color( $this->value );
 
 			if ( $sanitized_value !== $this->value ) {
@@ -32,7 +48,7 @@ if ( ! class_exists( 'Redux_Validation_Color', false ) ) {
 				$this->warning = $this->field;
 			}
 
-			$this->value = $sanitized_value;
+			$this->value = strtoupper( $sanitized_value );
 		}
 	}
 }
