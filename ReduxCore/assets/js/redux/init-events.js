@@ -15,7 +15,7 @@
 			}
 		);
 
-		// Customizer save hook
+		// Customizer save hook.
 		el.find( '#customize-save-button-wrapper #save' ).on(
 			'click',
 			function() {
@@ -119,6 +119,9 @@
 			'change',
 			'.redux-field input, .redux-field textarea, .redux-field select',
 			function() {
+				if ( $( '.redux-container-typography select' ).hasClass( 'ignore-change' ) ) {
+					return;
+				}
 				if ( ! $( this ).hasClass( 'noUpdate' ) && ! $( this ).hasClass( 'no-update' ) ) {
 					redux_change( $( this ) );
 				}
