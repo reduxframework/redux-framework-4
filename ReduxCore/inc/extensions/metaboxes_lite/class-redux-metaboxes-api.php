@@ -397,7 +397,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @deprecated 4.0.0 No more camelCase.
 		 */
 		public static function setSection( $opt_name = '', $section = array() ) {  // phpcs:ignore: WordPress.NamingConventions.ValidFunctionName
-			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Metaboxes::set_section( $opt_name, $section )' ); // phpcs:ignore: Squiz.PHP.CommentedOutCode.Found
+			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Metaboxes::set_section( $opt_name, $section )' ); // phpcs:ignore: Squiz.PHP.CommentedOutCode
 
 			self::set_section( $opt_name, $section );
 		}
@@ -604,7 +604,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 * @deprecated 4.0.0 No more camelCase.
 		 */
 		public static function setBox( $opt_name = '', $box = array() ) {  // phpcs:ignore: WordPress.NamingConventions.ValidFunctionName
-			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Metaboxes::set_box( $opt_name, $box )' ); // phpcs:ignore: Squiz.PHP.CommentedOutCode.Found
+			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Metaboxes::set_box( $opt_name, $box )' ); // phpcs:ignore: Squiz.PHP.CommentedOutCode
 
 			self::set_box( $opt_name, $box );
 		}
