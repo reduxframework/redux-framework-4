@@ -164,7 +164,7 @@
 		colorpickerInput.spectrum(
 			{
 				color: currentColor,
-				howAlpha: showAlpha,
+				showAlpha: showAlpha,
 				showInput: showInput,
 				allowEmpty: allowEmpty,
 				className: 'redux-color-rgba',
