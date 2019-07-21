@@ -36,15 +36,3 @@ register_deactivation_hook( __FILE__, array( 'Redux_Framework_Plugin', 'deactiva
 
 // Get plugin instance.
 Redux_Framework_Plugin::instance();
-
-
-function compiler_action($options, $css, $changed_values) {
-//    echo '<h1>The compiler hook has run!</h1>';
-//
-//    print_r ($options);
-//    print_r ($css);
-//    print_r ($changed_values);
-//    exit();
-}
-
-//add_filter('redux/options/redux_demo/compiler', array( $this, 'compiler_action' ), 10, 3);
