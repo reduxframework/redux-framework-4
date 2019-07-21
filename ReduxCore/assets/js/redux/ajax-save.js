@@ -86,8 +86,7 @@
 
 						overlay.fadeOut( 'fast' );
 						$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
-						$( '#' + redux.optName.args.opt_name + '-save_error' ).parent().find( '.redux-th-error' ).html( redux.optName.ajax.alert ).css( 'display', 'block' );
-						// alert( redux.optName.ajax.alert );
+						alert( redux.optName.ajax.alert );
 					} else {
 						redux.optName.optName.args.ajax_save = false;
 
