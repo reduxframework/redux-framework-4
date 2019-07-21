@@ -22,7 +22,7 @@ if ( ! class_exists( 'Redux_Transients', false ) ) {
 		public function get() {
 			$core = $this->core();
 
-			if ( ! isset( $core->transients ) ) {
+			if ( empty( $core->transients ) ) {
 				$core->transients = get_option( $core->args['opt_name'] . '-transients', array() );
 			}
 		}
