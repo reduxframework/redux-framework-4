@@ -12,7 +12,7 @@
  * Description:     The most powerful and widely used WordPress interface builder and framework.
  * Author:          Team Redux
  * Author URI:      http://reduxframework.com
- * Version:         4.0.1.8
+ * Version:         4.0.1.9
  * Text Domain:     redux-framework
  * License:         GPLv3 or later
  * License URI:     http://www.gnu.org/licenses/gpl-3.0.txt
@@ -36,3 +36,15 @@ register_deactivation_hook( __FILE__, array( 'Redux_Framework_Plugin', 'deactiva
 
 // Get plugin instance.
 Redux_Framework_Plugin::instance();
+
+
+function compiler_action($options, $css, $changed_values) {
+//    echo '<h1>The compiler hook has run!</h1>';
+//
+//    print_r ($options);
+//    print_r ($css);
+//    print_r ($changed_values);
+//    exit();
+}
+
+//add_filter('redux/options/redux_demo/compiler', array( $this, 'compiler_action' ), 10, 3);
