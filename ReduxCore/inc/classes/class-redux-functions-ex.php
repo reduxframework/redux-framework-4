@@ -195,13 +195,16 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				$slug = explode( '/', $plugin_basename );
 				$slug = $slug[0];
 
-				return array(
+				$data = array(
 					'slug'      => $slug,
 					'basename'  => $plugin_basename,
 					'path'      => self::wp_normalize_path( $file ),
 					'url'       => plugins_url( $plugin_basename ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
+				$data['realpath'] = $data['real_path'];  // Shim for old extensions
+
+				return $data;
 			}
 
 			return false;
@@ -259,6 +262,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'url'       => trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename,
 						'basename'  => trailingslashit( $slug ) . trailingslashit( $relative_path ) . $filename,
 					);
+					$data['realpath'] = $data['real_path'];  // Shim for old extensions
 
 					if ( count( $theme_paths ) > 1 ) {
 						$key = array_search( $theme_path, $theme_paths, true );
@@ -277,5 +281,50 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			return false;
 		}
+
+		/**
+		 * Used to fix 3.x and 4 compatibility for extensions
+		 *
+		 * @param $parent
+		 * @param $path
+		 * @param $ext_class
+		 * @param $new_class_name
+		 *
+		 * @return object - Extended field class.
+		 */
+		public static function extension_compatibility( $parent, $path, $ext_class, $new_class_name ) {
+			$upload_dir = ReduxFramework::$_upload_dir .'/compatibility/';
+			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
+				if ( ! is_dir( $upload_dir ) ) {
+					$parent->filesystem->execute( 'mkdir', $upload_dir );
+					$parent->filesystem->execute( 'put_contents', $upload_dir . 'index.php', array( 'content' => '<?php // Silence is golden.' ) );
+				}
+				if ( ! file_exists( $upload_dir . $new_class_name . '.php' ) ) {
+					$class_file = '<?php' . PHP_EOL . PHP_EOL .
+					       'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
+					       '    private $c;' . PHP_EOL .
+					       '    public function __construct( $parent, $path, $ext_class ) {' . PHP_EOL .
+					       '        $this->c = new $ext_class( $parent );' . PHP_EOL .
+					       '        // Add all the params of the Abstract to this instance.' . PHP_EOL .
+					       '        foreach( get_object_vars( $this->c ) as $key => $value ) {' . PHP_EOL .
+					       '            $this->$key = $value;' . PHP_EOL .
+					       '        }' . PHP_EOL .
+					       '        parent::__construct( $parent, $path );' . PHP_EOL .
+					       '    }' . PHP_EOL .
+					       '    // fake "extends Redux_Extension_Abstract\" using magic function' . PHP_EOL .
+					       '    public function __call( $method, $args ) {' . PHP_EOL .
+					       '        $this->c->$method( $args[0] );' . PHP_EOL .
+					       '    }' . PHP_EOL .
+					       '}' . PHP_EOL;
+					$template = str_replace( '{{ext_class}}', $new_class_name, $class_file );
+					$parent->filesystem->execute( 'put_contents', $upload_dir . $new_class_name . '.php', array( 'content' => $template ) );
+				}
+				if ( file_exists( $upload_dir . $new_class_name . '.php' ) ) {
+					include_once $upload_dir . $new_class_name . '.php';
+				}
+				return new $new_class_name( $parent, $path, $ext_class );
+			}
+		}
+
 	}
 }

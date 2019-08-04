@@ -162,28 +162,27 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 */
 		public static function load_extensions( $redux_framework ) {
 			$instance_extensions = self::get_extensions( $redux_framework->args['opt_name'], '' );
-
 			if ( $instance_extensions ) {
 				foreach ( $instance_extensions as $name => $extension ) {
 					$old_class = str_replace( 'Redux_', 'ReduxFramework_', $extension['class'] );
-
 					if ( ! class_exists( $extension['class'] ) && ! class_exists( $old_class ) ) {
-
 						// In case you wanted override your override, hah.
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						$extension['path'] = apply_filters( 'redux/extension/' . $redux_framework->args['opt_name'] . '/' . $name, $extension['path'] );
-
 						if ( file_exists( $extension['path'] ) ) {
 							require_once $extension['path'];
 						}
 					}
-
 					if ( ! isset( $redux_framework->extensions[ $name ] ) ) {
 						$field_classes = array( $extension['class'], $old_class );
 						$ext_class     = Redux_Functions::class_exists_ex( $field_classes );
-
 						if ( false !== $ext_class ) {
-							$redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
+                            $redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
+                            // Backwards compatibility for extensions
+							if ( ! is_subclass_of( $redux_framework->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
+								$new_class_name = $ext_class . "_extended";
+								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility( $redux_framework, $extension['path'], $ext_class, $new_class_name );
+							}
 						} else {
 							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
 						}

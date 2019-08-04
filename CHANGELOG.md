@@ -1,5 +1,8 @@
 # Redux Framework v4 Changelog
 
+## 4.0.2
+* Fixed:    PHP backwards compatibility for extensions. Still have to work on JS probably.
+
 ## 4.0.1.9
 * Fixed:    #33 - Reset Section and Reset All not show appropriate message. Thanks @voldemortensen!
 * Fixed:    #29 - Multi-Text class not saving properly per new field. Adding to parent container only instead.

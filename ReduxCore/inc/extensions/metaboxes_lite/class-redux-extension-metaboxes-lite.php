@@ -19,7 +19,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes_Lite', false ) ) {
 	 *
 	 * @since       1.0.0
 	 */
-	class Redux_Extension_Metaboxes_Lite {
+	class Redux_Extension_Metaboxes_Lite extends Redux_Extension_Abstract {
 
 		/**
 		 * Extension version.
