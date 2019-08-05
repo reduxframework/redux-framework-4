@@ -299,6 +299,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					$parent->filesystem->execute( 'mkdir', $upload_dir );
 					$parent->filesystem->execute( 'put_contents', $upload_dir . 'index.php', array( 'content' => '<?php // Silence is golden.' ) );
 				}
+				if ( ! class_exists( $ext_class ) ) {
+					require_once $path;
+				}
 				if ( ! file_exists( $upload_dir . $new_class_name . '.php' ) ) {
 					$class_file = '<?php' . PHP_EOL . PHP_EOL .
 					       'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
