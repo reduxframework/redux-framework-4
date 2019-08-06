@@ -919,9 +919,8 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			}
 
 			unset( $plugin_options['defaults'], $plugin_options['defaults_section'], $plugin_options['import'], $plugin_options['import_code'], $plugin_options['import_link'], $plugin_options['compiler'], $plugin_options['redux-section'] );
-			if ( 'transient' === $core->args['database'] || 'theme_mods' === $core->args['database'] || 'theme_mods_expanded' === $core->args['database'] ) {
-				$core->set( $plugin_options );
-
+			if ( in_array( $core->args['database'], array( 'transient', 'theme_mods', 'theme_mods_expanded' ) ) ) {
+				$core->set( $core->args['opt_name'], $plugin_options );
 				return;
 			}
 

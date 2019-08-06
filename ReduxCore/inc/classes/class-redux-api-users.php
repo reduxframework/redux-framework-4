@@ -1,7 +1,6 @@
-<?php
-
+<?php // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 /**
- * Redux Framework Users API Class
+ * Redux Framework User Meta API Class
  * Makes instantiating a Redux object an absolute piece of cake.
  *
  * @package     Redux_Framework
@@ -9,10 +8,7 @@
  * @subpackage  Users
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 // Don't duplicate me!
 if ( ! class_exists( 'Redux_Users' ) ) {
@@ -25,57 +21,130 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 	 */
 	class Redux_Users {
 
+		/**
+		 * Profile array.
+		 *
+		 * @var array
+		 */
 		public static $profiles = array();
+
+		/**
+		 * Sections array.
+		 *
+		 * @var array
+		 */
 		public static $sections = array();
+
+		/**
+		 * Fields array.
+		 *
+		 * @var array
+		 */
 		public static $fields = array();
+
+		/**
+		 * Priority array.
+		 *
+		 * @var array
+		 */
 		public static $priority = array();
+
+		/**
+		 * Errors array.
+		 *
+		 * @var array
+		 */
 		public static $errors = array();
+
+		/**
+		 * Init array.
+		 *
+		 * @var array
+		 */
 		public static $init = array();
-		public static $hasRun = false;
+
+		/**
+		 * Has run flag.
+		 *
+		 * @var bool
+		 */
+		public static $has_run = false;
+
+		/**
+		 * Args array.
+		 *
+		 * @var array
+		 */
 		public static $args = array();
 
+		/**
+		 * Load.
+		 */
 		public static function load() {
-			add_action( 'init', array( 'Redux_Users', '_enqueue' ), 99 );
+			add_action( 'init', array( 'Redux_Users', 'enqueue' ), 99 );
 		}
 
-		public static function _enqueue() {
-			// Check and run instances of Redux where the opt_name hasn't been run.
+		/**
+		 * Enqueue support files and fields.
+		 */
+		public static function enqueue() {
 			global $pagenow;
+
+			// Check and run instances of Redux where the opt_name hasn't been run.
 			$pagenows = array( 'user-new.php', 'profile.php', 'user-edit.php' );
-			if ( ! empty( Redux_Users::$sections ) && in_array( $pagenow, $pagenows ) ) {
+
+			if ( ! empty( self::$sections ) && in_array( $pagenow, $pagenows, true ) ) {
 				$instances = ReduxFrameworkInstances::get_all_instances();
-				foreach ( Redux_Users::$fields as $opt_name => $fields ) {
+
+				foreach ( self::$fields as $opt_name => $fields ) {
 					if ( ! isset( $instances[ $opt_name ] ) ) {
-						Redux::setArgs( $opt_name, array( 'menu_type' => 'hidden' ) );
-						Redux::setSections( $opt_name, array(
+						Redux::set_args( $opt_name, array( 'menu_type' => 'hidden' ) );
+						Redux::set_sections(
+							$opt_name,
 							array(
-								'id'     => 'EXTENSION_USERS_FAKE_ID' . $opt_name,
-								'fields' => $fields,
-								'title'  => 'N/A'
+								array(
+									'id'     => 'EXTENSION_USERS_FAKE_ID' . $opt_name,
+									'fields' => $fields,
+									'title'  => 'N/A',
+								),
 							)
-						) );
+						);
+
 						Redux::init( $opt_name );
 					} else {
-						remove_action('admin_enqueue_scripts', array(ReduxFrameworkInstances::get_instance($opt_name), '_enqueue'));
+						remove_action( 'admin_enqueue_scripts', array( ReduxFrameworkInstances::get_instance( $opt_name ), '_enqueue' ) );
 					}
-					//Redux::setArgs( $opt_name, array( 'output' => false ) );
+
 					self::check_opt_name( $opt_name );
-					Redux::setArgs( $opt_name, Redux_Users::$args[ $opt_name ] );
+
+					Redux::set_args( $opt_name, self::$args[ $opt_name ] );
 				}
-				$instances = ReduxFrameworkInstances::get_all_instances();
+
+				$instances = Redux::all_instances();
+
 				add_action( 'admin_enqueue_scripts', array( $instances[ $opt_name ], '_enqueue' ), 1 );
 			}
 		}
 
-		public static function constructArgs( $opt_name ) {
+		/**
+		 * Construct Args.
+		 *
+		 * @param string $opt_name Panel Opt Name.
+		 *
+		 * @return mixed
+		 */
+		public static function construct_args( $opt_name ) {
 			$args             = self::$args[ $opt_name ];
 			$args['opt_name'] = $opt_name;
+
 			if ( ! isset( $args['menu_title'] ) ) {
 				$args['menu_title'] = ucfirst( $opt_name ) . ' Options';
 			}
+
 			if ( ! isset( $args['page_title'] ) ) {
 				$args['page_title'] = ucfirst( $opt_name ) . ' Options';
 			}
+
 			if ( ! isset( $args['page_slug'] ) ) {
 				$args['page_slug'] = $opt_name . '_options';
 			}
@@ -83,9 +152,16 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			return $args;
 		}
 
-		public static function constructProfiles( $opt_name ) {
-
+		/**
+		 * Construct Profiles.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 *
+		 * @return array
+		 */
+		public static function construct_profiles( $opt_name ) {
 			$profiles = array();
+
 			if ( ! isset( self::$profiles[ $opt_name ] ) ) {
 				return $profiles;
 			}
@@ -93,30 +169,44 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			foreach ( self::$profiles[ $opt_name ] as $profile_id => $profile ) {
 				$permissions         = isset( $profile['permissions'] ) ? $profile['permissions'] : false;
 				$roles               = isset( $profile['roles'] ) ? $profile['roles'] : false;
-				$profile['sections'] = self::constructSections( $opt_name, $profile['id'], $permissions, $roles );
+				$profile['sections'] = self::construct_sections( $opt_name, $profile['id'], $permissions, $roles );
 				$profiles[]          = $profile;
 			}
+
 			ksort( $profiles );
 
 			return $profiles;
 		}
 
-		public static function constructSections( $opt_name, $profile_id, $permissions = false, $roles = false ) {
+		/**
+		 * Construct Sections.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param int    $profile_id Profile ID.
+		 * @param bool   $permissions Permissions.
+		 * @param bool   $roles ROles.
+		 *
+		 * @return array
+		 */
+		public static function construct_sections( $opt_name, $profile_id, $permissions = false, $roles = false ) {
 			$sections = array();
+
 			if ( ! isset( self::$sections[ $opt_name ] ) ) {
 				return $sections;
 			}
 
 			foreach ( self::$sections[ $opt_name ] as $section_id => $section ) {
-				if ( $section['profile_id'] == $profile_id ) {
+				if ( $section['profile_id'] === $profile_id ) {
 
 					self::$sections[ $opt_name ][ $section_id ]['roles'] = $section;
 
 					$p = $section['priority'];
+
 					while ( isset( $sections[ $p ] ) ) {
-						echo $p ++;
+						echo esc_html( $p ++ );
 					}
-					$section['fields'] = self::constructFields( $opt_name, $section_id );
+
+					$section['fields'] = self::construct_fields( $opt_name, $section_id );
 					$sections[ $p ]    = $section;
 				}
 			}
@@ -125,22 +215,41 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			return $sections;
 		}
 
-		public static function constructFields( $opt_name = "", $section_id = "", $permissions = false, $roles = false ) {
+		/**
+		 * Construct Fields.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $section_id Section ID.
+		 * @param bool   $permissions Permissions.
+		 * @param bool   $roles Roles.
+		 *
+		 * @return array
+		 */
+		public static function construct_fields( $opt_name = '', $section_id = '', $permissions = false, $roles = false ) {
 			$fields = array();
+
 			if ( ! isset( self::$fields[ $opt_name ] ) ) {
 				return $fields;
 			}
-			foreach ( self::$fields[ $opt_name ] as $key => $field ) {
-				// Nested permissions
-				self::$fields[ $opt_name ][ $key ]['permissions'] = $field['permissions'] = isset( $field['permissions'] ) ? $field['permissions'] : $permissions;
-				// Nested roles permissions
-				self::$fields[ $opt_name ][ $key ]['roles'] = $field['roles'] = isset( $field['roles'] ) ? $field['roles'] : $roles;
 
-				if ( $field['section_id'] == $section_id ) {
+			foreach ( self::$fields[ $opt_name ] as $key => $field ) {
+				// Nested permissions.
+				$field['permissions'] = isset( $field['permissions'] ) ? $field['permissions'] : $permissions;
+
+				self::$fields[ $opt_name ][ $key ]['permissions'] = $field['permissions'];
+
+				// Nested roles permissions.
+				$field['roles'] = isset( $field['roles'] ) ? $field['roles'] : $roles;
+
+				self::$fields[ $opt_name ][ $key ]['roles'] = $field['roles'];
+
+				if ( $field['section_id'] === $section_id ) {
 					$p = $field['priority'];
+
 					while ( isset( $fields[ $p ] ) ) {
-						echo $p ++;
+						echo esc_html( $p ++ );
 					}
+
 					$fields[ $p ] = $field;
 				}
 			}
@@ -149,8 +258,17 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			return $fields;
 		}
 
-		public static function getSection( $opt_name = '', $id = '' ) {
+		/**
+		 * Get Section.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $id ID.
+		 *
+		 * @return bool
+		 */
+		public static function get_section( $opt_name = '', $id = '' ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
 				if ( ! isset( self::$sections[ $opt_name ][ $id ] ) ) {
 					$id = strtolower( sanitize_html_class( $id ) );
@@ -162,23 +280,38 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			return false;
 		}
 
-		public static function setArgs( $opt_name = '', $args = array() ) {
+		/**
+		 * Set args.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $args Args array.
+		 */
+		public static function set_args( $opt_name = '', $args = array() ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && is_array( $args ) && ! empty( $args ) ) {
 				self::$args[ $opt_name ] = isset( self::$args[ $opt_name ] ) ? self::$args[ $opt_name ] : array();
 				self::$args[ $opt_name ] = wp_parse_args( $args, self::$args[ $opt_name ] );
 			}
 		}
 
-		public static function setSection( $opt_name = '', $section = array() ) {
+		/**
+		 * Set Section.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $section Section array.
+		 */
+		public static function set_section( $opt_name = '', $section = array() ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && is_array( $section ) && ! empty( $section ) ) {
 				if ( ! isset( $section['id'] ) ) {
 					if ( isset( $section['title'] ) ) {
 						$section['id'] = strtolower( sanitize_html_class( $section['title'] ) );
 					} else {
-						$section['id'] = "section";
+						$section['id'] = 'section';
 					}
+
 					if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
 						$orig = $section['id'];
 						$i    = 0;
@@ -187,8 +320,9 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 						}
 					}
 				}
+
 				if ( ! isset( $section['priority'] ) ) {
-					$section['priority'] = self::getPriority( $opt_name, 'sections' );
+					$section['priority'] = self::get_priority( $opt_name, 'sections' );
 				}
 
 				if ( isset( $section['fields'] ) ) {
@@ -205,50 +339,76 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 							}
 						}
 
-						self::processFieldsArray( $opt_name, $section['id'], $section['fields'] );
+						self::process_fields_array( $opt_name, $section['id'], $section['fields'] );
 					}
 					unset( $section['fields'] );
 				}
 
 				self::$sections[ $opt_name ][ $section['id'] ] = $section;
 			} else {
-				self::$errors[ $opt_name ]['section']['empty'] = "Unable to create a section due an empty section array or the section variable passed was not an array.";
+				self::$errors[ $opt_name ]['section']['empty'] = esc_html__( 'Unable to create a section due an empty section array or the section variable passed was not an array.', 'redux-pro' );
 
 				return;
 			}
 		}
 
-		public static function processSectionsArray( $opt_name = "", $profile_id = "", $sections = array() ) {
+		/**
+		 * Process Section Array.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $profile_id Profile ID.
+		 * @param array  $sections Sections array.
+		 */
+		public static function process_sections_array( $opt_name = '', $profile_id = '', $sections = array() ) {
 			if ( ! empty( $opt_name ) && ! empty( $profile_id ) && is_array( $sections ) && ! empty( $sections ) ) {
 				foreach ( $sections as $section ) {
 					if ( ! is_array( $section ) ) {
 						continue;
 					}
+
 					$section['profile_id'] = $profile_id;
+
 					if ( ! isset( $section['fields'] ) || ! is_array( $section['fields'] ) ) {
 						$section['fields'] = array();
 					}
 
-
-					self::setSection( $opt_name, $section );
+					self::set_section( $opt_name, $section );
 				}
 			}
 		}
 
-		public static function processFieldsArray( $opt_name = "", $section_id = "", $fields = array() ) {
+		/**
+		 * Process Fields Array.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $section_id Section ID.
+		 * @param array  $fields Fields array.
+		 */
+		public static function process_fields_array( $opt_name = '', $section_id = '', $fields = array() ) {
 			if ( ! empty( $opt_name ) && ! empty( $section_id ) && is_array( $fields ) && ! empty( $fields ) ) {
 				foreach ( $fields as $field ) {
 					if ( ! is_array( $field ) ) {
 						continue;
 					}
+
 					$field['section_id'] = $section_id;
-					self::setField( $opt_name, $field );
+
+					self::set_field( $opt_name, $field );
 				}
 			}
 		}
 
-		public static function getField( $opt_name = '', $id = '' ) {
+		/**
+		 * Get field.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $id Field ID.
+		 *
+		 * @return bool
+		 */
+		public static function get_field( $opt_name = '', $id = '' ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
 				return isset( self::$fields[ $opt_name ][ $id ] ) ? self::$fields[ $opt_name ][ $id ] : false;
 			}
@@ -256,25 +416,41 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			return false;
 		}
 
-		public static function setField( $opt_name = '', $field = array() ) {
+		/**
+		 * Set field.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $field Field array.
+		 */
+		public static function set_field( $opt_name = '', $field = array() ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && is_array( $field ) && ! empty( $field ) ) {
 				if ( ! isset( $field['priority'] ) ) {
-					$field['priority'] = self::getPriority( $opt_name, 'fields' );
+					$field['priority'] = self::get_priority( $opt_name, 'fields' );
 				}
+
 				self::$fields[ $opt_name ][ $field['id'] ] = $field;
 			}
 		}
 
-		public static function setProfile( $opt_name = "", $profile = array() ) {
+		/**
+		 * Set Profile.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $profile Profile array.
+		 */
+		public static function set_profile( $opt_name = '', $profile = array() ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && is_array( $profile ) && ! empty( $profile ) ) {
 				if ( ! isset( $profile['id'] ) ) {
 					if ( isset( $profile['title'] ) ) {
 						$profile['id'] = strtolower( sanitize_html_class( $profile['title'] ) );
 					} else {
-						$profile['id'] = "profile";
+						$profile['id'] = 'profile';
 					}
+
 					if ( isset( self::$profiles[ $opt_name ][ $profile['id'] ] ) ) {
 						$orig = $profile['id'];
 						$i    = 0;
@@ -283,6 +459,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 						}
 					}
 				}
+
 				if ( isset( $profile['sections'] ) ) {
 					if ( ! empty( $profile['sections'] ) && is_array( $profile['sections'] ) ) {
 						if ( isset( $profile['permissions'] ) || isset( $profile['roles'] ) ) {
@@ -295,117 +472,188 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 								}
 							}
 						}
-						self::processSectionsArray( $opt_name, $profile['id'], $profile['sections'] );
+
+						self::process_sections_array( $opt_name, $profile['id'], $profile['sections'] );
 					}
+
 					unset( $profile['sections'] );
 				}
+
 				self::$profiles[ $opt_name ][ $profile['id'] ] = $profile;
 			} else {
-				self::$errors[ $opt_name ]['profile']['empty'] = "Unable to create a profile due an empty profile array or the profile variable passed was not an array.";
+				self::$errors[ $opt_name ]['profile']['empty'] = esc_html__( 'Unable to create a profile due an empty profile array or the profile variable passed was not an array.', 'redux-pro' );
 
 				return;
 			}
 		}
 
-		public static function setProfiles( $opt_name = "", $profiles = array() ) {
+		/**
+		 * Set Profiles.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $profiles Profiles array.
+		 */
+		public static function set_profiles( $opt_name = '', $profiles = array() ) {
 			if ( ! empty( $profiles ) && is_array( $profiles ) ) {
 				foreach ( $profiles as $profile ) {
-					Redux_Users::setProfile( $opt_name, $profile );
+					self::set_profile( $opt_name, $profile );
 				}
 			}
 		}
 
-		public static function getProfiles( $opt_name = "" ) {
+		/**
+		 * Get profiles.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 *
+		 * @return mixed
+		 */
+		public static function get_profiles( $opt_name = '' ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && ! empty( self::$profiles[ $opt_name ] ) ) {
 				return self::$profiles[ $opt_name ];
 			}
 		}
 
-		public static function getBox( $opt_name = "", $key = "" ) {
+		/**
+		 * Get Box.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $key Key.
+		 *
+		 * @return mixed
+		 */
+		public static function get_box( $opt_name = '', $key = '' ) {
 			self::check_opt_name( $opt_name );
+
 			if ( ! empty( $opt_name ) && ! empty( $key ) && ! empty( self::$profiles[ $opt_name ] ) && isset( self::$profiles[ $opt_name ][ $key ] ) ) {
 				return self::$profiles[ $opt_name ][ $key ];
 			}
 		}
 
-		public static function getPriority( $opt_name, $type ) {
-			$priority = self::$priority[ $opt_name ][ $type ];
+		/**
+		 * Get Priority.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param mixed  $type Type.
+		 *
+		 * @return mixed
+		 */
+		public static function get_priority( $opt_name, $type ) {
+			$priority                              = self::$priority[ $opt_name ][ $type ];
 			self::$priority[ $opt_name ][ $type ] += 1;
 
 			return $priority;
 		}
 
-		public static function check_opt_name( $opt_name = "" ) {
+		/**
+		 * Check opt name.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 */
+		public static function check_opt_name( $opt_name = '' ) {
 			if ( empty( $opt_name ) || is_array( $opt_name ) ) {
 				return;
 			}
+
 			if ( ! isset( self::$profiles[ $opt_name ] ) ) {
 				self::$profiles[ $opt_name ] = array();
 			}
+
 			if ( ! isset( self::$priority[ $opt_name ] ) ) {
 				self::$priority[ $opt_name ]['args'] = 1;
 			}
+
 			if ( ! isset( self::$sections[ $opt_name ] ) ) {
 				self::$sections[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['sections'] = 1;
 			}
+
 			if ( ! isset( self::$fields[ $opt_name ] ) ) {
 				self::$fields[ $opt_name ]             = array();
 				self::$priority[ $opt_name ]['fields'] = 1;
 			}
+
 			if ( ! isset( self::$errors[ $opt_name ] ) ) {
 				self::$errors[ $opt_name ] = array();
 			}
+
 			if ( ! isset( self::$init[ $opt_name ] ) ) {
 				self::$init[ $opt_name ] = false;
 			}
+
 			if ( ! isset( self::$args[ $opt_name ] ) ) {
 				self::$args[ $opt_name ] = false;
 			}
 		}
 
+		/**
+		 * Get field defaults.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 *
+		 * @return array|void
+		 */
 		public static function get_field_defaults( $opt_name ) {
 			if ( empty( $opt_name ) || is_array( $opt_name ) ) {
-
 				return;
 			}
-			if ( ! isset( Redux_Users::$fields[ $opt_name ] ) ) {
+
+			if ( ! isset( self::$fields[ $opt_name ] ) ) {
 				return array();
 			}
+
 			$defaults = array();
-			foreach ( Redux_Users::$fields[ $opt_name ] as $key => $field ) {
+			foreach ( self::$fields[ $opt_name ] as $key => $field ) {
 				$defaults[ $key ] = isset( $field['default'] ) ? $field['default'] : '';
 			}
 
 			return $defaults;
 		}
 
+		/**
+		 * Get user rold.
+		 *
+		 * @param int $user_id User ID.
+		 *
+		 * @return mixed
+		 */
 		public static function get_user_role( $user_id = 0 ) {
 			$user = ( $user_id ) ? get_userdata( $user_id ) : wp_get_current_user();
 
 			return current( $user->roles );
 		}
 
+		/**
+		 * Get USer Meta.
+		 *
+		 * @param array $args Args array.
+		 *
+		 * @return mixed
+		 */
 		public static function get_user_meta( $args = array() ) {
-
 			$default = array(
 				'key'      => '',
 				'opt_name' => '',
-				'user'     => ''
+				'user'     => '',
 			);
 
 			$args = wp_parse_args( $args, $default );
+
 			if ( empty( $args['user'] ) ) {
 				$args['user'] = get_current_user_id();
 			}
+
+			// phpcs:ignore WordPress.PHP.DontExtract
 			extract( $args );
 
 			$single = ! empty( $key ) ? true : false;
 			$meta   = get_user_meta( $user, $key, $single );
-			if ( $single ) {
-				// Do nothing
-			} else if ( ! empty( $meta ) ) {
+
+			if ( $single ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement
+				// Do nothing.
+			} elseif ( ! empty( $meta ) ) {
 				foreach ( $meta as $key => $value ) {
 					if ( is_array( $value ) ) {
 						$value        = $value[0];
@@ -416,7 +664,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 				}
 			}
 			if ( ! empty( $opt_name ) ) {
-				$defaults = Redux_Users::get_field_defaults( $opt_name );
+				$defaults = self::get_field_defaults( $opt_name );
 
 				$meta = wp_parse_args( $meta, $defaults );
 			}

@@ -652,14 +652,14 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @access      public
 		 *
 		 * @param       string $opt_name The name of the option being added.
-		 * @param       mixed  $value    The value of the option being added.
+		 * @param       mixed  $values   The value of the option being added.
 		 *
 		 * @return      void
 		 */
-		public function set( $opt_name = '', $value = '' ) {
-			if ( '' !== $opt_name ) {
-				$this->options[ $opt_name ] = $value;
-				$this->options_class->set( $this->options );
+		public function set( $opt_name = "", $values = array() ) {
+			if ( ! empty( $opt_name ) ) {
+				$this->options[ $opt_name ] = $values;
+				$this->options_class->set( $values );
 			}
 		}
 	}
