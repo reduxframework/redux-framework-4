@@ -1421,8 +1421,9 @@ div.redux-star {
 // Gutenberg
 .block-editor-page {
     .redux-container {
-        input {
-            margin-left: 0;
+        .redux-metabox .redux-container {
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
         }
     }
 }
