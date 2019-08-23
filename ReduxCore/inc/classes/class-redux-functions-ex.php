@@ -283,12 +283,15 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			return false;
 		}
-		
-		/** Used to fix 3.x and 4 compatibility for extensions
-		 * @param $parent
-		 * @param $path
-		 * @param $ext_class
-		 * @param $new_class_name
+
+		/**
+		 *
+		 * Used to fix 3.x and 4 compatibility for extensions
+		 *
+		 * @param   $parent
+		 * @param   $path
+		 * @param   $ext_class
+		 * @param   $new_class_name
 		 *
 		 * @return object - Extended field class.
 		 */

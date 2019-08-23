@@ -656,7 +656,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 *
 		 * @return      void
 		 */
-		public function set( $opt_name = "", $values = array() ) {
+		public function set( $opt_name = '', $values = array() ) {
 			if ( ! empty( $opt_name ) ) {
 				$this->options[ $opt_name ] = $values;
 				$this->options_class->set( $values );
