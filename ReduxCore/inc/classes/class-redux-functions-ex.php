@@ -33,7 +33,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @since   3.5.7.11
 		 *
-		 * @param     string     $string String of data.
+		 * @param     string $string String of data.
 		 *
 		 * @return  array|false $result
 		 * @author  harunbasic
@@ -69,8 +69,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @since   3.5.7.11
 		 *
-		 * @param     array     $array1 array one.
-		 * @param     array     $array2 array two.
+		 * @param     array $array1 array one.
+		 * @param     array $array2 array two.
 		 *
 		 * @return  array $merged
 		 * @author  harunbasic
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Records calling function.
 		 *
-		 * @param     string     $opt_name Panel opt_name.
+		 * @param     string $opt_name Panel opt_name.
 		 */
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Normalize path.
 		 *
-		 * @param     string     $path Path to normalize.
+		 * @param     string $path Path to normalize.
 		 *
 		 * @return mixed|null|string|string[]
 		 */
@@ -168,7 +168,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Get metabox boxes.
 		 *
-		 * @param     object     $core Metabox object.
+		 * @param     object $core Metabox object.
 		 *
 		 * @return bool
 		 */
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Is Redux embedded inside a plugin.
 		 *
-		 * @param     string     $file File to check.
+		 * @param     string $file File to check.
 		 *
 		 * @return array|bool
 		 */
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					'url'       => plugins_url( $plugin_basename ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
-				$data['realpath'] = $data['real_path'];  // Shim for old extensions
+				$data['realpath'] = $data['real_path'];  // Shim for old extensions.
 
 				return $data;
 			}
@@ -213,7 +213,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Verify Pro Nonce.
 		 *
-		 * @param     string     $nonce Nonce.
+		 * @param     string $nonce Nonce.
 		 *
 		 * @return bool|int
 		 */
@@ -224,7 +224,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Is Redux embedded in a theme.
 		 *
-		 * @param     string     $file File to check.
+		 * @param     string $file File to check.
 		 *
 		 * @return array|bool
 		 */
@@ -264,7 +264,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'url'       => trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename,
 						'basename'  => trailingslashit( $slug ) . trailingslashit( $relative_path ) . $filename,
 					);
-					$data['realpath'] = $data['real_path'];  // Shim for old extensions
+					$data['realpath'] = $data['real_path'];  // Shim for old extensions.
 
 					if ( count( $theme_paths ) > 1 ) {
 						$key = array_search( $theme_path, $theme_paths, true );
@@ -283,10 +283,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			return false;
 		}
-
-		/**
-		 * Used to fix 3.x and 4 compatibility for extensions
-		 *
+		
+		/** Used to fix 3.x and 4 compatibility for extensions
 		 * @param $parent
 		 * @param $path
 		 * @param $ext_class
@@ -335,8 +333,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Used to fix 3.x and 4 compatibility for extensions
 		 *
-		 * @param $a array First array to merge
-		 * @param $b array Second array to merge
+		 * @param &$a   array First array to deep merge.
+		 * @param $b    array Second array to deep merge.
 		 *
 		 * @return array - Deep merge of the two arrays.
 		 */

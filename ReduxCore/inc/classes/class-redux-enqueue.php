@@ -47,7 +47,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Redux_Enqueue constructor.
 		 *
-		 * @param     object     $parent ReduxFramework pointer.
+		 * @param     object $parent ReduxFramework pointer.
 		 */
 		public function __construct( $parent ) {
 			parent::__construct( $parent );
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Register all core framework styles.
 		 *
-		 * @param     object     $core ReduxFramework object.
+		 * @param     object $core ReduxFramework object.
 		 */
 		private function register_styles( $core ) {
 
@@ -263,7 +263,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Register all core framework scripts.
 		 *
-		 * @param     object     $core ReduxFramework object.
+		 * @param     object $core ReduxFramework object.
 		 */
 		private function register_scripts( $core ) {
 			// *****************************************************************
@@ -361,9 +361,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Enqueue fields that are in use.
 		 *
-		 * @param     object     $core ReduxFramework object.
-		 * @param     array     $field Field array.
-		 * @param     bool     $metabox Is metabox.
+		 * @param     object $core ReduxFramework object.
+		 * @param     array  $field Field array.
+		 * @param     bool   $metabox Is metabox.
 		 */
 		public function enqueue_field( $core, $field, $metabox = false ) {
 			if ( isset( $field['type'] ) && 'callback' !== $field['type'] ) {
@@ -486,7 +486,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Enqueue field files.
 		 *
-		 * @param     object     $core ReduxFramework object.
+		 * @param     object $core ReduxFramework object.
 		 */
 		private function enqueue_fields( $core ) {
 			$data = array();
@@ -503,8 +503,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Build localize array from field functions, if any.
 		 *
-		 * @param     object     $core ReduxFramework object.
-		 * @param     string     $type Field type.
+		 * @param     object $core ReduxFramework object.
+		 * @param     string $type Field type.
 		 */
 		private function build_local_array( $core, $type ) {
 			if ( isset( $core->transients['last_save_mode'] ) && ! empty( $core->transients['notices'][ $type ] ) ) {
@@ -549,7 +549,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Commit localized data to global array.
 		 *
-		 * @param     object     $core ReduxFramework object.
+		 * @param     object $core ReduxFramework object.
 		 */
 		private function set_localized_data( $core ) {
 			if ( ! empty( $core->args['last_tab'] ) ) {
@@ -728,7 +728,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				$core->localize_data
 			);
 
-			// Shim for extension compatibility
+			// Shim for extension compatibility.
 			if ( Redux::$extension_compatibility ) {
 				$this->repeater_data = Redux_Functions_Ex::nested_wp_parse_args(
 					$this->localize_data,
