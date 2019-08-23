@@ -285,13 +285,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
-		 *
 		 * Used to fix 3.x and 4 compatibility for extensions
 		 *
-		 * @param   $parent
-		 * @param   $path
-		 * @param   $ext_class
-		 * @param   $new_class_name
+		 * @param     object $parent The extension parent object.
+		 * @param     string $path - Path of the file.
+		 * @param     string $ext_class - Extension class name.
+		 * @param     string $new_class_name - New dynamic class name.
 		 *
 		 * @return object - Extended field class.
 		 */
@@ -334,12 +333,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
-		 * Used to fix 3.x and 4 compatibility for extensions
+		 * Used to deep merge two arrays.
 		 *
-		 * @param &$a   array First array to deep merge.
-		 * @param $b    array Second array to deep merge.
+		 * @param     array $a First array to deep merge.
+		 * @param     array $b Second array to deep merge.
 		 *
-		 * @return array - Deep merge of the two arrays.
+		 * @return    array - Deep merge of the two arrays.
 		 */
 		public static function nested_wp_parse_args( &$a, $b ) {
 			$a      = (array) $a;
