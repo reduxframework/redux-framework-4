@@ -47,7 +47,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Redux_Enqueue constructor.
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param     object     $parent ReduxFramework pointer.
 		 */
 		public function __construct( $parent ) {
 			parent::__construct( $parent );
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Register all core framework styles.
 		 *
-		 * @param object $core ReduxFramework object.
+		 * @param     object     $core ReduxFramework object.
 		 */
 		private function register_styles( $core ) {
 
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Register all core framework scripts.
 		 *
-		 * @param object $core ReduxFramework object.
+		 * @param     object     $core ReduxFramework object.
 		 */
 		private function register_scripts( $core ) {
 			// *****************************************************************
@@ -358,9 +358,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Enqueue fields that are in use.
 		 *
-		 * @param object $core ReduxFramework object.
-		 * @param array  $field Field array.
-		 * @param bool   $metabox Is metabox.
+		 * @param     object     $core ReduxFramework object.
+		 * @param     array     $field Field array.
+		 * @param     bool     $metabox Is metabox.
 		 */
 		public function enqueue_field( $core, $field, $metabox = false ) {
 			if ( isset( $field['type'] ) && 'callback' !== $field['type'] ) {
@@ -369,8 +369,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				 * Field class file
 				 * filter 'redux/{opt_name}/field/class/{field.type}
 				 *
-				 * @param       string        field class file path
-				 * @param array $field field config data
+				 * @param     string        field class file path
+				 * @param     array     $field field config data
 				 */
 				$field_type = str_replace( '_', '-', $field['type'] );
 				$core_path  = Redux_Core::$dir . "inc/fields/{$field['type']}/class-redux-{$field_type}.php";
@@ -441,9 +441,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 						// Move dev_mode check to a new if/then block.
 						if ( ( ! wp_script_is( 'redux-field-' . $field_type . '-js', 'enqueued' ) ||
-							! wp_script_is( 'redux-extension-' . $field_type . '-js', 'enqueued' ) ||
-							! wp_script_is( 'redux-pro-field-' . $field_type . '-js', 'enqueued' ) ) &&
-							class_exists( $field_class ) && method_exists( $field_class, 'enqueue' ) ) {
+						       ! wp_script_is( 'redux-extension-' . $field_type . '-js', 'enqueued' ) ||
+						       ! wp_script_is( 'redux-pro-field-' . $field_type . '-js', 'enqueued' ) ) &&
+						     class_exists( $field_class ) && method_exists( $field_class, 'enqueue' ) ) {
 							$the_field->enqueue();
 						}
 
@@ -476,7 +476,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Enqueue field files.
 		 *
-		 * @param object $core ReduxFramework object.
+		 * @param     object     $core ReduxFramework object.
 		 */
 		private function enqueue_fields( $core ) {
 			$data = array();
@@ -493,8 +493,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Build localize array from field functions, if any.
 		 *
-		 * @param object $core ReduxFramework object.
-		 * @param string $type Field type.
+		 * @param     object     $core ReduxFramework object.
+		 * @param     string     $type Field type.
 		 */
 		private function build_local_array( $core, $type ) {
 			if ( isset( $core->transients['last_save_mode'] ) && ! empty( $core->transients['notices'][ $type ] ) ) {
@@ -539,7 +539,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Commit localized data to global array.
 		 *
-		 * @param object $core ReduxFramework object.
+		 * @param     object     $core ReduxFramework object.
 		 */
 		private function set_localized_data( $core ) {
 			if ( ! empty( $core->args['last_tab'] ) ) {
@@ -592,7 +592,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 * Save pending string
 			 * filter 'redux/{opt_name}/localize/save_pending
 			 *
-			 * @param       string        save_pending string
+			 * @param     string        save_pending string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$save_pending = apply_filters( "redux/{$core->args['opt_name']}/localize/save_pending", esc_html__( 'You have changes that are not saved. Would you like to save them now?', 'redux-framework' ) );
@@ -601,7 +601,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 * Reset all string
 			 * filter 'redux/{opt_name}/localize/reset
 			 *
-			 * @param       string        reset all string
+			 * @param     string        reset all string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_all = apply_filters( "redux/{$core->args['opt_name']}/localize/reset", esc_html__( 'Are you sure? Resetting will lose all custom values.', 'redux-framework' ) );
@@ -610,7 +610,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 * Reset section string
 			 * filter 'redux/{opt_name}/localize/reset_section
 			 *
-			 * @param       string        reset section string
+			 * @param     string        reset section string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_section = apply_filters( "redux/{$core->args['opt_name']}/localize/reset_section", esc_html__( 'Are you sure? Resetting will lose all custom values in this section.', 'redux-framework' ) );
@@ -619,7 +619,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 * Preset confirm string
 			 * filter 'redux/{opt_name}/localize/preset
 			 *
-			 * @param       string        preset confirm string
+			 * @param     string        preset confirm string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$preset_confirm = apply_filters( "redux/{$core->args['opt_name']}/localize/preset", esc_html__( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'redux-framework' ) );
@@ -628,7 +628,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 * Import confirm string
 			 * filter 'redux/{opt_name}/localize/import
 			 *
-			 * @param       string        import confirm string
+			 * @param     string        import confirm string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$import_confirm = apply_filters( "redux/{$core->args['opt_name']}/localize/import", esc_html__( 'Your current options will be replaced with the values of this import. Would you like to proceed?', 'redux-framework' ) );
@@ -666,15 +666,17 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			$this->get_warnings_and_errors_array();
 
-			if ( !isset($core->repeater_data) )
+			if ( ! isset( $core->repeater_data ) ) {
 				$core->repeater_data = array();
+			}
 			$core->repeater_data = Redux_Functions_Ex::nested_wp_parse_args(
 				$this->repeater_data,
 				$core->repeater_data
 			);
 
-			if ( ! isset( $core->localize_data ) )
+			if ( ! isset( $core->localize_data ) ) {
 				$core->localize_data = array();
+			}
 			$core->localize_data = Redux_Functions_Ex::nested_wp_parse_args(
 				$this->localize_data,
 				$core->localize_data
