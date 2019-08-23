@@ -4,12 +4,8 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
-addons:
-    apt:
-        packages:
-            - mysql-server-5.6
-            - mysql-client-core-5.6
-            - mysql-client-5.6
+services:
+    - mysql
 
 # Declare versions of PHP to use. Use one decimal max.
 php:
