@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 /**
  * Redux Framework API Class
  * Makes instantiating a Redux object an absolute piece of cake.
@@ -131,20 +131,20 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Delays all Redux objects from loaded before `plugins_loaded` runs.
 		 */
 		public static function delay_init() {
-			if ( ! empty( Redux::$delay_init ) ) {
+			if ( ! empty( self::$delay_init ) ) {
 
-				foreach ( Redux::$delay_init as $opt_name ) {
-					Redux::init( $opt_name );
+				foreach ( self::$delay_init as $opt_name ) {
+					self::init( $opt_name );
 					$parent = Redux_Instances::get_instance( $opt_name );
-
+					// translators: This is only shown to developers, should not impact users.
 					$msg = sprintf(
-						"<strong>%s</strong><br /><code>%s</code> %s",
-						esc_html__( 'Warning, Premature Iånitialization', 'redux-framework' ),
-						'Redux::init("' . esc_html( $opt_name ) . '")',
+						'<strong>%s</strong><br /><code>%s</code> %s',
+						esc_html__( 'Warning, Premature Initialization', 'redux-framework' ),
+						'self::init("' . esc_html( $opt_name ) . '")',
+						// translators: This is only shown to developers, should not impact users.
 						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'redux-framework ' ), '<code>plugins_loaded</code>' )
 					);
 
-//					$msg    = '<strong>' . esc_html__( 'Warning', 'redux-framework' ) . '</strong><br/><code>Redux::init("' . sprintf(esc_html__( '%s' )) . '")</code>' . esc_html__( 'was run before the `plugins_loaded` hook fired and was delayed to avoid errors.', 'redux-framework' ), $opt_name );
 					$data = array(
 						'parent'  => $parent,
 						'type'    => 'error',
@@ -166,7 +166,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! empty( $opt_name ) ) {
 				if ( ! did_action( 'plugins_loaded' ) ) {
 					// We don't want to load before plugins_loaded EVER.
-					Redux::$delay_init[] = $opt_name;
+					self::$delay_init[] = $opt_name;
 					add_action( 'plugins_loaded', array( 'Redux', 'delay_init' ) );
 				} else {
 					// The hook `plugins_loaded` has run, let's get going!
@@ -232,9 +232,14 @@ if ( ! class_exists( 'Redux', false ) ) {
 							$redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
 							// Backwards compatibility for extensions
 							if ( ! is_subclass_of( $redux_framework->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
-								$new_class_name                       = $ext_class . "_extended";
-								Redux::$extension_compatibility       = true;
-								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility( $redux_framework, $extension['path'], $ext_class, $new_class_name );
+								$new_class_name                       = $ext_class . '_extended';
+								self::$extension_compatibility        = true;
+								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility(
+									$redux_framework,
+									$extension['path'],
+									$ext_class,
+									$new_class_name
+								);
 							}
 						} else {
 							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
@@ -1161,7 +1166,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param     string     $key Argument name.
 		 *
 		 * @return mixed
-		 * @deprecated No longer using camelCase naming convention and using singular function Redux::get_args() now.
+		 * @deprecated No longer using camelCase naming convention and using singular function self::get_args() now.
 		 */
 		public static function getArg( $opt_name = '', $key = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			return self::get_args( $opt_name, $key );
@@ -1373,7 +1378,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @return mixed
 		 */
 		public static function get_priority( $opt_name, $type ) {
-			$priority                             = self::$priority[ $opt_name ][ $type ];
+			$priority                              = self::$priority[ $opt_name ][ $type ];
 			self::$priority[ $opt_name ][ $type ] += 1;
 
 			return $priority;
@@ -1461,10 +1466,17 @@ if ( ! class_exists( 'Redux', false ) ) {
 				self::$extensions[ $name ][ $version ] = isset( self::$extensions[ $name ][ $version ] ) ? self::$extensions[ $name ][ $version ] : $class_file;
 
 				$new_name  = str_replace( '_', '-', $name );
-				$api_check = str_replace( array(
-					'extension_' . $name,
-					'class-redux-extension-' . $new_name
-				), array( $name . '_api', 'class-redux-' . $new_name . '-api' ), $class_file );
+				$api_check = str_replace(
+					array(
+						'extension_' . $name,
+						'class-redux-extension-' . $new_name,
+					),
+					array(
+						$name . '_api',
+						'class-redux-' . $new_name . '-api',
+					),
+					$class_file
+				);
 				$api_check = str_replace( '-lite', '', $api_check );
 
 				if ( true === self::overload_legacy_metaboxes() ) {
@@ -1659,7 +1671,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function getExtensions( $opt_name = '', $key = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux::get_extensions( $opt_name, $key )' );
+			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'self::get_extensions( $opt_name, $key )' );
 
 			return self::get_extensions( $opt_name, $key );
 		}
@@ -1715,11 +1727,11 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
-			add_action( 'redux/loaded', 'Redux::remove_demo' );
+			add_action( 'redux/loaded', 'self::remove_demo' );
 		}
 
 		/**
-		 * Callback used by Redux::disable_demo() to remove the demo mode notice from Redux.
+		 * Callback used by self::disable_demo() to remove the demo mode notice from Redux.
 		 */
 		public static function remove_demo() {
 			if ( class_exists( 'Redux_Framework_Plugin' ) ) {
@@ -1728,5 +1740,5 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 	}
 
-	Redux::load();
+	self::load();
 }

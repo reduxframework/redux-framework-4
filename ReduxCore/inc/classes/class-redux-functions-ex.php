@@ -230,8 +230,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 */
 		public static function is_inside_theme( $file = '' ) {
 			$theme_paths = array(
-				self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),      // parent.
-				self::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(),    // child.
+				self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),
+				// parent.
+				self::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(),
+				// child.
 			);
 
 			$theme_paths = array_unique( $theme_paths );
@@ -304,21 +306,21 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				}
 				if ( ! file_exists( $upload_dir . $new_class_name . '.php' ) ) {
 					$class_file = '<?php' . PHP_EOL . PHP_EOL .
-					              'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
-					              '    private $c;' . PHP_EOL .
-					              '    public function __construct( $parent, $path, $ext_class ) {' . PHP_EOL .
-					              '        $this->c = new $ext_class( $parent );' . PHP_EOL .
-					              '        // Add all the params of the Abstract to this instance.' . PHP_EOL .
-					              '        foreach( get_object_vars( $this->c ) as $key => $value ) {' . PHP_EOL .
-					              '            $this->$key = $value;' . PHP_EOL .
-					              '        }' . PHP_EOL .
-					              '        parent::__construct( $parent, $path );' . PHP_EOL .
-					              '    }' . PHP_EOL .
-					              '    // fake "extends Redux_Extension_Abstract\" using magic function' . PHP_EOL .
-					              '    public function __call( $method, $args ) {' . PHP_EOL .
-					              '        $this->c->$method( $args[0] );' . PHP_EOL .
-					              '    }' . PHP_EOL .
-					              '}' . PHP_EOL;
+						'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
+						'    private $c;' . PHP_EOL .
+						'    public function __construct( $parent, $path, $ext_class ) {' . PHP_EOL .
+						'        $this->c = new $ext_class( $parent );' . PHP_EOL .
+						'        // Add all the params of the Abstract to this instance.' . PHP_EOL .
+						'        foreach( get_object_vars( $this->c ) as $key => $value ) {' . PHP_EOL .
+						'            $this->$key = $value;' . PHP_EOL .
+						'        }' . PHP_EOL .
+						'        parent::__construct( $parent, $path );' . PHP_EOL .
+						'    }' . PHP_EOL .
+						'    // fake "extends Redux_Extension_Abstract\" using magic function' . PHP_EOL .
+						'    public function __call( $method, $args ) {' . PHP_EOL .
+						'        $this->c->$method( $args[0] );' . PHP_EOL .
+						'    }' . PHP_EOL .
+						'}' . PHP_EOL;
 					$template   = str_replace( '{{ext_class}}', $new_class_name, $class_file );
 					$parent->filesystem->execute( 'put_contents', $upload_dir . $new_class_name . '.php', array( 'content' => $template ) );
 				}
