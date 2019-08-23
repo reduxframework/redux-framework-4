@@ -92,7 +92,7 @@ if ( ! class_exists( 'Redux_Info', false ) ) {
 				$this->field['style'] = 'redux-' . $this->field['style'] . ' ';
 			}
 
-			// Old shim, deprecated arg
+			// Old shim, deprecated arg.
 			if ( isset( $this->field['sectionIndent'] ) ) {
 				$this->field['indent'] = $this->field['sectionIndent'];
 			}
