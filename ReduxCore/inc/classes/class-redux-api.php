@@ -1740,5 +1740,5 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 	}
 
-	self::load();
+	Redux::load();
 }
