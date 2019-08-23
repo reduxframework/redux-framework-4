@@ -108,32 +108,30 @@
 	};
 
 	$.redux.getOptName = function( el ) {
-		var classes;
 		var metabox;
 		var li;
-
 		var optName = $( el ).data( 'opt-name' );
 
+		// Backwards compatibility block for metaboxes
 		if ( undefined === optName ) {
-
-			// Opt_name hack/shim for older versions of metaboxes.
-			metabox = $( el ).parents( '.redux-metabox' );
-
-			if ( 0 !== metabox.length ) {
-				classes = metabox.attr( 'class' );
-
-				classes = classes.replace( 'redux-metabox', '' );
-				classes = classes.replace( 'postbox', '' );
-				classes = classes.replace( 'redux-', '' );
-				classes = classes.replace( 'hide', '' );
-				classes = classes.replace( 'closed', '' );
-				classes = classes.trim();
-
-				optName = classes;
-			} else if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
+			metabox = $( el ).parents( '.postbox' );
+			if ( 0 === metabox.length ) {
+				metabox = $( el ).parents( '.redux-metabox' );
+			}
+			if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
 				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
-
 				optName = li.data( 'opt-name' );
+			} else if ( 0 !== metabox.length ) {
+				optName = metabox.attr( 'id' ).replace( 'redux-', '' ).split( '-metabox-' )[0];
+				if ( undefined === optName ) {
+					optName = metabox.attr( 'class' )
+						.replace( 'redux-metabox', '' )
+						.replace( 'postbox', '' )
+						.replace( 'redux-', '' )
+						.replace( 'hide', '' )
+						.replace( 'closed', '' )
+						.trim();
+				}
 			} else {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
 			}

@@ -107,6 +107,13 @@ if ( ! class_exists( 'Redux', false ) ) {
 		public static $extension_paths = array();
 
 		/**
+		 * Extension capability flag.
+		 *
+		 * @var boolean
+		 */
+		public static $extension_compatibility = False;
+
+		/**
 		 * Code to run at creation in instance.
 		 */
 		public static function load() {
@@ -227,6 +234,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 							// Backwards compatibility for extensions
 							if ( ! is_subclass_of( $redux_framework->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
 								$new_class_name                       = $ext_class . "_extended";
+								Redux::$extension_compatibility = True;
 								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility( $redux_framework, $extension['path'], $ext_class, $new_class_name );
 							}
 						} else {

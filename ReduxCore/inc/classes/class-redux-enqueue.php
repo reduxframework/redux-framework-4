@@ -661,7 +661,32 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$this->localize_data = apply_filters( "redux/{$core->args['opt_name']}/localize", $this->localize_data );
 
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			$this->repeater_data = apply_filters( "redux/{$core->args['opt_name']}/repeater", $this->repeater_data );
+
 			$this->get_warnings_and_errors_array();
+
+			if ( !isset($core->repeater_data) )
+				$core->repeater_data = array();
+			$core->repeater_data = Redux_Functions_Ex::nested_wp_parse_args(
+				$this->repeater_data,
+				$core->repeater_data
+			);
+
+			if ( ! isset( $core->localize_data ) )
+				$core->localize_data = array();
+			$core->localize_data = Redux_Functions_Ex::nested_wp_parse_args(
+				$this->localize_data,
+				$core->localize_data
+			);
+
+			// Shim for extension compatibility
+			if ( Redux::$extension_compatibility ) {
+				$this->repeater_data = Redux_Functions_Ex::nested_wp_parse_args(
+					$this->localize_data,
+					$core->repeater_data
+				);
+			}
 
 			wp_localize_script(
 				'redux-js',
