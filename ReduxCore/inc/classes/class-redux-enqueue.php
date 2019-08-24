@@ -58,6 +58,11 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			}
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_init' ), 10 );
+
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			do_action( "redux/{$parent->args['opt_name']}/enqueue/construct", $this );
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			do_action( "redux/enqueue/construct", $this );
 		}
 
 		/**
