@@ -62,7 +62,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( "redux/{$parent->args['opt_name']}/enqueue/construct", $this );
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/enqueue/construct", $this );
+			do_action( 'redux/enqueue/construct', $this );
 		}
 
 		/**
