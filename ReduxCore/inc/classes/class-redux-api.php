@@ -1727,7 +1727,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
-			add_action( 'redux/loaded', 'self::remove_demo' );
+			add_action( 'redux/loaded', 'Redux::remove_demo' );
 		}
 
 		/**
