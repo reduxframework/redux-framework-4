@@ -12,7 +12,7 @@
  * Description:     The most powerful and widely used WordPress interface builder and framework.
  * Author:          Team Redux
  * Author URI:      http://reduxframework.com
- * Version:         4.0.2
+ * Version:         4.0.3
  * Text Domain:     redux-framework
  * License:         GPLv3 or later
  * License URI:     http://www.gnu.org/licenses/gpl-3.0.txt

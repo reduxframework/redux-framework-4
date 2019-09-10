@@ -85,6 +85,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'customizer'                => false,
 				'global_variable'           => '',
 				'output'                    => true,
+				'output_variables_prefix'   => '--',
 				'compiler'                  => true,
 				'output_tag'                => true,
 				'output_location'           => array( 'frontend' ),

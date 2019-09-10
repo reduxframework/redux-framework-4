@@ -1,5 +1,10 @@
 # Redux Framework v4 Changelog
 
+## 4.0.3
+* Fixed:    PHPCS findings.
+& Added:    New output_variables flags that dynamically add CSS variables to pages even on fields that do not support 
+            dynamic CSS output. Thanks @andrejarh for the idea!
+
 ## 4.0.2
 * Fixed:    PHP backwards compatibility for extensions. Still have to work on JS probably.
 
