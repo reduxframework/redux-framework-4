@@ -308,6 +308,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					$root_css .= "{$key}:{$value};";
 				}
 				$root_css       .= '}';
+				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
 				$core->outputCSS = $root_css . $core->outputCSS;
 			}
 
