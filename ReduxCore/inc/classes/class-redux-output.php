@@ -307,7 +307,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				foreach ( $core->output_variables as $key => $value ) {
 					$root_css .= "{$key}:{$value};";
 				}
-				$root_css       .= '}';
+				$root_css .= '}';
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
 				$core->outputCSS = $root_css . $core->outputCSS;
 			}
