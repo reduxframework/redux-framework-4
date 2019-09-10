@@ -329,6 +329,16 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				}
 			}
 		}
+
+		/**
+		 * Enable output_variables to be generated.
+		 *
+		 * @since       4.0.3
+		 * @return void
+		 */
+		public function output_variables() {
+			// No code needed, just defining the method is enough.
+		}
 	}
 }
 

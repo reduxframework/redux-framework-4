@@ -124,6 +124,16 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 				wp_enqueue_style( 'redux-field-text-css', Redux_Core::$url . 'inc/fields/text/redux-text.css', array(), $this->timestamp, 'all' );
 			}
 		}
+
+		/**
+		 * Enable output_variables to be generated.
+		 *
+		 * @since       4.0.3
+		 * @return void
+		 */
+		public function output_variables() {
+			// No code needed, just defining the method is enough.
+		}
 	}
 }
 

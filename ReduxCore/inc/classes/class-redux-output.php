@@ -108,7 +108,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								// phpcs:ignore WordPress.NamingConventions.ValidHookName
 								$class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", $filter_path, $field );
 
-								if ( $class_file && file_exists( $class_file ) && ( ! class_exists( $field_class ) || ! class_exists( $field_class_shim ) ) ) {
+								if ( $class_file && file_exists( $class_file ) && ( ! class_exists( $field_class ) ) ) {
 									require_once $class_file;
 
 									$field_class = Redux_Functions::class_exists_ex( $field_classes );
@@ -144,31 +144,23 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									}
 								}
 
+								if ( ! empty( $style_data ) ) {
+									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
+										$enqueue->output( $style_data );
+									}
+									if ( isset( $field['media_query'] ) && ! empty( $field['media_query'] ) ) {
+										$enqueue->media_query( $style_data );
+									}
+								}
+							}
+
+							// phpcs:ignore WordPress.NamingConventions.ValidHookName
+							do_action( "redux/field/{$core->args['opt_name']}/output_loop", $core, $field, $value, $style_data );
+							// phpcs:ignore WordPress.NamingConventions.ValidHookName
+							do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['type']}", $core, $field, $value, $style_data );
+
+							if ( method_exists( $field_class, 'output_variables' ) ) {
 								$this->output_variables( $core, $section, $field, $value, $style_data );
-
-								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								do_action( "redux/field/{$core->args['opt_name']}/output_loop", $core, $field, $value, $style_data );
-								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['id']}", $core, $field, $value, $style_data );
-
-								if ( empty( $style_data ) ) {
-									continue;
-								}
-
-								if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
-									$enqueue->output( $style_data );
-								}
-
-								if ( isset( $field['media_query'] ) && ! empty( $field['media_query'] ) ) {
-									$enqueue->media_query( $style_data );
-								}
-							} else {
-								// For fields that don't have an output function.
-								$this->output_variables( $core, $section, $field, $value, $style_data );
-								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								do_action( "redux/field/{$core->args['opt_name']}/output_loop", $core, $field, $value, $style_data );
-								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['id']}", $core, $field, $value, $style_data );
 							}
 						}
 					}
