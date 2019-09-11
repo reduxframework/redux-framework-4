@@ -118,6 +118,15 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							$field['default'] = isset( $field['default'] ) ? $field['default'] : '';
 							$value            = isset( $core->options[ $field['id'] ] ) ? $core->options[ $field['id'] ] : $field['default'];
 							$style_data       = '';
+							$data = array(
+								'field' => $field,
+								'value' => $value,
+								'core'  => $core,
+								'mode'  => 'output',
+							);
+
+							Redux_Functions::load_pro_field( $data );
+							$field_object = new $field_class( $field, $value, $core );
 
 							if ( ! empty( $core->options[ $field['id'] ] ) && class_exists( $field_class ) && method_exists( $field_class, 'output' ) && $this->can_output_css( $core, $field ) ) {
 								// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -127,29 +136,18 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									$field['output'] = array( $field['output'] );
 								}
 
-								$data = array(
-									'field' => $field,
-									'value' => $value,
-									'core'  => $core,
-									'mode'  => 'output',
-								);
-
-								Redux_Functions::load_pro_field( $data );
-
-								$enqueue = new $field_class( $field, $value, $core );
-
 								if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || isset( $field['media_query'] ) && ! empty( $field['media_query'] ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
-									if ( method_exists( $enqueue, 'css_style' ) ) {
-										$style_data = $enqueue->css_style( $enqueue->value );
+									if ( method_exists( $field_object, 'css_style' ) ) {
+										$style_data = $field_object->css_style( $field_object->value );
 									}
 								}
 
 								if ( ! empty( $style_data ) ) {
 									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
-										$enqueue->output( $style_data );
+										$field_object->output( $style_data );
 									}
 									if ( isset( $field['media_query'] ) && ! empty( $field['media_query'] ) ) {
-										$enqueue->media_query( $style_data );
+										$field_object->media_query( $style_data );
 									}
 								}
 							}
@@ -160,7 +158,8 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['type']}", $core, $field, $value, $style_data );
 
 							if ( method_exists( $field_class, 'output_variables' ) && $this->can_output_css( $core, $field ) ) {
-								$this->output_variables( $core, $section, $field, $value, $style_data );
+							    $passed_style_data = $field_object->output_variables( $style_data );
+								$this->output_variables( $core, $section, $field, $value, $passed_style_data );
 							}
 						}
 					}
