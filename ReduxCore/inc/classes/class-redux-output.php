@@ -118,7 +118,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							$field['default'] = isset( $field['default'] ) ? $field['default'] : '';
 							$value            = isset( $core->options[ $field['id'] ] ) ? $core->options[ $field['id'] ] : $field['default'];
 							$style_data       = '';
-							$data = array(
+							$data             = array(
 								'field' => $field,
 								'value' => $value,
 								'core'  => $core,
@@ -158,7 +158,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['type']}", $core, $field, $value, $style_data );
 
 							if ( method_exists( $field_class, 'output_variables' ) && $this->can_output_css( $core, $field ) ) {
-							    $passed_style_data = $field_object->output_variables( $style_data );
+                                $passed_style_data = $field_object->output_variables( $style_data );
 								$this->output_variables( $core, $section, $field, $value, $passed_style_data );
 							}
 						}
