@@ -615,7 +615,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			if ( isset( $core->transients['run_compiler'] ) && $core->transients['run_compiler'] ) {
 
 				$core->no_output = true;
-				$temp = $core->args['output_variables_prefix'];
+				$temp            = $core->args['output_variables_prefix'];
 				// Allow the override of variables prefix for use by SCSS or LESS.
 				if ( isset( $core->args['compiler_output_variables_prefix'] ) ) {
 					$core->args['output_variables_prefix'] = $core->args['compiler_output_variables_prefix'];
