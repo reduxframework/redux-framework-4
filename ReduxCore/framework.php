@@ -115,7 +115,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		public $extensions = array();
 
 		/**
-		 * Array of sections and fields arays.
+		 * Array of sections and fields arrays.
 		 *
 		 * @var array|mixed|void
 		 */
