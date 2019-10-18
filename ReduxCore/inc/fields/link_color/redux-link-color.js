@@ -22,10 +22,6 @@
         return $style;
     }
     redux.field_objects.link_color.customizer_preview_output = function (selectors, newVal) {
-        if (!Array.isArray(selectors)) {
-            selectors = [selectors];
-        }
-
         var $output_style = '';
         for (var i = 0; i < selectors.length; i++) {
             Object.keys(newVal).forEach(function (val) {
