@@ -67,7 +67,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-regular" ';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[regular]"';
 				echo 'value="' . esc_attr( $this->value['regular'] ) . '"';
-				echo 'class="color-picker redux-color redux-color-regular redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+				echo 'class="color-picker redux-color redux-color-regular redux-color-init ' . esc_attr(
+						$this->field['class']
+					) . '"';
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['regular'] ) . '"';
 
@@ -92,7 +94,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-hover"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[hover]"';
 				echo 'value="' . esc_attr( $this->value['hover'] ) . '"';
-				echo 'class="color-picker redux-color redux-color-hover redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+				echo 'class="color-picker redux-color redux-color-hover redux-color-init ' . esc_attr(
+						$this->field['class']
+					) . '"';
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['hover'] ) . '"';
 
@@ -117,7 +121,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-visited"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[visited]"';
 				echo 'value="' . esc_attr( $this->value['visited'] ) . '"';
-				echo 'class="color-picker redux-color redux-color-visited redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+				echo 'class="color-picker redux-color redux-color-visited redux-color-init ' . esc_attr(
+						$this->field['class']
+					) . '"';
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['visited'] ) . '"';
 
@@ -142,7 +148,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-active"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[active]"';
 				echo 'value="' . esc_attr( $this->value['active'] ) . '"';
-				echo 'class="color-picker redux-color redux-color-active redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+				echo 'class="color-picker redux-color redux-color-active redux-color-init ' . esc_attr(
+						$this->field['class']
+					) . '"';
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['active'] ) . '"';
 
@@ -167,7 +175,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-focus"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[focus]"';
 				echo 'value="' . esc_attr( $this->value['focus'] ) . '"';
-				echo 'class="color-picker redux-color redux-color-focus redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
+				echo 'class="color-picker redux-color redux-color-focus redux-color-init ' . esc_attr(
+						$this->field['class']
+					) . '"';
 				echo 'type="text"';
 				echo 'data-default-color="' . esc_attr( $this->field['default']['focus'] ) . '"';
 
@@ -228,31 +238,19 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 		/**
 		 * Compile CSS data for output.
 		 *
-		 * @param string $data CSS data.
+		 * @param     string     $data CSS data.
 		 *
 		 * @return array|void
 		 */
-		public function css_style( $data ) {
+		public function css_style( $data = array() ) {
+			if ( empty( $data ) ) {
+				return;
+			}
 			$style = array();
-
-			if ( ! empty( $this->value['regular'] ) && true === $this->field['regular'] && false !== $this->field['default']['regular'] ) {
-				$style[] = 'color:' . $this->value['regular'] . ';';
-			}
-
-			if ( ! empty( $this->value['visited'] ) && true === $this->field['visited'] && false !== $this->field['default']['visited'] ) {
-				$style['visited'] = 'color:' . $this->value['visited'] . ';';
-			}
-
-			if ( ! empty( $this->value['hover'] ) && true === $this->field['hover'] && false !== $this->field['default']['hover'] ) {
-				$style['hover'] = 'color:' . $this->value['hover'] . ';';
-			}
-
-			if ( ! empty( $this->value['active'] ) && true === $this->field['active'] && false !== $this->field['default']['active'] ) {
-				$style['active'] = 'color:' . $this->value['active'] . ';';
-			}
-
-			if ( ! empty( $this->value['focus'] ) && true === $this->field['focus'] && false !== $this->field['default']['focus'] ) {
-				$style['focus'] = 'color:' . $this->value['focus'] . ';';
+			foreach ( $data as $key => $value ) {
+				if ( ! empty( $this->value[ $key ] ) ) {
+					$style[ $key ] = 'color:' . $this->value[ $key ] . ';';
+				}
 			}
 
 			return $style;
@@ -261,73 +259,51 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 		/**
 		 * Output CSS/compiler.
 		 *
-		 * @param string $style Style to output.
+		 * @param     string     $style Style to output.
 		 */
 		public function output( $style = '' ) {
-			if ( ! empty( $style ) ) {
-				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					$style_string = '';
-
-					foreach ( $style as $key => $value ) {
-						if ( is_numeric( $key ) ) {
-							$style_string .= implode( ',', $this->field['output'] ) . '{' . $value . '}';
-						} else {
-							if ( 1 === count( $this->field['output'] ) ) {
-								foreach ( $this->field['output'] as $sel => $elem ) {
-									continue;
-								}
-
-								if ( false !== strpos( $elem, ',' ) ) {
-									$selector_arr = explode( ',', $elem );
-									$sel_list     = '';
-
-									foreach ( $selector_arr as $idx => $selector ) {
-										$sel_list .= $selector . ':' . $key . ',';
-									}
-
-									$sel_list      = rtrim( $sel_list, ',' );
-									$style_string .= $sel_list . '{' . $value . '}';
-								} else {
-									$style_string .= $elem . ':' . $key . '{' . $value . '}';
-								}
-							} else {
-								$blah = '';
-								foreach ( $this->field['output'] as $k => $sel ) {
-									$blah .= $sel . ':' . $key . ',';
-								}
-
-								$blah          = substr( $blah, 0, strlen( $blah ) - 1 );
-								$style_string .= $blah . '{' . $value . '}';
-							}
-						}
-					}
-
-					$this->parent->outputCSS .= $style_string;
-				}
-
-				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					$style_string = '';
-
-					foreach ( $style as $key => $value ) {
-						if ( is_numeric( $key ) ) {
-							$style_string .= implode( ',', $this->field['compiler'] ) . '{' . $value . '}';
-						} else {
-							if ( 1 === count( $this->field['compiler'] ) ) {
-								$style_string .= $this->field['compiler'][0] . ':' . $key . '{' . $value . '}';
-							} else {
-								$blah = '';
-								foreach ( $this->field['compiler'] as $k => $sel ) {
-									$blah .= $sel . ':' . $key . ',';
-								}
-
-								$blah          = substr( $blah, 0, strlen( $blah ) - 1 );
-								$style_string .= $blah . '{' . $value . '}';
-							}
-						}
-					}
-					$this->parent->compilerCSS .= esc_attr( $style_string );
-				}
+			if ( empty( $style ) && empty( $this->field['output'] ) && empty( $this->field['compiler'] ) ) {
+				return;
 			}
+			if ( ! empty( $this->field['output'] ) && ! is_array( $this->field['output'] ) ) {
+				$this->field['output'] = array( $this->field['output'] );
+			}
+			if ( ! empty( $this->field['compiler'] ) && ! is_array( $this->field['compiler'] ) ) {
+				$this->field['compiler'] = array( $this->field['compiler'] );
+			}
+
+			if ( ! empty( $this->field['output'] ) ) {
+				$style_string = '';
+				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
+					foreach ( $this->field['output'] as $selector ) {
+						foreach ( $style as $key => $value ) {
+							if ( $key == "regular" ) {
+								$style_string .= $selector . '{' . $value . '}';
+							} else {
+								$style_string .= $selector . ':' . $key . '{' . $value . '}';
+							}
+						}
+					}
+				}
+				$this->parent->outputCSS .= $style_string;
+			}
+
+			if ( is_array( $this->field['compiler'] ) ) {
+				$style_string = '';
+				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
+					foreach ( $this->field['compiler'] as $selector ) {
+						foreach ( $style as $key => $value ) {
+							if ( $key == "regular" ) {
+								$style_string .= $selector . '{' . $value . '}';
+							} else {
+								$style_string .= $selector . ':' . $key . '{' . $value . '}';
+							}
+						}
+					}
+				}
+				$this->parent->compilerCSS .= esc_attr( $style_string );
+			}
+
 		}
 
 		/**

@@ -1,4 +1,4 @@
-/* global jQuery, document, redux, redux_change:true, wp */
+/* global jQuery, document, redux, redux_change:true, wp, redux_customizer */
 
 /**
  * SerializeJSON jQuery plugin.
