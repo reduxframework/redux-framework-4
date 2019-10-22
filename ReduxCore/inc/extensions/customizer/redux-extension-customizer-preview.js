@@ -12,7 +12,7 @@
 
     function live_preview(fieldID, newVal, opt_name) {
         var selectors = redux_customizer_preview.fields[opt_name][fieldID];
-        if (!Array.isArray(selectors)) {
+        if (typeof selectors === 'string') {
             selectors = selectors.split(',');
         }
 
