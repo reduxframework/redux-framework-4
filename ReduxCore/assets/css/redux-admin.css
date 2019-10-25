@@ -147,7 +147,7 @@
 
 .redux-container .redux-sidebar, .redux-container .redux-main { min-height: 300px; }
 
-.redux-container .redux-main { background: #FCFCFC; margin-left: 201px; border-left: 1px solid #D8D8D8; padding: 10px 20px; -webkit-box-shadow: inset 0 1px 0 #FFF; box-shadow: inset 0 1px 0 #FFF; position: relative; }
+.redux-container .redux-main { background: #E35454; margin-left: 201px; border-left: 1px solid #B8D9FE; padding: 10px 20px; -webkit-box-shadow: inset 0 1px 0 #FFF; box-shadow: inset 0 1px 0 #FFF; position: relative; }
 
 .redux-container .redux-main fieldset.disabled, .redux-container .redux-main .redux-group-tab.disabled { position: relative; }
 
