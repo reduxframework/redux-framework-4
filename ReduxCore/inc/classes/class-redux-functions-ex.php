@@ -294,7 +294,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @return object - Extended field class.
 		 */
-		public static function extension_compatibility( $parent, $path, $ext_class, $new_class_name ) {
+		public static function extension_compatibility( $parent, $path, $ext_class, $new_class_name, $name ) {
 			$upload_dir = ReduxFramework::$_upload_dir . '/compatibility/';
 			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
 				if ( ! is_dir( $upload_dir ) ) {
@@ -309,7 +309,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
 						'    private $c;' . PHP_EOL .
 						'    public function __construct( $parent, $path, $ext_class ) {' . PHP_EOL .
-						'        $this->c = new $ext_class( $parent );' . PHP_EOL .
+						'        $this->c = $parent->extensions[\'' . $name . '\'];' . PHP_EOL .
 						'        // Add all the params of the Abstract to this instance.' . PHP_EOL .
 						'        foreach( get_object_vars( $this->c ) as $key => $value ) {' . PHP_EOL .
 						'            $this->$key = $value;' . PHP_EOL .

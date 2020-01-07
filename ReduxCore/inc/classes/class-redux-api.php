@@ -238,7 +238,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 									$redux_framework,
 									$extension['path'],
 									$ext_class,
-									$new_class_name
+									$new_class_name,
+									$name
 								);
 							}
 						} else {
