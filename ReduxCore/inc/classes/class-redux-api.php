@@ -1727,16 +1727,15 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
-			add_action( 'redux/loaded', 'Redux::remove_demo' );
+			add_action( 'ReduxFrameworkPlugin_admin_notice', 'Redux::remove_demo' );
+			add_action( 'redux_framework_plugin_admin_notice', 'Redux::remove_demo' );
 		}
 
 		/**
 		 * Callback used by self::disable_demo() to remove the demo mode notice from Redux.
 		 */
 		public static function remove_demo() {
-			if ( class_exists( 'Redux_Framework_Plugin' ) ) {
-				remove_action( 'admin_notices', array( Redux_Framework_Plugin::instance(), 'admin_notices' ) );
-			}
+			update_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES', '' );
 		}
 	}
 
