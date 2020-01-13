@@ -296,6 +296,22 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		}
 
 		/**
+		 * Deprecated Sets option panel global arguments.
+		 *
+		 * @param     string $opt_name Panel opt_name.
+		 * @param     array  $args Argument data.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function setArgs( $opt_name = '', $args = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			self::set_args( $opt_name, $args );
+		}
+
+		/**
 		 * Set Section.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -488,6 +504,22 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		}
 
 		/**
+		 * Deprecated Set profile method.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $profile Profile array.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function setProfile( $opt_name = '', $profile = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			self::set_args( $opt_name, $profile );
+		}
+
+		/**
 		 * Set Profiles.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -517,6 +549,22 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		}
 
 		/**
+		 * Deprecated Get profile method.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 *
+		 * @return mixed
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function getProfile( $opt_name = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			return self::get_profiles( $opt_name );
+		}
+
+		/**
 		 * Get Box.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -533,6 +581,23 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		}
 
 		/**
+		 * Deprecated Get box method.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $key Key.
+		 *
+		 * @return mixed
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function getBox( $opt_name = '', $key = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			return self::get_box( $opt_name );
+		}
+
+		/**
 		 * Get Priority.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -545,6 +610,23 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 			self::$priority[ $opt_name ][ $type ] += 1;
 
 			return $priority;
+		}
+
+		/**
+		 * Deprecated Get box method.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param string $key Key.
+		 *
+		 * @return mixed
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function getPriority(  $opt_name, $type ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			self::get_priority( $opt_name, $type );
 		}
 
 		/**

@@ -179,6 +179,22 @@ if ( ! class_exists( 'Redux_Taxonomy' ) ) {
 		}
 
 		/**
+		 * Deprecated Sets option panel global arguments.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 *
+		 * @return array
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function constructTerms( $opt_name ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			return self::construct_terms( $opt_name );
+		}
+
+		/**
 		 * Construct Sections.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -418,6 +434,22 @@ if ( ! class_exists( 'Redux_Taxonomy' ) ) {
 		}
 
 		/**
+		 * Deprecated Sets option panel global arguments.
+		 *
+		 * @param     string $opt_name Panel opt_name.
+		 * @param     array  $args Argument data.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function setArgs( $opt_name = '', $args = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			self::set_args( $opt_name, $args );
+		}
+
+		/**
 		 * Set args.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -485,6 +517,22 @@ if ( ! class_exists( 'Redux_Taxonomy' ) ) {
 
 				return;
 			}
+		}
+
+		/**
+		 * Deprecated Set term method.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $term Term array.
+		 *
+		 * @deprecated No longer using camelCase naming convention.
+		 */
+		public static function setTerm( $opt_name = '', $term = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			if ( '' !== $opt_name ) {
+				Redux_Functions_Ex::record_caller( $opt_name );
+			}
+
+			self::set_term( $opt_name, $term );
 		}
 
 		/**
