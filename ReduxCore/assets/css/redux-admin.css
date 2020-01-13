@@ -21,8 +21,6 @@
 
 .redux-main .wp-picker-container .wp-picker-default { padding: 0 10px 1px; }
 
-.redux-main .wp-picker-container .wp-color-result-text { line-height: 22px; }
-
 .redux-main .redux-color-gradient { line-height: 24px; }
 
 .redux-main .color-transparency-check { line-height: 1; /*        margin-top: 5px !important;*/ margin: 0 !important; padding-top: 10px; }
