@@ -173,7 +173,7 @@
 
 .redux-container .redux-main .form-table tr td .redux-th-error { font-size: 1em; color: #B94A48; font-weight: normal; display: block; margin-top: 10px; }
 
-.redux-container .redux-main input { line-height: 19px; }
+.redux-container .redux-main input { line-height: 19px; min-height: 28px; }
 
 .redux-container .redux-main input.large-text { width: 100%; }
 
