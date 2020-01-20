@@ -19,16 +19,17 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 	 */
 	class Redux_Color_Gradient extends Redux_Field {
 
-		/**
-		 * Redux_Field constructor.
-		 *
-		 * @param array  $field Field array.
-		 * @param string $value Field values.
-		 * @param null   $parent ReduxFramework object pointer.
+		/*
+		 * Pattern for CSS output
 		 */
-		public function __construct( $field = array(), $value = null, $parent = null ) { // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod
-			parent::__construct( $field, $value, $parent );
-		}
+		public $output_formatting = array(
+			'default_pattern' => "linear-gradient(value-from, value-to)",
+			'default_key'     => 'background-image',
+			'excludes'        => array(
+				'from',
+				'to'
+			),
+		);
 
 		/**
 		 * Set field and value defaults.
@@ -46,6 +47,21 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 				'preview'        => false,
 				'preview_height' => '150px',
 			);
+
+			if ( ! empty( $this->value ) ) {
+				foreach ( $this->value as $k => $v ) {
+					if ( ! empty( $v ) && "#" !== $v[0] ) {
+						$this->value[ $k ] = Redux_Colors::sanitize_hex( $v );
+					}
+				}
+			}
+			if ( ! empty( $this->field['default'] ) ) {
+				foreach ( $this->field['default'] as $k => $v ) {
+					if ( ! empty( $v ) && "#" !== $v[0] ) {
+						$this->field['default'][ $k ] = Redux_Colors::sanitize_hex( $v );
+					}
+				}
+			}
 
 			$this->field = wp_parse_args( $this->field, $defaults );
 
@@ -85,7 +101,9 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 				echo '<input ';
 				echo 'data-id="' . esc_attr( $this->field['id'] ) . '"';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $mode ) . '"';
-				echo 'name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[' . esc_attr( $mode ) . ']"';
+				echo 'name="' . esc_attr( $this->field['name'] ) . esc_attr(
+						$this->field['name_suffix']
+					) . '[' . esc_attr( $mode ) . ']"';
 				echo 'value="' . esc_attr( $this->value[ $mode ] ) . '"';
 				echo 'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
 				echo 'type="text"';
@@ -103,7 +121,9 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 
 				echo '/>';
 
-				echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $mode ) . '-saved-color" value="">';
+				echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr(
+						$this->field['id']
+					) . '-' . esc_attr( $mode ) . '-saved-color" value="">';
 
 				if ( ! isset( $this->field['transparent'] ) || false !== $this->field['transparent'] ) {
 					$trans_checked = '';
@@ -112,8 +132,18 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 						$trans_checked = ' checked="checked"';
 					}
 
-					echo '<label for="' . esc_attr( $this->field['id'] ) . '-' . esc_html( $mode ) . '-transparency" class="color-transparency-check">';
-					echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $mode ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $mode ) . '" value="1"' . esc_html( $trans_checked ) . '> ' . esc_html__( 'Transparent', 'redux-framework' );
+					echo '<label for="' . esc_attr( $this->field['id'] ) . '-' . esc_html(
+							$mode
+						) . '-transparency" class="color-transparency-check">';
+					echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr(
+							$this->field['class']
+						) . '" id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr(
+							 $mode
+						 ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr(
+							 $mode
+						 ) . '" value="1"' . esc_html( $trans_checked ) . '> ' . esc_html__(
+							 'Transparent', 'redux-framework'
+						 );
 					echo '</label>';
 				}
 
@@ -169,11 +199,11 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 		/**
 		 * Compile CSS styling for output.
 		 *
-		 * @param string $data CSS data.
+		 * @param     string     $data CSS data.
 		 *
 		 * @return mixed|void
 		 */
-		public function css_style( $data ) {
+		public function css_style_old( $data ) {
 			if ( Redux_Core::$pro_loaded ) {
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName

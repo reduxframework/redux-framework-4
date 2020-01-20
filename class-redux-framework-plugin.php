@@ -334,6 +334,9 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 			$nonce = wp_create_nonce( 'redux_framework_demo' );
 
 			$notices   = get_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES', array() );
+			if ( ! is_array( $notices ) ) {
+				$notices = [];
+			}
 			$notices[] = esc_html__( 'Redux Framework has an embedded demo.', 'redux-framework' ) . ' <a href="./plugins.php?redux-framework-plugin=demo&nonce=' . $nonce . '">' . esc_html__( 'Click here to activate the sample config file.', 'redux-framework' ) . '</a>';
 
 			update_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES', $notices );

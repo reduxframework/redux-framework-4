@@ -17,6 +17,15 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 	 */
 	class Redux_Dimensions extends Redux_Field {
 
+		/*
+		 * Pattern for CSS output
+		 */
+		public $output_formatting = array(
+			'excludes'         => array(
+				'units'
+			),
+		);
+
 		/**
 		 * Set field and value defaults.
 		 */

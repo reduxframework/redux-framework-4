@@ -19,6 +19,29 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 	 */
 	class Redux_Color extends Redux_Field {
 
+		/*
+		 * Pattern for CSS output
+		 */
+		public $output_formatting = array(
+			'default_key'     => 'color',
+			'default_pattern' => "color value",
+			'excludes'        => array(
+				'alpha'
+			),
+		);
+
+		/**
+		 * Set field and value defaults.
+		 */
+		public function set_defaults() {
+			if ( ! empty( $this->value ) ) {
+				$this->value = Redux_Colors::sanitize_hex( $this->value );
+			}
+			if ( ! empty( $this->field['default'] ) ) {
+				$this->field['default'] = Redux_Colors::sanitize_hex( $this->field['default'] );
+			}
+		}
+
 		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
@@ -35,7 +58,9 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 			echo 'class="color-picker redux-color redux-color-init ' . esc_attr( $this->field['class'] ) . '"';
 			echo 'type="text" value="' . esc_attr( $this->value ) . '"';
 			echo 'data-oldcolor=""';
-			echo 'data-default-color="' . ( isset( $this->field['default'] ) ? esc_attr( $this->field['default'] ) : '' ) . '"';
+			echo 'data-default-color="' . ( isset( $this->field['default'] ) ? esc_attr(
+					$this->field['default']
+				) : '' ) . '"';
 
 			if ( Redux_Core::$pro_loaded ) {
 				$data = array(
@@ -49,7 +74,9 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 
 			echo '/>';
 
-			echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color" value="">';
+			echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr(
+					$this->field['id']
+				) . '-saved-color" value="">';
 
 			if ( ! isset( $this->field['transparent'] ) || false !== $this->field['transparent'] ) {
 				$trans_checked = '';
@@ -58,8 +85,14 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 					$trans_checked = ' checked="checked"';
 				}
 
-				echo '<label for="' . esc_attr( $this->field['id'] ) . '-transparency" class="color-transparency-check">';
-				echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-color" value="1"' . esc_html( $trans_checked ) . '>';
+				echo '<label for="' . esc_attr(
+						$this->field['id']
+					) . '-transparency" class="color-transparency-check">';
+				echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr(
+						$this->field['class']
+					) . '" id="' . esc_attr( $this->field['id'] ) . '-transparency" data-id="' . esc_attr(
+						 $this->field['id']
+					 ) . '-color" value="1"' . esc_html( $trans_checked ) . '>';
 				echo esc_html__( 'Transparent', 'redux-framework' );
 				echo '</label>';
 			}
@@ -93,29 +126,6 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 			if ( Redux_Core::$pro_loaded ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action( 'redux/pro/enqueue/color_alpha', $this->field );
-			}
-		}
-
-		/**
-		 * Output CSS styling.
-		 *
-		 * @param string $style CSS style.
-		 */
-		public function output( $style = '' ) {
-			if ( ! empty( $this->value ) ) {
-				$mode = ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ? $this->field['mode'] : 'color' );
-
-				$style .= $mode . ':' . $this->value . ';';
-
-				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					$css                      = Redux_Functions::parse_css( $this->field['output'], $style, $this->value );
-					$this->parent->outputCSS .= $css;
-				}
-
-				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					$css                        = Redux_Functions::parse_css( $this->field['compiler'], $style, $this->value );
-					$this->parent->compilerCSS .= $css;
-				}
 			}
 		}
 

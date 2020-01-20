@@ -426,7 +426,6 @@
 
         input {
             line-height: 19px;
-            min-height: 28px;
 
             &.large-text {
                 width: 100%;
@@ -514,10 +513,11 @@
         }
 
         .input-append input {
+            min-height: inherit;
             border-right: 0;
             margin-bottom: 0;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top-right-radius: unset !important;
+            border-bottom-right-radius: unset !important;;
             margin-right: 0;
             float: left;
             margin-top: 0;
@@ -533,10 +533,11 @@
         }
 
         .input-prepend input {
+            min-height: inherit;
             border-left: 0;
             margin-bottom: 0;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-left-radius: unset !important;;
+            border-bottom-left-radius: unset !important;;
             margin-left: 0;
             padding-top: 2px;
             padding-bottom: 5px;

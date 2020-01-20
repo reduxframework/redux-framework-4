@@ -52,7 +52,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Renders an attribute array into an html attributes string.
 		 *
-		 * @param array $attributes HTML attributes.
+		 * @param     array     $attributes HTML attributes.
 		 *
 		 * @return string
 		 */
@@ -93,7 +93,9 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			static::make_descriptor();
 
 			// This part is out of opt name because it's non vendor dependant!
-			return apply_filters( 'redux/field/' . $d->get_field_type() . '/get_descriptor', $d ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+			return apply_filters(
+				'redux/field/' . $d->get_field_type() . '/get_descriptor', $d
+			); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 		}
 
 		/**
@@ -149,9 +151,9 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Redux_Field constructor.
 		 *
-		 * @param array  $field Field array.
-		 * @param string $value Field values.
-		 * @param null   $parent ReduxFramework object pointer.
+		 * @param     array     $field Field array.
+		 * @param     string     $value Field values.
+		 * @param     null     $parent ReduxFramework object pointer.
 		 *
 		 * @throws ReflectionException Comment.
 		 */
@@ -159,7 +161,9 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			/*
 			TODO - Fix me!
 			*/
-			if ( isset( Redux_Core::$wp_nonce ) && ! empty( Redux_Core::$wp_nonce ) && ( ! Redux_Core::$pro_loaded ) && Redux_Functions_Ex::metabox_boxes( $parent ) ) {
+			if ( isset( Redux_Core::$wp_nonce ) && ! empty( Redux_Core::$wp_nonce ) && ( ! Redux_Core::$pro_loaded ) && Redux_Functions_Ex::metabox_boxes(
+					$parent
+				) ) {
 				if ( ! in_array( md5( $field['type'] ), Redux_Helpers::nonces(), true ) ) {
 					return;
 				}
@@ -202,14 +206,20 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Media query compiler for Redux Pro,
 		 *
-		 * @param string $style_data CSS string.
+		 * @param     string     $style_data CSS string.
 		 */
 		public function media_query( $style_data = '' ) {
+			if ( is_customize_preview() ) {
+				return;
+			}
+
 			$query_arr = $this->field['media_query'];
 			$css       = '';
 
 			if ( isset( $query_arr['queries'] ) ) {
+
 				foreach ( $query_arr['queries'] as $idx => $query ) {
+					echo "words";
 					$rule      = isset( $query['rule'] ) ? $query['rule'] : '';
 					$selectors = isset( $query['selectors'] ) ? $query['selectors'] : array();
 
@@ -241,18 +251,42 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * CSS for field output, if set.
 		 *
-		 * @param string $style CSS string.
+		 * @param     string     $style CSS string.
 		 */
-		public function output( $style = '' ) {
-			if ( '' !== $style ) {
+		public function output( $style_data = '' ) {
+
+			if ( is_customize_preview() ) {
+				return;
+			}
+
+
+			if ( ! empty( $style_data ) ) {
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					$keys                     = implode( ',', $this->field['output'] );
-					$this->parent->outputCSS .= $keys . '{' . $style . '}';
+					$css                     = Redux_Functions::parse_css( $this->field['output'], $style_data );
+//					if (!in_array($this->field['type'], array('spacing', 'border'))) {
+//						echo PHP_EOL.'===> '.$this->field['id'].' => '.$this->field['type'].PHP_EOL;
+//						print_r($style_data);
+//						echo PHP_EOL;
+//						print_r($this->value);
+//						echo PHP_EOL;
+//						print_r($this->field['output']);
+//						echo PHP_EOL.$css.PHP_EOL;
+//					}
+
+
+					$this->parent->outputCSS .= $css;
 				}
 
-				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					$keys                       = implode( ',', $this->field['compiler'] );
-					$this->parent->compilerCSS .= $keys . '{' . $style . '}';
+				if ( ! empty( $this->field['compiler'] ) ) {
+					if ( is_array( $this->field['compiler'] ) ) {
+						$css = Redux_Functions::parse_css( $this->field['compiler'], $style_data );
+					} elseif ( ! empty( $field['output'] ) ) {
+						$css = Redux_Functions::parse_css( $this->field['compiler'], $style_data );
+					}
+
+					if ( ! empty( $css ) ) {
+						$this->parent->compilerCSS .= $css;
+					}
 				}
 			}
 		}
@@ -260,9 +294,13 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Unused for now.
 		 *
-		 * @param string $data CSS data.
+		 * @param     string     $data CSS data.
+		 *
+		 * @return array All style data
 		 */
 		public function css_style( $data ) {
+
+			return Redux_Output::css_style( $this->field, $this );
 
 		}
 
@@ -290,8 +328,8 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Unused for now.
 		 *
-		 * @param array  $field Field array.
-		 * @param string $value Value array.
+		 * @param     array     $field Field array.
+		 * @param     string     $value Value array.
 		 */
 		public function localize( $field, $value = '' ) {
 

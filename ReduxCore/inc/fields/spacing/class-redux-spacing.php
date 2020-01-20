@@ -16,6 +16,22 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 	 */
 	class Redux_Spacing extends Redux_Field {
 
+		/*
+		 * Defult patterns for CSS output
+		 */
+		public $output_formatting = array(
+			'key_replacement' => array(
+				array(
+					'allowed' => array( 'padding', 'absolute', 'margin' ),
+					'default' => 'padding',
+					'value'   => 'mode',
+				)
+			),
+			'excludes'       => array(
+				'units'
+			),
+		);
+
 		/**
 		 * Set field a value defaults.
 		 */
@@ -58,7 +74,25 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			 * and reset them with default values to avoid errors.
 			 */
 
-			$unit_arr = array( '', false, '%', 'in', 'cm', 'mm', 'em', 'rem', 'ex', 'pt', 'pc', 'px', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
+			$unit_arr = array(
+				'',
+				false,
+				'%',
+				'in',
+				'cm',
+				'mm',
+				'em',
+				'rem',
+				'ex',
+				'pt',
+				'pc',
+				'px',
+				'vh',
+				'vw',
+				'vmin',
+				'vmax',
+				'ch'
+			);
 
 			// If units field has a value but is not an acceptable value, unset the variable.
 			if ( ! Redux_Helpers::array_in_array( $this->field['units'], $unit_arr ) ) {
@@ -83,10 +117,22 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			}
 
 			$value = array(
-				'top'    => isset( $this->value[ $this->field['mode'] . '-top' ] ) ? filter_var( $this->value[ $this->field['mode'] . '-top' ], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) : filter_var( $this->value['top'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
-				'right'  => isset( $this->value[ $this->field['mode'] . '-right' ] ) ? filter_var( $this->value[ $this->field['mode'] . '-right' ], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) : filter_var( $this->value['right'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
-				'bottom' => isset( $this->value[ $this->field['mode'] . '-bottom' ] ) ? filter_var( $this->value[ $this->field['mode'] . '-bottom' ], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) : filter_var( $this->value['bottom'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
-				'left'   => isset( $this->value[ $this->field['mode'] . '-left' ] ) ? filter_var( $this->value[ $this->field['mode'] . '-left' ], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) : filter_var( $this->value['left'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
+				'top'    => isset( $this->value[ $this->field['mode'] . '-top' ] ) ? filter_var(
+					$this->value[ $this->field['mode'] . '-top' ], FILTER_SANITIZE_NUMBER_FLOAT,
+					FILTER_FLAG_ALLOW_FRACTION
+				) : filter_var( $this->value['top'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
+				'right'  => isset( $this->value[ $this->field['mode'] . '-right' ] ) ? filter_var(
+					$this->value[ $this->field['mode'] . '-right' ], FILTER_SANITIZE_NUMBER_FLOAT,
+					FILTER_FLAG_ALLOW_FRACTION
+				) : filter_var( $this->value['right'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
+				'bottom' => isset( $this->value[ $this->field['mode'] . '-bottom' ] ) ? filter_var(
+					$this->value[ $this->field['mode'] . '-bottom' ], FILTER_SANITIZE_NUMBER_FLOAT,
+					FILTER_FLAG_ALLOW_FRACTION
+				) : filter_var( $this->value['bottom'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
+				'left'   => isset( $this->value[ $this->field['mode'] . '-left' ] ) ? filter_var(
+					$this->value[ $this->field['mode'] . '-left' ], FILTER_SANITIZE_NUMBER_FLOAT,
+					FILTER_FLAG_ALLOW_FRACTION
+				) : filter_var( $this->value['left'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ),
 			);
 
 			// if field units has a value and is NOT an array, then evaluate as needed.
@@ -171,8 +217,12 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                         type="hidden" 
                         class="redux-spacing-value" 
                         id="' . esc_attr( $this->field['id'] ) . '-top" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'top]" 
-                        value="' . esc_attr( $this->value['top'] ) . ( ! empty( $this->value['top'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
+                        name="' . esc_attr(
+						$this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode']
+					) . 'top]" 
+                        value="' . esc_attr( $this->value['top'] ) . ( ! empty( $this->value['top'] ) ? esc_attr(
+						$this->value['units']
+					) : '' ) . '"
                       >';
 			}
 
@@ -181,8 +231,12 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                         type="hidden" 
                         class="redux-spacing-value" 
                         id="' . esc_attr( $this->field['id'] ) . '-right" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'right]" 
-                        value="' . esc_attr( $this->value['right'] ) . ( ! empty( $this->value['right'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
+                        name="' . esc_attr(
+						$this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode']
+					) . 'right]" 
+                        value="' . esc_attr( $this->value['right'] ) . ( ! empty( $this->value['right'] ) ? esc_attr(
+						$this->value['units']
+					) : '' ) . '"
                       >';
 			}
 
@@ -191,8 +245,12 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                         type="hidden" 
                         class="redux-spacing-value" 
                         id="' . esc_attr( $this->field['id'] ) . '-bottom" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'bottom]" 
-                        value="' . esc_attr( $this->value['bottom'] ) . ( ! empty( $this->value['bottom'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
+                        name="' . esc_attr(
+						$this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode']
+					) . 'bottom]" 
+                        value="' . esc_attr( $this->value['bottom'] ) . ( ! empty( $this->value['bottom'] ) ? esc_attr(
+						$this->value['units']
+					) : '' ) . '"
                       >';
 			}
 
@@ -201,8 +259,12 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                         type="hidden" 
                         class="redux-spacing-value" 
                         id="' . esc_attr( $this->field['id'] ) . '-left" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'left]" 
-                        value="' . esc_attr( $this->value['left'] ) . ( ! empty( $this->value['left'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
+                        name="' . esc_attr(
+						$this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode']
+					) . 'left]" 
+                        value="' . esc_attr( $this->value['left'] ) . ( ! empty( $this->value['left'] ) ? esc_attr(
+						$this->value['units']
+					) : '' ) . '"
                       >';
 			}
 
@@ -216,7 +278,9 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                                 <i class="el el-arrow-up icon-large"></i>
                             </span>
                             <input type="text" 
-                                   class="redux-spacing-top redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
+                                   class="redux-spacing-top redux-spacing-input mini ' . esc_attr(
+							$this->field['class']
+						) . '"
                                    placeholder="' . esc_html__( 'Top', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-top"
                                    value="' . esc_attr( $this->value['top'] ) . '"/>
@@ -232,7 +296,9 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                                 <i class="el el-arrow-right icon-large"></i>
                             </span>
                             <input type="text" 
-                                   class="redux-spacing-right redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
+                                   class="redux-spacing-right redux-spacing-input mini ' . esc_attr(
+							$this->field['class']
+						) . '"
                                    placeholder="' . esc_html__( 'Right', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-right"
                                    value="' . esc_attr( $this->value['right'] ) . '"/>
@@ -248,7 +314,9 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                                 <i class="el el-arrow-down icon-large"></i>
                             </span>
                             <input type="text" 
-                                   class="redux-spacing-bottom redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
+                                   class="redux-spacing-bottom redux-spacing-input mini ' . esc_attr(
+							$this->field['class']
+						) . '"
                                    placeholder="' . esc_html__( 'Bottom', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-bottom"
                                    value="' . esc_attr( $this->value['bottom'] ) . '">
@@ -264,7 +332,9 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                                 <i class="el el-arrow-left icon-large"></i>
                             </span>
                             <input type="text" 
-                                   class="redux-spacing-left redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
+                                   class="redux-spacing-left redux-spacing-input mini ' . esc_attr(
+							$this->field['class']
+						) . '"
                                    placeholder="' . esc_html__( 'Left', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-left"
                                    value="' . esc_attr( $this->value['left'] ) . '"/>
@@ -276,8 +346,16 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			 * Units
 			 * */
 			if ( false !== $this->field['units'] && true === $this->field['display_units'] ) {
-				echo '<div class="select_wrapper spacing-units" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '">';
-				echo '<select data-placeholder="' . esc_html__( 'Units', 'redux-framework' ) . '" class="redux-spacing redux-spacing-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '" id="' . esc_attr( $this->field['id'] ) . '_units"' . esc_attr( $select2_data ) . '>';
+				echo '<div class="select_wrapper spacing-units" original-title="' . esc_html__(
+						'Units', 'redux-framework'
+					) . '">';
+				echo '<select data-placeholder="' . esc_html__(
+						'Units', 'redux-framework'
+					) . '" class="redux-spacing redux-spacing-units select ' . esc_attr(
+						 $this->field['class']
+					 ) . '" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '" id="' . esc_attr(
+						 $this->field['id']
+					 ) . '_units"' . esc_attr( $select2_data ) . '>';
 
 				if ( $this->field['units_extended'] ) {
 					$test_units = array( 'px', 'em', 'rem', '%', 'in', 'cm', 'mm', 'ex', 'pt', 'pc' );
@@ -292,10 +370,14 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 				echo '<option></option>';
 
 				if ( ! is_array( $this->field['units'] ) ) {
-					echo '<option value="' . esc_attr( $this->field['units'] ) . '" selected="selected">' . esc_attr( $this->field['units'] ) . '</option>';
+					echo '<option value="' . esc_attr( $this->field['units'] ) . '" selected="selected">' . esc_attr(
+							$this->field['units']
+						) . '</option>';
 				} else {
 					foreach ( $test_units as $a_unit ) {
-						echo '<option value="' . esc_attr( $a_unit ) . '" ' . selected( $this->value['units'], $a_unit, false ) . '>' . esc_html( $a_unit ) . '</option>';
+						echo '<option value="' . esc_attr( $a_unit ) . '" ' . selected(
+								$this->value['units'], $a_unit, false
+							) . '>' . esc_html( $a_unit ) . '</option>';
 					}
 				}
 
@@ -334,11 +416,12 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 		/**
 		 * Compile CSS data for output.
 		 *
-		 * @param string $data CSS data.
+		 * @param     string     $data CSS data.
 		 *
 		 * @return string|void
 		 */
-		public function css_style( $data ) {
+		public function css_style2( $data ) {
+
 			$style = '';
 			if ( ! isset( $this->field ) ) {
 				return;

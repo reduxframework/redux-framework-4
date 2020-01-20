@@ -19,6 +19,27 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 	 */
 	class Redux_Color_Rgba extends Redux_Field {
 
+		/*
+		 * Pattern for CSS output
+		 */
+		public $output_formatting = array(
+			'excludes'    => array(
+				'color',
+				'alpha',
+			),
+			'default_key' => 'color',
+
+		);
+
+		/**
+		 * Modify the output_formatting array if mode is set.
+		 */
+		public function output_formatting_properties() {
+			if ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ) {
+				$this->output_formatting['default_key'] = $this->field['mode'];
+			}
+		}
+
 		/**
 		 * Set field and value defaults.
 		 */
@@ -35,6 +56,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 				'show_alpha'             => true,
 				'show_palette'           => false,
 				'show_palette_only'      => false,
+				'validate'               => 'colorrgba',
 				'max_palette_size'       => 10,
 				'show_selection_palette' => false,
 				'allow_empty'            => true,
@@ -48,11 +70,28 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 
 			$this->value = wp_parse_args( $this->value, $defaults );
 
+			if ( ! empty( $this->value ) ) {
+				if ( ! empty( $this->value['color'] ) ) {
+					$this->value['color'] = Redux_Colors::sanitize_hex( $this->value['color'] );
+				}
+				if ( empty( $this->value['rgba'] ) ) {
+					$this->value['rgba'] = $this->getColorVal();
+				}
+			}
+
+			if ( isset( $this->field['default'] ) && isset( $this->field['default']['color'] ) && ! empty(
+				$this->field['default']['color']
+				) ) {
+				$this->field['default']['color'] = Redux_Colors::sanitize_hex( $this->field['default']['color'] );
+			}
+
 			if ( isset( $this->field ) && ! is_array( $this->field ) ) {
 				return;
 			}
 
-			$this->field['options'] = isset( $this->field['options'] ) ? wp_parse_args( $this->field['options'], $option_defaults ) : $option_defaults;
+			$this->field['options'] = isset( $this->field['options'] ) ? wp_parse_args(
+				$this->field['options'], $option_defaults
+			) : $option_defaults;
 
 			// Convert empty array to null, if there.
 			$this->field['options']['palette'] = empty( $this->field['options']['palette'] ) ? null : $this->field['options']['palette'];
@@ -223,41 +262,6 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 			}
 
 			return $color;
-		}
-
-		/**
-		 * Output Function.
-		 * Used to enqueue to the front-end
-		 *
-		 * @since   1.0.0
-		 * @access  public
-		 *
-		 * @param   string $style css data.
-		 *
-		 * @return  void
-		 */
-		public function output( $style = '' ) {
-			if ( ! empty( $this->value ) ) {
-				$mode = ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ? $this->field['mode'] : 'color' );
-
-				$color_val = $this->getColorVal();
-
-				$style .= $mode . ':' . $color_val . ';';
-
-				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					if ( ! empty( $color_val ) ) {
-						$css                      = Redux_Functions::parse_css( $this->field['output'], $style, $color_val );
-						$this->parent->outputCSS .= esc_attr( $css );
-					}
-				}
-
-				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					if ( ! empty( $color_val ) ) {
-						$css                        = Redux_Functions::parse_css( $this->field['compiler'], $style, $color_val );
-						$this->parent->compilerCSS .= esc_attr( $css );
-					}
-				}
-			}
 		}
 
 		/**

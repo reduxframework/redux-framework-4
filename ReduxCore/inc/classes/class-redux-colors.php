@@ -21,12 +21,17 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * The way this works is by splitting the string in 6 substrings.
 		 * Each sub-string is individually sanitized, and the result is then returned.
 		 *
-		 * @param   string  $color The hex value of a color.
-		 * @param   boolean $hash Whether we want to include a hash (#) at the beginning or not.
+		 * @param     string     $color The hex value of a color.
+		 * @param     boolean     $hash Whether we want to include a hash (#) at the beginning or not.
 		 *
 		 * @return  string      The sanitized hex color.
 		 */
 		public static function sanitize_hex( $color = '#FFFFFF', $hash = true ) {
+
+			if ( $color == "transparent" ) {
+				return $color;
+			}
+
 			$word_colors = array(
 				'aliceblue'            => 'F0F8FF',
 				'antiquewhite'         => 'FAEBD7',
@@ -195,14 +200,18 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 
 			// If the string is 6 characters long then use it in pairs.
 			if ( 3 === strlen( $color ) ) {
-				$color = substr( $color, 0, 1 ) . substr( $color, 0, 1 ) . substr( $color, 1, 1 ) . substr( $color, 1, 1 ) . substr( $color, 2, 1 ) . substr( $color, 2, 1 );
+				$color = substr( $color, 0, 1 ) . substr( $color, 0, 1 ) . substr( $color, 1, 1 ) . substr(
+						$color, 1, 1
+					) . substr( $color, 2, 1 ) . substr( $color, 2, 1 );
 			}
 
 			$substr = array();
 			for ( $i = 0; $i <= 5; $i ++ ) {
 				$default      = ( 0 === $i ) ? 'F' : ( $substr[ $i - 1 ] );
 				$substr[ $i ] = substr( $color, $i, 1 );
-				$substr[ $i ] = ( false === $substr[ $i ] || ! ctype_xdigit( $substr[ $i ] ) ) ? $default : $substr[ $i ];
+				$substr[ $i ] = ( false === $substr[ $i ] || ! ctype_xdigit(
+						$substr[ $i ]
+					) ) ? $default : $substr[ $i ];
 			}
 
 			$hex = implode( '', $substr );
@@ -213,7 +222,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Sanitizes RGBA color.
 		 *
-		 * @param string $value RGBA value.
+		 * @param     string     $value RGBA value.
 		 *
 		 * @return string
 		 */
@@ -235,7 +244,9 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 			$red   = ( isset( $value[0] ) ) ? intval( $value[0] ) : 255;
 			$green = ( isset( $value[1] ) ) ? intval( $value[1] ) : 255;
 			$blue  = ( isset( $value[2] ) ) ? intval( $value[2] ) : 255;
-			$alpha = ( isset( $value[3] ) ) ? filter_var( $value[3], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) : 1;
+			$alpha = ( isset( $value[3] ) ) ? filter_var(
+				$value[3], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION
+			) : 1;
 
 			return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
 		}
@@ -246,7 +257,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 *
 		 * @since 0.8.5
 		 *
-		 * @param  string $value  hex or rgba color.
+		 * @param     string     $value hex or rgba color.
 		 *
 		 * @return string
 		 */
@@ -282,8 +293,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Gets the rgb value of the $hex color.
 		 *
-		 * @param   string  $hex The hex value of a color.
-		 * @param   boolean $implode Whether we want to implode the values or not.
+		 * @param     string     $hex The hex value of a color.
+		 * @param     boolean     $implode Whether we want to implode the values or not.
 		 *
 		 * @return  mixed       array|string
 		 */
@@ -305,8 +316,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * Converts an rgba color to hex
 		 * This is an approximation and not completely accurate.
 		 *
-		 * @param string $color RGBA color.
-		 * @param bool   $apply_opacity Opacity value.
+		 * @param     string     $color RGBA color.
+		 * @param     bool     $apply_opacity Opacity value.
 		 *
 		 * @return  string  The hex value of the color.
 		 */
@@ -358,7 +369,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Get the alpha channel from an rgba color
 		 *
-		 * @param  string $color The rgba color formatted like rgba(r,g,b,a).
+		 * @param     string     $color The rgba color formatted like rgba(r,g,b,a).
 		 *
 		 * @return  string  The alpha value of the color.
 		 */
@@ -392,8 +403,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Gets the rgb value of the $hex color.
 		 *
-		 * @param   string $hex The hex value of a color.
-		 * @param   int    $opacity Opacity level (1-100).
+		 * @param     string     $hex The hex value of a color.
+		 * @param     int     $opacity Opacity level (1-100).
 		 *
 		 * @return  string
 		 */
@@ -424,7 +435,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Strips the alpha value from an RGBA color string.
 		 *
-		 * @param    string $rgba The RGBA color string.
+		 * @param     string     $rgba The RGBA color string.
 		 *
 		 * @return  string            The corresponding RGB string.
 		 */
@@ -445,7 +456,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Gets the brightness of the $hex color.
 		 *
-		 * @param   string $hex The hex value of a color.
+		 * @param     string     $hex The hex value of a color.
 		 *
 		 * @return  int         value between 0 and 255.
 		 */
@@ -453,14 +464,21 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 			$hex = self::sanitize_hex( $hex, false );
 
 			// returns brightness value from 0 to 255.
-			return intval( ( ( hexdec( substr( $hex, 0, 2 ) ) * 299 ) + ( hexdec( substr( $hex, 2, 2 ) ) * 587 ) + ( hexdec( substr( $hex, 4, 2 ) ) * 114 ) ) / 1000 );
+			return intval(
+				( ( hexdec( substr( $hex, 0, 2 ) ) * 299 ) + ( hexdec( substr( $hex, 2, 2 ) ) * 587 ) + ( hexdec(
+																											  substr(
+																												  $hex,
+																												  4, 2
+																											  )
+																										  ) * 114 ) ) / 1000
+			);
 		}
 
 		/**
 		 * Adjusts brightness of the $hex color.
 		 *
-		 * @param   string $hex The hex value of a color.
-		 * @param   int    $steps A value between -255 (darken) and 255 (lighten).
+		 * @param     string     $hex The hex value of a color.
+		 * @param     int     $steps A value between -255 (darken) and 255 (lighten).
 		 *
 		 * @return  string      returns hex color.
 		 */
@@ -487,9 +505,9 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * the "percentage" variable is the percent of the first color
 		 * to be used it the mix. default is 50 (equal mix).
 		 *
-		 * @param  string $hex1 The hex value of color 1.
-		 * @param  string $hex2 The hex value of color 2.
-		 * @param  int    $percentage A value between 0 and 100.
+		 * @param     string     $hex1 The hex value of color 1.
+		 * @param     string     $hex2 The hex value of color 2.
+		 * @param     int     $percentage A value between 0 and 100.
 		 *
 		 * @return  string      returns hex color.
 		 */
@@ -497,9 +515,15 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 			$hex1 = self::sanitize_hex( $hex1, false );
 			$hex2 = self::sanitize_hex( $hex2, false );
 
-			$red   = ( $percentage * hexdec( substr( $hex1, 0, 2 ) ) + ( 100 - $percentage ) * hexdec( substr( $hex2, 0, 2 ) ) ) / 100;
-			$green = ( $percentage * hexdec( substr( $hex1, 2, 2 ) ) + ( 100 - $percentage ) * hexdec( substr( $hex2, 2, 2 ) ) ) / 100;
-			$blue  = ( $percentage * hexdec( substr( $hex1, 4, 2 ) ) + ( 100 - $percentage ) * hexdec( substr( $hex2, 4, 2 ) ) ) / 100;
+			$red   = ( $percentage * hexdec( substr( $hex1, 0, 2 ) ) + ( 100 - $percentage ) * hexdec(
+						substr( $hex2, 0, 2 )
+					) ) / 100;
+			$green = ( $percentage * hexdec( substr( $hex1, 2, 2 ) ) + ( 100 - $percentage ) * hexdec(
+						substr( $hex2, 2, 2 )
+					) ) / 100;
+			$blue  = ( $percentage * hexdec( substr( $hex1, 4, 2 ) ) + ( 100 - $percentage ) * hexdec(
+						substr( $hex2, 4, 2 )
+					) ) / 100;
 
 			$red_hex   = str_pad( dechex( $red ), 2, '0', STR_PAD_LEFT );
 			$green_hex = str_pad( dechex( $green ), 2, '0', STR_PAD_LEFT );
@@ -511,7 +535,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Convert hex color to hsv
 		 *
-		 * @param   string $hex The hex value of color 1.
+		 * @param     string     $hex The hex value of color 1.
 		 *
 		 * @return  array       returns array( 'h', 's', 'v' ).
 		 */
@@ -524,7 +548,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		/**
 		 * Convert hex color to hsv
 		 *
-		 * @param   array $color The rgb color to conver array( 'r', 'g', 'b' ).
+		 * @param     array     $color The rgb color to conver array( 'r', 'g', 'b' ).
 		 *
 		 * @return  array       returns array( 'h', 's', 'v' ).
 		 */
@@ -576,8 +600,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * This is a very simple algorithm that works by summing up the differences between the three color components red, green and blue.
 		 * A value higher than 500 is recommended for good readability.
 		 *
-		 * @param string $color_1 Base color.
-		 * @param string $color_2 Color to compare.
+		 * @param     string     $color_1 Base color.
+		 * @param     string     $color_2 Color to compare.
 		 *
 		 * @return mixed
 		 */
@@ -602,8 +626,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * A return value of more than 125 is recommended.
 		 * Combining it with the color_difference function above might make sense.
 		 *
-		 * @param string $color_1 Base color.
-		 * @param string $color_2 Color to compare.
+		 * @param     string     $color_1 Base color.
+		 * @param     string     $color_2 Color to compare.
 		 *
 		 * @return int
 		 */
@@ -624,8 +648,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * Uses the luminosity to calculate the difference between the given colors.
 		 * The returned value should be bigger than 5 for best readability.
 		 *
-		 * @param string $color_1 Base color.
-		 * @param string $color_2 Color to compare.
+		 * @param     string     $color_1 Base color.
+		 * @param     string     $color_2 Color to compare.
 		 *
 		 * @return float
 		 */
@@ -636,8 +660,12 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 			$color_1_rgb = self::get_rgb( $color_1 );
 			$color_2_rgb = self::get_rgb( $color_2 );
 
-			$l1 = 0.2126 * pow( $color_1_rgb[0] / 255, 2.2 ) + 0.7152 * pow( $color_1_rgb[1] / 255, 2.2 ) + 0.0722 * pow( $color_1_rgb[2] / 255, 2.2 );
-			$l2 = 0.2126 * pow( $color_2_rgb[0] / 255, 2.2 ) + 0.7152 * pow( $color_2_rgb[1] / 255, 2.2 ) + 0.0722 * pow( $color_2_rgb[2] / 255, 2.2 );
+			$l1 = 0.2126 * pow( $color_1_rgb[0] / 255, 2.2 ) + 0.7152 * pow(
+					$color_1_rgb[1] / 255, 2.2
+				) + 0.0722 * pow( $color_1_rgb[2] / 255, 2.2 );
+			$l2 = 0.2126 * pow( $color_2_rgb[0] / 255, 2.2 ) + 0.7152 * pow(
+					$color_2_rgb[1] / 255, 2.2
+				) + 0.0722 * pow( $color_2_rgb[2] / 255, 2.2 );
 
 			$lum_diff = ( $l1 > $l2 ) ? ( $l1 + 0.05 ) / ( $l2 + 0.05 ) : ( $l2 + 0.05 ) / ( $l1 + 0.05 );
 

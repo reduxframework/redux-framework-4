@@ -3,8 +3,8 @@
  * Redux Framework Private Functions Container Class
  *
  * @class       Redux_Functions
- * @package     Redux_Framework/Classes
  * @since       3.0.0
+ * @package     Redux_Framework/Classes
  */
 
 // Exit if accessed directly.
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Check for existence of class name via array of class names.
 		 *
-		 * @param array $class_names Array of class names.
+		 * @param     array     $class_names Array of class names.
 		 */
 		public static function class_exists_ex( $class_names = array() ) {
 			foreach ( $class_names as $class_name ) {
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Check for existence of file name via array of file names.
 		 *
-		 * @param array $file_names Array of file names.
+		 * @param     array     $file_names Array of file names.
 		 */
 		public static function file_exists_ex( $file_names = array() ) {
 			foreach ( $file_names as $file_name ) {
@@ -67,7 +67,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Load fields from Redux Pro.
 		 *
-		 * @param array $data Pro field data.
+		 * @param     array     $data Pro field data.
 		 *
 		 * @return bool
 		 */
@@ -100,8 +100,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Parse args to handle deep arrays.  The WP one does not.
 		 *
-		 * @param array  $args     Array of args.
-		 * @param string $defaults Defaults array.
+		 * @param     array     $args Array of args.
+		 * @param     string     $defaults Defaults array.
 		 *
 		 * @return array|string
 		 */
@@ -125,9 +125,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Deprecated: Return min tag for JS and CSS files in dev_mode.
 		 *
-		 * @deprecated No longer using camelCase naming conventions.
-		 *
 		 * @return string
+		 * @deprecated No longer using camelCase naming conventions.
 		 */
 		public static function isMin() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			return self::is_min();
@@ -166,15 +165,16 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @since   3.5.4
 		 * @access  public
-		 * @return  void
 		 *
-		 * @param   string  $name     The cookie name.
-		 * @param   string  $value    The cookie value.
-		 * @param   integer $expire   Expiry time.
-		 * @param   string  $path     The cookie path.
-		 * @param   string  $domain   The cookie domain.
-		 * @param   boolean $secure   HTTPS only.
-		 * @param   boolean $httponly Only set cookie on HTTP calls.
+		 * @param     string     $name The cookie name.
+		 * @param     string     $value The cookie value.
+		 * @param     integer     $expire Expiry time.
+		 * @param     string     $path The cookie path.
+		 * @param     string     $domain The cookie domain.
+		 * @param     boolean     $secure HTTPS only.
+		 * @param     boolean     $httponly Only set cookie on HTTP calls.
+		 *
+		 * @return  void
 		 */
 		public static function set_cookie( $name, $value, $expire, $path, $domain = null, $secure = false, $httponly = false ) {
 			if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
@@ -188,35 +188,63 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 * @since       3.2.8
 		 * @access      private
 		 *
-		 * @param array  $css_array CSS data.
-		 * @param string $style CSS style.
-		 * @param string $value CSS values.
+		 * @param     array     $css_array CSS data.
+		 * @param     string     $style CSS style.
+		 * @param     string     $value CSS values.
 		 *
 		 * @return string CSS string
 		 */
-		public static function parse_css( $css_array = array(), $style = '', $value = '' ) {
+		public static function parse_css( $selector_array = array(), $style = false ) {
 
 			// Something wrong happened.
-			if ( 0 === count( $css_array ) ) {
+			if ( 0 === count( $selector_array ) ) {
 				return '';
-			} else {
-				$css = '';
+			}
 
-				foreach ( $css_array as $element => $selector ) {
-
-					// The old way.
-					if ( 0 === $element ) {
-						$css = self::the_old_way( $css_array, $style );
-
-						return $css;
-					}
-
-					// New way continued.
-					$css_style = $element . ':' . $value . ';';
-
-					$css .= $selector . '{' . $css_style . '}';
+			$append_to_selector = false;
+			foreach ( $style as $k => $v ) {
+				if ( false !== strpos( $k, ':' ) ) {
+					$append_to_selector = true;
 				}
 			}
+			$style_string = "";
+			foreach ( $style as $k => $v ) {
+				$style_string .= $k . ':' . $v . ';';
+			}
+			if ( ! $append_to_selector ) {
+				# Single Selectors that can be compressed
+				if ( 0 === min( array_keys( $selector_array ) ) ) {
+					$keys = implode( ',', $selector_array );
+					$css  = $keys . '{' . $style_string . '}';
+
+					return $css;
+				}
+			}
+
+			$css = '';
+			foreach ( $selector_array as $element => $selector ) {
+				$style_string_loop = $style_string;
+
+				if ( ! is_numeric( $element ) ) {
+					if ( 1 === count( $style ) ) {
+						$style_string_loop = $element . ':' . min( array_values( $style ) ) . ';';
+					}
+					$element = $selector;
+				}
+
+				if ( $append_to_selector ) {
+					foreach ( $style as $k => $v ) {
+						if ( ':' === $k[0] ) {
+							$css .= $element . $k . '{' . $v . ';}';
+						} else {
+							$css .= $element . '{' . $style_string_loop . '}';
+						}
+					}
+				} else {
+					$css .= $selector . '{' . $style_string_loop . '}';
+				}
+			}
+
 
 			return $css;
 		}
@@ -224,8 +252,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Parse CSS the old way, without mode options.
 		 *
-		 * @param array  $css_array CSS data.
-		 * @param string $style CSS style.
+		 * @param     array     $css_array CSS data.
+		 * @param     string     $style CSS style.
 		 *
 		 * @return string
 		 */
@@ -241,9 +269,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @since       3.2.3
 		 * @access      public
-		 * @deprecated NO longer using camelCase naming conventions.
-		 *
 		 * @return      void
+		 * @deprecated NO longer using camelCase naming conventions.
 		 */
 		public static function initWpFilesystem() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			self::init_wp_filesystem();
@@ -254,7 +281,6 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @since       3.2.3
 		 * @access      public
-		 *
 		 * @return      void
 		 */
 		public static function init_wp_filesystem() {
@@ -272,8 +298,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * TRU.
 		 *
-		 * @param string $string .
-		 * @param string $opt_name .
+		 * @param     string     $string .
+		 * @param     string     $opt_name .
 		 *
 		 * @return mixed|string|void
 		 */
@@ -311,14 +337,20 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 
 			if ( isset( $redux->args['dev_mode'] ) && true === $redux->args['dev_mode'] ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				return apply_filters( 'redux/' . $opt_name . '/aURL_filter', '<span data-id="1" class="' . $redux->core_thread . '"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $string . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>' );
+				return apply_filters(
+					'redux/' . $opt_name . '/aURL_filter',
+					'<span data-id="1" class="' . $redux->core_thread . '"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $string . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>'
+				);
 			} else {
 
 				$check = isset( $check['id'] ) ? $check['id'] : $check;
 
 				if ( ! empty( $check ) ) {
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					return apply_filters( 'redux/' . $opt_name . '/aURL_filter', '<span data-id="' . $check . '" class="' . $redux->core_thread . '"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $string . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>' );
+					return apply_filters(
+						'redux/' . $opt_name . '/aURL_filter',
+						'<span data-id="' . $check . '" class="' . $redux->core_thread . '"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $string . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>'
+					);
 				} else {
 					return '';
 				}
@@ -328,8 +360,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * DAT.
 		 *
-		 * @param string $fname .
-		 * @param string $opt_name .
+		 * @param     string     $fname .
+		 * @param     string     $opt_name .
 		 *
 		 * @return mixed|void
 		 */
@@ -343,8 +375,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * BUB.
 		 *
-		 * @param string $fname .
-		 * @param string $opt_name .
+		 * @param     string     $fname .
+		 * @param     string     $opt_name .
 		 *
 		 * @return mixed|void
 		 */
@@ -358,8 +390,8 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * YO.
 		 *
-		 * @param string $fname .
-		 * @param strong $opt_name .
+		 * @param     string     $fname .
+		 * @param     strong     $opt_name .
 		 *
 		 * @return mixed|void
 		 */
@@ -462,7 +494,9 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 					$return['identifier'] = $data['identifier'];
 				} else {
 					$return['status']  = 'error';
-					$return['message'] = esc_html__( 'Support hash could not be generated. Please try again later.', 'redux-framework' );
+					$return['message'] = esc_html__(
+						'Support hash could not be generated. Please try again later.', 'redux-framework'
+					);
 				}
 
 				echo wp_json_encode( $return );
@@ -474,7 +508,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Sanatize camcelCase keys in array, makes then snake_case.
 		 *
-		 * @param array $arr Array of keys.
+		 * @param     array     $arr Array of keys.
 		 *
 		 * @return array
 		 */
@@ -498,7 +532,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		/**
 		 * Converts an array into a html data string.
 		 *
-		 * @param array $data example input: array('id'=>'true').
+		 * @param     array     $data example input: array('id'=>'true').
 		 *
 		 * @return string $data_string example output: data-id='true'
 		 */

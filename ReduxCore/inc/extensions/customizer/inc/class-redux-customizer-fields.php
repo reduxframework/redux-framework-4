@@ -248,3 +248,130 @@ class Redux_Customizer_Control_Textarea extends Redux_Customizer_Control {
 	public $type = 'redux-textarea';
 
 }
+
+
+
+
+
+
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_Spacing extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-spacing';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_Dimensions extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-dimensions';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_Link_Color extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-link_color';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_Border extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-border';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_Background extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-background';
+
+}
+
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Control_color_gradient extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-color_gradient';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Color_Rgba extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-color_rgba';
+
+}
+
+/**
+ * Class Redux_Customizer_Control_textarea
+ */
+// phpcs:ignore Generic.Files.OneClassPerFile
+class Redux_Customizer_Color_Typography extends Redux_Customizer_Control {
+
+	/**
+	 * Set control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'redux-typography';
+
+}

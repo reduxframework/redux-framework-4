@@ -19,6 +19,14 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 	 */
 	class Redux_Link_Color extends Redux_Field {
 
+		/*
+		 * Pattern for CSS output
+		 */
+		public $output_formatting = array(
+			'default_key_pattern' => ':key',
+			'default_pattern'     => 'color:value'
+		);
+
 		/**
 		 * Set field and value defaults.
 		 */
@@ -43,9 +51,20 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			$this->value = wp_parse_args( $this->value, $defaults );
 
+			foreach ( $this->value as $k => $v ) {
+				if ( ! empty( $v ) && "#" !== $v[0] ) {
+					$this->value[ $k ] = Redux_Colors::sanitize_hex( $v );
+				}
+			}
+
 			// In case user passes no default values.
 			if ( isset( $this->field['default'] ) ) {
 				$this->field['default'] = wp_parse_args( $this->field['default'], $defaults );
+				foreach ( $this->field['default'] as $k => $v ) {
+					if ( ! empty( $v ) && "#" !== $v[0] ) {
+						$this->field['default'][ $k ] = Redux_Colors::sanitize_hex( $v );
+					}
+				}
 			} else {
 				$this->field['default'] = $defaults;
 			}
@@ -233,77 +252,6 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'all'
 				);
 			}
-		}
-
-		/**
-		 * Compile CSS data for output.
-		 *
-		 * @param     string     $data CSS data.
-		 *
-		 * @return array|void
-		 */
-		public function css_style( $data = array() ) {
-			if ( empty( $data ) ) {
-				return;
-			}
-			$style = array();
-			foreach ( $data as $key => $value ) {
-				if ( ! empty( $this->value[ $key ] ) ) {
-					$style[ $key ] = 'color:' . $this->value[ $key ] . ';';
-				}
-			}
-
-			return $style;
-		}
-
-		/**
-		 * Output CSS/compiler.
-		 *
-		 * @param     string     $style Style to output.
-		 */
-		public function output( $style = '' ) {
-			if ( empty( $style ) && empty( $this->field['output'] ) && empty( $this->field['compiler'] ) ) {
-				return;
-			}
-			if ( ! empty( $this->field['output'] ) && ! is_array( $this->field['output'] ) ) {
-				$this->field['output'] = array( $this->field['output'] );
-			}
-			if ( ! empty( $this->field['compiler'] ) && ! is_array( $this->field['compiler'] ) ) {
-				$this->field['compiler'] = array( $this->field['compiler'] );
-			}
-
-			if ( ! empty( $this->field['output'] ) ) {
-				$style_string = '';
-				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					foreach ( $this->field['output'] as $selector ) {
-						foreach ( $style as $key => $value ) {
-							if ( $key == "regular" ) {
-								$style_string .= $selector . '{' . $value . '}';
-							} else {
-								$style_string .= $selector . ':' . $key . '{' . $value . '}';
-							}
-						}
-					}
-				}
-				$this->parent->outputCSS .= $style_string;
-			}
-
-			if ( is_array( $this->field['compiler'] ) ) {
-				$style_string = '';
-				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					foreach ( $this->field['compiler'] as $selector ) {
-						foreach ( $style as $key => $value ) {
-							if ( $key == "regular" ) {
-								$style_string .= $selector . '{' . $value . '}';
-							} else {
-								$style_string .= $selector . ':' . $key . '{' . $value . '}';
-							}
-						}
-					}
-				}
-				$this->parent->compilerCSS .= esc_attr( $style_string );
-			}
-
 		}
 
 		/**

@@ -11,10 +11,25 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Redux_Spinner', false ) ) {
 
+
 	/**
 	 * Class Redux_Spinner
 	 */
 	class Redux_Spinner extends Redux_Field {
+
+		/*
+		 * Pattern for CSS output
+		 */
+		public $output_formatting = array();
+
+		/**
+		 * Modify the output_formatting array if mode is set.
+		 */
+		public function output_formatting_properties() {
+			if ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ) {
+				$this->output_formatting['default_key'] = $this->field['mode'];
+			}
+		}
 
 		/**
 		 * Set field and value defaults.
@@ -25,6 +40,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'max'     => '',
 				'step'    => '',
 				'default' => '',
+				'mode'    => 'padding',
 				'edit'    => true,
 				'plus'    => '+',
 				'minus'   => '-',
@@ -48,7 +64,20 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 			$data_string = '';
 
 			foreach ( $this->field as $key => $val ) {
-				if ( in_array( $key, array( 'min', 'max', 'step', 'default', 'plus', 'minus', 'prefix', 'suffix', 'point', 'places' ), true ) ) {
+				if ( in_array(
+					$key, array(
+					'min',
+					'max',
+					'step',
+					'default',
+					'plus',
+					'minus',
+					'prefix',
+					'suffix',
+					'point',
+					'places'
+				), true
+				) ) {
 					$data_string .= ' data-' . esc_attr( $key ) . '="' . esc_attr( $val ) . '" ';
 				}
 			}
@@ -61,9 +90,17 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				$readonly = ' readonly="readonly"';
 			}
 
-			echo '<div id="' . esc_attr( $this->field['id'] ) . '-spinner" class="redux_spinner" rel="' . esc_attr( $this->field['id'] ) . '">';
+			echo '<div id="' . esc_attr( $this->field['id'] ) . '-spinner" class="redux_spinner" rel="' . esc_attr(
+					$this->field['id']
+				) . '">';
 
-			echo '<input type="text" ' . $data_string . ' name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" id="' . esc_attr( $this->field['id'] ) . '" value="' . esc_attr( $this->value ) . '" class="mini spinner-input ' . esc_attr( $this->field['class'] ) . '"' . $readonly . '/>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<input type="text" ' . $data_string . ' name="' . esc_attr(
+					$this->field['name'] . $this->field['name_suffix']
+				) . '" id="' . esc_attr( $this->field['id'] ) . '" value="' . esc_attr(
+					 $this->value
+				 ) . '" class="mini spinner-input ' . esc_attr(
+					 $this->field['class']
+				 ) . '"' . $readonly . '/>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 			echo '</div>';
 		}
@@ -149,19 +186,19 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		/**
 		 * CSS/compiler output.
 		 *
-		 * @param string $style CSS styles.
+		 * @param     string     $style CSS styles.
 		 */
 		public function output( $style = '' ) {
 			$style = '';
 
 			if ( ! empty( $this->value ) ) {
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					$css                      = $this->parse_css( $this->value, $this->field['output'] );
+					$css                     = $this->parse_css( $this->value, $this->field['output'] );
 					$this->parent->outputCSS .= esc_attr( $css );
 				}
 
 				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
-					$css                        = $this->parse_css( $this->value, $this->field['compiler'] );
+					$css                       = $this->parse_css( $this->value, $this->field['compiler'] );
 					$this->parent->compilerCSS .= esc_attr( $css );
 				}
 			}
@@ -170,8 +207,8 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		/**
 		 * Compile CSS data for output.
 		 *
-		 * @param mixed $value Value.
-		 * @param array $output .
+		 * @param     mixed     $value Value.
+		 * @param     array     $output .
 		 *
 		 * @return string
 		 */

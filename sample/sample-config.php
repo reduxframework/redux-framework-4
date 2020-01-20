@@ -1869,7 +1869,7 @@ Redux::set_section(
 				'step'        => '20',
 				'max'         => '100',
 				'suffix'      => '',
-				'output_unit' => '',
+				'output_unit' => 'px',
 				'output'      => array( '.heck-with-it' => 'max-width' ),
 			),
 		),
