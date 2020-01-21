@@ -262,26 +262,15 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 
 			if ( ! empty( $style_data ) ) {
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
-					$css                     = Redux_Functions::parse_css( $this->field['output'], $style_data );
-//					if (!in_array($this->field['type'], array('spacing', 'border'))) {
-//						echo PHP_EOL.'===> '.$this->field['id'].' => '.$this->field['type'].PHP_EOL;
-//						print_r($style_data);
-//						echo PHP_EOL;
-//						print_r($this->value);
-//						echo PHP_EOL;
-//						print_r($this->field['output']);
-//						echo PHP_EOL.$css.PHP_EOL;
-//					}
-
-
+					$css                     = Redux_Output::parse_css( $this->field['output'], $style_data );
 					$this->parent->outputCSS .= $css;
 				}
 
 				if ( ! empty( $this->field['compiler'] ) ) {
 					if ( is_array( $this->field['compiler'] ) ) {
-						$css = Redux_Functions::parse_css( $this->field['compiler'], $style_data );
+						$css = Redux_Output::parse_css( $this->field['compiler'], $style_data );
 					} elseif ( ! empty( $field['output'] ) ) {
-						$css = Redux_Functions::parse_css( $this->field['compiler'], $style_data );
+						$css = Redux_Output::parse_css( $this->field['compiler'], $style_data );
 					}
 
 					if ( ! empty( $css ) ) {

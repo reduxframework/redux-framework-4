@@ -177,7 +177,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							if ( method_exists( $field_class, 'output_variables' ) && $this->can_output_css(
 									$core, $field
 								) ) {
-								$css               = Redux_Functions::parse_css( $field['output'], $style_data );
+								$css               = Redux_Output::parse_css( $field['output'], $style_data );
 								$passed_style_data = $field_object->output_variables( $css );
 								$this->output_variables( $core, $section, $field, $value, $passed_style_data );
 							}
@@ -328,8 +328,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				}
 			}
 
-//			print_r( $output_format );
-
 			return $output_format;
 		}
 
@@ -386,13 +384,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 						}
 						// Do this AFTER value replacements!!!
 						if ( isset( $output_formatting['default_pattern'] ) ) {
-//						    print_r($output_formatting);
-//							print_r($field_object->value);
 							$value = str_replace(
 								'value', $value,
 								$output_formatting['default_pattern_replaced']
 							);
-//							echo $value.PHP_EOL;
 							if ( isset(
 									 $field_object->value['units']
 								 ) && strpos(
@@ -416,7 +411,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 						}
 						$value_keys[ $key ] = $value;
 					}
-//					print_r($value_keys);
 
 					if ( isset(
 							 $output_formatting['merge_key']
@@ -425,9 +419,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							  ) === 1 ) {
 						$value_keys = array( $output_formatting['merge_key'] => min( $value_keys ) );
 					}
-//					print_r($value_keys);
-//					print_r(array_unique( array_values( $value_keys ) ));
-
 					if ( count( $value_keys ) === 1 && isset( $output_formatting['default_key'] ) ) {
 						if ( isset( $output_formatting['default_pattern_replaced'] ) ) {
 							$value_keys = array( $output_formatting['default_key'] => $output_formatting['default_pattern_replaced'] );
@@ -449,6 +440,73 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 
 			return $value_keys;
 
+		}
+
+		/**
+		 * Parse CSS from output/compiler array
+		 *
+		 * @since       3.2.8
+		 * @access      private
+		 *
+		 * @param     array     $css_array CSS data.
+		 * @param     string     $style CSS style.
+		 * @param     string     $value CSS values.
+		 *
+		 * @return string CSS string
+		 */
+		public static function parse_css( $selector_array = array(), $style = false ) {
+
+			// Something wrong happened.
+			if ( 0 === count( $selector_array ) ) {
+				return '';
+			}
+
+			$append_to_selector = false;
+			foreach ( $style as $k => $v ) {
+				if ( false !== strpos( $k, ':' ) ) {
+					$append_to_selector = true;
+				}
+			}
+			$style_string = "";
+			foreach ( $style as $k => $v ) {
+				$style_string .= $k . ':' . $v . ';';
+			}
+			if ( ! $append_to_selector ) {
+				# Single Selectors that can be compressed
+				if ( 0 === min( array_keys( $selector_array ) ) ) {
+					$keys = implode( ',', $selector_array );
+					$css  = $keys . '{' . $style_string . '}';
+
+					return $css;
+				}
+			}
+
+			$css = '';
+			foreach ( $selector_array as $element => $selector ) {
+				$style_string_loop = $style_string;
+
+				if ( ! is_numeric( $element ) ) {
+					if ( 1 === count( $style ) ) {
+						$style_string_loop = $element . ':' . min( array_values( $style ) ) . ';';
+					}
+					$element = $selector;
+				}
+
+				if ( $append_to_selector ) {
+					foreach ( $style as $k => $v ) {
+						if ( ':' === $k[0] ) {
+							$css .= $element . $k . '{' . $v . ';}';
+						} else {
+							$css .= $element . '{' . $style_string_loop . '}';
+						}
+					}
+				} else {
+					$css .= $selector . '{' . $style_string_loop . '}';
+				}
+			}
+
+
+			return $css;
 		}
 
 		/**

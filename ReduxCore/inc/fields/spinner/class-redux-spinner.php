@@ -188,7 +188,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		 *
 		 * @param     string     $style CSS styles.
 		 */
-		public function output( $style = '' ) {
+		public function output_old( $style = '' ) {
 			$style = '';
 
 			if ( ! empty( $this->value ) ) {
@@ -212,7 +212,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		 *
 		 * @return string
 		 */
-		private function parse_css( $value, $output ) {
+		private function parse_css_old( $value, $output ) {
 			// No notices.
 			$css = '';
 

@@ -530,6 +530,8 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 								self::$fields_with_output[ $this->parent->args['opt_name'] ] = array();
 							}
 
+//							$option['output'] = Redux_Helpers::enhance_output( $option['output'] );
+
 							self::$fields_with_output[ $this->parent->args['opt_name'] ][ $option['id'] ] = $option['output'];
 						}
 
