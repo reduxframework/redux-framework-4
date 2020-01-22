@@ -177,7 +177,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 
 							if ( isset( $field['output'] ) && ! empty( $field['output'] ) && $this->can_output_css(
 									$core, $field
-								) ) {
+								) && ! empty( $style_data ) ) {
 								$css               = Redux_Output::parse_css( $field['output'], $style_data );
 								$passed_style_data = $field_object->output_variables( $css );
 								$this->output_variables( $core, $section, $field, $value, $passed_style_data );
@@ -338,6 +338,9 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			if ( method_exists( $field_object, 'output_formatting_properties' ) ) {
 				$field_object->output_formatting_properties();
 			}
+			if ( ! property_exists( $field_object, 'output_formatting' ) ) {
+				$field_object->output_formatting = array();
+			}
 			$output_formatting = $field_object->output_formatting;
 			$value_keys        = array();
 			if ( isset( $field_object->value ) && ! empty( $field_object->value ) ) {
@@ -461,33 +464,39 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			if ( empty( $selector_array ) ) {
 				return '';
 			}
-
 			$append_to_selector = false;
-			foreach ( $style as $k => $v ) {
-				if ( false !== strpos( $k, ':' ) ) {
-					$append_to_selector = true;
-				}
-			}
 			$style_string = "";
-			foreach ( $style as $k => $v ) {
-				$style_string .= $k . ':' . $v . ';';
-			}
-			if ( ! $append_to_selector ) {
-				# Single Selectors that can be compressed
-				if ( 0 === min( array_keys( $selector_array ) ) ) {
-					$keys = implode( ',', $selector_array );
-					$css  = $keys . '{' . $style_string . '}';
-
-					return $css;
+			if (is_array($style)) {
+				foreach ( $style as $k => $v ) {
+					if ( false !== strpos( $k, ':' ) ) {
+						$append_to_selector = true;
+					}
 				}
-			}
+
+				foreach ( $style as $k => $v ) {
+					$style_string .= $k . ':' . $v . ';';
+				}
+				if ( ! $append_to_selector ) {
+					# Single Selectors that can be compressed
+					if ( 0 === min( array_keys( $selector_array ) ) ) {
+						$keys = implode( ',', $selector_array );
+						$css  = $keys . '{' . $style_string . '}';
+
+						return $css;
+					}
+				}
+			} else {
+				$style_string = $style;
+            }
 
 			$css = '';
 			foreach ( $selector_array as $element => $selector ) {
 				$style_string_loop = $style_string;
 
-				if ( ! is_numeric( $element ) ) {
+				if ( ! is_numeric( $element ) && is_array( $style ) ) {
 					if ( 1 === count( $style ) ) {
+
+
 						$style_string_loop = $element . ':' . min( array_values( $style ) ) . ';';
 					}
 					$element = $selector;
