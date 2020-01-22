@@ -154,7 +154,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									}
 								}
 
-
 								if ( ! empty( $style_data ) ) {
 									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
 										$field_object->output( $style_data );
@@ -339,11 +338,13 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				$field_object->output_formatting_properties();
 			}
 			if ( ! property_exists( $field_object, 'output_formatting' ) ) {
+
 				$field_object->output_formatting = array();
 			}
 			$output_formatting = $field_object->output_formatting;
 			$value_keys        = array();
 			if ( isset( $field_object->value ) && ! empty( $field_object->value ) ) {
+
 				if ( is_array( $field_object->value ) ) {
 					$field_object->value = array_filter( $field_object->value );
 					if ( isset( $output_formatting['default_pattern'] ) ) {
@@ -352,6 +353,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							$field_object,
 							false
 						);
+					}
+
+					if ( isset( $output_formatting['default_key'] ) ) {
+						$field_object->value[ $output_formatting['default_key'] ] = "REPLACE";
 					}
 
 					foreach ( $field_object->value as $key => $value ) {
@@ -368,6 +373,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							 ) ) {
 							continue;
 						}
+
 						if ( isset( $output_formatting['value_transforms'] ) && isset( $output_formatting['value_transforms'][ $key ] ) ) {
 							$value = str_replace(
 								'value', $value,
@@ -386,35 +392,45 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								$output_formatting['default_key_pattern']
 							);
 						}
+
 						// Do this AFTER value replacements!!!
 						if ( isset( $output_formatting['default_pattern'] ) ) {
 							$value = str_replace(
 								'value', $value,
 								$output_formatting['default_pattern_replaced']
 							);
-							if ( isset(
-									 $field_object->value['units']
-								 ) && strpos(
-										  $value,
-										  $field_object->value['units']
-									  ) !== false ) {
+							if ( isset( $field_object->value['units'] ) && strpos(
+																			   $value,
+																			   $field_object->value['units']
+																		   ) !== false ) {
+
 								$value = str_replace(
 									' ' . $field_object->value['units'], $field_object->value['units'], $value
 								);
 							}
-						}
-
+						} else {
+							if ( isset( $field_object->value['units'] ) && strpos(
+																			   $value,
+																			   $field_object->value['units']
+																		   ) === false ) {
+								$value = $value.$field_object->value['units'];
+							}
+                        }
 						if ( isset( $output_formatting['merge_key'] ) && count(
 																			 array_unique(
 																				 array_values( $field_object->value )
 																			 )
 																		 ) === 1 ) {
-
 							$value_keys[ $output_formatting['merge_key'] ] = $value;
 							break;
 						}
+						if ( "REPLACE" === $value ) {
+							continue;
+						}
+
 						$value_keys[ $key ] = $value;
 					}
+
 
 					if ( isset(
 							 $output_formatting['merge_key']
@@ -465,8 +481,8 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				return '';
 			}
 			$append_to_selector = false;
-			$style_string = "";
-			if (is_array($style)) {
+			$style_string       = "";
+			if ( is_array( $style ) ) {
 				foreach ( $style as $k => $v ) {
 					if ( false !== strpos( $k, ':' ) ) {
 						$append_to_selector = true;
@@ -487,7 +503,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				}
 			} else {
 				$style_string = $style;
-            }
+			}
 
 			$css = '';
 			foreach ( $selector_array as $element => $selector ) {
