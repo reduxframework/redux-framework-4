@@ -154,6 +154,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									}
 								}
 
+
 								if ( ! empty( $style_data ) ) {
 									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
 										$field_object->output( $style_data );
@@ -457,7 +458,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		public static function parse_css( $selector_array = array(), $style = false ) {
 
 			// Something wrong happened.
-			if ( 0 === count( $selector_array ) ) {
+			if ( empty( $selector_array ) ) {
 				return '';
 			}
 
