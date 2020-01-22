@@ -71,6 +71,25 @@
     }
 
 
+    redux_output.css_style = function ($type, $selector_array, $style) {
+        var $output = null;
+        if ($type === 'color') { // For `color` type, we need special handling.
+            // Expected Input
+            // - type=>color, selector_array => {background_color: ".site-background", color: ".site-title"}, $style => #000000
+            // Desired Output
+            // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
+            if (typeof $selector_array === 'object') {
+                $output = [];
+                Object.keys($selector_array).forEach(function($k) {
+                    var $atom = {};
+                    $atom[$k] = $style;
+
+                    $output.push({selector: [$selector_array[$k]], style: $atom});
+                });
+            }
+        }
+    }
+
     function live_preview(fieldID, newVal, opt_name) {
         var selectors = redux_customizer_preview.fields[opt_name][fieldID];
 
@@ -99,8 +118,11 @@
             complete_styles = parent.redux.field_objects[field_type].customizer_preview_output(selectors, newVal);
         } else {
 
+            console.log("INNOVATION expected", redux_customizer_preview);
+            console.log("Actual INPUT", field_type, selectors, newVal);
             // var $style_data = redux_customizer_preview.css_style( newVal );
 
+            redux_output.css_style(field_type, selectors, newVal);
             complete_styles = redux_output.parse_css(selectors, newVal);
             var styles = '';
             Object.keys(newVal).forEach(function (key) {
