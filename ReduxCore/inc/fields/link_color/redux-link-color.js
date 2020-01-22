@@ -10,32 +10,6 @@
     redux.field_objects = redux.field_objects || {};
     redux.field_objects.link_color = redux.field_objects.link_color || {};
 
-    redux.field_objects.link_color.customizer_preview_css_style = function (fieldID, newVal, opt_name) {
-        var $style = {};
-        var defaults = window['redux_' + opt_name].defaults[fieldID];
-        Object.keys(newVal).forEach(function (key) {
-            if (newVal[key] && defaults[key] && defaults[key] !== newVal[key]) {
-                $style[key] = ['color:' + newVal[key] + ';'];
-            }
-        });
-
-        return $style;
-    }
-    redux.field_objects.link_color.customizer_preview_output = function (selectors, newVal) {
-        var $output_style = '';
-        for (var i = 0; i < selectors.length; i++) {
-            Object.keys(newVal).forEach(function (val) {
-                if (val === 'regular') {
-                    $output_style += selectors[i] + '{' + newVal[val].join() + '}';
-                } else {
-                    $output_style += selectors[i] + ':' + val + '{' + newVal[val].join() + '}';
-                }
-            });
-        }
-
-        return $output_style;
-    }
-
     redux.field_objects.link_color.init = function (selector) {
         if (!selector) {
             selector = $(document).find('.redux-container-link_color:visible');

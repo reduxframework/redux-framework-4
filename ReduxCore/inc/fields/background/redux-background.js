@@ -13,23 +13,6 @@
     redux.field_objects = redux.field_objects || {};
     redux.field_objects.background = redux.field_objects.background || {};
 
-    redux.field_objects.background.customizer_preview_css_style = function (fieldID, newVal, opt_name) {
-        var $style = newVal;
-
-        if ($style.media) {
-            delete $style.media;
-        }
-        for (var propName in $style) {
-            if ($style[propName] === null || $style[propName] === undefined) {
-                delete $style[propName];
-            }
-        }
-        if ($style['background-image']) {
-            $style['background-image'] = 'url(' + $style['background-image'] + ')';
-        }
-        return $style;
-    }
-
     redux.field_objects.background.init = function (selector) {
         if (!selector) {
             selector = $(document).find('.redux-group-tab:visible').find('.redux-container-background:visible');

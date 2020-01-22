@@ -7,16 +7,6 @@
     redux.field_objects.color_rgba = redux.field_objects.color_rgba || {};
     redux.field_objects.color_rgba.fieldID = '';
 
-    redux.field_objects.color_rgba.customizer_preview_output = function (selectors, newVal, opt_name) {
-        var $output_style = '';
-        if (newVal.rgba) {
-            for (var i = 0; i < selectors.length; i++) {
-                $output_style += selectors[i] + ' {background-color:' + newVal.rgba + '}';
-            }
-        }
-        return $output_style;
-    }
-
     redux.field_objects.color_rgba.hexToRGBA = function (hex, alpha) {
         var result;
         var r;
