@@ -175,9 +175,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								$value, $style_data
 							);
 
-							if ( isset( $field['output'] ) && ! empty( $field['output'] ) && method_exists(
-									$field_class, 'output_variables'
-								) && $this->can_output_css(
+							if ( isset( $field['output'] ) && ! empty( $field['output'] ) && $this->can_output_css(
 									$core, $field
 								) ) {
 								$css               = Redux_Output::parse_css( $field['output'], $style_data );
