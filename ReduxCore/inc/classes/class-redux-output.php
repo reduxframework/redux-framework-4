@@ -458,7 +458,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		public static function parse_css( $selector_array = array(), $style = false ) {
 
 			// Something wrong happened.
-			if ( empty( $selector_array ) ) {
+			if ( empty( $selector_array ) || empty( $style ) ) {
 				return '';
 			}
 
