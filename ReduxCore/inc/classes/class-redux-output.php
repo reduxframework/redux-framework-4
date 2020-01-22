@@ -455,10 +455,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		 *
 		 * @return string CSS string
 		 */
-		public static function parse_css( $selector_array = array(), $style = false ) {
+		public static function parse_css( $selector_array = array(), $style = array() ) {
 
 			// Something wrong happened.
-			if ( empty( $selector_array ) || empty( $style ) ) {
+			if ( empty( $selector_array ) ) {
 				return '';
 			}
 
