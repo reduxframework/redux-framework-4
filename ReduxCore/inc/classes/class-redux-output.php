@@ -151,6 +151,11 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 											 $field_object, 'css_style'
 										 ) && ! empty( $field_object->value ) ) {
 										$style_data = $field_object->css_style( $field_object->value );
+										if ( $field['type'] == "spinner" ) {
+											print_r( $field_object->value );
+											print_r( $style_data );
+											print_r( Redux_Output::parse_css( $field['output'], $style_data ) );
+										}
 									}
 								}
 
