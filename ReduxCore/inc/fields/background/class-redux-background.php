@@ -484,7 +484,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 			 * Preview
 			 * */
 			if ( ! isset( $this->field['preview'] ) || false !== $this->field['preview'] ) {
-				$css = $this->css_style( $this->value );
+				$css = Redux_Output::parse_css( $this->css_style( $this->value ) );
 
 				$is_bg = strpos( $css, 'background-image' );
 
