@@ -10,7 +10,9 @@
         return fieldID;
     }
 
-    redux_customizer_preview.parse_css = function ($selector_array, $style) {
+    var redux_output = {};
+
+    redux_output.parse_css = function ($selector_array, $style) {
         console.log($selector_array, $style);
 
         // Something wrong happened.
@@ -97,19 +99,19 @@
             complete_styles = parent.redux.field_objects[field_type].customizer_preview_output(selectors, newVal);
         } else {
 
-            $style_data = redux_customizer_preview.css_style( newVal );
+            // var $style_data = redux_customizer_preview.css_style( newVal );
 
-            var complete_styles = redux_customizer_preview.parse_css(selectors, newVal);
-            // var styles = '';
-            // Object.keys(newVal).forEach(function (key) {
-            //     if (key === 'units') {
-            //         return;
-            //     }
-            //     styles += key + ':' + newVal[key] + ';';
-            // });
-            // for (var i = 0; i < selectors.length; i++) {
-            //     complete_styles += selectors[i] + ' {' + styles + '}';
-            // }
+            complete_styles = redux_output.parse_css(selectors, newVal);
+            var styles = '';
+            Object.keys(newVal).forEach(function (key) {
+                if (key === 'units') {
+                    return;
+                }
+                styles += key + ':' + newVal[key] + ';';
+            });
+            for (var i = 0; i < selectors.length; i++) {
+                complete_styles += selectors[i] + ' {' + styles + '}';
+            }
         }
         if (complete_styles.length > 0) {
             var fieldID_container = fieldID.replace('[', '-').replace(']', '')
