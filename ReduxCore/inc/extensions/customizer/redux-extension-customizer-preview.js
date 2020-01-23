@@ -72,22 +72,49 @@
 
 
     redux_output.css_style = function ($type, $selector_array, $style) {
-        var $output = null;
+        var $output = [];
         if ($type === 'color') { // For `color` type, we need special handling.
             // Expected Input
             // - type=>color, selector_array => {background_color: ".site-background", color: ".site-title"}, $style => #000000
             // Desired Output
             // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
             if (typeof $selector_array === 'object') {
-                $output = [];
-                Object.keys($selector_array).forEach(function($k) {
+                Object.keys($selector_array).forEach(function($key) {
                     var $atom = {};
-                    $atom[$k] = $style;
+                    $atom[$key] = $style;
 
-                    $output.push({selector: [$selector_array[$k]], style: $atom});
+                    $output.push({selector: [$selector_array[$key]], style: $atom});
                 });
             }
         }
+
+        if ($type === 'color_gradient') { // For `color` type, we need special handling.
+            // Expected Input
+            // - type => color_gradient, selector_array => [".site-header"], $style => {from: "#1e73be", to: "#00897e"}
+            // Desired Output
+            // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
+            var $atom = {"background-image": `linear-gradient (${$style.from}, ${$style.to})`};
+            $selector_array.forEach(function($key) {
+                $output.push({selector: $key, style: $atom});
+            });
+        }
+
+        if ($type === 'link_color') { // For `color` type, we need special handling.
+            // Expected Input
+            // - type => color_gradient, selector_array => [".site-header"], $style => {from: "#1e73be", to: "#00897e"}
+            // Desired Output
+            // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
+            console.log("For Link Color", $selector_array, $style);
+            var $atom = {"background-image": `linear-gradient (${$style.from}, ${$style.to})`};
+            $selector_array.forEach(function($key) {
+                Object.keys($style).forEach(function(psuedo) {
+                    $output.push({selector: `${$key}:${psuedo}`, style: $style[psuedo]});
+                });
+            });
+            console.log("After PROCESSING", $output);
+        }
+
+        return $output;
     }
 
     function live_preview(fieldID, newVal, opt_name) {
@@ -113,6 +140,7 @@
         }
 
         var complete_styles = '';
+        var draft_styles = [];
         if (field_controls.length > 0 && typeof parent.redux.field_objects[field_type].customizer_preview_output !== 'undefined') {
             // Allow fields to override how the output is constructed.
             complete_styles = parent.redux.field_objects[field_type].customizer_preview_output(selectors, newVal);
@@ -122,7 +150,8 @@
             console.log("Actual INPUT", field_type, selectors, newVal);
             // var $style_data = redux_customizer_preview.css_style( newVal );
 
-            redux_output.css_style(field_type, selectors, newVal);
+            draft_styles = redux_output.css_style(field_type, selectors, newVal);
+            console.log("Draft Styles", draft_styles);
             complete_styles = redux_output.parse_css(selectors, newVal);
             var styles = '';
             Object.keys(newVal).forEach(function (key) {
