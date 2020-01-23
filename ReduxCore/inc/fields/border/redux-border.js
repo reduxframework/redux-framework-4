@@ -123,4 +123,37 @@
 			}
 		);
 	};
+
+	redux.field_objects.border.customizer_preview_output = function( $selector_array, $style ) {
+		// Expected Input
+            /* - selector_array => [".site-header"], 
+                $style => {
+                    border-color: "#1e73be"
+                    border-style: "solid"
+                    border-top: "3px"
+                    border-right: "3px"
+                    border-bottom: "3px"
+                    border-left: "3px"}
+                */
+		// Desired Output: String
+		// .site-header { border-top: "3px solid #1e73be", border-bottom: "3px solid #1e73be", border-left: "3px solid #1e73be", border-right: "3px solid #1e73be"}
+		var selectors = $selector_array.join(", ");
+	
+		let borderColor = $style['border-color'] ? $style['border-color'] : '';
+		let borderStyle = $style['border-style'] ? $style['border-style'] : '';
+
+		let filteredStyle = Object.keys($style).filter(function (elem) {
+			return (elem !== 'border-color' && elem!== 'border-style');
+		});
+		let newStyle = "{";
+		newStyle += filteredStyle.reduce(function(output, elem) {
+			output += `${elem}: ${$style[elem]} ${borderStyle} ${borderColor}, `;
+			return output;
+		}, "");
+		newStyle = newStyle.length > 1 ? newStyle.slice(0, -2) : newStyle;
+		newStyle += "}";
+
+		return selectors + newStyle;
+
+	};
 })( jQuery );

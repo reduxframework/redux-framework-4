@@ -13,7 +13,7 @@
     var redux_output = {};
 
     redux_output.parse_css = function ($selector_array, $style) {
-        console.log($selector_array, $style);
+        // console.log($selector_array, $style);
 
         // Something wrong happened.
         if (0 === $selector_array.length) {
@@ -141,47 +141,22 @@
             });
         }
 
-        if ($type === 'link_color') { // For `color` type, we need special handling.
+        if ($type === 'spacing') { // For `color` type, we need special handling.
             // Expected Input
-            // - type => link_color, selector_array => ["a"], $style => {regular: "#aaa", hover: "#bbb", active: "#ccc"}
-            // Desired Output
-            // - [{selector: "a", style: {color: #aaa}}, {selector: "a:hover", style: {color: #bbb}}, {selector: "a:active", style: {color: #ccc}}]
-            $selector_array.forEach(function($key) {
-                Object.keys($style).forEach(function(elem) {
-                    let psuedo = elem === 'regular' ? '' : ':' + elem
-                    $output.push({selector: `${$key}${psuedo}`, style: {"color": $style[elem]}});
-                });
-            });
-        }
-
-
-        if ($type === 'border') { // For `color` type, we need special handling.
-            // Expected Input
-            /* - type => border, selector_array => [".site-header"], 
+            /* - type => spacing, selector_array => [".site-header"], 
                 $style => {
-                    border-color: "#1e73be"
-                    border-style: "solid"
-                    border-top: "3px"
-                    border-right: "3px"
-                    border-bottom: "3px"
-                    border-left: "3px"}
-                */
+                    margin-top: "1px", 
+                    margin-right: "2px"
+                    margin-bottom: "3px"
+                    margin-left: "4px"}
+                    */
             // Desired Output
-            // - [{selector: ".site-header", style: {border-left: 3px solid #1e73be, border-right: 3px solid #1e73be, border-top: 3px solid #1e73be, border-bottom: 3px solid #1e73be}}]
-            $selector_array.forEach(function($key) {
-                let borderColor = $style['border-color'] ? $style['border-color'] : '';
-                let borderStyle = $style['border-style'] ? $style['border-style'] : '';
-
-                let filteredStyle = Object.keys($style).filter(function (elem) {
-                    return (elem !== 'border-color' && elem!== 'border-style');
-                });
-                let newStyle = {};
-                filteredStyle.forEach(function(elem) {
-                    newStyle[elem] = `${$style[elem]} ${borderStyle} ${borderColor}`;
-                });
-                $output.push({selector: $key, style: newStyle});
+            // - [{selector: ".site-header", style: {margin-top: "1px", margin-right: "2px", margin-bottom: "3px", margin-left: "4px"}}]
+            $selector_array.forEach(function($key) {           
+                $output.push({selector: $key, style: $style});
             });
         }
+
         return $output;
     }
 
@@ -208,19 +183,17 @@
         }
 
         var complete_styles = '';
-        var draft_styles = [];
+
         if (field_controls.length > 0 && typeof parent.redux.field_objects[field_type].customizer_preview_output !== 'undefined') {
             // Allow fields to override how the output is constructed.
             complete_styles = parent.redux.field_objects[field_type].customizer_preview_output(selectors, newVal);
         } else {
 
-            console.log("INNOVATION expected", redux_customizer_preview);
-            console.log("Actual INPUT", field_type, selectors, newVal);
+            // console.log("Actual INPUT", field_type, selectors, newVal);
             // var $style_data = redux_customizer_preview.css_style( newVal );
 
-            draft_styles = redux_output.css_style(field_type, selectors, newVal);
-            console.log("Draft Styles", draft_styles);
             complete_styles = redux_output.parse_css(selectors, newVal);
+            // console.log(complete_styles);
             var styles = '';
             Object.keys(newVal).forEach(function (key) {
                 if (key === 'units') {
@@ -232,6 +205,7 @@
                 complete_styles += selectors[i] + ' {' + styles + '}';
             }
         }
+        console.log(complete_styles);
         if (complete_styles.length > 0) {
             var fieldID_container = fieldID.replace('[', '-').replace(']', '')
             jQuery('#redux-preview-' + fieldID_container).text(complete_styles);
