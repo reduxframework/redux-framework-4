@@ -105,4 +105,21 @@
             }
         );
     };
+
+
+	redux.field_objects.link_color.customizer_preview_output = function( $selector_array, $style ) {
+		// Expected Input
+        // - type => link_color, selector_array => ["a"], $style => {regular: "#aaa", hover: "#bbb", active: "#ccc"}
+        // Desired Output
+        // - a {color: #aaa}, a:hover {color: #bbb}, a:active{color: #ccc}
+        var $output = [];
+        $selector_array.forEach(function($key) {
+            Object.keys($style).forEach(function(elem) {
+                let psuedo = elem === 'regular' ? '' : ':' + elem
+                $output.push(`${$key}${psuedo} {color: ${$style[elem]}}`);
+            });
+        });
+
+        return $output.join(", ");
+	};
 })(jQuery);

@@ -154,6 +154,5 @@
 		newStyle += "}";
 
 		return selectors + newStyle;
-
 	};
 })( jQuery );

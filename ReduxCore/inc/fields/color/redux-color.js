@@ -140,4 +140,24 @@
 			}
 		);
 	};
+
+	redux.field_objects.color.customizer_preview_output = function( $selector_array, $style ) {
+		// Expected Input
+		// - type=>color, selector_array => {background_color: ".site-background", color: ".site-title"}, $style => #000000
+		// Desired Output
+		// - .site-background {background-color: #000000}, .site-title {color: #000000}
+		var $output = [];
+		if (typeof $selector_array === 'object') {
+			Object.keys($selector_array).forEach(function($key) {
+				var $atom = {};
+				$atom[$key] = $style;
+
+				$output.push(`${$selector_array[$key]} {${$key}: ${$style}}`);
+			});
+			return $output.join(", ");
+		}
+
+		return "CONTACT YOU Later";
+
+	};
 })( jQuery );

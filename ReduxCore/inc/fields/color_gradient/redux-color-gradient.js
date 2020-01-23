@@ -145,4 +145,15 @@
 			}
 		);
 	};
+
+	redux.field_objects.color_gradient.customizer_preview_output = function( $selector_array, $style ) {
+		// Expected Input
+        // - type => color_gradient, selector_array => ["a"], $style => {regular: "#aaa", hover: "#bbb", active: "#ccc"}
+        // Desired Output
+        // - a {color: #aaa}, a:hover {color: #bbb}, a:active{color: #ccc}
+		var $output = [];
+		var selectors = $selector_array.join(", ");
+        var newStyle = `{background-image: linear-gradient (${$style.from}, ${$style.to})}`;
+        return selectors + " " + newStyle;
+	};
 } )( jQuery );
