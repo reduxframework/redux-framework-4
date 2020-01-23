@@ -70,28 +70,6 @@
         return $css;
     }
 
-
-    redux_output.css_style = function ($type, $selector_array, $style) {
-        var $output = [];
-        if ($type === 'spacing') { // For `color` type, we need special handling.
-            // Expected Input
-            /* - type => spacing, selector_array => [".site-header"], 
-                $style => {
-                    margin-top: "1px", 
-                    margin-right: "2px"
-                    margin-bottom: "3px"
-                    margin-left: "4px"}
-                    */
-            // Desired Output
-            // - [{selector: ".site-header", style: {margin-top: "1px", margin-right: "2px", margin-bottom: "3px", margin-left: "4px"}}]
-            $selector_array.forEach(function($key) {           
-                $output.push({selector: $key, style: $style});
-            });
-        }
-
-        return $output;
-    }
-
     function live_preview(fieldID, newVal, opt_name) {
         var selectors = redux_customizer_preview.fields[opt_name][fieldID];
 
@@ -126,7 +104,7 @@
 
             complete_styles = redux_output.parse_css(selectors, newVal);
             // console.log(complete_styles);
-            var styles = '';
+            /* var styles = '';
             Object.keys(newVal).forEach(function (key) {
                 if (key === 'units') {
                     return;
@@ -135,7 +113,7 @@
             });
             for (var i = 0; i < selectors.length; i++) {
                 complete_styles += selectors[i] + ' {' + styles + '}';
-            }
+            }*/
         }
         console.log(complete_styles);
         if (complete_styles.length > 0) {
