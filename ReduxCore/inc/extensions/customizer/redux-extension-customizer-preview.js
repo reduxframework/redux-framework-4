@@ -92,7 +92,7 @@
             // Expected Input
             // - type => color_gradient, selector_array => [".site-header"], $style => {from: "#1e73be", to: "#00897e"}
             // Desired Output
-            // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
+            // - [{selector: ".site-header", style: {"background-image": linear-gradient(#1e73be, #00897e)}]
             var $atom = {"background-image": `linear-gradient (${$style.from}, ${$style.to})`};
             $selector_array.forEach(function($key) {
                 $output.push({selector: $key, style: $atom});
@@ -101,19 +101,87 @@
 
         if ($type === 'link_color') { // For `color` type, we need special handling.
             // Expected Input
-            // - type => color_gradient, selector_array => [".site-header"], $style => {from: "#1e73be", to: "#00897e"}
+            // - type => link_color, selector_array => ["a"], $style => {regular: "#aaa", hover: "#bbb", active: "#ccc"}
             // Desired Output
-            // - [{[".site-background"], background_color: #000000}, {[".site-title"], color: #000000}]
-            console.log("For Link Color", $selector_array, $style);
-            var $atom = {"background-image": `linear-gradient (${$style.from}, ${$style.to})`};
+            // - [{selector: "a", style: {color: #aaa}}, {selector: "a:hover", style: {color: #bbb}}, {selector: "a:active", style: {color: #ccc}}]
             $selector_array.forEach(function($key) {
-                Object.keys($style).forEach(function(psuedo) {
-                    $output.push({selector: `${$key}:${psuedo}`, style: $style[psuedo]});
+                Object.keys($style).forEach(function(elem) {
+                    let psuedo = elem === 'regular' ? '' : ':' + elem
+                    $output.push({selector: `${$key}${psuedo}`, style: {"color": $style[elem]}});
                 });
             });
-            console.log("After PROCESSING", $output);
         }
 
+
+        if ($type === 'border') { // For `color` type, we need special handling.
+            // Expected Input
+            /* - type => border, selector_array => [".site-header"], 
+                $style => {
+                    border-color: "#1e73be"
+                    border-style: "solid"
+                    border-top: "3px"
+                    border-right: "3px"
+                    border-bottom: "3px"
+                    border-left: "3px"}
+                */
+            // Desired Output
+            // - [{selector: ".site-header", style: {border-left: 3px solid #1e73be, border-right: 3px solid #1e73be, border-top: 3px solid #1e73be, border-bottom: 3px solid #1e73be}}]
+            $selector_array.forEach(function($key) {
+                let borderColor = $style['border-color'] ? $style['border-color'] : '';
+                let borderStyle = $style['border-style'] ? $style['border-style'] : '';
+
+                let filteredStyle = Object.keys($style).filter(function (elem) {
+                    return (elem !== 'border-color' && elem!== 'border-style');
+                });
+                let newStyle = {};
+                filteredStyle.forEach(function(elem) {
+                    newStyle[elem] = `${$style[elem]} ${borderStyle} ${borderColor}`;
+                });
+                $output.push({selector: $key, style: newStyle});
+            });
+        }
+
+        if ($type === 'link_color') { // For `color` type, we need special handling.
+            // Expected Input
+            // - type => link_color, selector_array => ["a"], $style => {regular: "#aaa", hover: "#bbb", active: "#ccc"}
+            // Desired Output
+            // - [{selector: "a", style: {color: #aaa}}, {selector: "a:hover", style: {color: #bbb}}, {selector: "a:active", style: {color: #ccc}}]
+            $selector_array.forEach(function($key) {
+                Object.keys($style).forEach(function(elem) {
+                    let psuedo = elem === 'regular' ? '' : ':' + elem
+                    $output.push({selector: `${$key}${psuedo}`, style: {"color": $style[elem]}});
+                });
+            });
+        }
+
+
+        if ($type === 'border') { // For `color` type, we need special handling.
+            // Expected Input
+            /* - type => border, selector_array => [".site-header"], 
+                $style => {
+                    border-color: "#1e73be"
+                    border-style: "solid"
+                    border-top: "3px"
+                    border-right: "3px"
+                    border-bottom: "3px"
+                    border-left: "3px"}
+                */
+            // Desired Output
+            // - [{selector: ".site-header", style: {border-left: 3px solid #1e73be, border-right: 3px solid #1e73be, border-top: 3px solid #1e73be, border-bottom: 3px solid #1e73be}}]
+            $selector_array.forEach(function($key) {
+                let borderColor = $style['border-color'] ? $style['border-color'] : '';
+                let borderStyle = $style['border-style'] ? $style['border-style'] : '';
+
+                let filteredStyle = Object.keys($style).filter(function (elem) {
+                    return (elem !== 'border-color' && elem!== 'border-style');
+                });
+                let newStyle = {};
+                filteredStyle.forEach(function(elem) {
+                    newStyle[elem] = `${$style[elem]} ${borderStyle} ${borderColor}`;
+                });
+                $output.push({selector: $key, style: newStyle});
+            });
+        }
         return $output;
     }
 
