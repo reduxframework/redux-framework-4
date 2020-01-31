@@ -151,7 +151,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 											 $field_object, 'css_style'
 										 ) && ! empty( $field_object->value ) ) {
 										$style_data = $field_object->css_style( $field_object->value );
-										if ( $field['type'] == "spinner" ) {
+										if ( $field['type'] == "border" ) {
 											print_r( $field_object->value );
 											print_r( $style_data );
 											print_r( Redux_Output::parse_css( $field['output'], $style_data ) );
@@ -338,18 +338,26 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 
 		public static function css_style( $field, $field_object ) {
 
+
+
 			// This allows us to override any arg-based methods for this field type
 			if ( method_exists( $field_object, 'output_formatting_properties' ) ) {
 				$field_object->output_formatting_properties();
 			}
+			// We don't want to break things for old fields
 			if ( ! property_exists( $field_object, 'output_formatting' ) ) {
-
 				$field_object->output_formatting = array();
 			}
 			$output_formatting = $field_object->output_formatting;
 			$value_keys        = array();
 			if ( isset( $field_object->value ) && ! empty( $field_object->value ) ) {
+				$units = "";
 
+				if ( isset( $field_object->value['units'] ) && ! empty( $field_object->value['units'] ) ) {
+					$units = $field_object->value['units'];
+				} elseif ( isset( $field_object->field['units'] ) && ! empty( $field_object->field['units'] ) ) {
+					$units = $field_object->field['units'];
+				}
 				if ( is_array( $field_object->value ) ) {
 					$field_object->value = array_filter( $field_object->value );
 					if ( isset( $output_formatting['default_pattern'] ) ) {
@@ -359,15 +367,14 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							false
 						);
 					}
-
 					if ( isset( $output_formatting['default_key'] ) ) {
 						$field_object->value[ $output_formatting['default_key'] ] = "REPLACE";
 					}
-
 					foreach ( $field_object->value as $key => $value ) {
 						if ( empty( $value ) || ! $value ) {
 							continue;
 						}
+
 						// We don't want CSS output for excluded keys, they'll be used elsewhere.
 						if ( isset(
 								 $output_formatting['excludes']
@@ -378,7 +385,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							 ) ) {
 							continue;
 						}
-
 						if ( isset( $output_formatting['value_transforms'] ) && isset( $output_formatting['value_transforms'][ $key ] ) ) {
 							$value = str_replace(
 								'value', $value,
@@ -397,42 +403,33 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								$output_formatting['default_key_pattern']
 							);
 						}
-
 						// Do this AFTER value replacements!!!
 						if ( isset( $output_formatting['default_pattern'] ) ) {
 							$value = str_replace(
 								'value', $value,
 								$output_formatting['default_pattern_replaced']
 							);
-							if ( isset( $field_object->value['units'] ) && strpos(
-																			   $value,
-																			   $field_object->value['units']
-																		   ) !== false ) {
-
-								$value = str_replace(
-									' ' . $field_object->value['units'], $field_object->value['units'], $value
-								);
+							if ( ! empty( $units ) ) {
+								if ( strpos( $value, $units ) !== false ) {
+									$value = str_replace(
+										' ' . $units,
+										$units,
+										$value
+									);
+								} else {
+									$value = $value . $units;
+								}
 							}
-						} else {
-							if ( isset( $field_object->value['units'] ) && strpos(
-																			   $value,
-																			   $field_object->value['units']
-																		   ) === false ) {
-								$value = $value.$field_object->value['units'];
+						}
+						if ( isset( $output_formatting['merge_key'] ) ) {
+							if ( count( array_unique( array_values( $field_object->value ) ) ) === 1 ) {
+								$value_keys[ $output_formatting['merge_key'] ] = $value;
+								break;
 							}
-                        }
-						if ( isset( $output_formatting['merge_key'] ) && count(
-																			 array_unique(
-																				 array_values( $field_object->value )
-																			 )
-																		 ) === 1 ) {
-							$value_keys[ $output_formatting['merge_key'] ] = $value;
-							break;
 						}
 						if ( "REPLACE" === $value ) {
 							continue;
 						}
-
 						$value_keys[ $key ] = $value;
 					}
 
@@ -454,6 +451,18 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					}
 				} else {
 					$value = $field_object->value;
+					if ( ! empty( $units ) ) {
+						if ( strpos( $value, $units ) !== false ) {
+							$value = str_replace(
+								' ' . $units,
+								$units,
+								$value
+							);
+						} else {
+							$value = $value . $units;
+						}
+					}
+
 					if ( isset( $output_formatting['default_key'] ) ) {
 						$value_keys = array( $output_formatting['default_key'] => $value );
 					} else {

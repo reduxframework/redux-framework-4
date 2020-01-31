@@ -20,7 +20,9 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		/*
 		 * Pattern for CSS output
 		 */
-		public $output_formatting = array();
+		public $output_formatting = array(
+			'default_pattern'     => 'value-previx value value-prefix value-units'
+		);
 
 		/**
 		 * Modify the output_formatting array if mode is set.
@@ -29,6 +31,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 			if ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ) {
 				$this->output_formatting['default_key'] = $this->field['mode'];
 			}
+			$this->set_defaults();
 		}
 
 		/**
@@ -45,6 +48,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'plus'    => '+',
 				'minus'   => '-',
 				'format'  => '',
+				'units'=> 'px',
 				'prefix'  => '',
 				'suffix'  => '',
 				'point'   => '.',
