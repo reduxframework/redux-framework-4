@@ -445,7 +445,6 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				$this->render_class  = new Redux_Page_Render( $this );
 				$this->enqueue_class = new Redux_Enqueue( $this );
 
-				new Redux_Dev( $this );
 				new Redux_AJAX_Save( $this );
 				new Redux_AJAX_Typography( $this );
 				new Redux_AJAX_Select2( $this );

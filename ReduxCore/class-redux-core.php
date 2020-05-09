@@ -214,29 +214,11 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @param array  $args Global arguments array.
 		 */
 		public static function core_construct( $parent, $args ) {
-			new Redux_P();
-
 			self::$third_party_fixes = new Redux_ThirdParty_Fixes( $parent );
 
 			Redux_ThemeCheck::get_instance();
 
-			self::statistics( $parent );
 			self::tour( $parent );
-
-		}
-
-		/**
-		 * Set tracking class.
-		 *
-		 * @param object $parent ReduxFramework object.
-		 */
-		private static function statistics( $parent ) {
-			if ( isset( $parent->args['allow_tracking'] ) && $parent->args['allow_tracking'] ) {
-				if ( file_exists( self::$dir . '/inc/classes/class-redux-statistics.php' ) && class_exists( 'Redux_Statistics' ) ) {
-					$tracking = Redux_Statistics::get_instance();
-					$tracking->load( $parent );
-				}
-			}
 		}
 
 		/**
