@@ -112,7 +112,13 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 
 						Redux::init( $opt_name );
 					} else {
-						remove_action( 'admin_enqueue_scripts', array( ReduxFrameworkInstances::get_instance( $opt_name ), '_enqueue' ) );
+						remove_action(
+							'admin_enqueue_scripts',
+							array(
+								ReduxFrameworkInstances::get_instance( $opt_name ),
+								'_enqueue',
+							)
+						);
 					}
 
 					self::check_opt_name( $opt_name );
@@ -181,10 +187,10 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		/**
 		 * Construct Sections.
 		 *
-		 * @param string $opt_name Panel opt_name.
-		 * @param int    $profile_id Profile ID.
+		 * @param string $opt_name    Panel opt_name.
+		 * @param int    $profile_id  Profile ID.
 		 * @param bool   $permissions Permissions.
-		 * @param bool   $roles ROles.
+		 * @param bool   $roles       ROles.
 		 *
 		 * @return array
 		 */
@@ -218,10 +224,10 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		/**
 		 * Construct Fields.
 		 *
-		 * @param string $opt_name Panel opt_name.
-		 * @param string $section_id Section ID.
+		 * @param string $opt_name    Panel opt_name.
+		 * @param string $section_id  Section ID.
 		 * @param bool   $permissions Permissions.
-		 * @param bool   $roles Roles.
+		 * @param bool   $roles       Roles.
 		 *
 		 * @return array
 		 */
@@ -262,7 +268,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Get Section.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $id ID.
+		 * @param string $id       ID.
 		 *
 		 * @return bool
 		 */
@@ -284,7 +290,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Set args.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $args Args array.
+		 * @param array  $args     Args array.
 		 */
 		public static function set_args( $opt_name = '', $args = array() ) {
 			self::check_opt_name( $opt_name );
@@ -298,8 +304,8 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		/**
 		 * Deprecated Sets option panel global arguments.
 		 *
-		 * @param     string $opt_name Panel opt_name.
-		 * @param     array  $args Argument data.
+		 * @param string $opt_name Panel opt_name.
+		 * @param array  $args     Argument data.
 		 *
 		 * @deprecated No longer using camelCase naming convention.
 		 */
@@ -315,7 +321,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Set Section.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $section Section array.
+		 * @param array  $section  Section array.
 		 */
 		public static function set_section( $opt_name = '', $section = array() ) {
 			self::check_opt_name( $opt_name );
@@ -371,9 +377,9 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		/**
 		 * Process Section Array.
 		 *
-		 * @param string $opt_name Panel opt_name.
+		 * @param string $opt_name   Panel opt_name.
 		 * @param string $profile_id Profile ID.
-		 * @param array  $sections Sections array.
+		 * @param array  $sections   Sections array.
 		 */
 		public static function process_sections_array( $opt_name = '', $profile_id = '', $sections = array() ) {
 			if ( ! empty( $opt_name ) && ! empty( $profile_id ) && is_array( $sections ) && ! empty( $sections ) ) {
@@ -396,9 +402,9 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		/**
 		 * Process Fields Array.
 		 *
-		 * @param string $opt_name Panel opt_name.
+		 * @param string $opt_name   Panel opt_name.
 		 * @param string $section_id Section ID.
-		 * @param array  $fields Fields array.
+		 * @param array  $fields     Fields array.
 		 */
 		public static function process_fields_array( $opt_name = '', $section_id = '', $fields = array() ) {
 			if ( ! empty( $opt_name ) && ! empty( $section_id ) && is_array( $fields ) && ! empty( $fields ) ) {
@@ -418,7 +424,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Get field.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $id Field ID.
+		 * @param string $id       Field ID.
 		 *
 		 * @return bool
 		 */
@@ -436,7 +442,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Set field.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $field Field array.
+		 * @param array  $field    Field array.
 		 */
 		public static function set_field( $opt_name = '', $field = array() ) {
 			self::check_opt_name( $opt_name );
@@ -454,7 +460,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Set Profile.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $profile Profile array.
+		 * @param array  $profile  Profile array.
 		 */
 		public static function set_profile( $opt_name = '', $profile = array() ) {
 			self::check_opt_name( $opt_name );
@@ -507,7 +513,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Deprecated Set profile method.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param array  $profile Profile array.
+		 * @param array  $profile  Profile array.
 		 *
 		 * @deprecated No longer using camelCase naming convention.
 		 */
@@ -568,7 +574,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Get Box.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $key Key.
+		 * @param string $key      Key.
 		 *
 		 * @return mixed
 		 */
@@ -584,7 +590,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Deprecated Get box method.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $key Key.
+		 * @param string $key      Key.
 		 *
 		 * @return mixed
 		 * @deprecated No longer using camelCase naming convention.
@@ -601,7 +607,7 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Get Priority.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param mixed  $type Type.
+		 * @param mixed  $type     Type.
 		 *
 		 * @return mixed
 		 */
@@ -616,12 +622,12 @@ if ( ! class_exists( 'Redux_Users' ) ) {
 		 * Deprecated Get box method.
 		 *
 		 * @param string $opt_name Panel opt_name.
-		 * @param string $key Key.
+		 * @param string $type     type.
 		 *
 		 * @return mixed
 		 * @deprecated No longer using camelCase naming convention.
 		 */
-		public static function getPriority(  $opt_name, $type ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+		public static function getPriority( $opt_name, $type ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			if ( '' !== $opt_name ) {
 				Redux_Functions_Ex::record_caller( $opt_name );
 			}
