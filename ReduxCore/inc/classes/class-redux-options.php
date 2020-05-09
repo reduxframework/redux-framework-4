@@ -615,7 +615,13 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			if ( isset( $core->transients['run_compiler'] ) && $core->transients['run_compiler'] ) {
 
 				$core->no_output = true;
+				$temp            = $core->args['output_variables_prefix'];
+				// Allow the override of variables prefix for use by SCSS or LESS.
+				if ( isset( $core->args['compiler_output_variables_prefix'] ) ) {
+					$core->args['output_variables_prefix'] = $core->args['compiler_output_variables_prefix'];
+				}
 				$core->output_class->enqueue();
+				$core->args['output_variables_prefix'] = $temp;
 
 				/**
 				 * Action 'redux/options/{opt_name}/compiler'
@@ -628,7 +634,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 				$compiler_css = $core->compilerCSS;
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				do_action( "redux/options/{$core->args['opt_name']}/compiler", $core->options, $compiler_css, $core->transients['changed_values'] );
+				do_action( "redux/options/{$core->args['opt_name']}/compiler", $core->options, $compiler_css, $core->transients['changed_values'], $core->output_variables );
 
 				/**
 				 * Action 'redux/options/{opt_name}/compiler/advanced'
@@ -750,7 +756,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						"redux/options/{$core->args['opt_name']}/import",
+						"redux/options/{$core->args['opt_name']}/import", // phpcs:ignore WordPress.NamingConventions.ValidHookName
 						array(
 							&$plugin_options,
 							$imported_options,
@@ -892,9 +898,8 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			 * @param  &array [&$plugin_options, redux_options]
 			 */
 
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action_ref_array(
-				"redux/options/{$core->args['opt_name']}/validate",
+				"redux/options/{$core->args['opt_name']}/validate", // phpcs:ignore WordPress.NamingConventions.ValidHookName
 				array(
 					&$plugin_options,
 					$core->options,
@@ -919,9 +924,8 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			}
 
 			unset( $plugin_options['defaults'], $plugin_options['defaults_section'], $plugin_options['import'], $plugin_options['import_code'], $plugin_options['import_link'], $plugin_options['compiler'], $plugin_options['redux-section'] );
-			if ( 'transient' === $core->args['database'] || 'theme_mods' === $core->args['database'] || 'theme_mods_expanded' === $core->args['database'] ) {
-				$core->set( $plugin_options );
-
+			if ( in_array( $core->args['database'], array( 'transient', 'theme_mods', 'theme_mods_expanded' ), true ) ) {
+				$core->set( $core->args['opt_name'], $plugin_options );
 				return;
 			}
 
