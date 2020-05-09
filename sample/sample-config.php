@@ -2321,7 +2321,7 @@ Redux::set_section(
 			array(
 				'id'       => 'opt-required-nested-buttonset',
 				'type'     => 'button_set',
-				'title'    => esc_html( 'Multiple Nested Required Examples', 'your-domain-here' ),
+				'title'    => esc_html__( 'Multiple Nested Required Examples', 'your-domain-here' ),
 				'subtitle' => wp_kses_post( __( 'Click any buton to show different fields based on their <code>required</code> statements.', 'your-domain-here' ) ),
 				'options'  => array(
 					'button-text'     => esc_html__( 'Show Text Field', 'your-domain-here' ),

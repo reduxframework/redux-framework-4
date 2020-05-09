@@ -31,22 +31,22 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 			$this->add_text   = ( isset( $this->field['add_text'] ) ) ? $this->field['add_text'] : esc_html__( 'Add More', 'redux-framework' );
 			$this->show_empty = ( isset( $this->field['show_empty'] ) ) ? $this->field['show_empty'] : true;
 
-			echo '<ul id="' . esc_attr( $this->field['id'] ) . '-ul" class="redux-multi-text">';
+			echo '<ul id="' . esc_attr( $this->field['id'] ) . '-ul" class="redux-multi-text ' . esc_attr( $this->field['class'] ) . '">';
 
 			if ( isset( $this->value ) && is_array( $this->value ) ) {
 				foreach ( $this->value as $k => $value ) {
 					if ( '' !== $value || ( '' === $value && true === $this->show_empty ) ) {
 						echo '<li>';
-						echo '<input 
-								type="text" 
-								id="' . esc_attr( $this->field['id'] . '-' . $k ) . '" 
-								name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[]" 
-								value="' . esc_attr( $value ) . '" 
-								class="regular-text ' . esc_attr( $this->field['class'] ) . '" /> ';
+						echo '<input
+								type="text"
+								id="' . esc_attr( $this->field['id'] . '-' . $k ) . '"
+								name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[]"
+								value="' . esc_attr( $value ) . '"
+								class="regular-text" /> ';
 
-						echo '<a 
-								data-id="' . esc_attr( $this->field['id'] ) . '-ul" 
-								href="javascript:void(0);" 
+						echo '<a
+								data-id="' . esc_attr( $this->field['id'] ) . '-ul"
+								href="javascript:void(0);"
 								class="deletion redux-multi-text-remove">' .
 								esc_html__( 'Remove', 'redux-framework' ) . '</a>';
 						echo '</li>';
@@ -54,16 +54,16 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 				}
 			} elseif ( true === $this->show_empty ) {
 				echo '<li>';
-				echo '<input 
-						type="text" 
-						id="' . esc_attr( $this->field['id'] . '-0' ) . '" 
-						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[]" 
-						value="" 
-						class="regular-text ' . esc_attr( $this->field['class'] ) . '" /> ';
+				echo '<input
+						type="text"
+						id="' . esc_attr( $this->field['id'] . '-0' ) . '"
+						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[]"
+						value=""
+						class="regular-text" /> ';
 
-				echo '<a 
-						data-id="' . esc_attr( $this->field['id'] ) . '-ul"  
-						href="javascript:void(0);" 
+				echo '<a
+						data-id="' . esc_attr( $this->field['id'] ) . '-ul"
+						href="javascript:void(0);"
 						class="deletion redux-multi-text-remove">' .
 						esc_html__( 'Remove', 'redux-framework' ) . '</a>';
 
@@ -76,16 +76,16 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 			}
 
 			echo '<li style="display:none;">';
-			echo '<input 
-					type="text" 
-					id="' . esc_attr( $this->field['id'] ) . '" 
-					name="' . esc_attr( $the_name ) . '" 
-					value="" 
+			echo '<input
+					type="text"
+					id="' . esc_attr( $this->field['id'] ) . '"
+					name="' . esc_attr( $the_name ) . '"
+					value=""
 					class="regular-text" /> ';
 
-			echo '<a 
-					data-id="' . esc_attr( $this->field['id'] ) . '-ul" 
-					href="javascript:void(0);" 
+			echo '<a
+					data-id="' . esc_attr( $this->field['id'] ) . '-ul"
+					href="javascript:void(0);"
 					class="deletion redux-multi-text-remove">' .
 					esc_html__( 'Remove', 'redux-framework' ) . '</a>';
 

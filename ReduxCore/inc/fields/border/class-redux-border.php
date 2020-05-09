@@ -345,6 +345,16 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 			// Regex is our friend.  THERE ARE FOUR LIGHTS!!
 			return preg_replace( '/[^\d.-]/', '', $s );
 		}
+
+		/**
+		 * Enable output_variables to be generated.
+		 *
+		 * @since       4.0.3
+		 * @return void
+		 */
+		public function output_variables() {
+			// No code needed, just defining the method is enough.
+		}
 	}
 }
 

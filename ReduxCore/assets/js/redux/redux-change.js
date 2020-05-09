@@ -30,7 +30,6 @@ function redux_change( variable ) {
 	(function( $ ) {
 		var rContainer;
 		var opt_name;
-		var li;
 		var parentID;
 		var id;
 		var th;
@@ -43,19 +42,13 @@ function redux_change( variable ) {
 		variable = $( variable );
 
 		rContainer = $( variable ).parents( '.redux-container:first' );
-		opt_name   = '';
 
 		if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
-			li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
-
-			opt_name = li.data( 'opt-name' );
-
-			redux.optName = window['redux_' + opt_name];
+			opt_name = $( '.panel-meta.customize-info.redux-panel.accordion-section' ).data( 'opt-name' );
 		} else {
 			opt_name = $.redux.getOptName( rContainer );
-
-			redux.optName = window['redux_' + opt_name];
 		}
+		redux.optName = window['redux_' + opt_name];
 
 		$( 'body' ).trigger( 'check_dependencies', variable );
 

@@ -1,5 +1,22 @@
 # Redux Framework v4 Changelog
 
+## 4.0.3
+* Fixed:    PHPCS findings.
+& Added:    New output_variables flags that dynamically add CSS variables to pages even on fields that do not support 
+            dynamic CSS output. Thanks @andrejarh for the idea!
+
+## 4.0.2
+* Fixed:    PHP backwards compatibility for extensions. Still have to work on JS probably.
+
+## 4.0.1.9
+* Fixed:    #33 - Reset Section and Reset All not show appropriate message. Thanks @voldemortensen!
+* Fixed:    #29 - Multi-Text class not saving properly per new field. Adding to parent container only instead.
+* Fixed:    #48 - Color RGBa field alpha was not showing.
+* Removed:  Deprecated notices for old Redux API is fine.
+* Fixed:    Fixes for color and comma numeric validations.
+* Fixed:    #30 - Initial load of typography always initiates a redux_change. Resolved, thanks @kprovance.
+* Fixed:    #31 - Text field not show the correct type, thanks @adrix71!
+
 ## 4.0.1.8
 * Fixed:    #30 - Typography field causing a "save" notice.
 * Added:    Start of Redux Builder API for fields.

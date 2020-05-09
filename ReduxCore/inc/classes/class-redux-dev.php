@@ -39,7 +39,7 @@ if ( ! class_exists( 'Redux_Dev', false ) ) {
 				if ( ! isset( $GLOBALS['redux_notice_check'] ) || 0 === $GLOBALS['redux_notice_check'] ) {
 					$params = array(
 						'dir_name'    => 'notice',
-						'server_file' => '//reduxframework.com/wp-content/uploads/redux/redux_notice.json',
+						'server_file' => 'https://reduxframework.com/wp-content/uploads/redux/redux_notice.json',
 						'interval'    => 3,
 						'cookie_id'   => 'redux_blast',
 					);

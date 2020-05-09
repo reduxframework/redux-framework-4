@@ -425,7 +425,6 @@
         }
 
         input {
-            margin-left: 5px;
             line-height: 19px;
 
             &.large-text {
@@ -1415,6 +1414,16 @@ div.redux-star {
                     display: initial;
                 }
             }
+        }
+    }
+}
+
+// Gutenberg
+.block-editor-page {
+    .redux-container {
+        .redux-metabox .redux-container {
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
         }
     }
 }

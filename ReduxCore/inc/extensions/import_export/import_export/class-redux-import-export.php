@@ -60,7 +60,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * @return      void
 		 */
 		public function render() {
-			$secret = md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] );
+			$secret = md5( md5( Redux_Helpers::hash_key() ) . '-' . $this->parent->args['opt_name'] );
 
 			// No errors please.
 			$defaults = array(
@@ -167,15 +167,13 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * @return      void
 		 */
 		public function enqueue() {
-			if ( $this->parent->args['dev_mode'] ) {
-				wp_enqueue_script(
-					'redux-extension-import-export-js',
-					$this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js',
-					array( 'jquery', 'redux-js' ),
-					Redux_Extension_Import_Export::$version,
-					true
-				);
-			}
+			wp_enqueue_script(
+				'redux-extension-import-export-js',
+				$this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js',
+				array( 'jquery', 'redux-js' ),
+				Redux_Extension_Import_Export::$version,
+				true
+			);
 
 			wp_enqueue_style(
 				'redux-import-export',

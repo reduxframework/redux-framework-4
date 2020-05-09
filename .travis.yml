@@ -4,6 +4,8 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
+services:
+    - mysql
 
 # Declare versions of PHP to use. Use one decimal max.
 php:

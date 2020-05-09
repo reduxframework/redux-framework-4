@@ -1,5 +1,5 @@
 === Redux Framework ===
-Contributors: dovyp, kprovance
+Contributors: dovyp
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MMFMHWUPKHKPW
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings, web fonts, google fonts
 Requires at least: 4.0

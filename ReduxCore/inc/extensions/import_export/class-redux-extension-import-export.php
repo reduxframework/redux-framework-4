@@ -129,7 +129,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 * Import link options.
 		 */
 		public function link_options() {
-			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( ! isset( $_GET['secret'] ) || md5( md5( Redux_Helpers::hash_key() ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				wp_die( 'Invalid Secret for options use' );
 				exit;
 			}
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 * Import download options.
 		 */
 		public function download_options() {
-			if ( ! isset( $_GET['secret'] ) || md5( md5( AUTH_KEY . SECURE_AUTH_KEY ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( ! isset( $_GET['secret'] ) || md5( md5( Redux_Helpers::hash_key() ) . '-' . $this->parent->args['opt_name'] ) !== $_GET['secret'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				wp_die( 'Invalid Secret for options use' );
 				exit;
 			}
@@ -169,7 +169,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 			if ( isset( $_GET['action'] ) && 'redux_download_options-' . $this->parent->args['opt_name'] === $_GET['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				header( 'Content-Description: File Transfer' );
 				header( 'Content-type: application/txt' );
-				header( 'Content-Disposition: attachment; filename="redux_options_"' . $this->parent->args['opt_name'] . '_backup_' . date( 'd-m-Y' ) . '.json' );
+				header( 'Content-Disposition: attachment; filename="redux_options_"' . $this->parent->args['opt_name'] . '_backup_' . gmdate( 'd-m-Y' ) . '.json' );
 				header( 'Content-Transfer-Encoding: binary' );
 				header( 'Expires: 0' );
 				header( 'Cache-Control: must-revalidate' );

@@ -28,7 +28,11 @@ if ( ! class_exists( 'Redux_Radio', false ) ) {
 					$this->field['args'] = array();
 				}
 
-				$this->field['options'] = $this->parent->get_wordpress_data( $this->field['data'], $this->field['args'], $this->value );
+				if ( is_array( $this->field['data'] ) ) {
+					$this->field['options'] = $this->field['data'];
+				} else {
+					$this->field['options'] = $this->parent->get_wordpress_data( $this->field['data'], $this->field['args'], $this->value );
+				}
 			}
 
 			$this->field['data_class'] = ( isset( $this->field['multi_layout'] ) ) ? 'data-' . $this->field['multi_layout'] : 'data-full';

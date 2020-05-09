@@ -24,6 +24,8 @@ ehthumbs.db
 Icon?
 Thumbs.db
 ._*
+package.lock
+yarn.lock
 
 # Vim generated files #
 ######################

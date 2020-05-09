@@ -28,7 +28,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 			// If options is NOT empty, the process.
 			if ( ! empty( $this->field['options'] ) ) {
 
-				// beancounter.
+				// bean counter.
 				$x = 1;
 
 				// Process width.
@@ -87,7 +87,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 
 					// If selected returns something other than a blank space, we
 					// found our default/saved name.  Save the array number in a
-					// variable to use later on when we want to extract its associted
+					// variable to use later on when we want to extract its associated
 					// url.
 					if ( '' !== $selected ) {
 						$arr_num = $x;
@@ -117,7 +117,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 				// Set the default image.  To get the url from the default name,
 				// we save the array count from the for/each loop, when the default image
 				// is mark as selected.  Since the for/each loop starts at one, we must
-				// substract one from the saved array number.  We then pull the url
+				// subtract one from the saved array number.  We then pull the url
 				// out of the options array, and there we go.
 				if ( '' === $this->value ) {
 					echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . esc_attr( $this->field['id'] ) . '">';

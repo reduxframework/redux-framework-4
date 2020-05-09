@@ -159,7 +159,9 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					case 'post':
 					case 'posts':
 						$this->maybe_translate( $current_value, 'post' );
-
+						if ( ! is_array( $current_value ) ) {
+							$current_value = array( $current_value );
+						}
 						$posts = get_posts( array( 'post__in' => $current_value ) );
 						if ( ! empty( $posts ) ) {
 							foreach ( $posts as $post ) {

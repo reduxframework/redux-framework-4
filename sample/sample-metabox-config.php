@@ -95,7 +95,7 @@ Redux_Metaboxes::set_box(
 						'type'     => 'color',
 						'title'    => __( 'Color Field', 'your-domain-here' ),
 						'default'  => '#333333',
-						'required' => array( 'opt-layout', '=', true ),
+						'required' => array( 'opt-layout', '=', 'on' ),
 					),
 				),
 			),

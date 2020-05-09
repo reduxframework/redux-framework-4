@@ -53,52 +53,54 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Redux_Args constructor.
 		 *
-		 * @param object $parent ReduxFramework object.
-		 * @param array  $args   Global arguments array.
+		 * @param     object $parent ReduxFramework object.
+		 * @param     array  $args Global arguments array.
 		 */
 		public function __construct( $parent, $args ) {
 			$this->parent = $parent;
 
 			$default = array(
-				'opt_name'                  => '',
-				'last_tab'                  => '',
-				'menu_icon'                 => '',
-				'menu_title'                => '',
-				'page_title'                => '',
-				'page_slug'                 => '',
-				'page_permissions'          => 'manage_options',
-				'menu_type'                 => 'menu',
-				'page_parent'               => 'themes.php',
-				'page_priority'             => null,
-				'allow_sub_menu'            => true,
-				'save_defaults'             => true,
-				'footer_credit'             => '',
-				'async_typography'          => false,
-				'disable_google_fonts_link' => false,
-				'class'                     => '',
-				'admin_bar'                 => true,
-				'admin_bar_priority'        => 999,
-				'admin_bar_icon'            => '',
-				'help_tabs'                 => array(),
-				'help_sidebar'              => '',
-				'database'                  => '',
-				'customizer'                => false,
-				'global_variable'           => '',
-				'output'                    => true,
-				'compiler'                  => true,
-				'output_tag'                => true,
-				'output_location'           => array( 'frontend' ),
-				'transient_time'            => '',
-				'default_show'              => false,
-				'default_mark'              => '',
-				'disable_save_warn'         => false,
-				'open_expanded'             => false,
-				'hide_expand'               => false,
-				'network_admin'             => false,
-				'network_sites'             => true,
-				'hide_reset'                => false,
-				'hide_save'                 => false,
-				'hints'                     => array(
+				'opt_name'                         => '',
+				'last_tab'                         => '',
+				'menu_icon'                        => '',
+				'menu_title'                       => '',
+				'page_title'                       => '',
+				'page_slug'                        => '',
+				'page_permissions'                 => 'manage_options',
+				'menu_type'                        => 'menu',
+				'page_parent'                      => 'themes.php',
+				'page_priority'                    => null,
+				'allow_sub_menu'                   => true,
+				'save_defaults'                    => true,
+				'footer_credit'                    => '',
+				'async_typography'                 => false,
+				'disable_google_fonts_link'        => false,
+				'class'                            => '',
+				'admin_bar'                        => true,
+				'admin_bar_priority'               => 999,
+				'admin_bar_icon'                   => '',
+				'help_tabs'                        => array(),
+				'help_sidebar'                     => '',
+				'database'                         => '',
+				'customizer'                       => false,
+				'global_variable'                  => '',
+				'output'                           => true,
+				'output_variables_prefix'          => '--',
+				'compiler_output_variables_prefix' => '$',
+				'compiler'                         => true,
+				'output_tag'                       => true,
+				'output_location'                  => array( 'frontend' ),
+				'transient_time'                   => '',
+				'default_show'                     => false,
+				'default_mark'                     => '',
+				'disable_save_warn'                => false,
+				'open_expanded'                    => false,
+				'hide_expand'                      => false,
+				'network_admin'                    => false,
+				'network_sites'                    => true,
+				'hide_reset'                       => false,
+				'hide_save'                        => false,
+				'hints'                            => array(
 					'icon'          => 'el el-question-sign',
 					'icon_position' => 'right',
 					'icon_color'    => 'lightgray',
@@ -126,18 +128,18 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						),
 					),
 				),
-				'show_import_export'        => true,
-				'show_options_object'       => true,
-				'dev_mode'                  => true,
-				'templates_path'            => '',
-				'ajax_save'                 => true,
-				'use_cdn'                   => true,
-				'cdn_check_time'            => 1440,
-				'options_api'               => true,
-				'allow_tracking'            => true,
-				'admin_theme'               => 'wordpress',
-				'elusive_frontend'          => false,
-				'pro'                       => array(),
+				'show_import_export'               => true,
+				'show_options_object'              => true,
+				'dev_mode'                         => true,
+				'templates_path'                   => '',
+				'ajax_save'                        => true,
+				'use_cdn'                          => true,
+				'cdn_check_time'                   => 1440,
+				'options_api'                      => true,
+				'allow_tracking'                   => true,
+				'admin_theme'                      => 'wordpress',
+				'elusive_frontend'                 => false,
+				'pro'                              => array(),
 			);
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -160,7 +162,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Builds and sanitizes global args array.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 *
 		 * @return mixed|void
 		 */
@@ -192,7 +194,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Apply filters to arg data.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 *
 		 * @return mixed|void
 		 */
@@ -200,7 +202,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			/**
 			 * Filter 'redux/args/{opt_name}'
 			 *
-			 * @param  array $args ReduxFramework configuration
+			 * @param     array     $args ReduxFramework configuration
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -209,7 +211,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			/**
 			 * Filter 'redux/options/{opt_name}/args'
 			 *
-			 * @param  array $args ReduxFramework configuration
+			 * @param     array     $args ReduxFramework configuration
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -221,7 +223,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Sanitize args that should not be empty.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 *
 		 * @return mixed
 		 */
@@ -231,8 +233,14 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			}
 
 			if ( empty( $args['footer_credit'] ) ) {
-				// translators: Redux URL with title.
-				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Powered by  %1$s', 'redux-framework' ), '<a href="' . esc_url( '//www.reduxframework.com' ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . Redux_Core::$version ) . '</span>';
+				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf(
+					// translators: Redux URL with title.
+					esc_html__( 'Powered by  %1$s', 'redux-framework' ),
+					'<a href="' . esc_url( '//www.reduxframework.com' ) . '" target="_blank">' . esc_html__(
+						'Redux Framework',
+						'redux-framework'
+					) . '</a> v' . Redux_Core::$version
+				) . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {
@@ -262,7 +270,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Shims for much older v3 configs.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 *
 		 * @return mixed
 		 */
@@ -293,7 +301,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Verify to see if dev has bothered to change admin bar links and share icons from demo data to their own.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 */
 		private function change_demo_defaults( $args ) {
 			if ( $args['dev_mode'] || true === Redux_Helpers::is_local_host() ) {
@@ -302,7 +310,16 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
 								if ( strpos( strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice', 'redux-framework' ) . ' </strong>' . esc_html__( 'There are references to the Redux Framework support site in your config\'s ', 'redux-framework' ) . '<code>admin_bar_links</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'redux-framework' );
+									$msg = '<strong>' . esc_html__(
+										'Redux Framework Notice',
+										'redux-framework'
+									) . ' </strong>' . esc_html__(
+										'There are references to the Redux Framework support site in your config\'s ',
+										'redux-framework'
+									) . '<code>admin_bar_links</code> ' . esc_html__(
+										'argument.  This is sample data.  Please change or remove this data before shipping your product.',
+										'redux-framework'
+									);
 
 									$this->omit_items = true;
 									continue;
@@ -317,7 +334,16 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
 								if ( strpos( strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice:', 'redux-framework' ) . '</strong>' . esc_html__( 'There are references to the Redux Framework support site in your config\'s', 'redux-framework' ) . ' <code>share_icons</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'redux-framework' );
+									$msg = '<strong>' . esc_html__(
+										'Redux Framework Notice:',
+										'redux-framework'
+									) . '</strong>' . esc_html__(
+										'There are references to the Redux Framework support site in your config\'s',
+										'redux-framework'
+									) . ' <code>share_icons</code> ' . esc_html__(
+										'argument.  This is sample data.  Please change or remove this data before shipping your product.',
+										'redux-framework'
+									);
 
 									$this->omit_icons = true;
 								}
@@ -331,7 +357,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Fix other arg criteria that sometimes gets hosed up.
 		 *
-		 * @param array $args Global args.
+		 * @param     array $args Global args.
 		 *
 		 * @return mixed
 		 */
