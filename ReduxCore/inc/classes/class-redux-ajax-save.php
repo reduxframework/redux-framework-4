@@ -67,8 +67,6 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 					$values = Redux_Functions_Ex::parse_str( $post_data );
 					$values = $values[ $redux->args['opt_name'] ];
 
-					$values = array_map( 'stripslashes_deep', $values );
-
 					if ( ! empty( $values ) ) {
 						try {
 							if ( isset( $redux->validation_ran ) ) {
