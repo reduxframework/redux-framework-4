@@ -67,9 +67,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 					$values = Redux_Functions_Ex::parse_str( $post_data );
 					$values = $values[ $redux->args['opt_name'] ];
 
-					if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-						$values = array_map( 'stripslashes_deep', $values );
-					}
+					$values = array_map( 'stripslashes_deep', $values );
 
 					if ( ! empty( $values ) ) {
 						try {
