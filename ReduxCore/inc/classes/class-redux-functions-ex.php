@@ -3,8 +3,8 @@
  * Redux Framework Private Extended Functions Container Class
  *
  * @class       Redux_Functions_Ex
- * @package     Redux_Framework/Classes
  * @since       3.0.0
+ * @package     Redux_Framework/Classes
  */
 
 // Exit if accessed directly.
@@ -32,12 +32,12 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * Parses the string into variables without the max_input_vars limitation.
 		 *
 		 * @since   3.5.7.11
-		 * @author  harunbasic
-		 * @access  private
 		 *
-		 * @param   string $string String of data.
+		 * @param     string $string String of data.
 		 *
 		 * @return  array|false $result
+		 * @author  harunbasic
+		 * @access  private
 		 */
 		public static function parse_str( $string ) {
 			if ( '' === $string ) {
@@ -68,13 +68,13 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * As seen here http://php.net/manual/en/function.array-merge-recursive.php#92195
 		 *
 		 * @since   3.5.7.11
-		 * @author  harunbasic
-		 * @access  private
 		 *
-		 * @param   array $array1 array one.
-		 * @param   array $array2 array two.
+		 * @param     array $array1 array one.
+		 * @param     array $array2 array two.
 		 *
 		 * @return  array $merged
+		 * @author  harunbasic
+		 * @access  private
 		 */
 		public static function array_merge_recursive_distinct( array $array1, array $array2 ) {
 			$merged = $array1;
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Records calling function.
 		 *
-		 * @param string $opt_name Panel opt_name.
+		 * @param     string $opt_name Panel opt_name.
 		 */
 		public static function record_caller( $opt_name = '' ) {
 			global $pagenow;
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Normalize path.
 		 *
-		 * @param string $path Path to normalize.
+		 * @param     string $path Path to normalize.
 		 *
 		 * @return mixed|null|string|string[]
 		 */
@@ -168,7 +168,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Get metabox boxes.
 		 *
-		 * @param object $core Metabox object.
+		 * @param     object $core Metabox object.
 		 *
 		 * @return bool
 		 */
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Is Redux embedded inside a plugin.
 		 *
-		 * @param string $file File to check.
+		 * @param     string $file File to check.
 		 *
 		 * @return array|bool
 		 */
@@ -195,13 +195,16 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				$slug = explode( '/', $plugin_basename );
 				$slug = $slug[0];
 
-				return array(
+				$data             = array(
 					'slug'      => $slug,
 					'basename'  => $plugin_basename,
 					'path'      => self::wp_normalize_path( $file ),
 					'url'       => plugins_url( $plugin_basename ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
+				$data['realpath'] = $data['real_path'];  // Shim for old extensions.
+
+				return $data;
 			}
 
 			return false;
@@ -210,7 +213,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Verify Pro Nonce.
 		 *
-		 * @param string $nonce Nonce.
+		 * @param     string $nonce Nonce.
 		 *
 		 * @return bool|int
 		 */
@@ -221,14 +224,16 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		/**
 		 * Is Redux embedded in a theme.
 		 *
-		 * @param string $file File to check.
+		 * @param     string $file File to check.
 		 *
 		 * @return array|bool
 		 */
 		public static function is_inside_theme( $file = '' ) {
 			$theme_paths = array(
-				self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),      // parent.
-				self::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(),    // child.
+				self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),
+				// parent.
+				self::wp_normalize_path( get_stylesheet_directory() ) => get_stylesheet_directory_uri(),
+				// child.
 			);
 
 			$theme_paths = array_unique( $theme_paths );
@@ -248,17 +253,18 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				}
 
 				if ( ! empty( $real_path ) && strpos( $file_path, $real_path ) !== false ) {
-					$slug          = explode( '/', $theme_path );
-					$slug          = end( $slug );
-					$relative_path = explode( $slug . '/', dirname( $file_path ) );
-					$relative_path = $relative_path[1];
-					$data          = array(
+					$slug             = explode( '/', $theme_path );
+					$slug             = end( $slug );
+					$relative_path    = explode( $slug . '/', dirname( $file_path ) );
+					$relative_path    = $relative_path[1];
+					$data             = array(
 						'slug'      => $slug,
 						'path'      => trailingslashit( trailingslashit( $theme_path ) . $relative_path ) . $filename,
 						'real_path' => trailingslashit( trailingslashit( $real_path ) . $relative_path ) . $filename,
 						'url'       => trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename,
 						'basename'  => trailingslashit( $slug ) . trailingslashit( $relative_path ) . $filename,
 					);
+					$data['realpath'] = $data['real_path'];  // Shim for old extensions.
 
 					if ( count( $theme_paths ) > 1 ) {
 						$key = array_search( $theme_path, $theme_paths, true );
@@ -277,5 +283,78 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			return false;
 		}
+
+		/**
+		 * Used to fix 3.x and 4 compatibility for extensions
+		 *
+		 * @param     object $parent The extension parent object.
+		 * @param     string $path - Path of the file.
+		 * @param     string $ext_class - Extension class name.
+		 * @param     string $new_class_name - New dynamic class name.
+		 * @param     string $name extension name.
+		 *
+		 * @return object - Extended field class.
+		 */
+		public static function extension_compatibility( $parent, $path, $ext_class, $new_class_name, $name ) {
+			$upload_dir = ReduxFramework::$_upload_dir . '/compatibility/';
+			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
+				if ( ! is_dir( $upload_dir ) ) {
+					$parent->filesystem->execute( 'mkdir', $upload_dir );
+					$parent->filesystem->execute( 'put_contents', $upload_dir . 'index.php', array( 'content' => '<?php // Silence is golden.' ) );
+				}
+				if ( ! class_exists( $ext_class ) ) {
+					require_once $path;
+				}
+				if ( ! file_exists( $upload_dir . $new_class_name . '.php' ) ) {
+					$class_file = '<?php' . PHP_EOL . PHP_EOL .
+						'class {{ext_class}} extends Redux_Extension_Abstract {' . PHP_EOL .
+						'    private $c;' . PHP_EOL .
+						'    public function __construct( $parent, $path, $ext_class ) {' . PHP_EOL .
+						'        $this->c = $parent->extensions[\'' . $name . '\'];' . PHP_EOL .
+						'        // Add all the params of the Abstract to this instance.' . PHP_EOL .
+						'        foreach( get_object_vars( $this->c ) as $key => $value ) {' . PHP_EOL .
+						'            $this->$key = $value;' . PHP_EOL .
+						'        }' . PHP_EOL .
+						'        parent::__construct( $parent, $path );' . PHP_EOL .
+						'    }' . PHP_EOL .
+						'    // fake "extends Redux_Extension_Abstract\" using magic function' . PHP_EOL .
+						'    public function __call( $method, $args ) {' . PHP_EOL .
+						'        $this->c->$method( $args[0] );' . PHP_EOL .
+						'    }' . PHP_EOL .
+						'}' . PHP_EOL;
+					$template   = str_replace( '{{ext_class}}', $new_class_name, $class_file );
+					$parent->filesystem->execute( 'put_contents', $upload_dir . $new_class_name . '.php', array( 'content' => $template ) );
+				}
+				if ( file_exists( $upload_dir . $new_class_name . '.php' ) ) {
+					include_once $upload_dir . $new_class_name . '.php';
+				}
+
+				return new $new_class_name( $parent, $path, $ext_class );
+			}
+		}
+
+		/**
+		 * Used to deep merge two arrays.
+		 *
+		 * @param     array $a First array to deep merge.
+		 * @param     array $b Second array to deep merge.
+		 *
+		 * @return    array - Deep merge of the two arrays.
+		 */
+		public static function nested_wp_parse_args( &$a, $b ) {
+			$a      = (array) $a;
+			$b      = (array) $b;
+			$result = $b;
+			foreach ( $a as $k => &$v ) {
+				if ( is_array( $v ) && isset( $result[ $k ] ) ) {
+					$result[ $k ] = self::nested_wp_parse_args( $v, $result[ $k ] );
+				} else {
+					$result[ $k ] = $v;
+				}
+			}
+
+			return $result;
+		}
+
 	}
 }
