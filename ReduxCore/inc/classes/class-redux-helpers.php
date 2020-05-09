@@ -71,8 +71,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @param object $parent ReduxFramework object.
 		 * @param array  $field  Field array.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return int|string
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function tabFromField( $parent, $field ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0', 'Redux_Helpers::tab_from_field( $parent, $field )' );
@@ -108,8 +108,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @param object $fields Field arrays.
 		 * @param array  $field  Field array.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return int|string
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isFieldInUseByType( $fields, $field = array() ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			// TODO - Uncomment this at release.
@@ -142,8 +142,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @param object $parent ReduxFramework object.
 		 * @param array  $field  Field type.
 		 *
-		 * @deprecated No longer using camelCase function names.
 		 * @return bool
+		 * @deprecated No longer using camelCase function names.
 		 */
 		public static function isFieldInUse( $parent, $field ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			// TODO - Uncomment this at release.
@@ -161,6 +161,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return bool
 		 */
 		public static function is_field_in_use( $parent, $field ) {
+			if ( empty( $parent->sections ) ) {
+				return;
+			}
 			foreach ( $parent->sections as $k => $section ) {
 				if ( ! isset( $section['title'] ) ) {
 					continue;
@@ -194,9 +197,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Checks for localhost environment.
 		 *
-		 * @since      4.0
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::is_local_host()
+		 * @deprecated No longer using camelCase naming convention.
+		 * @since      4.0
 		 */
 		public static function isLocalHost() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0', 'Redux_Helpers::is_local_host()' );
@@ -216,9 +219,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Checks if WP_DEBUG is enabled.
 		 *
-		 * @since      4.0
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::is_wp_debug()
+		 * @deprecated No longer using camelCase naming convention.
+		 * @since      4.0
 		 */
 		public static function isWpDebug() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0', 'Redux_Functions_Ex::is_wp_debug()' );
@@ -238,8 +241,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Return tracking object.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::get_statistics_object()
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function getTrackingObject() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			// phpcs:ignore: Squiz.PHP.CommentedOutCode
@@ -251,8 +254,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Return tracking object.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::get_statistics_object()
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function trackingObject() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			// phpcs:ignore Squiz.PHP.CommentedOutCode
@@ -357,6 +360,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 						)
 					),
 				),
+
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				'options'         => apply_filters( 'redux/tracking/options', array() ), // TODO - What is this?!
 
@@ -506,8 +510,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $file Path to file.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Instances::isParentTheme( $file )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isParentTheme( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_parent_theme( $file )' );
@@ -541,8 +545,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $file Path to file.
 		 *
-		 * @deprecated Moved to another class.
 		 * @return Redux_Instances::wp_normalize_path( $file )
+		 * @deprecated Moved to another class.
 		 */
 		public static function wp_normalize_path( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Functions_Ex::wp_normalize_path( $file )' );
@@ -555,8 +559,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $file Path to file.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Instances::is_child_theme( $file )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isChildTheme( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_child_theme( $file )' );
@@ -567,8 +571,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Returns true if Redux is running as a plugin.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::()
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		private static function reduxAsPlugin() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Core::$as_plugin()' );
@@ -602,8 +606,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $file Path to file.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Instances::is_theme( $file )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isTheme( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_theme( $file )' );
@@ -673,9 +677,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $path Path to clean.
 		 *
-		 * @since      3.1.7
-		 * @deprecated Replaced with wp_normalize_path.
 		 * @return Redux_Functions_Ex::wp_normalize_path($path)
+		 * @deprecated Replaced with wp_normalize_path.
+		 * @since      3.1.7
 		 */
 		public static function cleanFilePath( $path ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			// TODO - Uncomment this at release.
@@ -745,7 +749,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Compiles caller data for Redux.
 		 *
-		 * @param book $simple  Mode.
+		 * @param book $simple Mode.
 		 *
 		 * @return array
 		 */
@@ -855,8 +859,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $var String to convert to true boolean.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::make_bool_str( $var )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function makeBoolStr( $var ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::make_bool_str( $var )' );
@@ -934,8 +938,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @param boolean $json_output   Enable/Disable return in JSON format.
 		 * @param boolean $remote_checks Enable/Disable remote URL testing.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::compile_system_status( $json_output, $remote_checks )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function compileSystemStatus( $json_output = false, $remote_checks = false ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::compile_system_status( $json_output, $remote_checks )' );
@@ -1056,9 +1060,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				}
 
 				// phpcs:ignore WordPress.PHP.NoSilencedErrors
-				$response = @wp_remote_get(
-					'https://raw.githubusercontent.com/dovy/redux-framework/master/CONTRIBUTING.md'
-				);
+				$response = @wp_remote_get( 'https://raw.githubusercontent.com/dovy/redux-framework/master/CONTRIBUTING.md' );
 
 				if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 					$sysinfo['wp_remote_get']       = true;
@@ -1150,8 +1152,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @param string $custom_template_path Path to custom template.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::get_redux_templates( $custom_template_path )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		private static function getReduxTemplates( $custom_template_path ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::get_redux_templates( $custom_template_path )' );
@@ -1211,8 +1213,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @param string $base     Base string of site.
 		 * @param string $opt_name Redux instance opt_name.
 		 *
-		 * @deprecated No longer using camelCase naming convention.
 		 * @return Redux_Helpers::r_url_fix( $base, $opt_name )
+		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function rURL_fix( $base, $opt_name ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::r_url_fix( $base, $opt_name )' );
@@ -1375,11 +1377,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Checks a nested capabilities array or string to determine if the current user meets the requirements.
 		 *
-		 * @since 3.6.3.4
-		 *
-		 * @param  string|array $capabilities Permission string or array to check. See self::user_can() for details.
+		 * @param string|array $capabilities Permission string or array to check. See self::user_can() for details.
 		 *
 		 * @return bool Whether or not the user meets the requirements. False on invalid user.
+		 * @since 3.6.3.4
 		 */
 		public static function current_user_can( $capabilities ) {
 			$current_user = wp_get_current_user();
@@ -1403,14 +1404,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * If you get the error: PHP Notice:  Undefined offset: 0 in /wp-includes/capabilities.php, you didn't
 		 * pass the required $object_id.
 		 *
-		 * @since 3.6.3.4
-		 * @example
-		 * ::user_can( 42, 'edit_pages' );                        // Checks if user ID 42 has the 'edit_pages' cap.
-		 * ::user_can( 42, 'edit_page', 17433 );                  // Checks if user ID 42 has the 'edit_page' cap for post ID 17433.
-		 * ::user_can( 42, array( 'edit_pages', 'edit_posts' ) ); // Checks if user ID 42 has both the 'edit_pages' and 'edit_posts' caps.
-		 *
-		 * @param  int|object   $user         User ID or WP_User object to check. Defaults to the current user.
-		 * @param  string|array $capabilities Capability string or array to check. The array lets you use multiple
+		 * @param int|object   $user          User ID or WP_User object to check. Defaults to the current user.
+		 * @param string|array $capabilities  Capability string or array to check. The array lets you use multiple
 		 *                                    conditions to determine if a user has permission.
 		 *                                    Invalid conditions are skipped (conditions which aren't a string/array/bool/number(cast to bool)).
 		 *                                    Example array where the user needs to have either the 'edit_posts' capability OR doesn't have the
@@ -1424,7 +1419,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *                                    'add_users',
 		 *                                    ),
 		 *                                    ).
-		 * @param  int          $object_id    (Optional) ID of the specific object to check against if capability is a "meta" cap.
+		 * @param int          $object_id     (Optional) ID of the specific object to check against if capability is a "meta" cap.
 		 *                                    e.g. 'edit_post', 'edit_user', 'edit_page', etc.
 		 *
 		 * @return bool Whether or not the user meets the requirements.
@@ -1432,6 +1427,11 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *              - Invalid/missing user
 		 *              - If the $capabilities is not a string or array
 		 *              - Max nesting depth exceeded (for that level)
+		 * @since 3.6.3.4
+		 * @example
+		 *        ::user_can( 42, 'edit_pages' );                        // Checks if user ID 42 has the 'edit_pages' cap.
+		 *        ::user_can( 42, 'edit_page', 17433 );                  // Checks if user ID 42 has the 'edit_page' cap for post ID 17433.
+		 *        ::user_can( 42, array( 'edit_pages', 'edit_posts' ) ); // Checks if user ID 42 has both the 'edit_pages' and 'edit_posts' caps.
 		 */
 		public static function user_can( $user, $capabilities, $object_id = null ) {
 			static $depth = 0;
@@ -1646,8 +1646,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		/**
 		 * Deprecated. Gets all Redux instances
 		 *
-		 * @deprecated No longer using camelCase naming convention and moved to a different class.
 		 * @return Redux_Instances::get_all_instances()
+		 * @deprecated No longer using camelCase naming convention and moved to a different class.
 		 */
 		public static function getReduxInstances() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::get_all_instances()' );
@@ -1817,7 +1817,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * Recursive array map.
 		 *
 		 * @param string $func function to run.
-		 * @param array  $arr Array to clean.
+		 * @param array  $arr  Array to clean.
 		 *
 		 * @return array
 		 */
@@ -1832,10 +1832,21 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		}
 
 		/**
+		 * AJAX callback key
+		 */
+		public static function hash_key() {
+			$key  = '';
+			$key .= defined( 'AUTH_KEY' ) ? AUTH_KEY : get_site_url();
+			$key .= defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
+
+			return $key;
+		}
+
+		/**
 		 * AJAX callback.
 		 */
 		public static function hash_arg() {
-			echo esc_html( md5( AUTH_KEY . SECURE_AUTH_KEY . '-redux' ) );
+			echo esc_html( md5( self::hash_key() . '-redux' ) );
 			die();
 		}
 
@@ -1894,8 +1905,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 								// 'field_types'
 							),
 							true
-						)
-						) {
+						) ) {
 							$to_return[ $key ] = $value;
 						} else { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement
 							// phpcs:ignore Squiz.PHP.CommentedOutCode
@@ -1914,7 +1924,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 						$array['instances'][] = $opt_name;
 					}
 				}
-				$array['key'] = md5( AUTH_KEY . SECURE_AUTH_KEY );
+				$array['key'] = md5( self::hash_key() );
 			}
 
 			ksort( $array ); // Let's make that pretty.
