@@ -1240,29 +1240,6 @@ Redux::set_section(
 		'subsection' => true,
 		'fields'     => array(
 			array(
-				'id' => 'section-tester',
-				'type' => 'section',
-				'title' => __('Section with Indent', 'redux'),
-				'indent' => true
-			),
-			array(
-				'id'       => 'opt-test-info',
-				'type'     => 'info',
-				'style'    => 'info',
-				'desc'     => __('An info field!', 'redux')
-			),
-			array(
-				'id'       => 'opt-test-field',
-				'type'     => 'switch',
-				'title'    => __('A switch field', 'redux'),
-				'default'  => true
-			),
-			array(
-				'id'     => 'section-end',
-				'type'   => 'section',
-				'indent' => false, // Indent all options below until the next 'section' option is set.
-			),
-/*			array(
 				'id'       => 'section-start',
 				'type'     => 'section',
 				'title'    => esc_html__( 'Section Example', 'your-domain-here' ),
@@ -1285,7 +1262,7 @@ Redux::set_section(
 				'id'     => 'section-end',
 				'type'   => 'section',
 				'indent' => false, // Indent all options below until the next 'section' option is set.
-			),*/
+			),
 			array(
 				'id'   => 'section-info',
 				'type' => 'info',
