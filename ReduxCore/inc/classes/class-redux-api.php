@@ -1470,44 +1470,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$class_file
 				);
 
-				//$api_check = str_replace( '-lite', '', $api_check );
-
-				if ( true === self::overload_legacy_metaboxes() ) {
-					$name      = '';
-					$api_check = '';
-				}
-
 				if ( file_exists( $api_check ) && ! class_exists( 'Redux_' . ucfirst( $name ) ) ) {
 					include_once $api_check;
 				}
 			}
-		}
-
-		/**
-		 * Check for loaded version of legacy metaboxes.
-		 *
-		 * @return bool
-		 */
-		private static function overload_legacy_metaboxes() {
-			if ( true === Redux_Helpers::recursive_array_search( 'metaboxes', self::$uses_extensions ) ) {
-				foreach ( self::$uses_extensions as $on => $arr ) {
-					if ( in_array( 'metaboxes_lite', $arr, true ) === true ) {
-						$key = array_search( 'metaboxes_lite', $arr, true );
-
-						if ( false !== $key ) {
-							unset( $arr[ $key ] );
-						}
-
-						self::$uses_extensions[ $on ] = $arr;
-
-						return true;
-					}
-				}
-
-				return false;
-			}
-
-			return false;
 		}
 
 		/**
@@ -1589,8 +1555,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$redux = self::instance( $opt_name );
 
 					if ( isset( $redux ) ) {
-						//self::overload_legacy_metaboxes();
-
 						self::load_extensions( $redux );
 					}
 				}
