@@ -21,6 +21,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 	class Redux_Helpers {
 
 		/**
+		 * Resuable supported unit array.
+		 *
+		 * @var array
+		 */
+		public static $array_units = array( '', '%', 'in', 'cm', 'mm', 'em', 'rem', 'ex', 'pt', 'pc', 'px', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
+
+		/**
 		 * Retrieve section array from field ID.
 		 *
 		 * @param string $opt_name Panel opt_name.

@@ -60,17 +60,18 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 			 * and reset them with default values to avoid errors.
 			 */
 
-			$arr_units = array( '', false, '%', 'in', 'cm', 'mm', 'em', 'ex', 'pt', 'pc', 'px', 'rem', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
+			$arr_units = Redux_Helpers::$array_units;
+
+			$unit_check   = $arr_units;
+			$unit_check[] = false;
 
 			// If units field has a value but is not an acceptable value, unset the variable.
-			if ( isset( $this->field['units'] ) && ! Redux_Helpers::array_in_array( $this->field['units'], $arr_units ) ) {
+			if ( isset( $this->field['units'] ) && ! Redux_Helpers::array_in_array( $this->field['units'], $unit_check ) ) {
 				unset( $this->field['units'] );
 			}
 
-			$arr_units = array( '', '%', 'in', 'cm', 'mm', 'em', 'ex', 'pt', 'pc', 'px', 'rem', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
-
 			// If there is a default unit value  but is not an accepted value, unset the variable.
-			if ( isset( $this->value['units'] ) && ! Redux_Helpers::array_in_array( $this->value['units'], $arr_units ) ) {
+			if ( isset( $this->value['units'] ) && ! Redux_Helpers::array_in_array( $this->value['units'], $unit_check ) ) {
 				unset( $this->value['units'] );
 			}
 
@@ -201,7 +202,7 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 
 				// Extended units, show 'em all.
 				if ( $this->field['units_extended'] ) {
-					$test_units = array( 'px', 'em', 'rem', '%', 'in', 'cm', 'mm', 'ex', 'pt', 'pc', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
+					$test_units = $arr_units;
 				} else {
 					$test_units = array( 'px', 'em', 'rem', '%' );
 				}

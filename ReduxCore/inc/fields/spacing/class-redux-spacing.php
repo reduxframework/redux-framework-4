@@ -58,15 +58,18 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			 * and reset them with default values to avoid errors.
 			 */
 
-			$unit_arr = array( '', false, '%', 'in', 'cm', 'mm', 'em', 'rem', 'ex', 'pt', 'pc', 'px', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
+			$unit_arr = Redux_Helpers::$array_units;
+
+			$unit_check   = $unit_arr;
+			$unit_check[] = false;
 
 			// If units field has a value but is not an acceptable value, unset the variable.
-			if ( ! Redux_Helpers::array_in_array( $this->field['units'], $unit_arr ) ) {
+			if ( ! Redux_Helpers::array_in_array( $this->field['units'], $unit_check ) ) {
 				$this->field['units'] = 'px';
 			}
 
 			// If there is a default unit value  but is not an accepted value, unset the variable.
-			if ( ! Redux_Helpers::array_in_array( $this->value['units'], $unit_arr ) ) {
+			if ( ! Redux_Helpers::array_in_array( $this->value['units'], $unit_check ) ) {
 				$this->value['units'] = 'px';
 			}
 
@@ -280,7 +283,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 				echo '<select data-placeholder="' . esc_html__( 'Units', 'redux-framework' ) . '" class="redux-spacing redux-spacing-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '" id="' . esc_attr( $this->field['id'] ) . '_units"' . esc_attr( $select2_data ) . '>';
 
 				if ( $this->field['units_extended'] ) {
-					$test_units = array( 'px', 'em', 'rem', '%', 'in', 'cm', 'mm', 'ex', 'pt', 'pc' );
+					$test_units = $unit_arr;
 				} else {
 					$test_units = array( 'px', 'em', 'pt', 'rem', '%' );
 				}
