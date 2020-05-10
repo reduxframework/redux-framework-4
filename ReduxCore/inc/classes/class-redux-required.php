@@ -38,7 +38,7 @@ if ( ! class_exists( 'Redux_Required', false ) ) {
 			$core = $this->core();
 
 			if ( isset( $field['ajax_save'] ) && false === $field['ajax_save'] ) {
-				$core->reload_fields[] = $field['id'];
+				$core->required_class->reload_fields[] = $field['id'];
 			}
 
 			if ( ! empty( $field['required'] ) ) {

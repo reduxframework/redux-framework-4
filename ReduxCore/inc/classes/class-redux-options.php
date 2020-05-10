@@ -670,6 +670,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			 *
 			 * @param array $defaults option default values
 			 */
+
 			$core->transients['changed_values'] = isset( $core->transients['changed_values'] ) ? $core->transients['changed_values'] : array();
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -915,7 +916,8 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			}
 
 			$core->transients['changed_values'] = array(); // Changed values since last save.
-			if ( ! empty( $this->options ) ) {
+
+			if ( ! empty( $core->options ) ) {
 				foreach ( $core->options as $key => $value ) {
 					if ( isset( $plugin_options[ $key ] ) && $plugin_options[ $key ] !== $value ) {
 						$core->transients['changed_values'][ $key ] = $value;
