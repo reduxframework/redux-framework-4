@@ -694,6 +694,7 @@ Redux::set_section(
 				'subtitle' => esc_html__( 'Pick a background color for the footer (default: #dd9933).', 'your-domain-here' ),
 				'default'  => '#dd9933',
 				'validate' => 'color',
+				'output'   => array( '.footer' ),
 			),
 		),
 	)
@@ -741,7 +742,7 @@ Redux::set_section(
 					'color' => '#7e33dd',
 					'alpha' => '.8',
 				),
-				'mode'     => 'background',
+				'mode'     => 'color',
 				'validate' => 'colorrgba',
 			),
 		),

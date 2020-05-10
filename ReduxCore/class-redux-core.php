@@ -335,33 +335,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		}
 
 		/**
-		 * Verify metabox nonces.
-		 *
-		 * @param string $class Class.
-		 * @param string $t String.
-		 * @param bool   $m Bool.
-		 * @param object $c Object.
-		 *
-		 * @return bool
-		 */
-		public static function verify_nonce( $class = '', $t = '', $m = false, $c = null ) {
-			if ( file_exists( $class ) ) {
-				if ( true === $m && isset( self::$wp_nonce ) && ! empty( self::$wp_nonce ) ) {
-					// phpcs:ignore Squiz.PHP.CommentedOutCode
-					if ( in_array( md5( $t ), Redux_Helpers::nonces(), true ) || ( self::$pro_loaded && Redux_Functions_Ex::pro_nonce( $c->nonce ) ) ) {
-						return true;
-					} else {
-						return false;
-					}
-				} else {
-					return true;
-				}
-			} else {
-				return false;
-			}
-		}
-
-		/**
 		 * Action to run on WordPress heartbeat.
 		 *
 		 * @return bool

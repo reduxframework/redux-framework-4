@@ -166,21 +166,6 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
-		 * Get metabox boxes.
-		 *
-		 * @param     object $core Metabox object.
-		 *
-		 * @return bool
-		 */
-		public static function metabox_boxes( $core ) {
-			if ( isset( $core->extensions['metaboxes_lite']->boxes ) && ! empty( $core->extensions['metaboxes_lite']->boxes ) ) {
-				return true;
-			}
-
-			return false;
-		}
-
-		/**
 		 * Is Redux embedded inside a plugin.
 		 *
 		 * @param     string $file File to check.
@@ -208,17 +193,6 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Verify Pro Nonce.
-		 *
-		 * @param     string $nonce Nonce.
-		 *
-		 * @return bool|int
-		 */
-		public static function pro_nonce( $nonce ) {
-			return wp_verify_nonce( $nonce, 'redux_advanced_metaboxes' );
 		}
 
 		/**

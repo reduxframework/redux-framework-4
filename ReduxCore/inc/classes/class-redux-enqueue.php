@@ -368,9 +368,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		 *
 		 * @param     object $core ReduxFramework object.
 		 * @param     array  $field Field array.
-		 * @param     bool   $metabox Is metabox.
 		 */
-		public function enqueue_field( $core, $field, $metabox = false ) {
+		public function enqueue_field( $core, $field ) {
 			if ( isset( $field['type'] ) && 'callback' !== $field['type'] ) {
 
 				/**
@@ -413,11 +412,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 					$field_class = Redux_Functions::class_exists_ex( $field_classes );
 
 					if ( false === $field_class ) {
-						if ( Redux_Core::verify_nonce( $class_file, $field['type'], $metabox, $core ) ) {
-							require_once $class_file;
+						require_once $class_file;
 
-							$field_class = Redux_Functions::class_exists_ex( $field_classes );
-						}
+						$field_class = Redux_Functions::class_exists_ex( $field_classes );
 					}
 
 					if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' ) ) {
@@ -499,7 +496,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			foreach ( $core->sections as $section ) {
 				if ( isset( $section['fields'] ) ) {
 					foreach ( $section['fields'] as $field ) {
-						$this->enqueue_field( $core, $field, Redux_Functions_Ex::metabox_boxes( $core ) );
+						$this->enqueue_field( $core, $field );
 					}
 				}
 			}

@@ -192,7 +192,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 		 * @access      private
 		 * @return      string
 		 */
-		private function getColorVal() {
+		private function get_color_val() {
 
 			// No notices.
 			$color = '';
@@ -226,6 +226,19 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 		}
 
 		/**
+		 * Generate CSS style.
+		 *
+		 * @param string $data Field data.
+		 *
+		 * @return array|void
+		 */
+		public function css_style( $data ) {
+			$style = array();
+
+			return $style;
+		}
+
+		/**
 		 * Output Function.
 		 * Used to enqueue to the front-end
 		 *
@@ -240,9 +253,9 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 			if ( ! empty( $this->value ) ) {
 				$mode = ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ? $this->field['mode'] : 'color' );
 
-				$color_val = $this->getColorVal();
+				$color_val = $this->get_color_val();
 
-				$style .= $mode . ':' . $color_val . ';';
+				$style = $mode . ':' . $color_val . ';';
 
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
 					if ( ! empty( $color_val ) ) {

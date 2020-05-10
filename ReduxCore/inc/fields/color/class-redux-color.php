@@ -97,6 +97,19 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 		}
 
 		/**
+		 * Generate CSS style.
+		 *
+		 * @param string $data Field data.
+		 *
+		 * @return array|void
+		 */
+		public function css_style( $data ) {
+			$style = array();
+
+			return $style;
+		}
+
+		/**
 		 * Output CSS styling.
 		 *
 		 * @param string $style CSS style.
@@ -105,7 +118,7 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 			if ( ! empty( $this->value ) ) {
 				$mode = ( isset( $this->field['mode'] ) && ! empty( $this->field['mode'] ) ? $this->field['mode'] : 'color' );
 
-				$style .= $mode . ':' . $this->value . ';';
+				$style = $mode . ':' . $this->value . ';';
 
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
 					$css                      = Redux_Functions::parse_css( $this->field['output'], $style, $this->value );
