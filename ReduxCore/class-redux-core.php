@@ -280,9 +280,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				// Load Redux APIs.
 				if ( 'Redux' === $class_name ) {
 					require_once Redux_Path::get_path( '/inc/classes/class-redux-api.php' );
-					//require_once Redux_Path::get_path( '/inc/classes/class-redux-api-metaboxes.php' );
-					//require_once Redux_Path::get_path( '/inc/classes/class-redux-api-taxonomy.php' );
-					//require_once Redux_Path::get_path( '/inc/classes/class-redux-api-users.php' );
 
 					return;
 				}
