@@ -97,7 +97,7 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 		}
 
 		/**
-		 * Generate CSS style.
+		 * Generate CSS style (unused, but needed).
 		 *
 		 * @param string $data Field data.
 		 *
