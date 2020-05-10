@@ -739,8 +739,30 @@ function colorNameToHex( colour ) {
 
 	$.redux.fixInput = function( key, value ) {
 		var val;
+		var input;
+		var inputVal;
+		var ul;
+		var li;
 
-		var input = $( 'input#' + value.id + '-' + key );
+		if ( 'multi_text' === value.type ) {
+			ul = $( '#' + value.id + '-ul' );
+			li = $( ul.find( 'li' ) );
+
+			li.each(
+				function() {
+					input    = $( this ).find( 'input' );
+					inputVal = input.val();
+
+					if ( inputVal === value.old ) {
+						input.val( value.current );
+					}
+				}
+			);
+
+			return;
+		}
+
+		input = $( 'input#' + value.id + '-' + key );
 
 		if ( 0 === input.length ) {
 			input = $( 'input#' + value.id );
