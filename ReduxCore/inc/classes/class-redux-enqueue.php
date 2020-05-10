@@ -371,7 +371,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		 */
 		public function enqueue_field( $core, $field ) {
 			if ( isset( $field['type'] ) && 'callback' !== $field['type'] ) {
-
+				// var_dump($field);
 				/**
 				 * Field class file
 				 * filter 'redux/{opt_name}/field/class/{field.type}

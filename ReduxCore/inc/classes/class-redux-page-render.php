@@ -500,11 +500,9 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					$field_class = Redux_Functions::class_exists_ex( $field_classes );
 
 					if ( ! class_exists( $field_class ) ) {
-						if ( Redux_Core::verify_nonce( $class_file, $field['type'], $metabox, $core ) ) {
-							require_once $class_file;
+						require_once $class_file;
 
-							$field_class = Redux_Functions::class_exists_ex( $field_classes );
-						}
+						$field_class = Redux_Functions::class_exists_ex( $field_classes );
 					}
 				}
 

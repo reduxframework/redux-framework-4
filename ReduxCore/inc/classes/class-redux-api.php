@@ -1224,11 +1224,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			// We don't ever need to specify advanced_metaboxes here as all function for metaboxes are core,
 			// and thus, metabox_lite.  The extension handles it's own functions and is handled by this condition. - kp.
-			if ( isset( $redux->extensions['metaboxes'] ) ) {
-				$metaboxes = $redux->extensions['metaboxes'];
-			} else {
-				$metaboxes = $redux->extensions['metaboxes_lite'];
-			}
+			$metaboxes = $redux->extensions['metaboxes'];
 
 			if ( null === $default || '' === $default ) {
 				$default = self::get_option( $opt_name, $key );
@@ -1474,7 +1470,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$class_file
 				);
 
-				$api_check = str_replace( '-lite', '', $api_check );
+				//$api_check = str_replace( '-lite', '', $api_check );
 
 				if ( true === self::overload_legacy_metaboxes() ) {
 					$name      = '';
@@ -1483,11 +1479,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 				if ( file_exists( $api_check ) && ! class_exists( 'Redux_' . ucfirst( $name ) ) ) {
 					include_once $api_check;
-
-					if ( 'metaboxes_lite' === $name ) {
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
-						do_action( 'redux/' . $opt_name . '/extensions/metaboxes/config/load', $opt_name );
-					}
 				}
 			}
 		}
@@ -1598,7 +1589,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$redux = self::instance( $opt_name );
 
 					if ( isset( $redux ) ) {
-						self::overload_legacy_metaboxes();
+						//self::overload_legacy_metaboxes();
 
 						self::load_extensions( $redux );
 					}
