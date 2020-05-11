@@ -50,7 +50,7 @@ function appsero_init_tracker_redux_framework() {
 
 	$client = new Appsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
 
-	// Active insights
+	// Active insights.
 	$client->insights()->init();
 
 }

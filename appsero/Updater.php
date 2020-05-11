@@ -1,4 +1,6 @@
-<?php
+<?php/** @noinspection ALL */
+// phpcs:ignoreFile
+
 namespace Appsero;
 
 /**
