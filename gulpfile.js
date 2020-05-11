@@ -41,41 +41,41 @@ var packageName    = 'redux-framework';                         // Package name.
 var bugReport      = 'https://redux.io/support';                // Where can users report bugs.
 var lastTranslator = 'Dovy Paukstys <dovy@redux.io>';           // Last translator Email ID.
 var team           = 'Team Redux <info@reduxframework.com>';    // Team's Email ID.
-var translatePath  = './ReduxCore/languages/';                  // Where to save the translation files.
+var translatePath  = './redux-core/languages/';                  // Where to save the translation files.
 
 var styles = [
-	{ 'path': './ReduxCore/assets/scss/vendor/elusive-icons/elusive-icons.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/select2/select2.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/jquery-ui-1.10.0.custom.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/nouislider.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/qtip.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/spectrum.scss', 'dest': './ReduxCore/assets/css/vendor/' },
-	{ 'path': './ReduxCore/assets/scss/vendor/vendor.scss', 'dest': './ReduxCore/assets/css/' },
-	{ 'path': './ReduxCore/assets/scss/color-picker.scss', 'dest': './ReduxCore/assets/css/' },
-	{ 'path': './ReduxCore/assets/scss/media.scss', 'dest': './ReduxCore/assets/css/' },
-	{ 'path': './ReduxCore/assets/scss/redux-admin.scss', 'dest': './ReduxCore/assets/css/' },
-	{ 'path': './ReduxCore/assets/scss/rtl.scss', 'dest': './ReduxCore/assets/css/' },
-	{ 'path': './ReduxCore/inc/welcome/css/redux-welcome.scss', 'dest': './ReduxCore/inc/welcome/css/' }
+	{ 'path': './redux-core/assets/scss/vendor/elusive-icons/elusive-icons.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/select2/select2.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/jquery-ui-1.10.0.custom.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/nouislider.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/qtip.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/spectrum.scss', 'dest': './redux-core/assets/css/vendor/' },
+	{ 'path': './redux-core/assets/scss/vendor/vendor.scss', 'dest': './redux-core/assets/css/' },
+	{ 'path': './redux-core/assets/scss/color-picker.scss', 'dest': './redux-core/assets/css/' },
+	{ 'path': './redux-core/assets/scss/media.scss', 'dest': './redux-core/assets/css/' },
+	{ 'path': './redux-core/assets/scss/redux-admin.scss', 'dest': './redux-core/assets/css/' },
+	{ 'path': './redux-core/assets/scss/rtl.scss', 'dest': './redux-core/assets/css/' },
+	{ 'path': './redux-core/inc/welcome/css/redux-welcome.scss', 'dest': './redux-core/inc/welcome/css/' }
 ];
 
 // JS Vendor related.
-var jsVendorSRC         = './ReduxCore/assets/js/vendor/*.js'; // Path to JS vendor folder.
-var jsVendorDestination = './ReduxCore/assets/js/'; // Path to place the compiled JS vendors file.
+var jsVendorSRC         = './redux-core/assets/js/vendor/*.js'; // Path to JS vendor folder.
+var jsVendorDestination = './redux-core/assets/js/'; // Path to place the compiled JS vendors file.
 var jsVendorFile        = 'redux-vendors'; // Compiled JS vendors file name.
 
 // JS Custom related.
-var jsReduxSRC         = './ReduxCore/assets/js/redux.js'; // Path to redux.js script.
-var jsReduxDestination = './ReduxCore/assets/js/'; // Path to place the compiled JS custom scripts file.
+var jsReduxSRC         = './redux-core/assets/js/redux.js'; // Path to redux.js script.
+var jsReduxDestination = './redux-core/assets/js/'; // Path to place the compiled JS custom scripts file.
 var jsReduxFile        = 'redux'; // Compiled JS custom file name.
 
 // Images related.
-var imagesSRC         = './ReduxCore/assets/img/raw/**/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
-var imagesDestination = './ReduxCore/assets/img/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.
+var imagesSRC         = './redux-core/assets/img/raw/**/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
+var imagesDestination = './redux-core/assets/img/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.
 
 // Watch files paths.
-// var styleWatchFiles      = './ReduxCore/assets/css/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
-// var vendorJSWatchFiles   = './ReduxCore/assets/js/vendor/*.js'; // Path to all vendor JS files.
-var reduxJSWatchFiles    = './ReduxCore/assets/js/redux/*.js'; // Path to all custom JS files.
+// var styleWatchFiles      = './redux-core/assets/css/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
+// var vendorJSWatchFiles   = './redux-core/assets/js/vendor/*.js'; // Path to all vendor JS files.
+var reduxJSWatchFiles    = './redux-core/assets/js/redux/*.js'; // Path to all custom JS files.
 var projectPHPWatchFiles = './**/*.php'; // Path to all PHP files.
 
 // Browsers you care about for autoprefixing.
@@ -240,29 +240,29 @@ function reduxStyles() {
 	);
 
 	// Colors.
-	var color_dirs = getFolders( 'ReduxCore/assets/scss/colors/' );
+	var color_dirs = getFolders( 'redux-core/assets/scss/colors/' );
 	var colors     = color_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/assets/css/colors/' + folder + '/';
-			return process_scss( './ReduxCore/assets/scss/colors/' + folder + '/colors.scss', the_path, true );
+			var the_path = './redux-core/assets/css/colors/' + folder + '/';
+			return process_scss( './redux-core/assets/scss/colors/' + folder + '/colors.scss', the_path, true );
 		}
 	);
 
 	// Fields.
-	var field_dirs = getFolders( 'ReduxCore/inc/fields/' );
+	var field_dirs = getFolders( 'redux-core/inc/fields/' );
 	var fields     = field_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/fields/' + folder + '/';
+			var the_path = './redux-core/inc/fields/' + folder + '/';
 			folder       = folder.replace( '_', '-' );
 			return process_scss( the_path + 'redux-' + folder + '.scss', the_path );
 		}
 	);
 
 	// Extensions.
-	var extension_dirs = getFolders( 'ReduxCore/inc/extensions/' );
+	var extension_dirs = getFolders( 'redux-core/inc/extensions/' );
 	var extensions     = extension_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/extensions/' + folder + '/';
+			var the_path = './redux-core/inc/extensions/' + folder + '/';
 			folder       = folder.replace( '_', '-' );
 
 			if ( folder === 'metaboxes-lite') {
@@ -275,13 +275,13 @@ function reduxStyles() {
 
 	var extension_fields = extension_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/extensions/' + folder + '/' + folder + '/';
+			var the_path = './redux-core/inc/extensions/' + folder + '/' + folder + '/';
 			folder       = folder.replace( '_', '-' );
 			return process_scss( the_path + 'redux-' + folder + '.scss', the_path );
 		}
 	);
 
-	var redux_files = gulp.src( ['./ReduxCore/inc/fields/**/*.scss', './ReduxCore/inc/extensions/*.scss', './ReduxCore/inc/extensions/**/*.scss'], { allowEmpty: true } )
+	var redux_files = gulp.src( ['./redux-core/inc/fields/**/*.scss', './redux-core/inc/extensions/*.scss', './redux-core/inc/extensions/**/*.scss'], { allowEmpty: true } )
 
 	.pipe( sassPackager( {} ) )
 	.pipe( concat( 'redux-fields.min.scss' ) )
@@ -303,7 +303,7 @@ function reduxStyles() {
 	.pipe( autoprefixer( AUTOPREFIXER_BROWSERS ) )
 	.pipe( sourcemaps.write( './' ) )
 	.pipe( lineec() )                                       // Consistent Line Endings for non UNIX systems.
-	.pipe( gulp.dest( 'ReduxCore/assets/css/' ) );
+	.pipe( gulp.dest( 'redux-core/assets/css/' ) );
 
 	return merge( core, colors, fields, extensions, extension_fields, redux_files );
 }
@@ -311,10 +311,10 @@ function reduxStyles() {
 function extFieldJS( done ) {
 	'use strict';
 
-	var field_dirs = getFolders( 'ReduxCore/inc/extensions' );
+	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/extensions/' + folder + '/' + folder + '/';
+			var the_path = './redux-core/inc/extensions/' + folder + '/' + folder + '/';
 
 			folder = folder.replace( '_', '-' );
 
@@ -345,10 +345,10 @@ function extFieldJS( done ) {
 function extJS( done ) {
 	'use strict';
 
-	var field_dirs = getFolders( 'ReduxCore/inc/extensions' );
+	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/extensions/' + folder + '/';
+			var the_path = './redux-core/inc/extensions/' + folder + '/';
 
 			folder = folder.replace( '_', '-' );
 
@@ -383,10 +383,10 @@ function extJS( done ) {
 function fieldsJS( done ) {
 	'use strict';
 
-	var field_dirs = getFolders( 'ReduxCore/inc/fields' );
+	var field_dirs = getFolders( 'redux-core/inc/fields' );
 	field_dirs.map(
 		function( folder ) {
-			var the_path = './ReduxCore/inc/fields/' + folder + '/';
+			var the_path = './redux-core/inc/fields/' + folder + '/';
 
 			folder = folder.replace( '_', '-' );
 
@@ -450,7 +450,7 @@ function reduxCombineModules( done ){
 function reduxMedia( done ) {
 	'use strict';
 
-	gulp.src( './ReduxCore/assets/js/media/media.js' )
+	gulp.src( './redux-core/assets/js/media/media.js' )
 	.pipe( jshint() )
 	.pipe( jshint.reporter( 'default' ) )
 	.pipe( jscs() )
@@ -466,7 +466,7 @@ function reduxMedia( done ) {
 	)
 	.pipe( uglify() )
 	.pipe( lineec() )
-	.pipe( gulp.dest( './ReduxCore/assets/js/media/' ) );
+	.pipe( gulp.dest( './redux-core/assets/js/media/' ) );
 
 	done();
 }
@@ -474,7 +474,7 @@ function reduxMedia( done ) {
 function reduxSpinner( done ) {
 	'use strict';
 
-	gulp.src( './ReduxCore/inc/fields/spinner/vendor/jquery.ui.spinner.js' )
+	gulp.src( './redux-core/inc/fields/spinner/vendor/jquery.ui.spinner.js' )
 	.pipe( jshint() )
 	.pipe( jshint.reporter( 'default' ) )
 	.pipe( jscs() )
@@ -490,7 +490,7 @@ function reduxSpinner( done ) {
 	)
 	.pipe( uglify() )
 	.pipe( lineec() )
-	.pipe( gulp.dest( './ReduxCore/inc/fields/spinner/vendor/' ) );
+	.pipe( gulp.dest( './redux-core/inc/fields/spinner/vendor/' ) );
 
 	done();
 }

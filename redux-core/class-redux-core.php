@@ -361,5 +361,5 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 	/*
 	 * Backwards comparability alias
 	 */
-	class_alias( 'Redux_Core', 'ReduxCore' );
+	class_alias( 'Redux_Core', 'redux-core' );
 }
