@@ -135,8 +135,8 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		public function includes() {
 
 			// Include Redux_Core.
-			if ( file_exists( dirname( __FILE__ ) . '/ReduxCore/framework.php' ) ) {
-				require_once dirname( __FILE__ ) . '/ReduxCore/framework.php';
+			if ( file_exists( dirname( __FILE__ ) . '/redux-core/framework.php' ) ) {
+				require_once dirname( __FILE__ ) . '/redux-core/framework.php';
 			}
 
 			if ( isset( Redux_Core::$as_plugin ) ) {

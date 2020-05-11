@@ -142,6 +142,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				// Shim for pre WP 3.9.
 				$path = str_replace( '\\', '/', $path );
 				$path = preg_replace( '|(?<=.)/+|', '/', $path );
+
 				if ( ':' === substr( $path, 1, 1 ) ) {
 					$path = ucfirst( $path );
 				}
