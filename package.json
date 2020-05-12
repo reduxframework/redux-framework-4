@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/reduxframework/redux-framework-4/issues"
   },
-  "homepage": "http://reduxframework.com",
+  "homepage": "http://redux.io",
   "resolutions": {
     "lodash": "4.17.5"
   },

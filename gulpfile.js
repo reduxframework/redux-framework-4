@@ -40,7 +40,7 @@ var destFile       = 'redux-framework.pot';                     // Name of the t
 var packageName    = 'redux-framework';                         // Package name.
 var bugReport      = 'https://redux.io/support';                // Where can users report bugs.
 var lastTranslator = 'Dovy Paukstys <dovy@redux.io>';           // Last translator Email ID.
-var team           = 'Team Redux <info@reduxframework.com>';    // Team's Email ID.
+var team           = 'Team Redux <info@redux.io>';    // Team's Email ID.
 var translatePath  = './redux-core/languages/';                  // Where to save the translation files.
 
 var styles = [

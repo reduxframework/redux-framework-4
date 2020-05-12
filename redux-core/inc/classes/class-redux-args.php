@@ -236,7 +236,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf(
 					// translators: Redux URL with title.
 					esc_html__( 'Powered by  %1$s', 'redux-framework' ),
-					'<a href="' . esc_url( '//www.reduxframework.com' ) . '" target="_blank">' . esc_html__(
+					'<a href="' . esc_url( '//www.redux.io' ) . '" target="_blank">' . esc_html__(
 						'Redux Framework',
 						'redux-framework'
 					) . '</a> v' . Redux_Core::$version

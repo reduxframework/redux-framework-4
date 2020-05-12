@@ -8,7 +8,7 @@
  * @version 1.0.0
  *
  * There is no free support for extension development.  This example is 'as is'.  If you need assitance,
- * please consider a Premium Support purchase: https://reduxframework.com/extension/premium-support
+ * please consider a Premium Support purchase: https://redux.io/extension/premium-support
  *
  * Please be sure to replace ALL instances of "My Extension" and "My_Extension" with the name of your actual
  * extension.  Please also change the file name so the 'my-extension' portion is also the name of your extension.

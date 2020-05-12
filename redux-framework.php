@@ -11,7 +11,7 @@
  * Github URI:      reduxframework/redux-framework-4
  * Description:     The most powerful and widely used WordPress interface builder and framework.
  * Author:          Team Redux
- * Author URI:      http://reduxframework.com
+ * Author URI:      http://redux.io
  * Version:         4.0.3
  * Text Domain:     redux-framework
  * License:         GPLv3 or later
@@ -19,7 +19,7 @@
  * Provides:        ReduxFramework
  *
  * @package         ReduxFramework
- * @author          Team Redux (Dovy Paukstys <dovy@reduxframework.com> and Kevin Provance <kevin@reduxframework.com>)
+ * @author          Team Redux (Dovy Paukstys <dovy@redux.io> and Kevin Provance <kevin@redux.io>)
  * @license         GNU General Public License, version 3
  * @copyright       2012-2019 Redux.io
  */

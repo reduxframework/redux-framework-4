@@ -1,7 +1,7 @@
 <?php
 /**
  * ReduxFramework Barebones Sample Config File
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http://docs.redux.io/
  *
  * @package Redux Framework
  */
@@ -152,7 +152,7 @@ $args = array(
 // ADMIN BAR LINKS -> Setup custom links in the admin bar menu as external items.
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-docs',
-	'href'  => '//docs.reduxframework.com/',
+	'href'  => '//docs.redux.io/',
 	'title' => esc_html__( 'Documentation', 'your-domain-here' ),
 );
 
@@ -164,7 +164,7 @@ $args['admin_bar_links'][] = array(
 
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-extensions',
-	'href'  => 'reduxframework.com/extensions',
+	'href'  => 'redux.io/extensions',
 	'title' => esc_html__( 'Extensions', 'your-domain-here' ),
 );
 
@@ -289,7 +289,7 @@ Redux::set_section( $opt_name, $section );
 
 $section = array(
 	'title'      => esc_html__( 'Text', 'your-domain-here' ),
-	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/text/" target="_blank">//docs.reduxframework.com/core/fields/text/</a>',
+	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">//docs.redux.io/core/fields/text/</a>',
 	'id'         => 'opt-text-subsection',
 	'subsection' => true,
 	'fields'     => array(
@@ -308,7 +308,7 @@ Redux::set_section( $opt_name, $section );
 
 $section = array(
 	'title'      => esc_html__( 'Text Area', 'your-domain-here' ),
-	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/textarea/" target="_blank">//docs.reduxframework.com/core/fields/textarea/</a>',
+	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/textarea/" target="_blank">//docs.redux.io/core/fields/textarea/</a>',
 	'id'         => 'opt-textarea-subsection',
 	'subsection' => true,
 	'fields'     => array(

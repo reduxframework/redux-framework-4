@@ -17,7 +17,7 @@ php:
 notifications:
     email:
         recipients:
-            - support@reduxframework.com
+            - support@redux.io
         on_failure: always
     slack: redux:yeR6PY87fwfQ0sBPnJFmCmjY
     

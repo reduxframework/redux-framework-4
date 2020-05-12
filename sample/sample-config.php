@@ -1,7 +1,7 @@
 <?php
 /**
  * ReduxFramework Sample Config File
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http://docs.redux.io/
  *
  * @package Redux Framework
  */
@@ -72,7 +72,7 @@ $kses_exceptions = array(
 
 /**
  * All the possible arguments for Redux.
- * For full documentation on arguments, please refer to: https://docs.reduxframework.com/core/arguments/
+ * For full documentation on arguments, please refer to: https://docs.redux.io/core/arguments/
  */
 $theme = wp_get_theme(); // For use with some settings. Not necessary.
 
@@ -336,7 +336,7 @@ Redux::set_section(
 		'id'               => 'basic-checkbox',
 		'subsection'       => true,
 		'customizer_width' => '450px',
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/checkbox/" target="_blank">docs.reduxframework.com/core/fields/checkbox/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-checkbox',
@@ -392,7 +392,7 @@ Redux::set_section(
 		'id'               => 'basic-radio',
 		'subsection'       => true,
 		'customizer_width' => '500px',
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/radio/" target="_blank">docs.reduxframework.com/core/fields/radio/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/radio/" target="_blank">docs.redux.io/core/fields/radio/</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-radio',
@@ -427,7 +427,7 @@ Redux::set_section(
 		'title'      => esc_html__( 'Sortable', 'your-domain-here' ),
 		'id'         => 'basic-sortable',
 		'subsection' => true,
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/sortable/" target="_blank">docs.reduxframework.com/core/fields/sortable/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/sortable/" target="_blank">docs.redux.io/core/fields/sortable/</a>',
 		'fields'     => array(
 			array(
 				'id'       => 'opt-sortable',
@@ -468,7 +468,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'            => esc_html__( 'Text', 'your-domain-here' ),
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/text/" target="_blank">docs.reduxframework.com/core/fields/text/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">docs.redux.io/core/fields/text/</a>',
 		'id'               => 'basic-text',
 		'subsection'       => true,
 		'customizer_width' => '700px',
@@ -510,7 +510,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Multi Text', 'your-domain-here' ),
 		'id'         => 'basic-multi-text',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/multi-text/" target="_blank">docs.reduxframework.com/core/fields/multi-text/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/multi-text/" target="_blank">docs.redux.io/core/fields/multi-text/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -529,7 +529,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Password', 'your-domain-here' ),
 		'id'         => 'basic-password',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/password/" target="_blank">docs.reduxframework.com/core/fields/password/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/password/" target="_blank">docs.redux.io/core/fields/password/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -547,7 +547,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Textarea', 'your-domain-here' ),
 		'id'         => 'basic-textarea',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/textarea/" target="_blank">docs.reduxframework.com/core/fields/textarea/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/textarea/" target="_blank">docs.redux.io/core/fields/textarea/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -578,7 +578,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'WordPress Editor', 'your-domain-here' ),
 		'id'         => 'editor-wordpress',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/editor/" target="_blank">docs.reduxframework.com/core/fields/editor/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/editor/" target="_blank">docs.redux.io/core/fields/editor/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -617,7 +617,7 @@ Redux::set_section(
 		'title'      => esc_html__( 'ACE Editor', 'your-domain-here' ),
 		'id'         => 'editor-ace',
 		'subsection' => true,
-		'desc'       => esc_html__( 'For full documentation on the this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/ace-editor/" target="_blank">docs.reduxframework.com/core/fields/ace-editor/</a>',
+		'desc'       => esc_html__( 'For full documentation on the this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/ace-editor/" target="_blank">docs.redux.io/core/fields/ace-editor/</a>',
 		'fields'     => array(
 			array(
 				'id'       => 'opt-ace-editor-css',
@@ -672,7 +672,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Color', 'your-domain-here' ),
 		'id'         => 'opt-color',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color/" target="_blank">docs.reduxframework.com/core/fields/color/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/color/" target="_blank">docs.redux.io/core/fields/color/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -704,7 +704,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Color Gradient', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color-gradient/" target="_blank">docs.reduxframework.com/core/fields/color-gradient/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/color-gradient/" target="_blank">docs.redux.io/core/fields/color-gradient/</a>',
 		'id'         => 'color-gradient',
 		'subsection' => true,
 		'fields'     => array(
@@ -729,7 +729,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Color RGBA', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color-rgba/" target="_blank">docs.reduxframework.com/core/fields/color-rgba/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/color-rgba/" target="_blank">docs.redux.io/core/fields/color-rgba/</a>',
 		'id'         => 'color-rgba',
 		'subsection' => true,
 		'fields'     => array(
@@ -753,7 +753,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Link Color', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/link-color/" target="_blank">docs.reduxframework.com/core/fields/link-color/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/link-color/" target="_blank">docs.redux.io/core/fields/link-color/</a>',
 		'id'         => 'color-link',
 		'subsection' => true,
 		'fields'     => array(
@@ -784,7 +784,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Palette', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/palette-color/" target="_blank">docs.reduxframework.com/core/fields/palette-color/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/palette-color/" target="_blank">docs.redux.io/core/fields/palette-color/</a>',
 		'id'         => 'palette',
 		'subsection' => true,
 		'fields'     => array(
@@ -836,7 +836,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Background', 'your-domain-here' ),
 		'id'         => 'design-background',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/background/" target="_blank">docs.reduxframework.com/core/fields/background/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/background/" target="_blank">docs.redux.io/core/fields/background/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -855,7 +855,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Border', 'your-domain-here' ),
 		'id'         => 'design-border',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/border/" target="_blank">docs.reduxframework.com/core/fields/border/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/border/" target="_blank">docs.redux.io/core/fields/border/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -900,7 +900,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Dimensions', 'your-domain-here' ),
 		'id'         => 'design-dimensions',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/dimensions/" target="_blank">docs.reduxframework.com/core/fields/dimensions/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/dimensions/" target="_blank">docs.redux.io/core/fields/dimensions/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -939,7 +939,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Spacing', 'your-domain-here' ),
 		'id'         => 'design-spacing',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/spacing/" target="_blank">docs.reduxframework.com/core/fields/spacing/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/spacing/" target="_blank">docs.redux.io/core/fields/spacing/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1014,7 +1014,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Gallery', 'your-domain-here' ),
 		'id'         => 'media-gallery',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/gallery/" target="_blank">docs.reduxframework.com/core/fields/gallery/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/gallery/" target="_blank">docs.redux.io/core/fields/gallery/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1033,7 +1033,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Media', 'your-domain-here' ),
 		'id'         => 'media-media',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/media/" target="_blank">docs.redux.io/core/fields/media/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1088,7 +1088,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Slides', 'your-domain-here' ),
 		'id'         => 'additional-slides',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/slides/" target="_blank">docs.reduxframework.com/core/fields/slides/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/slides/" target="_blank">docs.redux.io/core/fields/slides/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1122,7 +1122,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Divide', 'your-domain-here' ),
 		'id'         => 'presentation-divide',
-		'desc'       => esc_html__( 'The spacer to the section menu as seen to the left (after this section block) is the divide "section". Also the divider below is the divide "field".', 'your-domain-here' ) . '<br />' . __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/divide/" target="_blank">docs.reduxframework.com/core/fields/divide/</a>',
+		'desc'       => esc_html__( 'The spacer to the section menu as seen to the left (after this section block) is the divide "section". Also the divider below is the divide "field".', 'your-domain-here' ) . '<br />' . __( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/divide/" target="_blank">docs.redux.io/core/fields/divide/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1138,7 +1138,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Info', 'your-domain-here' ),
 		'id'         => 'presentation-info',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/info/" target="_blank">docs.reduxframework.com/core/fields/info/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/info/" target="_blank">docs.redux.io/core/fields/info/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1236,7 +1236,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Section', 'your-domain-here' ),
 		'id'         => 'presentation-section',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/section/" target="_blank">docs.reduxframework.com/core/fields/section/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/section/" target="_blank">docs.redux.io/core/fields/section/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1295,7 +1295,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Button Set', 'your-domain-here' ),
 		'id'         => 'switch_buttonset-set',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/button-set/" target="_blank">docs.reduxframework.com/core/fields/button-set/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/button-set/" target="_blank">docs.redux.io/core/fields/button-set/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1338,7 +1338,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Switch', 'your-domain-here' ),
 		'id'         => 'switch_buttonset-switch',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/switch/" target="_blank">docs.reduxframework.com/core/fields/switch/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/switch/" target="_blank">docs.redux.io/core/fields/switch/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1401,7 +1401,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Select', 'your-domain-here' ),
 		'id'         => 'select-select',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/select/" target="_blank">docs.reduxframework.com/core/fields/select/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/select/" target="_blank">docs.redux.io/core/fields/select/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1634,7 +1634,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Image Select', 'your-domain-here' ),
 		'id'         => 'select-image_select',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/image-select/" target="_blank">docs.reduxframework.com/core/fields/image-select/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/image-select/" target="_blank">docs.redux.io/core/fields/image-select/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1745,7 +1745,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Select Image', 'your-domain-here' ),
 		'id'         => 'select-select_image',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/select-image/" target="_blank">docs.reduxframework.com/core/fields/select-image/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/select-image/" target="_blank">docs.redux.io/core/fields/select-image/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1792,7 +1792,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Slider', 'your-domain-here' ),
 		'id'         => 'slider_spinner-slider',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/slider/" target="_blank">docs.reduxframework.com/core/fields/slider/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/slider/" target="_blank">docs.redux.io/core/fields/slider/</a>',
 		'fields'     => array(
 			array(
 				'id'            => 'opt-slider-label',
@@ -1857,7 +1857,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Spinner', 'your-domain-here' ),
 		'id'         => 'slider_spinner-spinner',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/spinner/" target="_blank">docs.reduxframework.com/core/fields/spinner/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/spinner/" target="_blank">docs.redux.io/core/fields/spinner/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1883,7 +1883,7 @@ Redux::set_section(
 	array(
 		'title'  => esc_html__( 'Typography', 'your-domain-here' ),
 		'id'     => 'typography',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
+		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/typography/" target="_blank">docs.redux.io/core/fields/typography/</a>',
 		'icon'   => 'el el-font',
 		'fields' => array(
 			array(
@@ -1968,7 +1968,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Date', 'your-domain-here' ),
 		'id'         => 'additional-date',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/date/" target="_blank">docs.reduxframework.com/core/fields/date/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/date/" target="_blank">docs.redux.io/core/fields/date/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -1987,7 +1987,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Sorter', 'your-domain-here' ),
 		'id'         => 'additional-sorter',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/sorter/" target="_blank">docs.reduxframework.com/core/fields/sorter/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/sorter/" target="_blank">docs.redux.io/core/fields/sorter/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2037,7 +2037,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Raw', 'your-domain-here' ),
 		'id'         => 'additional-raw',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/raw/" target="_blank">docs.reduxframework.com/core/fields/raw/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/raw/" target="_blank">docs.redux.io/core/fields/raw/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2074,7 +2074,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Callback', 'your-domain-here' ),
 		'id'         => 'additional-callback',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/callback/" target="_blank">docs.reduxframework.com/core/fields/callback/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/callback/" target="_blank">docs.redux.io/core/fields/callback/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2095,7 +2095,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Validation', 'your-domain-here' ),
 		'id'         => 'validation',
-		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/the-basics/validation/" target="_blank">docs.reduxframework.com/core/the-basics/validation/</a>',
+		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/the-basics/validation/" target="_blank">docs.redux.io/core/the-basics/validation/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2131,7 +2131,7 @@ Redux::set_section(
 				'subtitle' => esc_html__( 'This must be a URL.', 'your-domain-here' ),
 				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
 				'validate' => 'url',
-				'default'  => 'https://reduxframework.com',
+				'default'  => 'https://redux.io',
 			),
 			array(
 				'id'       => 'opt-text-numeric',
@@ -2251,7 +2251,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Sanitizing', 'your-domain-here' ),
 		'id'         => 'sanitizing',
-		'desc'       => esc_html__( 'For full documentation on sanitizing, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/the-basics/sanitizing/" target="_blank">docs.reduxframework.com/core/the-basics/sanitizing/</a>',
+		'desc'       => esc_html__( 'For full documentation on sanitizing, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/the-basics/sanitizing/" target="_blank">docs.redux.io/core/the-basics/sanitizing/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2291,7 +2291,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Required / Linking', 'your-domain-here' ),
 		'id'         => 'required',
-		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/the-basics/required/" target="_blank">docs.reduxframework.com/core/the-basics/required/</a>',
+		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/the-basics/required/" target="_blank">docs.redux.io/core/the-basics/required/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2399,7 +2399,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'WPML Integration', 'your-domain-here' ),
-		'desc'       => esc_html__( 'These fields can be fully translated by WPML (WordPress Multi-Language). This serves as an example for you to implement. For extra details look at our <a href="//docs.reduxframework.com/core/advanced/wpml-integration/" target="_blank">WPML Implementation</a> documentation.', 'your-domain-here' ),
+		'desc'       => esc_html__( 'These fields can be fully translated by WPML (WordPress Multi-Language). This serves as an example for you to implement. For extra details look at our <a href="//docs.redux.io/core/advanced/wpml-integration/" target="_blank">WPML Implementation</a> documentation.', 'your-domain-here' ),
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -2438,7 +2438,7 @@ Redux::set_section(
 		'id'               => 'basic-checkbox-disable',
 		'subsection'       => true,
 		'customizer_width' => '450px',
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/checkbox/" target="_blank">docs.reduxframework.com/core/fields/checkbox/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-checkbox-disable',
@@ -2461,7 +2461,7 @@ Redux::set_section(
 		'subsection'       => true,
 		'customizer_width' => '450px',
 		'disabled'         => true,
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/checkbox/" target="_blank">docs.reduxframework.com/core/fields/checkbox/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-checkbox-section-disable',

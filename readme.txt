@@ -27,15 +27,15 @@ Don't take our word for it, check out our online demo and try Redux without inst
 [**http://demo.redux.io/**](http://demo.redux.io/)
 
 = Use the Redux Builder to Get Started =
-Want to use Redux, but not sure what to do? Use our [builder](http://build.reduxframework.com/)! It will allow you to make
-a custom theme based on [_s](http://underscores.me), [TGM](http://tgmpluginactivation.com), and [Redux](http://reduxframework.com), and any Redux arguments you want to set.
+Want to use Redux, but not sure what to do? Use our [builder](http://build.redux.io/)! It will allow you to make
+a custom theme based on [_s](http://underscores.me), [TGM](http://tgmpluginactivation.com), and [Redux](http://redux.io), and any Redux arguments you want to set.
 Don't want to make your own theme? Then output a custom admin folder that you can place
 in a theme or plugin. Oh and did we mention it's free? Try it today at:
-[**http://build.reduxframework.com/**](http://build.reduxframework.com/)
+[**http://build.redux.io/**](http://build.redux.io/)
 
 
 = Docs & Support =
-We have extremely extensive docs. Please visit [http://docs.reduxframework.com/](http://docs.reduxframework.com/) If that doesn’t solve your concern, you should search [the issue tracker on Github](https://github.com/reduxframework/redux-framework/issues). If you can't locate any topics that pertain to your particular issue, [post a new issue](https://github.com/reduxframework/redux-framework/issues/new) for it. Before you submit an issue, please read [our contributing requirements](https://github.com/redux-framework/redux-framework/blob/master/CONTRIBUTING.md). We build off of the dev version and push to WordPress.org when all is confirmed stable and ready for release.
+We have extremely extensive docs. Please visit [http://docs.redux.io/](http://docs.redux.io/) If that doesn’t solve your concern, you should search [the issue tracker on Github](https://github.com/reduxframework/redux-framework/issues). If you can't locate any topics that pertain to your particular issue, [post a new issue](https://github.com/reduxframework/redux-framework/issues/new) for it. Before you submit an issue, please read [our contributing requirements](https://github.com/redux-framework/redux-framework/blob/master/CONTRIBUTING.md). We build off of the dev version and push to WordPress.org when all is confirmed stable and ready for release.
 
 
 = Redux Framework Needs Your Support =
@@ -113,7 +113,7 @@ Learn more about how [Appsero collects and uses this data](https://appsero.com/p
 == Installation ==
 
 = For Complete Documentation and Examples =
-Visit: [http://docs.reduxframework.com/](http://docs.reduxframework.com/)
+Visit: [http://docs.redux.io/](http://docs.redux.io/)
 
 == Frequently Asked Questions ==
 
@@ -123,14 +123,14 @@ Redux is an options framework... in other words, it's not designed to do anythin
 
 = How can I learn more about Redux? =
 
-Visit our website at [http://reduxframework.com/](http://reduxframework.com/)
+Visit our website at [http://redux.io/](http://redux.io/)
 
 = You don't have much content in this FAQ section =
-That's because the real FAQ section is on our site! Please visit [http://docs.reduxframework.com/faq/](http://docs.reduxframework.com/faq/)
+That's because the real FAQ section is on our site! Please visit [http://docs.redux.io/faq/](http://docs.redux.io/faq/)
 
 == Screenshots ==
 
-1. This is the demo mode of Redux Framework. Activate it and you will find a fully-functional admin panel that you can play with. On the Plugins page, beneath the description and an activated Redux Framework, you will find a Demo Mode link. Click that link to activate or deactivate the sample-config file Redux ships with.  Don't take our word for it, check out our online demo and try Redux without installing a thing! [**http://demo.reduxframework.com/wp-admin/**](http://demo.reduxframework.com/wp-admin/)
+1. This is the demo mode of Redux Framework. Activate it and you will find a fully-functional admin panel that you can play with. On the Plugins page, beneath the description and an activated Redux Framework, you will find a Demo Mode link. Click that link to activate or deactivate the sample-config file Redux ships with.  Don't take our word for it, check out our online demo and try Redux without installing a thing! [**http://demo.redux.io/wp-admin/**](http://demo.redux.io/wp-admin/)
 
 == Changelog ==
 

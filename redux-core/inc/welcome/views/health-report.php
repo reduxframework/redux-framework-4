@@ -62,7 +62,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			</a>
 			<a
 					class="skip button-primary"
-					href="//docs.reduxframework.com/core/support/understanding-the-redux-framework-system-status-report/"
+					href="//docs.redux.io/core/support/understanding-the-redux-framework-system-status-report/"
 					target="_blank">
 				<?php esc_html_e( 'Understanding the Status Report', 'redux-framework' ); ?>
 			</a>
@@ -840,7 +840,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 							foreach ( $ext as $name => $arr ) {
 								$ver = $arr['version'];
 
-								echo '<a href="//reduxframework.com/extensions/' . esc_html( str_replace( array( '_' ), '-', $name ) ) . '" target="blank">' . esc_html( ucwords( str_replace( array( '_', '-' ), ' ', $name ) ) ) . '</a> - ' . esc_html( $ver );
+								echo '<a href="//redux.io/extensions/' . esc_html( str_replace( array( '_' ), '-', $name ) ) . '" target="blank">' . esc_html( ucwords( str_replace( array( '_', '-' ), ' ', $name ) ) ) . '</a> - ' . esc_html( $ver );
 								?>
 								<br/>
 								<?php
