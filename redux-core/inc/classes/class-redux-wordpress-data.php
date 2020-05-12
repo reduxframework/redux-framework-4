@@ -222,11 +222,14 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 					$data = array();
 					$args = wp_parse_args( $args, array() );
+					if ( isset( $args['args'] ) && empty( $args['args'] ) ) {
+						unset( $args['args'] );
+					}
 
 					switch ( $type ) {
 						case 'categories':
 						case 'category':
-							$cats = @get_categories( $args );
+							$cats = get_categories( $args );
 							if ( ! empty( $cats ) ) {
 								foreach ( $cats as $cat ) {
 									$data[ $cat->term_id ] = $cat->name;
@@ -239,7 +242,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							if ( ! isset( $args['posts_per_page'] ) ) {
 								$args['posts_per_page'] = 20;
 							}
-							$pages = @get_pages( $args );
+							$pages = get_pages( $args );
 							if ( ! empty( $pages ) ) {
 								foreach ( $pages as $page ) {
 									$data[ $page->ID ] = $page->post_title;
@@ -249,20 +252,18 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						case 'terms':
 						case 'term':
-							$terms = @get_terms( $args );
+							$terms = get_terms( $args );
 							if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 								foreach ( $terms as $term ) {
 									$data[ $term->term_id ] = $term->name;
 								}
-							} else {
-								$data = array();
 							}
 							break;
 
 						case 'taxonomies':
 						case 'taxonomy':
 						case 'tax':
-							$taxonomies = @get_taxonomies( $args );
+							$taxonomies = get_taxonomies( $args );
 							if ( ! empty( $taxonomies ) ) {
 								foreach ( $taxonomies as $key => $taxonomy ) {
 									$data[ $key ] = $taxonomy;
@@ -271,7 +272,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							break;
 						case 'post':
 						case 'posts':
-							$posts = @get_posts( $args );
+							$posts = get_posts( $args );
 							if ( ! empty( $posts ) ) {
 								foreach ( $posts as $post ) {
 									$data[ $post->ID ] = $post->post_title;
@@ -290,7 +291,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							$args       = wp_parse_args( $args, $defaults );
 							$output     = 'names';
 							$operator   = 'and';
-							$post_types = @get_post_types( $args, $output, $operator );
+							$post_types = get_post_types( $args, $output, $operator );
 
 							ksort( $post_types );
 
@@ -305,7 +306,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						case 'tags':
 						case 'tag':
-							$tags = @get_tags( $args );
+							$tags = get_tags( $args );
 							if ( ! empty( $tags ) ) {
 								foreach ( $tags as $tag ) {
 									$data[ $tag->term_id ] = $tag->name;
@@ -315,7 +316,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						case 'menus':
 						case 'menu':
-							$menus = @wp_get_nav_menus( $args );
+							$menus = wp_get_nav_menus( $args );
 							if ( ! empty( $menus ) ) {
 								foreach ( $menus as $item ) {
 									$data[ $item->term_id ] = $item->name;
@@ -402,7 +403,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						case 'users':
 						case 'user':
-							$users = @get_users( $args );
+							$users = get_users( $args );
 							if ( ! empty( $users ) ) {
 								foreach ( $users as $user ) {
 									$data[ $user->ID ] = $user->display_name;
