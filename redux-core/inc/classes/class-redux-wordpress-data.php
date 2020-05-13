@@ -443,7 +443,6 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				if ( ! empty( $data ) ) {
 					$this->wp_data[ $type . $args_key ] = $data;
 				}
-
 			}
 
 			if ( ! empty( $current_data ) ) {
