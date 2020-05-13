@@ -236,9 +236,20 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		 */
 		public function output( $style = '' ) {
 			if ( '' !== $style ) {
+
+				// Force output value into an array.
+				if ( isset( $this->field['output'] ) && ! is_array( $this->field['output'] ) ) {
+					$this->field['output'] = array($this->field['output']);
+				}
+
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
 					$keys                     = implode( ',', $this->field['output'] );
 					$this->parent->outputCSS .= $keys . '{' . $style . '}';
+				}
+
+				// Force compiler value into an array.
+				if ( isset( $this->field['compiler'] ) && ! is_array( $this->field['compiler'] ) ) {
+					$this->field['compiler'] = array($this->field['compiler']);
 				}
 
 				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {

@@ -214,9 +214,11 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 */
 		public static function load_extensions( $redux_framework ) {
 			$instance_extensions = self::get_extensions( $redux_framework->args['opt_name'], '' );
+
 			if ( $instance_extensions ) {
 				foreach ( $instance_extensions as $name => $extension ) {
 					$old_class = str_replace( 'Redux_', 'ReduxFramework_', $extension['class'] );
+
 					if ( ! class_exists( $extension['class'] ) && ! class_exists( $old_class ) ) {
 						// In case you wanted override your override, hah.
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
