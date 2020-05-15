@@ -40,6 +40,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 * Check for existence of class name via array of class names.
 		 *
 		 * @param array $class_names Array of class names.
+		 * @return string|bool
 		 */
 		public static function class_exists_ex( $class_names = array() ) {
 			foreach ( $class_names as $class_name ) {
@@ -55,6 +56,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 * Check for existence of file name via array of file names.
 		 *
 		 * @param array $file_names Array of file names.
+		 * @return string|bool
 		 */
 		public static function file_exists_ex( $file_names = array() ) {
 			foreach ( $file_names as $file_name ) {
