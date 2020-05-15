@@ -24,8 +24,9 @@ $this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->
 			action="<?php echo esc_attr( $actionn ); ?>"
 			data-nonce="<?php echo esc_attr( $nonce ); ?>"
 			enctype="multipart/form-data"
-			id="redux-form-wrapper">
-
+			class="redux-form-wrapper"
+            data-opt-name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>"
+        >
 			<input
 				type="hidden" id="redux-compiler-hook"
 				name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[compiler]"
