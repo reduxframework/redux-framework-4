@@ -392,14 +392,14 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				return;
 			}
 
-			if ( !isset( Redux::$init[$args['opt_name']] ) ) {
+			if ( ! isset( Redux::$init[ $args['opt_name'] ] ) ) {
 				// For those not using the new API as they should...
 				Redux::set_sections( $args['opt_name'], $sections );
 				Redux::set_args( $args['opt_name'], $args );
 				$sections = Redux::construct_sections( $args['opt_name'] );
-				$args = Redux::construct_args( $args['opt_name'] );
+				$args 	  = Redux::construct_args( $args['opt_name'] );
 				Redux::set_defaults( $args['opt_name'] );
-				Redux::$init[$args['opt_name']] = 1;
+				Redux::$init[ $args['opt_name'] ] = 1;
 			}
 
 			$args             = new Redux_Args( $this, $args );
@@ -600,12 +600,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 *
 		 * @return void
 		 */
-		public function set_transients() {
-
-
-
-
-		}
+		public function set_transients() {}
 
 		/**
 		 * SHIM: section_menu

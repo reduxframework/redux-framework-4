@@ -617,7 +617,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isTheme( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-//			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_theme( $file )' );
+			// phpcs:ignore Squiz.PHP.CommentedOutCode
+			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_theme( $file )' );
 
 			return self::is_theme( $file );
 		}

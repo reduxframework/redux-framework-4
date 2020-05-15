@@ -296,6 +296,11 @@ if ( ! class_exists( 'Redux', false ) ) {
 			self::load_redux( $opt_name );
 		}
 
+		/**
+		 * Load defaults values for a given opt_name.
+		 *
+		 * @param string $opt_name Panel opt_name.
+		 */
 		public static function set_defaults( $opt_name = '' ) {
 			// Try to load the class if in the same directory, so the user only have to include the Redux API.
 			if ( ! class_exists( 'Redux_Options_Defaults' ) ) {
@@ -314,7 +319,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				$wordpress_data                      = ( ! class_exists( 'Redux_WordPress_Data' ) ) ? null : new Redux_WordPress_Data( $opt_name );
 				$options_defaults_class              = new Redux_Options_Defaults();
 				self::$options_defaults[ $opt_name ] = $options_defaults_class->default_values( $opt_name, $sections, $wordpress_data );
-				if ( !isset( self::$args[ $opt_name ]['global_variable'] ) || ( '' === self::$args[ $opt_name ]['global_variable'] && false !== self::$args[ $opt_name ]['global_variable'] ) ) {
+				if ( ! isset( self::$args[ $opt_name ]['global_variable'] ) || ( '' === self::$args[ $opt_name ]['global_variable'] && false !== self::$args[ $opt_name ]['global_variable'] ) ) {
 					self::$args[ $opt_name ]['global_variable'] = str_replace( '-', '_', $opt_name );
 				}
 				if ( isset( self::$args[ $opt_name ]['global_variable'] ) && self::$args[ $opt_name ]['global_variable'] ) {
@@ -335,7 +340,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		/**
 		 * Load Redux Framework.
 		 *
-		 * @param string $opt_name Panrl opt_name.
+		 * @param string $opt_name Panel opt_name.
 		 */
 		public static function load_redux( $opt_name = '' ) {
 			if ( empty( $opt_name ) ) {
@@ -356,7 +361,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( isset( self::$init[ $opt_name ] ) && self::$init[ $opt_name ] == 1 ) {
+			if ( isset( self::$init[ $opt_name ] ) && 1 === self::$init[ $opt_name ] ) {
 				return;
 			}
 
