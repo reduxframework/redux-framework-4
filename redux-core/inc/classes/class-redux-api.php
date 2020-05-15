@@ -117,9 +117,9 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Code to run at creation in instance.
 		 */
 		public static function load() {
-			add_action( 'after_setup_theme', array( 'Redux', 'createRedux' ) );
-			add_action( 'init', array( 'Redux', 'createRedux' ) );
-			add_action( 'switch_theme', array( 'Redux', 'createRedux' ) );
+			add_action( 'after_setup_theme', array( 'Redux', 'create_redux' ) );
+			add_action( 'init', array( 'Redux', 'create_redux' ) );
+			add_action( 'switch_theme', array( 'Redux', 'create_redux' ) );
 
 			if ( version_compare( PHP_VERSION, '5.5.0', '<' ) ) {
 				include_once Redux_Core::$dir . 'inc/lib/array-column.php';
@@ -171,7 +171,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 				} else {
 					// The hook `plugins_loaded` has run, let's get going!
 					self::load_redux( $opt_name );
-					remove_action( 'setup_theme', array( 'Redux', 'createRedux' ) );
+
+					remove_action( 'setup_theme', array( 'Redux', 'create_redux' ) );
 				}
 			}
 		}
@@ -281,7 +282,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return $path;
 			}
 
-			return str_replace( 'extension_' . $extension . '.php', '', $path );
+			return dirname( $path );
 		}
 
 		/**
@@ -295,6 +296,42 @@ if ( ! class_exists( 'Redux', false ) ) {
 			self::load_redux( $opt_name );
 		}
 
+		public static function set_defaults( $opt_name = '' ) {
+			// Try to load the class if in the same directory, so the user only have to include the Redux API.
+			if ( ! class_exists( 'Redux_Options_Defaults' ) ) {
+				$file_check = trailingslashit( dirname( __FILE__ ) ) . 'class-redux-options-defaults.php';
+				if ( file_exists( dirname( $file_check ) ) ) {
+					include_once $file_check;
+					$file_check = trailingslashit( dirname( __FILE__ ) ) . 'class-redux-wordpress-data.php';
+					if ( file_exists( dirname( $file_check ) ) ) {
+						include_once $file_check;
+					}
+				}
+			}
+
+			if ( class_exists( 'Redux_Options_Defaults' ) && !isset( self::$options_defaults[ $opt_name ] ) ) {
+				$sections                            = self::construct_sections( $opt_name );
+				$wordpress_data                      = ( ! class_exists( 'Redux_WordPress_Data' ) ) ? null : new Redux_WordPress_Data( $opt_name );
+				$options_defaults_class              = new Redux_Options_Defaults();
+				self::$options_defaults[ $opt_name ] = $options_defaults_class->default_values( $opt_name, $sections, $wordpress_data );
+				if ( !isset( self::$args[ $opt_name ]['global_variable'] ) || ( '' === self::$args[ $opt_name ]['global_variable'] && false !== self::$args[ $opt_name ]['global_variable'] ) ) {
+					self::$args[ $opt_name ]['global_variable'] = str_replace( '-', '_', $opt_name );
+				}
+				if ( isset( self::$args[ $opt_name ]['global_variable'] ) && self::$args[ $opt_name ]['global_variable'] ) {
+					$option_global = self::$args[ $opt_name ]['global_variable'];
+
+					/**
+					 * Filter 'redux/options/{opt_name}/global_variable'
+					 *
+					 * @param array $value option value to set global_variable with
+					 */ global $$option_global;
+
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					$$option_global = apply_filters( 'redux/options/' . $opt_name . '/global_variable', self::$options_defaults[ $opt_name ] );
+				}
+			}
+		}
+
 		/**
 		 * Load Redux Framework.
 		 *
@@ -305,61 +342,25 @@ if ( ! class_exists( 'Redux', false ) ) {
 				return;
 			}
 
-			if ( ! class_exists( 'ReduxFramework' ) ) {
+			if ( class_exists( 'ReduxFramework' ) ) {
 				if ( isset( self::$init[ $opt_name ] ) && ! empty( self::$init[ $opt_name ] ) ) {
 					return;
 				}
+			} else {
+				echo '<div id="message" class="error"><p>' . esc_html__( 'Redux Framework is not installed. Please install it.', 'redux-framework' ) . '</p></div>';
 
-				self::$init[ $opt_name ] = 1;
-
-				// Try to load the class if in the same directory, so the user only have to include the Redux API.
-				if ( ! class_exists( 'Redux_Options_Defaults' ) ) {
-					$file_check = trailingslashit( dirname( __FILE__ ) ) . 'class-redux-options-defaults.php';
-					if ( file_exists( dirname( $file_check ) ) ) {
-						include_once $file_check;
-						$file_check = trailingslashit( dirname( __FILE__ ) ) . 'class-redux-wordpress-data.php';
-						if ( file_exists( dirname( $file_check ) ) ) {
-							include_once $file_check;
-						}
-					}
-				}
-
-				if ( class_exists( 'Redux_Options_Defaults' ) ) {
-					$sections                            = self::construct_sections( $opt_name );
-					$wordpress_data                      = ( ! class_exists( 'Redux_WordPress_Data' ) ) ? null : new Redux_WordPress_Data( $opt_name );
-					$options_defaults_class              = new Redux_Options_Defaults();
-					self::$options_defaults[ $opt_name ] = $options_defaults_class->default_values( $opt_name, $sections, $wordpress_data );
-					if ( '' === self::$args[ $opt_name ]['global_variable'] && false !== self::$args[ $opt_name ]['global_variable'] ) {
-						self::$args[ $opt_name ]['global_variable'] = str_replace( '-', '_', $opt_name );
-					}
-					if ( self::$args[ $opt_name ]['global_variable'] ) {
-						$option_global = self::$args[ $opt_name ]['global_variable'];
-
-						/**
-						 * Filter 'redux/options/{opt_name}/global_variable'
-						 *
-						 * @param array $value option value to set global_variable with
-						 */ global $$option_global;
-
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
-						$$option_global = apply_filters( 'redux/options/' . $opt_name . '/global_variable', self::$options_defaults[ $opt_name ] );
-					}
-
-					return;
-				} else {
-					echo '<div id="message" class="error"><p>' . esc_html__( 'Redux Framework is not installed. Please install it.', 'redux-framework' ) . '</p></div>';
-
-					return;
-				}
+				return;
 			}
 
 			$check = self::instance( $opt_name );
 
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( isset( $check->api_has_run ) ) {
+			if ( isset( self::$init[ $opt_name ] ) && self::$init[ $opt_name ] == 1 ) {
 				return;
 			}
+
+			self::set_defaults( $opt_name );
 
 			$args     = self::construct_args( $opt_name );
 			$sections = self::construct_sections( $opt_name );
@@ -369,7 +370,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 			}
 
 			$redux                   = new ReduxFramework( $sections, $args );
-			$redux->api_has_run      = 1;
 			self::$init[ $opt_name ] = 1;
 
 			if ( isset( $redux->args['opt_name'] ) && $redux->args['opt_name'] !== $opt_name ) {
@@ -1433,7 +1433,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		}
 
 		/**
-		 * Verift extension class name.
+		 * Verify extension class name.
 		 *
 		 * @param string $opt_name   Panel opt_name.
 		 * @param string $name       extension name.

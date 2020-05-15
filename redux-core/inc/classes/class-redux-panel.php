@@ -408,3 +408,9 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		}
 	}
 }
+
+if ( ! class_exists( 'reduxCorePanel' ) ) {
+	class_alias( 'Redux_Panel', 'reduxCorePanel' );
+}
+
+

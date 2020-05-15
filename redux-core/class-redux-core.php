@@ -218,19 +218,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			Redux_ThemeCheck::get_instance();
 
-			self::tour( $parent );
-		}
-
-		/**
-		 * Set tour class.
-		 *
-		 * @param object $parent ReduxFramework object.
-		 */
-		private static function tour( $parent ) {
-			if ( file_exists( self::$dir . '/inc/classes/class-redux-tour.php' ) && class_exists( 'Redux_Tour' ) ) {
-				$tour = Redux_Tour::get_instance();
-				$tour->load( $parent );
-			}
 		}
 
 		/**
@@ -293,12 +280,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 				if ( 'Redux_Welcome' === $class_name ) {
 					require_once Redux_Path::get_path( '/inc/welcome/class-redux-welcome.php' );
-
-					return;
-				}
-
-				if ( 'Redux_Tour' === $class_name ) {
-					require_once Redux_Path::get_path( '/inc/classes/class-redux-tour.php' );
 
 					return;
 				}

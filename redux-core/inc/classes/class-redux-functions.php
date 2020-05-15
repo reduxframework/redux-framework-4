@@ -29,6 +29,13 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		public static $parent;
 
 		/**
+		 * ReduxFramework shim object pointer.
+		 *
+		 * @var object
+		 */
+		public static $_parent;
+
+		/**
 		 * Check for existence of class name via array of class names.
 		 *
 		 * @param array $class_names Array of class names.
@@ -147,7 +154,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 
 				if ( $redux_all > 0 ) {
 					foreach ( $redux_all as $opt_name => $arr ) {
-						self::$parent = $redux_all[ $opt_name ];
+						self::$parent = self::$_parent = $redux_all[ $opt_name ];
 						continue;
 					}
 				}

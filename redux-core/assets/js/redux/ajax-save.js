@@ -11,7 +11,7 @@
 
 		var overlay           = $( document.getElementById( 'redux_ajax_overlay' ) );
 		var $notification_bar = $( document.getElementById( 'redux_notification_bar' ) );
-		var $parent           = $( document.getElementById( 'redux-form-wrapper' ) );
+		var $parent           = $( button ).parents('.redux-form-wrapper');
 
 		overlay.fadeIn();
 

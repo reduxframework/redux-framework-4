@@ -617,7 +617,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @deprecated No longer using camelCase naming convention.
 		 */
 		public static function isTheme( $file ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
-			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_theme( $file )' );
+//			_deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0.0', 'Redux_Instances::is_theme( $file )' );
 
 			return self::is_theme( $file );
 		}
@@ -1294,7 +1294,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				$file_data = $filesystem->execute( 'get_contents', $file );
 
 				$file_data = str_replace( "\r", "\n", $file_data );
-				$version   = '';
+				$version   = '1.0.0';
 
 				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
 					$version = _cleanup_header_comment( $match[1] );

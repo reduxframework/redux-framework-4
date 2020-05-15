@@ -206,7 +206,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param string $media True or 'all'.
 		 */
 		public static function register_style( $handle, $src_cdn = false, $deps = array(), $ver = false, $media = 'all' ) {
-			if ( self::$parent->args['use_cdn'] ) {
+			if ( empty( self::$parent ) || self::$parent->args['use_cdn'] ) {
 				self::cdn( true, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
 			} else {
 				self::vendor_plugin( true, $handle, $src_cdn, $deps, $ver, $media, $is_script = false );
@@ -222,7 +222,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 		 * @param bool   $in_footer Script in footer.
 		 */
 		public static function register_script( $handle, $src_cdn = false, $deps = array(), $ver = false, $in_footer = false ) {
-			if ( self::$parent->args['use_cdn'] ) {
+			if ( empty( self::$parent ) || self::$parent->args['use_cdn'] ) {
 				self::cdn( true, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );
 			} else {
 				self::vendor_plugin( true, $handle, $src_cdn, $deps, $ver, $in_footer, $is_script = true );

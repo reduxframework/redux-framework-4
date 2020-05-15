@@ -410,11 +410,14 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 				if ( $class_file ) {
 					$field_class = Redux_Functions::class_exists_ex( $field_classes );
-
 					if ( false === $field_class ) {
-						require_once $class_file;
+						if ( file_exists( $class_file ) ) {
+							require_once $class_file;
 
-						$field_class = Redux_Functions::class_exists_ex( $field_classes );
+							$field_class = Redux_Functions::class_exists_ex( $field_classes );
+						} else {
+							return;
+						}
 					}
 
 					if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' ) ) {
@@ -753,4 +756,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			wp_enqueue_script( 'redux-js' ); // Enqueue the JS now.
 		}
 	}
+}
+
+if ( ! class_exists( 'reduxCoreEnqueue' ) ) {
+	class_alias( 'Redux_Enqueue', 'reduxCoreEnqueue' );
 }

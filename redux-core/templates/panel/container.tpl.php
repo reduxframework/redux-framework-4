@@ -30,12 +30,10 @@ $this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->
 				type="hidden" id="redux-compiler-hook"
 				name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[compiler]"
 				value=""/>
-
 			<input
 				type="hidden" id="currentSection"
 				name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[redux-section]"
 				value=""/>
-
 			<?php if ( ! empty( $this->parent->options_class->no_panel ) ) { ?>
 				<input
 					type="hidden"
@@ -47,7 +45,6 @@ $this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->
 				type="hidden" id="last_tab"
 				name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[last_tab]"
 				value="<?php echo esc_attr( $this->parent->options['last_tab'] ); ?>"/>
-
 			<?php $this->get_template( 'content.tpl.php' ); ?>
 		</form>
 	</div>
