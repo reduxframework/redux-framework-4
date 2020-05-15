@@ -397,7 +397,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				Redux::set_sections( $args['opt_name'], $sections );
 				Redux::set_args( $args['opt_name'], $args );
 				$sections = Redux::construct_sections( $args['opt_name'] );
-				$args 	  = Redux::construct_args( $args['opt_name'] );
+				$args     = Redux::construct_args( $args['opt_name'] );
 				Redux::set_defaults( $args['opt_name'] );
 				Redux::$init[ $args['opt_name'] ] = 1;
 			}

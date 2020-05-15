@@ -504,7 +504,8 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 							require_once $class_file;
 							$field_class = Redux_Functions::class_exists_ex( $field_classes );
 						} else {
-							echo sprintf( esc_html__( 'Field %s could not be displayed. Field type %s was not found.', 'redux-framework' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
+							// translators: %1$s is the field ID, %2$s is the field type.
+							echo sprintf( esc_html__( 'Field %1$s could not be displayed. Field type %2$s was not found.', 'redux-framework' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
 						}
 					}
 				}

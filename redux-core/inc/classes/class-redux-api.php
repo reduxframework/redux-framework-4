@@ -314,7 +314,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				}
 			}
 
-			if ( class_exists( 'Redux_Options_Defaults' ) && !isset( self::$options_defaults[ $opt_name ] ) ) {
+			if ( class_exists( 'Redux_Options_Defaults' ) && ! isset( self::$options_defaults[ $opt_name ] ) ) {
 				$sections                            = self::construct_sections( $opt_name );
 				$wordpress_data                      = ( ! class_exists( 'Redux_WordPress_Data' ) ) ? null : new Redux_WordPress_Data( $opt_name );
 				$options_defaults_class              = new Redux_Options_Defaults();

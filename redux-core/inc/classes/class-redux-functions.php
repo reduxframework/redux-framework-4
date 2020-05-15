@@ -33,6 +33,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @var object
 		 */
+		// phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 		public static $_parent;
 
 		/**
@@ -154,7 +155,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 
 				if ( $redux_all > 0 ) {
 					foreach ( $redux_all as $opt_name => $arr ) {
-						self::$parent = $redux_all[ $opt_name ];
+						self::$parent  = $redux_all[ $opt_name ];
 						self::$_parent = self::$parent;
 						continue;
 					}
