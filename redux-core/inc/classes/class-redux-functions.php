@@ -33,8 +33,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @var object
 		 */
-		// phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
-		public static $_parent;
+		public static $_parent; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * Check for existence of class name via array of class names.

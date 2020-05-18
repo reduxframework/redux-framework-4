@@ -1684,7 +1684,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 						if ( file_exists( $test_path . 'field_' . str_replace( '-', '', $extension ) . '.php' ) ) {
 							$the_data['field'] = $test_path . 'field_' . str_replace( '-', '', $extension ) . '.php';
 						}
-						// Old extensions
+						// Old extensions!
 						if ( file_exists( $test_path . str_replace( '-', '', $extension ) . '.php' ) ) {
 							$the_data['field'] = $test_path . str_replace( '-', '', $extension ) . '.php';
 						}
