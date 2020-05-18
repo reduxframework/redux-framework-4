@@ -43,9 +43,9 @@ if ( ! class_exists( 'Redux_Class', false ) ) {
 		 * @param null|ReduxFramework $parent Pointer to ReduxFramework object.
 		 */
 		public function __construct( $parent = null ) {
-			if ( null !== $parent ) {
-				$this->parent = $parent;
+			if ( null !== $parent && is_object( $parent ) ) {
 
+				$this->parent = $parent;
 				$this->args     = $parent->args;
 				$this->opt_name = $this->args['opt_name'];
 			}

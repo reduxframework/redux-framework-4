@@ -50,6 +50,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 		 * @param object $parent ReduxFramework pointer.
 		 */
 		public function __construct( $parent ) {
+
 			parent::__construct( $parent );
 
 			add_action( 'admin_init', array( $this, 'register' ) );
@@ -229,6 +230,10 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 		 */
 		public function register() {
 			$core = $this->core();
+
+			if ( ! is_object( $core ) ) {
+				return;
+			}
 
 			if ( true === $core->args['options_api'] ) {
 				register_setting(

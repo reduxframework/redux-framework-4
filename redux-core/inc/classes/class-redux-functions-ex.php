@@ -331,5 +331,16 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			return $result;
 		}
 
+		/**
+		 * AJAX callback key
+		 */
+		public static function hash_key() {
+			$key  = '';
+			$key .= defined( 'AUTH_KEY' ) ? AUTH_KEY : get_site_url();
+			$key .= defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
+
+			return $key;
+		}
+
 	}
 }

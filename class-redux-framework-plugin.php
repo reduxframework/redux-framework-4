@@ -425,4 +425,6 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 			return $links;
 		}
 	}
+
+	class_alias( 'Redux_Framework_Plugin', 'ReduxFrameworkPlugin' );
 }

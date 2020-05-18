@@ -237,7 +237,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$welcome = new Redux_Welcome();
 			new Redux_Rest_Api_Builder( $this );
 
-			$support_hash = md5( md5( Redux_Helpers::hash_key() . '-redux' ) . '-support' );
+			$support_hash = md5( md5( Redux_Functions_Ex::hash_key() . '-redux' ) . '-support' );
 			add_action( 'wp_ajax_nopriv_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );
 			add_action( 'wp_ajax_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );
 			$hash_arg = md5( trailingslashit( network_site_url() ) . '-redux' );

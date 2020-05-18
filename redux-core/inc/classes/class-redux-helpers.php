@@ -1840,21 +1840,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		}
 
 		/**
-		 * AJAX callback key
-		 */
-		public static function hash_key() {
-			$key  = '';
-			$key .= defined( 'AUTH_KEY' ) ? AUTH_KEY : get_site_url();
-			$key .= defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
-
-			return $key;
-		}
-
-		/**
 		 * AJAX callback.
 		 */
 		public static function hash_arg() {
-			echo esc_html( md5( self::hash_key() . '-redux' ) );
+			echo esc_html( md5( Redux_Functions_Ex::hash_key() . '-redux' ) );
 			die();
 		}
 
@@ -1932,7 +1921,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 						$array['instances'][] = $opt_name;
 					}
 				}
-				$array['key'] = md5( self::hash_key() );
+				$array['key'] = md5( Redux_Functions_Ex::hash_key() );
 			}
 
 			ksort( $array ); // Let's make that pretty.
