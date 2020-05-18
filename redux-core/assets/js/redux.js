@@ -11,7 +11,7 @@
 
 		var overlay           = $( document.getElementById( 'redux_ajax_overlay' ) );
 		var $notification_bar = $( document.getElementById( 'redux_notification_bar' ) );
-		var $parent           = $( button ).parents('.redux-form-wrapper');
+		var $parent           = $( button ).parents( '.redux-form-wrapper' );
 
 		overlay.fadeIn();
 
@@ -81,20 +81,18 @@
 				error: function( response ) {
 					$( '.redux-action_bar input' ).removeAttr( 'disabled' );
 
-					redux.optName.args.ajax_save = false;
+					if ( true === redux.optName.args.dev_mode ) {
+						console.log( response.responseText );
 
-					$( button ).click();
-					$( '.redux-action_bar input' ).attr( 'disabled', 'disabled' );
+						overlay.fadeOut( 'fast' );
+						$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
+						alert( redux.optName.ajax.alert );
+					} else {
+						redux.optName.optName.args.ajax_save = false;
 
-					// if ( true === redux.optName.args.dev_mode ) {
-					// 	console.log( response.responseText );
-					//
-					// 	overlay.fadeOut( 'fast' );
-					// 	$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
-					// 	alert( redux.optName.ajax.alert );
-					// } else {
-					//
-					// }
+						$( button ).click();
+						$( '.redux-action_bar input' ).attr( 'disabled', 'disabled' );
+					}
 				},
 				success: function( response ) {
 					var $save_notice;
@@ -429,16 +427,15 @@ function colorNameToHex( colour ) {
 			'click',
 			function( e ) {
 				if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults]' ) {
+
 					// Defaults button clicked.
 					if ( ! confirm( redux.optName.args.reset_confirm ) ) {
-						redux.optName.args.ajax_save = false;
 						return false;
 					}
 				} else if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults-section]' ) {
 
 					// Default section clicked.
 					if ( ! confirm( redux.optName.args.reset_section_confirm ) ) {
-						redux.optName.args.ajax_save = false;
 						return false;
 					}
 				} else if ( 'import' === $( this ).attr( 'name' ) ) {
@@ -709,9 +706,6 @@ function colorNameToHex( colour ) {
 				}
 			} else {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
-				if ( optName === undefined ) {
-					optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
-				}
 			}
 		}
 

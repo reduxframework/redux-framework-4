@@ -72,8 +72,8 @@
     }
 
     #redux-header {
-        background: #f1f1f1;
-        border-bottom: 3px solid blue;
+        border-bottom-width: 3px; 
+        border-bottom-style: solid;
 
         .display_header {
             float: left;
