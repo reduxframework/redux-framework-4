@@ -369,7 +369,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			}
 
 			// Force dev_mode on WP_DEBUG = true and if it's a local server.
-			if ( Redux_Helpers::is_local_host() || ( Redux_Helpers::is_wp_debug() ) ) {
+			if ( Redux_Helpers::is_wp_debug() ) {
 				$this->dev_mode_forced = true;
 				$args['dev_mode']      = true;
 			}
