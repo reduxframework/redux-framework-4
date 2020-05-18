@@ -1713,6 +1713,24 @@ if ( ! class_exists( 'Redux', false ) ) {
 		public static function remove_demo() {
 			update_option( 'ReduxFrameworkPlugin_ACTIVATED_NOTICES', '' );
 		}
+
+		/**
+		 * Function which forces a panel/page to render.
+		 *
+		 * @param string $redux Panel opt_name or Redux object.
+		 */
+		public static function render( $redux = '' ) {
+			if ( is_string( $redux ) ) {
+				$redux = Redux_Instances::get_instance( $redux );
+				if ( empty( $redux ) ) {
+					return;
+				}
+			}
+			$enqueue = new Redux_Enqueue( $redux );
+			$enqueue->init();
+			$panel = new \Redux_Panel( $redux );
+			$panel->init();
+		}
 	}
 
 	Redux::load();
