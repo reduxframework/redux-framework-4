@@ -1,0 +1,18 @@
+.sb-insert-library-button {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+// Hide Qubely Library
+.qubely-import-layout-btn-container,
+#qubelyImportLayoutBtn,
+.gutentor-export-button,
+#getwid-layout-insert-button,
+.kb-toolbar-insert-layout {
+    display: none !important;
+}

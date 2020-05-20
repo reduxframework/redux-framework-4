@@ -1,0 +1,80 @@
+.starterblocks-feedback {
+    padding: 20px;
+    width: 600px;
+    .panel {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+        max-height: 300px;
+        opacity: 1;
+        &.fade {
+            max-height: 0;
+            opacity: 0;
+        }
+        .field {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+            &.top {
+                align-items: top;
+            }
+            label {
+                margin-right: 15px;
+            }
+            label + input,
+            textarea {
+                padding: 5px 10px;
+                width: 375px;
+            }
+            input[type="checkbox"],
+            input[type="radio"] {
+                margin-top: 0;
+                margin-right: 0.5rem;
+            }
+        }
+        button {
+            align-self: center;
+            margin-top: 1rem;
+        }
+    }
+    h4 {
+        margin: 0.5rem 0;
+    }
+    .error-panel {
+        color: #f00;
+        margin-bottom: 10px;
+    }
+}
+.starterblocks-feedback-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    .starterblocks-modal-header {
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        flex: 0 0 60px;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+
+        h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        .starterblocks-modal-close {
+            font-size: 20px;
+            background: transparent;
+            color: #9b9b9b;
+        }
+
+    }
+}

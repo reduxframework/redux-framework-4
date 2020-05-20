@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab Header renders correctly 1`] = `
+<div
+  className="starterblocks-builder-modal-header"
+>
+  <div
+    className="template-search-box"
+  >
+    <div>
+      <i
+        className="fas fa-search"
+      />
+      <input
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Type to search"
+        type="search"
+      />
+    </div>
+  </div>
+  <div
+    className="starterblocks-template-list-header"
+  >
+    <button
+      className=""
+      onClick={[Function]}
+    >
+       
+      Sections
+       
+    </button>
+    <button
+      className=""
+      onClick={[Function]}
+    >
+       
+      Pages
+       
+    </button>
+    <button
+      className=""
+      onClick={[Function]}
+    >
+       
+      Collections
+       
+    </button>
+    <button
+      className=""
+      onClick={[Function]}
+    >
+       
+      Saved
+       
+    </button>
+    <button
+      className="starterblocks-builder-close-modal"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-times"
+      />
+    </button>
+  </div>
+</div>
+`;

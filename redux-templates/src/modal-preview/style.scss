@@ -1,0 +1,201 @@
+.wp-full-overlay {
+    margin-left: 300px;
+}
+
+@media screen and (min-width: 1667px) {
+    .wp-full-overlay {
+        margin-left: 18%;
+    }
+}
+
+button {
+    box-sizing: border-box;
+    pointer-events: all;
+}
+
+.wp-full-overlay.hide {
+    display: none;
+}
+
+.theme-screenshot-wrap {
+    overflow: hidden;
+    position: relative;
+    max-height: 300px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+}
+
+.install-theme-info .theme-screenshot {
+    width: 100%;
+    border: none;
+    margin: 0;
+    display: block;
+}
+
+.expanded .wp-full-overlay-footer {
+    height: 111px;
+    left: initial;
+
+    .button-hero {
+        text-align: center;
+    }
+}
+
+.wp-full-overlay .wp-full-overlay-sidebar-content {
+    bottom: 100px;
+
+    .starterblocks-dependencies-list {
+        h4 {
+            color: #23282d;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        border-top: 1px solid #eee;
+        color: #82878c;
+        font-size: 13px;
+        font-weight: 400;
+        margin: 30px 0 0 0;
+
+        .starterblocks-dependency-blocks {
+            .starterblocks-dependency-name {
+                color: #444;
+                font-weight: 600;
+                margin-right: 5px;
+            }
+        }
+
+    }
+}
+
+.footer-import-button-wrap {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.wp-full-overlay-footer .view-site,
+.wp-full-overlay-footer .go-pro,
+.wp-full-overlay-footer .starterblocks-import {
+    width: 100%;
+}
+
+.starterblocks-button-download {
+    border: 1px solid #3dbfe8;
+    background: #3dbfe8;
+    box-shadow: 0 1px 0 #165cb4;
+    color: #fff;
+}
+
+.wp-full-overlay-main {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+.wp-full-overlay-main.loaded::before {
+    display: none;
+}
+
+.theme-install-overlay iframe {
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    transition: opacity 0.3s;
+}
+
+
+.starterblocks-dependency-blocks {
+    display: flex;
+
+    .block-head {
+        text-align: center;
+        width: 60px;
+        margin-right: 10px;
+    }
+}
+
+
+.requirements-list {
+    margin-top: 50px;
+
+    a.missing {
+        display: inline-flex;
+    }
+
+    .list-type ul {
+        padding-left: 25px;
+    }
+}
+
+.starterblock-modal-preview-box {
+    background: #f1f1f1; // To hide the spinner
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+.theme-hash {
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+
+    i {
+        cursor: pointer;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .copied {
+        color: #656a6f;
+        position: absolute;
+        line-height: 75%;
+        margin-left: 10px;
+        opacity: 0.6;
+    }
+
+    .the-copy {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .the-hash {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-left: 0;
+    }
+
+    .hideMe {
+        -webkit-animation: cssAnimation 3s forwards;
+        animation: cssAnimation 3s forwards;
+    }
+
+    @keyframes cssAnimation {
+        0% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    @-webkit-keyframes cssAnimation {
+        0% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}

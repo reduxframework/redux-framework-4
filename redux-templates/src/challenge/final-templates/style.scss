@@ -1,0 +1,101 @@
+.challenge-popup-wrapper {
+    height: 520px;
+}
+.challenge-popup-header {
+    width: 100%;
+    height: 212px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.challenge-popup-header-congrats {
+    background-position: center;
+    background-size: cover;
+}
+
+.challenge-popup-header-contact {
+    /* background: #eee url("../images/challenge/popup-contact.png") no-repeat center; */
+    background-size: auto 57%;
+}
+
+.challenge-popup-content {
+    padding: 30px 40px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.challenge-popup-content h3 {
+    color: #df7739;
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-family: "Helvetica Neue";
+    font-weight: 500;
+}
+
+.challenge-popup-content p {
+    font-size: 16px;
+    margin: 0 0 22px;
+}
+
+.challenge-popup-content b {
+    font-weight: 500;
+}
+
+.challenge-popup-content .challenge-contact-message {
+    box-shadow: none;
+    resize: none;
+    margin-bottom: 21px;
+    width: 100%;
+    min-height: 175px;
+}
+
+.challenge-popup-content label {
+    font-size: 13.8px;
+    display: block;
+    margin-bottom: 23px;
+}
+
+.challenge-popup-content input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.challenge-popup-content .rating-stars {
+    color: #fdb72c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.challenge-popup-close .fa-times-circle {
+    font-size: 27px;
+    color: #777;
+    float: right;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.challenge-popup-btn {
+    display: inline-block;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 25px;
+    border: 1px solid #bf5e31;
+    background-color: #e27730;
+    color: #fff;
+
+    &:hover {
+        border: 1px solid #b85a1b;
+        background-color: #b85a1b;
+    }
+
+    .dashicons-external {
+        margin-left: 6px;
+    }
+}
