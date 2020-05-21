@@ -70,14 +70,14 @@ function SavedView(props) {
     }
     if (dataLoaded === true)
         return (
-            <div className="starter-two-sections__grid">
+            <div className="redux-templates-two-sections__grid">
                 {
                     (savedSections && savedSections.length > 0) ?
                         mapToColumnData(savedSections).map((column, key) => {
                             let sections = column.map((section, i) => {
                                 let blocks = parse(section.post_content);
                                 return (
-                                    <div className="starter-two-section" key={i}
+                                    <div className="redux-templates-two-section" key={i}
                                         onClick={() => importSections(section.post_content)}>
 
                                         <div className="preview-image-wrapper">
@@ -86,7 +86,7 @@ function SavedView(props) {
                                         <div className="saved-section-title">
                                             {section.post_title}
                                         </div>
-                                        <div className="starter-two-section-remove"
+                                        <div className="redux-templates-two-section-remove"
                                             onClick={e => deleteSavedSection(e, section.ID)}>
                                             <i className="fas fa-trash"></i>
                                         </div>
@@ -95,7 +95,7 @@ function SavedView(props) {
                             })
 
                             return (
-                                <div className="starter-two-sections__grid__column" key={key}
+                                <div className="redux-templates-two-sections__grid__column" key={key}
                                     style={{width: '25%', flexBasis: '25%'}}>
                                     {sections}
                                 </div>

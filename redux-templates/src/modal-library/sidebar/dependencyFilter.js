@@ -39,7 +39,7 @@ function DependencyFilter(props) {
     return (
         <Fragment>
             {!loading && wholePlugins &&
-                <div id="starterblock-filter-dependencies" data-tut="tour__filter_dependencies">
+                <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
                     <h3>{__('Required Plugins', reduxtemplates.i18n)}</h3>
                     <div className="reduxtemplates-select-actions">
                         <Tooltip text={__('Select All', reduxtemplates.i18n)}><a href="#" onClick={() => setAllCheckedAs(true)}>{__('All', reduxtemplates.i18n)}</a></Tooltip>

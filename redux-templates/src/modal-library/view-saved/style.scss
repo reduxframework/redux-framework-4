@@ -1,4 +1,4 @@
-.starter-two-sections {
+.redux-templates-two-sections {
     position: absolute;
     width: 85.9375%;
     height: 89.537037%;
@@ -15,7 +15,7 @@
     box-shadow: 0 0 45px 10px rgba(3, 8, 15, 0.2);
 }
 
-.starter-two-sections__grid {
+.redux-templates-two-sections__grid {
     width: 100%;
     height: 100%;
     padding: 40px 22.5px;
@@ -25,11 +25,11 @@
     display: flex;
 }
 
-.starter-two-sections__grid__column {
+.redux-templates-two-sections__grid__column {
     width: 100%;
 }
 
-.starter-two-sections__grid-clear {
+.redux-templates-two-sections__grid-clear {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -43,7 +43,7 @@
     height: 100%;
 }
 
-.starter-two-sections__grid-clear-text {
+.redux-templates-two-sections__grid-clear-text {
     opacity: 0.9;
     color: #818a91;
     font-family: pn, "Open Sans", Arial, sans-serif;
@@ -53,21 +53,21 @@
     margin: 0 0 20px;
 }
 
-.starter-two-sections__grid-clear-image-saved {
+.redux-templates-two-sections__grid-clear-image-saved {
     width: 322px;
     height: 145px;
     margin-top: -21px;
     pointer-events: none;
 }
 
-.starter-two-sections__grid-clear-image-global {
+.redux-templates-two-sections__grid-clear-image-global {
     width: 524px;
     height: 207px;
     margin-top: -28px;
     pointer-events: none;
 }
 
-.starter-two-section {
+.redux-templates-two-section {
     position: relative;
     margin: 0 17.5px 35px;
     cursor: pointer;
@@ -82,7 +82,7 @@
         margin-bottom: 0;
     }
 
-    .starter-two-section-remove {
+    .redux-templates-two-section-remove {
         position: absolute;
         z-index: 4;
         top: -7px;
@@ -115,7 +115,7 @@
     }
 
     &:hover {
-        .starter-two-section-remove {
+        .redux-templates-two-section-remove {
             opacity: 1;
             -webkit-transform: scale(1);
             transform: scale(1);
@@ -129,7 +129,7 @@
             }
         }
 
-        .starter-two-section-item {
+        .redux-templates-two-section-item {
             &::before {
                 border-color: #3dbfe8;
             }
@@ -142,7 +142,7 @@
 }
 
 
-.starter-two-section {
+.redux-templates-two-section {
     .preview-image-wrapper {
         transition: all 0.05s ease-in-out;
         width: 100%;

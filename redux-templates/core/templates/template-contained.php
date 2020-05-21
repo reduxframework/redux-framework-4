@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * ReduxTemplates - Full Width / Contained
  *
  * @since v.1.0.0
- * @package starter-blocks
+ * @package redux-templates
  */
 get_header();
 while ( have_posts() ) : the_post();

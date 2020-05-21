@@ -39,7 +39,7 @@ You are building a **big site** with **lots of pages** and you just want it to l
 
 You can browse through the categories, as well as collections of like-styled pages. When you find something you like, ReduxTemplates makes sure you have everything you need. If a dependency (or required plugin) is missing, you are notified and can install the missing dependency. Worried that our templates may not work with your theme? No problem! With our custom `page templates` options you can transform any site into exactly what you want it to be no matter what them you are using.
 
-Don’t waste hours trying to recreate a design you love. With a click of a button, you have it on your own site and you can begin customizing your "starter block" for your needs.
+Don’t waste hours trying to recreate a design you love. With a click of a button, you have it on your own site and you can begin customizing your "redux template" for your needs.
 
 <h4>🎉 Supported Page Builders</h4>
 Currently ReduxTemplates supports only the <a href="https://wordpress.org/plugins/gutenberg/"><strong>Gutenberg / Block Editor of WordPress 5.0+</strong></a>.

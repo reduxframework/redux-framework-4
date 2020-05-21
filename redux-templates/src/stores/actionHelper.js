@@ -107,7 +107,7 @@ export const afterImportHandling = (data, handledBlock) => {
     } else {
         createNotice('warning', 'Please let us know if there was an issue importing this ReduxTemplates template.', {
             isDismissible: true,
-            id: 'starterblockimportfeedback',
+            id: 'reduxtemplatesimportfeedback',
             actions: [
                 {
                     onClick: () => ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} />),
@@ -117,7 +117,7 @@ export const afterImportHandling = (data, handledBlock) => {
             ],
         });
         setTimeout(() => {
-            removeNotice('starterblockimportfeedback');
+            removeNotice('reduxtemplatesimportfeedback');
         }, 20000);
     }
 }

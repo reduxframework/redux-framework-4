@@ -16,7 +16,7 @@ function FullyOverlayHeader(props) {
             </button>
             {
                 pro === false &&
-                <a className="button hide-if-no-customize button-primary starter-section-import" onClick={onImport}
+                <a className="button hide-if-no-customize button-primary redux-templates-section-import" onClick={onImport}
                 data-import="disabled">
                     {__('Import', reduxtemplates.i18n)}
                 </a>

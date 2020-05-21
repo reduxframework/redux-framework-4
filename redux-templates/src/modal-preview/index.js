@@ -88,7 +88,7 @@ function PreviewModal(props) {
                         <iframe src={itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
                     }
                     {!itemData.url &&
-                        <div className='starterblock-modal-preview-box'><img
+                        <div className='redux-templates-modal-preview-box'><img
                             src={image_url}
                             title=''/></div>
                     }

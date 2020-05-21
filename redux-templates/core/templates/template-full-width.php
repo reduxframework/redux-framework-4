@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * ReduxTemplates - Full Width / Stretched
  *
  * @since v.1.0.0
- * @package starter-blocks
+ * @package redux-templates
  */
 get_header();
 echo '</div></div>';
