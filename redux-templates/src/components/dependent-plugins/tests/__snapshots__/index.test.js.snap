@@ -2,6 +2,6 @@
 
 exports[`Dependent Plugins part within Button Group component 1. renders correctly: snapshot testing 1`] = `
 <div
-  className="reduxtemplates-button-display-dependencies"
+  className="redux-templates-button-display-dependencies"
 />
 `;

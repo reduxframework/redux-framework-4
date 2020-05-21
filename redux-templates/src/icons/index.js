@@ -21,38 +21,38 @@ import {updateCategory} from '@wordpress/blocks'
 
 export const colorizeIcon = SvgIcon => {
 	return cloneElement(SvgIcon, {
-		fill: 'url(#reduxtemplates-gradient)',
-		className: 'sb-reduxtemplates-icon-gradient',
+		fill: 'url(#redux-templates-gradient)',
+		className: 'sb-redux-templates-icon-gradient',
 	})
 }
 
 // Add an icon to our block category.
 if (typeof window.wp.blocks !== 'undefined' && typeof window.wp.blocks.updateCategory !== 'undefined') {
-	updateCategory(reduxtemplates.i18n, {
+	updateCategory(redux-templates.i18n, {
 		icon: colorizeIcon(<SVGReduxTemplatesIcon className="components-panel__icon" width="20" height="20"/>),
 	})
 }
 
 // Add our SVG gradient placeholder definition that we'll reuse.
 domReady(() => {
-	const reduxtemplatesGradient = document.createElement('DIV')
-	document.querySelector('body').appendChild(reduxtemplatesGradient)
+	const redux-templatesGradient = document.createElement('DIV')
+	document.querySelector('body').appendChild(redux-templatesGradient)
 	render(
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			className="sb-reduxtemplates-gradient"
+			className="sb-redux-templates-gradient"
 			height="0"
 			width="0"
 			style={{opacity: 0}}
 		>
 			<defs>
-				<linearGradient id="reduxtemplates-gradient">
+				<linearGradient id="redux-templates-gradient">
 					<stop offset="0%" stopColor="#8c33da" stopOpacity="1"/>
 					<stop offset="100%" stopColor="#f34957" stopOpacity="1"/>
 				</linearGradient>
 			</defs>
 		</svg>,
-		reduxtemplatesGradient
+		redux-templatesGradient
 	)
 })
 

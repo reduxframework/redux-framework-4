@@ -1,4 +1,4 @@
-.reduxtemplates-modal-overlay {
+.redux-templates-modal-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 600000;
 }
 
-.reduxtemplates-modal-wrapper {
+.redux-templates-modal-wrapper {
     width: 550px;
     height: 400px;
     background: #fcfcfc;
@@ -27,7 +27,7 @@
         width: 100%;
     }
 
-    .reduxtemplates-modal-header {
+    .redux-templates-modal-header {
         border-bottom: 1px solid #ddd;
         flex: 0 0 60px;
         padding: 10px 15px;
@@ -46,7 +46,7 @@
             cursor: pointer;
         }
 
-        .reduxtemplates-modal-close {
+        .redux-templates-modal-close {
             font-size: 20px;
             background: transparent;
             color: #9b9b9b;
@@ -54,7 +54,7 @@
 
     }
 
-    .reduxtemplates-modal-body {
+    .redux-templates-modal-body {
         flex: 1 1 auto;
         padding-left: 30px;
         padding-right: 30px;
@@ -76,7 +76,7 @@
         }
     }
 
-    .reduxtemplates-modal-footer {
+    .redux-templates-modal-footer {
         border-top: 1px solid #ddd;
         flex: 0 0 60px;
         align-items: center;
@@ -94,7 +94,7 @@
         }
     }
 
-    .reduxtemplates-modal-spinner-wrapper {
+    .redux-templates-modal-spinner-wrapper {
         flex: 1 1 auto;
         align-items: center;
         justify-content: center;

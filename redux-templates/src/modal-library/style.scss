@@ -1,5 +1,5 @@
 @import "../variables";
-.reduxtemplates-collections-modal-body {
+.redux-templates-collections-modal-body {
     display: flex;
     flex: 1;
     overflow-y: auto;
@@ -29,7 +29,7 @@
     }
 }
 
-.reduxtemplates-builder-modal {
+.redux-templates-builder-modal {
     button {
         background: transparent;
     }
@@ -61,7 +61,7 @@
         pointer-events: all;
     }
 
-    .reduxtemplates-pagelist-modal-overlay {
+    .redux-templates-pagelist-modal-overlay {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -73,7 +73,7 @@
     }
 }
 
-.reduxtemplates-builder-modal-header {
+.redux-templates-builder-modal-header {
     display: flex;
     //z-index: 9999;
 
@@ -121,7 +121,7 @@
     }
 }
 
-.reduxtemplates-pagelist-modal-inner {
+.redux-templates-pagelist-modal-inner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -136,7 +136,7 @@
     animation: components-modal__appear-animation 0.1s ease-out;
     animation-fill-mode: forwards;
 
-    .reduxtemplates-collection-modal-content-area {
+    .redux-templates-collection-modal-content-area {
         flex-grow: 1;
         max-height: 100%;
         overflow-y: auto;
@@ -145,13 +145,13 @@
 }
 
 //template list header
-.reduxtemplates-template-list-header {
+.redux-templates-template-list-header {
     text-align: center;
     position: relative;
     flex-grow: 1;
     padding-right: 50px;
 
-    button:not(.reduxtemplates-builder-close-modal) {
+    button:not(.redux-templates-builder-close-modal) {
         display: inline-block;
         line-height: 30px;
         padding: 15px 20px;
@@ -172,7 +172,7 @@
         }
     }
 
-    .reduxtemplates-builder-close-modal {
+    .redux-templates-builder-close-modal {
         position: absolute;
         top: 0;
         right: 0;
@@ -204,7 +204,7 @@
 }
 
 //template list sub header
-.reduxtemplates-template-list-sub-header {
+.redux-templates-template-list-sub-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -220,13 +220,13 @@
         }
     }
 
-    .reduxtemplates-template-filters {
+    .redux-templates-template-filters {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .reduxtemplates-template-filter-button-group {
+    .redux-templates-template-filter-button-group {
         background: #f8fafb;
         display: inline-flex;
         border: 1px solid #d8d8d8;
@@ -305,7 +305,7 @@
     }
 }
 
-.reduxtemplates-modal-loader {
+.redux-templates-modal-loader {
     display: inline-block;
     position: absolute;
     width: 80px;
@@ -320,23 +320,23 @@
     color: #1e7ed8;
 }
 
-.reduxtemplates-modal-loader img {
+.redux-templates-modal-loader img {
     height: 80px;
     width: 80px;
 }
 
 /*block style*/
-.reduxtemplates-builder-template-found-empty {
+.redux-templates-builder-template-found-empty {
     text-align: center;
     border-color: transparent !important;
 
-    .reduxtemplates-builder-empty-title {
+    .redux-templates-builder-empty-title {
         display: block;
         width: 100%;
     }
 }
 
-.reduxtemplates-pro-badge {
+.redux-templates-pro-badge {
     position: absolute;
     background: #f00;
     padding: 4px 5px;
@@ -350,7 +350,7 @@
 }
 
 
-.reduxtemplates-missing-badge {
+.redux-templates-missing-badge {
     position: absolute;
     background: #f2a848;
     border-radius: 3px;
@@ -366,8 +366,8 @@
     }
 }
 
-.reduxtemplates-default-template-image {
-    /* background-image: url('/img/reduxtemplates-medium.jpg');
+.redux-templates-default-template-image {
+    /* background-image: url('/img/redux-templates-medium.jpg');
     background-size: cover; */
     background: #888;
     //min-height: 200px;
@@ -379,10 +379,10 @@
     }
 }
 
-.reduxtemplates-item-wrapper {
+.redux-templates-item-wrapper {
     position: relative;
 
-    .reduxtemplates-button-overlay {
+    .redux-templates-button-overlay {
         position: absolute;
         width: 100%;
         opacity: 0;
@@ -396,7 +396,7 @@
         justify-content: center;
         transition: 300ms;
 
-        .reduxtemplates-tmpl-title {
+        .redux-templates-tmpl-title {
             margin: 0 0 15px;
             color: #fff;
             font-size: 19px;
@@ -406,11 +406,11 @@
 
     &.focused,
     &:hover {
-        .reduxtemplates-button-overlay {
+        .redux-templates-button-overlay {
             opacity: 1;
         }
 
-        .reduxtemplates-default-template-image {
+        .redux-templates-default-template-image {
             filter: blur(3px);
         }
     }
@@ -418,7 +418,7 @@
     &.missing_requirements {
         //border: 1px solid red;
         //background: green;
-        .reduxtemplates-default-template-image {
+        .redux-templates-default-template-image {
             //opacity: .9;
             //border: 2px solid #ffeeba;
         }
@@ -427,7 +427,7 @@
             opacity: 1;
         }
 
-        .reduxtemplates-button-download {
+        .redux-templates-button-download {
 
             background-color: #fdbb05;
             background-image: none;
@@ -437,7 +437,7 @@
 }
 
 /*multiple box*/
-#collections-sections-list div.reduxtemplates-multiple-template-box {
+#collections-sections-list div.redux-templates-multiple-template-box {
     margin-bottom: 25px;
     position: relative;
 
@@ -449,7 +449,7 @@
         min-height: 100px;
     }
 
-    .reduxtemplates-tmpl-info {
+    .redux-templates-tmpl-info {
         padding: 10px 12px;
         opacity: 0;
         position: absolute;
@@ -503,16 +503,16 @@
     &:hover {
         &::before,
         &::after,
-        .reduxtemplates-tmpl-info {
+        .redux-templates-tmpl-info {
             opacity: 1;
         }
     }
 }
 
-.reduxtemplates-template-option-header {
+.redux-templates-template-option-header {
     padding: 20px 20px 0;
 
-    .reduxtemplates-template-back {
+    .redux-templates-template-back {
         cursor: pointer;
 
         .dashicons {
@@ -531,7 +531,7 @@
     font-size: 13px;
 }
 
-.reduxtemplates-template-back {
+.redux-templates-template-back {
     cursor: pointer;
 
     .dashicons {

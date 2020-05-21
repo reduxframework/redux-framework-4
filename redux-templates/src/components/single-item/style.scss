@@ -1,9 +1,9 @@
-.reduxtemplates-single-section-item {
+.redux-templates-single-section-item {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px;
     transition: all 0.05s ease-in-out;
 
-    .reduxtemplates-tmpl-title {
+    .redux-templates-tmpl-title {
         background: rgba(255, 255, 255, 0.95);
         border-top: 1px solid #f2f4f7;
         position: absolute;
@@ -15,7 +15,7 @@
         font-size: 15px;
     }
 
-    .reduxtemplates-single-item-inner {
+    .redux-templates-single-item-inner {
         position: relative;
         overflow: hidden;
         //min-height: 150px;
@@ -30,7 +30,7 @@
             text-align: center;
         }
 
-        .reduxtemplates-default-template-image {
+        .redux-templates-default-template-image {
             max-height: 350px;
             transition: 300ms;
         }

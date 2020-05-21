@@ -5,7 +5,7 @@ const {withDispatch, withSelect} = wp.data;
 const {__} = wp.i18n;
 
 import {CheckboxControl, Tooltip} from '@wordpress/components';
-import {pluginInfo} from '~reduxtemplates/stores/dependencyHelper';
+import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import groupBy from 'lodash/groupBy';
 
 function DependencyFilterRow(props) {
@@ -18,7 +18,7 @@ function DependencyFilterRow(props) {
     const [pluginClassname, setPluginClassname] = useState('');
 
     useEffect(() => {
-        const pluginInstance = pluginInfo(pluginKey);      
+        const pluginInstance = pluginInfo(pluginKey);
         if (!pluginKey || pluginKey === 'none') {
             setIsValidPlugin(false);
             return;
@@ -40,7 +40,7 @@ function DependencyFilterRow(props) {
                 setIsChecked(false);
             else
                 setIsChecked(dependencyFilters[pluginKey].hasOwnProperty('value') ? dependencyFilters[pluginKey].value : dependencyFilters[pluginKey]);
-        } else 
+        } else
             setIsChecked(false)
         let pluginClassnameList = [];
         pluginClassnameList.push(!pluginInstance.version && !('no_plugin' in pluginInstance) ? 'missing-dependency' : '');
@@ -73,7 +73,7 @@ function DependencyFilterRow(props) {
                 onChange={toggleChecked}
             />
             {pluginClassname.includes('missing-dependency') &&
-                <Tooltip text={__('Plugin not Installed', reduxtemplates.i18n)}><i className="fa fa-warning" /></Tooltip>
+                <Tooltip text={__('Plugin not Installed', redux-templates.i18n)}><i className="fa fa-warning" /></Tooltip>
             }
 
             {pluginInstanceURL ?
@@ -87,14 +87,14 @@ function DependencyFilterRow(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setDependencyFilters} = dispatch('reduxtemplates/sectionslist');
+        const {setDependencyFilters} = dispatch('redux-templates/sectionslist');
         return {
             setDependencyFilters
         };
     }),
 
     withSelect((select) => {
-        const {getDependencyFiltersStatistics, getLoading, getActiveCategory} = select('reduxtemplates/sectionslist');
+        const {getDependencyFiltersStatistics, getLoading, getActiveCategory} = select('redux-templates/sectionslist');
         return {
             loading: getLoading(),
             dependencyFilters: getDependencyFiltersStatistics(),

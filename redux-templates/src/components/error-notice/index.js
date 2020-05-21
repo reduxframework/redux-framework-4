@@ -8,7 +8,7 @@ import './style.scss'
 export function ErrorNotice(props) {
     const {discardAllErrorMessages, errorMessages} = props;
     return (
-        <div className='reduxtemplates-error-notice'>
+        <div className='redux-templates-error-notice'>
             <Notice status="error" onRemove={discardAllErrorMessages}>
                 <p>An error occurred:&nbsp;
                     {
@@ -26,7 +26,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             discardAllErrorMessages
-        } = dispatch('reduxtemplates/sectionslist');
+        } = dispatch('redux-templates/sectionslist');
 
         return {
             discardAllErrorMessages

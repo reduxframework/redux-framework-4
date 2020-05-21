@@ -1,12 +1,12 @@
 @import "common";
 
-.reduxtemplates-options-section {
+.redux-templates-options-section {
     padding: 30px;
     background-repeat: no-repeat;
     background-position: 100% 100%;
 }
 
-.reduxtemplates-options-section-header {
+.redux-templates-options-section-header {
     /*border-bottom: 1px solid #EBEBF1;*/
     margin: -30px -30px 30px;
     padding: 20px 30px;
@@ -20,7 +20,7 @@
     -ms-flex-align: center;
     align-items: center;
 
-    .reduxtemplates-header-left {
+    .redux-templates-header-left {
         background-repeat: no-repeat;
         background-position: center left;
         padding-left: 55px;
@@ -29,46 +29,46 @@
     }
 }
 
-.reduxtemplates-options-section-header h2,
-.reduxtemplates-options-section-header h3 {
+.redux-templates-options-section-header h2,
+.redux-templates-options-section-header h3 {
     margin: 0;
     line-height: 1;
 }
 
-.reduxtemplates-options-section-header h2 {
+.redux-templates-options-section-header h2 {
     font-size: 24px;
     color: #232323;
     margin-bottom: 10px;
 }
 
-.reduxtemplates-options-section-header h3 {
+.redux-templates-options-section-header h3 {
     font-size: 18px;
     font-weight: 300;
     color: #232323;
 }
 
 @media (min-width: 992px) {
-    .reduxtemplates-options-section {
+    .redux-templates-options-section {
         padding: 60px;
     }
 
-    .reduxtemplates-options-section-header h2 {
+    .redux-templates-options-section-header h2 {
         font-size: 35px;
         margin-bottom: 20px;
     }
 
-    .reduxtemplates-options-section-header h3 {
+    .redux-templates-options-section-header h3 {
         font-size: 25px;
     }
 
-    .reduxtemplates-options-section-header {
+    .redux-templates-options-section-header {
         margin: -60px -60px 30px;
         padding: 30px 60px;
     }
 }
 
-h2.reduxtemplates-options-section-title,
-h3.reduxtemplates-options-section-title {
+h2.redux-templates-options-section-title,
+h3.redux-templates-options-section-title {
     line-height: 1;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -78,36 +78,36 @@ h3.reduxtemplates-options-section-title {
     align-items: center;
 }
 
-h2.reduxtemplates-options-section-title {
+h2.redux-templates-options-section-title {
     font-size: 28px;
     line-height: 40px;
     color: #7557ff;
     margin: 0;
 }
 
-h3.reduxtemplates-options-section-title {
+h3.redux-templates-options-section-title {
     font-size: 21px;
     color: #232323;
     margin: 0 0 20px;
 }
 
-.reduxtemplates-options-section-title img {
+.redux-templates-options-section-title img {
     margin-left: 15px;
 }
 
-.reduxtemplates-options-features {
+.redux-templates-options-features {
     list-style: none;
     padding: 0;
     margin: 0 0 30px;
 }
 
-.reduxtemplates-options-features::after {
+.redux-templates-options-features::after {
     display: block;
     clear: both;
     content: " ";
 }
 
-.reduxtemplates-options-features > li {
+.redux-templates-options-features > li {
     font-size: 14px;
     line-height: 1.8;
     display: block;
@@ -116,13 +116,13 @@ h3.reduxtemplates-options-section-title {
     float: left;
 }
 
-.reduxtemplates-options-features > li > i {
+.redux-templates-options-features > li > i {
     font-style: normal;
     color: #60da4f;
     margin-right: 10px;
 }
 
-.reduxtemplates-embed-responsive {
+.redux-templates-embed-responsive {
     position: relative;
     display: block;
     width: 100%;
@@ -130,13 +130,13 @@ h3.reduxtemplates-options-section-title {
     overflow: hidden;
 }
 
-.reduxtemplates-embed-responsive::before {
+.redux-templates-embed-responsive::before {
     content: " ";
     display: block;
     padding-top: 56.25%;
 }
 
-.reduxtemplates-embed-responsive .reduxtemplates-embed-responsive-item {
+.redux-templates-embed-responsive .redux-templates-embed-responsive-item {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -146,19 +146,19 @@ h3.reduxtemplates-options-section-title {
     border: 0;
 }
 
-.reduxtemplates-mb-0 {
+.redux-templates-mb-0 {
     margin-bottom: 0;
 }
 
-.reduxtemplates-mb-30 {
+.redux-templates-mb-30 {
     margin-bottom: 30px;
 }
 
-.reduxtemplates-mt-20 {
+.redux-templates-mt-20 {
     margin-top: 20px;
 }
 
-.reduxtemplates-row {
+.redux-templates-row {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
@@ -168,7 +168,7 @@ h3.reduxtemplates-options-section-title {
     box-sizing: border-box;
 }
 
-.reduxtemplates-row > div {
+.redux-templates-row > div {
     position: relative;
     width: 100%;
     padding-right: 15px;
@@ -177,21 +177,21 @@ h3.reduxtemplates-options-section-title {
 }
 
 @media (min-width: 992px) {
-    .reduxtemplates-row.reduxtemplates-columns-2 > div {
+    .redux-templates-row.redux-templates-columns-2 > div {
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
         max-width: 50%;
     }
 }
 
-#adminmenu .toplevel_page_reduxtemplates-settings .wp-menu-image > img {
+#adminmenu .toplevel_page_redux-templates-settings .wp-menu-image > img {
     width: 19px !important;
     margin: 7.5px 9px;
     display: block;
     padding: 0;
 }
 
-.reduxtemplates-options-section-body-container {
+.redux-templates-options-section-body-container {
     display: grid;
     grid-template-columns: 1fr 350px;
     grid-gap: 30px;

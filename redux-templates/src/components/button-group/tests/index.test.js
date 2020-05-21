@@ -34,14 +34,14 @@ describe('Button Group', () => {
         it('renders the default classname with spinner null', () => {
             useContextMock.mockReturnValue({spinner: null});
             const element = new ShallowRenderer().render(<ButtonGroup />);
-            expect(element.props.className).toBe('reduxtemplates-import-button-group');
+            expect(element.props.className).toBe('redux-templates-import-button-group');
         })
 
         it('renders disabled status with spinner not null', () => {
             mockUseEffect();
             useContextMock.mockReturnValue({spinner: 1});
             const element = new ShallowRenderer().render(<ButtonGroup />);
-            expect(element.props.className).toBe('reduxtemplates-import-button-group disabled');
+            expect(element.props.className).toBe('redux-templates-import-button-group disabled');
         })
     })
 

@@ -38,13 +38,13 @@ class Templates {
     public function template_include( $template ) {
         if ( is_singular() ) {
             $page_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
-            if ( $page_template === 'reduxtemplates_full_width' ) {
+            if ( $page_template === 'redux-templates_full_width' ) {
                 $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-full-width.php';
             }
-            if ( $page_template === 'reduxtemplates_contained' ) {
+            if ( $page_template === 'redux-templates_contained' ) {
                 $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-contained.php';
             }
-            if ( $page_template === 'reduxtemplates_canvas' ) {
+            if ( $page_template === 'redux-templates_canvas' ) {
                 $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-canvas.php';
             }
 
@@ -63,9 +63,9 @@ class Templates {
      * @return array
      */
     public function add_templates( $post_templates ) {
-        $post_templates['reduxtemplates_contained']  = __( 'ReduxTemplates Contained', 'reduxtemplates' );
-        $post_templates['reduxtemplates_full_width'] = __( 'ReduxTemplates Full Width', 'reduxtemplates' );
-        $post_templates['reduxtemplates_canvas']     = __( 'ReduxTemplates Canvas', 'reduxtemplates' );
+        $post_templates['redux-templates_contained']  = __( 'ReduxTemplates Contained', 'redux-templates' );
+        $post_templates['redux-templates_full_width'] = __( 'ReduxTemplates Full Width', 'redux-templates' );
+        $post_templates['redux-templates_canvas']     = __( 'ReduxTemplates Canvas', 'redux-templates' );
 
         return $post_templates;
     }

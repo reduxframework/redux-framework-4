@@ -1,9 +1,9 @@
 const {useState, useEffect} = wp.element
 const {__} = wp.i18n
 
-import * as Icons from '~reduxtemplates/icons'
+import * as Icons from '~redux-templates/icons'
 import copy from 'clipboard-copy';
-import {requiresInstall, requiresPro} from '~reduxtemplates/stores/dependencyHelper'
+import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
 export default function SidebarContent(props) {
     const {itemData, pro} = props;
@@ -28,17 +28,17 @@ export default function SidebarContent(props) {
                 <h3 className="theme-name">{name}</h3>
                 <div className="theme-screenshot-wrap">
                     <img className="theme-screenshot"
-                         src={image ? image : reduxtemplates.plugin + 'assets/img/reduxtemplates-medium.jpg'} alt=""/>{pro ?
-                    <span className="reduxtemplates-pro-badge">{__('Premium', reduxtemplates.i18n)}</span> : ''
+                         src={image ? image : redux-templates.plugin + 'assets/img/redux-templates-medium.jpg'} alt=""/>{pro ?
+                    <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span> : ''
                 }</div>
 
                 <h5 className="theme-hash">
                     <div className="button-container">
-                        <span className="button button-secondary the-copy" onClick={copyHash} title={__('Copy Identifier', reduxtemplates.i18n)}><i
+                        <span className="button button-secondary the-copy" onClick={copyHash} title={__('Copy Identifier', redux-templates.i18n)}><i
                             className="fa fa-copy" aria-hidden="true"></i></span>
                         <span onClick={copyHash} className="button button-secondary the-hash"
-                              title={__('Identifier', reduxtemplates.i18n)}>{hash.substring(0, 7)}</span>
-                        {copied && <span className="copied hideMe"><br/>{__('copied', reduxtemplates.i18n)}</span>}
+                              title={__('Identifier', redux-templates.i18n)}>{hash.substring(0, 7)}</span>
+                        {copied && <span className="copied hideMe"><br/>{__('copied', redux-templates.i18n)}</span>}
                     </div>
 
                 </h5>
@@ -52,7 +52,7 @@ export default function SidebarContent(props) {
                                 <ul>
                                     {
                                         installDependencies.map(pluginKey => {
-                                            const pluginInstance = reduxtemplates.supported_plugins[pluginKey];
+                                            const pluginInstance = redux-templates.supported_plugins[pluginKey];
                                             if (!pluginInstance) return null;
                                             const IconComponent = Icons[pluginKey];
                                             return (
@@ -61,7 +61,7 @@ export default function SidebarContent(props) {
                                                        target="_blank" className="missing">
                                                         {IconComponent && <IconComponent/>}
                                                         <span
-                                                            className="reduxtemplates-dependency-name">{pluginInstance.name}</span>
+                                                            className="redux-templates-dependency-name">{pluginInstance.name}</span>
                                                     </a>
                                                 </li>);
                                         })
@@ -76,7 +76,7 @@ export default function SidebarContent(props) {
                                 <ul>
                                     {
                                         proDependencies.map(pluginKey => {
-                                            const pluginInstance = reduxtemplates.supported_plugins[pluginKey];
+                                            const pluginInstance = redux-templates.supported_plugins[pluginKey];
                                             if (!pluginInstance) return null;
                                             const IconComponent = Icons[pluginKey];
                                             return (
@@ -85,7 +85,7 @@ export default function SidebarContent(props) {
                                                        target="_blank" className="missing">
                                                         {IconComponent && <IconComponent/>}
                                                         <span
-                                                            className="reduxtemplates-dependency-name">{pluginInstance.name}</span>
+                                                            className="redux-templates-dependency-name">{pluginInstance.name}</span>
                                                     </a>
                                                 </li>
                                             );

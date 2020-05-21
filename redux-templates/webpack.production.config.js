@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     mode: 'production',
     entry: {
-        'reduxtemplates': path.join( __dirname, 'src/assets/js/index.js')
+        'redux-templates': path.join( __dirname, 'src/assets/js/index.js')
     },
     output: {
         path: path.join( __dirname, 'assets/js'),

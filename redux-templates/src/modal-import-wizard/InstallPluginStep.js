@@ -1,4 +1,4 @@
-import {pluginInfo} from '~reduxtemplates/stores/dependencyHelper';
+import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 
 const {apiFetch} = wp;
 const {compose} = wp.compose;
@@ -29,13 +29,13 @@ function InstallPluginStep(props) {
         let localFailedList = [];
         let localWaitingList = [...waitingList];
         for (let pluginKey of missingPlugins) {
-            const pluginInstance = reduxtemplates.supported_plugins[pluginKey];
+            const pluginInstance = redux-templates.supported_plugins[pluginKey];
             setInstallingPlugin({...pluginInstance, pluginKey});
             localWaitingList = localWaitingList.filter(key => key !== pluginKey)
             setWaitingList(localWaitingList);
             let pluginSlug = pluginInstance.free_slug ? pluginInstance.free_slug : pluginKey;
             await apiFetch({
-                path: 'reduxtemplates/v1/plugin-install?slug=' + pluginSlug
+                path: 'redux-templates/v1/plugin-install?slug=' + pluginSlug
             })
                 .then(res => {
                     if (res.success) {
@@ -61,9 +61,9 @@ function InstallPluginStep(props) {
     return (
 
         <Fragment>
-            <div className="reduxtemplates-modal-body">
-                <h5>{__('Install Required Plugins', reduxtemplates.i18n)}</h5>
-                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', reduxtemplates.i18n)}</p>
+            <div className="redux-templates-modal-body">
+                <h5>{__('Install Required Plugins', redux-templates.i18n)}</h5>
+                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', redux-templates.i18n)}</p>
                 {
                     (installingPlugin === null && failedList.length > 0) &&
                     (<p className='error'>
@@ -71,7 +71,7 @@ function InstallPluginStep(props) {
                     </p>)
                 }
 
-                <ul className="reduxtemplates-import-progress">
+                <ul className="redux-templates-import-progress">
                     {
                         missingPlugins &&
                         missingPlugins.map(pluginKey => {
@@ -96,17 +96,17 @@ function InstallPluginStep(props) {
                     }
                 </ul>
             </div>
-            <div className="reduxtemplates-modal-footer">
+            <div className="redux-templates-modal-footer">
                 {waitingList.length !== 0 &&
                 <button className="button button-primary" disabled={installingPlugin !== null}
                         onClick={() => onInstallPlugins()}>
                     {installingPlugin !== null && <i className="fas fa-spinner fa-pulse"/>}
-                    <span>{__('Install', reduxtemplates.i18n)}</span>
+                    <span>{__('Install', redux-templates.i18n)}</span>
                 </button>
                 }
                 <button className="button button-secondary" disabled={installingPlugin !== null}
                         onClick={onCloseWizard}>
-                    {__('Cancel', reduxtemplates.i18n)}
+                    {__('Cancel', redux-templates.i18n)}
                 </button>
             </div>
         </Fragment>
@@ -118,7 +118,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setInstalledDependencies
-        } = dispatch('reduxtemplates/sectionslist');
+        } = dispatch('redux-templates/sectionslist');
         return {
             setInstalledDependencies
         };

@@ -17,5 +17,11 @@
   "require" : {
     "php" : ">=5.2.0",
     "composer/installers": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ReduxTemplates\\" : "redux-templates/core",
+      "ReduxCore\\" : "redux-core"
+    }
   }
 }

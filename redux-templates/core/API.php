@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class API {
 
     private $cache_time = 24 * 3600; // 24 hours
-    protected $api_base_url = 'https://api.reduxtemplates.io/';
+    protected $api_base_url = 'https://api.starterblocks.io/';
     protected $default_request_headers = array();
     protected $filesystem;
 
@@ -21,8 +21,8 @@ class API {
      */
     public function __construct() {
 
-        add_filter( 'reduxtemplates_api_headers', array( $this, 'request_verify' ) );
-        $this->default_request_headers = apply_filters( 'reduxtemplates_api_headers', $this->default_request_headers );
+        add_filter( 'redux-templates_api_headers', array( $this, 'request_verify' ) );
+        $this->default_request_headers = apply_filters( 'redux-templates_api_headers', $this->default_request_headers );
 
         add_action( 'rest_api_init', array( $this, 'register_api_hooks' ), 0 );
 
@@ -194,7 +194,7 @@ class API {
                     $filesystem->put_contents( $path, json_encode( $data ) );
                 }
             } else {
-                wp_send_json_error( array( 'message' => 'API fetch failure.' ) );
+                wp_send_json_error( array( 'message' => __( 'API fetch failure.', 'redux-framework' ) ) );
             }
         }
 
@@ -202,7 +202,7 @@ class API {
             $data = @json_decode( $filesystem->get_contents( $path ), true );
             if ( $data ) {
                 $data['status']  = "error";
-                $data['message'] = "Fetching failed, used a cached version.";
+                $data['message'] = __( "Fetching failed, used a cached version.", 'redux-framework' );
             } else {
                 $data = array(
                     'message' => 'Error Fetching'
@@ -404,7 +404,7 @@ class API {
             && isset( $request['http_response'] )
             && $request['http_response'] instanceof \WP_HTTP_Requests_Response
             && method_exists( $request['http_response'], 'get_response_object' )
-            && strpos( $request['http_response']->get_response_object()->url, 'files.reduxtemplates.io' ) !== false
+            && strpos( $request['http_response']->get_response_object()->url, 'files.starterblocks.io' ) !== false
         ) {
             $request = wp_remote_get(
                 $request['http_response']->get_response_object()->url,
@@ -468,20 +468,17 @@ class API {
     }
 
     public function request_verify( $data ) {
-        global $reduxtemplates_fs;
+
         $config   = array(
             'SB-Version'   => REDUXTEMPLATES_VERSION,
             'SB-Multisite' => is_multisite(),
         );
 
-        $the_site = !empty($reduxtemplates_fs) ? $reduxtemplates_fs->get_site() : "";
+        # TODO - Update this with the EDD key or developer key
+        $config['SB-API-Key'] = \Redux_Helpers::get_hash();
 
-        if ( ! empty( $the_site->site_id ) ) {
-            $config['SB-API-Key'] = $the_site->site_id . '-' . $the_site->user_id;
-        }
-
-        if ( !empty($reduxtemplates_fs) && reduxtemplates_fs()->can_use_premium_code() ) {
-            $config['SB-Pro'] = reduxtemplates_fs()->can_use_premium_code();
+        if ( ! empty( \Redux_Core::$pro_loaded ) && \Redux_Core::$pro_loaded ) {
+            $config['SB-Pro'] = \Redux_Core::$pro_loaded;
         }
         $data = wp_parse_args( $data, $config );
 
@@ -518,7 +515,7 @@ class API {
     /**
      * @since 1.0.0
      * Method used to register all rest endpoint hooks.
-     * reduxtemplates api routes
+     * redux-templates api routes
      */
     public function register_api_hooks() {
 
@@ -570,7 +567,7 @@ class API {
 
             foreach ( $methods as $method ) {
                 register_rest_route(
-                    'reduxtemplates/v1',
+                    'redux-templates/v1',
                     $route,
                     array(
                         array(
@@ -596,7 +593,7 @@ class API {
         if ( empty( $data['slug'] ) ) {
             wp_send_json_error(
                 array(
-                    'error' => 'Slug not specified.'
+                    'error' => __('Slug not specified.', 'redux-framework')
                 )
             );
         }

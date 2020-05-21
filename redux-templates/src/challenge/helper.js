@@ -7,7 +7,7 @@ export default {
      */
     getSecondsLeft: function() {
 
-        var secondsLeft = localStorage.getItem( 'reduxtemplatesChallengeSecondsLeft' );
+        var secondsLeft = localStorage.getItem( 'redux-templatesChallengeSecondsLeft' );
 
         secondsLeft = secondsLeft ? parseInt( secondsLeft, 10 ) : CONFIG.initialSecondsLeft;
 
@@ -29,7 +29,7 @@ export default {
      */
     saveSecondsLeft: function( secondsLeft ) {
 
-        localStorage.setItem( 'reduxtemplatesChallengeSecondsLeft', secondsLeft );
+        localStorage.setItem( 'redux-templatesChallengeSecondsLeft', secondsLeft );
     },
 
     /**
@@ -75,8 +75,8 @@ export default {
         var timerMinutes = this.getMinutesFormatted( secondsLeft );
         var timerSeconds = this.getSecondsFormatted( secondsLeft );
 
-        const minutesString = timerMinutes ? timerMinutes + ' ' + __( 'minutes', reduxtemplates.i18n ) + ' ' : '';
-        const secondsString = timerSeconds ? timerSeconds + ' ' + __( 'seconds', reduxtemplates.i18n ) : '';
+        const minutesString = timerMinutes ? timerMinutes + ' ' + __( 'minutes', redux-templates.i18n ) + ' ' : '';
+        const secondsString = timerSeconds ? timerSeconds + ' ' + __( 'seconds', redux-templates.i18n ) : '';
         return minutesString + secondsString;
     },
 
@@ -85,7 +85,7 @@ export default {
      */
     loadStep: function() {
 
-        var step = localStorage.getItem( 'reduxtemplatesChallengeStep' );
+        var step = localStorage.getItem( 'redux-templatesChallengeStep' );
         step = step ? parseInt( step, 10 ) : -1;
 
         return step;
@@ -95,6 +95,6 @@ export default {
      * Save Challenge step.
      */
     saveStep: function( step ) {
-        localStorage.setItem( 'reduxtemplatesChallengeStep', step );
+        localStorage.setItem( 'redux-templatesChallengeStep', step );
     },
 };

@@ -1,12 +1,12 @@
 @import "../../_variables";
 
-.reduxtemplates-collection-modal-sidebar {
+.redux-templates-collection-modal-sidebar {
     min-width: 270px;
     background: $secondaryBack;
     color: $primaryColor; /* $secondaryColor;*/
     overflow-y: auto;
 
-    .reduxtemplates-modal-sidebar-content {
+    .redux-templates-modal-sidebar-content {
         padding: 25px;
 
         h3 {
@@ -36,7 +36,7 @@
             }
         }
 
-        .reduxtemplates-template-filter-button-group {
+        .redux-templates-template-filter-button-group {
             margin: 0;
             border: 1px solid #383e48;
             width: 100%;
@@ -178,7 +178,7 @@
         }
     }
 
-    ul.reduxtemplates-sidebar-dependencies li {
+    ul.redux-templates-sidebar-dependencies li {
         .components-base-control {
             display: inline-block;
             margin-bottom: 0 !important;
@@ -194,7 +194,7 @@
 
     }
 
-    .reduxtemplates-select-actions {
+    .redux-templates-select-actions {
         //text-align: center;
         margin-bottom: 8px;
         display: inline-flex;
@@ -203,7 +203,7 @@
         }
     }
 
-    .reduxtemplates-sidebar-dependencies li a {
+    .redux-templates-sidebar-dependencies li a {
         display: inline-block;
         //color: #9b9b9b;
         margin-left: 10px;

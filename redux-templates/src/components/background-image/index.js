@@ -5,7 +5,7 @@ const {withDispatch, withSelect} = wp.data;
 const {parse} = wp.blocks;
 
 import {BlockPreview} from '@wordpress/block-editor';
-import {installedBlocksTypes} from '~reduxtemplates/stores/actionHelper';
+import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
 import './style.scss'
 
 function BackgroundImage(props) {
@@ -15,7 +15,7 @@ function BackgroundImage(props) {
 
     if (data && dataLoaded === false) {
         const type = activeItemType === 'section' ? 'sections' : 'pages';
-        let the_url = 'reduxtemplates/v1/template?type=' + type + '&id=' + data.id;
+        let the_url = 'redux-templates/v1/template?type=' + type + '&id=' + data.id;
         if ('source' in data) {
             the_url += '&source=' + data.source;
         }
@@ -54,14 +54,14 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             appendErrorMessage
-        } = dispatch('reduxtemplates/sectionslist');
+        } = dispatch('redux-templates/sectionslist');
 
         return {
             appendErrorMessage
         };
     }),
     withSelect((select) => {
-        const {getActiveItemType} = select('reduxtemplates/sectionslist');
+        const {getActiveItemType} = select('redux-templates/sectionslist');
         return {
             activeItemType: getActiveItemType()
         };

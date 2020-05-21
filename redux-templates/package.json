@@ -1,5 +1,5 @@
 {
-    "name": "reduxtemplates",
+    "name": "redux-templates",
     "version": "1.0.7",
     "description": "The ultimate gutenberg template library.",
     "author": "Dovy Paukstys of Redux",
@@ -10,9 +10,9 @@
         "blocks",
         "library"
     ],
-    "homepage": "https://reduxtemplates.io",
-    "repository": "git+https://github.com/reduxtemplates/reduxtemplates.git",
-    "bugs": "https://wordpress.org/support/plugin/reduxtemplates",
+    "homepage": "https://redux-templates.io",
+    "repository": "git+https://github.com/redux-templates/redux-templates.git",
+    "bugs": "https://wordpress.org/support/plugin/redux-templates",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.19",

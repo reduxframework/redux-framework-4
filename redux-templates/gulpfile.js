@@ -43,17 +43,17 @@ function makeBuild() {
         '!vendor/composer/installers/**/*',
         '!vendor/composer/LICENSE',
         '!vendor/composer/installed.json',
-	]).pipe(dest('build/reduxtemplates/'));
+	]).pipe(dest('build/redux-templates/'));
 }
 
 function productionMode() {
-	// const replacement_string = '\n\t\t\twp_enqueue_style(\'reduxtemplates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
-	return src(['./build/reduxtemplates/core/Init.php'])
+	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
+	return src(['./build/redux-templates/core/Init.php'])
 	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
-		.pipe(replace(/reduxtemplates\.dev/g, 'reduxtemplates.min'))
+		.pipe(replace(/redux-templates\.dev/g, 'redux-templates.min'))
         .pipe(replace(/vendor\.dev/g, 'vendor.min'))
 		.pipe(replace(/map\.js/g, 'map.min.js'))
-		.pipe(dest('./build/reduxtemplates/core/'));
+		.pipe(dest('./build/redux-templates/core/'));
 }
 
 function debug() {
@@ -67,7 +67,7 @@ function debug() {
 }
 
 function versionUpdate() {
-	return src(['./reduxtemplates.php'])
+	return src(['./redux-templates.php'])
 		.pipe(replace(/\* Version:.*/g, '\* Version: \t\t  ' + package_data.version))
 		.pipe(replace(/\'REDUXTEMPLATES_VERSION\', \'.*\'/g, '\'REDUXTEMPLATES_VERSION\', \'' + package_data.version + '\''))
 		// .pipe(replace(/common-script\.js/g, 'common-script.min.js'))
@@ -88,16 +88,16 @@ function admin_css() {
 
 
 function minify_js() {
-	const commonjs = src(['./build/reduxtemplates/assets/js/*.js'])
+	const commonjs = src(['./build/redux-templates/assets/js/*.js'])
 		.pipe(minifyJS({
 			ext: {
 				src: '.js',
 				min: '.min.js'
 			},
 			exclude: ['tasks'],
-			ignoreFiles: ['reduxtemplates.min.js', '*-min.js', '*.min.js']
+			ignoreFiles: ['redux-templates.min.js', '*-min.js', '*.min.js']
 		}))
-		.pipe(dest(['./build/reduxtemplates/assets/js/']));
+		.pipe(dest(['./build/redux-templates/assets/js/']));
 
 	return commonjs;
 }
@@ -105,7 +105,7 @@ function minify_js() {
 
 function makeZip() {
 	return src('./build/**/*.*')
-		.pipe(zip('./build/reduxtemplates.zip'))
+		.pipe(zip('./build/redux-templates.zip'))
 		.pipe(dest('./'))
 }
 

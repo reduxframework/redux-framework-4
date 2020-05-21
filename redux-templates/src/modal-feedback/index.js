@@ -1,7 +1,7 @@
 const {__} = wp.i18n;
 const {useState, useEffect} = wp.element;
 const {apiFetch} = wp;
-import {installedBlocksTypes} from '~reduxtemplates/stores/actionHelper';
+import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
 import {Modal, ModalManager} from '../modal-manager'
 import './style.scss'
 
@@ -27,7 +27,7 @@ export default function FeedbackModal(props) {
             data.content = handledBlock;
         }
         apiFetch({
-            path: 'reduxtemplates/v1/feedback/',
+            path: 'redux-templates/v1/feedback/',
             method: 'POST',
             headers: {'Registed-Blocks': installedBlocksTypes()},
             data
@@ -36,11 +36,11 @@ export default function FeedbackModal(props) {
             if (data.success) {
                 setPanelClassname('panel fade')
             } else {
-                setErrorMessage(__('An Error occured', reduxtemplates.i18n));
+                setErrorMessage(__('An Error occured', redux-templates.i18n));
             }
         }).catch(err => {
             setLoading(false);
-            setErrorMessage(__('There was an error: ', reduxtemplates.i18n) + err.message);
+            setErrorMessage(__('There was an error: ', redux-templates.i18n) + err.message);
         });
     }
 
@@ -65,23 +65,23 @@ export default function FeedbackModal(props) {
 
     return (
         <Modal compactMode={true}>
-            <div className="reduxtemplates-feedback-modal-wrapper">
-                <div className="reduxtemplates-modal-header">
-                    <h3>{__('Feedback Wizard', reduxtemplates.i18n)}</h3>
-                    <button className="reduxtemplates-modal-close" onClick={onCloseWizard}>
+            <div className="redux-templates-feedback-modal-wrapper">
+                <div className="redux-templates-modal-header">
+                    <h3>{__('Feedback Wizard', redux-templates.i18n)}</h3>
+                    <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>
                 </div>
-                <div className="reduxtemplates-feedback">
+                <div className="redux-templates-feedback">
                     {
                         errorMessage.length > 0 &&
                         <div className="error-panel">
                             {errorMessage}
                         </div>
                     }
-                    <h4>{__('Thank you for reporting an issue.', reduxtemplates.i18n)}</h4>
+                    <h4>{__('Thank you for reporting an issue.', redux-templates.i18n)}</h4>
                     <div className={panelClassname}>
-                        <p>{__('We want to make ReduxTemplates perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', reduxtemplates.i18n)}</p>
+                        <p>{__('We want to make ReduxTemplates perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux-templates.i18n)}</p>
                         <div className="field">
                             <input type="checkbox" id="theme_plugins" checked={sendingThemePlugins} onChange={() => setSendingThemePlugins(!sendingThemePlugins)} />
                             <label htmlFor="theme_plugins">Send theme and plugins</label>

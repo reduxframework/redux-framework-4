@@ -1,6 +1,6 @@
 export const getPluginInstance = (pluginKey) => {
-    if (pluginKey in reduxtemplates.supported_plugins) {
-        return reduxtemplates.supported_plugins[pluginKey];
+    if (pluginKey in redux-templates.supported_plugins) {
+        return redux-templates.supported_plugins[pluginKey];
     }
     return false; // Deal with unknown plugins
 }
@@ -30,7 +30,7 @@ export const processPlugin = (pluginKey) => {
         return pluginInstance
     }
 
-    if ('free_slug' in pluginInstance && pluginInstance['free_slug'] in reduxtemplates.supported_plugins) {
+    if ('free_slug' in pluginInstance && pluginInstance['free_slug'] in redux-templates.supported_plugins) {
         let new_instance = {...getPluginInstance(pluginInstance.free_slug)}
         new_instance.free_slug = pluginInstance.free_slug
         new_instance.name = pluginInstance.name

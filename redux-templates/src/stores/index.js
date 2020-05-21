@@ -74,7 +74,7 @@ const getDependencyFiltersStatistics = (state) => {
     return dependencyFilters;
 };
 
-registerStore('reduxtemplates/sectionslist', {
+registerStore('redux-templates/sectionslist', {
 
     reducer,
     actions,
@@ -201,7 +201,7 @@ registerStore('reduxtemplates/sectionslist', {
     resolvers: {
         * fetchLibraryFromAPI(state) {
             try {
-                const receiveSectionResult = yield actions.fetchLibraryFromAPI('reduxtemplates/v1/library');
+                const receiveSectionResult = yield actions.fetchLibraryFromAPI('redux-templates/v1/library');
                 return actions.setLibrary(receiveSectionResult.data);
             } catch (error) {
                 return actions.appendErrorMessage(error.code + ' ' + error.message)

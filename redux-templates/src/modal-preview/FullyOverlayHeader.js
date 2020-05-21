@@ -6,19 +6,19 @@ function FullyOverlayHeader(props) {
     return (
         <div className="wp-full-overlay-header">
             <button className="close-full-overlay" onClick={onCloseCustomizer}>
-                <span className="screen-reader-text">{__('Close', reduxtemplates.i18n)}</span>
+                <span className="screen-reader-text">{__('Close', redux-templates.i18n)}</span>
             </button>
             <button className="previous-theme" onClick={onPrevBlock}>
-                <span className="screen-reader-text">{__('Previous', reduxtemplates.i18n)}</span>
+                <span className="screen-reader-text">{__('Previous', redux-templates.i18n)}</span>
             </button>
             <button className="next-theme" onClick={onNextBlock}>
-                <span className="screen-reader-text">{__('Next', reduxtemplates.i18n)}</span>
+                <span className="screen-reader-text">{__('Next', redux-templates.i18n)}</span>
             </button>
             {
                 pro === false &&
                 <a className="button hide-if-no-customize button-primary redux-templates-section-import" onClick={onImport}
                 data-import="disabled">
-                    {__('Import', reduxtemplates.i18n)}
+                    {__('Import', redux-templates.i18n)}
                 </a>
             }
         </div>

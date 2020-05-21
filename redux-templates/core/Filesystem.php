@@ -71,7 +71,7 @@ class Filesystem {
         }
 
         $uploads_dir        = wp_upload_dir();
-        $this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'reduxtemplates/';
+        $this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'redux-templates/';
         if ( ! $this->file_exists( $this->cache_folder ) ) {
             $this->mkdir( $this->cache_folder );
         }

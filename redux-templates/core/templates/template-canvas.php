@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * ReduxTemplates - Canvas / Theme Override
  *
  * @since v.1.0.0
- * @package reduxtemplates
+ * @package redux-templates
  */
 ?>
 <!DOCTYPE html>

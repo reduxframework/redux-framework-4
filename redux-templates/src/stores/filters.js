@@ -1,6 +1,6 @@
 import {isTemplatePremium} from './dependencyHelper';
 import {missingPluginsArray} from './helper';
-const REDUXTEMPLATES_PRO_KEY = 'reduxtemplates-pro';
+const REDUXTEMPLATES_PRO_KEY = 'redux-templates-pro';
 // Just get current Page Data
 export const applyCategoryFilter = (pageData, activeCategory) => {
     let currentPageData = [];

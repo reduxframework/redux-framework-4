@@ -10,7 +10,7 @@ module.exports = {
 
     // Custom mappers.
     moduleNameMapper: {
-        '^~reduxtemplates(.*)$': '<rootDir>/src$1',
+        '^~redux-templates(.*)$': '<rootDir>/src$1',
         '.*\\.s?css$': '<rootDir>/src/test/scss-stub.js',
         '.*\\.(png|jpg|gif)$': '<rootDir>/src/test/image-stub.js',
         '.*\\.svg$': '<rootDir>/src/test/svgr-mock.js',

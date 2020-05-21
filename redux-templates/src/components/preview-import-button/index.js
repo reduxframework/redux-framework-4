@@ -2,8 +2,8 @@ import {__} from '@wordpress/i18n';
 
 const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
-import {openSitePreviewModal} from '~reduxtemplates/stores/actionHelper';
-import ChallengeDot from '~reduxtemplates/challenge/tooltip/ChallengeDot';
+import {openSitePreviewModal} from '~redux-templates/stores/actionHelper';
+import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 import './style.scss'
 
 function PreviewImportButton(props) {
@@ -21,15 +21,15 @@ function PreviewImportButton(props) {
         <div className="action-buttons">
             {
                 pageData[index] && pageData[index]['source'] !== 'wp_block_patterns' &&
-                <a className="reduxtemplates-button preview-button" target="_blank"
+                <a className="redux-templates-button preview-button" target="_blank"
                    onClick={() => openSitePreviewModal(index, pageData)}>
-                    <i className="fa fa-share"/> {__('Preview', reduxtemplates.i18n)}
+                    <i className="fa fa-share"/> {__('Preview', redux-templates.i18n)}
                 </a>
             }
 
-            <a className="reduxtemplates-button download-button"
+            <a className="redux-templates-button download-button"
                onClick={() => triggerImportTemplate(data)}>
-                <i className="fas fa-download"/>{__('Import', reduxtemplates.i18n)}
+                <i className="fas fa-download"/>{__('Import', redux-templates.i18n)}
             </a>
             {tourActiveButtonGroup && tourActiveButtonGroup.ID === pageData[index].ID && <ChallengeDot step={4} /> }
         </div>
@@ -41,14 +41,14 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setImportingTemplate
-        } = dispatch('reduxtemplates/sectionslist');
+        } = dispatch('redux-templates/sectionslist');
 
         return {
             setImportingTemplate
         };
     }),
     withSelect((select, props) => {
-        const {getTourActiveButtonGroup} = select('reduxtemplates/sectionslist');
+        const {getTourActiveButtonGroup} = select('redux-templates/sectionslist');
         return {
             tourActiveButtonGroup: getTourActiveButtonGroup()
         };

@@ -12,7 +12,7 @@ const {createSuccessNotice} = dispatch('core/notices');
 const {insertBlocks} = dispatch('core/block-editor');
 
 const prefix = 'sb_';
-const REDUXTEMPLATES_PRO_KEY = 'reduxtemplates-pro';
+const REDUXTEMPLATES_PRO_KEY = 'redux-templates-pro';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
 export const getCurrentState = (state) => state[state.activeItemType]
@@ -118,20 +118,20 @@ export const getCollectionChildrenData = (library, activeCollection) => {
 
 // Check if the block is pro
 export const isBlockPro = (pro, source) => {
-    if (source && reduxtemplates.supported_plugins.hasOwnProperty(source))
-        return (pro && !reduxtemplates.supported_plugins[source].is_pro);
+    if (source && redux-templates.supported_plugins.hasOwnProperty(source))
+        return (pro && !redux-templates.supported_plugins[source].is_pro);
     else
-        return pro && reduxtemplates.mokama !== '1';
+        return pro && redux-templates.mokama !== '1';
 }
 
 export const missingPro = (pro) => {
-    return (reduxtemplates.mokama !== '1' && pro === true);
+    return (redux-templates.mokama !== '1' && pro === true);
 }
 
 export const missingRequirement = (pro, requirements) => {
     if (!requirements) return missingPro(pro);
     else {
-        const supported_plugins = reduxtemplates.supported_plugins;
+        const supported_plugins = redux-templates.supported_plugins;
         for (let i = 0; i < requirements.length; i++) {
             let requirement = requirements[i];
             if (!supported_plugins.hasOwnProperty(requirement.slug))
@@ -235,7 +235,7 @@ Input: dependencies: {getwid: 38, qubely: 82...}
 Result: {getwid: {value: true, disabled: true}, } 
 */
 export const getDefaultDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(reduxtemplates.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(redux-templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies).reduce((acc, cur) => {
         // special handling for pro plugin not activated.
         let value = true;
@@ -246,7 +246,7 @@ export const getDefaultDependencies = (dependencies) => {
 }
 
 export const getInstalledDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(reduxtemplates.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(redux-templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies)
         .filter(key => key !=='none')
         .reduce((acc, cur) => {
@@ -265,8 +265,8 @@ export const getInstalledDependencies = (dependencies) => {
 
 
 const getPluginInstance = (pluginKey) => {
-    if (pluginKey in reduxtemplates.supported_plugins) {
-        return reduxtemplates.supported_plugins[pluginKey];
+    if (pluginKey in redux-templates.supported_plugins) {
+        return redux-templates.supported_plugins[pluginKey];
     }
     return false; // Deal with unknown plugins
 }
@@ -283,7 +283,7 @@ const isPluginProActivated = (pluginKey) => {
 }
 
 export const missingPluginsArray = () => {
-    return Object.keys(reduxtemplates.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
+    return Object.keys(redux-templates.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
 }
 
 
@@ -292,7 +292,7 @@ export const missingPluginsArray = () => {
  * Get last saved step.
  */
 export const loadChallengeStep = () => {
-    var step = localStorage.getItem( 'reduxtemplatesChallengeStep' );
+    var step = localStorage.getItem( 'redux-templatesChallengeStep' );
     if (step === null)
         return -1;
     step = parseInt( step, 10 );
@@ -303,5 +303,5 @@ export const loadChallengeStep = () => {
  * Save Challenge step.
  */
 export const saveChallengeStep = (step) => {
-    localStorage.setItem( 'reduxtemplatesChallengeStep', step );
+    localStorage.setItem( 'redux-templatesChallengeStep', step );
 }

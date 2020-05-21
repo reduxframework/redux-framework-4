@@ -15,7 +15,7 @@ const Buttons = withSelect( select => {
     }
 } )( ShareBlockButton )
 
-registerPlugin( 'reduxtemplates-share-block-btn', {
+registerPlugin( 'redux-templates-share-block-btn', {
     icon: ReduxTemplatesIcon,
     render: Buttons,
 } );

@@ -1,5 +1,5 @@
 import {Tooltip} from '@wordpress/components';
-import * as Icons from '~reduxtemplates/icons'
+import * as Icons from '~redux-templates/icons'
 import './style.scss'
 
 export default function DependentPlugins (props) {
@@ -13,11 +13,11 @@ export default function DependentPlugins (props) {
 
     if (showDependencyBlock)
         return (
-            <div className="reduxtemplates-button-display-dependencies">
+            <div className="redux-templates-button-display-dependencies">
                 { data.dependencies &&
                     data.dependencies.map(plugin => {
                         const IconComponent = Icons[plugin];
-                        const pluginInstance = reduxtemplates.supported_plugins[plugin];
+                        const pluginInstance = redux-templates.supported_plugins[plugin];
                         if (IconComponent && pluginInstance)
                             return (
                                 <Tooltip text={pluginInstance.name} position="bottom" key={id + plugin}>

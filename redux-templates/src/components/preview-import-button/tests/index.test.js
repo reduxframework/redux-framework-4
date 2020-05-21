@@ -39,7 +39,7 @@ describe('Preview Import buttons', () => {
                 <WrappedPreviewImport singleValue={{data: {url: null}}} />
             );
             const testInstance = testRenderer.root;
-            expect(testInstance.findAllByProps({className: 'reduxtemplates-button preview-button'}).length).toBe(0);
+            expect(testInstance.findAllByProps({className: 'redux-templates-button preview-button'}).length).toBe(0);
         });
 
         it('displays preview button when data.url is set', () => {
@@ -47,7 +47,7 @@ describe('Preview Import buttons', () => {
                 <WrappedPreviewImport singleValue={{data: {url: 'url'}}} />
             );
             const testInstance = testRenderer.root;
-            expect(testInstance.findAllByProps({className: 'reduxtemplates-button preview-button'}).length).toBe(1);
+            expect(testInstance.findAllByProps({className: 'redux-templates-button preview-button'}).length).toBe(1);
         });
 
         it('displays import button with download icon with default context value', () => {

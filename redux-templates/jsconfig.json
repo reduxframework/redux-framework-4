@@ -3,7 +3,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@wordpress/*": ["./node_modules/@wordpress/*"],
-			"~reduxtemplates/*": ["./src/*"]
+			"~redux-templates/*": ["./src/*"]
 		}
 	},
 	"include": [

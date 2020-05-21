@@ -73,8 +73,8 @@ function ChallengeTimer(props) {
     return (
         <div className='block-timer'>
             <div>
-                <h3>{__('ReduxTemplates Challenge', reduxtemplates.i18n)}</h3>
-                <p><span>{helper.getFormatted(secondsLeft)}</span>{__(' remaining', reduxtemplates.i18n)}</p>
+                <h3>{__('ReduxTemplates Challenge', redux-templates.i18n)}</h3>
+                <p><span>{helper.getFormatted(secondsLeft)}</span>{__(' remaining', redux-templates.i18n)}</p>
             </div>
             <div className={classnames('caret-icon', {'closed': expanded})} onClick={() => setChallengeListExpanded(!expanded)}>
                 <i className="fa fa-caret-down"></i>
@@ -87,13 +87,13 @@ function ChallengeTimer(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setChallengeListExpanded} = dispatch('reduxtemplates/sectionslist');
+        const {setChallengeListExpanded} = dispatch('redux-templates/sectionslist');
         return {
             setChallengeListExpanded
         };
     }),
     withSelect((select) => {
-        const {getChallengeOpen, getChallengeFinalStatus, getChallengeListExpanded} = select('reduxtemplates/sectionslist');
+        const {getChallengeOpen, getChallengeFinalStatus, getChallengeListExpanded} = select('redux-templates/sectionslist');
         return {
             isChallengeOpen: getChallengeOpen(),
             finalStatus: getChallengeFinalStatus(),

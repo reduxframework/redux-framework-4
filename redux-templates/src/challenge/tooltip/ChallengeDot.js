@@ -19,7 +19,7 @@ function ChallengeDot(props) {
             stepInformation.action();
             onResize();
             setTimeout(onResize, 0);
-        } else 
+        } else
             onResize();
     }, [challengeStep, isOpen]);
 
@@ -49,13 +49,13 @@ function ChallengeDot(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setChallengeTooltipRect} = dispatch('reduxtemplates/sectionslist');
+        const {setChallengeTooltipRect} = dispatch('redux-templates/sectionslist');
         return {
             setChallengeTooltipRect
         };
     }),
     withSelect((select, props) => {
-        const { getChallengeOpen, getChallengeStep } = select('reduxtemplates/sectionslist');
+        const { getChallengeOpen, getChallengeStep } = select('redux-templates/sectionslist');
         return {
             isOpen: getChallengeOpen(),
             challengeStep: getChallengeStep()

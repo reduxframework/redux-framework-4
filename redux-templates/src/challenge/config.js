@@ -1,10 +1,10 @@
 import {__} from '@wordpress/i18n'
 import {animateScroll} from 'react-scroll';
 import {dispatch, select} from '@wordpress/data';
-const {setTourActiveButtonGroup, setImportingTemplate} = dispatch('reduxtemplates/sectionslist');
-const {getPageData} = select('reduxtemplates/sectionslist');
-import {ModalManager} from '~reduxtemplates/modal-manager';
-import PreviewModal from '~reduxtemplates/modal-preview';
+const {setTourActiveButtonGroup, setImportingTemplate} = dispatch('redux-templates/sectionslist');
+const {getPageData} = select('redux-templates/sectionslist');
+import {ModalManager} from '~redux-templates/modal-manager';
+import PreviewModal from '~redux-templates/modal-preview';
 export default {
     initialSecondsLeft: 300,
     beginningStep: -1,
@@ -12,7 +12,7 @@ export default {
     list: [
         {
             selector: '[data-tut="tour__navigation"]',
-            caption: __('Template Type Tabs', reduxtemplates.i18n),
+            caption: __('Template Type Tabs', redux-templates.i18n),
             offset: {
                 x: 0,
                 y: 50,
@@ -42,8 +42,8 @@ export default {
         },
         {
             selector: '[data-tut="tour__filtering"]',
-            caption: __('Sidebar', reduxtemplates.i18n),
-            content: __('This area is where you can search and filter to find the right kind of templates you want.', reduxtemplates.i18n),
+            caption: __('Sidebar', redux-templates.i18n),
+            content: __('This area is where you can search and filter to find the right kind of templates you want.', redux-templates.i18n),
             direction: 'left',
             offset: {
                 x: 40,
@@ -57,14 +57,14 @@ export default {
             },
             action: () => {
                 animateScroll.scrollToTop({
-                    containerId: 'reduxtemplates-collection-modal-sidebar',
+                    containerId: 'redux-templates-collection-modal-sidebar',
                     duration: 0,
                 });
             },
         },
         {
             selector: '[data-tut="tour__filtering"]',
-            caption: __('Plugins Filter', reduxtemplates.i18n),
+            caption: __('Plugins Filter', redux-templates.i18n),
             offset: {
                 x: 40,
                 y: 10,
@@ -84,7 +84,7 @@ export default {
             ),
             action: () => {
                 animateScroll.scrollToBottom({
-                    containerId: 'reduxtemplates-collection-modal-sidebar',
+                    containerId: 'redux-templates-collection-modal-sidebar',
                     duration: 0,
                 });
             },
@@ -92,8 +92,8 @@ export default {
         },
         {
             selector: '[data-tut="tour__main_body"]',
-            caption: __('Templates List', reduxtemplates.i18n),
-            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', reduxtemplates.i18n),
+            caption: __('Templates List', redux-templates.i18n),
+            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', redux-templates.i18n),
             direction: 'left',
             offset: {
                 x: 40,
@@ -107,16 +107,16 @@ export default {
             },
             action: () => {
                 animateScroll.scrollToTop({
-                    containerId: 'reduxtemplates-collection-modal-sidebar',
+                    containerId: 'redux-templates-collection-modal-sidebar',
                     duration: 0,
                 });
                 setTourActiveButtonGroup(null);
             }
         },
         {
-            selector: '#modalContainer .reduxtemplates-single-item-inner:first-child',
-            caption: __('Template Hover', reduxtemplates.i18n),
-            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', reduxtemplates.i18n),
+            selector: '#modalContainer .redux-templates-single-item-inner:first-child',
+            caption: __('Template Hover', redux-templates.i18n),
+            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', redux-templates.i18n),
             action: () => {
                 ModalManager.closeCustomizer();
                 const pageData = getPageData();
@@ -138,8 +138,8 @@ export default {
         },
         {
             selector: '.wp-full-overlay-sidebar',
-            caption: __('Preview Dialog', reduxtemplates.i18n),
-            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', reduxtemplates.i18n),
+            caption: __('Preview Dialog', redux-templates.i18n),
+            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', redux-templates.i18n),
             action: () => {
                 setTourActiveButtonGroup(null);
                 setImportingTemplate(null);
@@ -153,9 +153,9 @@ export default {
             position: 'center'
         },
         {
-            selector: '.reduxtemplates-import-wizard-wrapper',
-            caption: __('Import Wizard', reduxtemplates.i18n),
-            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', reduxtemplates.i18n),
+            selector: '.redux-templates-import-wizard-wrapper',
+            caption: __('Import Wizard', redux-templates.i18n),
+            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux-templates.i18n),
             direction: 'right',
             offset: {
                 x: 0,
@@ -176,11 +176,11 @@ export default {
                 const pageData = getPageData();
                 if (pageData && pageData.length > 0) setImportingTemplate(pageData[0]);
                 setTimeout(() => {
-                    const openedPanel = document.getElementsByClassName('reduxtemplates-modal-wrapper');
+                    const openedPanel = document.getElementsByClassName('redux-templates-modal-wrapper');
                     if (openedPanel && openedPanel.length > 0) {
                         let openPanel = openedPanel[0].getBoundingClientRect();
                         let box = {top: openPanel.top + 90, left: openPanel.left - 320};
-                        dispatch('reduxtemplates/sectionslist').setChallengeTooltipRect(box);
+                        dispatch('redux-templates/sectionslist').setChallengeTooltipRect(box);
                     }
                     if (document.getElementsByClassName('tooltipster-box')) 
                         document.getElementsByClassName('tooltipster-box')[0].style.display = 'block';
@@ -189,8 +189,8 @@ export default {
         },
         {
             selector: '.components-base-control.editor-page-attributes__template',
-            caption: __('Template Conflict', reduxtemplates.i18n),
-            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', reduxtemplates.i18n),
+            caption: __('Template Conflict', redux-templates.i18n),
+            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux-templates.i18n),
             action: () => {
                 setImportingTemplate(null);
                 ModalManager.hide();
@@ -200,8 +200,8 @@ export default {
                 if (openedPanel && openedPanel.length > 0) {
                     let openPanel = openedPanel[0].getBoundingClientRect();
                     let box = {top: openPanel.top, left: openPanel.left - 320};
-                    dispatch('reduxtemplates/sectionslist').setChallengeTooltipRect(box);
-                    dispatch('reduxtemplates/sectionslist').setChallengeListExpanded(false);
+                    dispatch('redux-templates/sectionslist').setChallengeTooltipRect(box);
+                    dispatch('redux-templates/sectionslist').setChallengeListExpanded(false);
                 }
             },
             offset: {

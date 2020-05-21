@@ -1,5 +1,5 @@
 === Page Builder for Gutenberg – ReduxTemplates ===
-Contributors: dovyp, reduxtemplates, redux
+Contributors: dovyp, redux-templates, redux
 Donate link: https://paypal.me/ReduxFramework
 Tags: page builder, gutenberg blocks, page builder blocks, page builder Gutenberg blocks, gutenberg
 Requires at least: 5.4
@@ -132,23 +132,23 @@ ReduxTemplates works with all plugins that support Gutenberg, but it has been te
 </ul>
 
 <h4>👍 BE A CONTRIBUTOR</h4>
-If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/reduxtemplates">go to the Translation Portal at translate.wordpress.org</a>.
+If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/redux-templates">go to the Translation Portal at translate.wordpress.org</a>.
 
-You can also contribute code-wise via our <a href="https://github.com/reduxtemplates/reduxtemplates/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
+You can also contribute code-wise via our <a href="https://github.com/redux-templates/redux-templates/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
 
 <h4>📝 Documentation and Support</h4>
 <ul>
-<li>For more information about features, FAQs and documentation, check out our website at <a href="https://reduxtemplates.io/" rel="nofollow ugc">ReduxTemplates</a>.</li>
-<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/reduxtemplates">Plugin's Forum</a>.</li>
+<li>For more information about features, FAQs and documentation, check out our website at <a href="https://redux-templates.io/" rel="nofollow ugc">ReduxTemplates</a>.</li>
+<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/redux-templates">Plugin's Forum</a>.</li>
 </ul>
 
 <h4>⚡ Like the ReduxTemplates Plugin?</h4>
 <ul>
-<li>Follow us on <a href="https://www.facebook.com/reduxtemplates" rel="nofollow ugc">Facebook 💬</a></li>
-<li><strong>Rate us 5 ⭐ stars</strong> on <a href="https://wordpress.org/support/plugin/reduxtemplates/reviews/?filter=5/#new-post">WordPress.org</a></li>
-<li><a href="https://updates.reduxtemplates.io/welcome" rel="nofollow ugc"><strong>Subscribe to my Newsletter for insider info on this plugin</strong> 💯</a></li>
+<li>Follow us on <a href="https://www.facebook.com/redux-templates" rel="nofollow ugc">Facebook 💬</a></li>
+<li><strong>Rate us 5 ⭐ stars</strong> on <a href="https://wordpress.org/support/plugin/redux-templates/reviews/?filter=5/#new-post">WordPress.org</a></li>
+<li><a href="https://updates.redux-templates.io/welcome" rel="nofollow ugc"><strong>Subscribe to my Newsletter for insider info on this plugin</strong> 💯</a></li>
 <li><a href="https://github.com/sponsors/dovy/" rel="nofollow ugc"><strong>Become a Sponsor</strong> 💜</a> and support ongoing development, maintenance and support of this plugin</li>
-<li>Follow us on Twitter 🐦: <a href="https://twitter.com/reduxtemplates" rel="nofollow ugc">@ReduxTemplates</a> and <a href="https://twitter.com/dovyp" rel="nofollow ugc">@DovyP</a></li>
+<li>Follow us on Twitter 🐦: <a href="https://twitter.com/redux-templates" rel="nofollow ugc">@ReduxTemplates</a> and <a href="https://twitter.com/dovyp" rel="nofollow ugc">@DovyP</a></li>
 </ul>
 
 <h4>🔐 Privacy</h4>
@@ -169,17 +169,17 @@ The ReduxTemplates plugin uses a custom API to fetch our content library and our
 
 API requests are only made when a user clicks on the Library button or click to launch the ReduxTemplates tour.
 
-For more details on our privacy policy: [https://reduxtemplates.io/privacy](https://reduxtemplates.io/privacy)
-For more details on on our terms and conditions: [https://reduxtemplates.io/terms](https://reduxtemplates.io/terms)
+For more details on our privacy policy: [https://redux-templates.io/privacy](https://redux-templates.io/privacy)
+For more details on on our terms and conditions: [https://redux-templates.io/terms](https://redux-templates.io/terms)
 
 == Installation ==
 1. Upload the entire plugin folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 Once Activated, you will find a 'Library' at the top of the Gutenberg editor.
-For basic usage, you can also have a look at the plugin website [ReduxTemplates](https://reduxtemplates.io/).
+For basic usage, you can also have a look at the plugin website [ReduxTemplates](https://redux-templates.io/).
 
-If you want, you can use the [Gutenberg](https://reduxtemplates.io/) plugin to get bleeding-edge experiments by the Gutenberg team.
+If you want, you can use the [Gutenberg](https://redux-templates.io/) plugin to get bleeding-edge experiments by the Gutenberg team.
 
 == Screenshots ==
 1. The ReduxTemplates every-growing library of templates.
@@ -248,7 +248,7 @@ ReduxTemplates is built to work wonderfully with all themes.
 
 = Can I use ReduxTemplates for Gutenberg even while having another Page Builder? =
 
-The basic need or requirement for ReduxTemplates for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://reduxtemplates.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
+The basic need or requirement for ReduxTemplates for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://redux-templates.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
 
 = Can I use ReduxTemplates for Gutenberg on client websites? =
 

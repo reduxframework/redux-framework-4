@@ -7,14 +7,14 @@ const {__} = wp.i18n
 const MESSAGE_DELAY_MILLISECONDS = 4000;
 
 const MESSAGES_LIST = [
-    __('Please wait while your template is prepared.', reduxtemplates.i18n),
-    __('Fetching the template.', reduxtemplates.i18n),
-    __('We\'re getting closer now.', reduxtemplates.i18n),
-    __('Wow, this is taking a long time.', reduxtemplates.i18n),
-    __('Gah, this should be done by now!', reduxtemplates.i18n),
-    __('Really, this should be done soon.', reduxtemplates.i18n),
-    __('Are you sure your internet is working?!', reduxtemplates.i18n),
-    __('Give up, it looks like it didn\'t work...', reduxtemplates.i18n),
+    __('Please wait while your template is prepared.', redux-templates.i18n),
+    __('Fetching the template.', redux-templates.i18n),
+    __('We\'re getting closer now.', redux-templates.i18n),
+    __('Wow, this is taking a long time.', redux-templates.i18n),
+    __('Gah, this should be done by now!', redux-templates.i18n),
+    __('Really, this should be done soon.', redux-templates.i18n),
+    __('Are you sure your internet is working?!', redux-templates.i18n),
+    __('Give up, it looks like it didn\'t work...', redux-templates.i18n),
 ];
 
 function useInterval(callback, delay) {
@@ -49,8 +49,8 @@ export default function ImportingStep(props) {
     }, MESSAGE_DELAY_MILLISECONDS)
 
     return (
-        <div className="reduxtemplates-modal-body">
-            <div className="reduxtemplates-import-wizard-spinner-wrapper">
+        <div className="redux-templates-modal-body">
+            <div className="redux-templates-import-wizard-spinner-wrapper">
                 <TextTransition
                     text={loadingMessage}
                     springConfig={presets.gentle}

@@ -12,7 +12,7 @@
             width: 50%;
         }
 
-        &.reduxtemplates-builder-template-found-empty {
+        &.redux-templates-builder-template-found-empty {
             width: 100%;
             text-align: center;
             opacity: 0.5;
@@ -21,13 +21,13 @@
         }
     }
 
-    &.reduxtemplates-frontend-section-list {
+    &.redux-templates-frontend-section-list {
         display: block;
         padding-bottom: 10px;
         padding-top: 0px;
 
         > div {
-            &.reduxtemplates-reusable-list-title {
+            &.redux-templates-reusable-list-title {
                 color: #adafb2;
             }
 
@@ -44,22 +44,22 @@
                 border-top: 1px solid #e2e4e7;
             }
 
-            .reduxtemplates-reusable-list-content {
+            .redux-templates-reusable-list-content {
                 flex-grow: 1;
             }
 
-            .reduxtemplates-reusable-list-info {
+            .redux-templates-reusable-list-info {
                 flex-grow: 1;
                 max-width: 165px;
                 display: flex;
                 flex-wrap: nowrap;
             }
 
-            .reduxtemplates-reusable-list-button {
+            .redux-templates-reusable-list-button {
                 margin-left: 30px;
             }
 
-            .reduxtemplates-reusable-list-button button {
+            .redux-templates-reusable-list-button button {
                 display: inline-block;
                 padding: 0;
                 border: none;
@@ -86,7 +86,7 @@
             }
         }
     }
-    .reduxtemplates-pagelist-column.loading {
+    .redux-templates-pagelist-column.loading {
         height: 100px;
         display: flex;
         align-items: center;

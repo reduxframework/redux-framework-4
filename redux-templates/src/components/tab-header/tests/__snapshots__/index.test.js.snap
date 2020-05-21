@@ -2,7 +2,7 @@
 
 exports[`Tab Header renders correctly 1`] = `
 <div
-  className="reduxtemplates-builder-modal-header"
+  className="redux-templates-builder-modal-header"
 >
   <div
     className="template-search-box"
@@ -20,42 +20,42 @@ exports[`Tab Header renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="reduxtemplates-template-list-header"
+    className="redux-templates-template-list-header"
   >
     <button
       className=""
       onClick={[Function]}
     >
-       
+
       Sections
-       
+
     </button>
     <button
       className=""
       onClick={[Function]}
     >
-       
+
       Pages
-       
+
     </button>
     <button
       className=""
       onClick={[Function]}
     >
-       
+
       Collections
-       
+
     </button>
     <button
       className=""
       onClick={[Function]}
     >
-       
+
       Saved
-       
+
     </button>
     <button
-      className="reduxtemplates-builder-close-modal"
+      className="redux-templates-builder-close-modal"
       onClick={[Function]}
     >
       <i

@@ -7,7 +7,7 @@ import SitePreviewSidebar from './SitePreviewSidebar';
 import {ModalManager} from '../modal-manager'
 import ImportWizard from '../modal-import-wizard';
 import {Fragment} from 'react';
-import {processImportHelper} from '~reduxtemplates/stores/actionHelper';
+import {processImportHelper} from '~redux-templates/stores/actionHelper';
 import './style.scss';
 
 function PreviewModal(props) {
@@ -105,7 +105,7 @@ export default compose([
         const {
             setImportingTemplate,
             setCustomizerOpened
-        } = dispatch('reduxtemplates/sectionslist');
+        } = dispatch('redux-templates/sectionslist');
 
         return {
             setImportingTemplate,
@@ -114,7 +114,7 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const {getImportingTemplate} = select('reduxtemplates/sectionslist');
+        const {getImportingTemplate} = select('redux-templates/sectionslist');
         return {
             importingTemplate: getImportingTemplate()
         };

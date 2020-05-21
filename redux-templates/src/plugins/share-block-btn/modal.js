@@ -11,7 +11,7 @@ import {Modal, ModalManager} from '../../modal-manager'
 import uniq from 'lodash/uniq';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
-import {installedBlocksTypes} from '~reduxtemplates/stores/actionHelper';
+import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
 import {setWithExpiry, getWithExpiry} from '../../stores/helper';
 import './style.scss'
 
@@ -77,7 +77,7 @@ function ShareModal(props) {
         if (loading) return;
         setLoading(true);
         apiFetch({
-            path: 'reduxtemplates/v1/share/',
+            path: 'redux-templates/v1/share/',
             method: 'POST',
             headers: {'Registed-Blocks': installedBlocksTypes()},
             data: {
@@ -111,14 +111,14 @@ function ShareModal(props) {
     if (!blocksSelection)
         return (
             <Modal compactMode={true}>
-                <div className="reduxtemplates-share-modal-wrapper">
-                    <div className="reduxtemplates-modal-header">
-                        <h3>{__('Share Wizard', reduxtemplates.i18n)}</h3>
-                        <button className="reduxtemplates-modal-close" onClick={onCloseWizard}>
+                <div className="redux-templates-share-modal-wrapper">
+                    <div className="redux-templates-modal-header">
+                        <h3>{__('Share Wizard', redux-templates.i18n)}</h3>
+                        <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                             <i className={'fas fa-times'}/>
                         </button>
                     </div>
-                    <div className="reduxtemplates-share">
+                    <div className="redux-templates-share">
                         <div className="spinner-wrapper">
                             <Spinner />
                         </div>
@@ -128,14 +128,14 @@ function ShareModal(props) {
         );
     return (
         <Modal compactMode={true}>
-            <div className="reduxtemplates-share-modal-wrapper">
-                <div className="reduxtemplates-modal-header">
-                    <h3>{__('Share Wizard', reduxtemplates.i18n)}</h3>
-                    <button className="reduxtemplates-modal-close" onClick={onCloseWizard}>
+            <div className="redux-templates-share-modal-wrapper">
+                <div className="redux-templates-modal-header">
+                    <h3>{__('Share Wizard', redux-templates.i18n)}</h3>
+                    <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>
                 </div>
-                <div className="reduxtemplates-share">
+                <div className="redux-templates-share">
                     <div className="panel">
                         <div className="input-panel">
                             <div className="field">
@@ -161,7 +161,7 @@ function ShareModal(props) {
                             </button>
                         </div>
                         <div className="preview-panel">
-                            <div className="reduxtemplates-block-preview-hover" />
+                            <div className="redux-templates-block-preview-hover" />
                             <BlockPreview blocks={blocksSelection} />
                         </div>
                     </div>

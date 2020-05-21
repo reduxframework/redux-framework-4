@@ -2,18 +2,18 @@ const {Fragment} = wp.element;
 const {__} = wp.i18n;
 
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
-import {pluginInfo} from '~reduxtemplates/stores/dependencyHelper';
-const REDUXTEMPLATES_PRO_KEY = 'reduxtemplates-pro';
+import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
+const REDUXTEMPLATES_PRO_KEY = 'redux-templates-pro';
 export default function ProPluginStep(props) {
     const {missingPros, onCloseWizard} = props;
 
     if ( missingPros.indexOf(REDUXTEMPLATES_PRO_KEY) >= 0 ) return <ReduxTemplatesPremiumBox />
     return (
         <Fragment>
-            <div className="reduxtemplates-modal-body">
-                <h5>{__('External Dependencies Required', reduxtemplates.i18n)}</h5>
-                <p>{__('The following premium plugin(s) are required to import this template:', reduxtemplates.i18n)}</p>
-                <ul className="reduxtemplates-import-progress">
+            <div className="redux-templates-modal-body">
+                <h5>{__('External Dependencies Required', redux-templates.i18n)}</h5>
+                <p>{__('The following premium plugin(s) are required to import this template:', redux-templates.i18n)}</p>
+                <ul className="redux-templates-import-progress">
                     {
                         missingPros.map(pluginKey => {
                             let plugin = pluginInfo(pluginKey)
@@ -28,9 +28,9 @@ export default function ProPluginStep(props) {
                 </ul>
 
             </div>
-            <div className="reduxtemplates-modal-footer">
+            <div className="redux-templates-modal-footer">
                 <a className="button button-secondary" onClick={onCloseWizard}>
-                    {__('Close', reduxtemplates.i18n)}
+                    {__('Close', redux-templates.i18n)}
                 </a>
             </div>
         </Fragment>

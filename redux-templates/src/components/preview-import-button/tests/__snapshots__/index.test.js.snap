@@ -5,18 +5,18 @@ exports[`Preview Import buttons 1. renders correctly: snapshot testing 1`] = `
   className="action-buttons"
 >
   <a
-    className="reduxtemplates-button preview-button"
+    className="redux-templates-button preview-button"
     onClick={[Function]}
     target="_blank"
   >
     <i
       className="fa fa-share"
     />
-     
+
     Preview
   </a>
   <a
-    className="reduxtemplates-button download-button"
+    className="redux-templates-button download-button"
     onClick={[Function]}
   >
     <i

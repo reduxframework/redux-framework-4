@@ -6,7 +6,7 @@ const {useState, useEffect} = wp.element;
 
 import ButtonGroup from '../button-group';
 import BackgroundImage from '../background-image';
-import {requiresInstall, requiresPro} from '~reduxtemplates/stores/dependencyHelper'
+import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
 import './style.scss'
 
@@ -17,7 +17,7 @@ function SingleItem (props) {
     const {backgroundImage} = props;
     const [data, setData] = useState(null);
     // const {ID, image, url, pro, source, requirements} = data;
-    const [innerClassname, setInnerClassname] = useState('reduxtemplates-single-item-inner reduxtemplates-item-wrapper ');
+    const [innerClassname, setInnerClassname] = useState('redux-templates-single-item-inner redux-templates-item-wrapper ');
 
     useEffect(() => {
         if (pageData) setData(pageData[index]);
@@ -25,37 +25,37 @@ function SingleItem (props) {
 
     useEffect(() => {
         setInnerClassname((pageData && pageData[index] && tourActiveButtonGroup && tourActiveButtonGroup.ID === pageData[index].ID) ?
-            'reduxtemplates-single-item-inner reduxtemplates-item-wrapper focused' : 'reduxtemplates-single-item-inner reduxtemplates-item-wrapper');
+            'redux-templates-single-item-inner redux-templates-item-wrapper focused' : 'redux-templates-single-item-inner redux-templates-item-wrapper');
     }, [tourActiveButtonGroup, pageData, index]);
 
     if (!data) return null;
     return (
-        <div className="reduxtemplates-single-section-item">
+        <div className="redux-templates-single-section-item">
             <div className={innerClassname}>
-                <div className="reduxtemplates-default-template-image">
+                <div className="redux-templates-default-template-image">
 
                     {data.source !== 'wp_block_patterns' &&<img className="lazy" src={backgroundImage(data.image)}/>}
                     {data.source === 'wp_block_patterns' && <BackgroundImage data={data} />}
-                    {requiresPro(data) && <span className="reduxtemplates-pro-badge">{__('Premium', reduxtemplates.i18n)}</span>}
-                    {!requiresPro(data) && requiresInstall(data) && <span className="reduxtemplates-missing-badge"><i className="fas fa-exclamation-triangle" /></span>}
-                    <div className="reduxtemplates-tmpl-title">{data.name}</div>
+                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span>}
+                    {!requiresPro(data) && requiresInstall(data) && <span className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></span>}
+                    <div className="redux-templates-tmpl-title">{data.name}</div>
                 </div>
-                {/* reduxtemplates-default-template-image */}
-                <div className="reduxtemplates-button-overlay">
-                    {requiresPro(data) && <span className="reduxtemplates-pro-badge">{__('Premium', reduxtemplates.i18n)}</span>}
-                    {!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', reduxtemplates.i18n)} position="bottom" key={data.source+data.source_id}><div className="reduxtemplates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
+                {/* redux-templates-default-template-image */}
+                <div className="redux-templates-button-overlay">
+                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span>}
+                    {!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux-templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
                     <ButtonGroup index={index} showDependencyBlock={true} data={data} pageData={pageData} />
                 </div>
 
             </div>
-            {/* reduxtemplates-item-wrapper */}
+            {/* redux-templates-item-wrapper */}
         </div>
     )
 }
 
 
 export default withSelect((select, props) => {
-    const {getTourActiveButtonGroup, getPageData} = select('reduxtemplates/sectionslist');
+    const {getTourActiveButtonGroup, getPageData} = select('redux-templates/sectionslist');
     return {
         pageData: getPageData(),
         tourActiveButtonGroup: getTourActiveButtonGroup()
