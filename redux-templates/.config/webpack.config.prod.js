@@ -10,7 +10,7 @@ module.exports = [{
 	devtool: 'hidden-source-map',
 
     entry: {
-        'starterblocks': path.join(__dirname, '../src/index.js')
+        'reduxtemplates': path.join(__dirname, '../src/index.js')
     },
 
     output: {
@@ -23,7 +23,7 @@ module.exports = [{
 
 	resolve: {
 		alias: {
-			'~starterblocks': path.resolve(__dirname, '../src/')
+			'~reduxtemplates': path.resolve(__dirname, '../src/')
 		}
 	},
 

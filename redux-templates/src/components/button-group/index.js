@@ -7,14 +7,14 @@ import './style.scss'
 
 function ButtonGroup (props) {
     const {importingTemplate, showDependencyBlock, index, data, pageData} = props;
-    const [rootClassName, setRootClassName] = useState('starterblocks-import-button-group');
+    const [rootClassName, setRootClassName] = useState('reduxtemplates-import-button-group');
 
     // When some action is in progress, disable the button groups
     useEffect(() => {
-        if (importingTemplate === null && rootClassName !== 'starterblocks-import-button-group')
-            setRootClassName('starterblocks-import-button-group')
-        if (importingTemplate !== null && rootClassName === 'starterblocks-import-button-group')
-            setRootClassName('starterblocks-import-button-group disabled');
+        if (importingTemplate === null && rootClassName !== 'reduxtemplates-import-button-group')
+            setRootClassName('reduxtemplates-import-button-group')
+        if (importingTemplate !== null && rootClassName === 'reduxtemplates-import-button-group')
+            setRootClassName('reduxtemplates-import-button-group disabled');
     }, [importingTemplate])
     return (
         <div className={rootClassName}>
@@ -28,7 +28,7 @@ function ButtonGroup (props) {
 
 export default compose([
     withSelect((select) => {
-        const {getImportingTemplate} = select('starterblocks/sectionslist');
+        const {getImportingTemplate} = select('reduxtemplates/sectionslist');
         return {importingTemplate: getImportingTemplate()};
     })
 ])(ButtonGroup);

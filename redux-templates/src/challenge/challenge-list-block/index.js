@@ -26,7 +26,7 @@ function ChallengeListBlock(props) {
 
     return (
         <div className='challenge-list-block'>
-            <p>{__('Complete the challenge and get up and running within 5 minutes', starterblocks.i18n)}</p>
+            <p>{__('Complete the challenge and get up and running within 5 minutes', reduxtemplates.i18n)}</p>
             <ProgressBar currentStep={finalStatus === 'success' ?  CONFIG.totalStep : challengeStep} />
             <ul className='challenge-list'>
                 {
@@ -38,9 +38,9 @@ function ChallengeListBlock(props) {
             { finalStatus === '' &&
                 <div className={buttonRowClassname}>
                     {challengeStep === CONFIG.beginningStep && 
-                        <button className='btn-challenge-start' onClick={onStarted}>{__('Start Challenge', starterblocks.i18n)}</button>}
-                    {challengeStep === CONFIG.beginningStep && <button className='btn-challenge-skip' onClick={onCancelChallenge}>{__('Skip Challenge', starterblocks.i18n)}</button>}
-                    {challengeStep !== CONFIG.beginningStep && <button className='btn-challenge-cancel' onClick={onCancelChallenge}>{__('Cancel Challenge', starterblocks.i18n)}</button>}
+                        <button className='btn-challenge-start' onClick={onStarted}>{__('Start Challenge', reduxtemplates.i18n)}</button>}
+                    {challengeStep === CONFIG.beginningStep && <button className='btn-challenge-skip' onClick={onCancelChallenge}>{__('Skip Challenge', reduxtemplates.i18n)}</button>}
+                    {challengeStep !== CONFIG.beginningStep && <button className='btn-challenge-cancel' onClick={onCancelChallenge}>{__('Cancel Challenge', reduxtemplates.i18n)}</button>}
                 </div>
             }
         </div>
@@ -51,7 +51,7 @@ function ChallengeListBlock(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setChallengeOpen, setChallengeStep} = dispatch('starterblocks/sectionslist');
+        const {setChallengeOpen, setChallengeStep} = dispatch('reduxtemplates/sectionslist');
         return {
             setChallengeOpen,
             setChallengeStep
@@ -59,7 +59,7 @@ export default compose([
     }),
 
     withSelect((select) => {
-        const {getChallengeStep, getChallengeFinalStatus} = select('starterblocks/sectionslist');
+        const {getChallengeStep, getChallengeFinalStatus} = select('reduxtemplates/sectionslist');
         return {
             challengeStep: getChallengeStep(),
             finalStatus: getChallengeFinalStatus()

@@ -3,10 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 /**
- * StarterBlocks - Canvas / Theme Override
+ * ReduxTemplates - Canvas / Theme Override
  *
  * @since v.1.0.0
- * @package starterblocks
+ * @package reduxtemplates
  */
 ?>
 <!DOCTYPE html>

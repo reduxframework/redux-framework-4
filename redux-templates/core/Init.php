@@ -1,8 +1,8 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
-use StarterBlocks;
+use ReduxTemplates;
 
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,15 +26,15 @@ class Init {
     // Init Options Data Init
     public function option_data() {
         $option_data = array( 'css_save_as' => 'wp_head' );
-        if ( ! get_option( 'starterblocks_options' ) ) {
-            update_option( 'starterblocks_options', $option_data );
+        if ( ! get_option( 'reduxtemplates_options' ) ) {
+            update_option( 'reduxtemplates_options', $option_data );
         }
     }
 
     public static function load() {
-        new StarterBlocks\API();
-        new StarterBlocks\Templates();
-        new StarterBlocks\Welcome();
+        new ReduxTemplates\API();
+        new ReduxTemplates\Templates();
+        new ReduxTemplates\Welcome();
     }
 
     /**
@@ -45,41 +45,41 @@ class Init {
     public function editor_assets() {
 
         wp_enqueue_script(
-            'starterblocks-js',
-            plugins_url( 'assets/js/starterblocks.dev.js', STARTERBLOCKS_FILE ),
+            'reduxtemplates-js',
+            plugins_url( 'assets/js/reduxtemplates.dev.js', REDUXTEMPLATES_FILE ),
             array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-            STARTERBLOCKS_VERSION,
+            REDUXTEMPLATES_VERSION,
             true
         );
 
-        wp_set_script_translations( 'starterblocks-js', 'starterblocks' );
+        wp_set_script_translations( 'reduxtemplates-js', 'reduxtemplates' );
 
         // Backend editor scripts: common vendor files.
         wp_enqueue_script(
-            'starterblocks-js-vendor',
-            plugins_url( 'assets/js/vendor.dev.js', STARTERBLOCKS_FILE ),
+            'reduxtemplates-js-vendor',
+            plugins_url( 'assets/js/vendor.dev.js', REDUXTEMPLATES_FILE ),
             array(),
-            STARTERBLOCKS_VERSION
+            REDUXTEMPLATES_VERSION
         );
-        global $starterblocks_fs;
+        global $reduxtemplates_fs;
         $global_vars = array(
-            'i18n'              => 'starterblocks',
-            'plugin'            => STARTERBLOCKS_DIR_URL,
-            'mokama'            => starterblocks_fs()->can_use_premium_code(),
-            'icon'              => file_get_contents( STARTERBLOCKS_DIR_URL . 'assets/img/logo.svg' ),
-            'version'           => STARTERBLOCKS_VERSION,
+            'i18n'              => 'reduxtemplates',
+            'plugin'            => REDUXTEMPLATES_DIR_URL,
+            'mokama'            => reduxtemplates_fs()->can_use_premium_code(),
+            'icon'              => file_get_contents( REDUXTEMPLATES_DIR_URL . 'assets/img/logo.svg' ),
+            'version'           => REDUXTEMPLATES_VERSION,
             'supported_plugins' => [], // Load the supported plugins,
 
         );
 
         if ( ! $global_vars['mokama'] ) {
-            $global_vars['u'] = $starterblocks_fs->get_upgrade_url(
+            $global_vars['u'] = $reduxtemplates_fs->get_upgrade_url(
                 ) . '&utm_source=plugin&utm_medium=modal&utm_campaign=template';
         }
 
         wp_localize_script(
-            'starterblocks-js',
-            'starterblocks',
+            'reduxtemplates-js',
+            'reduxtemplates',
             $global_vars
         );
 
@@ -92,7 +92,7 @@ class Init {
      */
     public function admin_assets() {
         wp_enqueue_style(
-            'starterblocks-bundle', STARTERBLOCKS_DIR_URL . 'assets/css/admin.min.css', false, STARTERBLOCKS_VERSION
+            'reduxtemplates-bundle', REDUXTEMPLATES_DIR_URL . 'assets/css/admin.min.css', false, REDUXTEMPLATES_VERSION
         );
     }
 }

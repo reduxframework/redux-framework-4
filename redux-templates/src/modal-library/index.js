@@ -10,9 +10,9 @@ import CollectionView from './view-collection';
 import SavedView from './view-saved';
 import ImportWizard from '../modal-import-wizard';
 import ErrorNotice from '../components/error-notice';
-import ChallengeFinalTemplate from '~starterblocks/challenge/final-templates';
+import ChallengeFinalTemplate from '~reduxtemplates/challenge/final-templates';
 import FabWrapper from '../components/fab-wrapper';
-import {processImportHelper} from '~starterblocks/stores/actionHelper';
+import {processImportHelper} from '~reduxtemplates/stores/actionHelper';
 import './style.scss'
 
 
@@ -67,15 +67,15 @@ function LibraryModal(props) {
 
 
     return (
-        <Modal className="starterblocks-builder-modal-pages-list"
-               customClass="starterblocks-builder-modal-template-list"
+        <Modal className="reduxtemplates-builder-modal-pages-list"
+               customClass="reduxtemplates-builder-modal-template-list"
                openTimeoutMS={0} closeTimeoutMS={0}>
             <TabHeader/>
             {
                 errorMessages && errorMessages.length > 0 &&
                 <ErrorNotice errorMessages={errorMessages}/>
             }
-            <div className="starterblocks-collections-modal-body">
+            <div className="reduxtemplates-collections-modal-body">
                 {hasSidebar() && <WithSidebarLayout/>}
                 {(hasSidebar() === false && activeItemType === 'collection') && <CollectionView/>}
                 {(hasSidebar() === false && activeItemType !== 'collection') && <SavedView/>}
@@ -96,7 +96,7 @@ export default compose([
             setLoading,
             setLibrary,
             setImportingTemplate
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
 
         return {
             setLoading,
@@ -106,7 +106,7 @@ export default compose([
     }),
 
     withSelect((select) => {
-        const {fetchLibraryFromAPI, getActiveCollection, getActiveItemType, getErrorMessages, getImportingTemplate, getChallengeOpen, getChallengeFinalStatus} = select('starterblocks/sectionslist');
+        const {fetchLibraryFromAPI, getActiveCollection, getActiveItemType, getErrorMessages, getImportingTemplate, getChallengeOpen, getChallengeFinalStatus} = select('reduxtemplates/sectionslist');
         return {
             fetchLibraryFromAPI,
             activeCollection: getActiveCollection(),

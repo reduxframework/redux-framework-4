@@ -16,19 +16,19 @@ function FullyOverlayFooter(props) {
     }
     return (
         <div className="wp-full-overlay-footer">
-            <div className="footer-import-button-wrap starterblocks-import-button-group">
+            <div className="footer-import-button-wrap reduxtemplates-import-button-group">
 
                 {
                     pro ?
                         <div className="action-buttons">
-                            <a className="starterblocks-button-download" target="_blank" href="http://starterblocks.io/">
-                                <i className="fas fa-upload"></i>&nbsp;{__('Upgrade to Pro', starterblocks.i18n)}
+                            <a className="reduxtemplates-button-download" target="_blank" href="http://reduxtemplates.io/">
+                                <i className="fas fa-upload"></i>&nbsp;{__('Upgrade to Pro', reduxtemplates.i18n)}
                             </a>
                         </div>
                         :
-                        <a className="button button-hero hide-if-no-customize button-primary starterblocks-import"
+                        <a className="button button-hero hide-if-no-customize button-primary reduxtemplates-import"
                            onClick={onImport}>
-                            <i className="fas fa-download"></i>&nbsp;{__('Import', starterblocks.i18n)}
+                            <i className="fas fa-download"></i>&nbsp;{__('Import', reduxtemplates.i18n)}
                         </a>
                 }
 
@@ -36,7 +36,7 @@ function FullyOverlayFooter(props) {
             <button type="button" className="collapse-sidebar button" onClick={toggleExpanded} aria-expanded="true"
                     aria-label="Collapse Sidebar">
                 <span className="collapse-sidebar-arrow"></span>
-                <span className="collapse-sidebar-label">{__('Collapse', starterblocks.i18n)}</span>
+                <span className="collapse-sidebar-label">{__('Collapse', reduxtemplates.i18n)}</span>
             </button>
 
             <div className="devices-wrapper">

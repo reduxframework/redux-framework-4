@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * StarterBlocks - Full Width / Stretched
+ * ReduxTemplates - Full Width / Stretched
  *
  * @since v.1.0.0
  * @package starter-blocks

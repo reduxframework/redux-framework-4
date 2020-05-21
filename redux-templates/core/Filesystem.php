@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
@@ -71,7 +71,7 @@ class Filesystem {
         }
 
         $uploads_dir        = wp_upload_dir();
-        $this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'starterblocks/';
+        $this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'reduxtemplates/';
         if ( ! $this->file_exists( $this->cache_folder ) ) {
             $this->mkdir( $this->cache_folder );
         }

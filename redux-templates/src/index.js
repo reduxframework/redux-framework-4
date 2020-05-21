@@ -17,7 +17,7 @@ import './plugins/share-block-btn'
 import ToolbarLibraryButton from './toolbar-library-button'
 import TooltipBox from './challenge/tooltip/TooltipBox';
 import {handlingLocalStorageData} from './stores/helper';
-import StarterBlocksChallenge from './challenge'
+import ReduxTemplatesChallenge from './challenge'
 import {ModalManager} from './modal-manager';
 import LibraryModal from './modal-library';
 
@@ -38,11 +38,11 @@ domReady(() => {
     toolbar.appendChild(buttonDiv);
     render(<ToolbarLibraryButton/>, buttonDiv)
     
-    if (window.location.hash == '#starterblocks_tour=1') {
+    if (window.location.hash == '#reduxtemplates_tour=1') {
         window.location.hash = '';
         ModalManager.open(<LibraryModal />);
     }
-    render(<StarterBlocksChallenge />, challengeWrapperDiv);
+    render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
     render(<TooltipBox />, challengeDiv);
 
     handlingLocalStorageData();

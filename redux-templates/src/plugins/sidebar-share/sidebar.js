@@ -5,7 +5,7 @@ const {compose} = wp.compose;
 const {PanelBody, Spinner} = wp.components
 const {withDispatch, select} = wp.data;
 const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
-import {installedBlocksTypes} from '~starterblocks/stores/actionHelper';
+import {installedBlocksTypes} from '~reduxtemplates/stores/actionHelper';
 import {Modal, ModalManager} from '../../modal-manager'
 import ShareModal from '../share-block-btn/modal'
 
@@ -20,15 +20,15 @@ function Sidebar(props) {
 
     return (
         <Fragment>
-            <PluginSidebarMoreMenuItem target="starterblocks-share">
-                {__('StarterBlocks Template', starterblocks.i18n)}
+            <PluginSidebarMoreMenuItem target="reduxtemplates-share">
+                {__('ReduxTemplates Template', reduxtemplates.i18n)}
             </PluginSidebarMoreMenuItem>
-            <PluginSidebar name="starterblocks-share" title={__('StarterBlocks Shares', starterblocks.i18n)}>
-                <PanelBody title={__('Share this Design', starterblocks.i18n)} initialOpen={true}>
+            <PluginSidebar name="reduxtemplates-share" title={__('ReduxTemplates Shares', reduxtemplates.i18n)}>
+                <PanelBody title={__('Share this Design', reduxtemplates.i18n)} initialOpen={true}>
                     <div className="d-flex justify-content-center">
                         <a className="button button-primary" onClick={onShare}>
                             {loading ? <i className="fas fa-spinner fa-pulse"/> : <i className="fas fa-share"></i>}
-                            &nbsp;{__('Share this design', starterblocks.i18n)}
+                            &nbsp;{__('Share this design', reduxtemplates.i18n)}
                         </a>
                     </div>
                 </PanelBody>

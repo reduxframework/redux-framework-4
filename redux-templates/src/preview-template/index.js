@@ -6,7 +6,7 @@ const { __ } = wp.i18n
 import SitePreviewSidebar from './SitePreviewSidebar';
 import { ModalManager } from '../modal-manager'
 import ImportWizard from '../import-wizard';
-import {handleBlock} from '~starterblocks/stores/actionHelper';
+import {handleBlock} from '~reduxtemplates/stores/actionHelper';
 import uniq from 'lodash/uniq';
 import './style.scss';
 import { Fragment } from 'react';
@@ -67,7 +67,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setImportingTemplate
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
 
         return {
             setImportingTemplate
@@ -75,7 +75,7 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const { getImportingTemplate } = select('starterblocks/sectionslist');
+        const { getImportingTemplate } = select('reduxtemplates/sectionslist');
         return {
             importingTemplate: getImportingTemplate()
         };

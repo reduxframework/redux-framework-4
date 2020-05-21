@@ -50,7 +50,7 @@ export const initialState = {
         currentStep: loadChallengeStep(),
         tooltipRect: {},
         finalStatus: '',
-        passed: getWithExpiry('starterblocksChallengePassed', false),
+        passed: getWithExpiry('reduxtemplatesChallengePassed', false),
         listExpanded: true
     },
     plugins: {},
@@ -61,7 +61,7 @@ export const reducer = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case 'SET_LIBRARY':
-            starterblocks.supported_plugins = action.library.plugins;
+            reduxtemplates.supported_plugins = action.library.plugins;
             const dependencies = getDefaultDependencies(action.library.dependencies);
             let parsedSection = parseSectionData(action.library.sections);
             let parsedPage = parsePageData(action.library.pages);
@@ -253,7 +253,7 @@ export const reducer = ( state = initialState, action ) => {
                 }
             }
         case 'SET_CHALLENGE_PASSED':
-            setWithExpiry('starterblocksChallengePassed', action.data, EXIPRY_TIME);
+            setWithExpiry('reduxtemplatesChallengePassed', action.data, EXIPRY_TIME);
             return {
                 ...state,
                 challenge: {

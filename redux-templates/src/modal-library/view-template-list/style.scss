@@ -12,7 +12,7 @@
             width: 50%;
         }
 
-        &.starterblocks-builder-template-found-empty {
+        &.reduxtemplates-builder-template-found-empty {
             width: 100%;
             text-align: center;
             opacity: 0.5;
@@ -21,13 +21,13 @@
         }
     }
 
-    &.starterblocks-frontend-section-list {
+    &.reduxtemplates-frontend-section-list {
         display: block;
         padding-bottom: 10px;
         padding-top: 0px;
 
         > div {
-            &.starterblocks-reusable-list-title {
+            &.reduxtemplates-reusable-list-title {
                 color: #adafb2;
             }
 
@@ -44,22 +44,22 @@
                 border-top: 1px solid #e2e4e7;
             }
 
-            .starterblocks-reusable-list-content {
+            .reduxtemplates-reusable-list-content {
                 flex-grow: 1;
             }
 
-            .starterblocks-reusable-list-info {
+            .reduxtemplates-reusable-list-info {
                 flex-grow: 1;
                 max-width: 165px;
                 display: flex;
                 flex-wrap: nowrap;
             }
 
-            .starterblocks-reusable-list-button {
+            .reduxtemplates-reusable-list-button {
                 margin-left: 30px;
             }
 
-            .starterblocks-reusable-list-button button {
+            .reduxtemplates-reusable-list-button button {
                 display: inline-block;
                 padding: 0;
                 border: none;
@@ -86,7 +86,7 @@
             }
         }
     }
-    .starterblocks-pagelist-column.loading {
+    .reduxtemplates-pagelist-column.loading {
         height: 100px;
         display: flex;
         align-items: center;

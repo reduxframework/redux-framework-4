@@ -1,18 +1,18 @@
 {
-    "name": "starterblocks",
+    "name": "reduxtemplates",
     "version": "1.0.7",
     "description": "The ultimate gutenberg template library.",
     "author": "Dovy Paukstys of Redux",
     "license": "GPL-3.0",
     "keywords": [
         "WordPress",
-        "StarterBlocks",
+        "ReduxTemplates",
         "blocks",
         "library"
     ],
-    "homepage": "https://starterblocks.io",
-    "repository": "git+https://github.com/starterblocks/starterblocks.git",
-    "bugs": "https://wordpress.org/support/plugin/starterblocks",
+    "homepage": "https://reduxtemplates.io",
+    "repository": "git+https://github.com/reduxtemplates/reduxtemplates.git",
+    "bugs": "https://wordpress.org/support/plugin/reduxtemplates",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.19",

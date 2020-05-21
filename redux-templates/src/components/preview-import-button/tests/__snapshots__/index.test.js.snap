@@ -5,7 +5,7 @@ exports[`Preview Import buttons 1. renders correctly: snapshot testing 1`] = `
   className="action-buttons"
 >
   <a
-    className="starterblocks-button preview-button"
+    className="reduxtemplates-button preview-button"
     onClick={[Function]}
     target="_blank"
   >
@@ -16,7 +16,7 @@ exports[`Preview Import buttons 1. renders correctly: snapshot testing 1`] = `
     Preview
   </a>
   <a
-    className="starterblocks-button download-button"
+    className="reduxtemplates-button download-button"
     onClick={[Function]}
   >
     <i

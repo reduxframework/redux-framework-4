@@ -1,5 +1,5 @@
-=== Page Builder for Gutenberg – StarterBlocks ===
-Contributors: dovyp, starterblocks, redux
+=== Page Builder for Gutenberg – ReduxTemplates ===
+Contributors: dovyp, reduxtemplates, redux
 Donate link: https://paypal.me/ReduxFramework
 Tags: page builder, gutenberg blocks, page builder blocks, page builder Gutenberg blocks, gutenberg
 Requires at least: 5.4
@@ -9,10 +9,10 @@ Requires PHP: 5.6
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-StarterBlocks lets you build full pages with Gutenberg. Import 800+ full page layouts and designs! True page builder experience.
+ReduxTemplates lets you build full pages with Gutenberg. Import 800+ full page layouts and designs! True page builder experience.
 
 == Description ==
-<strong>StarterBlocks - The Blocks Template Library for Gutenberg</strong>
+<strong>ReduxTemplates - The Blocks Template Library for Gutenberg</strong>
 
 Supercharge the Gutenberg editor with our ever-growing library of templates. Discovery what's possible and implement any design on your website in virtually no time at all.
 
@@ -35,17 +35,17 @@ Don’t waste hours trying to recreate a template you love. With a click of a bu
 </ul>
 
 <h4>🚀 TYPICAL USE CASE OF THIS PLUGIN</h4>
-You are building a **big site** with **lots of pages** and you just want it to look amazing. With StarterBlocks you can begin making pages with a variety of "starter blocks," or templates.
+You are building a **big site** with **lots of pages** and you just want it to look amazing. With ReduxTemplates you can begin making pages with a variety of "starter blocks," or templates.
 
-You can browse through the categories, as well as collections of like-styled pages. When you find something you like, StarterBlocks makes sure you have everything you need. If a dependency (or required plugin) is missing, you are notified and can install the missing dependency. Worried that our templates may not work with your theme? No problem! With our custom `page templates` options you can transform any site into exactly what you want it to be no matter what them you are using.
+You can browse through the categories, as well as collections of like-styled pages. When you find something you like, ReduxTemplates makes sure you have everything you need. If a dependency (or required plugin) is missing, you are notified and can install the missing dependency. Worried that our templates may not work with your theme? No problem! With our custom `page templates` options you can transform any site into exactly what you want it to be no matter what them you are using.
 
 Don’t waste hours trying to recreate a design you love. With a click of a button, you have it on your own site and you can begin customizing your "starter block" for your needs.
 
 <h4>🎉 Supported Page Builders</h4>
-Currently StarterBlocks supports only the <a href="https://wordpress.org/plugins/gutenberg/"><strong>Gutenberg / Block Editor of WordPress 5.0+</strong></a>.
+Currently ReduxTemplates supports only the <a href="https://wordpress.org/plugins/gutenberg/"><strong>Gutenberg / Block Editor of WordPress 5.0+</strong></a>.
 
 <h4>🎨 Supported Themes</h4>
-Though StarterBlocks will work with any theme that uses Gutenberg, we have found it to work exceptionally well with the following themes.
+Though ReduxTemplates will work with any theme that uses Gutenberg, we have found it to work exceptionally well with the following themes.
 
 <ul>
 <li><a href="https://wordpress.org/themes/astra/"><strong>Astra Theme</strong></a> with <strong>Astra Pro</strong> Add-On Plugin – <strong>Custom Layouts</strong> (for Layouts, Headers, Footers, Hooks)</li>
@@ -64,7 +64,7 @@ Though StarterBlocks will work with any theme that uses Gutenberg, we have found
 </ul>
 
 <h4>🚀 SUPPORTED PLUGINS</h4>
-StarterBlocks works with all plugins that support Gutenberg, but it has been tested specifically with the following to ensure complete compatibility.
+ReduxTemplates works with all plugins that support Gutenberg, but it has been tested specifically with the following to ensure complete compatibility.
 <ul>
 <li>see Page Builder Plugins above 🙂</li>
 <li>see Gutenberg-specific Plugins below 🙂</li>
@@ -111,10 +111,10 @@ StarterBlocks works with all plugins that support Gutenberg, but it has been tes
         Blocks</strong></a> Plugin – <strong>Blocks & Templates</strong> (Blocks for Gutenberg Blocks)
     </li>
     <li><a href="https://wordpress.org/plugins/otter-blocks/"><strong>Gutenberg Blocks and Template Library by
-        Otter</strong></a> Plugin – <strong>Blocks & Templates</strong>. StarterBlocks includes full Gutenberg Block Page Builder support for Otter blocks.
+        Otter</strong></a> Plugin – <strong>Blocks & Templates</strong>. ReduxTemplates includes full Gutenberg Block Page Builder support for Otter blocks.
     </li>
     <li><a href="https://wordpress.org/plugins/qubely/"><strong>Gutenberg Blocks and Page Builder – Qubely </strong></a> Plugin
-        – <strong>Blocks & Templates</strong> (Templates & Blocks for Gutenberg Blocks). StarterBlocks includes full Gutenberg Block Page Builder support and templates for Otter blocks plugin.
+        – <strong>Blocks & Templates</strong> (Templates & Blocks for Gutenberg Blocks). ReduxTemplates includes full Gutenberg Block Page Builder support and templates for Otter blocks plugin.
     </li>
     <li><a href="https://wordpress.org/plugins/qodeblock/"><strong>Gutenberg Blocks Collection – qodeblock</strong></a>
         Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)
@@ -132,31 +132,31 @@ StarterBlocks works with all plugins that support Gutenberg, but it has been tes
 </ul>
 
 <h4>👍 BE A CONTRIBUTOR</h4>
-If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/starterblocks">go to the Translation Portal at translate.wordpress.org</a>.
+If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/reduxtemplates">go to the Translation Portal at translate.wordpress.org</a>.
 
-You can also contribute code-wise via our <a href="https://github.com/starterblocks/starterblocks/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
+You can also contribute code-wise via our <a href="https://github.com/reduxtemplates/reduxtemplates/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
 
 <h4>📝 Documentation and Support</h4>
 <ul>
-<li>For more information about features, FAQs and documentation, check out our website at <a href="https://starterblocks.io/" rel="nofollow ugc">StarterBlocks</a>.</li>
-<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/starterblocks">Plugin's Forum</a>.</li>
+<li>For more information about features, FAQs and documentation, check out our website at <a href="https://reduxtemplates.io/" rel="nofollow ugc">ReduxTemplates</a>.</li>
+<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/reduxtemplates">Plugin's Forum</a>.</li>
 </ul>
 
-<h4>⚡ Like the StarterBlocks Plugin?</h4>
+<h4>⚡ Like the ReduxTemplates Plugin?</h4>
 <ul>
-<li>Follow us on <a href="https://www.facebook.com/starterblocks" rel="nofollow ugc">Facebook 💬</a></li>
-<li><strong>Rate us 5 ⭐ stars</strong> on <a href="https://wordpress.org/support/plugin/starterblocks/reviews/?filter=5/#new-post">WordPress.org</a></li>
-<li><a href="https://updates.starterblocks.io/welcome" rel="nofollow ugc"><strong>Subscribe to my Newsletter for insider info on this plugin</strong> 💯</a></li>
+<li>Follow us on <a href="https://www.facebook.com/reduxtemplates" rel="nofollow ugc">Facebook 💬</a></li>
+<li><strong>Rate us 5 ⭐ stars</strong> on <a href="https://wordpress.org/support/plugin/reduxtemplates/reviews/?filter=5/#new-post">WordPress.org</a></li>
+<li><a href="https://updates.reduxtemplates.io/welcome" rel="nofollow ugc"><strong>Subscribe to my Newsletter for insider info on this plugin</strong> 💯</a></li>
 <li><a href="https://github.com/sponsors/dovy/" rel="nofollow ugc"><strong>Become a Sponsor</strong> 💜</a> and support ongoing development, maintenance and support of this plugin</li>
-<li>Follow us on Twitter 🐦: <a href="https://twitter.com/starterblocks" rel="nofollow ugc">@StarterBlocks</a> and <a href="https://twitter.com/dovyp" rel="nofollow ugc">@DovyP</a></li>
+<li>Follow us on Twitter 🐦: <a href="https://twitter.com/reduxtemplates" rel="nofollow ugc">@ReduxTemplates</a> and <a href="https://twitter.com/dovyp" rel="nofollow ugc">@DovyP</a></li>
 </ul>
 
 <h4>🔐 Privacy</h4>
-StarterBlocks does not interact with end users on your website. Our templates will continue to work even if StarterBlocks is uninstalled.
+ReduxTemplates does not interact with end users on your website. Our templates will continue to work even if ReduxTemplates is uninstalled.
 
-StarterBlocks utilizes [Freemius](https://freemius.com/) for account management as well as to enable our premium offerings. You can find their privacy policy here: [https://freemius.com/privacy/](https://freemius.com/privacy/) and their terms of service here: [https://freemius.com/terms/](https://freemius.com/terms/).
+ReduxTemplates utilizes [Freemius](https://freemius.com/) for account management as well as to enable our premium offerings. You can find their privacy policy here: [https://freemius.com/privacy/](https://freemius.com/privacy/) and their terms of service here: [https://freemius.com/terms/](https://freemius.com/terms/).
 
-The StarterBlocks plugin uses a custom API to fetch our content library and our Gutenberg templates. To improve the service and stability we store logs which may or may not contain the following "Non-Personal Information:"
+The ReduxTemplates plugin uses a custom API to fetch our content library and our Gutenberg templates. To improve the service and stability we store logs which may or may not contain the following "Non-Personal Information:"
 <ul>
 <li>browser type</li>
 <li>referring site</li>
@@ -164,25 +164,25 @@ The StarterBlocks plugin uses a custom API to fetch our content library and our 
 <li>template ID requested</li>
 <li>date of cached version of the given API request</li>
 <li>supported block plugins installed (slug only, no versions)</li>
-<li>version of StarterBlocks installed</li>
+<li>version of ReduxTemplates installed</li>
 </ul>
 
-API requests are only made when a user clicks on the Library button or click to launch the StarterBlocks tour.
+API requests are only made when a user clicks on the Library button or click to launch the ReduxTemplates tour.
 
-For more details on our privacy policy: [https://starterblocks.io/privacy](https://starterblocks.io/privacy)
-For more details on on our terms and conditions: [https://starterblocks.io/terms](https://starterblocks.io/terms)
+For more details on our privacy policy: [https://reduxtemplates.io/privacy](https://reduxtemplates.io/privacy)
+For more details on on our terms and conditions: [https://reduxtemplates.io/terms](https://reduxtemplates.io/terms)
 
 == Installation ==
 1. Upload the entire plugin folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 Once Activated, you will find a 'Library' at the top of the Gutenberg editor.
-For basic usage, you can also have a look at the plugin website [StarterBlocks](https://starterblocks.io/).
+For basic usage, you can also have a look at the plugin website [ReduxTemplates](https://reduxtemplates.io/).
 
-If you want, you can use the [Gutenberg](https://starterblocks.io/) plugin to get bleeding-edge experiments by the Gutenberg team.
+If you want, you can use the [Gutenberg](https://reduxtemplates.io/) plugin to get bleeding-edge experiments by the Gutenberg team.
 
 == Screenshots ==
-1. The StarterBlocks every-growing library of templates.
+1. The ReduxTemplates every-growing library of templates.
 2. Grouped pages known as collections, helping you build out any website.
 3. Preview the template before you import it.
 4. Import wizard with integrated dependency installer.
@@ -191,7 +191,7 @@ If you want, you can use the [Gutenberg](https://starterblocks.io/) plugin to ge
 == Changelog ==
 
 = 1.0.7 =
-* Change: Default dependencies are filtered to only include things installed and StarterBlocks.
+* Change: Default dependencies are filtered to only include things installed and ReduxTemplates.
 * Added: Ability to display only templates with installed dependencies.
 * Added: Help button at lower right when the Library is open.
 * Added: Feedback modal when a template import fails.
@@ -205,7 +205,7 @@ If you want, you can use the [Gutenberg](https://starterblocks.io/) plugin to ge
 * Fixed: Tour launch as well as tour re-running after page reload.
 * Fixed: Nearly all translation strings in the JavaScript, have a few sprintf's to complete.
 * Fixed: Bug where if import is closed and re-tried, multiple imports of the same template occur.
-* Change: Cleaner path to upgrading to StarterBlocks Premium.
+* Change: Cleaner path to upgrading to ReduxTemplates Premium.
 
 = 1.0.5 =
 * Fixed: Race condition bug.
@@ -234,30 +234,30 @@ If you want, you can use the [Gutenberg](https://starterblocks.io/) plugin to ge
 
 == Frequently Asked Questions ==
 
-= Who should use the StarterBlocks Block Library for Gutenberg? =
+= Who should use the ReduxTemplates Block Library for Gutenberg? =
 
-The StarterBlocks Block Library for Gutenberg is a complete package of unique and creative templates that will help you build beautiful pages and posts on a website. It is of value for everyone and for all who love Gutenberg.
+The ReduxTemplates Block Library for Gutenberg is a complete package of unique and creative templates that will help you build beautiful pages and posts on a website. It is of value for everyone and for all who love Gutenberg.
 
-= What are the requirements to use the StarterBlocks Library for Gutenberg? =
+= What are the requirements to use the ReduxTemplates Library for Gutenberg? =
 
-You only need to have the latest version of WordPress on your website, to begin with. StarterBlocks is for Gutenberg is basically an addon for the default WordPress block editor. Therefore, the latest WordPress installation along with a theme should be enough, to begin with.
+You only need to have the latest version of WordPress on your website, to begin with. ReduxTemplates is for Gutenberg is basically an addon for the default WordPress block editor. Therefore, the latest WordPress installation along with a theme should be enough, to begin with.
 
-= What themes does StarterBlocks Library for Gutenberg work with? =
+= What themes does ReduxTemplates Library for Gutenberg work with? =
 
-StarterBlocks is built to work wonderfully with all themes.
+ReduxTemplates is built to work wonderfully with all themes.
 
-= Can I use StarterBlocks for Gutenberg even while having another Page Builder? =
+= Can I use ReduxTemplates for Gutenberg even while having another Page Builder? =
 
-The basic need or requirement for StarterBlocks for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://starterblocks.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
+The basic need or requirement for ReduxTemplates for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://reduxtemplates.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
 
-= Can I use StarterBlocks for Gutenberg on client websites? =
+= Can I use ReduxTemplates for Gutenberg on client websites? =
 
-Yes! You can certainly use StarterBlocks on yours as well as your client's websites.
+Yes! You can certainly use ReduxTemplates on yours as well as your client's websites.
 
-= Will StarterBlocks slow down my website? =
+= Will ReduxTemplates slow down my website? =
 
-Absolutely not! The StarterBlocks Library for Gutenberg plugin is built with ease and performance in mind. Its module architecture and the clean code keep it lightweight and fast. Therefore, it will not affect your website speed and performance in any way.
+Absolutely not! The ReduxTemplates Library for Gutenberg plugin is built with ease and performance in mind. Its module architecture and the clean code keep it lightweight and fast. Therefore, it will not affect your website speed and performance in any way.
 
-= What more do I get with the StarterBlocks Library for Gutenberg? =
+= What more do I get with the ReduxTemplates Library for Gutenberg? =
 
-When you use the StarterBlocks Library for Gutenberg, you get a huge library of ready-to-use sections and page templates that can be imported and used to build your own. Read an article about the <a href="https://www.ultimategutenberg.com/ready-websites-for-gutenberg/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">StarterBlocks Library for Gutenberg</a> to know more.
+When you use the ReduxTemplates Library for Gutenberg, you get a huge library of ready-to-use sections and page templates that can be imported and used to build your own. Read an article about the <a href="https://www.ultimategutenberg.com/ready-websites-for-gutenberg/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">ReduxTemplates Library for Gutenberg</a> to know more.

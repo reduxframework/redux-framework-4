@@ -1,5 +1,10 @@
 @import "../variables";
-@import "scss/layout";
+.reduxtemplates-collections-modal-body {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+}
+
 
 @mixin placeholder-color($color) {
     &::-webkit-input-placeholder { /* WebKit browsers */
@@ -24,7 +29,7 @@
     }
 }
 
-.starterblocks-builder-modal {
+.reduxtemplates-builder-modal {
     button {
         background: transparent;
     }
@@ -56,7 +61,7 @@
         pointer-events: all;
     }
 
-    .starterblocks-pagelist-modal-overlay {
+    .reduxtemplates-pagelist-modal-overlay {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -68,7 +73,7 @@
     }
 }
 
-.starterblocks-builder-modal-header {
+.reduxtemplates-builder-modal-header {
     display: flex;
     //z-index: 9999;
 
@@ -116,7 +121,7 @@
     }
 }
 
-.starterblocks-pagelist-modal-inner {
+.reduxtemplates-pagelist-modal-inner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -131,7 +136,7 @@
     animation: components-modal__appear-animation 0.1s ease-out;
     animation-fill-mode: forwards;
 
-    .starterblocks-collection-modal-content-area {
+    .reduxtemplates-collection-modal-content-area {
         flex-grow: 1;
         max-height: 100%;
         overflow-y: auto;
@@ -140,13 +145,13 @@
 }
 
 //template list header
-.starterblocks-template-list-header {
+.reduxtemplates-template-list-header {
     text-align: center;
     position: relative;
     flex-grow: 1;
     padding-right: 50px;
 
-    button:not(.starterblocks-builder-close-modal) {
+    button:not(.reduxtemplates-builder-close-modal) {
         display: inline-block;
         line-height: 30px;
         padding: 15px 20px;
@@ -167,7 +172,7 @@
         }
     }
 
-    .starterblocks-builder-close-modal {
+    .reduxtemplates-builder-close-modal {
         position: absolute;
         top: 0;
         right: 0;
@@ -199,7 +204,7 @@
 }
 
 //template list sub header
-.starterblocks-template-list-sub-header {
+.reduxtemplates-template-list-sub-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -215,13 +220,13 @@
         }
     }
 
-    .starterblocks-template-filters {
+    .reduxtemplates-template-filters {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .starterblocks-template-filter-button-group {
+    .reduxtemplates-template-filter-button-group {
         background: #f8fafb;
         display: inline-flex;
         border: 1px solid #d8d8d8;
@@ -300,7 +305,7 @@
     }
 }
 
-.starterblocks-modal-loader {
+.reduxtemplates-modal-loader {
     display: inline-block;
     position: absolute;
     width: 80px;
@@ -315,23 +320,23 @@
     color: #1e7ed8;
 }
 
-.starterblocks-modal-loader img {
+.reduxtemplates-modal-loader img {
     height: 80px;
     width: 80px;
 }
 
 /*block style*/
-.starterblocks-builder-template-found-empty {
+.reduxtemplates-builder-template-found-empty {
     text-align: center;
     border-color: transparent !important;
 
-    .starterblocks-builder-empty-title {
+    .reduxtemplates-builder-empty-title {
         display: block;
         width: 100%;
     }
 }
 
-.starterblocks-pro-badge {
+.reduxtemplates-pro-badge {
     position: absolute;
     background: #f00;
     padding: 4px 5px;
@@ -345,7 +350,7 @@
 }
 
 
-.starterblocks-missing-badge {
+.reduxtemplates-missing-badge {
     position: absolute;
     background: #f2a848;
     border-radius: 3px;
@@ -361,8 +366,8 @@
     }
 }
 
-.starterblocks-default-template-image {
-    /* background-image: url('/img/starterblocks-medium.jpg');
+.reduxtemplates-default-template-image {
+    /* background-image: url('/img/reduxtemplates-medium.jpg');
     background-size: cover; */
     background: #888;
     //min-height: 200px;
@@ -374,10 +379,10 @@
     }
 }
 
-.starterblocks-item-wrapper {
+.reduxtemplates-item-wrapper {
     position: relative;
 
-    .starterblocks-button-overlay {
+    .reduxtemplates-button-overlay {
         position: absolute;
         width: 100%;
         opacity: 0;
@@ -391,7 +396,7 @@
         justify-content: center;
         transition: 300ms;
 
-        .starterblocks-tmpl-title {
+        .reduxtemplates-tmpl-title {
             margin: 0 0 15px;
             color: #fff;
             font-size: 19px;
@@ -401,11 +406,11 @@
 
     &.focused,
     &:hover {
-        .starterblocks-button-overlay {
+        .reduxtemplates-button-overlay {
             opacity: 1;
         }
 
-        .starterblocks-default-template-image {
+        .reduxtemplates-default-template-image {
             filter: blur(3px);
         }
     }
@@ -413,7 +418,7 @@
     &.missing_requirements {
         //border: 1px solid red;
         //background: green;
-        .starterblocks-default-template-image {
+        .reduxtemplates-default-template-image {
             //opacity: .9;
             //border: 2px solid #ffeeba;
         }
@@ -422,7 +427,7 @@
             opacity: 1;
         }
 
-        .starterblocks-button-download {
+        .reduxtemplates-button-download {
 
             background-color: #fdbb05;
             background-image: none;
@@ -432,7 +437,7 @@
 }
 
 /*multiple box*/
-#collections-sections-list div.starterblocks-multiple-template-box {
+#collections-sections-list div.reduxtemplates-multiple-template-box {
     margin-bottom: 25px;
     position: relative;
 
@@ -444,7 +449,7 @@
         min-height: 100px;
     }
 
-    .starterblocks-tmpl-info {
+    .reduxtemplates-tmpl-info {
         padding: 10px 12px;
         opacity: 0;
         position: absolute;
@@ -498,16 +503,16 @@
     &:hover {
         &::before,
         &::after,
-        .starterblocks-tmpl-info {
+        .reduxtemplates-tmpl-info {
             opacity: 1;
         }
     }
 }
 
-.starterblocks-template-option-header {
+.reduxtemplates-template-option-header {
     padding: 20px 20px 0;
 
-    .starterblocks-template-back {
+    .reduxtemplates-template-back {
         cursor: pointer;
 
         .dashicons {
@@ -526,7 +531,7 @@
     font-size: 13px;
 }
 
-.starterblocks-template-back {
+.reduxtemplates-template-back {
     cursor: pointer;
 
     .dashicons {

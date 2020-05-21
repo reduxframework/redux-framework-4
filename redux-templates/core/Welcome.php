@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,13 +30,13 @@ class Welcome {
      */
     public function add_admin_menu() {
         add_menu_page(
-            esc_html__( 'StarterBlocks', 'starterblocks' ),
-            esc_html__( 'StarterBlocks', 'starterblocks' ),
+            esc_html__( 'ReduxTemplates', 'reduxtemplates' ),
+            esc_html__( 'ReduxTemplates', 'reduxtemplates' ),
             'manage_options',
-            'starterblocks',
+            'reduxtemplates',
             array( $this, 'create_admin_page' ),
             'data:image/svg+xml;base64,' . base64_encode(
-                file_get_contents( STARTERBLOCKS_DIR_PATH . 'assets/img/logo.svg' )
+                file_get_contents( REDUXTEMPLATES_DIR_PATH . 'assets/img/logo.svg' )
             )
         );
     }
@@ -47,7 +47,7 @@ class Welcome {
      * @since 1.0.0
      */
     public function register_settings() {
-        register_setting( 'starterblocks_options', 'starterblocks_options', array( $this, 'sanitize' ) );
+        register_setting( 'reduxtemplates_options', 'reduxtemplates_options', array( $this, 'sanitize' ) );
     }
 
     /**
@@ -84,52 +84,52 @@ class Welcome {
      * @since 1.0.0
      */
     public function create_admin_page() {
-        global $starterblocks_fs;
+        global $reduxtemplates_fs;
 
 
         ?>
         <div class="wrap hide" style="margin:0;padding:0;display:none;"><h2>&nbsp;</h2></div>
         <div class="wrap">
-            <div class="starterblocks-options-section starterblocks-mt-20 starterblocks-mb-30">
-                <div class="starterblocks-options-section-header">
-                    <div class="starterblocks-header-left"
-                         style="background-image: url(<?php echo STARTERBLOCKS_DIR_URL . 'assets/img/logo.svg' ?>)">
-                        <h2 class="starterblocks-options-section-title"><?php
+            <div class="reduxtemplates-options-section reduxtemplates-mt-20 reduxtemplates-mb-30">
+                <div class="reduxtemplates-options-section-header">
+                    <div class="reduxtemplates-header-left"
+                         style="background-image: url(<?php echo REDUXTEMPLATES_DIR_URL . 'assets/img/logo.svg' ?>)">
+                        <h2 class="reduxtemplates-options-section-title"><?php
                             esc_attr_e(
-                                'Welcome to StarterBlocks!', 'starterblocks'
+                                'Welcome to ReduxTemplates!', 'reduxtemplates'
                             );
                             sprintf(
                                 'Version %1$s',
-                                esc_attr( STARTERBLOCKS_VERSION ),
+                                esc_attr( REDUXTEMPLATES_VERSION ),
 
                             ); ?>
                         </h2>
                     </div>
                 </div>
 
-                <div class="starterblocks-options-section-body-container">
+                <div class="reduxtemplates-options-section-body-container">
                     <div class="section-body">
                         <div class="section-intro section-box grid">
 
 
                             <div class="section-intro-col">
                                 <h3>👋 Get Started</h3>
-                                <p><b>You now have StarterBlocks installed for your Gutenberg block editor!</b></p>
+                                <p><b>You now have ReduxTemplates installed for your Gutenberg block editor!</b></p>
                                 <p>Building a page in WordPress has never been faster than when you use
-                                    StarterBlocks.</p>
+                                    ReduxTemplates.</p>
                                 <p><b>Need help?</b></p>
                                 <p>Upgrade to Premium and our support team will be there to answer any questions you
                                     might
-                                    have about the usage of StarterBlocks.</p>
+                                    have about the usage of ReduxTemplates.</p>
                                 <p>
                                     <a href="<?php
-                                    echo $starterblocks_fs->get_upgrade_url() . '&' . $this->get_utm(
+                                    echo $reduxtemplates_fs->get_upgrade_url() . '&' . $this->get_utm(
                                             'get_started', 'get_pro'
                                         );
                                     ?>" class="components-button"
                                        style="display:inline-block;margin:0;margin-right: 15px;">Get
-                                        StarterBlocks Pro →</a>
-                                    <a href="https://starterblocks.io/pro/?<?php
+                                        ReduxTemplates Pro →</a>
+                                    <a href="https://reduxtemplates.io/pro/?<?php
                                     echo $this->get_utm( 'get_started', 'learn_more' );
                                     ?>" target="_blank">Learn More →</a>
                                 </p>
@@ -137,79 +137,79 @@ class Welcome {
                             <div class="section-intro-col">
                                 <p>
                                     <img style="max-width: 400px;"
-                                         src="<?php echo STARTERBLOCKS_DIR_URL . 'assets/img/welcome-tutorial.gif'; ?>"
+                                         src="<?php echo REDUXTEMPLATES_DIR_URL . 'assets/img/welcome-tutorial.gif'; ?>"
                                          alt="Launch Demo"/>
                                 </p>
 
                                 <p class="text-center">
                                     <a href="<?php echo admin_url(
-                                        'post-new.php?post_type=page#starterblocks_tour=1'
+                                        'post-new.php?post_type=page#reduxtemplates_tour=1'
                                     ) ?>" title="<?php _e( 'Create a New Page' ) ?>"><?php _e(
-                                            'Create a New Page', 'starterblocks'
+                                            'Create a New Page', 'reduxtemplates'
                                         ) ?> →</a>
                                 </p>
                             </div>
 
                         </div>
                         <div class="section-box">
-                            <h3><?php _e( '🍺 Supported Plugins', 'starterblocks' ) ?></h3>
+                            <h3><?php _e( '🍺 Supported Plugins', 'reduxtemplates' ) ?></h3>
                             <p><b><?php _e(
                                         'Templates built with the careful chosen beautiful blocks from these vendors:',
-                                        'starterblocks'
+                                        'reduxtemplates'
                                     ) ?></b></p>
                             <ul>
-                                <li><b><?php _e( 'Getwid', 'starterblocks' ) ?></b></li>
-                                <li><b><?php _e( 'GutenbergHub', 'starterblocks' ) ?></b></li>
-                                <li><b><?php _e( 'Kioken', 'starterblocks' ) ?></b></li>
-                                <li><b><?php _e( 'ShareABlock', 'starterblocks' ) ?></b></li>
-                                <li><b><?php _e( 'Stackable', 'starterblocks' ) ?></b></li>
-                                <li><b><?php _e( 'Qubely', 'starterblocks' ) ?></b></li>
+                                <li><b><?php _e( 'Getwid', 'reduxtemplates' ) ?></b></li>
+                                <li><b><?php _e( 'GutenbergHub', 'reduxtemplates' ) ?></b></li>
+                                <li><b><?php _e( 'Kioken', 'reduxtemplates' ) ?></b></li>
+                                <li><b><?php _e( 'ShareABlock', 'reduxtemplates' ) ?></b></li>
+                                <li><b><?php _e( 'Stackable', 'reduxtemplates' ) ?></b></li>
+                                <li><b><?php _e( 'Qubely', 'reduxtemplates' ) ?></b></li>
                             </ul>
                         </div>
                     </div>
                     <div class="section-side">
                         <aside class="section-box premium-box">
-                            <h3><?php _e( '🚀 StarterBlocks Premium', 'starterblocks' ) ?></h3>
-                            <p><b><?php _e( 'Priority Email & Forum Support', 'starterblocks' ) ?></b></p>
+                            <h3><?php _e( '🚀 ReduxTemplates Premium', 'reduxtemplates' ) ?></h3>
+                            <p><b><?php _e( 'Priority Email & Forum Support', 'reduxtemplates' ) ?></b></p>
                             <ul>
-                                <li><strong><?php _e( 'Weekly', 'starterblocks' ) ?></strong> <?php _e(
-                                        'Updates to the Library', 'starterblocks'
+                                <li><strong><?php _e( 'Weekly', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        'Updates to the Library', 'reduxtemplates'
                                     ) ?></li>
-                                <li><strong><?php _e( 'Unlimited', 'starterblocks' ) ?></strong> <?php _e(
-                                        ' Library Access', 'starterblocks'
+                                <li><strong><?php _e( 'Unlimited', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        ' Library Access', 'reduxtemplates'
                                     ) ?></li>
-                                <li><strong><?php _e( '20+', 'starterblocks' ) ?></strong> <?php _e(
-                                        ' Collections', 'starterblocks'
+                                <li><strong><?php _e( '20+', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        ' Collections', 'reduxtemplates'
                                     ) ?></li>
-                                <li><strong><?php _e( '125+', 'starterblocks' ) ?></strong> <?php _e(
-                                        ' Page Templates', 'starterblocks'
+                                <li><strong><?php _e( '125+', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        ' Page Templates', 'reduxtemplates'
                                     ) ?></li>
-                                <li><strong><?php _e( '250+', 'starterblocks' ) ?></strong> <?php _e(
-                                        ' Section Templates', 'starterblocks'
+                                <li><strong><?php _e( '250+', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        ' Section Templates', 'reduxtemplates'
                                     ) ?></li>
-                                <li><strong><?php _e( 'Priority', 'starterblocks' ) ?></strong> <?php _e(
-                                        ' Support', 'starterblocks'
+                                <li><strong><?php _e( 'Priority', 'reduxtemplates' ) ?></strong> <?php _e(
+                                        ' Support', 'reduxtemplates'
                                     ) ?></li>
                             </ul>
                             <p>
-                                <a href="<?php echo $starterblocks_fs->get_upgrade_url() . '&' . $this->get_utm(
+                                <a href="<?php echo $reduxtemplates_fs->get_upgrade_url() . '&' . $this->get_utm(
                                         'sidebar', 'get_pro'
                                     ); ?>" class="components-button"
-                                   title="<?php _e( 'Get StarterBlocks Pro', 'starterblocks' ) ?>"><?php _e(
-                                        'Get StarterBlocks Premium', 'starterblocks'
+                                   title="<?php _e( 'Get ReduxTemplates Pro', 'reduxtemplates' ) ?>"><?php _e(
+                                        'Get ReduxTemplates Premium', 'reduxtemplates'
                                     ) ?></a>
                             </p>
                             <p class="text-center">
-                                <a href="https://starterblocks.io/pro/?<?php
+                                <a href="https://reduxtemplates.io/pro/?<?php
                                 echo $this->get_utm( 'get_started', 'learn_more' );
                                 ?>" title="<?php _e( 'Learn More' ) ?>" target="_blank"
-                                   rel="noopener noreferrer"><?php _e( 'Learn More', 'starterblocks' ) ?> →</a>
+                                   rel="noopener noreferrer"><?php _e( 'Learn More', 'reduxtemplates' ) ?> →</a>
                             </p>
                         </aside>
                         <aside class="section-box">
-                            <h3><?php _e( '🗞 Updates', 'starterblocks' ) ?></h3>
+                            <h3><?php _e( '🗞 Updates', 'reduxtemplates' ) ?></h3>
                             <p><?php _e( 'Keep up to date by subscribing to our newsletter.' ) ?></p>
-                            <a href="https://updates.starterblocks.io/welcome?<?php
+                            <a href="https://updates.reduxtemplates.io/welcome?<?php
                             echo $this->get_utm( 'updates', 'subscribe' );
                             ?>" target="_blank" aria-label="Subscribe" class="components-button">
                                 Subscribe

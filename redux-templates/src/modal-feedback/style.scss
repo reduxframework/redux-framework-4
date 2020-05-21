@@ -1,4 +1,4 @@
-.starterblocks-feedback {
+.reduxtemplates-feedback {
     padding: 20px;
     width: 600px;
     .panel {
@@ -46,11 +46,11 @@
         margin-bottom: 10px;
     }
 }
-.starterblocks-feedback-modal-wrapper {
+.reduxtemplates-feedback-modal-wrapper {
     display: flex;
     flex-direction: column;
     background: #fff;
-    .starterblocks-modal-header {
+    .reduxtemplates-modal-header {
         border-bottom: 1px solid #ddd;
         width: 100%;
         flex: 0 0 60px;
@@ -70,7 +70,7 @@
             cursor: pointer;
         }
 
-        .starterblocks-modal-close {
+        .reduxtemplates-modal-close {
             font-size: 20px;
             background: transparent;
             color: #9b9b9b;

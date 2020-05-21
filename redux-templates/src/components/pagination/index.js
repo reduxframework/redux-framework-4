@@ -49,7 +49,7 @@ function Pagination(props) {
                             onClick={() => gotoPage(0, firstButtonClass)}>«</span>
                         <span className={prevButtonClass} aria-hidden="true"
                             onClick={() => gotoPage(currentPage - 1, prevButtonClass)}>‹</span>
-                        <span className="screen-reader-text">{__('Current Page', starterblocks.i18n)}</span>
+                        <span className="screen-reader-text">{__('Current Page', reduxtemplates.i18n)}</span>
                         <span id="table-paging" className="paging-input">
                             <span className="tablenav-paging-text">{currentPage + 1} of <span
                                 className="total-pages">{totalPages}</span></span>
@@ -70,7 +70,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setCurrentPage
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
 
         return {
             setCurrentPage
@@ -78,7 +78,7 @@ export default compose([
     }),
 
     withSelect((select) => {
-        const {getCurrentPage, getPageData, getColumns} = select('starterblocks/sectionslist');
+        const {getCurrentPage, getPageData, getColumns} = select('reduxtemplates/sectionslist');
         return {
             currentPage: getCurrentPage(),
             pageData: getPageData(),

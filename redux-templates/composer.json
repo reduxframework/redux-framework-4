@@ -1,10 +1,10 @@
 {
-    "name": "starterblocks/starterblocks",
+    "name": "reduxtemplates/reduxtemplates",
     "type": "wordpress-plugin",
     "license": "gpl-2.0-or-later",
     "version": "1.0.7",
     "description": "WordPress",
-    "homepage": "https://starterblocks.io/",
+    "homepage": "https://reduxtemplates.io/",
     "authors": [
         {
             "name": "Dovy Paukstys",
@@ -14,11 +14,11 @@
     ],
     "keywords": ["wordpress"],
     "support": {
-        "issues": "https://github.com/starterblocks/starterblocks/issues"
+        "issues": "https://github.com/reduxtemplates/reduxtemplates/issues"
     },
     "autoload": {
         "psr-4": {
-            "StarterBlocks\\": "core/"
+            "ReduxTemplates\\": "core/"
         }
     },
     "require": {

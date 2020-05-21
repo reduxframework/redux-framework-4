@@ -1,4 +1,4 @@
-import {pluginInfo} from '~starterblocks/stores/dependencyHelper';
+import {pluginInfo} from '~reduxtemplates/stores/dependencyHelper';
 
 const {apiFetch} = wp;
 const {compose} = wp.compose;
@@ -29,13 +29,13 @@ function InstallPluginStep(props) {
         let localFailedList = [];
         let localWaitingList = [...waitingList];
         for (let pluginKey of missingPlugins) {
-            const pluginInstance = starterblocks.supported_plugins[pluginKey];
+            const pluginInstance = reduxtemplates.supported_plugins[pluginKey];
             setInstallingPlugin({...pluginInstance, pluginKey});
             localWaitingList = localWaitingList.filter(key => key !== pluginKey)
             setWaitingList(localWaitingList);
             let pluginSlug = pluginInstance.free_slug ? pluginInstance.free_slug : pluginKey;
             await apiFetch({
-                path: 'starterblocks/v1/plugin-install?slug=' + pluginSlug
+                path: 'reduxtemplates/v1/plugin-install?slug=' + pluginSlug
             })
                 .then(res => {
                     if (res.success) {
@@ -61,9 +61,9 @@ function InstallPluginStep(props) {
     return (
 
         <Fragment>
-            <div className="starterblocks-modal-body">
-                <h5>{__('Install Required Plugins', starterblocks.i18n)}</h5>
-                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', starterblocks.i18n)}</p>
+            <div className="reduxtemplates-modal-body">
+                <h5>{__('Install Required Plugins', reduxtemplates.i18n)}</h5>
+                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', reduxtemplates.i18n)}</p>
                 {
                     (installingPlugin === null && failedList.length > 0) &&
                     (<p className='error'>
@@ -71,7 +71,7 @@ function InstallPluginStep(props) {
                     </p>)
                 }
 
-                <ul className="starterblocks-import-progress">
+                <ul className="reduxtemplates-import-progress">
                     {
                         missingPlugins &&
                         missingPlugins.map(pluginKey => {
@@ -96,17 +96,17 @@ function InstallPluginStep(props) {
                     }
                 </ul>
             </div>
-            <div className="starterblocks-modal-footer">
+            <div className="reduxtemplates-modal-footer">
                 {waitingList.length !== 0 &&
                 <button className="button button-primary" disabled={installingPlugin !== null}
                         onClick={() => onInstallPlugins()}>
                     {installingPlugin !== null && <i className="fas fa-spinner fa-pulse"/>}
-                    <span>{__('Install', starterblocks.i18n)}</span>
+                    <span>{__('Install', reduxtemplates.i18n)}</span>
                 </button>
                 }
                 <button className="button button-secondary" disabled={installingPlugin !== null}
                         onClick={onCloseWizard}>
-                    {__('Cancel', starterblocks.i18n)}
+                    {__('Cancel', reduxtemplates.i18n)}
                 </button>
             </div>
         </Fragment>
@@ -118,7 +118,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setInstalledDependencies
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
         return {
             setInstalledDependencies
         };

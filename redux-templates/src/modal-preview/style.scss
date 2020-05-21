@@ -44,7 +44,7 @@ button {
 .wp-full-overlay .wp-full-overlay-sidebar-content {
     bottom: 100px;
 
-    .starterblocks-dependencies-list {
+    .reduxtemplates-dependencies-list {
         h4 {
             color: #23282d;
             font-size: 1.1em;
@@ -57,8 +57,8 @@ button {
         font-weight: 400;
         margin: 30px 0 0 0;
 
-        .starterblocks-dependency-blocks {
-            .starterblocks-dependency-name {
+        .reduxtemplates-dependency-blocks {
+            .reduxtemplates-dependency-name {
                 color: #444;
                 font-weight: 600;
                 margin-right: 5px;
@@ -76,11 +76,11 @@ button {
 
 .wp-full-overlay-footer .view-site,
 .wp-full-overlay-footer .go-pro,
-.wp-full-overlay-footer .starterblocks-import {
+.wp-full-overlay-footer .reduxtemplates-import {
     width: 100%;
 }
 
-.starterblocks-button-download {
+.reduxtemplates-button-download {
     border: 1px solid #3dbfe8;
     background: #3dbfe8;
     box-shadow: 0 1px 0 #165cb4;
@@ -106,7 +106,7 @@ button {
 }
 
 
-.starterblocks-dependency-blocks {
+.reduxtemplates-dependency-blocks {
     display: flex;
 
     .block-head {

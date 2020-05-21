@@ -10,7 +10,7 @@ import './style.scss'
  */
 import {ModalManager} from '../modal-manager';
 import LibraryModal from '../modal-library';
-import { StarterBlocksIcon } from '~starterblocks/icons'
+import { ReduxTemplatesIcon } from '~reduxtemplates/icons'
 const {Component, useEffect} = wp.element;
 
 function ToolbarLibraryButton (props) {
@@ -20,9 +20,9 @@ function ToolbarLibraryButton (props) {
 				ModalManager.open(<LibraryModal />);
 			} }
 			className="sb-insert-library-button"
-			label={ __( 'Open Library', starterblocks.i18n ) }
-			icon={ <StarterBlocksIcon /> }
-		>{ __( 'Library', starterblocks.i18n ) }</IconButton>
+			label={ __( 'Open Library', reduxtemplates.i18n ) }
+			icon={ <ReduxTemplatesIcon /> }
+		>{ __( 'Library', reduxtemplates.i18n ) }</IconButton>
 	)
 }
 

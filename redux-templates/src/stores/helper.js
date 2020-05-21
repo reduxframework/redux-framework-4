@@ -12,7 +12,7 @@ const {createSuccessNotice} = dispatch('core/notices');
 const {insertBlocks} = dispatch('core/block-editor');
 
 const prefix = 'sb_';
-const STARTERBLOCKS_PRO_KEY = 'starterblocks-pro';
+const REDUXTEMPLATES_PRO_KEY = 'reduxtemplates-pro';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
 export const getCurrentState = (state) => state[state.activeItemType]
@@ -118,20 +118,20 @@ export const getCollectionChildrenData = (library, activeCollection) => {
 
 // Check if the block is pro
 export const isBlockPro = (pro, source) => {
-    if (source && starterblocks.supported_plugins.hasOwnProperty(source))
-        return (pro && !starterblocks.supported_plugins[source].is_pro);
+    if (source && reduxtemplates.supported_plugins.hasOwnProperty(source))
+        return (pro && !reduxtemplates.supported_plugins[source].is_pro);
     else
-        return pro && starterblocks.mokama !== '1';
+        return pro && reduxtemplates.mokama !== '1';
 }
 
 export const missingPro = (pro) => {
-    return (starterblocks.mokama !== '1' && pro === true);
+    return (reduxtemplates.mokama !== '1' && pro === true);
 }
 
 export const missingRequirement = (pro, requirements) => {
     if (!requirements) return missingPro(pro);
     else {
-        const supported_plugins = starterblocks.supported_plugins;
+        const supported_plugins = reduxtemplates.supported_plugins;
         for (let i = 0; i < requirements.length; i++) {
             let requirement = requirements[i];
             if (!supported_plugins.hasOwnProperty(requirement.slug))
@@ -235,18 +235,18 @@ Input: dependencies: {getwid: 38, qubely: 82...}
 Result: {getwid: {value: true, disabled: true}, } 
 */
 export const getDefaultDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(starterblocks.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(reduxtemplates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies).reduce((acc, cur) => {
         // special handling for pro plugin not activated.
         let value = true;
         if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
-        if (cur === STARTERBLOCKS_PRO_KEY) value = true;
+        if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
         return {...acc, [cur]: {value, disabled: false}};
-    }, {none: {value: true, disabled: false}, [STARTERBLOCKS_PRO_KEY]: {value: true, disabled: false}});
+    }, {none: {value: true, disabled: false}, [REDUXTEMPLATES_PRO_KEY]: {value: true, disabled: false}});
 }
 
 export const getInstalledDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(starterblocks.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(reduxtemplates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies)
         .filter(key => key !=='none')
         .reduce((acc, cur) => {
@@ -256,7 +256,7 @@ export const getInstalledDependencies = (dependencies) => {
             if (pluginInstance) {
                 if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
                 if (isProPlugin(cur) === false && pluginInstance.hasOwnProperty('version') === false) value = false;
-                if (cur === STARTERBLOCKS_PRO_KEY) value = true;
+                if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
             } else 
                 value = false;
             return {...acc, [cur]: {value, disabled: false}};
@@ -265,8 +265,8 @@ export const getInstalledDependencies = (dependencies) => {
 
 
 const getPluginInstance = (pluginKey) => {
-    if (pluginKey in starterblocks.supported_plugins) {
-        return starterblocks.supported_plugins[pluginKey];
+    if (pluginKey in reduxtemplates.supported_plugins) {
+        return reduxtemplates.supported_plugins[pluginKey];
     }
     return false; // Deal with unknown plugins
 }
@@ -283,7 +283,7 @@ const isPluginProActivated = (pluginKey) => {
 }
 
 export const missingPluginsArray = () => {
-    return Object.keys(starterblocks.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
+    return Object.keys(reduxtemplates.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
 }
 
 
@@ -292,7 +292,7 @@ export const missingPluginsArray = () => {
  * Get last saved step.
  */
 export const loadChallengeStep = () => {
-    var step = localStorage.getItem( 'starterblocksChallengeStep' );
+    var step = localStorage.getItem( 'reduxtemplatesChallengeStep' );
     if (step === null)
         return -1;
     step = parseInt( step, 10 );
@@ -303,5 +303,5 @@ export const loadChallengeStep = () => {
  * Save Challenge step.
  */
 export const saveChallengeStep = (step) => {
-    localStorage.setItem( 'starterblocksChallengeStep', step );
+    localStorage.setItem( 'reduxtemplatesChallengeStep', step );
 }

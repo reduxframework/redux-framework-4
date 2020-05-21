@@ -2,7 +2,7 @@
 
 exports[`Tab Header renders correctly 1`] = `
 <div
-  className="starterblocks-builder-modal-header"
+  className="reduxtemplates-builder-modal-header"
 >
   <div
     className="template-search-box"
@@ -20,7 +20,7 @@ exports[`Tab Header renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="starterblocks-template-list-header"
+    className="reduxtemplates-template-list-header"
   >
     <button
       className=""
@@ -55,7 +55,7 @@ exports[`Tab Header renders correctly 1`] = `
        
     </button>
     <button
-      className="starterblocks-builder-close-modal"
+      className="reduxtemplates-builder-close-modal"
       onClick={[Function]}
     >
       <i

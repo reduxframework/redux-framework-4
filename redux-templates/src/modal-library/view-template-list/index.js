@@ -20,7 +20,7 @@ function TemplateList(props) {
     const [shouldShowPagination, setShouldShowPagination] = useState(false);
     const getBackgroundImage = (url) => {
         if (!url) {
-            return starterblocks.plugin + 'assets/img/starterblocks-medium.jpg';
+            return reduxtemplates.plugin + 'assets/img/reduxtemplates-medium.jpg';
         }
         return url;
     }
@@ -46,17 +46,17 @@ function TemplateList(props) {
         setColumnizedData(newData);
         setShouldShowPagination(activeItemType !== 'collection' && pageData && pageSize < pageData.length);
     }, [columns, pageData]);
-    let types = starterblocks.mokama === '1' ? 'active' : 'inactive';
+    let types = reduxtemplates.mokama === '1' ? 'active' : 'inactive';
 
 
     if (!loading)
         return (
-            <div id="modalContainer" className="starterblocks-template-list-modal">
-                <div className="starterblocks-builder-template-list-container">
-                    <div id="collections-sections-list" className={`starterblocks-builder-page-templates ${columns}`}>
+            <div id="modalContainer" className="reduxtemplates-template-list-modal">
+                <div className="reduxtemplates-builder-template-list-container">
+                    <div id="collections-sections-list" className={`reduxtemplates-builder-page-templates ${columns}`}>
                         { columnizedData &&
                             columnizedData.map((columnData, colIndex) => (
-                                <div className="starterblocks-pagelist-column" key={colIndex}>
+                                <div className="reduxtemplates-pagelist-column" key={colIndex}>
                                     {
                                         columnData &&
                                         columnData.map((data, cellIndex) => (
@@ -90,7 +90,7 @@ function TemplateList(props) {
     return (
         <div>
             <div style={{ height: '600px' }}>
-                <div className="starterblocks-modal-loader">
+                <div className="reduxtemplates-modal-loader">
                     <Spinner />
                 </div>
             </div>
@@ -103,7 +103,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setActiveCollection
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
 
         return {
             setActiveCollection
@@ -111,7 +111,7 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const { getPageData, getLoading, getColumns, getActiveItemType, getActiveCollection, getCurrentPage} = select('starterblocks/sectionslist');
+        const { getPageData, getLoading, getColumns, getActiveItemType, getActiveCollection, getCurrentPage} = select('reduxtemplates/sectionslist');
         return { pageData: getPageData(), loading: getLoading(), activeItemType: getActiveItemType(), columns: getColumns(), activeCollection: getActiveCollection(), currentPage: getCurrentPage() };
     })
 ])(TemplateList);

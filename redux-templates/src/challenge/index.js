@@ -12,15 +12,15 @@ const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 
-function StarterBlocksChallenge(props) {
+function ReduxTemplatesChallenge(props) {
     const {autoChallengeStart} = props;
     const {isOpen, challengeStep, setChallengeStep, listExpanded} = props;
-    const [challengeClassname, setChallengeClassname] = useState('starterblocks-challenge');
+    const [challengeClassname, setChallengeClassname] = useState('reduxtemplates-challenge');
     const [started, setStarted] = useState(false);
 
     useEffect(() => {
         if (challengeStep !== CONFIG.beginningStep && isOpen) {
-            setChallengeClassname('starterblocks-challenge started')
+            setChallengeClassname('reduxtemplates-challenge started')
             setStarted(true);
         }
     }, [challengeStep, isOpen]);
@@ -42,18 +42,18 @@ function StarterBlocksChallenge(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setChallengeStep} = dispatch('starterblocks/sectionslist');
+        const {setChallengeStep} = dispatch('reduxtemplates/sectionslist');
         return {
             setChallengeStep
         };
     }),
 
     withSelect((select) => {
-        const {getChallengeStep, getChallengeOpen, getChallengeListExpanded} = select('starterblocks/sectionslist');
+        const {getChallengeStep, getChallengeOpen, getChallengeListExpanded} = select('reduxtemplates/sectionslist');
         return {
             challengeStep: getChallengeStep(),
             isOpen: getChallengeOpen(),
             listExpanded: getChallengeListExpanded()
         };
     })
-])(StarterBlocksChallenge);
+])(ReduxTemplatesChallenge);

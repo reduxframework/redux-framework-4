@@ -10,8 +10,8 @@ build
 assets/img/.DS_Store
 assets/js/*.dev.js
 assets/js/*.map
-assets/js/starterblocks.*.js.map
-assets/js/starterblocks.*.js
+assets/js/reduxtemplates.*.js.map
+assets/js/reduxtemplates.*.js
 assets/js/vendor.*.js.map
 assets/js/vendor.*.js
 vendor/composer/installers/**/*

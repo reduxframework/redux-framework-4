@@ -11,9 +11,9 @@ function CategoryFilter (props) {
 
     // On the top, All Section, All Page, All Collection etc
     const itemTypeLabel = () => {
-        if (itemType === 'section') return __('Section', starterblocks.i18n);
-        if (itemType === 'page') return __('Page', starterblocks.i18n);
-        if (itemType === 'collection') return __('Collection', starterblocks.i18n);
+        if (itemType === 'section') return __('Section', reduxtemplates.i18n);
+        if (itemType === 'page') return __('Page', reduxtemplates.i18n);
+        if (itemType === 'collection') return __('Collection', reduxtemplates.i18n);
     };
 
     const totalItemCountLabel = () => {
@@ -40,14 +40,14 @@ function CategoryFilter (props) {
 
     return (
         <div>
-            <h3>{__('Categories', starterblocks.i18n)}</h3>
+            <h3>{__('Categories', reduxtemplates.i18n)}</h3>
             {!loading &&
-            <ul className="starterblocks-sidebar-categories">
+            <ul className="reduxtemplates-sidebar-categories">
                 {categoryData.length > 0 &&
                 <li
                     className={activeClassname(null)}
                     onClick={() => setActiveCategory('')}>
-                    {__('All', starterblocks.i18n)} {itemTypeLabel()}s <span>{totalItemCountLabel()}</span>
+                    {__('All', reduxtemplates.i18n)} {itemTypeLabel()}s <span>{totalItemCountLabel()}</span>
                 </li>
                 }
 
@@ -68,14 +68,14 @@ function CategoryFilter (props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setActiveCategory} = dispatch('starterblocks/sectionslist');
+        const {setActiveCategory} = dispatch('reduxtemplates/sectionslist');
         return {
             setActiveCategory
         };
     }),
 
     withSelect((select, props) => {
-        const {getCategoryData, getActiveCategory, getActiveItemType, getLoading} = select('starterblocks/sectionslist');
+        const {getCategoryData, getActiveCategory, getActiveItemType, getLoading} = select('reduxtemplates/sectionslist');
         return {
             categoryData: getCategoryData(),
             activeCategory: getActiveCategory(),

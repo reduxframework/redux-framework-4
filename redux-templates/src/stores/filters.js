@@ -1,6 +1,6 @@
 import {isTemplatePremium} from './dependencyHelper';
 import {missingPluginsArray} from './helper';
-const STARTERBLOCKS_PRO_KEY = 'starterblocks-pro';
+const REDUXTEMPLATES_PRO_KEY = 'reduxtemplates-pro';
 // Just get current Page Data
 export const applyCategoryFilter = (pageData, activeCategory) => {
     let currentPageData = [];
@@ -99,7 +99,7 @@ const isTemplateDependencyFilterIncluded = (item, dependencyFilters) => {
     if (!item.dependencies || Object.keys(item.dependencies).length === 0) return valueOfDependencyFilter(dependencyFilters['none']);
     return item.dependencies.reduce((acc, k) => {
         if (acc === undefined) return valueOfDependencyFilter(dependencyFilters[k]);
-        if (missingProList.indexOf(k) === -1 || k === STARTERBLOCKS_PRO_KEY)
+        if (missingProList.indexOf(k) === -1 || k === REDUXTEMPLATES_PRO_KEY)
             return (acc || valueOfDependencyFilter(dependencyFilters[k]));
         else
             return (acc && valueOfDependencyFilter(dependencyFilters[k]));

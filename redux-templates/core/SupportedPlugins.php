@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly

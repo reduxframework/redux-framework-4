@@ -3,7 +3,7 @@ import {mount, shallow} from 'enzyme';
 import DependentPlugins from '..';
 import {SingleItemProvider} from '../../../contexts/SingleItemContext';
 
-window.starterblocks = {
+window.reduxtemplates = {
     supported_plugins: {
         ugb: {
             name: 'Stackable',
@@ -52,11 +52,11 @@ describe('Dependent Plugins part within Button Group component', () => {
             expect(component.html()).toBeFalsy();
         });
 
-        it('renders just wrapper .starterblocks-button-display-dependencies when no blocks data is given', () => {
+        it('renders just wrapper .reduxtemplates-button-display-dependencies when no blocks data is given', () => {
             const component = mount(
                 <WrappedDependentPlugins />
             );
-            expect(component.find('.starterblocks-button-display-dependencies').text()).toBe('');
+            expect(component.find('.reduxtemplates-button-display-dependencies').text()).toBe('');
         });
 
 
@@ -64,7 +64,7 @@ describe('Dependent Plugins part within Button Group component', () => {
             const component = mount(
                 <WrappedDependentPlugins singleValue={{data: {blocks: {qubely: [], ugb: []}}}} />
             );
-            expect(component.find('.starterblocks-button-display-dependencies').children()).toHaveLength(2);
+            expect(component.find('.reduxtemplates-button-display-dependencies').children()).toHaveLength(2);
         });
     });
 

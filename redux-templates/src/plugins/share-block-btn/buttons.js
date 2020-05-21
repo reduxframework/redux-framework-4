@@ -8,11 +8,11 @@ import {
 } from '@wordpress/data'
 import {compose} from '@wordpress/compose'
 import {PluginBlockSettingsMenuItem} from '@wordpress/edit-post'
-import StarterblocksIcon from './icons'
+import ReduxTemplatesIcon from './icons'
 import {Modal, ModalManager} from '../../modal-manager'
 import ShareModal from './modal'
 
-import {download} from '~starterblocks/plugins/export'
+import {download} from '~reduxtemplates/plugins/export'
 
 /**
  * Based on: https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/components/convert-to-group-buttons/convert-button.js
@@ -59,13 +59,13 @@ export function ShareBlockButton(
     return (
         <Fragment>
             <PluginBlockSettingsMenuItem
-                icon={StarterblocksIcon}
-                label={__('Share Block', starterblocks.i18n)}
+                icon={ReduxTemplatesIcon}
+                label={__('Share Block', reduxtemplates.i18n)}
                 onClick={onShareBlock}
             />
             {/*<PluginBlockSettingsMenuItem*/}
-            {/*    icon={StarterblocksIcon}*/}
-            {/*    label={__('Export as Reusable Block', starterblocks.i18n)}*/}
+            {/*    icon={ReduxTemplatesIcon}*/}
+            {/*    label={__('Export as Reusable Block', reduxtemplates.i18n)}*/}
             {/*    onClick={onExportBlock}*/}
             {/*/>*/}
         </Fragment>

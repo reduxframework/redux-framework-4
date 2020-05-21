@@ -3,9 +3,9 @@
 cd "$(dirname "$0")"
 cd ../build
 echo $(pwd)
-git clone --depth 1 git@github.com:starterblocks/starterblocks.git --branch master master
-mv master/.git starterblocks/
-cd starterblocks
+git clone --depth 1 git@github.com:reduxtemplates/reduxtemplates.git --branch master master
+mv master/.git reduxtemplates/
+cd reduxtemplates
 git add -A
 git commit -m "Release"
 git push origin master

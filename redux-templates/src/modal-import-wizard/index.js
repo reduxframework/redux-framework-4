@@ -13,7 +13,7 @@ const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
 const IMPORT_STEP = 2;
 const tourPlugins = ['qubely', 'kioken-blocks'];
-import {requiresInstall, requiresPro} from '~starterblocks/stores/dependencyHelper'
+import {requiresInstall, requiresPro} from '~reduxtemplates/stores/dependencyHelper'
 function ImportWizard(props) {
     const {startImportTemplate, setImportingTemplate, isChallengeOpen, importingTemplate} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
@@ -59,15 +59,15 @@ function ImportWizard(props) {
 
     if (!importingTemplate) return null;
     return (
-        <div className="starterblocks-modal-overlay">
-            <div className="starterblocks-modal-wrapper" data-tut="tour__import_wizard">
-                <div className="starterblocks-modal-header">
-                    <h3>{__('Template Import Wizard', starterblocks.i18n)}</h3>
-                    <button className="starterblocks-modal-close" onClick={onCloseWizard}>
+        <div className="reduxtemplates-modal-overlay">
+            <div className="reduxtemplates-modal-wrapper" data-tut="tour__import_wizard">
+                <div className="reduxtemplates-modal-header">
+                    <h3>{__('Template Import Wizard', reduxtemplates.i18n)}</h3>
+                    <button className="reduxtemplates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>
                 </div>
-                <div className="starterblocks-importmodal-content">
+                <div className="reduxtemplates-importmodal-content">
                     {(currentStep === PLUGIN_STEP) &&
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
@@ -85,14 +85,14 @@ function ImportWizard(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setImportingTemplate} = dispatch('starterblocks/sectionslist');
+        const {setImportingTemplate} = dispatch('reduxtemplates/sectionslist');
         return {
             setImportingTemplate
         };
     }),
 
     withSelect((select, props) => {
-        const {getChallengeOpen, getImportingTemplate} = select('starterblocks/sectionslist');
+        const {getChallengeOpen, getImportingTemplate} = select('reduxtemplates/sectionslist');
         return {
             isChallengeOpen: getChallengeOpen(),
             importingTemplate: getImportingTemplate()

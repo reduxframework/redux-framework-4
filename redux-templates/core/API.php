@@ -1,8 +1,8 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
-use StarterBlocks;
+use ReduxTemplates;
 use WP_Patterns_Registry;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class API {
 
     private $cache_time = 24 * 3600; // 24 hours
-    protected $api_base_url = 'https://api.starterblocks.io/';
+    protected $api_base_url = 'https://api.reduxtemplates.io/';
     protected $default_request_headers = array();
     protected $filesystem;
 
@@ -21,8 +21,8 @@ class API {
      */
     public function __construct() {
 
-        add_filter( 'starterblocks_api_headers', array( $this, 'request_verify' ) );
-        $this->default_request_headers = apply_filters( 'starterblocks_api_headers', $this->default_request_headers );
+        add_filter( 'reduxtemplates_api_headers', array( $this, 'request_verify' ) );
+        $this->default_request_headers = apply_filters( 'reduxtemplates_api_headers', $this->default_request_headers );
 
         add_action( 'rest_api_init', array( $this, 'register_api_hooks' ), 0 );
 
@@ -42,7 +42,7 @@ class API {
         if ( empty( $data ) || ( ! empty( $data ) && ! isset( $data['plugins'] ) ) ) {
             return $parameters;
         }
-        $supported = StarterBlocks\SupportedPlugins::instance();
+        $supported = ReduxTemplates\SupportedPlugins::instance();
         $supported::init( $data['plugins'] );
         $plugins           = $supported::get_plugins();
         $installed_plugins = array();
@@ -250,7 +250,7 @@ class API {
 
 
         if ( isset( $data['plugins'] ) ) {
-            $supported = StarterBlocks\SupportedPlugins::instance();
+            $supported = ReduxTemplates\SupportedPlugins::instance();
             $supported::init( $data['plugins'] );
             $data['plugins'] = $supported::get_plugins();
 
@@ -404,7 +404,7 @@ class API {
             && isset( $request['http_response'] )
             && $request['http_response'] instanceof \WP_HTTP_Requests_Response
             && method_exists( $request['http_response'], 'get_response_object' )
-            && strpos( $request['http_response']->get_response_object()->url, 'files.starterblocks.io' ) !== false
+            && strpos( $request['http_response']->get_response_object()->url, 'files.reduxtemplates.io' ) !== false
         ) {
             $request = wp_remote_get(
                 $request['http_response']->get_response_object()->url,
@@ -468,20 +468,20 @@ class API {
     }
 
     public function request_verify( $data ) {
-        global $starterblocks_fs;
+        global $reduxtemplates_fs;
         $config   = array(
-            'SB-Version'   => STARTERBLOCKS_VERSION,
+            'SB-Version'   => REDUXTEMPLATES_VERSION,
             'SB-Multisite' => is_multisite(),
         );
 
-        $the_site = !empty($starterblocks_fs) ? $starterblocks_fs->get_site() : "";
+        $the_site = !empty($reduxtemplates_fs) ? $reduxtemplates_fs->get_site() : "";
 
         if ( ! empty( $the_site->site_id ) ) {
             $config['SB-API-Key'] = $the_site->site_id . '-' . $the_site->user_id;
         }
 
-        if ( !empty($starterblocks_fs) && starterblocks_fs()->can_use_premium_code() ) {
-            $config['SB-Pro'] = starterblocks_fs()->can_use_premium_code();
+        if ( !empty($reduxtemplates_fs) && reduxtemplates_fs()->can_use_premium_code() ) {
+            $config['SB-Pro'] = reduxtemplates_fs()->can_use_premium_code();
         }
         $data = wp_parse_args( $data, $config );
 
@@ -518,7 +518,7 @@ class API {
     /**
      * @since 1.0.0
      * Method used to register all rest endpoint hooks.
-     * starterblocks api routes
+     * reduxtemplates api routes
      */
     public function register_api_hooks() {
 
@@ -570,7 +570,7 @@ class API {
 
             foreach ( $methods as $method ) {
                 register_rest_route(
-                    'starterblocks/v1',
+                    'reduxtemplates/v1',
                     $route,
                     array(
                         array(
@@ -602,7 +602,7 @@ class API {
         }
 
         $slug   = (string) sanitize_text_field( $data['slug'] );
-        $status = StarterBlocks\Installer::run( $slug );
+        $status = ReduxTemplates\Installer::run( $slug );
         if ( isset( $status['error'] ) ) {
             wp_send_json_error( $status );
         }

@@ -21,20 +21,20 @@ function PriceFilter (props) {
     }
 
     return (
-        <div className='starterblocks-template-filter-button-group'>
+        <div className='reduxtemplates-template-filter-button-group'>
             <div>
                 <button onClick={() => setActivePriceFilter('')}
-                        className={getClassnames('')}>{__('All', starterblocks.i18n)}</button>
+                        className={getClassnames('')}>{__('All', reduxtemplates.i18n)}</button>
             </div>
             <div>
                 <button onClick={() => setActivePriceFilter('free')} className={getClassnames('free')}
-                        disabled={noStatistics('free')}>{__('Free', starterblocks.i18n)}</button>
+                        disabled={noStatistics('free')}>{__('Free', reduxtemplates.i18n)}</button>
             </div>
             <div>
                 <button onClick={() => setActivePriceFilter('pro')} className={getClassnames('pro')}
                         disabled={noStatistics('pro')}>
-                    <img src={starterblocks.plugin + 'assets/img/icon-premium.svg'} alt=""/>
-                    {__('Premium', starterblocks.i18n)}
+                    <img src={reduxtemplates.plugin + 'assets/img/icon-premium.svg'} alt=""/>
+                    {__('Premium', reduxtemplates.i18n)}
                 </button>
             </div>
         </div>
@@ -44,14 +44,14 @@ function PriceFilter (props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setActivePriceFilter} = dispatch('starterblocks/sectionslist');
+        const {setActivePriceFilter} = dispatch('reduxtemplates/sectionslist');
         return {
             setActivePriceFilter
         };
     }),
 
     withSelect((select, props) => {
-        const {getStatistics, getActivePriceFilter} = select('starterblocks/sectionslist');
+        const {getStatistics, getActivePriceFilter} = select('reduxtemplates/sectionslist');
         return {
             activePriceFilter: getActivePriceFilter(),
             statistics: getStatistics()

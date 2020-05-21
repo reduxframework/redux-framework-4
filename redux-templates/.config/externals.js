@@ -45,7 +45,7 @@ const externals = [
 } ), {
 	wp: 'wp',
 	lodash: 'lodash', // WP loads lodash already.
-	starterblocks: 'starterblocks', // Our localized JS variable.
+	reduxtemplates: 'reduxtemplates', // Our localized JS variable.
 	fetch: 'fetch', // Used in our debugger sidebar.
     'react': 'React',
     'react-dom': 'ReactDOM',

@@ -18,7 +18,7 @@ function SavedView(props) {
     const [dataLoaded, setDataLoaded] = useState(false);
     if (dataLoaded === false) {
         // Initial fetch
-        apiFetch({path: 'starterblocks/v1/get_saved_blocks'}).then(response => {
+        apiFetch({path: 'reduxtemplates/v1/get_saved_blocks'}).then(response => {
             if (response.success) {
                 setSavedSections(response.data);
             } else {
@@ -54,7 +54,7 @@ function SavedView(props) {
         discardAllErrorMessages();
         const options = {
             method: 'POST',
-            path: 'starterblocks/v1/delete_saved_block/?block_id=' + sectionID,
+            path: 'reduxtemplates/v1/delete_saved_block/?block_id=' + sectionID,
             headers: {'Content-Type': 'application/json'}
         }
         apiFetch(options).then(response => {
@@ -112,7 +112,7 @@ function SavedView(props) {
         return (
             <div>
                 <div style={{ height: '600px' }}>
-                    <div className="starterblocks-modal-loader">
+                    <div className="reduxtemplates-modal-loader">
                         <Spinner />
                     </div>
                 </div>
@@ -129,7 +129,7 @@ export default compose([
         const {
             appendErrorMessage,
             discardAllErrorMessages
-        } = dispatch('starterblocks/sectionslist');
+        } = dispatch('reduxtemplates/sectionslist');
 
         return {
             insertBlocks,

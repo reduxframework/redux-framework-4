@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterBlocks;
+namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
@@ -9,15 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Templates {
 
     /**
-     * StarterBlocks Template.
+     * ReduxTemplates Template.
      *
      * @since 1.0.0
      */
     public function __construct() {
-        //Include StarterBlocks default template without wrapper
+        //Include ReduxTemplates default template without wrapper
         add_filter( 'template_include', array( $this, 'template_include' ) );
 
-        //Add StarterBlocks supported Post type in page template
+        //Add ReduxTemplates supported Post type in page template
         $post_types = get_post_types();
         if ( ! empty( $post_types ) ) {
             foreach ( $post_types as $post_type ) {
@@ -38,14 +38,14 @@ class Templates {
     public function template_include( $template ) {
         if ( is_singular() ) {
             $page_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
-            if ( $page_template === 'starterblocks_full_width' ) {
-                $template = STARTERBLOCKS_DIR_PATH . 'core/templates/template-full-width.php';
+            if ( $page_template === 'reduxtemplates_full_width' ) {
+                $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-full-width.php';
             }
-            if ( $page_template === 'starterblocks_contained' ) {
-                $template = STARTERBLOCKS_DIR_PATH . 'core/templates/template-contained.php';
+            if ( $page_template === 'reduxtemplates_contained' ) {
+                $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-contained.php';
             }
-            if ( $page_template === 'starterblocks_canvas' ) {
-                $template = STARTERBLOCKS_DIR_PATH . 'core/templates/template-canvas.php';
+            if ( $page_template === 'reduxtemplates_canvas' ) {
+                $template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-canvas.php';
             }
 
         }
@@ -63,9 +63,9 @@ class Templates {
      * @return array
      */
     public function add_templates( $post_templates ) {
-        $post_templates['starterblocks_contained']  = __( 'StarterBlocks Contained', 'starterblocks' );
-        $post_templates['starterblocks_full_width'] = __( 'StarterBlocks Full Width', 'starterblocks' );
-        $post_templates['starterblocks_canvas']     = __( 'StarterBlocks Canvas', 'starterblocks' );
+        $post_templates['reduxtemplates_contained']  = __( 'ReduxTemplates Contained', 'reduxtemplates' );
+        $post_templates['reduxtemplates_full_width'] = __( 'ReduxTemplates Full Width', 'reduxtemplates' );
+        $post_templates['reduxtemplates_canvas']     = __( 'ReduxTemplates Canvas', 'reduxtemplates' );
 
         return $post_templates;
     }

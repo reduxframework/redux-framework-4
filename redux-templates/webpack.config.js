@@ -35,7 +35,7 @@ module.exports = [{
     },
     resolve: {
         alias: {
-            '~starterblocks': path.resolve(__dirname, '../src/')
+            '~reduxtemplates': path.resolve(__dirname, '../src/')
         }
     },
     // Clean up build output

@@ -5,7 +5,7 @@ const {withDispatch, withSelect} = wp.data;
 const {__} = wp.i18n;
 
 import {CheckboxControl, Tooltip} from '@wordpress/components';
-import {pluginInfo} from '~starterblocks/stores/dependencyHelper';
+import {pluginInfo} from '~reduxtemplates/stores/dependencyHelper';
 import groupBy from 'lodash/groupBy';
 
 function DependencyFilterRow(props) {
@@ -73,7 +73,7 @@ function DependencyFilterRow(props) {
                 onChange={toggleChecked}
             />
             {pluginClassname.includes('missing-dependency') &&
-                <Tooltip text={__('Plugin not Installed', starterblocks.i18n)}><i className="fa fa-warning" /></Tooltip>
+                <Tooltip text={__('Plugin not Installed', reduxtemplates.i18n)}><i className="fa fa-warning" /></Tooltip>
             }
 
             {pluginInstanceURL ?
@@ -87,14 +87,14 @@ function DependencyFilterRow(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setDependencyFilters} = dispatch('starterblocks/sectionslist');
+        const {setDependencyFilters} = dispatch('reduxtemplates/sectionslist');
         return {
             setDependencyFilters
         };
     }),
 
     withSelect((select) => {
-        const {getDependencyFiltersStatistics, getLoading, getActiveCategory} = select('starterblocks/sectionslist');
+        const {getDependencyFiltersStatistics, getLoading, getActiveCategory} = select('reduxtemplates/sectionslist');
         return {
             loading: getLoading(),
             dependencyFilters: getDependencyFiltersStatistics(),

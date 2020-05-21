@@ -1,5 +1,5 @@
 @import "../../variables";
-.starterblocks-modal-inner {
+.reduxtemplates-modal-inner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -11,13 +11,13 @@
     animation-fill-mode: forwards;
 }
 
-.starterblocks-share {
+.reduxtemplates-share {
     padding: 20px;
     width: 660px;
     height: 290px;
     .panel {
         display: flex;
-        .starterblocks-block-preview-hover {
+        .reduxtemplates-block-preview-hover {
             position: absolute;
             z-index: 9;
             cursor: default;
@@ -61,11 +61,11 @@
         align-items: center;
     }
 }
-.starterblocks-share-modal-wrapper {
+.reduxtemplates-share-modal-wrapper {
     display: flex;
     flex-direction: column;
     background: #fff;
-    .starterblocks-modal-header {
+    .reduxtemplates-modal-header {
         border-bottom: 1px solid #ddd;
         width: 100%;
         flex: 0 0 60px;
@@ -85,7 +85,7 @@
             cursor: pointer;
         }
 
-        .starterblocks-modal-close {
+        .reduxtemplates-modal-close {
             font-size: 20px;
             background: transparent;
             color: #9b9b9b;

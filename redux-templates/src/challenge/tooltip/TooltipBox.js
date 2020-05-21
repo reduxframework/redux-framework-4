@@ -1,7 +1,7 @@
 const { compose } = wp.compose;
 const { withDispatch, withSelect } = wp.data;
 const { useState, useEffect } = wp.element;
-import {ModalManager} from '~starterblocks/modal-manager';
+import {ModalManager} from '~reduxtemplates/modal-manager';
 import CONFIG from '../config';
 const ARROW_BOX = 30;
 const DEFAULT_BOX_WIDTH = 250;
@@ -146,7 +146,7 @@ function TooltipBox(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const { setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded } = dispatch('starterblocks/sectionslist');
+        const { setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded } = dispatch('reduxtemplates/sectionslist');
         return {
             setChallengeStep,
             setChallengeFinalStatus,
@@ -156,7 +156,7 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const { getChallengeTooltipRect, getChallengeOpen, getChallengeStep, getChallengeFinalStatus } = select('starterblocks/sectionslist');
+        const { getChallengeTooltipRect, getChallengeOpen, getChallengeStep, getChallengeFinalStatus } = select('reduxtemplates/sectionslist');
         return {
             tooltipRect: getChallengeTooltipRect(),
             isOpen: getChallengeOpen(),

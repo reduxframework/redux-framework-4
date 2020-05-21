@@ -10,7 +10,7 @@ import './fontawesome'
 /**
  * External dependencies
  */
-import registerBlock from '~starterblocks/register-compnant'
+import registerBlock from '~reduxtemplates/register-compnant'
 
 // Import all index.js and register all (if name & settings are exported by the script)
 const importAllAndRegister = r => {

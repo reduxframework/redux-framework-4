@@ -41,8 +41,8 @@ export class Modal extends Component {
             <Fragment>
                 <span onClick={e => {
                     this.close()
-                }} className={'starterblocks-pagelist-modal-overlay'}>&nbsp;</span>
-                <div className={ this.props.compactMode ? 'starterblocks-modal-inner' : 'starterblocks-pagelist-modal-inner'} onClick={e => e.stopPropagation()}>
+                }} className={'reduxtemplates-pagelist-modal-overlay'}>&nbsp;</span>
+                <div className={ this.props.compactMode ? 'reduxtemplates-modal-inner' : 'reduxtemplates-pagelist-modal-inner'} onClick={e => e.stopPropagation()}>
                     {this.props.children}
                 </div>
             </Fragment>
@@ -59,16 +59,16 @@ export const ModalManager = {
         }
         if (!node) {
             node = document.createElement('div')
-            node.className = 'starterblocks-builder-modal'
+            node.className = 'reduxtemplates-builder-modal'
             document.body.appendChild(node)
         }
         wp.element.render(component, node)
-        document.body.classList.add('starterblocks-builder-modal-open')
+        document.body.classList.add('reduxtemplates-builder-modal-open')
     },
     close() {
         onClose && onClose(() => {
             wp.element.unmountComponentAtNode(node)
-            document.body.classList.remove('starterblocks-builder-modal-open')
+            document.body.classList.remove('reduxtemplates-builder-modal-open')
         });
     },
     openCustomizer(component) {
@@ -88,11 +88,11 @@ export const ModalManager = {
         return customizerNode ? true : false;
     },
     hide () {
-        document.body.classList.remove('starterblocks-builder-modal-open')
+        document.body.classList.remove('reduxtemplates-builder-modal-open')
         node.classList.add('hidden')
     },
     show () {
-        document.body.classList.add('starterblocks-builder-modal-open')
+        document.body.classList.add('reduxtemplates-builder-modal-open')
         if (node)
             node.classList.remove('hidden')
     }

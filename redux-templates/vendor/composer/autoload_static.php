@@ -9,7 +9,7 @@ class ComposerStaticInitde102a8941157d664437230da30a7442
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'StarterBlocks\\' => 14,
+            'ReduxTemplates\\' => 14,
         ),
         'C' => 
         array (
@@ -18,7 +18,7 @@ class ComposerStaticInitde102a8941157d664437230da30a7442
     );
 
     public static $prefixDirsPsr4 = array (
-        'StarterBlocks\\' => 
+        'ReduxTemplates\\' => 
         array (
             0 => __DIR__ . '/../..' . '/core',
         ),

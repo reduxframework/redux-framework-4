@@ -12,7 +12,7 @@ function Sidebar(props) {
         return (itemType !== 'collection' || layer === null);
     };
     return (
-        <div className="starterblocks-modal-sidebar-content" data-tut="tour__filtering">
+        <div className="reduxtemplates-modal-sidebar-content" data-tut="tour__filtering">
             {
                 hasSidebar() &&
                 <div>
@@ -26,7 +26,7 @@ function Sidebar(props) {
 }
 
 export default withSelect((select) => {
-    const {getActiveItemType, getActiveCollection} = select('starterblocks/sectionslist');
+    const {getActiveItemType, getActiveCollection} = select('reduxtemplates/sectionslist');
     return {
         itemType: getActiveItemType(),
         layer: getActiveCollection()

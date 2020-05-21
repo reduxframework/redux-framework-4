@@ -1,7 +1,7 @@
 const { registerPlugin } = wp.plugins;
 import { withSelect } from '@wordpress/data'
 import ShareBlockButton from './buttons'
-import StarterblocksIcon from './icons'
+import ReduxTemplatesIcon from './icons'
 const Buttons = withSelect( select => {
     const { getSelectedBlockClientIds } = select( 'core/block-editor' )
 
@@ -15,7 +15,7 @@ const Buttons = withSelect( select => {
     }
 } )( ShareBlockButton )
 
-registerPlugin( 'starterblocks-share-block-btn', {
-    icon: StarterblocksIcon,
+registerPlugin( 'reduxtemplates-share-block-btn', {
+    icon: ReduxTemplatesIcon,
     render: Buttons,
 } );

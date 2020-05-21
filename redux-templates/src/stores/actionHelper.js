@@ -6,7 +6,7 @@ const { savePost } = dispatch('core/editor');
 const { insertBlocks } = dispatch('core/block-editor');
 const { switchEditorMode } = dispatch('core/edit-post');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
-import { ModalManager } from '~starterblocks/modal-manager';
+import { ModalManager } from '~reduxtemplates/modal-manager';
 import PreviewModal from '../modal-preview';
 import FeedbackModal from '../modal-feedback';
 
@@ -24,7 +24,7 @@ export const handleBlock = (data, installedDependencies) => {
         }
         // This kind of plugins are not ready to accept before reloading, thus, we save it into localStorage and just reload for now.
         if (installedDependencies === true) {
-            window.starterblocks_tempdata = [...window.starterblocks_tempdata, data];
+            window.reduxtemplates_tempdata = [...window.reduxtemplates_tempdata, data];
             return null;
         } else {
             block_data = createBlock(data.name, data.attributes, data.innerBlocks)
@@ -36,13 +36,13 @@ export const handleBlock = (data, installedDependencies) => {
 }
 
 export const processImportHelper = () => {
-    const { setImportingTemplate, discardAllErrorMessages } = dispatch('starterblocks/sectionslist');
-    const type = select('starterblocks/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
-    const data = select('starterblocks/sectionslist').getImportingTemplate();
-    const installedDependencies = select('starterblocks/sectionslist').getInstalledDependencies();
+    const { setImportingTemplate, discardAllErrorMessages } = dispatch('reduxtemplates/sectionslist');
+    const type = select('reduxtemplates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
+    const data = select('reduxtemplates/sectionslist').getImportingTemplate();
+    const installedDependencies = select('reduxtemplates/sectionslist').getInstalledDependencies();
 
     discardAllErrorMessages();
-    let the_url = 'starterblocks/v1/template?type=' + type + '&id=' + data.id;
+    let the_url = 'reduxtemplates/v1/template?type=' + type + '&id=' + data.id;
     if ('source' in data) {
         the_url += '&source=' + data.source;
     }
@@ -56,7 +56,7 @@ export const processImportHelper = () => {
     if (select('core/edit-post').getEditorMode() === 'text') {
         switchEditorMode()
     }
-    window.starterblocks_tempdata = [];
+    window.reduxtemplates_tempdata = [];
 
     apiFetch(options).then(response => {
         if (response.success && response.data) {
@@ -69,7 +69,7 @@ export const processImportHelper = () => {
                     .map(key => handleBlock(responseBlockData[key], installedDependencies));
 
             localStorage.setItem('importing_data', JSON.stringify(data));
-            localStorage.setItem('block_data', JSON.stringify(starterblocks_tempdata));
+            localStorage.setItem('block_data', JSON.stringify(reduxtemplates_tempdata));
 
             insertBlocks(handledData);
             createSuccessNotice('Template inserted', { type: 'snackbar' });
@@ -105,7 +105,7 @@ export const afterImportHandling = (data, handledBlock) => {
             ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} invalidBlocks={invalidBlocks} />);
         }, 500)
     } else {
-        createNotice('warning', 'Please let us know if there was an issue importing this StarterBlocks template.', {
+        createNotice('warning', 'Please let us know if there was an issue importing this ReduxTemplates template.', {
             isDismissible: true,
             id: 'starterblockimportfeedback',
             actions: [
@@ -124,10 +124,10 @@ export const afterImportHandling = (data, handledBlock) => {
 
 // reload library button handler
 export const reloadLibrary = () => {
-    const { setLoading, setLibrary } = dispatch('starterblocks/sectionslist');
+    const { setLoading, setLibrary } = dispatch('reduxtemplates/sectionslist');
     setLoading(true);
     apiFetch({
-        path: 'starterblocks/v1/library?no_cache=1',
+        path: 'reduxtemplates/v1/library?no_cache=1',
         method: 'POST',
         data: {
             'registered_blocks': installedBlocksTypes(),
@@ -170,7 +170,7 @@ export const openSitePreviewModal = (index, pageData) => {
 }
 
 const errorCallback = (errorMessage) => {
-    const { appendErrorMessage, setImportingTemplate } = dispatch('starterblocks/sectionslist');
+    const { appendErrorMessage, setImportingTemplate } = dispatch('reduxtemplates/sectionslist');
     appendErrorMessage(errorMessage);
     setImportingTemplate(null);
 }

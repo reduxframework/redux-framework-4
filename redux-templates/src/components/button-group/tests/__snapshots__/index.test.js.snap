@@ -2,7 +2,7 @@
 
 exports[`Button Group 1. renders correctly: snapshot testing 1`] = `
 <div
-  className="starterblocks-import-button-group"
+  className="reduxtemplates-import-button-group"
 >
   PreviewImport
   DependentPlugins

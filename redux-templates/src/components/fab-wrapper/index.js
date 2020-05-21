@@ -5,7 +5,7 @@ import {__} from '@wordpress/i18n';
 
 
 
-import * as Icons from '~starterblocks/icons'
+import * as Icons from '~reduxtemplates/icons'
 
 export default function FabWrapper() {
     const {mainButtonStyles, actionButtonStyles, position, event, alwaysShowTitle} = config;
@@ -14,25 +14,25 @@ export default function FabWrapper() {
         <Fab
             mainButtonStyles={mainButtonStyles}
             position={position}
-            icon={Icons.StarterBlocksIcon()}
+            icon={Icons.ReduxTemplatesIcon()}
             event={event}
             // onClick={testing}
 
-            text={__('See Quick Links', starterblocks.i18n)}
+            text={__('See Quick Links', reduxtemplates.i18n)}
         >
 
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Suggest a Feature', starterblocks.i18n)}*/}
+            {/*    text={__('Suggest a Feature', reduxtemplates.i18n)}*/}
             {/*    onClick={e => {*/}
-            {/*        window.open(starterblocks.u, "_blank")*/}
+            {/*        window.open(reduxtemplates.u, "_blank")*/}
             {/*    }}*/}
             {/*>*/}
             {/*    <i className="fa fa-lightbulb-o"/>*/}
             {/*</Action>*/}
             <Action
                 style={actionButtonStyles}
-                text={__('Join Our Community', starterblocks.i18n)}
+                text={__('Join Our Community', reduxtemplates.i18n)}
                 onClick={e => {
                     window.open('https://www.facebook.com/groups/reduxframework', '_blank')
                 }}
@@ -41,7 +41,7 @@ export default function FabWrapper() {
             </Action>
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Take Our Tour', starterblocks.i18n)}*/}
+            {/*    text={__('Take Our Tour', reduxtemplates.i18n)}*/}
             {/*    onClick={e => {*/}
             {/*        setTourOpen();*/}
             {/*    }}*/}
@@ -50,7 +50,7 @@ export default function FabWrapper() {
             {/*</Action>*/}
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Support & Docs', starterblocks.i18n)}*/}
+            {/*    text={__('Support & Docs', reduxtemplates.i18n)}*/}
             {/*    onClick={e => {*/}
             {/*        window.open('https://docs.redux.io/', "_blank")*/}
             {/*    }}*/}
@@ -58,12 +58,12 @@ export default function FabWrapper() {
             {/*    <i className="fa fa-life-ring"/>*/}
             {/*</Action>*/}
             {
-                starterblocks.mokama !== 1 &&
+                reduxtemplates.mokama !== 1 &&
                 <Action
                     style={actionButtonStyles}
-                    text={__('Upgrade to Redux Pro', starterblocks.i18n)}
+                    text={__('Upgrade to Redux Pro', reduxtemplates.i18n)}
                     onClick={e => {
-                        window.open(starterblocks.u, '_blank')
+                        window.open(reduxtemplates.u, '_blank')
                     }}
                 >
                     <i className="fa fa-star"/>

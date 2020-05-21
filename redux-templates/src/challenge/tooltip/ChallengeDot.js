@@ -49,13 +49,13 @@ function ChallengeDot(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setChallengeTooltipRect} = dispatch('starterblocks/sectionslist');
+        const {setChallengeTooltipRect} = dispatch('reduxtemplates/sectionslist');
         return {
             setChallengeTooltipRect
         };
     }),
     withSelect((select, props) => {
-        const { getChallengeOpen, getChallengeStep } = select('starterblocks/sectionslist');
+        const { getChallengeOpen, getChallengeStep } = select('reduxtemplates/sectionslist');
         return {
             isOpen: getChallengeOpen(),
             challengeStep: getChallengeStep()
