@@ -43,7 +43,7 @@ class API {
             return $parameters;
         }
         $supported = ReduxTemplates\SupportedPlugins::instance();
-        $supported::init( $data['plugins'] );
+        $supported->init( $data['plugins'] );
         $plugins           = $supported::get_plugins();
         $installed_plugins = array();
         if ( ! isset( $parameters['registered_blocks'] ) ) {
@@ -188,7 +188,7 @@ class API {
                     if ( empty( $data ) ) {
                         $data = array( 'message' => $results );
                     }
-                    if ( $data['status'] == "error" ) {
+                    if ( isset( $data['status'] ) && $data['status'] == "error" ) {
                         wp_send_json_error( array( 'message' => $data['message'] ) );
                     }
                     $filesystem->put_contents( $path, json_encode( $data ) );
@@ -251,7 +251,7 @@ class API {
 
         if ( isset( $data['plugins'] ) ) {
             $supported = ReduxTemplates\SupportedPlugins::instance();
-            $supported::init( $data['plugins'] );
+            $supported->init( $data['plugins'] );
             $data['plugins'] = $supported::get_plugins();
 
             $data = $this->process_dependencies( $data, 'sections' );
