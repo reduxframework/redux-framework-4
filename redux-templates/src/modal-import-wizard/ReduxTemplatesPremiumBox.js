@@ -10,9 +10,9 @@ export default function ReduxTemplatesPremiumBox(props) {
                 <ul>
                     <li><strong>{__('Endless', redux_templates.i18n)}</strong> {__('Updates to the Library', redux_templates.i18n)}</li>
                     <li><strong>{__('Unlimited', redux_templates.i18n)}</strong> {__('Use of the Library', redux_templates.i18n)}</li>
-                    <li><strong>500+</strong> {__('Section Templates', redux_templates.i18n)}</li>
-                    <li><strong>125+</strong> {__('Page Templates', redux_templates.i18n)}</li>
-                    <li><strong>20+</strong> {__('Collections', redux_templates.i18n)}</li>
+                    <li><strong>500+</strong> {__('Block', redux_templates.i18n)}</li>
+                    <li><strong>125+</strong> {__('Page', redux_templates.i18n)}</li>
+                    <li><strong>20+</strong> {__('Template Kits', redux_templates.i18n)}</li>
                 </ul>
                 <p>
                     <a href={redux_templates.u} class="redux-templates-upgrade-button" title="Redux Premium"

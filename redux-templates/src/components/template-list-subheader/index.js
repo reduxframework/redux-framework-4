@@ -20,10 +20,10 @@ function TemplateListSubHeader(props) {
     }, [challengePassed]);
 
     const itemTypeLabel = () => {
-        if (itemType === 'section') return __('Sections', redux_templates.i18n);
-        if (itemType === 'page') return __('Pages', redux_templates.i18n);
-        if (itemType === 'collection' && activeCollection === null) return __('Collections', redux_templates.i18n);
-        if (itemType === 'collection' && activeCollection !== null) return __('Sections', redux_templates.i18n);
+        if (itemType === 'section') return __('Blocks', redux_templates.i18n);
+        if (itemType === 'page') return __('Templates', redux_templates.i18n);
+        if (itemType === 'collection' && activeCollection === null) return __('Template Kits', redux_templates.i18n);
+        if (itemType === 'collection' && activeCollection !== null) return __('Blocks', redux_templates.i18n);
     };
 
     const dataLength = pageData ? pageData.length : '';

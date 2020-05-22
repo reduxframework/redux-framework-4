@@ -25,7 +25,7 @@ function CollectionView(props) {
             <div className="redux-templates-collection-details-view">
                 <div className="redux-templates-collection-details-left">
                     <div className="details-back" onClick={() => setActiveCollection(null)}>
-                        <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Collections', redux_templates.i18n)}
+                        <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Template Kits', redux_templates.i18n)}
                     </div>
                     <div className="details-preview" style={{backgroundImage: `url('${previewData.image}')`}}>
 

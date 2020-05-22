@@ -45,11 +45,11 @@ function ReduxTemplatesTour(props) {
                     These are the different types of templates we have.
                     <ul>
                         <li>
-                            <strong>Sections</strong> are the building blocks of a page. Each "row" of content on a page we consider a section.
+                            <strong>Blocks</strong> are the building blocks of a page. Each "row" of content on a page we consider a section.
                         </li>
-                        <li><strong>Pages</strong> are, you guessed it, a group of multiple sections making up a page.
+                        <li><strong>Templates</strong> are, you guessed it, a group of multiple sections making up a page.
                         </li>
-                        <li><strong>Collections</strong> are groups of pages that all follow a style or theme.
+                        <li><strong>Template Kits</strong> are groups of pages that all follow a style or theme.
                         </li>
                         <li><strong>Saved</strong> are reusable blocks that you may have previously saved for later.
                         </li>

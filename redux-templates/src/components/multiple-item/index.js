@@ -16,7 +16,7 @@ const MultipleItem = (props) => {
                 </div>
                 <div className="redux-templates-tmpl-info">
                     <h5 className="redux-templates-tmpl-title" dangerouslySetInnerHTML={{__html:name}}/>
-                    <span className="redux-templates-temp-count">{ pages ? pages.length : 0 } {__('Pages', redux_templates.i18n)}</span>
+                    <span className="redux-templates-temp-count">{ pages ? pages.length : 0 } {__('Templates', redux_templates.i18n)}</span>
                 </div>
             </div>
         </div>
