@@ -30,7 +30,7 @@ function ChallengeCongrats(props) {
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper challenge-popup-wrapper">
                 <div class="challenge-popup-header challenge-popup-header-congrats" 
-                    style={{backgroundImage: `url(${redux-templates.plugin + 'assets/img/popup-congrats.png'})`}}>
+                    style={{backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-congrats.png'})`}}>
                     <a className="challenge-popup-close" onClick={closeModal}>
                         <i class="fa fa-times-circle fa-lg"></i>
                     </a>

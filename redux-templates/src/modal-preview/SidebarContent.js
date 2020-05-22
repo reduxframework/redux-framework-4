@@ -28,7 +28,7 @@ export default function SidebarContent(props) {
                 <h3 className="theme-name">{name}</h3>
                 <div className="theme-screenshot-wrap">
                     <img className="theme-screenshot"
-                         src={image ? image : redux-templates.plugin + 'assets/img/redux-templates-medium.jpg'} alt=""/>{pro ?
+                         src={image ? image : redux_templates.plugin + 'assets/img/redux-templates-medium.jpg'} alt=""/>{pro ?
                     <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span> : ''
                 }</div>
 

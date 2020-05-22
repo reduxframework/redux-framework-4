@@ -27,7 +27,7 @@ function ReduxTemplatesTour(props) {
     useEffect(() => {
         if (autoTourStart === true) {
             setTourOpen(true);
-            delete redux-templates.tour;
+            delete redux_templates.tour;
         }
     }, [autoTourStart]);
 

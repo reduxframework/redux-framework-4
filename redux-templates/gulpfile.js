@@ -67,7 +67,7 @@ function debug() {
 }
 
 function versionUpdate() {
-	return src(['./redux-templates.php'])
+	return src(['./redux_templates.php'])
 		.pipe(replace(/\* Version:.*/g, '\* Version: \t\t  ' + package_data.version))
 		.pipe(replace(/\'REDUXTEMPLATES_VERSION\', \'.*\'/g, '\'REDUXTEMPLATES_VERSION\', \'' + package_data.version + '\''))
 		// .pipe(replace(/common-script\.js/g, 'common-script.min.js'))

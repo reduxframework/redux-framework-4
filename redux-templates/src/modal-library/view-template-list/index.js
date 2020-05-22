@@ -20,7 +20,7 @@ function TemplateList(props) {
     const [shouldShowPagination, setShouldShowPagination] = useState(false);
     const getBackgroundImage = (url) => {
         if (!url) {
-            return redux-templates.plugin + 'assets/img/redux-templates-medium.jpg';
+            return redux_templates.plugin + 'assets/img/redux-templates-medium.jpg';
         }
         return url;
     }

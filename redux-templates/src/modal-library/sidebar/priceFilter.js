@@ -33,7 +33,7 @@ function PriceFilter (props) {
             <div>
                 <button onClick={() => setActivePriceFilter('pro')} className={getClassnames('pro')}
                         disabled={noStatistics('pro')}>
-                    <img src={redux-templates.plugin + 'assets/img/icon-premium.svg'} alt=""/>
+                    <img src={redux_templates.plugin + 'assets/img/icon-premium.svg'} alt=""/>
                     {__('Premium', redux-templates.i18n)}
                 </button>
             </div>
