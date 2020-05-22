@@ -27,17 +27,17 @@ export function TabHeader(props) {
                     ((activeItemType !== 'collection'  || activeCollection === null) && activeItemType !== 'saved') &&
                     <div>
                         <i className="fas fa-search" />
-                        <input type="search" placeholder={__('Type to search', redux-templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
+                        <input type="search" placeholder={__('Type to search', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
                         <ChallengeDot step={1} />
                     </div>
                 }
             </div>
 
             <div className="redux-templates-template-list-header" data-tut="tour__navigation">
-                <button className={ isActive('section') } onClick={e => changeTab('section')}> {__('Sections', redux-templates.i18n)} </button>
-                <button className={ isActive('page') } onClick={e => changeTab('page')}> {__('Pages', redux-templates.i18n)} </button>
-                <button className={ isActive('collection') } onClick={e => changeTab('collection')}> {__('Collections', redux-templates.i18n)} </button>
-                <button className={ isActive('saved') } onClick={e => changeTab('saved')}> {__('Saved', redux-templates.i18n)} </button>
+                <button className={ isActive('section') } onClick={e => changeTab('section')}> {__('Sections', redux_templates.i18n)} </button>
+                <button className={ isActive('page') } onClick={e => changeTab('page')}> {__('Pages', redux_templates.i18n)} </button>
+                <button className={ isActive('collection') } onClick={e => changeTab('collection')}> {__('Collections', redux_templates.i18n)} </button>
+                <button className={ isActive('saved') } onClick={e => changeTab('saved')}> {__('Saved', redux_templates.i18n)} </button>
                 <ChallengeDot step={0} />
                 <button className="redux-templates-builder-close-modal" onClick={e => { ModalManager.close() }} >
                     <i className={'fas fa-times'} />

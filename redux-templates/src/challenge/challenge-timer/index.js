@@ -73,8 +73,8 @@ function ChallengeTimer(props) {
     return (
         <div className='block-timer'>
             <div>
-                <h3>{__('ReduxTemplates Challenge', redux-templates.i18n)}</h3>
-                <p><span>{helper.getFormatted(secondsLeft)}</span>{__(' remaining', redux-templates.i18n)}</p>
+                <h3>{__('ReduxTemplates Challenge', redux_templates.i18n)}</h3>
+                <p><span>{helper.getFormatted(secondsLeft)}</span>{__(' remaining', redux_templates.i18n)}</p>
             </div>
             <div className={classnames('caret-icon', {'closed': expanded})} onClick={() => setChallengeListExpanded(!expanded)}>
                 <i className="fa fa-caret-down"></i>

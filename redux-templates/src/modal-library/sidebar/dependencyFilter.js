@@ -40,16 +40,16 @@ function DependencyFilter(props) {
         <Fragment>
             {!loading && wholePlugins &&
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
-                    <h3>{__('Required Plugins', redux-templates.i18n)}</h3>
+                    <h3>{__('Required Plugins', redux_templates.i18n)}</h3>
                     <div className="redux-templates-select-actions">
-                        <Tooltip text={__('Select All', redux-templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(true)}>{__('All', redux-templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(true)}>{__('All', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Native Blocks Only', redux-templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(false)}>{__('None', redux-templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(false)}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux-templates.i18n)}><a href="#" onClick={() => setDependencyFilters(getInstalledDependencies(dependencyFilters))}>
-                            {__('Installed', redux-templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)}><a href="#" onClick={() => setDependencyFilters(getInstalledDependencies(dependencyFilters))}>
+                            {__('Installed', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Reset Dependencies', redux-templates.i18n)}>
+                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)}>
                             <a href="#" onClick={() => setDependencyFilters(getDefaultDependencies(dependencyFilters))}>
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
@@ -63,11 +63,11 @@ function DependencyFilter(props) {
                                 {/*    text="These templates only use native WordPress Gutenberg Blocks"*/}
                                 {/*>*/}
                                 <CheckboxControl
-                                    label={__('Native', redux-templates.i18n)}
+                                    label={__('Native', redux_templates.i18n)}
                                     checked={isNoneChecked()}
                                     onChange={toggleNoneChecked}
                                 />
-                                <Tooltip text={__('Only default WordPress blocks used.', redux-templates.i18n)} position='right'>
+                                <Tooltip text={__('Only default WordPress blocks used.', redux_templates.i18n)} position='right'>
                                     <span style={{float:'right', marginRight:'2px'}}><i className="fa fa-info-circle" /></span>
                                 </Tooltip>
                                 {/*</Tooltip>*/}

@@ -18,21 +18,21 @@ export default function FabWrapper() {
             event={event}
             // onClick={testing}
 
-            text={__('See Quick Links', redux-templates.i18n)}
+            text={__('See Quick Links', redux_templates.i18n)}
         >
 
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Suggest a Feature', redux-templates.i18n)}*/}
+            {/*    text={__('Suggest a Feature', redux_templates.i18n)}*/}
             {/*    onClick={e => {*/}
-            {/*        window.open(redux-templates.u, "_blank")*/}
+            {/*        window.open(redux_templates.u, "_blank")*/}
             {/*    }}*/}
             {/*>*/}
             {/*    <i className="fa fa-lightbulb-o"/>*/}
             {/*</Action>*/}
             <Action
                 style={actionButtonStyles}
-                text={__('Join Our Community', redux-templates.i18n)}
+                text={__('Join Our Community', redux_templates.i18n)}
                 onClick={e => {
                     window.open('https://www.facebook.com/groups/reduxframework', '_blank')
                 }}
@@ -41,7 +41,7 @@ export default function FabWrapper() {
             </Action>
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Take Our Tour', redux-templates.i18n)}*/}
+            {/*    text={__('Take Our Tour', redux_templates.i18n)}*/}
             {/*    onClick={e => {*/}
             {/*        setTourOpen();*/}
             {/*    }}*/}
@@ -50,7 +50,7 @@ export default function FabWrapper() {
             {/*</Action>*/}
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Support & Docs', redux-templates.i18n)}*/}
+            {/*    text={__('Support & Docs', redux_templates.i18n)}*/}
             {/*    onClick={e => {*/}
             {/*        window.open('https://docs.redux.io/', "_blank")*/}
             {/*    }}*/}
@@ -58,12 +58,12 @@ export default function FabWrapper() {
             {/*    <i className="fa fa-life-ring"/>*/}
             {/*</Action>*/}
             {
-                redux-templates.mokama !== 1 &&
+                redux_templates.mokama !== 1 &&
                 <Action
                     style={actionButtonStyles}
-                    text={__('Upgrade to Redux Pro', redux-templates.i18n)}
+                    text={__('Upgrade to Redux Pro', redux_templates.i18n)}
                     onClick={e => {
-                        window.open(redux-templates.u, '_blank')
+                        window.open(redux_templates.u, '_blank')
                     }}
                 >
                     <i className="fa fa-star"/>

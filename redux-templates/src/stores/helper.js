@@ -118,20 +118,20 @@ export const getCollectionChildrenData = (library, activeCollection) => {
 
 // Check if the block is pro
 export const isBlockPro = (pro, source) => {
-    if (source && redux-templates.supported_plugins.hasOwnProperty(source))
-        return (pro && !redux-templates.supported_plugins[source].is_pro);
+    if (source && redux_templates.supported_plugins.hasOwnProperty(source))
+        return (pro && !redux_templates.supported_plugins[source].is_pro);
     else
-        return pro && redux-templates.mokama !== '1';
+        return pro && redux_templates.mokama !== '1';
 }
 
 export const missingPro = (pro) => {
-    return (redux-templates.mokama !== '1' && pro === true);
+    return (redux_templates.mokama !== '1' && pro === true);
 }
 
 export const missingRequirement = (pro, requirements) => {
     if (!requirements) return missingPro(pro);
     else {
-        const supported_plugins = redux-templates.supported_plugins;
+        const supported_plugins = redux_templates.supported_plugins;
         for (let i = 0; i < requirements.length; i++) {
             let requirement = requirements[i];
             if (!supported_plugins.hasOwnProperty(requirement.slug))
@@ -235,7 +235,7 @@ Input: dependencies: {getwid: 38, qubely: 82...}
 Result: {getwid: {value: true, disabled: true}, } 
 */
 export const getDefaultDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(redux-templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(redux_templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies).reduce((acc, cur) => {
         // special handling for pro plugin not activated.
         let value = true;
@@ -246,7 +246,7 @@ export const getDefaultDependencies = (dependencies) => {
 }
 
 export const getInstalledDependencies = (dependencies) => {
-    const unSupportedPlugins = Object.keys(redux-templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
+    const unSupportedPlugins = Object.keys(redux_templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return Object.keys(dependencies)
         .filter(key => key !=='none')
         .reduce((acc, cur) => {
@@ -265,8 +265,8 @@ export const getInstalledDependencies = (dependencies) => {
 
 
 const getPluginInstance = (pluginKey) => {
-    if (pluginKey in redux-templates.supported_plugins) {
-        return redux-templates.supported_plugins[pluginKey];
+    if (pluginKey in redux_templates.supported_plugins) {
+        return redux_templates.supported_plugins[pluginKey];
     }
     return false; // Deal with unknown plugins
 }
@@ -283,7 +283,7 @@ const isPluginProActivated = (pluginKey) => {
 }
 
 export const missingPluginsArray = () => {
-    return Object.keys(redux-templates.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
+    return Object.keys(redux_templates.supported_plugins).filter(pluginKey =>  isProPlugin(pluginKey) && isPluginProActivated(pluginKey) === false);
 }
 
 

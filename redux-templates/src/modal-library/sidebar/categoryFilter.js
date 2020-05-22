@@ -11,9 +11,9 @@ function CategoryFilter (props) {
 
     // On the top, All Section, All Page, All Collection etc
     const itemTypeLabel = () => {
-        if (itemType === 'section') return __('Section', redux-templates.i18n);
-        if (itemType === 'page') return __('Page', redux-templates.i18n);
-        if (itemType === 'collection') return __('Collection', redux-templates.i18n);
+        if (itemType === 'section') return __('Section', redux_templates.i18n);
+        if (itemType === 'page') return __('Page', redux_templates.i18n);
+        if (itemType === 'collection') return __('Collection', redux_templates.i18n);
     };
 
     const totalItemCountLabel = () => {
@@ -40,14 +40,14 @@ function CategoryFilter (props) {
 
     return (
         <div>
-            <h3>{__('Categories', redux-templates.i18n)}</h3>
+            <h3>{__('Categories', redux_templates.i18n)}</h3>
             {!loading &&
             <ul className="redux-templates-sidebar-categories">
                 {categoryData.length > 0 &&
                 <li
                     className={activeClassname(null)}
                     onClick={() => setActiveCategory('')}>
-                    {__('All', redux-templates.i18n)} {itemTypeLabel()}s <span>{totalItemCountLabel()}</span>
+                    {__('All', redux_templates.i18n)} {itemTypeLabel()}s <span>{totalItemCountLabel()}</span>
                 </li>
                 }
 

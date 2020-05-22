@@ -36,14 +36,14 @@ function SingleItem (props) {
 
                     {data.source !== 'wp_block_patterns' &&<img className="lazy" src={backgroundImage(data.image)}/>}
                     {data.source === 'wp_block_patterns' && <BackgroundImage data={data} />}
-                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span>}
+                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
                     {!requiresPro(data) && requiresInstall(data) && <span className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></span>}
                     <div className="redux-templates-tmpl-title">{data.name}</div>
                 </div>
                 {/* redux-templates-default-template-image */}
                 <div className="redux-templates-button-overlay">
-                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span>}
-                    {!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux-templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
+                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
+                    {!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux_templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
                     <ButtonGroup index={index} showDependencyBlock={true} data={data} pageData={pageData} />
                 </div>
 

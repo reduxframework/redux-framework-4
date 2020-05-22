@@ -49,7 +49,7 @@ function Pagination(props) {
                             onClick={() => gotoPage(0, firstButtonClass)}>«</span>
                         <span className={prevButtonClass} aria-hidden="true"
                             onClick={() => gotoPage(currentPage - 1, prevButtonClass)}>‹</span>
-                        <span className="screen-reader-text">{__('Current Page', redux-templates.i18n)}</span>
+                        <span className="screen-reader-text">{__('Current Page', redux_templates.i18n)}</span>
                         <span id="table-paging" className="paging-input">
                             <span className="tablenav-paging-text">{currentPage + 1} of <span
                                 className="total-pages">{totalPages}</span></span>

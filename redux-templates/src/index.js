@@ -38,7 +38,7 @@ domReady(() => {
     toolbar.appendChild(buttonDiv);
     render(<ToolbarLibraryButton/>, buttonDiv)
     
-    if (window.location.hash == '#redux-templates_tour=1') {
+    if (window.location.hash == '#redux_templates_tour=1') {
         window.location.hash = '';
         ModalManager.open(<LibraryModal />);
     }

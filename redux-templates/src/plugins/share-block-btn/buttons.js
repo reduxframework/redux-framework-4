@@ -60,12 +60,12 @@ export function ShareBlockButton(
         <Fragment>
             <PluginBlockSettingsMenuItem
                 icon={ReduxTemplatesIcon}
-                label={__('Share Block', redux-templates.i18n)}
+                label={__('Share Block', redux_templates.i18n)}
                 onClick={onShareBlock}
             />
             {/*<PluginBlockSettingsMenuItem*/}
             {/*    icon={ReduxTemplatesIcon}*/}
-            {/*    label={__('Export as Reusable Block', redux-templates.i18n)}*/}
+            {/*    label={__('Export as Reusable Block', redux_templates.i18n)}*/}
             {/*    onClick={onExportBlock}*/}
             {/*/>*/}
         </Fragment>

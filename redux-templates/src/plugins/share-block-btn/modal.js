@@ -113,7 +113,7 @@ function ShareModal(props) {
             <Modal compactMode={true}>
                 <div className="redux-templates-share-modal-wrapper">
                     <div className="redux-templates-modal-header">
-                        <h3>{__('Share Wizard', redux-templates.i18n)}</h3>
+                        <h3>{__('Share Wizard', redux_templates.i18n)}</h3>
                         <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                             <i className={'fas fa-times'}/>
                         </button>
@@ -130,7 +130,7 @@ function ShareModal(props) {
         <Modal compactMode={true}>
             <div className="redux-templates-share-modal-wrapper">
                 <div className="redux-templates-modal-header">
-                    <h3>{__('Share Wizard', redux-templates.i18n)}</h3>
+                    <h3>{__('Share Wizard', redux_templates.i18n)}</h3>
                     <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>

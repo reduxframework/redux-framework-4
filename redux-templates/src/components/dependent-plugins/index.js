@@ -17,7 +17,7 @@ export default function DependentPlugins (props) {
                 { data.dependencies &&
                     data.dependencies.map(plugin => {
                         const IconComponent = Icons[plugin];
-                        const pluginInstance = redux-templates.supported_plugins[plugin];
+                        const pluginInstance = redux_templates.supported_plugins[plugin];
                         if (IconComponent && pluginInstance)
                             return (
                                 <Tooltip text={pluginInstance.name} position="bottom" key={id + plugin}>

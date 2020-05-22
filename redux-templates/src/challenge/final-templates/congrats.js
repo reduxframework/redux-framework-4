@@ -36,7 +36,7 @@ function ChallengeCongrats(props) {
                     </a>
                 </div>
                 <div class="challenge-popup-content">
-                    <h3>{__( 'Congrats, you did it!', redux-templates.i18n )}</h3>
+                    <h3>{__( 'Congrats, you did it!', redux_templates.i18n )}</h3>
                     <p>
                         You completed the ReduxTemplates Challenge in <b>{helper.getLocalizedDuration()}</b>. 
                         Share your success story with other ReduxTemplates users and help us spread the word 
@@ -44,7 +44,7 @@ function ChallengeCongrats(props) {
                         Thanks for your support and we look forward to bringing more awesome features.
                     </p>
                     <a href="https://wordpress.org/support/plugin/redux-templates/reviews/?filter=5#new-post" class="challenge-popup-btn challenge-popup-rate-btn" target="_blank" rel="noopener">
-                        {__( 'Rate ReduxTemplates on Wordpress.org', redux-templates.i18n ) }
+                        {__( 'Rate ReduxTemplates on Wordpress.org', redux_templates.i18n ) }
                         <span class="dashicons dashicons-external"></span>
                     </a>
                 </div>

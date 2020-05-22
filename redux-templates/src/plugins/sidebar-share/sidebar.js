@@ -21,14 +21,14 @@ function Sidebar(props) {
     return (
         <Fragment>
             <PluginSidebarMoreMenuItem target="redux-templates-share">
-                {__('ReduxTemplates Template', redux-templates.i18n)}
+                {__('ReduxTemplates Template', redux_templates.i18n)}
             </PluginSidebarMoreMenuItem>
-            <PluginSidebar name="redux-templates-share" title={__('ReduxTemplates Shares', redux-templates.i18n)}>
-                <PanelBody title={__('Share this Design', redux-templates.i18n)} initialOpen={true}>
+            <PluginSidebar name="redux-templates-share" title={__('ReduxTemplates Shares', redux_templates.i18n)}>
+                <PanelBody title={__('Share this Design', redux_templates.i18n)} initialOpen={true}>
                     <div className="d-flex justify-content-center">
                         <a className="button button-primary" onClick={onShare}>
                             {loading ? <i className="fas fa-spinner fa-pulse"/> : <i className="fas fa-share"></i>}
-                            &nbsp;{__('Share this design', redux-templates.i18n)}
+                            &nbsp;{__('Share this design', redux_templates.i18n)}
                         </a>
                     </div>
                 </PanelBody>

@@ -36,11 +36,11 @@ export default function FeedbackModal(props) {
             if (data.success) {
                 setPanelClassname('panel fade')
             } else {
-                setErrorMessage(__('An Error occured', redux-templates.i18n));
+                setErrorMessage(__('An Error occured', redux_templates.i18n));
             }
         }).catch(err => {
             setLoading(false);
-            setErrorMessage(__('There was an error: ', redux-templates.i18n) + err.message);
+            setErrorMessage(__('There was an error: ', redux_templates.i18n) + err.message);
         });
     }
 
@@ -67,7 +67,7 @@ export default function FeedbackModal(props) {
         <Modal compactMode={true}>
             <div className="redux-templates-feedback-modal-wrapper">
                 <div className="redux-templates-modal-header">
-                    <h3>{__('Feedback Wizard', redux-templates.i18n)}</h3>
+                    <h3>{__('Feedback Wizard', redux_templates.i18n)}</h3>
                     <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>
@@ -79,9 +79,9 @@ export default function FeedbackModal(props) {
                             {errorMessage}
                         </div>
                     }
-                    <h4>{__('Thank you for reporting an issue.', redux-templates.i18n)}</h4>
+                    <h4>{__('Thank you for reporting an issue.', redux_templates.i18n)}</h4>
                     <div className={panelClassname}>
-                        <p>{__('We want to make ReduxTemplates perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux-templates.i18n)}</p>
+                        <p>{__('We want to make ReduxTemplates perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}</p>
                         <div className="field">
                             <input type="checkbox" id="theme_plugins" checked={sendingThemePlugins} onChange={() => setSendingThemePlugins(!sendingThemePlugins)} />
                             <label htmlFor="theme_plugins">Send theme and plugins</label>

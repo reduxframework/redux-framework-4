@@ -26,7 +26,7 @@ function ChallengeListBlock(props) {
 
     return (
         <div className='challenge-list-block'>
-            <p>{__('Complete the challenge and get up and running within 5 minutes', redux-templates.i18n)}</p>
+            <p>{__('Complete the challenge and get up and running within 5 minutes', redux_templates.i18n)}</p>
             <ProgressBar currentStep={finalStatus === 'success' ?  CONFIG.totalStep : challengeStep} />
             <ul className='challenge-list'>
                 {
@@ -38,9 +38,9 @@ function ChallengeListBlock(props) {
             { finalStatus === '' &&
                 <div className={buttonRowClassname}>
                     {challengeStep === CONFIG.beginningStep && 
-                        <button className='btn-challenge-start' onClick={onStarted}>{__('Start Challenge', redux-templates.i18n)}</button>}
-                    {challengeStep === CONFIG.beginningStep && <button className='btn-challenge-skip' onClick={onCancelChallenge}>{__('Skip Challenge', redux-templates.i18n)}</button>}
-                    {challengeStep !== CONFIG.beginningStep && <button className='btn-challenge-cancel' onClick={onCancelChallenge}>{__('Cancel Challenge', redux-templates.i18n)}</button>}
+                        <button className='btn-challenge-start' onClick={onStarted}>{__('Start Challenge', redux_templates.i18n)}</button>}
+                    {challengeStep === CONFIG.beginningStep && <button className='btn-challenge-skip' onClick={onCancelChallenge}>{__('Skip Challenge', redux_templates.i18n)}</button>}
+                    {challengeStep !== CONFIG.beginningStep && <button className='btn-challenge-cancel' onClick={onCancelChallenge}>{__('Cancel Challenge', redux_templates.i18n)}</button>}
                 </div>
             }
         </div>

@@ -29,16 +29,16 @@ export default function SidebarContent(props) {
                 <div className="theme-screenshot-wrap">
                     <img className="theme-screenshot"
                          src={image ? image : redux_templates.plugin + 'assets/img/redux-templates-medium.jpg'} alt=""/>{pro ?
-                    <span className="redux-templates-pro-badge">{__('Premium', redux-templates.i18n)}</span> : ''
+                    <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span> : ''
                 }</div>
 
                 <h5 className="theme-hash">
                     <div className="button-container">
-                        <span className="button button-secondary the-copy" onClick={copyHash} title={__('Copy Identifier', redux-templates.i18n)}><i
+                        <span className="button button-secondary the-copy" onClick={copyHash} title={__('Copy Identifier', redux_templates.i18n)}><i
                             className="fa fa-copy" aria-hidden="true"></i></span>
                         <span onClick={copyHash} className="button button-secondary the-hash"
-                              title={__('Identifier', redux-templates.i18n)}>{hash.substring(0, 7)}</span>
-                        {copied && <span className="copied hideMe"><br/>{__('copied', redux-templates.i18n)}</span>}
+                              title={__('Identifier', redux_templates.i18n)}>{hash.substring(0, 7)}</span>
+                        {copied && <span className="copied hideMe"><br/>{__('copied', redux_templates.i18n)}</span>}
                     </div>
 
                 </h5>
@@ -52,7 +52,7 @@ export default function SidebarContent(props) {
                                 <ul>
                                     {
                                         installDependencies.map(pluginKey => {
-                                            const pluginInstance = redux-templates.supported_plugins[pluginKey];
+                                            const pluginInstance = redux_templates.supported_plugins[pluginKey];
                                             if (!pluginInstance) return null;
                                             const IconComponent = Icons[pluginKey];
                                             return (
@@ -76,7 +76,7 @@ export default function SidebarContent(props) {
                                 <ul>
                                     {
                                         proDependencies.map(pluginKey => {
-                                            const pluginInstance = redux-templates.supported_plugins[pluginKey];
+                                            const pluginInstance = redux_templates.supported_plugins[pluginKey];
                                             if (!pluginInstance) return null;
                                             const IconComponent = Icons[pluginKey];
                                             return (

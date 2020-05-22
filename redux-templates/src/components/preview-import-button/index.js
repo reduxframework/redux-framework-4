@@ -23,13 +23,13 @@ function PreviewImportButton(props) {
                 pageData[index] && pageData[index]['source'] !== 'wp_block_patterns' &&
                 <a className="redux-templates-button preview-button" target="_blank"
                    onClick={() => openSitePreviewModal(index, pageData)}>
-                    <i className="fa fa-share"/> {__('Preview', redux-templates.i18n)}
+                    <i className="fa fa-share"/> {__('Preview', redux_templates.i18n)}
                 </a>
             }
 
             <a className="redux-templates-button download-button"
                onClick={() => triggerImportTemplate(data)}>
-                <i className="fas fa-download"/>{__('Import', redux-templates.i18n)}
+                <i className="fas fa-download"/>{__('Import', redux_templates.i18n)}
             </a>
             {tourActiveButtonGroup && tourActiveButtonGroup.ID === pageData[index].ID && <ChallengeDot step={4} /> }
         </div>

@@ -61,7 +61,7 @@ export const reducer = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case 'SET_LIBRARY':
-            redux-templates.supported_plugins = action.library.plugins;
+            redux_templates.supported_plugins = action.library.plugins;
             const dependencies = getDefaultDependencies(action.library.dependencies);
             let parsedSection = parseSectionData(action.library.sections);
             let parsedPage = parsePageData(action.library.pages);

@@ -12,7 +12,7 @@ export default {
     list: [
         {
             selector: '[data-tut="tour__navigation"]',
-            caption: __('Template Type Tabs', redux-templates.i18n),
+            caption: __('Template Type Tabs', redux_templates.i18n),
             offset: {
                 x: 0,
                 y: 50,
@@ -42,8 +42,8 @@ export default {
         },
         {
             selector: '[data-tut="tour__filtering"]',
-            caption: __('Sidebar', redux-templates.i18n),
-            content: __('This area is where you can search and filter to find the right kind of templates you want.', redux-templates.i18n),
+            caption: __('Sidebar', redux_templates.i18n),
+            content: __('This area is where you can search and filter to find the right kind of templates you want.', redux_templates.i18n),
             direction: 'left',
             offset: {
                 x: 40,
@@ -64,7 +64,7 @@ export default {
         },
         {
             selector: '[data-tut="tour__filtering"]',
-            caption: __('Plugins Filter', redux-templates.i18n),
+            caption: __('Plugins Filter', redux_templates.i18n),
             offset: {
                 x: 40,
                 y: 10,
@@ -92,8 +92,8 @@ export default {
         },
         {
             selector: '[data-tut="tour__main_body"]',
-            caption: __('Templates List', redux-templates.i18n),
-            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', redux-templates.i18n),
+            caption: __('Templates List', redux_templates.i18n),
+            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', redux_templates.i18n),
             direction: 'left',
             offset: {
                 x: 40,
@@ -115,8 +115,8 @@ export default {
         },
         {
             selector: '#modalContainer .redux-templates-single-item-inner:first-child',
-            caption: __('Template Hover', redux-templates.i18n),
-            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', redux-templates.i18n),
+            caption: __('Template Hover', redux_templates.i18n),
+            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', redux_templates.i18n),
             action: () => {
                 ModalManager.closeCustomizer();
                 const pageData = getPageData();
@@ -138,8 +138,8 @@ export default {
         },
         {
             selector: '.wp-full-overlay-sidebar',
-            caption: __('Preview Dialog', redux-templates.i18n),
-            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', redux-templates.i18n),
+            caption: __('Preview Dialog', redux_templates.i18n),
+            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', redux_templates.i18n),
             action: () => {
                 setTourActiveButtonGroup(null);
                 setImportingTemplate(null);
@@ -154,8 +154,8 @@ export default {
         },
         {
             selector: '.redux-templates-import-wizard-wrapper',
-            caption: __('Import Wizard', redux-templates.i18n),
-            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux-templates.i18n),
+            caption: __('Import Wizard', redux_templates.i18n),
+            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
             direction: 'right',
             offset: {
                 x: 0,
@@ -189,8 +189,8 @@ export default {
         },
         {
             selector: '.components-base-control.editor-page-attributes__template',
-            caption: __('Template Conflict', redux-templates.i18n),
-            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux-templates.i18n),
+            caption: __('Template Conflict', redux_templates.i18n),
+            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux_templates.i18n),
             action: () => {
                 setImportingTemplate(null);
                 ModalManager.hide();

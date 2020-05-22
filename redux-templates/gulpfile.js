@@ -50,7 +50,7 @@ function productionMode() {
 	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
 	return src(['./build/redux-templates/core/Init.php'])
 	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
-		.pipe(replace(/redux-templates\.dev/g, 'redux-templates.min'))
+		.pipe(replace(/redux_templates\.dev/g, 'redux_templates.min'))
         .pipe(replace(/vendor\.dev/g, 'vendor.min'))
 		.pipe(replace(/map\.js/g, 'map.min.js'))
 		.pipe(dest('./build/redux-templates/core/'));
@@ -67,7 +67,7 @@ function debug() {
 }
 
 function versionUpdate() {
-	return src(['./redux_templates.php'])
+	return src(['./redux-templates.php'])
 		.pipe(replace(/\* Version:.*/g, '\* Version: \t\t  ' + package_data.version))
 		.pipe(replace(/\'REDUXTEMPLATES_VERSION\', \'.*\'/g, '\'REDUXTEMPLATES_VERSION\', \'' + package_data.version + '\''))
 		// .pipe(replace(/common-script\.js/g, 'common-script.min.js'))

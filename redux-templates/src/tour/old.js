@@ -34,7 +34,7 @@ function ReduxTemplatesTour(props) {
     const tourConfig = [
         {
             selector: '.redux-templates-pagelist-modal-inner',
-            content: __('Welcome to the ReduxTemplates! Let\'s go over how to use our library.', redux-templates.i18n),
+            content: __('Welcome to the ReduxTemplates! Let\'s go over how to use our library.', redux_templates.i18n),
             position: 'center',
             stepInteraction: false,
         },
@@ -60,7 +60,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '[data-tut="tour__filtering"]',
-            content: __('This area is where you can search and filter to find the right kind of templates you want.', redux-templates.i18n),
+            content: __('This area is where you can search and filter to find the right kind of templates you want.', redux_templates.i18n),
             position: 'right',
             action: () => {
                 animateScroll.scrollToTop({
@@ -90,7 +90,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '[data-tut="tour__main_body"]',
-            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', redux-templates.i18n),
+            content: __('This area is where the templates will show up that match the filters you\'ve selected. You can click on many of them to preview or import them.', redux_templates.i18n),
             position: 'center',
             action: () => {
                 animateScroll.scrollToTop({
@@ -102,7 +102,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '#modalContainer .redux-templates-single-item-inner:first-child',
-            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', redux-templates.i18n),
+            content: __('When you hover over a template you can see via icons what plugins are required for this template. You can then choose to Preview or Import a design.', redux_templates.i18n),
             action: () => {
                 ModalManager.closeCustomizer();
                 const pageData = getPageData();
@@ -115,7 +115,7 @@ function ReduxTemplatesTour(props) {
         {
             selector: '.wp-full-overlay-sidebar',
             // selector: '[data-tut="tour__preview_sidebar"]',
-            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', redux-templates.i18n),
+            content: __('This is the preview dialog. It gives more details about the template and helps you to see what you could expect the templates to look like.', redux_templates.i18n),
             action: () => {
                 setTourActiveButtonGroup(null);
                 setImportingTemplate(null);
@@ -130,7 +130,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '.redux-templates-import-wizard-wrapper',
-            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux-templates.i18n),
+            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
             position: 'top',
             action: () => {
                 // if (ModalManager.isModalOpened() === false) ModalManager.open(<LibraryModal autoTourStart={false} />)
@@ -143,7 +143,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '.components-base-control.editor-page-attributes__template',
-            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux-templates.i18n),
+            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux_templates.i18n),
             action: () => {
                 setImportingTemplate(null);
                 ModalManager.hide();
@@ -152,7 +152,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '.redux-templates-pagelist-modal-inner',
-            content: __('Well, that is the tour. Take a look around. We hope you love ReduxTemplates!', redux-templates.i18n),
+            content: __('Well, that is the tour. Take a look around. We hope you love ReduxTemplates!', redux_templates.i18n),
             action: () => {
                 ModalManager.show();
                 setNeedUpdate(new Date().toString());
@@ -179,7 +179,7 @@ function ReduxTemplatesTour(props) {
         isOpen={false && isTourOpen}
         onBeforeClose={() => ModalManager.show()}
         update={needUpdate}
-        lastStepNextButton={<span className="button button-small">{__('Finish', redux-templates.i18n)}</span>}
+        lastStepNextButton={<span className="button button-small">{__('Finish', redux_templates.i18n)}</span>}
         rounded={0}
         accentColor={accentColor}
         disableInteraction={true}

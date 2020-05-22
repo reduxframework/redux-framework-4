@@ -20,9 +20,9 @@ function ToolbarLibraryButton (props) {
 				ModalManager.open(<LibraryModal />);
 			} }
 			className="sb-insert-library-button"
-			label={ __( 'Open Library', redux-templates.i18n ) }
+			label={ __( 'Open Library', redux_templates.i18n ) }
 			icon={ <ReduxTemplatesIcon /> }
-		>{ __( 'Library', redux-templates.i18n ) }</IconButton>
+		>{ __( 'Library', redux_templates.i18n ) }</IconButton>
 	)
 }
 

@@ -75,8 +75,8 @@ export default {
         var timerMinutes = this.getMinutesFormatted( secondsLeft );
         var timerSeconds = this.getSecondsFormatted( secondsLeft );
 
-        const minutesString = timerMinutes ? timerMinutes + ' ' + __( 'minutes', redux-templates.i18n ) + ' ' : '';
-        const secondsString = timerSeconds ? timerSeconds + ' ' + __( 'seconds', redux-templates.i18n ) : '';
+        const minutesString = timerMinutes ? timerMinutes + ' ' + __( 'minutes', redux_templates.i18n ) + ' ' : '';
+        const secondsString = timerSeconds ? timerSeconds + ' ' + __( 'seconds', redux_templates.i18n ) : '';
         return minutesString + secondsString;
     },
 

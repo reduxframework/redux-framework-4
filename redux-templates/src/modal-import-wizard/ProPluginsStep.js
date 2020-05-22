@@ -11,8 +11,8 @@ export default function ProPluginStep(props) {
     return (
         <Fragment>
             <div className="redux-templates-modal-body">
-                <h5>{__('External Dependencies Required', redux-templates.i18n)}</h5>
-                <p>{__('The following premium plugin(s) are required to import this template:', redux-templates.i18n)}</p>
+                <h5>{__('External Dependencies Required', redux_templates.i18n)}</h5>
+                <p>{__('The following premium plugin(s) are required to import this template:', redux_templates.i18n)}</p>
                 <ul className="redux-templates-import-progress">
                     {
                         missingPros.map(pluginKey => {
@@ -30,7 +30,7 @@ export default function ProPluginStep(props) {
             </div>
             <div className="redux-templates-modal-footer">
                 <a className="button button-secondary" onClick={onCloseWizard}>
-                    {__('Close', redux-templates.i18n)}
+                    {__('Close', redux_templates.i18n)}
                 </a>
             </div>
         </Fragment>

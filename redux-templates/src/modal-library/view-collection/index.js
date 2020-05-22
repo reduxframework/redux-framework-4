@@ -25,7 +25,7 @@ function CollectionView(props) {
             <div className="redux-templates-collection-details-view">
                 <div className="redux-templates-collection-details-left">
                     <div className="details-back" onClick={() => setActiveCollection(null)}>
-                        <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Collections', redux-templates.i18n)}
+                        <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Collections', redux_templates.i18n)}
                     </div>
                     <div className="details-preview" style={{backgroundImage: `url('${previewData.image}')`}}>
 
@@ -34,7 +34,7 @@ function CollectionView(props) {
                 <div className="redux-templates-collection-details-right">
                     <div className="details-title">
                         <h3>{activeCollectionData.name}</h3>
-                        <span>{dataLength} {__('pages', redux-templates.i18n)}</span>
+                        <span>{dataLength} {__('pages', redux_templates.i18n)}</span>
                     </div>
                     <div className="details-list">
                         <div className="details-inner">
@@ -48,7 +48,7 @@ function CollectionView(props) {
                                     return (
                                         <div className={className} onClick={() => setPreviewDataIndex(index)} key={index}>
                                             <div className="detail-image" style={divStyle}>
-                                                {requiresPro(detail) && <span className="pro">{__('Premium', redux-templates.i18n)}</span>}
+                                                {requiresPro(detail) && <span className="pro">{__('Premium', redux_templates.i18n)}</span>}
                                                 {!requiresPro(detail) && requiresInstall(detail) && <span className="install"><i className="fas fa-exclamation-triangle" /></span>}
                                                 <div className="detail-label">{detail.name}</div>
                                             </div>

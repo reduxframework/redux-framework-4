@@ -46,7 +46,7 @@ function TemplateList(props) {
         setColumnizedData(newData);
         setShouldShowPagination(activeItemType !== 'collection' && pageData && pageSize < pageData.length);
     }, [columns, pageData]);
-    let types = redux-templates.mokama === '1' ? 'active' : 'inactive';
+    let types = redux_templates.mokama === '1' ? 'active' : 'inactive';
 
 
     if (!loading)

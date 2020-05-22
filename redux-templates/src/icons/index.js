@@ -28,15 +28,15 @@ export const colorizeIcon = SvgIcon => {
 
 // Add an icon to our block category.
 if (typeof window.wp.blocks !== 'undefined' && typeof window.wp.blocks.updateCategory !== 'undefined') {
-	updateCategory(redux-templates.i18n, {
+	updateCategory(redux_templates.i18n, {
 		icon: colorizeIcon(<SVGReduxTemplatesIcon className="components-panel__icon" width="20" height="20"/>),
 	})
 }
 
 // Add our SVG gradient placeholder definition that we'll reuse.
 domReady(() => {
-	const redux-templatesGradient = document.createElement('DIV')
-	document.querySelector('body').appendChild(redux-templatesGradient)
+	const redux_templatesGradient = document.createElement('DIV')
+	document.querySelector('body').appendChild(redux_templatesGradient)
 	render(
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ domReady(() => {
 				</linearGradient>
 			</defs>
 		</svg>,
-		redux-templatesGradient
+		redux_templatesGradient
 	)
 })
 

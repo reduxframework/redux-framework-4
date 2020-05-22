@@ -20,10 +20,10 @@ function TemplateListSubHeader(props) {
     }, [challengePassed]);
 
     const itemTypeLabel = () => {
-        if (itemType === 'section') return __('Sections', redux-templates.i18n);
-        if (itemType === 'page') return __('Pages', redux-templates.i18n);
-        if (itemType === 'collection' && activeCollection === null) return __('Collections', redux-templates.i18n);
-        if (itemType === 'collection' && activeCollection !== null) return __('Sections', redux-templates.i18n);
+        if (itemType === 'section') return __('Sections', redux_templates.i18n);
+        if (itemType === 'page') return __('Pages', redux_templates.i18n);
+        if (itemType === 'collection' && activeCollection === null) return __('Collections', redux_templates.i18n);
+        if (itemType === 'collection' && activeCollection !== null) return __('Sections', redux_templates.i18n);
     };
 
     const dataLength = pageData ? pageData.length : '';
@@ -42,39 +42,39 @@ function TemplateListSubHeader(props) {
             <div className="redux-templates-template-filters">
                 <IconButton
                     icon={<i className={triggerTourClassname} />}
-                    label={__('Trigger Tour', redux-templates.i18n)}
+                    label={__('Trigger Tour', redux_templates.i18n)}
                     onClick={() => setChallengeOpen(true)}
                 />
 
                 <IconButton
                     icon="image-rotate"
-                    label={__('Refresh Library', redux-templates.i18n)}
+                    label={__('Refresh Library', redux_templates.i18n)}
                     className="refresh-library"
                     onClick={reloadLibrary}
                 />
                 <IconButton
                     icon={<SVGViewFew width="18" height="18"/>}
                     className={columns === 'large' ? 'is-active' : ''}
-                    label={__('Large preview', redux-templates.i18n)}
+                    label={__('Large preview', redux_templates.i18n)}
                     onClick={() => setColumns('large')}
                 />
                 <IconButton
                     icon={<SVGViewNormal width="18" height="18"/>}
                     className={columns === '' ? 'is-active' : ''}
-                    label={__('Medium preview', redux-templates.i18n)}
+                    label={__('Medium preview', redux_templates.i18n)}
                     onClick={(e) => setColumns('')}
                 />
                 <IconButton
                     icon={<SVGViewMany width="18" height="18"/>}
                     className={columns === 'small' ? 'is-active' : ''}
-                    label={__('Small preview', redux-templates.i18n)}
+                    label={__('Small preview', redux_templates.i18n)}
                     onClick={(e) => setColumns('small')}
                 />
                 <div className="">
                     <select name="sortBy" id="sortBy" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                        <option value="name">{__('Name', redux-templates.i18n)}</option>
-                        {/*<option value="popularity">{__('Popularity', redux-templates.i18n)}</option>*/}
-                        <option value="updated">{__('Updated', redux-templates.i18n)}</option>
+                        <option value="name">{__('Name', redux_templates.i18n)}</option>
+                        {/*<option value="popularity">{__('Popularity', redux_templates.i18n)}</option>*/}
+                        <option value="updated">{__('Updated', redux_templates.i18n)}</option>
                     </select>
                 </div>
             </div>

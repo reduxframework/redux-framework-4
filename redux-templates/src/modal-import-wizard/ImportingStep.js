@@ -7,14 +7,14 @@ const {__} = wp.i18n
 const MESSAGE_DELAY_MILLISECONDS = 4000;
 
 const MESSAGES_LIST = [
-    __('Please wait while your template is prepared.', redux-templates.i18n),
-    __('Fetching the template.', redux-templates.i18n),
-    __('We\'re getting closer now.', redux-templates.i18n),
-    __('Wow, this is taking a long time.', redux-templates.i18n),
-    __('Gah, this should be done by now!', redux-templates.i18n),
-    __('Really, this should be done soon.', redux-templates.i18n),
-    __('Are you sure your internet is working?!', redux-templates.i18n),
-    __('Give up, it looks like it didn\'t work...', redux-templates.i18n),
+    __('Please wait while your template is prepared.', redux_templates.i18n),
+    __('Fetching the template.', redux_templates.i18n),
+    __('We\'re getting closer now.', redux_templates.i18n),
+    __('Wow, this is taking a long time.', redux_templates.i18n),
+    __('Gah, this should be done by now!', redux_templates.i18n),
+    __('Really, this should be done soon.', redux_templates.i18n),
+    __('Are you sure your internet is working?!', redux_templates.i18n),
+    __('Give up, it looks like it didn\'t work...', redux_templates.i18n),
 ];
 
 function useInterval(callback, delay) {

@@ -24,7 +24,7 @@ export const handleBlock = (data, installedDependencies) => {
         }
         // This kind of plugins are not ready to accept before reloading, thus, we save it into localStorage and just reload for now.
         if (installedDependencies === true) {
-            window.redux-templates_tempdata = [...window.redux-templates_tempdata, data];
+            window.redux_templates_tempdata = [...window.redux_templates_tempdata, data];
             return null;
         } else {
             block_data = createBlock(data.name, data.attributes, data.innerBlocks)
@@ -56,7 +56,7 @@ export const processImportHelper = () => {
     if (select('core/edit-post').getEditorMode() === 'text') {
         switchEditorMode()
     }
-    window.redux-templates_tempdata = [];
+    window.redux_templates_tempdata = [];
 
     apiFetch(options).then(response => {
         if (response.success && response.data) {
@@ -69,7 +69,7 @@ export const processImportHelper = () => {
                     .map(key => handleBlock(responseBlockData[key], installedDependencies));
 
             localStorage.setItem('importing_data', JSON.stringify(data));
-            localStorage.setItem('block_data', JSON.stringify(redux-templates_tempdata));
+            localStorage.setItem('block_data', JSON.stringify(redux_templates_tempdata));
 
             insertBlocks(handledData);
             createSuccessNotice('Template inserted', { type: 'snackbar' });

@@ -22,13 +22,13 @@ function FullyOverlayFooter(props) {
                     pro ?
                         <div className="action-buttons">
                             <a className="redux-templates-button-download" target="_blank" href="http://redux-templates.io/">
-                                <i className="fas fa-upload"></i>&nbsp;{__('Upgrade to Pro', redux-templates.i18n)}
+                                <i className="fas fa-upload"></i>&nbsp;{__('Upgrade to Pro', redux_templates.i18n)}
                             </a>
                         </div>
                         :
                         <a className="button button-hero hide-if-no-customize button-primary redux-templates-import"
                            onClick={onImport}>
-                            <i className="fas fa-download"></i>&nbsp;{__('Import', redux-templates.i18n)}
+                            <i className="fas fa-download"></i>&nbsp;{__('Import', redux_templates.i18n)}
                         </a>
                 }
 
@@ -36,7 +36,7 @@ function FullyOverlayFooter(props) {
             <button type="button" className="collapse-sidebar button" onClick={toggleExpanded} aria-expanded="true"
                     aria-label="Collapse Sidebar">
                 <span className="collapse-sidebar-arrow"></span>
-                <span className="collapse-sidebar-label">{__('Collapse', redux-templates.i18n)}</span>
+                <span className="collapse-sidebar-label">{__('Collapse', redux_templates.i18n)}</span>
             </button>
 
             <div className="devices-wrapper">

@@ -29,7 +29,7 @@ function InstallPluginStep(props) {
         let localFailedList = [];
         let localWaitingList = [...waitingList];
         for (let pluginKey of missingPlugins) {
-            const pluginInstance = redux-templates.supported_plugins[pluginKey];
+            const pluginInstance = redux_templates.supported_plugins[pluginKey];
             setInstallingPlugin({...pluginInstance, pluginKey});
             localWaitingList = localWaitingList.filter(key => key !== pluginKey)
             setWaitingList(localWaitingList);
@@ -62,8 +62,8 @@ function InstallPluginStep(props) {
 
         <Fragment>
             <div className="redux-templates-modal-body">
-                <h5>{__('Install Required Plugins', redux-templates.i18n)}</h5>
-                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', redux-templates.i18n)}</p>
+                <h5>{__('Install Required Plugins', redux_templates.i18n)}</h5>
+                <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', redux_templates.i18n)}</p>
                 {
                     (installingPlugin === null && failedList.length > 0) &&
                     (<p className='error'>
@@ -101,12 +101,12 @@ function InstallPluginStep(props) {
                 <button className="button button-primary" disabled={installingPlugin !== null}
                         onClick={() => onInstallPlugins()}>
                     {installingPlugin !== null && <i className="fas fa-spinner fa-pulse"/>}
-                    <span>{__('Install', redux-templates.i18n)}</span>
+                    <span>{__('Install', redux_templates.i18n)}</span>
                 </button>
                 }
                 <button className="button button-secondary" disabled={installingPlugin !== null}
                         onClick={onCloseWizard}>
-                    {__('Cancel', redux-templates.i18n)}
+                    {__('Cancel', redux_templates.i18n)}
                 </button>
             </div>
         </Fragment>
