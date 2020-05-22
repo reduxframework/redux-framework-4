@@ -3,6 +3,7 @@ const { withDispatch, withSelect } = wp.data;
 const { useState, useEffect } = wp.element;
 import {ModalManager} from '~redux-templates/modal-manager';
 import CONFIG from '../config';
+import helper from '../helper';
 const ARROW_BOX = 30;
 const DEFAULT_BOX_WIDTH = 250;
 const DEFAULT_BOX_HEIGHT = 300;
@@ -116,7 +117,7 @@ function TooltipBox(props) {
         if (challengeStep === CONFIG.totalStep - 1) {
             // finalize challenge
             ModalManager.show();
-            setChallengeFinalStatus('success');
+            setChallengeFinalStatus((helper.getSecondsLeft() > 0) ? 'success' : 'contact');
             setChallengeStep(CONFIG.beginningStep);
             setChallengePassed(true);
             setChallengeListExpanded(true);

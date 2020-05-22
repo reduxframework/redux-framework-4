@@ -55,8 +55,8 @@ function ChallengeTimer(props) {
 
     // run timer
     useInterval(() => {
-        setSecondsLeft(secondsLeft - 1);
-        helper.saveSecondsLeft(secondsLeft);
+        setSecondsLeft(secondsLeft < 0 ? 0 : secondsLeft - 1);
+        helper.saveSecondsLeft(secondsLeft < 0 ? 0 : secondsLeft - 1);
     }, (started && (paused === false) && secondsLeft >= 0 && finalStatus === '') ? 1000 : null);
 
 

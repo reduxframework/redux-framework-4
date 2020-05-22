@@ -59,6 +59,8 @@ export default {
 
         secondsLeft = secondsLeft || this.getSecondsLeft();
 
+        if (secondsLeft < 0) return '0:00';
+
         var timerMinutes = this.getMinutesFormatted( secondsLeft );
         var timerSeconds = this.getSecondsFormatted( secondsLeft );
 

@@ -30,9 +30,6 @@
 }
 
 .redux-templates-builder-modal {
-    button {
-        background: transparent;
-    }
 
     position: fixed;
     top: 0;
@@ -70,6 +67,14 @@
         top: 0;
         z-index: -1;
         background: rgba(3, 8, 15, 0.75);
+    }
+
+    .components-base-control__field {
+        display: flex;
+    }
+    textarea {
+        width: 100%;
+        height: 80px;
     }
 }
 
