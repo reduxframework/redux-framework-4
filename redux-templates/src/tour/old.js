@@ -34,7 +34,7 @@ function ReduxTemplatesTour(props) {
     const tourConfig = [
         {
             selector: '.redux-templates-pagelist-modal-inner',
-            content: __('Welcome to the ReduxTemplates! Let\'s go over how to use our library.', redux_templates.i18n),
+            content: __('Welcome to the Redux! Let\'s go over how to use our library.', redux_templates.i18n),
             position: 'center',
             stepInteraction: false,
         },
@@ -76,7 +76,7 @@ function ReduxTemplatesTour(props) {
                 <div>
                     Some templates require certain plugins. You can filter or select those templates. Hint, if the text
                     is a <a href="#" className="missing-dependency">little orange</a>, you don't have that plugin
-                    installed yet, but don't worry. ReduxTemplates will help you with that too.
+                    installed yet, but don't worry. Redux will help you with that too.
                 </div>
             ),
             action: () => {
@@ -130,7 +130,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '.redux-templates-import-wizard-wrapper',
-            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
+            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. Redux will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
             position: 'top',
             action: () => {
                 // if (ModalManager.isModalOpened() === false) ModalManager.open(<LibraryModal autoTourStart={false} />)
@@ -152,7 +152,7 @@ function ReduxTemplatesTour(props) {
         },
         {
             selector: '.redux-templates-pagelist-modal-inner',
-            content: __('Well, that is the tour. Take a look around. We hope you love ReduxTemplates!', redux_templates.i18n),
+            content: __('Well, that is the tour. Take a look around. We hope you love Redux!', redux_templates.i18n),
             action: () => {
                 ModalManager.show();
                 setNeedUpdate(new Date().toString());

@@ -105,7 +105,7 @@ export const afterImportHandling = (data, handledBlock) => {
             ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} invalidBlocks={invalidBlocks} />);
         }, 500)
     } else {
-        createNotice('warning', 'Please let us know if there was an issue importing this ReduxTemplates template.', {
+        createNotice('warning', 'Please let us know if there was an issue importing this Redux template.', {
             isDismissible: true,
             id: 'redux-templatesimportfeedback',
             actions: [

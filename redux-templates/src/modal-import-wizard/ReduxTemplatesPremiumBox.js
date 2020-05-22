@@ -4,7 +4,7 @@ export default function ReduxTemplatesPremiumBox(props) {
     return (
         <div className="redux-templates-modal-body">
             <div class="section-box premium-box">
-                <h3>{__('ReduxTemplates Premium is Required', redux_templates.i18n)}</h3>
+                <h3>{__('Redux Premium is Required', redux_templates.i18n)}</h3>
 
                 <p>{__('Upgrade now to use this template and enjoy these benefits:', redux_templates.i18n)}</p>
                 <ul>
@@ -15,7 +15,7 @@ export default function ReduxTemplatesPremiumBox(props) {
                     <li><strong>20+</strong> {__('Collections', redux_templates.i18n)}</li>
                 </ul>
                 <p>
-                    <a href={redux_templates.u} class="redux-templates-upgrade-button" title="ReduxTemplates Premium"
+                    <a href={redux_templates.u} class="redux-templates-upgrade-button" title="Redux Premium"
                        target='_blank'>{__('Upgrade Now', redux_templates.i18n)}</a>
                 </p>
             </div>

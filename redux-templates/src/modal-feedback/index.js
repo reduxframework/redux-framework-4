@@ -81,7 +81,7 @@ export default function FeedbackModal(props) {
                     }
                     <h4>{__('Thank you for reporting an issue.', redux_templates.i18n)}</h4>
                     <div className={panelClassname}>
-                        <p>{__('We want to make ReduxTemplates perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}</p>
+                        <p>{__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}</p>
                         <div className="field">
                             <input type="checkbox" id="theme_plugins" checked={sendingThemePlugins} onChange={() => setSendingThemePlugins(!sendingThemePlugins)} />
                             <label htmlFor="theme_plugins">Send theme and plugins</label>

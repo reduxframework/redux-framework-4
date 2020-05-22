@@ -21,9 +21,9 @@ function Sidebar(props) {
     return (
         <Fragment>
             <PluginSidebarMoreMenuItem target="redux-templates-share">
-                {__('ReduxTemplates Template', redux_templates.i18n)}
+                {__('Redux Template', redux_templates.i18n)}
             </PluginSidebarMoreMenuItem>
-            <PluginSidebar name="redux-templates-share" title={__('ReduxTemplates Shares', redux_templates.i18n)}>
+            <PluginSidebar name="redux-templates-share" title={__('Redux Shares', redux_templates.i18n)}>
                 <PanelBody title={__('Share this Design', redux_templates.i18n)} initialOpen={true}>
                     <div className="d-flex justify-content-center">
                         <a className="button button-primary" onClick={onShare}>
