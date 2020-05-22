@@ -12,7 +12,7 @@ const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 
-function ReduxTemplatesChallenge(props) {
+function ReduxChallenge(props) {
     const {autoChallengeStart} = props;
     const {isOpen, challengeStep, setChallengeStep, listExpanded} = props;
     const [challengeClassname, setChallengeClassname] = useState('redux-templates-challenge');
@@ -56,4 +56,4 @@ export default compose([
             listExpanded: getChallengeListExpanded()
         };
     })
-])(ReduxTemplatesChallenge);
+])(ReduxChallenge);

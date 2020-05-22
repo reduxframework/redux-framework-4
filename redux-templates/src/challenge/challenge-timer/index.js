@@ -12,12 +12,12 @@ const {useState, useEffect, useRef} = wp.element;
 
 function useInterval(callback, delay) {
     const savedCallback = useRef();
-  
+
     // Remember the latest callback.
     useEffect(() => {
         savedCallback.current = callback;
     }, [callback]);
-  
+
     // Set up the interval.
     useEffect(() => {
         function tick() {
@@ -34,7 +34,7 @@ function ChallengeTimer(props) {
     const {started, expanded, setChallengeListExpanded, isChallengeOpen, finalStatus} = props;
     const [secondsLeft, setSecondsLeft] = useState(helper.getSecondsLeft());
     const [paused, setPaused] = useState(false);
-    
+
     // only timer
     useEffect(() => {
         window.addEventListener('focus', resume);
@@ -73,7 +73,7 @@ function ChallengeTimer(props) {
     return (
         <div className='block-timer'>
             <div>
-                <h3>{__('ReduxTemplates Challenge', redux_templates.i18n)}</h3>
+                <h3>{__('Redux Challenge', redux_templates.i18n)}</h3>
                 <p><span>{helper.getFormatted(secondsLeft)}</span>{__(' remaining', redux_templates.i18n)}</p>
             </div>
             <div className={classnames('caret-icon', {'closed': expanded})} onClick={() => setChallengeListExpanded(!expanded)}>
