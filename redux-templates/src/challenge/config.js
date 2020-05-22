@@ -79,7 +79,7 @@ export default {
                 <div>
                     Some templates require certain plugins. You can filter or select those templates. Hint, if the text
                     is a <a href="#" className="missing-dependency">little orange</a>, you don't have that plugin
-                    installed yet, but don't worry. ReduxTemplates will help you with that too.
+                    installed yet, but don't worry. Redux will help you with that too.
                 </div>
             ),
             action: () => {
@@ -155,7 +155,7 @@ export default {
         {
             selector: '.redux-templates-import-wizard-wrapper',
             caption: __('Import Wizard', redux_templates.i18n),
-            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. ReduxTemplates will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
+            content: __('When you click to import a template, sometimes you will be missing one of the required plugins. Redux will do its best to help you install what\'s missing. If some of them are premium plugins, you will be provided details on where you can get them.', redux_templates.i18n),
             direction: 'right',
             offset: {
                 x: 0,
@@ -169,7 +169,7 @@ export default {
             },
             action: () => {
                 // if (ModalManager.isModalOpened() === false) ModalManager.open(<LibraryModal autoTourStart={false} />)
-                if (document.getElementsByClassName('tooltipster-box')) 
+                if (document.getElementsByClassName('tooltipster-box'))
                     document.getElementsByClassName('tooltipster-box')[0].style.display = 'none';
                 ModalManager.show();
                 ModalManager.closeCustomizer();
@@ -182,7 +182,7 @@ export default {
                         let box = {top: openPanel.top + 90, left: openPanel.left - 320};
                         dispatch('redux-templates/sectionslist').setChallengeTooltipRect(box);
                     }
-                    if (document.getElementsByClassName('tooltipster-box')) 
+                    if (document.getElementsByClassName('tooltipster-box'))
                         document.getElementsByClassName('tooltipster-box')[0].style.display = 'block';
                 }, 0)
             }

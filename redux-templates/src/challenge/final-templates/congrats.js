@@ -40,7 +40,7 @@ function ChallengeCongrats(props) {
                     <p>
                         You completed the Redux Challenge in <b>{helper.getLocalizedDuration()}</b>.
                         Share your success story with other Redux users and help us spread the word
-                        <b>by giving ReduxTemplates a 5-star rating ({ratingStars}) on WordPress.org</b>.
+                        <b>by giving Redux a 5-star rating ({ratingStars}) on WordPress.org</b>.
                         Thanks for your support and we look forward to bringing more awesome features.
                     </p>
                     <a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post" class="challenge-popup-btn challenge-popup-rate-btn" target="_blank" rel="noopener">
