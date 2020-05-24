@@ -5,6 +5,7 @@ const {withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 
 import ButtonGroup from '../button-group';
+import SafeImageLoad from '../safe-image-load';
 import BackgroundImage from '../background-image';
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
@@ -34,7 +35,7 @@ function SingleItem (props) {
             <div className={innerClassname}>
                 <div className="redux-templates-default-template-image">
 
-                    {data.source !== 'wp_block_patterns' &&<img className="lazy" src={backgroundImage(data.image)}/>}
+                    {data.source !== 'wp_block_patterns' && <SafeImageLoad url={backgroundImage(data.image)}/> }
                     {data.source === 'wp_block_patterns' && <BackgroundImage data={data} />}
                     {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
                     {!requiresPro(data) && requiresInstall(data) && <span className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></span>}

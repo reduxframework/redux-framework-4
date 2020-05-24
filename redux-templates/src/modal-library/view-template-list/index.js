@@ -8,9 +8,6 @@ import MultipleItem from '../../components/multiple-item'
 import Pagination from '../../components/pagination'
 import './style.scss'
 
-
-import PreviewModal from '../../modal-preview';
-
 import {columnMap, pageSizeMap} from '../../stores/helper';
 
 function TemplateList(props) {

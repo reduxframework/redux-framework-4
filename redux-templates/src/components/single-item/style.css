@@ -5,7 +5,7 @@
   .redux-templates-single-section-item .redux-templates-tmpl-title {
     background: rgba(255, 255, 255, 0.95);
     border-top: 1px solid #f2f4f7;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
     margin: 0;
@@ -25,6 +25,11 @@
       text-align: center; }
     .redux-templates-single-section-item .redux-templates-single-item-inner .redux-templates-default-template-image {
       max-height: 350px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: 300ms; }
 
 #collections-sections-list.large > div {

@@ -12,7 +12,7 @@ const DEFAULT_OFFSET_Y = 20;
 const DEFAULT_ARROW_OFFSET_X = 20;
 const DEFAULT_ARROW_OFFSET_Y = 20;
 function TooltipBox(props) {
-    const { challengeStep, tooltipRect, isOpen, setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded } = props;
+    const { challengeStep, tooltipRect, isOpen, setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded, setImportingTemplate } = props;
     const [style, setStyle] = useState({});
     const [arrowStyle, setArrowStyle] = useState({});
     const [content, setContent] = useState('');
@@ -121,6 +121,7 @@ function TooltipBox(props) {
             setChallengeStep(CONFIG.beginningStep);
             setChallengePassed(true);
             setChallengeListExpanded(true);
+            setImportingTemplate(null);
         } else 
             setChallengeStep(challengeStep + 1);
     }
@@ -147,12 +148,13 @@ function TooltipBox(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const { setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded } = dispatch('redux-templates/sectionslist');
+        const { setChallengeStep, setChallengeFinalStatus, setChallengePassed, setChallengeListExpanded, setImportingTemplate } = dispatch('redux-templates/sectionslist');
         return {
             setChallengeStep,
             setChallengeFinalStatus,
             setChallengePassed,
-            setChallengeListExpanded
+            setChallengeListExpanded,
+            setImportingTemplate
         };
     }),
 
