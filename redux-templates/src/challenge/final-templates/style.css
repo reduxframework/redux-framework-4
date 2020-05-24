@@ -1,5 +1,5 @@
 .challenge-popup-wrapper {
-  height: 520px; }
+  height: 500px; }
 
 .challenge-popup-header {
   width: 100%;
@@ -54,11 +54,11 @@
   font-size: 18px;
   font-weight: bold; }
 
-.challenge-popup-close .fa-times-circle {
-  font-size: 27px;
+.challenge-popup-close .fa-times {
+  font-size: 20px;
   color: #777;
   float: right;
-  margin: 10px;
+  margin: 15px;
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer; }

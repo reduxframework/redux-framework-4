@@ -4,8 +4,8 @@ import {withDispatch, withSelect} from '@wordpress/data';
 import {ModalManager} from '../../modal-manager';
 import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 export function TabHeader(props) {
-    const { activeItemType, searchContext, activeCollection } = props;
-    const { setActiveItemType, setSearchContext } = props;
+    const { activeItemType, searchContext, activeCollection, isChallengeOpen } = props;
+    const { setActiveItemType, setSearchContext, setChallengeOpen } = props;
 
     const isActive = (itemType) => {
         return (activeItemType === itemType) ? 'active' : '';
@@ -18,6 +18,10 @@ export function TabHeader(props) {
     const changeTab = (tabName) => {
         if (document.getElementById('modalContent')) document.getElementById('modalContent').scrollTop = 0;
         setActiveItemType(tabName);
+    }
+
+    const closeModal = () => {
+        if (isChallengeOpen === false) ModalManager.close();
     }
 
     return (
@@ -39,7 +43,7 @@ export function TabHeader(props) {
                 <button className={ isActive('collection') } onClick={e => changeTab('collection')}> {__('Template Kits', redux_templates.i18n)} </button>
                 <button className={ isActive('saved') } onClick={e => changeTab('saved')}> {__('Saved', redux_templates.i18n)} </button>
                 <ChallengeDot step={0} />
-                <button className="redux-templates-builder-close-modal" onClick={e => { ModalManager.close() }} >
+                <button className="redux-templates-builder-close-modal" onClick={closeModal} >
                     <i className={'fas fa-times'} />
                 </button>
             </div>
@@ -51,7 +55,7 @@ export default compose([
     withDispatch((dispatch) => {
         const {
             setActiveItemType,
-            setSearchContext
+            setSearchContext,
         } = dispatch('redux-templates/sectionslist');
 
         return {
@@ -61,8 +65,8 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const { getActiveItemType, getSearchContext, getActiveCollection } = select('redux-templates/sectionslist');
-        return { activeItemType: getActiveItemType(), searchContext: getSearchContext(), activeCollection: getActiveCollection() };
+        const { getActiveItemType, getSearchContext, getActiveCollection, getChallengeOpen } = select('redux-templates/sectionslist');
+        return { activeItemType: getActiveItemType(), searchContext: getSearchContext(), activeCollection: getActiveCollection(), isChallengeOpen: getChallengeOpen() };
     })
 
 ])(TabHeader);
