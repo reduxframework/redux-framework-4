@@ -8,7 +8,7 @@ import PreviewModal from '~redux-templates/modal-preview';
 export default {
     initialSecondsLeft: 300,
     beginningStep: -1,
-    totalStep: 8,
+    totalStep: 7,
     list: [
         {
             selector: '[data-tut="tour__navigation"]',
@@ -186,35 +186,6 @@ export default {
                         document.getElementsByClassName('tooltipster-box')[0].style.display = 'block';
                 }, 0)
             }
-        },
-        {
-            selector: '.components-base-control.editor-page-attributes__template',
-            caption: __('Template Conflict', redux_templates.i18n),
-            content: __('Sometimes your theme may conflict with a template. If you\'re on a page, you can set a page template and override your theme in different ways, including just passing it all together.', redux_templates.i18n),
-            action: () => {
-                setImportingTemplate(null);
-                ModalManager.hide();
-                dispatch('core/edit-post').openGeneralSidebar('edit-post/document');
-                if (select('core/edit-post').isEditorPanelOpened('page-attributes') === false) dispatch('core/edit-post').toggleEditorPanelOpened('page-attributes');
-                const openedPanel = document.getElementsByClassName('editor-page-attributes__template');
-                if (openedPanel && openedPanel.length > 0) {
-                    let openPanel = openedPanel[0].getBoundingClientRect();
-                    let box = {top: openPanel.top, left: openPanel.left - 320};
-                    dispatch('redux-templates/sectionslist').setChallengeTooltipRect(box);
-                    dispatch('redux-templates/sectionslist').setChallengeListExpanded(false);
-                }
-            },
-            offset: {
-                x: 0,
-                y: 5,
-                arrowX: 40,
-                arrowY: 0
-            },
-            box: {
-                width: 250,
-                height: 169
-            },
-            direction: 'right'
         }
     ]
 };

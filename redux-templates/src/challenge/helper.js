@@ -7,7 +7,7 @@ export default {
      */
     getSecondsLeft: function() {
 
-        var secondsLeft = localStorage.getItem( 'redux-templatesChallengeSecondsLeft' );
+        var secondsLeft = localStorage.getItem( 'reduxChallengeSecondsLeft' );
 
         secondsLeft = secondsLeft ? parseInt( secondsLeft, 10 ) : CONFIG.initialSecondsLeft;
 
@@ -29,7 +29,7 @@ export default {
      */
     saveSecondsLeft: function( secondsLeft ) {
 
-        localStorage.setItem( 'redux-templatesChallengeSecondsLeft', secondsLeft );
+        localStorage.setItem( 'reduxChallengeSecondsLeft', secondsLeft );
     },
 
     /**
@@ -87,7 +87,7 @@ export default {
      */
     loadStep: function() {
 
-        var step = localStorage.getItem( 'redux-templatesChallengeStep' );
+        var step = localStorage.getItem( 'reduxChallengeStep' );
         step = step ? parseInt( step, 10 ) : -1;
 
         return step;
@@ -97,6 +97,6 @@ export default {
      * Save Challenge step.
      */
     saveStep: function( step ) {
-        localStorage.setItem( 'redux-templatesChallengeStep', step );
+        localStorage.setItem( 'reduxChallengeStep', step );
     },
 };
