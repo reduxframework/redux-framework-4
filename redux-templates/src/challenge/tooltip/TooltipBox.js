@@ -135,10 +135,10 @@ function TooltipBox(props) {
                     <button className="challenge-done-btn" onClick={toNextStep}>Done</button>
                 </div>
             </div>
-            <div class="tooltipster-arrow" style={arrowStyle}>
-                <div class="tooltipster-arrow-uncropped">
-                    <div class="tooltipster-arrow-border"></div>
-                    <div class="tooltipster-arrow-background"></div>
+            <div className="tooltipster-arrow" style={arrowStyle}>
+                <div className="tooltipster-arrow-uncropped">
+                    <div className="tooltipster-arrow-border"></div>
+                    <div className="tooltipster-arrow-background"></div>
                 </div>
             </div>
         </div>
