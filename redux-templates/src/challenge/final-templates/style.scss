@@ -1,5 +1,6 @@
 .challenge-popup-wrapper {
     height: 500px;
+    border-radius: 10px;
 }
 .challenge-popup-header {
     width: 100%;
@@ -15,7 +16,9 @@
 
 .challenge-popup-header-contact {
     background-position: center;
-    background-size: cover;
+    background-size: auto 75%;
+    background-color: #eee;
+    background-repeat: no-repeat;
 }
 
 .challenge-popup-content {
@@ -69,7 +72,6 @@
     color: #777;
     float: right;
     margin: 15px;
-    background-color: #fff;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -97,5 +99,18 @@
 
     .dashicons-external {
         margin-left: 6px;
+    }
+}
+
+.challenge-popup-content.challenge-contact {
+    p {
+        font-size: 14px;
+    }
+    textarea {
+        margin-bottom: 10px;
+    }
+    label {
+        font-size: 13px;
+        margin-bottom: 15px;
     }
 }

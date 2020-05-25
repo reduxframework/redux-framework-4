@@ -44,18 +44,15 @@ function ChallengeContact(props) {
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper challenge-popup-wrapper">
                 <div class="challenge-popup-header challenge-popup-header-contact"
-                    style={{ backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-congrats.png'})` }}>
+                    style={{ backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-contact.png'})` }}>
                     <a className="challenge-popup-close" onClick={closeModal}>
                         <i className='fas fa-times' />
                     </a>
                 </div>
-                <div class="challenge-popup-content">
-                    <form id="challenge-contact-form">
-
-                    </form>
-                    <h3>{__('Help us improve WPForms', redux_templates.i18n)}</h3>
+                <div class="challenge-popup-content challenge-contact">
+                    <h3>{__('Help us improve Redux', redux_templates.i18n)}</h3>
                     <p>
-                        We`re sorry that it took longer than 5 minutes to create a form. Our goal is to create the most beginner friendly Redux Templates plugin. Please take a moment to let us know how we can improve Redux.
+                        {__('We`re sorry that it took longer than 5 minutes to create a form. Our goal is to create the most beginner friendly Redux Templates plugin. Please take a moment to let us know how we can improve Redux.', redux_templates.i18n)}
                     </p>
                     <textarea value={comment} onChange={handleChange}></textarea>
                     <CheckboxControl
