@@ -1,3 +1,4 @@
+@import "../variable";
 .challenge-popup-wrapper {
     height: 500px;
     border-radius: 10px;
@@ -27,7 +28,7 @@
 }
 
 .challenge-popup-content h3 {
-    color: #df7739;
+    color: $primary-color;
     margin: 0 0 20px;
     font-size: 24px;
     font-family: "Helvetica Neue";
@@ -88,13 +89,13 @@
     font-size: 15px;
     font-weight: 600;
     padding: 14px 25px;
-    border: 1px solid #bf5e31;
-    background-color: #e27730;
+    border: 1px solid $border-color;
+    background-color: $primary-color;
     color: #fff;
 
     &:hover {
-        border: 1px solid #b85a1b;
-        background-color: #b85a1b;
+        border: 1px solid $border-hover-color;
+        background-color: $hover-color;
     }
 
     .dashicons-external {

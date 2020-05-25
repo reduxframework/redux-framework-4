@@ -80,14 +80,14 @@ span.wpforms-challenge-dot {
   font-weight: 600;
   padding: 7px 18px;
   border: 1px solid #bf5e31;
-  background-color: #e27730;
+  background-color: #24B0A6;
   color: #fff;
   display: block;
   margin: 15px auto 0; }
 
 .challenge-tooltip.tooltipster-sidetip .tooltipster-box .challenge-done-btn:hover {
-  border: 1px solid #b85a1b;
-  background-color: #b85a1b; }
+  border: 1px solid #19837C;
+  background-color: #19837C; }
 
 .challenge-tooltip.tooltipster-sidetip .tooltipster-arrow-border {
   border: none; }
