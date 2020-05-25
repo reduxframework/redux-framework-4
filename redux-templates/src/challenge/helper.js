@@ -9,19 +9,9 @@ export default {
 
         var secondsLeft = localStorage.getItem( 'reduxChallengeSecondsLeft' );
 
-        secondsLeft = secondsLeft ? parseInt( secondsLeft, 10 ) : CONFIG.initialSecondsLeft;
+        secondsLeft = isNaN(secondsLeft) ? CONFIG.initialSecondsLeft : parseInt( secondsLeft, 10 );
 
         return secondsLeft;
-    },
-
-    /**
-     * Get number of seconds spent completing the Challenge.
-     */
-    getSecondsSpent: function( secondsLeft ) {
-
-        secondsLeft = secondsLeft || getSecondsLeft();
-
-        return CONFIG.initialSecondsLeft - secondsLeft;
     },
 
     /**
@@ -36,9 +26,6 @@ export default {
      * Get 'minutes' part of timer display.
      */
     getMinutesFormatted: function( secondsLeft ) {
-
-        secondsLeft = secondsLeft || this.getSecondsLeft();
-
         return Math.floor( secondsLeft / 60 );
     },
 
@@ -46,9 +33,6 @@ export default {
      * Get 'seconds' part of timer display.
      */
     getSecondsFormatted: function( secondsLeft ) {
-
-        secondsLeft = secondsLeft || this.getSecondsLeft();
-
         return secondsLeft % 60;
     },
 
@@ -56,8 +40,6 @@ export default {
      * Get formatted timer for display.
      */
     getFormatted: function( secondsLeft ) {
-
-        secondsLeft = secondsLeft || this.getSecondsLeft();
 
         if (secondsLeft < 0) return '0:00';
 
@@ -70,8 +52,8 @@ export default {
     /**
      * Get Localized time string for display
      */
-    getLocalizedDuration: function( secondsLeft ) {
-        secondsLeft = secondsLeft || this.getSecondsLeft();
+    getLocalizedDuration: function() {
+        secondsLeft = this.getSecondsLeft();
         secondsLeft = CONFIG.initialSecondsLeft - secondsLeft;
 
         var timerMinutes = this.getMinutesFormatted( secondsLeft );
@@ -88,7 +70,7 @@ export default {
     loadStep: function() {
 
         var step = localStorage.getItem( 'reduxChallengeStep' );
-        step = step ? parseInt( step, 10 ) : -1;
+        step = isNaN(step) ? -1 : parseInt( step, 10 );
 
         return step;
     },

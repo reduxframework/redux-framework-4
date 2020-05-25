@@ -292,7 +292,7 @@ export const missingPluginsArray = () => {
  * Get last saved step.
  */
 export const loadChallengeStep = () => {
-    var step = localStorage.getItem( 'redux-templatesChallengeStep' );
+    var step = localStorage.getItem( 'reduxChallengeStep' );
     if (step === null)
         return -1;
     step = parseInt( step, 10 );
@@ -303,5 +303,5 @@ export const loadChallengeStep = () => {
  * Save Challenge step.
  */
 export const saveChallengeStep = (step) => {
-    localStorage.setItem( 'redux-templatesChallengeStep', step );
+    localStorage.setItem( 'reduxChallengeStep', step );
 }

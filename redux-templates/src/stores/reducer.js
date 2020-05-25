@@ -50,7 +50,7 @@ export const initialState = {
         currentStep: loadChallengeStep(),
         tooltipRect: {},
         finalStatus: '',
-        passed: getWithExpiry('redux-templatesChallengePassed', false),
+        passed: getWithExpiry('reduxChallengePassed', false),
         listExpanded: true
     },
     plugins: {},
@@ -253,7 +253,7 @@ export const reducer = ( state = initialState, action ) => {
                 }
             }
         case 'SET_CHALLENGE_PASSED':
-            setWithExpiry('redux-templatesChallengePassed', action.data, EXIPRY_TIME);
+            setWithExpiry('reduxChallengePassed', action.data, EXIPRY_TIME);
             return {
                 ...state,
                 challenge: {
