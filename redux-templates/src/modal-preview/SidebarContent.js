@@ -3,6 +3,7 @@ const {__} = wp.i18n
 
 import * as Icons from '~redux-templates/icons'
 import copy from 'clipboard-copy';
+import SafeImageLoad from '~redux-templates/components/safe-image-load';
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
 export default function SidebarContent(props) {
@@ -27,10 +28,9 @@ export default function SidebarContent(props) {
             <div className="install-theme-info">
                 <h3 className="theme-name">{name}</h3>
                 <div className="theme-screenshot-wrap">
-                    <img className="theme-screenshot"
-                         src={image ? image : redux_templates.plugin + 'assets/img/redux-templates-medium.jpg'} alt=""/>{pro ?
-                    <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span> : ''
-                }</div>
+                    <SafeImageLoad url={image} className="theme-screenshot" />
+                    { pro ? <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span> : '' }
+                </div>
 
                 <h5 className="theme-hash">
                     <div className="button-container">

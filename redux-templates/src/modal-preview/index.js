@@ -7,6 +7,7 @@ import SitePreviewSidebar from './SitePreviewSidebar';
 import {ModalManager} from '../modal-manager'
 import ImportWizard from '../modal-import-wizard';
 import {Fragment} from 'react';
+import SafeImageLoad from '~redux-templates/components/safe-image-load';
 import {processImportHelper} from '~redux-templates/stores/actionHelper';
 import './style.scss';
 
@@ -88,9 +89,9 @@ function PreviewModal(props) {
                         <iframe src={itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
                     }
                     {!itemData.url &&
-                        <div className='redux-templates-modal-preview-box'><img
-                            src={image_url}
-                            title=''/></div>
+                        <div className='redux-templates-modal-preview-box'>
+                            <SafeImageLoad url={image_url} />
+                        </div>
                     }
 
                 </div>

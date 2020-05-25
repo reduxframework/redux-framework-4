@@ -5,7 +5,7 @@ const {withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 
 import ButtonGroup from '../button-group';
-import SafeImageLoad from '../safe-image-load';
+import SafeImageLoad from '~redux-templates/components/safe-image-load';
 import BackgroundImage from '../background-image';
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 

@@ -46,7 +46,7 @@ function ChallengeContact(props) {
                 <div class="challenge-popup-header challenge-popup-header-contact"
                     style={{ backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-congrats.png'})` }}>
                     <a className="challenge-popup-close" onClick={closeModal}>
-                        <i class="fa fa-times-circle fa-lg"></i>
+                        <i className='fas fa-times' />
                     </a>
                 </div>
                 <div class="challenge-popup-content">
