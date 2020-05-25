@@ -18,7 +18,7 @@ import './style.scss'
 
 function LibraryModal(props) {
     const {
-        fetchLibraryFromAPI, activeCollection, activeItemType, errorMessages, importingTemplate, challengeFinalStatus,
+        fetchLibraryFromAPI, activeCollection, activeItemType, errorMessages, importingTemplate, challengeFinalStatus, isChallengeOpen,
         setLoading, setImportingTemplate
     } = props;
     const [loaded, setLoaded] = useState(false);
@@ -84,7 +84,7 @@ function LibraryModal(props) {
                 importingTemplate && <ImportWizard startImportTemplate={processImport} />
             }
             { (challengeFinalStatus !== '') && <ChallengeFinalTemplate finalStatus={challengeFinalStatus} /> }
-            <FabWrapper />
+            { !isChallengeOpen && <FabWrapper /> }
         </Modal>
     );
 }
@@ -113,7 +113,8 @@ export default compose([
             activeItemType: getActiveItemType(),
             errorMessages: getErrorMessages(),
             importingTemplate: getImportingTemplate(),
-            challengeFinalStatus: getChallengeFinalStatus()
+            challengeFinalStatus: getChallengeFinalStatus(),
+            isChallengeOpen: getChallengeOpen()
         };
     })
 ])(LibraryModal);

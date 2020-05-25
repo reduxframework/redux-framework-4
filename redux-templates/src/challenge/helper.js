@@ -53,7 +53,7 @@ export default {
      * Get Localized time string for display
      */
     getLocalizedDuration: function() {
-        secondsLeft = this.getSecondsLeft();
+        let secondsLeft = this.getSecondsLeft();
         secondsLeft = CONFIG.initialSecondsLeft - secondsLeft;
 
         var timerMinutes = this.getMinutesFormatted( secondsLeft );
