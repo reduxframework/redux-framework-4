@@ -14,8 +14,6 @@
   align-items: center;
   justify-content: center;
   pointer-events: none; }
-  .redux-templates-builder-modal button {
-    background: transparent; }
   .redux-templates-builder-modal.hidden {
     display: none; }
   .redux-templates-builder-modal .wp-full-overlay-sidebar .wp-core-ui .button-group.button-hero .button,
@@ -33,6 +31,11 @@
     top: 0;
     z-index: -1;
     background: rgba(3, 8, 15, 0.75); }
+  .redux-templates-builder-modal .components-base-control__field {
+    display: flex; }
+  .redux-templates-builder-modal textarea {
+    width: 100%;
+    height: 80px; }
 
 .redux-templates-builder-modal-header {
   display: flex;
@@ -121,7 +124,8 @@
     cursor: pointer;
     font-size: 13px;
     margin: 0 1px 0 0;
-    color: #191e23; }
+    color: #191e23;
+    background: transparent; }
     .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active {
       box-shadow: inset 0 -2px #007cba;
       font-weight: 600; }

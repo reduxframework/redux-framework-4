@@ -52,7 +52,7 @@ function ChallengeContact(props) {
                 <div class="challenge-popup-content challenge-contact">
                     <h3>{__('Help us improve Redux', redux_templates.i18n)}</h3>
                     <p>
-                        {__('We`re sorry that it took longer than 5 minutes to create a form. Our goal is to create the most beginner friendly Redux Templates plugin. Please take a moment to let us know how we can improve Redux.', redux_templates.i18n)}
+                        {__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
                     </p>
                     <textarea value={comment} onChange={handleChange}></textarea>
                     <CheckboxControl

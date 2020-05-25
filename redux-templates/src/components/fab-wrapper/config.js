@@ -6,8 +6,7 @@ export default {
     event: 'click',
 
     mainButtonStyles: {
-
-        backgroundColor: '#c751ff',
+        backgroundColor: '#24B0A6',
         fill: '#ffffff',
         transform: 'none',
         transition: 'none',
@@ -15,6 +14,6 @@ export default {
     },
     alwaysShowTitle: false,
     actionButtonStyles: {
-        backgroundColor: '#7557ff',
+        backgroundColor: '#19837C',
     }
 }
