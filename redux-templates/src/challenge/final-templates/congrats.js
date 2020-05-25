@@ -38,10 +38,10 @@ function ChallengeCongrats(props) {
                 <div class="challenge-popup-content">
                     <h3>{__( 'Congrats, you did it!', redux_templates.i18n )}</h3>
                     <p>
-                        You completed the Redux Challenge in <b>{helper.getLocalizedDuration()}</b>.
-                        Share your success story with other Redux users and help us spread the word
-                        <b>by giving Redux a 5-star rating ({ratingStars}) on WordPress.org</b>.
-                        Thanks for your support and we look forward to bringing more awesome features.
+                        {__( 'You completed the Redux Challenge in ', redux_templates.i18n )}<b>{helper.getLocalizedDuration()}</b>.
+                        {__('Share your success story with other Redux users and help us spread the word', redux_templates.i18n)}
+                        <b>{__('by giving Redux a 5-star rating (', redux_templates.i18n)} {ratingStars}{__(') on WordPress.org', redux_templates.i18n)}</b>.
+                        {__('Thanks for your support and we look forward to bringing more awesome features.', redux_templates.i18n)}
                     </p>
                     <a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post" class="challenge-popup-btn challenge-popup-rate-btn" target="_blank" rel="noopener">
                         {__( 'Rate Redux on Wordpress.org', redux_templates.i18n ) }

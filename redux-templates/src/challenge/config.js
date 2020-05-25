@@ -25,16 +25,23 @@ export default {
             direction: 'top',
             content: () => (
                 <div>
-                    These are the different types of templates we have.
+                    {__('These are the different types of templates we have.', redux_templates.i18n)}
                     <ul>
                         <li>
-                            <strong>Blocks</strong> are the building blocks of a page. Each "row" of content on a page we consider a section.
+                            <strong>{__('Blocks', redux_templates.i18n)}</strong>
+                            {__(' are the building blocks of a page. Each "row" of content on a page we consider a section.', redux_templates.i18n)}
                         </li>
-                        <li><strong>Pages</strong> are, you guessed it, a group of multiple sections making up a page.
+                        <li>
+                            <strong>{__('Pages', redux_templates.i18n)}</strong>
+                            {__(' are, you guessed it, a group of multiple sections making up a page.', redux_templates.i18n)}
                         </li>
-                        <li><strong>Template Kits</strong> are groups of pages that all follow a style or theme.
+                        <li>
+                            <strong>{__('Template Kits', redux_templates.i18n)}</strong>
+                            {__(' are groups of pages that all follow a style or theme.', redux_templates.i18n)}
                         </li>
-                        <li><strong>Saved</strong> are reusable blocks that you may have previously saved for later.
+                        <li>
+                            <strong>{__('Saved', redux_templates.i18n)}</strong>
+                            {__(' are reusable blocks that you may have previously saved for later.', redux_templates.i18n)}
                         </li>
                     </ul>
                 </div>
@@ -77,9 +84,9 @@ export default {
             },
             content: () => (
                 <div>
-                    Some templates require certain plugins. You can filter or select those templates. Hint, if the text
-                    is a <a href="#" className="missing-dependency">little orange</a>, you don't have that plugin
-                    installed yet, but don't worry. Redux will help you with that too.
+                    {__('Some templates require certain plugins. You can filter or select those templates. Hint, if the text is a ', redux_templates.i18n)}
+                    <a href="#" className="missing-dependency">{__('little orange', redux_templates.i18n)}</a>
+                    {__(', you don`t have that plugin installed yet, but don`t worry. Redux will help you with that too.', redux_templates.i18n)}
                 </div>
             ),
             action: () => {
