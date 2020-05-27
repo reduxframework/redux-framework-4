@@ -237,6 +237,8 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$welcome = new Redux_Welcome();
 			new Redux_Rest_Api_Builder( $this );
 
+			add_action( 'admin_init', array( $this, 'admin_init' ) );
+
 			$support_hash = md5( md5( Redux_Functions_Ex::hash_key() . '-redux' ) . '-support' );
 			add_action( 'wp_ajax_nopriv_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );
 			add_action( 'wp_ajax_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );
@@ -284,6 +286,12 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					return;
 				}
 
+				if ( 'Redux_ConnectionBanner' === $class_name ) {
+					require_once Redux_Path::get_path( '/inc/welcome/class-redux-connection-banner.php' );
+
+					return;
+				}
+
 				// Everything else.
 				$file = 'class.' . strtolower( $class_name ) . '.php';
 
@@ -310,6 +318,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		private function hooks() {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( 'redux/core/hooks', $this );
+		}
+
+		function admin_init() {
+			Redux_ConnectionBanner::init();
 		}
 
 		/**
