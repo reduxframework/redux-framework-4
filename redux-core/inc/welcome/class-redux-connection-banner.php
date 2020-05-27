@@ -50,6 +50,16 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_banner_scripts' ) );
             add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
             add_action( 'admin_head', array( $this, 'admin_head' ) );
+            add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
+        }
+
+        function admin_body_class( $admin_body_class = '' ) {
+            $classes = explode( ' ', trim( $admin_body_class ) );
+    
+            $classes[] = false ? 'redux-connected' : 'redux-disconnected';
+    
+            $admin_body_class = implode( ' ', array_unique( $classes ) );
+            return " $admin_body_class ";
         }
 
         /**

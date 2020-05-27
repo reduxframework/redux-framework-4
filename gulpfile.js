@@ -55,7 +55,8 @@ var styles = [
 	{ 'path': './redux-core/assets/scss/media.scss', 'dest': './redux-core/assets/css/' },
 	{ 'path': './redux-core/assets/scss/redux-admin.scss', 'dest': './redux-core/assets/css/' },
 	{ 'path': './redux-core/assets/scss/rtl.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/inc/welcome/css/redux-welcome.scss', 'dest': './redux-core/inc/welcome/css/' }
+	{ 'path': './redux-core/inc/welcome/css/redux-welcome.scss', 'dest': './redux-core/inc/welcome/css/' },
+	{ 'path': './redux-core/inc/welcome/css/redux-banner.scss', 'dest': './redux-core/inc/welcome/css/' }
 ];
 
 // JS Vendor related.
