@@ -48,8 +48,8 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_banner_scripts' ) );
-            add_action( 'admin_print_styles', array( Redux::init(), 'admin_banner_styles' ) );
             add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
+            add_action( 'admin_head', array( $this, 'admin_head' ) );
         }
 
         /**
@@ -106,7 +106,6 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
 
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_banner_scripts' ) );
-            add_action( 'admin_print_styles', array( Redux::init(), 'admin_banner_styles' ) );
 
             if ( Redux::state( 'network_nag' ) ) {
                 add_action( 'network_admin_notices', array( $this, 'network_connect_notice' ) );
@@ -211,26 +210,21 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             );
         }
 
-        function admin_banner_styles() {
-            $min = ''; //( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-    
-            if ( ! wp_style_is( 'redux-dops-style' ) ) {
-                wp_register_style(
-                    'redux-dops-style',
-                    plugins_url( '_inc/build/admin.css', JETPACK__PLUGIN_FILE ),
-                    array(),
-                    $this->version
-                );
-            }
+		/**
+		 * Hide Individual Dashboard Pages
+		 *
+		 * @access public
+		 * @since  1.4
+		 * @return void
+		 */
+		public function admin_head() {
+			?>
 
-            wp_enqueue_style(
-                'redux',
-                plugins_url( "css/redux-banners{$min}.css", JETPACK__PLUGIN_FILE ),
-                array( 'redux-dops-style' ),
-                JETPACK__VERSION . '-20121016'
-            );
-            wp_style_add_data( 'redux', 'rtl', 'replace' );
-            wp_style_add_data( 'redux', 'suffix', $min );
+			<link
+				rel='stylesheet' id='redux-banner-css' <?php // phpcs:ignore WordPress.WP.EnqueuedResources ?>
+				href='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/css/redux-banner.css'
+				type='text/css' media='all'/>
+			<?php
         }
 
         /**
