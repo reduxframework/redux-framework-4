@@ -61,17 +61,17 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
          *              The param $slide_num was removed since we removed all slides but the first one.
          * @since 4.4.0
          *
-         * @param string $jp_version_banner_added A short version of when the banner was added. Ex. 44
+         * @param string $version_banner_added A short version of when the banner was added. Ex. 44
          *
          * @return string
          */
-        function build_connect_url_for_slide( $jp_version_banner_added ) {
+        function build_connect_url_for_slide( $version_banner_added ) {
             global $current_screen;
-            $url = Redux::init()->build_connect_url(
+            /* $url = Redux::init()->build_connect_url(
                 true,
                 false,
-                sprintf( 'connect-banner-%s-%s', $jp_version_banner_added, $current_screen->base )
-            );
+                sprintf( 'connect-banner-%s-%s', $version_banner_added, $current_screen->base )
+            );*/
             return add_query_arg( 'auth_approved', 'true', $url );
         }
 
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
 
             wp_localize_script(
                 'Redux-connection-banner-js',
-                'jp_banner',
+                'redux-banner',
                 array(
                     'ajax_url'              => admin_url( 'admin-ajax.php' ),
                     'connectionBannerNonce' => wp_create_nonce( 'reduxion-banner-nonce' ),
@@ -192,7 +192,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
 
             wp_localize_script(
                 'Redux-connect-button',
-                'jpConnect',
+                'reduxConnect',
                 array(
                     'apiBaseUrl'            => esc_url_raw( rest_url( 'Redux/v4' ) ),
                     'registrationNonce'     => wp_create_nonce( 'Redux-registration-nonce' ),
@@ -300,11 +300,11 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                     ?>
                                 </p>
 
-                                <div class="jp-banner__button-container">
-                                    <span class="jp-banner__tos-blurb"><?php $this->render_tos_blurb(); ?></span>
+                                <div class="redux-button-container">
+                                    <span class="redux-tos-blurb"><?php $this->render_tos_blurb(); ?></span>
                                     <a
                                             href="<?php echo esc_url( $this->build_connect_url_for_slide( '72' ) ); ?>"
-                                            class="dops-button is-primary jp-banner__alt-connect-button">
+                                            class="dops-button is-primary redux-alt-connect-button">
                                         <?php esc_html_e( 'Set up Redux', 'Redux' ); ?>
                                     </a>
                                 </div>
@@ -328,43 +328,36 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                 $bottom_connect_url_from = 'landing-page-bottom';
             }
             ?>
-            <div class="redux-banner-container"><div class="redux-banner-container-card">
+            <div class="redux-banner-full-container"><div class="redux-banner-full-container-card">
 
                     <?php if ( 'plugins' === $current_screen->base ) : ?>
-                        <?php
-                        $logo = new Logo();
-                        echo $logo->render();
-                        ?>
 
-                        <div class="redux-banner-dismiss">
+                        <div class="redux-banner-full-dismiss">
                             <svg class="redux-banner-svg-dismiss" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Dismiss Redux Connection Window</title><rect x="0" fill="none" /><g><path d="M17.705 7.705l-1.41-1.41L12 10.59 7.705 6.295l-1.41 1.41L10.59 12l-4.295 4.295 1.41 1.41L12 13.41l4.295 4.295 1.41-1.41L13.41 12l4.295-4.295z"/></g></svg>
                         </div>
                     <?php endif; ?>
 
-                    <div class="redux-banner-step-header">
-                        <h2 class="redux-banner-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'Redux' ); ?></h2>
+                    <div class="redux-banner-full-step-header">
+                        <h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'Redux' ); ?></h2>
                     </div>
 
-                    <p class="redux-banner-tos-blurb">
-                        <?php $this->render_tos_blurb(); ?>
-                    </p>
 
-                    <p class="redux-banner-button-container">
-                        <a href="<?php echo esc_url( Redux::init()->build_connect_url( true, false, $bottom_connect_url_from ) ); ?>"
+                    <p class="redux-banner-full-button-container">
+                        <a href=""
                         class="dops-button is-primary redux-button">
                             <?php esc_html_e( 'Set up Redux', 'Redux' ); ?>
                         </a>
                     </p>
 
-                    <div class="redux-banner-row" id="Redux-connection-cards">
-                        <div class="redux-banner-slide">
-                            <div class="redux-banner-slide-card illustration">
+                    <div class="redux-banner-full-row" id="Redux-connection-cards">
+                        <div class="redux-banner-full-slide">
+                            <div class="redux-banner-full-slide-card illustration">
                                 <img
                                         src="<?php echo plugins_url( 'images/security.svg', Redux__PLUGIN_FILE ); ?>"
                                         alt="<?php esc_attr_e( 'Security & Backups', 'Redux' ); ?>"
                                 />
                             </div>
-                            <div class="redux-banner-slide-card">
+                            <div class="redux-banner-full-slide-card">
                                 <p>
                                 <?php
                                     esc_html_e(
@@ -377,14 +370,14 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                     </p>
                             </div>
                         </div>
-                        <div class="redux-banner-slide">
-                            <div class="redux-banner-slide-card illustration">
+                        <div class="redux-banner-full-slide">
+                            <div class="redux-banner-full-slide-card illustration">
                                 <img
                                         src="<?php echo plugins_url( 'images/Redux-speed.svg', Redux__PLUGIN_FILE ); ?>"
                                         alt="<?php esc_attr_e( 'Built-in Performance', 'Redux' ); ?>"
                                 />
                             </div>
-                            <div class="redux-banner-slide-card">
+                            <div class="redux-banner-full-slide-card">
                                 <p>
                                 <?php
                                     esc_html_e(
@@ -400,7 +393,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                     </div>
 
                     <?php if ( 'plugins' === $current_screen->base ) : ?>
-                        <p class="redux-banner-dismiss-paragraph">
+                        <p class="redux-banner-full-dismiss-paragraph">
                             <a>
                                 <?php
                                 echo esc_html_x(
