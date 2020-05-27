@@ -251,7 +251,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                     <div class="redux-banner-content-container">
 
                         <!-- slide 1: intro -->
-                        <div class="redux-banner-slide redux-banner-slide-one jp__slide-is-active">
+                        <div class="redux-banner-slide redux-banner-slide-one redux-slide-is-active">
 
                             <div class="redux-banner-content-icon redux-illo">
                                 <?php
