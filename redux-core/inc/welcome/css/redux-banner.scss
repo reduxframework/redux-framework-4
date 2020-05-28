@@ -60,6 +60,7 @@
     padding: 1rem;
     height: 1.5rem;
     width: 1.5rem;
+    cursor: pointer;
 }
 
 .redux-banner-full-step-header {
@@ -309,12 +310,12 @@
     margin: 0 auto;
 }
 
-.redux-illo .jetpack-logo {
+.redux-illo .redux-logo {
     margin-bottom: 2.25rem;
 }
 
 @media (max-width: 530px) {
-    .redux-illo .jetpack-logo {
+    .redux-illo .redux-logo {
         margin-left: 0;
     }
 }
@@ -429,7 +430,7 @@
     }
   }
   
-  .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.jetpack-logo {
+  .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.redux-logo {
     width: 160px;
   }
   

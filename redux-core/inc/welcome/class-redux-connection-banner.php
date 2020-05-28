@@ -47,7 +47,6 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
         private function __construct() {
             add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
-            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_banner_scripts' ) );
             add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
             add_action( 'admin_head', array( $this, 'admin_head' ) );
             add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
@@ -115,7 +114,6 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             }
 
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
-            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_banner_scripts' ) );
 
             if ( Redux::state( 'network_nag' ) ) {
                 add_action( 'network_admin_notices', array( $this, 'network_connect_notice' ) );
@@ -126,34 +124,6 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                 add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
                 delete_transient( 'activated_Redux' );
             }
-        }
-
-        /**
-         * Enqueues JavaScript for new connection banner.
-         *
-         * @since 4.4.0
-         */
-        public function enqueue_banner_scripts() {
-            wp_enqueue_script(
-                'Redux-connection-banner-js',
-                '_inc/build/Redux-connection-banner.min.js',
-/*                Assets::get_file_url_for_environment(
-                    '_inc/build/Redux-connection-banner.min.js',
-                    '_inc/Redux-connection-banner.js'
-                ),*/
-                array( 'jquery' ),
-                $this->version,
-                true
-            );
-
-            wp_localize_script(
-                'Redux-connection-banner-js',
-                'redux-banner',
-                array(
-                    'ajax_url'              => admin_url( 'admin-ajax.php' ),
-                    'connectionBannerNonce' => wp_create_nonce( 'reduxion-banner-nonce' ),
-                )
-            );
         }
 
         /**
@@ -233,7 +203,11 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
 			<link
 				rel='stylesheet' id='redux-banner-css' <?php // phpcs:ignore WordPress.WP.EnqueuedResources ?>
 				href='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/css/redux-banner.css'
-				type='text/css' media='all'/>
+                type='text/css' media='all'/>
+            <script
+				id="redux-banner-admin-js"
+				src='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/js/redux-banner-admin.js'>
+			</script>
 			<?php
         }
 
@@ -470,25 +444,5 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             );
         }
 
-        public function get_file_url_for_environment( $min_path, $non_min_path ) {
-            $path = ( Jetpack_Constants::is_defined( 'SCRIPT_DEBUG' ) && Jetpack_Constants::get_constant( 'SCRIPT_DEBUG' ) )
-                ? $non_min_path
-                : $min_path;
-    
-            $url = plugins_url( $path, Jetpack_Constants::get_constant( 'JETPACK__PLUGIN_FILE' ) );
-    
-            /**
-             * Filters the URL for a file passed through the get_file_url_for_environment function.
-             *
-             * @since 8.1.0
-             *
-             * @package assets
-             *
-             * @param string $url The URL to the file.
-             * @param string $min_path The minified path.
-             * @param string $non_min_path The non-minified path.
-             */
-            return apply_filters( 'jetpack_get_file_for_environment', $url, $min_path, $non_min_path );
-        }
     }
 }
