@@ -310,7 +310,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                     ?>
                                 </p>
 
-                                <div class="redux-button-container">
+                                <div class="redux-banner-button-container">
                                     <span class="redux-tos-blurb"><?php $this->render_tos_blurb(); ?></span>
                                     <a
                                             href="<?php echo esc_url( $this->build_connect_url_for_slide( '72' ) ); ?>"
@@ -352,7 +352,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                     </div>
 
 
-                    <p class="redux-banner-full-button-container">
+                    <p class="redux-banner-button-container">
                         <a href=""
                         class="dops-button is-primary redux-button">
                             <?php esc_html_e( 'Set up Redux', 'Redux' ); ?>

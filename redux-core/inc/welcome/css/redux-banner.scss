@@ -1,4 +1,4 @@
-.updated.redux-banner {
+.updated.jp-banner {
     position: relative;
     padding: 0;
 }
@@ -52,7 +52,7 @@
     padding: 1rem;
 }
 
-.redux-svg-dismiss {
+.redux-banner-svg-dismiss {
     position: absolute;
     right: 0;
     top: 0;
@@ -173,12 +173,12 @@
     margin: 0.625rem 0 1.5rem;
 }
 
-.redux-banner-full-button-container-loading {
+.redux-banner-button-container-loading {
     font-size: 14px;
     animation: jetpack-loading-fade 1.6s ease-in-out infinite;
 }
 
-.redux-banner-full-button-container .jp-spinner {
+.redux-banner-button-container .redux-spinner {
     width: 100%;
 }
 

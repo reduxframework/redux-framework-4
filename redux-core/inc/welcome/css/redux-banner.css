@@ -52,7 +52,7 @@
     padding: 1rem;
 }
 
-.redux-svg-dismiss {
+.redux-banner-svg-dismiss {
     position: absolute;
     right: 0;
     top: 0;
@@ -173,12 +173,12 @@
     margin: 0.625rem 0 1.5rem;
 }
 
-.redux-banner-full-button-container-loading {
+.redux-banner-button-container-loading {
     font-size: 14px;
     animation: jetpack-loading-fade 1.6s ease-in-out infinite;
 }
 
-.redux-banner-full-button-container .jp-spinner {
+.redux-banner-button-container .redux-spinner {
     width: 100%;
 }
 
@@ -360,23 +360,37 @@
 
 .redux-banner-button-container .dops-button {
     margin: 0.3125rem 0;
+    cursor: pointer;
+    display: inline-block;
+    outline: 0;
+    overflow: hidden;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 3px;
+    padding: 7px 14px 9px;
+    -webkit-appearance: none;
 }
 
 .redux-banner-button-container .dops-button.is-primary {
-    background: #00BE28;
-    border-color: #00a523;
+    background: #007cba;
+    border-color: #007cba;
+    color: #fff;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     flex-shrink: 0;
 }
 
 .redux-banner-button-container .dops-button.is-primary:hover, .redux-banner-button-container .dops-button.is-primary:focus {
-    background: #00a523;
-    border-color: #008b1d;
+    background: #007cba;
+    border-color: #007cba;
 }
 
 .redux-banner-button-container .dops-button.is-primary:focus {
-    box-shadow: 0 0 0 1px white, 0 0 0 3px #008b1d;
+    box-shadow: 0 0 0 1px white, 0 0 0 3px #007cba;
 }
 
 
