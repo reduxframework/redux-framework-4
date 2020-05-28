@@ -112,7 +112,7 @@
 }
 
 .redux-tos-blurb a,
-.redux-dismiss-paragraph a {
+.redux-banner-full-dismiss-paragraph a {
     cursor: pointer;
     color: inherit;
     text-decoration: underline;
@@ -363,20 +363,32 @@
 }
 
 .redux-banner-button-container .dops-button.is-primary {
-    background: #00BE28;
-    border-color: #00a523;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    flex-shrink: 0;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 3px;
+    padding: 7px 14px 9px;
+    -webkit-appearance: none;
+    background: #007cba;
+    border-color: #007cba;
+    color: #fff;
 }
 
 .redux-banner-button-container .dops-button.is-primary:hover, .redux-banner-button-container .dops-button.is-primary:focus {
-    background: #00a523;
-    border-color: #008b1d;
+    background: #0071a1;
+    border: 1px solid #0071a1;
 }
 
 .redux-banner-button-container .dops-button.is-primary:focus {
-    box-shadow: 0 0 0 1px white, 0 0 0 3px #008b1d;
+    box-shadow: 0 0 0 1px white, 0 0 0 3px #0071a1;
 }
 
 

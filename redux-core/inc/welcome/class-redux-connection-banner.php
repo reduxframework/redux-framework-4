@@ -311,7 +311,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                 </p>
 
                                 <div class="redux-banner-button-container">
-                                    <span class="redux-tos-blurb"><?php $this->render_tos_blurb(); ?></span>
+                                    <span class="redux-tos-blurb"><?php Redux_ConnectionBanner::redux_tos_blurb(); ?></span>
                                     <a
                                             href="<?php echo esc_url( $this->build_connect_url_for_slide( '72' ) ); ?>"
                                             class="dops-button is-primary redux-alt-connect-button">
@@ -348,14 +348,15 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                     <?php endif; ?>
 
                     <div class="redux-banner-full-step-header">
-                        <h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'Redux' ); ?></h2>
+                        <h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'redux-framework' ); ?></h2>
                     </div>
-
-
+                    <p class="redux-banner-full-tos-blurb">
+                        <?php Redux_ConnectionBanner::redux_tos_blurb(); ?>
+                    </p>
                     <p class="redux-banner-button-container">
                         <a href=""
                         class="dops-button is-primary redux-button">
-                            <?php esc_html_e( 'Set up Redux', 'Redux' ); ?>
+                            <?php esc_html_e( 'Set up Redux', 'redux-framework' ); ?>
                         </a>
                     </p>
 
@@ -363,8 +364,8 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                         <div class="redux-banner-full-slide">
                             <div class="redux-banner-full-slide-card illustration">
                                 <img
-                                        src="<?php echo plugins_url( 'images/security.svg', Redux__PLUGIN_FILE ); ?>"
-                                        alt="<?php esc_attr_e( 'Security & Backups', 'Redux' ); ?>"
+                                        src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/security.svg"
+                                        alt="<?php esc_attr_e( 'Security & Backups', 'redux-framework' ); ?>"
                                 />
                             </div>
                             <div class="redux-banner-full-slide-card">
@@ -374,7 +375,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                         'Redux protects you against brute force attacks and unauthorized logins. ' .
                                         'Basic protection is always free, while premium plans add unlimited backups of your whole site, ' .
                                         'spam protection, malware scanning, and automated fixes.',
-                                        'Redux'
+                                        'redux-framework'
                                     );
                                 ?>
                                     </p>
@@ -383,8 +384,8 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                         <div class="redux-banner-full-slide">
                             <div class="redux-banner-full-slide-card illustration">
                                 <img
-                                        src="<?php echo plugins_url( 'images/Redux-speed.svg', Redux__PLUGIN_FILE ); ?>"
-                                        alt="<?php esc_attr_e( 'Built-in Performance', 'Redux' ); ?>"
+                                        src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/redux-speed.svg"
+                                        alt="<?php esc_attr_e( 'Built-in Performance', 'redux-framework' ); ?>"
                                 />
                             </div>
                             <div class="redux-banner-full-slide-card">
@@ -394,7 +395,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                         'Activate site accelerator tools and watch your page load times decrease—' .
                                         "we'll optimize your images and serve them from our own powerful global network of servers, " .
                                         'and speed up your mobile site to reduce bandwidth usage.',
-                                        'Redux'
+                                        'redux-framework'
                                     );
                                 ?>
                                     </p>
@@ -409,7 +410,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                 echo esc_html_x(
                                     'Not now, thank you.',
                                     'a link that closes the modal window that offers to connect Redux',
-                                    'Redux'
+                                    'redux-framework'
                                 );
                                 ?>
                             </a>
@@ -450,11 +451,11 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
          *
          * @echo string
          */
-        function render_tos_blurb() {
+        public static function redux_tos_blurb() {
             printf(
                 wp_kses(
                     /* Translators: placeholders are links. */
-                    __( 'By clicking the <strong>Set up Jetpack</strong> button, you agree to our <a href="" target="_blank" rel="noopener noreferrer">Terms of Service</a> and to <a href="" target="_blank" rel="noopener noreferrer">share details</a> with WordPress.com.', 'redux' ),
+                    __( 'By clicking the <strong>Set up Redux</strong> button, you agree to our <a href="" target="_blank" rel="noopener noreferrer">Terms of Service</a> and to <a href="" target="_blank" rel="noopener noreferrer">share details</a> with WordPress.com.', 'redux-framework' ),
                     array(
                         'a'      => array(
                             'href'   => array(),
@@ -464,8 +465,8 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                         'strong' => true,
                     )
                 ),
-                // esc_url( Redirect::get_url( 'wpcom-tos' ) ),
-                // esc_url( Redirect::get_url( 'redux-support-what-data-does-redux-sync' ) )
+                '', // esc_url( Redirect::get_url( 'wpcom-tos' ) ),
+                '' // esc_url( Redirect::get_url( 'redux-support-what-data-does-redux-sync' ) )
             );
         }
 
