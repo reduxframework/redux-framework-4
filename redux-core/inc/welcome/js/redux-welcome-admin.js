@@ -1,4 +1,4 @@
-/* global console:true, ajaxurl */
+/* global console, ajaxurl */
 
 (function( $ ) {
 	'use strict';
