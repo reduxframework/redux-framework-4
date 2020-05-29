@@ -404,83 +404,89 @@
     z-index: 999;
     background: #f1f1f1;
     text-align: center;
-  }
+}
   
-  @media (max-width: 530px) {
+@media (max-width: 530px) {
     .redux-disconnected .redux-banner-full-container {
-      top: 42px;
+        top: 42px;
     }
-  }
-  
-  @media (min-width: 782px) {
+}
+
+@media (min-width: 782px) {
     .redux-disconnected .redux-banner-full-container {
-      left: -20px;
+        left: -20px;
     }
-  }
-  
-  .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card {
+}
+
+.redux-disconnected .redux-banner-full-container .redux-banner-full-container-card {
     padding: 4rem 4rem 6rem;
     background: white;
     margin: 1em;
-  }
-  
-  @media (max-width: 530px) {
+}
+
+@media (max-width: 530px) {
     .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card {
-      padding: 2rem 2rem;
+        padding: 2rem 2rem;
     }
-  }
-  
-  .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.redux-logo {
+}
+
+.redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.redux-logo {
     width: 160px;
-  }
-  
-  .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.support-characters {
+}
+
+.redux-disconnected .redux-banner-full-container .redux-banner-full-container-card img.support-characters {
     margin-top: 1.5rem;
     width: 50%;
-  }
-  
-  .redux-disconnected .redux-banner-full-container h4 {
+}
+
+.redux-disconnected .redux-banner-full-container h4 {
     line-height: 1.25;
     font-size: 1.375rem;
     font-weight: normal;
     margin: 1em 0;
-  }
-  
-  .redux-disconnected.toplevel_page_jetpack .redux-banner-full-container {
+}
+
+.redux-disconnected.toplevel_page_jetpack .redux-banner-full-container {
     position: relative;
     bottom: 0;
     box-shadow: 0 0 0 1px #ccd0d4, 0 1px 1px 1px rgba(0, 0, 0, 0.04);
     display: none;
-  }
-  
-  .redux-disconnected.toplevel_page_jetpack .redux-banner-full-container .redux-banner-full-container-card {
+}
+
+.redux-disconnected.toplevel_page_jetpack .redux-banner-full-container .redux-banner-full-container-card {
     margin: 0;
-  }
-  
-  @media (min-width: 782px) {
+}
+
+@media (min-width: 782px) {
     .redux-disconnected.toplevel_page_jetpack .redux-banner-full-container {
-      left: 0;
+        left: 0;
     }
-  }
-  
-  @media (max-width: 782px) {
+}
+
+@media (max-width: 782px) {
     .redux-disconnected.toplevel_page_jetpack .redux-banner-full-container {
-      top: 32px;
+        top: 32px;
     }
-  }
-  
-  @media (max-width: 530px) {
+}
+
+@media (max-width: 530px) {
     .redux-disconnected.toplevel_page_jetpack .redux-banner-full-container {
-      top: 0px;
+        top: 0px;
     }
-  }
-  
-  .redux-disconnected.toplevel_page_jetpack .jp-jetpack-connect__container .redux-banner-full-container {
+}
+
+.redux-disconnected.toplevel_page_jetpack .jp-jetpack-connect__container .redux-banner-full-container {
     display: block;
-  }
-  
-  @media (max-width: 530px) {
+}
+
+@media (max-width: 530px) {
     .redux-disconnected.toplevel_page_jetpack .jp-jetpack-connect__container .redux-banner-full-container .redux-banner-full-step-header h2 {
-      margin: 0;
+        margin: 0;
     }
-  }
+}
+
+img.redux-banner-logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;    
+}

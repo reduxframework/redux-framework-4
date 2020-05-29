@@ -243,20 +243,16 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                                 // echo $logo->render();
                                 ?>
                                 <img
-                                    src="<?php echo plugins_url( 'images/Redux-powering-up.svg', Redux__PLUGIN_FILE ); ?>"
+                                    src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/redux-powering-up.svg"
                                     class="redux-banner-hide-phone-and-smaller"
-                                    alt="
-                                    <?php
-                                    esc_attr_e(
+                                    alt="<?php esc_attr_e(
                                         'Redux premium services offer even more powerful performance, security, ' .
                                         'and revenue tools to help you keep your site safe, fast, and help generate income.',
-                                        'Redux'
-                                    );
-                                    ?>
-                                    "
+                                        'redux-template'
+                                    ); ?>"
                                     height="auto"
                                     width="225"
-                                    />
+                                />
                             </div>
 
                             <div class="redux-banner-slide-text">
@@ -311,15 +307,19 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
             } else {
                 $bottom_connect_url_from = 'landing-page-bottom';
             }
+            if ( 'plugins' === $current_screen->base ) : ?>
             ?>
-            <div class="redux-banner-full-container"><div class="redux-banner-full-container-card">
-
-                    <?php if ( 'plugins' === $current_screen->base ) : ?>
-
-                        <div class="redux-banner-full-dismiss">
-                            <svg class="redux-banner-svg-dismiss" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Dismiss Redux Connection Window</title><rect x="0" fill="none" /><g><path d="M17.705 7.705l-1.41-1.41L12 10.59 7.705 6.295l-1.41 1.41L10.59 12l-4.295 4.295 1.41 1.41L12 13.41l4.295 4.295 1.41-1.41L13.41 12l4.295-4.295z"/></g></svg>
-                        </div>
-                    <?php endif; ?>
+            <div class="redux-banner-full-container">
+                <div class="redux-banner-full-container-card">
+                    <div class="redux-banner-full-dismiss">
+                        <svg class="redux-banner-svg-dismiss" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Dismiss Redux Connection Window</title><rect x="0" fill="none" /><g><path d="M17.705 7.705l-1.41-1.41L12 10.59 7.705 6.295l-1.41 1.41L10.59 12l-4.295 4.295 1.41 1.41L12 13.41l4.295 4.295 1.41-1.41L13.41 12l4.295-4.295z"/></g></svg>
+                    </div>
+                
+                    <img
+                        src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/logo.svg"
+                        alt="<?php esc_attr_e('Redux Logo','redux-template'); ?>"
+                        class="redux-banner-logo"
+                    />
 
                     <div class="redux-banner-full-step-header">
                         <h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'redux-framework' ); ?></h2>
@@ -393,6 +393,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                 </div>
             </div>
             <?php
+            endif;
         }
 
         /**
