@@ -175,6 +175,7 @@ Redux_Taxonomy::set_term(
 					),
 				),
 			),
+
 			array(
 				'title'  => __( 'Home Layout', 'redux-framework-demo' ),
 				'desc'   => __( 'Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'redux-framework-demo' ),
@@ -230,5 +231,5 @@ Redux_Taxonomy::set_term(
 				),
 			),
 		),
-	),
+	)
 );

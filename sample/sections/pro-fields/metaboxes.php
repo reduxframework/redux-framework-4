@@ -168,8 +168,9 @@ Redux_Metaboxes::set_box(
 				),
 			),
 		),
-	),
+	)
 );
+
 
 Redux_Metaboxes::set_box(
 	$opt_name,
@@ -197,7 +198,7 @@ Redux_Metaboxes::set_box(
 				),
 			),
 		),
-	),
+	)
 );
 
 Redux_Metaboxes::set_box(
@@ -223,5 +224,5 @@ Redux_Metaboxes::set_box(
 				),
 			),
 		),
-	),
+	)
 );
