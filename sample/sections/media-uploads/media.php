@@ -1,10 +1,9 @@
 <?php
 /**
- * Redux Pro Media Sample config.
+ * Redux Framework media config.
+ * For full documentation, please visit: http://docs.redux.io/
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
- *
- * @package Redux Pro
+ * @package Redux Framework
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -12,11 +11,11 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Media', 'your-domain-here' ),
-		'id'     => 'media-media',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
+		'title'      => esc_html__( 'Media', 'your-domain-here' ),
+		'id'         => 'media-media',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/media/" target="_blank">docs.redux.io/core/fields/media/</a>',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'           => 'opt-media',
 				'type'         => 'media',
@@ -25,28 +24,7 @@ Redux::set_section(
 				'compiler'     => 'true',
 				'desc'         => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
 				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
-				'default'      => array(
-					'url'    => 'http://s.wordpress.org/style/images/codeispoetry.png',
-					'filter' => array(
-						'grayscale' => array(
-							'checked' => true,
-							'value'   => 50,
-						),
-					),
-				),
 				'preview_size' => 'full',
-				'filter'       => array(
-					'grayscale'  => true,
-					'blur'       => true,
-					'sepia'      => true,
-					'saturate'   => true,
-					'opacity'    => true,
-					'brightness' => true,
-					'contrast'   => true,
-					'hue-rotate' => true,
-					'invert'     => true,
-				),
-				'output'       => array( '.header-image img' ),
 			),
 			array(
 				'id'       => 'media-no-url',
@@ -55,10 +33,6 @@ Redux::set_section(
 				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
 				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
 				'url'      => false,
-				'filter'   => array(
-					'grayscale' => true,
-					'blur'      => true,
-				),
 				'preview'  => false,
 			),
 			array(
@@ -69,8 +43,8 @@ Redux::set_section(
 				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
 				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
 				'hint'     => array(
-					'title'   => esc_html__( 'Test', 'your-domain-here' ),
-					'content' => 'This is a <b>hint</b> tool-tip for the webFonts field.<br/><br/>Add any HTML based text you like here.',
+					'title'   => esc_html__( 'Test Hint', 'your-domain-here' ),
+					'content' => wp_kses_post( 'This is a <b>hint</b> tool-tip for the webFonts field.<br/><br/>Add any HTML based text you like here.' ),
 				),
 			),
 			array(
@@ -78,8 +52,10 @@ Redux::set_section(
 				'type'       => 'media',
 				'title'      => esc_html__( 'Upload Anything - Disabled Mode', 'your-domain-here' ),
 				'full_width' => true,
-				'mode'       => false,
+
 				// Can be set to false to allow any media type, or can also be set to any mime type.
+				'mode'       => false,
+
 				'desc'       => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
 				'subtitle'   => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
 			),
