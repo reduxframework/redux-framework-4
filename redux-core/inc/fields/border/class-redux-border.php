@@ -84,6 +84,8 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 				'left'   => '',
 			);
 
+			$this->check_for_all();
+
 			$this->value = wp_parse_args( $this->value, $defaults );
 
 			$this->select2_config['allowClear'] = false;
@@ -265,7 +267,20 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 		}
 
 		/**
-		 * Ouytput CSS styling.
+		 * Check to make sure all is properly set.
+		 *
+		 * @return void
+		 */
+		private function check_for_all() {
+			if ( true === $this->field['all'] ) {
+				if ( 1 !== $this->field['top'] || 1 !== $this->field['bottom'] || 1 !== $this->field['left'] || 1 !== $this->field['right'] ) {
+					$this->field['all'] = false;
+				}
+			}
+		}
+
+		/**
+		 * Output CSS styling.
 		 *
 		 * @param string $data Value array.
 		 *
@@ -273,6 +288,8 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 		 */
 		public function css_style( $data ) {
 			$style = '';
+
+			$this->check_for_all();
 
 			if ( isset( $this->field['all'] ) && true === $this->field['all'] ) {
 				$border_width = isset( $data['border-width'] ) ? $data['border-width'] : '0px';
