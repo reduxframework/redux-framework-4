@@ -18,15 +18,17 @@ $opt_name = 'redux_demo';  // YOU MUST CHANGE THIS.  DO NOT USE 'redux_demo' IN 
 // Uncomment to disable demo mode.
 /* Redux::disable_demo(); */  // phpcs:ignore Squiz.PHP.CommentedOutCode
 
+$dir = dirname( __FILE__ ) . '/';
+
 /*
  * --> Used within different fields. Simply examples. Search for ACTUAL DECLARATION for field examples
  */
 
 $sample_html = '';
-if ( file_exists( dirname( __FILE__ ) . '/info-html.html' ) ) {
+if ( file_exists( $dir . '/info-html.html' ) ) {
 	ob_start();
 
-	include dirname( __FILE__ ) . '/info-html.html';
+	include $dir . '/info-html.html';
 
 	$sample_html = ob_get_clean();
 }
@@ -2500,6 +2502,38 @@ Redux::set_section(
 		),
 	)
 );
+
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Pro Fields', 'your-domain-here' ),
+		'id'               => 'redux-pro-fields',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/premium/" target="_blank">docs.redux.io/premium/</a>',
+	)
+);
+
+require_once Redux_Core::$dir . '../sample/sections/accordion.php';
+
+require_once Redux_Core::$dir . '../sample/sections/box-shadow.php';
+require_once Redux_Core::$dir . '../sample/sections/color-gradient.php';
+require_once Redux_Core::$dir . '../sample/sections/color-palette.php';
+require_once Redux_Core::$dir . '../sample/sections/color-scheme.php';
+require_once Redux_Core::$dir . '../sample/sections/custom-fonts.php';
+require_once Redux_Core::$dir . '../sample/sections/date-time-picker.php';
+require_once Redux_Core::$dir . '../sample/sections/google-maps.php';
+require_once Redux_Core::$dir . '../sample/sections/icon-select.php';
+require_once Redux_Core::$dir . '../sample/sections/js-button.php';
+require_once Redux_Core::$dir . '../sample/sections/media.php';
+require_once Redux_Core::$dir . '../sample/sections/metaboxes.php';
+require_once Redux_Core::$dir . '../sample/sections/multi-media.php';
+require_once Redux_Core::$dir . '../sample/sections/repeater.php';
+require_once Redux_Core::$dir . '../sample/sections/search.php';
+require_once Redux_Core::$dir . '../sample/sections/shortcodes.php';
+require_once Redux_Core::$dir . '../sample/sections/social-profiles.php';
+require_once Redux_Core::$dir . '../sample/sections/taxonomy.php';
+require_once Redux_Core::$dir . '../sample/sections/typography.php';
+require_once Redux_Core::$dir . '../sample/sections/users.php';
+require_once Redux_Core::$dir . '../sample/sections/widget-areas.php';
 
 if ( file_exists( dirname( __FILE__ ) . '/../README.md' ) ) {
 	$section = array(
