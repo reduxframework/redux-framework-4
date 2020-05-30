@@ -2512,30 +2512,29 @@ Redux::set_section(
 	)
 );
 
-require_once Redux_Core::$dir . '../sample/sections/accordion.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/accordion.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/box-shadow.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/color-gradient.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/color-palette.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/color-scheme.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/custom-fonts.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/date-time-picker.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/google-maps.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/icon-select.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/js-button.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/media.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/metaboxes.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/multi-media.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/repeater.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/search.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/shortcodes.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/social-profiles.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/taxonomy.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/typography.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/users.php';
+require_once Redux_Core::$dir . '../sample/pro-sections/widget-areas.php';
 
-require_once Redux_Core::$dir . '../sample/sections/box-shadow.php';
-require_once Redux_Core::$dir . '../sample/sections/color-gradient.php';
-require_once Redux_Core::$dir . '../sample/sections/color-palette.php';
-require_once Redux_Core::$dir . '../sample/sections/color-scheme.php';
-require_once Redux_Core::$dir . '../sample/sections/custom-fonts.php';
-require_once Redux_Core::$dir . '../sample/sections/date-time-picker.php';
-require_once Redux_Core::$dir . '../sample/sections/google-maps.php';
-require_once Redux_Core::$dir . '../sample/sections/icon-select.php';
-require_once Redux_Core::$dir . '../sample/sections/js-button.php';
-require_once Redux_Core::$dir . '../sample/sections/media.php';
-require_once Redux_Core::$dir . '../sample/sections/metaboxes.php';
-require_once Redux_Core::$dir . '../sample/sections/multi-media.php';
-require_once Redux_Core::$dir . '../sample/sections/repeater.php';
-require_once Redux_Core::$dir . '../sample/sections/search.php';
-require_once Redux_Core::$dir . '../sample/sections/shortcodes.php';
-require_once Redux_Core::$dir . '../sample/sections/social-profiles.php';
-require_once Redux_Core::$dir . '../sample/sections/taxonomy.php';
-require_once Redux_Core::$dir . '../sample/sections/typography.php';
-require_once Redux_Core::$dir . '../sample/sections/users.php';
-require_once Redux_Core::$dir . '../sample/sections/widget-areas.php';
-
-if ( file_exists( dirname( __FILE__ ) . '/../README.md' ) ) {
+if ( file_exists( $dir . '/../README.md' ) ) {
 	$section = array(
 		'icon'   => 'el el-list-alt',
 		'title'  => esc_html__( 'Documentation', 'your-domain-here' ),
