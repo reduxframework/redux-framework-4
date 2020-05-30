@@ -82,7 +82,6 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 
 			if ( ! self::$instance ) {
 				self::$instance = new self();
-
 				self::$instance->get_redux_options();
 				self::$instance->includes();
 				self::$instance->hooks();
@@ -143,6 +142,18 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				Redux_Core::$as_plugin = true;
 			}
 
+			add_action( 'setup_theme', array( $this, 'load_sample_config' ) );
+
+		}
+
+		/**
+		 * Loads the sample config after everything is loaded.
+		 *
+		 * @access      public
+		 * @since       4.0.2
+		 * @return      void
+		 */
+		public function load_sample_config() {
 			// Include demo config, if demo mode is active.
 			if ( $this->options['demo'] && file_exists( dirname( __FILE__ ) . '/sample/sample-config.php' ) ) {
 				require_once dirname( __FILE__ ) . '/sample/sample-config.php';
