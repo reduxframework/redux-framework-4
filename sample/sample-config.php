@@ -515,8 +515,9 @@ if ( class_exists( 'Redux_Pro' ) ) {
 	Redux::set_section(
 		$opt_name,
 		array(
-			'title' => esc_html__( 'Pro Fields', 'your-domain-here' ),
+			'title' => esc_html__( 'Redux Pro Fields', 'your-domain-here' ),
 			'id'    => 'redux-pro-fields',
+			'icon'  => 'el el-redux',
 			'desc'  => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/premium/" target="_blank">docs.redux.io/premium/</a>',
 		)
 	);
