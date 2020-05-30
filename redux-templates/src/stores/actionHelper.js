@@ -8,7 +8,7 @@ const { switchEditorMode } = dispatch('core/edit-post');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
 import { ModalManager } from '~redux-templates/modal-manager';
 import PreviewModal from '../modal-preview';
-import FeedbackModal from '../modal-feedback';
+import FeedbackModal from '../modal-feedback/modal';
 
 // create Block to import template
 export const handleBlock = (data, installedDependencies) => {
