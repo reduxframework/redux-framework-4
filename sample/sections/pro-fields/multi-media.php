@@ -21,7 +21,7 @@ Redux::setSection(
 				'type'            => 'multi_media',
 				'title'           => esc_html__( 'Multi Media Selector', 'your-domain-here' ),
 				'subtitle'        => esc_html__( 'Alternative media field which allows for multi selections', 'your-domain-here' ),
-				'desc'            => esc_html( 'max_file_limit has been set to 5.', 'your-domain-here' ),
+				'desc'            => esc_html__( 'max_file_limit has been set to 5.', 'your-domain-here' ),
 				'max_file_upload' => 5,
 			),
 		),

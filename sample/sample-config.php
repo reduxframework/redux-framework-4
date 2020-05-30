@@ -511,12 +511,15 @@ require_once Redux_Core::$dir . '../sample/sections/disabling/disable-field.php'
 require_once Redux_Core::$dir . '../sample/sections/disabling/disable-section.php';
 
 // -> START Pro Fields.
-if ( class_exists('Redux_Pro') ) {
-	Redux::set_section( $opt_name, array(
+if ( class_exists( 'Redux_Pro' ) ) {
+	Redux::set_section(
+		$opt_name,
+		array(
 			'title' => esc_html__( 'Pro Fields', 'your-domain-here' ),
 			'id'    => 'redux-pro-fields',
 			'desc'  => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/premium/" target="_blank">docs.redux.io/premium/</a>',
-		) );
+		)
+	);
 
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/accordion.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/box-shadow.php';

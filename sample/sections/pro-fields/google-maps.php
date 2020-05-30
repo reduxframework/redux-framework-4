@@ -11,10 +11,10 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Google Maps', 'your-domain-here' ),
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extensions/google-maps" target="_blank">docs.reduxframework.com/extensions/google-maps</a>',
+		'title'      => esc_html__( 'Google Maps', 'your-domain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extensions/google-maps" target="_blank">docs.reduxframework.com/extensions/google-maps</a>',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'           => 'location_geocode',
 				'type'         => 'google_maps',

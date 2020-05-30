@@ -26,8 +26,6 @@ Redux_Users::set_profile(
 		'id'       => 'demo-users',
 		'title'    => esc_html__( 'Cool Options', 'your-domain-here' ),
 		'style'    => 'wp',
-
-		// 'permissions'    => 'manage_options', # Works on the term/box, section & field levels.
 		'sections' => array(
 			array(
 				'title'  => esc_html__( 'Home Settings', 'your-domain-here' ),
@@ -214,5 +212,3 @@ $data = Redux_Users::get_user_meta(
 		'user'     => '',         // User id, else current user ID is returned.
 	)
 );
-
-// print_r( $data ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions

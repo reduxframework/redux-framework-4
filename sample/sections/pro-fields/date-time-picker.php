@@ -12,10 +12,10 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Date / Time Picker', 'your-domain-here' ),
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extension/date-time" target="_blank">docs.reduxframework.com/extension/date-time/</a>',
+		'title'      => esc_html__( 'Date / Time Picker', 'your-domain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extension/date-time" target="_blank">docs.reduxframework.com/extension/date-time/</a>',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'           => 'opt-date-time-single',
 				'type'         => 'datetime',

@@ -12,11 +12,11 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Color Gradient', 'your-domain-here' ),
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color-gradient/" target="_blank">docs.reduxframework.com/core/fields/color-gradient/</a>',
-		'id'     => 'pro-color-gradient',
+		'title'      => esc_html__( 'Color Gradient', 'your-domain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color-gradient/" target="_blank">docs.reduxframework.com/core/fields/color-gradient/</a>',
+		'id'         => 'pro-color-gradient',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'             => 'opt-pro-color-header',
 				'type'           => 'color_gradient',

@@ -12,11 +12,11 @@ defined( 'ABSPATH' ) || exit;
 Redux::setSection(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Typography', 'your-domain-here' ),
-		'id'     => 'pro-typography',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
+		'title'      => esc_html__( 'Typography', 'your-domain-here' ),
+		'id'         => 'pro-typography',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'                => 'opt-pro-typography-body',
 				'type'              => 'typography',

@@ -12,11 +12,11 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Media', 'your-domain-here' ),
-		'id'     => 'pro-media-media',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
+		'title'      => esc_html__( 'Media', 'your-domain-here' ),
+		'id'         => 'pro-media-media',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
 		'subsection' => true,
-		'fields' => array(
+		'fields'     => array(
 			array(
 				'id'           => 'pro-opt-media',
 				'type'         => 'pro-media',
