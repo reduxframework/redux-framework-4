@@ -3,9 +3,10 @@ import config from './config';
 import './styles.scss';
 import {__} from '@wordpress/i18n';
 
-
+import FeedbackDialog from '~redux-templates/modal-feedback';
 
 import * as Icons from '~redux-templates/icons'
+import { ModalManager } from '~redux-templates/modal-manager';
 
 export default function FabWrapper() {
     const {mainButtonStyles, actionButtonStyles, position, event, alwaysShowTitle} = config;
@@ -30,6 +31,15 @@ export default function FabWrapper() {
             {/*>*/}
             {/*    <i className="fa fa-lightbulb-o"/>*/}
             {/*</Action>*/}
+            <Action
+                style={actionButtonStyles}
+                text={__('Contact Us', redux_templates.i18n)}
+                onClick={e => {
+                    ModalManager.openFeedback(<FeedbackDialog />)
+                }}
+            >
+                <i className="fa fa-comments"/>
+            </Action>
             <Action
                 style={actionButtonStyles}
                 text={__('Join Our Community', redux_templates.i18n)}

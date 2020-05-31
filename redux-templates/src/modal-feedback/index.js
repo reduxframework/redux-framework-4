@@ -1,110 +1,60 @@
-const {__} = wp.i18n;
-const {useState, useEffect} = wp.element;
-const {apiFetch} = wp;
-import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
-import {Modal, ModalManager} from '../modal-manager'
-import './style.scss'
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n'
+import {CheckboxControl} from '@wordpress/components';
+import { ModalManager } from '~redux-templates/modal-manager';
 
-export default function FeedbackModal(props) {
-    const {importedData, handledBlock, invalidBlocks} = props;
-    const [description, setDescription] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [sendingThemePlugins, setSendingThemePlugins] = useState(true);
-    const [sendingContent, setSendingContent] = useState(true);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [panelClassname, setPanelClassname] = useState('panel')
+const {compose} = wp.compose;
+const {useState} = wp.element;
+const {withDispatch, withSelect} = wp.data;
 
-    const submitFeedback = () => {
-        if (loading) return;
-        setLoading(true);
 
-        let data = {
-            description,
-            'theme_plugins': sendingThemePlugins,
-            'template_id': importedData.hash
-        };
-        if (sendingContent) {
-            data.content = handledBlock;
-        }
-        apiFetch({
-            path: 'redux-templates/v1/feedback/',
-            method: 'POST',
-            headers: {'Registed-Blocks': installedBlocksTypes()},
-            data
-        }).then(data => {
-            setLoading(false);
-            if (data.success) {
-                setPanelClassname('panel fade')
-            } else {
-                setErrorMessage(__('An Error occured', redux_templates.i18n));
-            }
-        }).catch(err => {
-            setLoading(false);
-            setErrorMessage(__('There was an error: ', redux_templates.i18n) + err.message);
-        });
+function FeedbackDialog(props) {
+    const [comment, setComment] = useState('');
+    const [agreeToContactFurther, setAgreement] = useState(false);
+
+    const handleChange = (e) => {
+        setComment(e.target.value);
     }
 
-    const onCloseWizard = () => {
-        ModalManager.close();
+    const contactRedux = () => {
+        //sending data
+        console.log('contact information', comment, agreeToContactFurther);
+        if (closeModal) closeModal(); else ModalManager.closeFeedback();
     }
 
-    useEffect(() => {
-        if (invalidBlocks && invalidBlocks.length > 0) {
-            setDescription(
-                invalidBlocks.map(block => {
-                    if (block.validationIssues && Array.isArray(block.validationIssues))
-                        return block.validationIssues.map(error => {
-                            return sprintf(...error.args)
-                        }).join('\n');
-                    else
-                        return null;
-                }).join('\n')
-            );
-        }
-    }, [invalidBlocks]);
+    const onCloseModal = () => {
+        if (closeModal) closeModal(); else ModalManager.closeFeedback();
+    }
 
     return (
-        <Modal compactMode={true}>
-            <div className="redux-templates-feedback-modal-wrapper">
-                <div className="redux-templates-modal-header">
-                    <h3>{__('Feedback Wizard', redux_templates.i18n)}</h3>
-                    <button className="redux-templates-modal-close" onClick={onCloseWizard}>
-                        <i className={'fas fa-times'}/>
+        <div className="redux-templates-modal-overlay">
+            <div className="redux-templates-modal-wrapper feedback-popup-wrapper">
+                <div class="feedback-popup-header feedback-popup-header-contact"
+                    style={{ backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-contact.png'})` }}>
+                    <a className="feedback-popup-close" onClick={onCloseModal}>
+                        <i className='fas fa-times' />
+                    </a>
+                </div>
+                <div class="feedback-popup-content feedback-contact">
+                    <h3>{__('Help us improve Redux', redux_templates.i18n)}</h3>
+                    <p>
+                        {__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
+                    </p>
+                    <textarea value={comment} onChange={handleChange}></textarea>
+                    <CheckboxControl
+                        label={__('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)}
+                        checked={agreeToContactFurther}
+                        onChange={() => setAgreement(!agreeToContactFurther)}
+                    />
+                    <button class="feedback-popup-btn feedback-popup-rate-btn" onClick={contactRedux}>
+                        {__('Submit Feedback', redux_templates.i18n)}
                     </button>
                 </div>
-                <div className="redux-templates-feedback">
-                    {
-                        errorMessage.length > 0 &&
-                        <div className="error-panel">
-                            {errorMessage}
-                        </div>
-                    }
-                    <h4>{__('Thank you for reporting an issue.', redux_templates.i18n)}</h4>
-                    <div className={panelClassname}>
-                        <p>{__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}</p>
-                        <div className="field">
-                            <input type="checkbox" id="theme_plugins" checked={sendingThemePlugins} onChange={() => setSendingThemePlugins(!sendingThemePlugins)} />
-                            <label htmlFor="theme_plugins">Send theme and plugins</label>
-                        </div>
-                        <div className="field">
-                            <input type="checkbox" id="content" checked={sendingContent} onChange={() => setSendingContent(!sendingContent)} />
-                            <label htmlFor="content">Send page content</label>
-                        </div>
-                        <div className="field">
-                            <label htmlFor="template_id">Template ID</label>
-                            <input type="input" id="template_id" disabled="disabled" value={importedData.hash} />
-                        </div>
-                        <div className="field top">
-                            <label>Description</label>
-                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-                        </div>
-                        <button className="button button-primary" onClick={submitFeedback}>
-                            {loading ? <i className="fas fa-spinner fa-pulse"/> :
-                                <i className="fas fa-share"></i>} Submit Feedback
-                        </button>
-                    </div>
-                </div>
             </div>
-        </Modal>
+        </div>
     );
 }
+
+export default FeedbackDialog;
