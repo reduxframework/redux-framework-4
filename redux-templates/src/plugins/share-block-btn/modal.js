@@ -12,7 +12,7 @@ import uniq from 'lodash/uniq';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
-import {setWithExpiry, getWithExpiry} from '../../stores/helper';
+import {getWithExpiry} from '../../stores/helper';
 import './style.scss'
 
 

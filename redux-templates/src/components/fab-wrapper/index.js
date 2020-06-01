@@ -3,33 +3,33 @@ import config from './config';
 import './styles.scss';
 import {__} from '@wordpress/i18n';
 
-import FeedbackDialog from '~redux-templates/modal-feedback';
-
 import * as Icons from '~redux-templates/icons'
 import { ModalManager } from '~redux-templates/modal-manager';
+import FeedbackDialog from '~redux-templates/modal-feedback';
+
+const schema = {
+    type: 'object',
+    properties: {
+        comment: {
+            type: 'string'
+        },
+        agreeToContactFurther: {
+            type: 'boolean',
+            title: __('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)
+        }
+    }
+}
+const uiSchema = {
+    'comment': {
+        'ui:widget': 'textarea',
+        'ui:options': {
+            label: false
+        }
+    }
+};
 
 export default function FabWrapper() {
     const {mainButtonStyles, actionButtonStyles, position, event, alwaysShowTitle} = config;
-    const schema = {
-        type: 'object',
-        properties: {
-            comment: {
-                type: 'string'
-            },
-            agreeToContactFurther: {
-                type: 'boolean',
-                title: __('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)
-            }
-        }
-    }
-    const uiSchema = {
-        'comment': {
-            'ui:widget': 'textarea',
-            'ui:options': {
-                label: false
-            }
-        }
-    };
 
     return (
         <Fab

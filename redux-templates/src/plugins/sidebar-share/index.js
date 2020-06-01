@@ -9,6 +9,6 @@ const redux_templatesIcon = <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0
 </svg>
 
 registerPlugin( 'redux-templates-share', {
-  icon: redux_templatesIcon,
-  render: Sidebar,
+	icon: redux_templatesIcon,
+	render: Sidebar,
 } );

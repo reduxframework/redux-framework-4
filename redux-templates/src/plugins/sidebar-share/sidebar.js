@@ -1,21 +1,51 @@
-const {apiFetch} = wp;
 const {__} = wp.i18n;
-const {Component, Fragment, useState} = wp.element;
-const {compose} = wp.compose;
-const {PanelBody, Spinner} = wp.components
-const {withDispatch, select} = wp.data;
+const {Fragment} = wp.element;
+const {PanelBody} = wp.components
 const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
-import {installedBlocksTypes} from '~redux-templates/stores/actionHelper';
-import {Modal, ModalManager} from '../../modal-manager'
-import ShareModal from '../share-block-btn/modal'
+import sortBy from 'lodash/sortBy';
+import map from 'lodash/map';
+import {ModalManager} from '../../modal-manager'
+import FeedbackDialog from '~redux-templates/modal-feedback';
+import {getWithExpiry} from '../../stores/helper';
 
-function Sidebar(props) {
+const options = sortBy(getWithExpiry('page_categories_list'), 'label');
+const schema = {
+    type: 'object',
+    properties: {
+        title: {
+            type: 'string',
+            title: 'Block Title'
+        },
+        category: {
+            type: 'string',
+            title: 'Category',
+            enum: map(options, 'value'),
+            enumNames: map(options, 'label')
+        },
+        description: {
+            type: 'string',
+            title: 'Description'
+        }
+    }
+}
+const uiSchema = {
+    'description': {
+        'ui:widget': 'textarea',
+        'ui:options': {
+            label: false
+        }
+    }
+};
 
-    const {savePost} = props;
-    const [loading, setLoading] = useState(false);
-
+export default function Sidebar(props) {
     const onShare = () => {
-        ModalManager.open(<ShareModal type='page' />);
+        ModalManager.openFeedback(<FeedbackDialog 
+            title={__('Help us improve Redux', redux_templates.i18n)} 
+            description={__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
+            schema={schema}
+            uiSchema={uiSchema}
+            headerImage='popup-contact.png'
+            />)
     }
 
     return (
@@ -27,7 +57,7 @@ function Sidebar(props) {
                 <PanelBody title={__('Share this Design', redux_templates.i18n)} initialOpen={true}>
                     <div className="d-flex justify-content-center">
                         <a className="button button-primary" onClick={onShare}>
-                            {loading ? <i className="fas fa-spinner fa-pulse"/> : <i className="fas fa-share"></i>}
+                            <i className="fas fa-share"></i>
                             &nbsp;{__('Share this design', redux_templates.i18n)}
                         </a>
                     </div>
@@ -36,10 +66,3 @@ function Sidebar(props) {
         </Fragment>
     );
 }
-
-export default compose([
-    withDispatch((dispatch, ownProps) => {
-        const {savePost} = dispatch('core/editor');
-        return {savePost};
-    })
-])(Sidebar)
