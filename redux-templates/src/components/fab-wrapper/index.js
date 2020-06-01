@@ -35,7 +35,11 @@ export default function FabWrapper() {
                 style={actionButtonStyles}
                 text={__('Contact Us', redux_templates.i18n)}
                 onClick={e => {
-                    ModalManager.openFeedback(<FeedbackDialog />)
+                    ModalManager.openFeedback(<FeedbackDialog 
+                        title={__('Help us improve Redux', redux_templates.i18n)} 
+                        description={__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
+                        
+                        />)
                 }}
             >
                 <i className="fa fa-comments"/>

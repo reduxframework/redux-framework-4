@@ -7,6 +7,11 @@ $progress-color: #2576a4;
 $item-current-color: #df7739;
 $item-completed-color: #6ab255;
 
+.feedback-wrapper {
+    // z-index: 600000;
+    position: relative;
+}
+
 .redux-templates-feedback {
     padding: 20px;
     width: 600px;
@@ -89,12 +94,11 @@ $item-completed-color: #6ab255;
 }
 
 .feedback-popup-wrapper {
-    height: 500px;
     border-radius: 10px;
 }
 .feedback-popup-header {
     width: 100%;
-    height: 212px;
+    height: 150px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -134,12 +138,12 @@ $item-completed-color: #6ab255;
     font-weight: 500;
 }
 
-.feedback-popup-content .feedback-contact-message {
+.feedback-popup-content textarea {
     box-shadow: none;
     resize: none;
     margin-bottom: 21px;
     width: 100%;
-    min-height: 175px;
+    min-height: 100px;
 }
 
 .feedback-popup-content label {
@@ -194,7 +198,7 @@ $item-completed-color: #6ab255;
     }
 }
 
-.feedback-popup-content.feedback-contact {
+.feedback-popup-content {
     p {
         font-size: 14px;
     }
@@ -205,4 +209,11 @@ $item-completed-color: #6ab255;
         font-size: 13px;
         margin-bottom: 15px;
     }
+    .components-base-control .components-base-control__field {
+        display: flex;
+    }
+}
+
+.redux-templates-modal-wrapper.feedback-popup-wrapper {
+    height: auto;
 }

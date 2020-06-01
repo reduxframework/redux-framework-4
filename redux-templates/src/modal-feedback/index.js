@@ -11,6 +11,8 @@ const {withDispatch, withSelect} = wp.data;
 
 
 function FeedbackDialog(props) {
+    const {title, description, data, endpoint, fields} = props;
+    const {closeModal} = props;
     const [comment, setComment] = useState('');
     const [agreeToContactFurther, setAgreement] = useState(false);
 
@@ -37,11 +39,9 @@ function FeedbackDialog(props) {
                         <i className='fas fa-times' />
                     </a>
                 </div>
-                <div class="feedback-popup-content feedback-contact">
-                    <h3>{__('Help us improve Redux', redux_templates.i18n)}</h3>
-                    <p>
-                        {__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
-                    </p>
+                <div class="feedback-popup-content">
+                    <h3>{title}</h3>
+                    <p>{description}</p>
                     <textarea value={comment} onChange={handleChange}></textarea>
                     <CheckboxControl
                         label={__('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)}
