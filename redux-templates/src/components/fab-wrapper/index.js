@@ -10,6 +10,26 @@ import { ModalManager } from '~redux-templates/modal-manager';
 
 export default function FabWrapper() {
     const {mainButtonStyles, actionButtonStyles, position, event, alwaysShowTitle} = config;
+    const schema = {
+        type: 'object',
+        properties: {
+            comment: {
+                type: 'string'
+            },
+            agreeToContactFurther: {
+                type: 'boolean',
+                title: __('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)
+            }
+        }
+    }
+    const uiSchema = {
+        'comment': {
+            'ui:widget': 'textarea',
+            'ui:options': {
+                label: false
+            }
+        }
+    };
 
     return (
         <Fab
@@ -38,7 +58,8 @@ export default function FabWrapper() {
                     ModalManager.openFeedback(<FeedbackDialog 
                         title={__('Help us improve Redux', redux_templates.i18n)} 
                         description={__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
-                        
+                        schema={schema}
+                        uiSchema={uiSchema}
                         />)
                 }}
             >

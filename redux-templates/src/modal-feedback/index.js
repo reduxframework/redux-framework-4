@@ -2,28 +2,17 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n'
-import {CheckboxControl} from '@wordpress/components';
 import { ModalManager } from '~redux-templates/modal-manager';
-
-const {compose} = wp.compose;
-const {useState} = wp.element;
-const {withDispatch, withSelect} = wp.data;
+import Form from '@rjsf/core';
 
 
 function FeedbackDialog(props) {
-    const {title, description, data, endpoint, fields} = props;
+    const {title, description, schema, uiSchema, data, endpoint, fields} = props;
     const {closeModal} = props;
-    const [comment, setComment] = useState('');
-    const [agreeToContactFurther, setAgreement] = useState(false);
 
-    const handleChange = (e) => {
-        setComment(e.target.value);
-    }
-
-    const contactRedux = () => {
-        //sending data
-        console.log('contact information', comment, agreeToContactFurther);
-        if (closeModal) closeModal(); else ModalManager.closeFeedback();
+    const onSubmit = ({formData}) => {
+        console.log('onForm submit', formData);
+        
     }
 
     const onCloseModal = () => {
@@ -42,15 +31,11 @@ function FeedbackDialog(props) {
                 <div class="feedback-popup-content">
                     <h3>{title}</h3>
                     <p>{description}</p>
-                    <textarea value={comment} onChange={handleChange}></textarea>
-                    <CheckboxControl
-                        label={__('Yes, I give Redux permission to contact me for any follow up questions.', redux_templates.i18n)}
-                        checked={agreeToContactFurther}
-                        onChange={() => setAgreement(!agreeToContactFurther)}
-                    />
-                    <button class="feedback-popup-btn feedback-popup-rate-btn" onClick={contactRedux}>
-                        {__('Submit Feedback', redux_templates.i18n)}
-                    </button>
+                    <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
+                        <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">
+                            {__('Submit Feedback', redux_templates.i18n)}
+                        </button>
+                    </Form>                    
                 </div>
             </div>
         </div>
