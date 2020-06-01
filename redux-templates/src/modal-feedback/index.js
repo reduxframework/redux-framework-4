@@ -28,12 +28,13 @@ function FeedbackDialog(props) {
                 setErrorMessage(null);
                 if (onSuccess) onSuccess(); else onCloseModal();
             } else {
-                setErrorMessage(__('An unexpected error occured', redux_templates.i18n));
+                console.log('There was an error: ', data);
+                setErrorMessage(__('An unexpected error occured, please try again later.', redux_templates.i18n));
             }
         }).catch(err => {
             setLoading(false);
-            console.log('There was an error: ' + err);
-            setErrorMessage(__('An unexpected error occured', redux_templates.i18n));
+            console.log('There was an error: ', err);
+            setErrorMessage(__('An unexpected error occured, please try again later.', redux_templates.i18n));
         });
     }
 
@@ -45,14 +46,14 @@ function FeedbackDialog(props) {
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper feedback-popup-wrapper">
                 <div class="feedback-popup-header feedback-popup-header-contact"
-                    style={{ backgroundImage: `url(${redux_templates.plugin}assets/img/${headerImage}})` }}>
+                    style={{ backgroundImage: `url(${redux_templates.plugin}assets/img/${headerImage})` }}>
                     <a className="feedback-popup-close" onClick={onCloseModal}>
                         <i className='fas fa-times' />
                     </a>
                 </div>
                 <div class="feedback-popup-content">
                     <h3>{title}</h3>
-                    {errorMessage && <p>{errorMessage}</p>}
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <p>{description}</p>
                     <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
                         <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">

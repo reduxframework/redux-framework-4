@@ -212,6 +212,9 @@ $item-completed-color: #6ab255;
     .components-base-control .components-base-control__field {
         display: flex;
     }
+    .error-message {
+        color: #f00;
+    }
 }
 
 .redux-templates-modal-wrapper.feedback-popup-wrapper {
