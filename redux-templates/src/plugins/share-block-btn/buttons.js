@@ -1,18 +1,15 @@
 import {noop} from 'lodash'
-import {kebabCase} from 'lodash';
 import {Fragment} from '@wordpress/element'
 import {__} from '@wordpress/i18n'
-import {setGroupingBlockName, switchToBlockType} from '@wordpress/blocks'
-import {
-    select, withSelect, withDispatch,
-} from '@wordpress/data'
+import {select, withDispatch} from '@wordpress/data'
 import {compose} from '@wordpress/compose'
 import {PluginBlockSettingsMenuItem} from '@wordpress/edit-post'
 import ReduxTemplatesIcon from './icons'
-import {Modal, ModalManager} from '../../modal-manager'
-import ShareModal from './modal'
-
-import {download} from '~redux-templates/plugins/export'
+import {ModalManager} from '../../modal-manager'
+import FeedbackDialog from '~redux-templates/modal-feedback';
+import sortBy from 'lodash/sortBy';
+import map from 'lodash/map';
+import {getWithExpiry} from '../../stores/helper';
 
 /**
  * Based on: https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/components/convert-to-group-buttons/convert-button.js
@@ -23,37 +20,63 @@ import {download} from '~redux-templates/plugins/export'
  * Internal dependencies
  */
 
-const saveData = (function () {
-    var a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style = 'display: none';
-    return function (data, fileName, type) {
-        if (!type || (type && type != 'html')) {
-            data = JSON.stringify(data)
+const options = sortBy(getWithExpiry('page_categories_list'), 'label');
+const schema = {
+    type: 'object',
+    properties: {
+        title: {
+            type: 'string',
+            title: 'Block Title'
+        },
+        category: {
+            type: 'string',
+            title: 'Category',
+            enum: map(options, 'value'),
+            enumNames: map(options, 'label')
+        },
+        description: {
+            type: 'string',
+            title: 'Description'
         }
-        var blob = new Blob([data], {type: 'octet/stream'}),
-            url = window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = fileName;
-        a.click();
-        window.URL.revokeObjectURL(url);
-    };
-}());
-
-
-export function ShareBlockButton(
-    {
-        clientIds,
-        onExportBlock,
     }
-) {
+}
+const uiSchema = {
+    title: {
+        classNames: 'fixed-control'
+    },
+    category: {
+        classNames: 'fixed-control'
+    },
+    description: {
+        'ui:widget': 'textarea',
+    }
+};
+
+export function ShareBlockButton({clientIds}) 
+{
     // Only supported by WP >= 5.3.
     if (!clientIds) {
         return null
     }
 
     const onShareBlock = () => {
-        ModalManager.open(<ShareModal clientIds={clientIds} type='block' />);
+        const data = {
+            postID: select('core/editor').getCurrentPostId(),
+            editor_blocks: select('core/block-editor').getBlocksByClientId(clientIds),
+            type: 'block'
+        };
+        ModalManager.openFeedback(
+            <FeedbackDialog 
+                title={__('Redux Shares', redux_templates.i18n)} 
+                description={__('Share this design', redux_templates.i18n)} 
+                schema={schema}
+                uiSchema={uiSchema}
+                data={data}
+                headerImage={<i className="fas fa-share header-icon"></i>}
+                endpoint='share'
+                onSuccess={data => window.open(data.data.url, '_blank')}
+            />
+        )
     }
 
     return (

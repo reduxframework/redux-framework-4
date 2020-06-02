@@ -1,6 +1,6 @@
 const {__} = wp.i18n;
 const {compose} = wp.compose;
-const {withDispatch, withSelect, select} = wp.data;
+const {withSelect, select} = wp.data;
 const {Fragment} = wp.element;
 const {PanelBody} = wp.components
 const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
@@ -10,7 +10,7 @@ import {ModalManager} from '../../modal-manager'
 import FeedbackDialog from '~redux-templates/modal-feedback';
 import {getWithExpiry} from '../../stores/helper';
 
-const options = sortBy(getWithExpiry('page_categories_list'), 'label');
+const options = sortBy(getWithExpiry('section_categories_list'), 'label');
 const schema = {
     type: 'object',
     properties: {
