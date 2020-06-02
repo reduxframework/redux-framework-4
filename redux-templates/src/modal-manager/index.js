@@ -1,7 +1,7 @@
 import {__} from '@wordpress/i18n';
 import {Component, Fragment} from '@wordpress/element';
 
-var onClose, node, customizerNode, feedbackNode;
+var onClose, node, customizerNode, feedbackNode = null;
 
 export class Modal extends Component {
     constructor(props) {
@@ -85,10 +85,13 @@ export const ModalManager = {
         }
     },
     openFeedback(component) {
-        if (!feedbackNode) {
+        feedbackNode = document.getElementsByClassName('feedback-wrapper');
+        if (!feedbackNode || feedbackNode.length < 1) {
             feedbackNode = document.createElement('div');
             feedbackNode.className = 'feedback-wrapper';
             document.body.appendChild(feedbackNode);
+        } else {
+            feedbackNode = feedbackNode[0];
         }
         wp.element.render(component, feedbackNode);
     },

@@ -29,18 +29,21 @@ const schema = {
     }
 }
 const uiSchema = {
-    'description': {
+    title: {
+        classNames: 'fixed-control'
+    },
+    category: {
+        classNames: 'fixed-control'
+    },
+    description: {
         'ui:widget': 'textarea',
-        'ui:options': {
-            label: false
-        }
     }
 };
 
 export default function Sidebar(props) {
     const onShare = () => {
         ModalManager.openFeedback(<FeedbackDialog 
-            title={__('Help us improve Redux', redux_templates.i18n)} 
+            title={__('Share this design', redux_templates.i18n)} 
             description={__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
             schema={schema}
             uiSchema={uiSchema}

@@ -220,3 +220,18 @@ $item-completed-color: #6ab255;
 .redux-templates-modal-wrapper.feedback-popup-wrapper {
     height: auto;
 }
+
+.feedback-popup-content {
+    label.control-label {
+        margin-bottom: 5px;
+    }
+    .form-group.field {
+        margin-bottom: 10px;
+    }
+    .fixed-control {
+        input,
+        select {
+            width: 250px;
+        }
+    }
+}
