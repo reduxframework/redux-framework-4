@@ -8,7 +8,7 @@ const {useState} = wp.element;
 const {apiFetch} = wp;
 
 function FeedbackDialog(props) {
-    const {title, description, schema, uiSchema, headerImage, headerIcon, data, endpoint} = props;
+    const {title, description, schema, uiSchema, headerImage, headerIcon, data, ignoreData, endpoint} = props;
     const {closeModal, onSuccess} = props;
 
     const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ function FeedbackDialog(props) {
         apiFetch({
             path,
             method: 'POST',
-            data: {...data, ...formData}
+            data: ignoreData ? formData : {...data, ...formData}
         }).then(data => {
             setLoading(false);
             if (data.success) {

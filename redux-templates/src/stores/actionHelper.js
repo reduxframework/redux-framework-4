@@ -6,9 +6,12 @@ const { savePost } = dispatch('core/editor');
 const { insertBlocks } = dispatch('core/block-editor');
 const { switchEditorMode } = dispatch('core/edit-post');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
+import { __ } from '@wordpress/i18n'
 import { ModalManager } from '~redux-templates/modal-manager';
 import PreviewModal from '../modal-preview';
 import FeedbackModal from '../modal-feedback/modal';
+import FeedbackDialog from '~redux-templates/modal-feedback';
+
 
 // create Block to import template
 export const handleBlock = (data, installedDependencies) => {
@@ -100,9 +103,70 @@ const detectInvalidBlocks = (handleBlock) => {
 // show notice or feedback modal dialog based on imported block valid status
 export const afterImportHandling = (data, handledBlock) => {
     const invalidBlocks = detectInvalidBlocks(handledBlock);
+    // get the description from the invalid blocks
+    let description = '';
+    if (invalidBlocks && invalidBlocks.length < 1)
+        description = invalidBlocks.map(block => {
+            if (block.validationIssues && Array.isArray(block.validationIssues))
+                return block.validationIssues.map(error => {
+                    return sprintf(...error.args)
+                }).join('\n');
+            else
+                return null;
+        }).join('\n');
+
+    // Prepare Form schema object
+    const schema = {
+        type: 'object',
+        properties: {
+            theme_plugins: {
+                type: 'boolean',
+                title: __('Send theme and plugins', redux_templates.i18n),
+                default: true
+            },
+            send_page_content: {
+                type: 'boolean',
+                title: __('Send page content', redux_templates.i18n),
+                default: true
+            },
+            template_id: {
+                type: 'string',
+                default: data.hash,
+                title: __('Template ID', redux_templates.i18n)
+            },
+            description: {
+                type: 'string',
+                default: description,
+                title: __('Description', redux_templates.i18n)
+            },
+            
+        }
+    }
+    const uiSchema = {
+        description: {
+            'ui:widget': 'textarea',
+        },
+        template_id: {
+            'ui:disabled': true,
+            classNames: 'fixed-control'
+        }
+    };
+
+    const feedbackData = {
+        content: handledBlock
+    };
     if (invalidBlocks && invalidBlocks.length > 0) { // in case there 
         setTimeout(() => {
-            ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} invalidBlocks={invalidBlocks} />);
+            ModalManager.openFeedback(<FeedbackDialog 
+                title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
+                description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
+                schema={schema}
+                uiSchema={uiSchema}
+                data={feedbackData}
+                ignoreData={true}
+                headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
+                />)
+            // ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} invalidBlocks={invalidBlocks} />);
         }, 500)
     } else {
         createNotice('warning', 'Please let us know if there was an issue importing this Redux template.', {
@@ -110,7 +174,15 @@ export const afterImportHandling = (data, handledBlock) => {
             id: 'redux-templatesimportfeedback',
             actions: [
                 {
-                    onClick: () => ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} />),
+                    onClick: () => ModalManager.openFeedback(<FeedbackDialog 
+                        title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
+                        description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
+                        schema={schema}
+                        uiSchema={uiSchema}
+                        data={feedbackData}
+                        ignoreData={true}
+                        headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
+                        />),
                     label: 'Report an Issue',
                     isPrimary: true,
                 }
