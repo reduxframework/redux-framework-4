@@ -8,7 +8,7 @@ const {useState} = wp.element;
 const {apiFetch} = wp;
 
 function FeedbackDialog(props) {
-    const {title, description, schema, uiSchema, headerImage, data, endpoint} = props;
+    const {title, description, schema, uiSchema, headerImage, headerIcon, data, endpoint} = props;
     const {closeModal, onSuccess} = props;
 
     const [loading, setLoading] = useState(false);
@@ -45,8 +45,9 @@ function FeedbackDialog(props) {
     return (
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper feedback-popup-wrapper">
-                <div class="feedback-popup-header feedback-popup-header-contact"
-                    style={{ backgroundImage: `url(${redux_templates.plugin}assets/img/${headerImage})` }}>
+                <div class="feedback-popup-header feedback-popup-header-contact">
+                    {headerImage}
+                    {headerIcon}
                     <a className="feedback-popup-close" onClick={onCloseModal}>
                         <i className='fas fa-times' />
                     </a>

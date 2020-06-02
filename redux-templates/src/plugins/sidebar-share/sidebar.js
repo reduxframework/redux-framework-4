@@ -42,13 +42,15 @@ const uiSchema = {
 
 export default function Sidebar(props) {
     const onShare = () => {
-        ModalManager.openFeedback(<FeedbackDialog 
-            title={__('Share this design', redux_templates.i18n)} 
-            description={__('We\'re sorry that it took longer than 5 minutes to try our challenge. We aim to ensure our Block Template library is as beginner friendly as possible. Please take a moment to let us know how we can improve our challenge.', redux_templates.i18n)}
-            schema={schema}
-            uiSchema={uiSchema}
-            headerImage='popup-contact.png'
-            />)
+        ModalManager.openFeedback(
+            <FeedbackDialog 
+                title={__('Redux Shares', redux_templates.i18n)} 
+                description={__('Share this design', redux_templates.i18n)} 
+                schema={schema}
+                uiSchema={uiSchema}
+                headerImage={<i className="fas fa-share header-icon"></i>}
+                />
+        )
     }
 
     return (

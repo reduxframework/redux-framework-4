@@ -96,24 +96,6 @@ $item-completed-color: #6ab255;
 .feedback-popup-wrapper {
     border-radius: 10px;
 }
-.feedback-popup-header {
-    width: 100%;
-    height: 150px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.feedback-popup-header-congrats {
-    background-position: center;
-    background-size: cover;
-}
-
-.feedback-popup-header-contact {
-    background-position: center;
-    background-size: auto 75%;
-    background-color: #eee;
-    background-repeat: no-repeat;
-}
 
 .feedback-popup-content {
     box-sizing: border-box;
@@ -233,5 +215,32 @@ $item-completed-color: #6ab255;
         select {
             width: 250px;
         }
+    }
+}
+
+
+.feedback-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 130px;
+    width: 100%;
+    background-color: #eee;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    .header-background {
+        width: 75px;
+        height: 75px;
+    }
+    i.header-icon {
+        font-size: 50px;
+    }
+
+    .feedback-popup-close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
     }
 }
