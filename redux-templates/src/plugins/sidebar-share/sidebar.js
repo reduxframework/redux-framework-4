@@ -1,4 +1,6 @@
 const {__} = wp.i18n;
+const {compose} = wp.compose;
+const {withDispatch, withSelect, select} = wp.data;
 const {Fragment} = wp.element;
 const {PanelBody} = wp.components
 const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
@@ -40,16 +42,25 @@ const uiSchema = {
     }
 };
 
-export default function Sidebar(props) {
+function Sidebar(props) {
+    const {getEditorBlocks} = props;
     const onShare = () => {
+        const data = {
+            postID: select('core/editor').getCurrentPostId(),
+            editor_blocks: getEditorBlocks(),
+            type: 'page'
+        };
         ModalManager.openFeedback(
             <FeedbackDialog 
                 title={__('Redux Shares', redux_templates.i18n)} 
                 description={__('Share this design', redux_templates.i18n)} 
                 schema={schema}
                 uiSchema={uiSchema}
+                data={data}
                 headerImage={<i className="fas fa-share header-icon"></i>}
-                />
+                endpoint='share'
+                onSuccess={data => window.open(data.data.url, '_blank')}
+            />
         )
     }
 
@@ -71,3 +82,12 @@ export default function Sidebar(props) {
         </Fragment>
     );
 }
+
+export default compose([
+    withSelect((select) => {
+        const {getEditorBlocks} = select('core/editor');
+        return {
+            getEditorBlocks
+        };
+    })
+])(Sidebar);

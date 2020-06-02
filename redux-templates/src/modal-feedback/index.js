@@ -26,7 +26,7 @@ function FeedbackDialog(props) {
             setLoading(false);
             if (data.success) {
                 setErrorMessage(null);
-                if (onSuccess) onSuccess(); else onCloseModal();
+                if (onSuccess) onSuccess(data); else onCloseModal();
             } else {
                 console.log('There was an error: ', data);
                 setErrorMessage(__('An unexpected error occured, please try again later.', redux_templates.i18n));
