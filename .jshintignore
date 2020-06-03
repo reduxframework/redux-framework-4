@@ -11,6 +11,6 @@
 ./redux-core/inc/welcome/js/jquery.easing.min.js
 ./redux-core/inc/welcome/js/redux-banner-admin.js
 ./redux-core/inc/themecheck/js/*.min.js
-./redux-templates/*
-./node_modules/*
-./config/**
+./redux-templates/**
+./node_modules/**
+./.config/**
