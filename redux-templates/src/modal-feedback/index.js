@@ -4,11 +4,12 @@
 import { __ } from '@wordpress/i18n'
 import { ModalManager } from '~redux-templates/modal-manager';
 import Form from '@rjsf/core';
+import {BlockPreview} from '@wordpress/block-editor';
 const {useState} = wp.element;
 const {apiFetch} = wp;
 
 function FeedbackDialog(props) {
-    const {title, description, schema, uiSchema, headerImage, headerIcon, data, ignoreData, endpoint} = props;
+    const {title, description, schema, uiSchema, headerImage, headerIcon, data, ignoreData, endpoint, width} = props;
     const {closeModal, onSuccess} = props;
 
     const [loading, setLoading] = useState(false);
@@ -42,9 +43,12 @@ function FeedbackDialog(props) {
         if (closeModal) closeModal(); else ModalManager.closeFeedback();
     }
 
+    const style = width ? {width} : null;
+    const wrapperClassname = width ? 'redux-templates-modal-wrapper feedback-popup-wrapper less-margin' : 'redux-templates-modal-wrapper feedback-popup-wrapper';
+
     return (
         <div className="redux-templates-modal-overlay">
-            <div className="redux-templates-modal-wrapper feedback-popup-wrapper">
+            <div className={wrapperClassname} style={style}>
                 <div class="feedback-popup-header feedback-popup-header-contact">
                     {headerImage}
                     {headerIcon}
@@ -56,13 +60,21 @@ function FeedbackDialog(props) {
                     <h3>{title}</h3>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <p>{description}</p>
-                    <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
-                        <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">
-                            {loading && <i className="fas fa-spinner fa-pulse"/>}
-                            {__('Submit Feedback', redux_templates.i18n)}
-                        </button>
-                    </Form>                    
-                </div>
+                    <div className="col-wrapper">
+                        <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
+                            <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">
+                                {loading && <i className="fas fa-spinner fa-pulse"/>}
+                                {__('Submit Feedback', redux_templates.i18n)}
+                            </button>
+                        </Form>
+                        { data && data.editor_blocks && 
+                            <div className="preview-panel">
+                                <div className="redux-templates-block-preview-hover" />
+                                <BlockPreview blocks={data.editor_blocks} />
+                            </div>
+                        }
+                    </div>
+                </div> {/* /.feedback-popup-content */}
             </div>
         </div>
     );

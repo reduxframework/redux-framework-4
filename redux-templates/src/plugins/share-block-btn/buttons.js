@@ -68,6 +68,7 @@ export function ShareBlockButton({clientIds})
         ModalManager.openFeedback(
             <FeedbackDialog 
                 title={__('Redux Shares', redux_templates.i18n)} 
+                width={700}
                 description={__('Share this design', redux_templates.i18n)} 
                 schema={schema}
                 uiSchema={uiSchema}

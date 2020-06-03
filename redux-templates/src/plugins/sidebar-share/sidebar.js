@@ -57,6 +57,7 @@ function Sidebar(props) {
                 schema={schema}
                 uiSchema={uiSchema}
                 data={data}
+                width={700}
                 headerImage={<i className="fas fa-share header-icon"></i>}
                 endpoint='share'
                 onSuccess={data => window.open(data.data.url, '_blank')}
