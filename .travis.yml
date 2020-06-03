@@ -20,7 +20,7 @@ notifications:
             - support@redux.io
         on_failure: always
     slack: redux:yeR6PY87fwfQ0sBPnJFmCmjY
-    
+
 # Ditch sudo and use containers.
 # @link http://docs.travis-ci.com/user/migrating-from-legacy/#Why-migrate-to-container-based-infrastructure%3F
 # @link http://docs.travis-ci.com/user/workers/container-based-infrastructure/#Routing-your-build-to-container-based-infrastructure
@@ -84,7 +84,7 @@ before_script:
 # All commands must exit with code 0 on success. Anything else is considered failure.
 script:
     # Search theme for PHP syntax errors.
-    - find . \( -name '*.php' \) -exec php -lf {} \;
+    - find . \( -name '*.php' \) -exec php -l {} 1> /dev/null \;
     # Run the theme through JSHint
     - jshint .
     # Run the theme through JavaScript Code Style checker
