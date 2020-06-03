@@ -1,3 +1,3 @@
-# ReduxTemplates
+# Redux Templates Module
 
-See [readme.txt](./readme.txt) for full details.
+Used to add the Redux Block Templates library.

@@ -219,5 +219,10 @@
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
-  ]
+  ],
+  "jest": {
+    "projects": [
+      "redux-templates/jest.config.js"
+    ]
+  }
 }

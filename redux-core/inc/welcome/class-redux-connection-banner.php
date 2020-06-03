@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
          * the admin_init action fires, we know that the admin is initialized at this point.
          */
         private function __construct() {
-            return;
+//            return;
             add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
             add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );

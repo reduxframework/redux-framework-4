@@ -94,7 +94,7 @@ $item-completed-color: #6ab255;
 }
 
 .feedback-popup-wrapper {
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 .less-margin .feedback-popup-content {
@@ -230,8 +230,8 @@ $item-completed-color: #6ab255;
     height: 130px;
     width: 100%;
     background-color: #eee;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 
     .header-background {
         width: 75px;
