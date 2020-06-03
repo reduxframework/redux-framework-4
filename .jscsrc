@@ -6,7 +6,7 @@
     "./gulpfile.js",
     "./redux-core/inc/themecheck/js/*.min.js",
     "./redux-core/inc/welcome/js/jquery.easing.min.js",
-    "./redux-core/inc/welcome/js/*.min.js",
+    "./redux-core/inc/welcome/js/*.js",
     "./redux-core/inc/extensions/**/*.min.js",
     "./redux-core/inc/fields/spinner/vendor/*.min.js",
     "./redux-core/inc/fields/typography/todo/*.*",
@@ -14,7 +14,9 @@
     "./redux-core/assets/js/vendor/**/*.js",
     "./redux-core/assets/js/vendor/*.js",
     "./redux-core/assets/js/media/*.min.js",
-    "./redux-core/assets/js/*.js"
+    "./redux-core/assets/js/*.js",
+    "./node_modules/**",
+    "./.*/**"
   ],
 
   "maxErrors": -1,
@@ -33,7 +35,6 @@
   "requireCamelCaseOrUpperCaseIdentifiers": false,
   "validateQuoteMarks": false,
   "safeContextKeyword": "_this",
-
   "jsDoc": {
     "checkAnnotations": "closurecompiler",
     "checkParamNames": true,
