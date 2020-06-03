@@ -156,18 +156,29 @@ export const afterImportHandling = (data, handledBlock) => {
         content: handledBlock
     };
     if (invalidBlocks && invalidBlocks.length > 0) { // in case there 
+        createNotice('error', 'Please let us know if there was an issue importing this Redux template.', {
+                isDismissible: true,
+                id: 'redux-templatesimportfeedback',
+                actions: [
+                    {
+                    onClick: () => ModalManager.openFeedback(<FeedbackDialog 
+                        title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
+                        description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
+                        schema={schema}
+                        uiSchema={uiSchema}
+                        data={feedbackData}
+                        ignoreData={true}
+                        headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
+                        buttonLabel={__('Submit Feedback', redux_templates.i18n)}
+                        />),
+                    label: 'Report an Issue',
+                    isPrimary: true,
+                }
+            ],
+        });
         setTimeout(() => {
-            ModalManager.openFeedback(<FeedbackDialog 
-                title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
-                description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
-                schema={schema}
-                uiSchema={uiSchema}
-                data={feedbackData}
-                ignoreData={true}
-                headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
-                />)
-            // ModalManager.open(<FeedbackModal importedData={data} handledBlock={handledBlock} invalidBlocks={invalidBlocks} />);
-        }, 500)
+            removeNotice('redux-templatesimportfeedback');
+        }, 20000);
     } else {
         createNotice('warning', 'Please let us know if there was an issue importing this Redux template.', {
             isDismissible: true,
@@ -182,6 +193,7 @@ export const afterImportHandling = (data, handledBlock) => {
                         data={feedbackData}
                         ignoreData={true}
                         headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
+                        buttonLabel={__('Submit Feedback', redux_templates.i18n)}
                         />),
                     label: 'Report an Issue',
                     isPrimary: true,

@@ -61,6 +61,7 @@ export default function FabWrapper() {
                         schema={schema}
                         uiSchema={uiSchema}
                         headerImage={<img className="header-background" src={`${redux_templates.plugin}assets/img/popup-contact.png` } />}
+                        buttonLabel={__('Submit Feedback', redux_templates.i18n)}
                         />)
                 }}
             >

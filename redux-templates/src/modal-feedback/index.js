@@ -9,7 +9,7 @@ const {useState} = wp.element;
 const {apiFetch} = wp;
 
 function FeedbackDialog(props) {
-    const {title, description, schema, uiSchema, headerImage, headerIcon, data, ignoreData, endpoint, width} = props;
+    const {title, description, schema, uiSchema, headerImage, headerIcon, data, ignoreData, endpoint, width, buttonLabel} = props;
     const {closeModal, onSuccess} = props;
 
     const [loading, setLoading] = useState(false);
@@ -64,7 +64,7 @@ function FeedbackDialog(props) {
                         <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
                             <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">
                                 {loading && <i className="fas fa-spinner fa-pulse"/>}
-                                {__('Submit Feedback', redux_templates.i18n)}
+                                {buttonLabel}
                             </button>
                         </Form>
                         { data && data.editor_blocks && 

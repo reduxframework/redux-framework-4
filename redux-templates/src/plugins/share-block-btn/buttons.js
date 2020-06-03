@@ -76,6 +76,7 @@ export function ShareBlockButton({clientIds})
                 headerImage={<i className="fas fa-share header-icon"></i>}
                 endpoint='share'
                 onSuccess={data => window.open(data.data.url, '_blank')}
+                buttonLabel={__('Submit Template', redux_templates.i18n)}
             />
         )
     }
