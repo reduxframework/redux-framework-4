@@ -122,6 +122,13 @@ var fs           = require( 'fs' );
 var path         = require( 'path' );
 var merge        = require( 'merge-stream' );
 var sassPackager = require( 'gulp-sass-packager' );
+const {src, dest, series} = require('gulp');
+const zip = require('gulp-zip');
+const replace = require('gulp-replace');
+const clean = require('gulp-clean');
+const minifyCSS = require('gulp-csso');
+const minifyJS = require('gulp-minify');
+const concatCss = require('gulp-concat-css');
 
 /**
  * Task: `browser-sync`.
@@ -137,7 +144,6 @@ var sassPackager = require( 'gulp-sass-packager' );
 gulp.task(
 	'browser-sync',
 	function() {
-		'use strict';
 		browserSync.init(
 			{
 				// For more options.
@@ -161,7 +167,6 @@ gulp.task(
 );
 
 function getFolders( dir ) {
-	'use strict';
 	return fs.readdirSync( dir ).filter(
 		function( file ) {
 			return fs.statSync( path.join( dir, file ) ).isDirectory();
@@ -170,7 +175,6 @@ function getFolders( dir ) {
 }
 
 function process_scss( source, dest, add_min ) {
-	'use strict';
 
 	var process = gulp.src( source, { allowEmpty: true } )
 	.pipe( sourcemaps.init() )
@@ -231,7 +235,6 @@ function process_scss( source, dest, add_min ) {
  *    7. Injects CSS or reloads the browser via browserSync
  */
 function reduxStyles() {
-	'use strict';
 
 	// Core styles.
 	var core = styles.map(
@@ -310,7 +313,6 @@ function reduxStyles() {
 }
 
 function extFieldJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
@@ -344,7 +346,6 @@ function extFieldJS( done ) {
 }
 
 function extJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
@@ -382,7 +383,6 @@ function extJS( done ) {
 }
 
 function fieldsJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/fields' );
 	field_dirs.map(
@@ -426,7 +426,6 @@ function fieldsJS( done ) {
  *     2. Concatenates all the files and generates redux.js
  */
 function reduxCombineModules( done ){
-	'use strict';
 
 	gulp.src( jsReduxSRC )
 	.pipe( jshint() )
@@ -449,7 +448,6 @@ function reduxCombineModules( done ){
 }
 
 function reduxMedia( done ) {
-	'use strict';
 
 	gulp.src( './redux-core/assets/js/media/media.js' )
 	.pipe( jshint() )
@@ -473,7 +471,6 @@ function reduxMedia( done ) {
 }
 
 function reduxSpinner( done ) {
-	'use strict';
 
 	gulp.src( './redux-core/inc/fields/spinner/vendor/jquery.ui.spinner.js' )
 	.pipe( jshint() )
@@ -507,7 +504,6 @@ function reduxSpinner( done ) {
  *     3. Uglifes/Minifies the JS file and generates redux.min.js
  */
 function reduxJS( done ) {
-	'use strict';
 
 	gulp.src( reduxJSWatchFiles )
 	.pipe( jshint() )
@@ -534,7 +530,6 @@ function reduxJS( done ) {
  *     4. Uglifes/Minifies the JS file and generates vendors.min.js
  */
 function vendorsJS( done ) {
-	'use strict';
 
 	gulp.src( jsVendorSRC )
 	.pipe( concat( jsVendorFile + '.js' ) )
@@ -569,7 +564,6 @@ function vendorsJS( done ) {
  * again, do it with the command `gulp images`.
  */
 function reduxImages( done ){
-	'use strict';
 
 	gulp.src( imagesSRC )
 	.pipe(
@@ -597,7 +591,6 @@ function reduxImages( done ){
  *     4. Generate a .pot file of i18n that can be used for l10n to build .mo file
  */
 function translate() {
-	'use strict';
 	return gulp.src( projectPHPWatchFiles )
 	.pipe( sort() )
 	.pipe(
@@ -626,6 +619,110 @@ gulp.task( 'vendorsJS', vendorsJS );
 gulp.task( 'images', reduxImages );
 gulp.task( 'translate', translate );
 
+
+function cleanBuild() {
+	return src('./build', {read: false, allowEmpty: true})
+		.pipe(clean());
+}
+
+function makeBuild() {
+	return src([
+		'./**/*.*',
+        '!./assets/js/*.dev.*',
+		'!./node_modules/**/*.*',
+		'!./src/**/*.*',
+        '!./.wordpress-org/**/*.*',
+        '!./.github/**/*.*',
+		'!./build/**/*.zip',
+		'!./gulpfile.js',
+		'!./yarn.lock',
+		'!./yarn-error.log',
+		'!.babelrc',
+		'!./languages/**/*',
+		'!.eslintrc',
+		'!./package-lock.json',
+        '!./composer-lock.json',
+        '!./composer.lock',
+		'!./webpack.*.js',
+        '!./jest.config.js',
+        '!./babel.config.js',
+        '!./jsconfig.json',
+        '!vendor/composer/installers/**/*',
+        '!vendor/composer/LICENSE',
+        '!vendor/composer/installed.json',
+	]).pipe(dest('build/'));
+}
+
+function productionMode() {
+	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
+	return src(['./build/redux-templates/core/Init.php'])
+	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
+		.pipe(replace(/redux_templates\.dev/g, 'redux_templates.min'))
+        .pipe(replace(/vendor\.dev/g, 'vendor.min'))
+		.pipe(replace(/map\.js/g, 'map.min.js'))
+		.pipe(dest('./build/redux-templates/core/'));
+}
+
+function debug() {
+	var stream = arguments[0];
+
+	// put your desired debugging code here
+	console.log('hello');
+	console.log(arguments);
+
+	return stream;
+}
+
+function admin_css() {
+	return src(['./redux-templates/src/scss/*.scss'])
+		.pipe(sass())
+		.pipe(autoprefixer({
+			cascade: false
+		}))
+		.pipe(minifyCSS())
+		.pipe(concat('admin.min.css'))
+		.pipe(dest('redux-templates/assets/css/'))
+}
+
+
+function minify_js() {
+	const commonjs = src(['./build/redux-templates/assets/js/*.js'])
+		.pipe(minifyJS({
+			ext: {
+				src: '.js',
+				min: '.min.js'
+			},
+			exclude: ['tasks'],
+			ignoreFiles: ['redux-templates.min.js', '*-min.js', '*.min.js']
+		}))
+		.pipe(dest(['./build/redux-templates/assets/js/']));
+
+	return commonjs;
+}
+
+
+function makeZip() {
+	return src('./build/**/*.*')
+		.pipe(zip('./build/redux.zip'))
+		.pipe(dest('./'))
+}
+
+exports.makeBuild = makeBuild;
+exports.productionMode = productionMode;
+exports.admin_css = admin_css;
+exports.minify_js = minify_js;
+exports.cleanBuild = cleanBuild;
+
+
+exports.makeZip = makeZip;
+exports.templates = series(
+	cleanBuild,
+	makeBuild,
+	productionMode,
+	admin_css,
+	minify_js,
+	makeZip
+);
 /**
  * Watch Tasks.
  *
