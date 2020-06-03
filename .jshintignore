@@ -13,4 +13,4 @@
 ./redux-core/inc/themecheck/js/*.min.js
 ./redux-templates/*
 ./node_modules/*
-./config/*
+./config/**
