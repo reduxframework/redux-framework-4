@@ -518,6 +518,7 @@ if ( class_exists( 'Redux_Pro' ) ) {
 			'title' => esc_html__( 'Redux Pro Fields', 'your-domain-here' ),
 			'id'    => 'redux-pro-fields',
 			'icon'  => 'el el-redux',
+			'class' => 'pro_highlight',
 			'desc'  => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/premium/" target="_blank">docs.redux.io/premium/</a>',
 		)
 	);
