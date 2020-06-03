@@ -16,6 +16,7 @@
     "./redux-core/assets/js/media/*.min.js",
     "./redux-core/assets/js/*.js",
     "./node_modules/**",
+    "./redux-templates/**",
     "./.*/**"
   ],
 
