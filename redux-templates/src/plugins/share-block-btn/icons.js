@@ -1,9 +1,5 @@
-const ReduxTemplatesIcon = <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 19 19">
-<g>
-	<path d="M10.9,17.7H7.4l-0.9-1.5l2.1-2.4L10.9,17.7L10.9,17.7z M5.6,16.1l-1.5,1.6H0.1L4,13.3L5.6,16.1L5.6,16.1z"/>
-	<polygon points="6.1,15.6 0.4,5.9 3.9,5.9 6.6,10.4 14.6,1.3 18.9,1.3 6.1,15.6 	"/>
-</g>
-</svg>
+const ReduxTemplatesIcon = <svg width="20" height="20" viewBox="0 0 484 422.3" xmlns="http://www.w3.org/2000/svg">
+<g><path d="M277.2,422.3h-89.9l-23.2-39.5l54.3-60.5C218.4,322.3,277.2,422.3,277.2,422.3z M142.3,380.5l-37.5,41.8H0 l100.2-113.4L142.3,380.5L142.3,380.5z" fill="black"/><polygon points="154.7,366.7 8.4,118 98.2,118 166.4,233.9 373.2,0 484,0 154.7,366.7" fill="#00a7e5"/></g></svg>
 
 
 export default ReduxTemplatesIcon;
