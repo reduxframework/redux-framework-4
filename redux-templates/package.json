@@ -10,9 +10,6 @@
         "blocks",
         "library"
     ],
-    "homepage": "https://redux-templates.io",
-    "repository": "git+https://github.com/redux-templates/redux-templates.git",
-    "bugs": "https://wordpress.org/support/plugin/redux-templates",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.19",
