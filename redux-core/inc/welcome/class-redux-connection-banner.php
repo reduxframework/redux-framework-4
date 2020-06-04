@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
          * the admin_init action fires, we know that the admin is initialized at this point.
          */
         private function __construct() {
-//            return;
+            return;
             add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
             add_action( 'admin_notices', array( $this, 'render_banner' ) );
             add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
@@ -55,9 +55,9 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
 
         function admin_body_class( $admin_body_class = '' ) {
             $classes = explode( ' ', trim( $admin_body_class ) );
-    
+
             $classes[] = false ? 'redux-connected' : 'redux-disconnected';
-    
+
             $admin_body_class = implode( ' ', array_unique( $classes ) );
             return " $admin_body_class ";
         }
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Redux_ConnectionBanner', false ) ) {
                     <div class="redux-banner-full-dismiss">
                         <svg class="redux-banner-svg-dismiss" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Dismiss Redux Connection Window</title><rect x="0" fill="none" /><g><path d="M17.705 7.705l-1.41-1.41L12 10.59 7.705 6.295l-1.41 1.41L10.59 12l-4.295 4.295 1.41 1.41L12 13.41l4.295 4.295 1.41-1.41L13.41 12l4.295-4.295z"/></g></svg>
                     </div>
-                
+
                     <img
                         src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/logo.svg"
                         alt="<?php esc_attr_e('Redux Logo','redux-template'); ?>"
