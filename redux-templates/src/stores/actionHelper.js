@@ -176,9 +176,6 @@ export const afterImportHandling = (data, handledBlock) => {
                 }
             ],
         });
-        setTimeout(() => {
-            removeNotice('redux-templatesimportfeedback');
-        }, 20000);
     } else {
         createNotice('warning', 'Please let us know if there was an issue importing this Redux template.', {
             isDismissible: true,
