@@ -28,8 +28,8 @@ if ( ! class_exists( 'Redux_Validation_Color', false ) ) {
 				return;
 			}
 
-			$test = str_replace( '#', '', $this->value );
-			if ( ! in_array( strlen( $test ), array( 3, 6 ), true ) ) {
+			$test = str_replace( '#', '', strtolower( trim( $this->value ) ) );
+			if ( ! in_array( strlen( $test ), array( 3, 6 ), true ) && 'transparent' !== $this->value ) {
 				// translators: %1$s: santizied value.  %2$s: Old value.
 				$this->field['msg'] = isset( $this->field['msg'] ) ? $this->field['msg'] : sprintf( esc_html__( 'Invalid HTML color code %1$s. Please enter a valid code. No value was saved.', 'redux-framework' ), '<code>' . $this->value . '</code>' );
 
