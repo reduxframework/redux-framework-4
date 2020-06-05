@@ -3,7 +3,7 @@ const {compose} = wp.compose;
 const {withSelect, select} = wp.data;
 const {Fragment} = wp.element;
 const {PanelBody} = wp.components
-const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
+
 import sortBy from 'lodash/sortBy';
 import map from 'lodash/map';
 import {ModalManager} from '../../modal-manager'
@@ -43,6 +43,8 @@ const uiSchema = {
 };
 
 function Sidebar(props) {
+    if (!wp.editPost) return null;
+    const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
     const {getEditorBlocks} = props;
     const onShare = () => {
         const data = {

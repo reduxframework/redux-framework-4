@@ -4,7 +4,6 @@ const { dispatch, select } = wp.data;
 const { getBlockTypes } = select('core/blocks');
 const { savePost } = dispatch('core/editor');
 const { insertBlocks } = dispatch('core/block-editor');
-const { switchEditorMode } = dispatch('core/edit-post');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
 import { __ } from '@wordpress/i18n'
 import { ModalManager } from '~redux-templates/modal-manager';
@@ -56,7 +55,8 @@ export const processImportHelper = () => {
         headers: { 'Content-Type': 'application/json', 'Registered-Blocks': installedBlocksTypes() }
     };
 
-    if (select('core/edit-post').getEditorMode() === 'text') {
+    if (dispatch('core/edit-post') && select('core/edit-post').getEditorMode() === 'text') {
+        const { switchEditorMode } = dispatch('core/edit-post');
         switchEditorMode()
     }
     window.redux_templates_tempdata = [];

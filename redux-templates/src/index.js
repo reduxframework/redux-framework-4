@@ -23,27 +23,30 @@ import LibraryModal from './modal-library';
 
 
 domReady(() => {
-	const toolbar = document.querySelector('.edit-post-header-toolbar')
-	if (!toolbar) {
-		return
-	}
-    const challengeDiv = document.createElement('div')
-    challengeDiv.className = 'challenge-tooltip-holder';
-    document.body.appendChild(challengeDiv);
-    const challengeWrapperDiv = document.createElement('div');
-    challengeWrapperDiv.className = 'challenge-wrapper';
-    document.body.appendChild(challengeWrapperDiv);
+    setTimeout(() => {
+        let toolbar = document.querySelector('.edit-post-header-toolbar');
+        if (!toolbar) {
+            toolbar = document.querySelector('.edit-post-header__toolbar');
+            if (!toolbar) return;
+        }
+        const challengeDiv = document.createElement('div');
+        challengeDiv.className = 'challenge-tooltip-holder';
+        document.body.appendChild(challengeDiv);
+        const challengeWrapperDiv = document.createElement('div');
+        challengeWrapperDiv.className = 'challenge-wrapper';
+        document.body.appendChild(challengeWrapperDiv);
 
-    const buttonDiv = document.createElement('div')
-    toolbar.appendChild(buttonDiv);
-    render(<ToolbarLibraryButton/>, buttonDiv)
-    
-    if (window.location.hash == '#redux_templates_tour=1') {
-        window.location.hash = '';
-        ModalManager.open(<LibraryModal />);
-    }
-    render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
-    render(<TooltipBox />, challengeDiv);
+        const buttonDiv = document.createElement('div');
+        toolbar.appendChild(buttonDiv);
+        render(<ToolbarLibraryButton/>, buttonDiv);
+        
+        if (window.location.hash == '#redux_templates_tour=1') {
+            window.location.hash = '';
+            ModalManager.open(<LibraryModal />);
+        }
+        render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
+        render(<TooltipBox />, challengeDiv);
 
-    handlingLocalStorageData();
+        handlingLocalStorageData();
+    }, 500)
 });
