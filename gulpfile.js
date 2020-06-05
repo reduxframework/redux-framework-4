@@ -122,13 +122,11 @@ var fs           = require( 'fs' );
 var path         = require( 'path' );
 var merge        = require( 'merge-stream' );
 var sassPackager = require( 'gulp-sass-packager' );
-const {src, dest, series} = require('gulp');
-const zip = require('gulp-zip');
-const replace = require('gulp-replace');
-const clean = require('gulp-clean');
-const minifyCSS = require('gulp-csso');
-const minifyJS = require('gulp-minify');
-const concatCss = require('gulp-concat-css');
+var zip = require('gulp-zip');
+var replace = require('gulp-replace');
+var clean = require('gulp-clean');
+var minifyCSS = require('gulp-csso');
+var minifyJS = require('gulp-minify');
 
 /**
  * Task: `browser-sync`.
@@ -621,12 +619,12 @@ gulp.task( 'translate', translate );
 
 
 function cleanBuild() {
-	return src('./build', {read: false, allowEmpty: true})
+	return gulp.src('./build', {read: false, allowEmpty: true})
 		.pipe(clean());
 }
 
 function makeBuild() {
-	return src([
+	return gulp.src([
 		'./**/*.*',
         '!./assets/js/*.dev.*',
 		'!./node_modules/**/*.*',
@@ -650,43 +648,33 @@ function makeBuild() {
         '!vendor/composer/installers/**/*',
         '!vendor/composer/LICENSE',
         '!vendor/composer/installed.json',
-	]).pipe(dest('build/'));
+	]).pipe(gulp.dest('build/'));
 }
 
 function productionMode() {
 	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
-	return src(['./build/redux-templates/core/Init.php'])
+	return gulp.src(['./build/redux-templates/core/Init.php'])
 	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
 		.pipe(replace(/redux_templates\.dev/g, 'redux_templates.min'))
         .pipe(replace(/vendor\.dev/g, 'vendor.min'))
 		.pipe(replace(/map\.js/g, 'map.min.js'))
-		.pipe(dest('./build/redux-templates/core/'));
-}
-
-function debug() {
-	var stream = arguments[0];
-
-	// put your desired debugging code here
-	console.log('hello');
-	console.log(arguments);
-
-	return stream;
+		.pipe(gulp.dest('./build/redux-templates/core/'));
 }
 
 function admin_css() {
-	return src(['./redux-templates/src/scss/*.scss'])
+	return gulp.src(['./redux-templates/src/scss/*.scss'])
 		.pipe(sass())
 		.pipe(autoprefixer({
 			cascade: false
 		}))
 		.pipe(minifyCSS())
 		.pipe(concat('admin.min.css'))
-		.pipe(dest('redux-templates/assets/css/'))
+		.pipe(gulp.dest('redux-templates/assets/css/'));
 }
 
 
 function minify_js() {
-	const commonjs = src(['./build/redux-templates/assets/js/*.js'])
+	return gulp.src(['./build/redux-templates/assets/js/*.js'])
 		.pipe(minifyJS({
 			ext: {
 				src: '.js',
@@ -695,34 +683,32 @@ function minify_js() {
 			exclude: ['tasks'],
 			ignoreFiles: ['redux-templates.min.js', '*-min.js', '*.min.js']
 		}))
-		.pipe(dest(['./build/redux-templates/assets/js/']));
+		.pipe(gulp.dest(['./build/redux-templates/assets/js/']));
 
-	return commonjs;
 }
 
 
 function makeZip() {
-	return src('./build/**/*.*')
+	return gulp.src('./build/**/*.*')
 		.pipe(zip('./build/redux.zip'))
-		.pipe(dest('./'))
+		.pipe(gulp.dest('./'));
 }
 
-exports.makeBuild = makeBuild;
-exports.productionMode = productionMode;
-exports.admin_css = admin_css;
-exports.minify_js = minify_js;
-exports.cleanBuild = cleanBuild;
+gulp.task('makeBuild', makeBuild);
+gulp.task('productionMode',productionMode);
+gulp.task('admin_css', admin_css);
+gulp.task('minify_js', minify_js);
+gulp.task('cleanBuild', cleanBuild);
+gulp.task('makeZip', makeZip);
 
-
-exports.makeZip = makeZip;
-exports.templates = series(
-	cleanBuild,
-	makeBuild,
-	productionMode,
-	admin_css,
-	minify_js,
-	makeZip
-);
+gulp.task('templates', gulp.series(
+	'cleanBuild',
+	'makeBuild',
+	'productionMode',
+	'admin_css',
+	'minify_js',
+	'makeZip'
+));
 /**
  * Watch Tasks.
  *
