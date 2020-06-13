@@ -12,7 +12,7 @@ const {createSuccessNotice} = dispatch('core/notices');
 const {insertBlocks} = dispatch('core/block-editor');
 
 const prefix = 'sb_';
-const REDUXTEMPLATES_PRO_KEY = 'redux-templates-pro';
+const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
 export const getCurrentState = (state) => state[state.activeItemType]
@@ -230,9 +230,9 @@ export const getOnlySelectedDependencyFilters = (dependencyFilters) => {
     return Object.keys(dependencyFilters).filter(key => dependencyFilters[key]);
 }
 
-/* 
+/*
 Input: dependencies: {getwid: 38, qubely: 82...}
-Result: {getwid: {value: true, disabled: true}, } 
+Result: {getwid: {value: true, disabled: true}, }
 */
 export const getDefaultDependencies = (dependencies) => {
     const unSupportedPlugins = Object.keys(redux_templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
@@ -257,7 +257,7 @@ export const getInstalledDependencies = (dependencies) => {
                 if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
                 if (isProPlugin(cur) === false && pluginInstance.hasOwnProperty('version') === false) value = false;
                 if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
-            } else 
+            } else
                 value = false;
             return {...acc, [cur]: {value, disabled: false}};
         }, {none: {value: true, disabled: false}});

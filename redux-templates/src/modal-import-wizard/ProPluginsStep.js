@@ -3,7 +3,7 @@ const {__} = wp.i18n;
 
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
-const REDUXTEMPLATES_PRO_KEY = 'redux-templates-pro';
+const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
 export default function ProPluginStep(props) {
     const {missingPros, onCloseWizard} = props;
 

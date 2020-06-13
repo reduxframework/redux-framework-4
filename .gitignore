@@ -92,3 +92,4 @@ vendor/composer/installers/**/*
 vendor/composer/LICENSE
 vendor/composer/installed.json
 redux-templates/composer.lock
+redux-templates/core/library.json
