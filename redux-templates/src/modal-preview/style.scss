@@ -26,9 +26,9 @@ button {
 }
 
 .install-theme-info .theme-screenshot {
-    width: 100%;
-    border: none;
-    margin: 0;
+    width: 100% !important;
+    border: none !important;
+    margin: 0 !important;
     display: block;
 }
 
@@ -93,9 +93,16 @@ button {
     top: 0;
     bottom: 0;
     height: 100%;
+    -webkit-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+    background-color: unset;
 }
 .wp-full-overlay-main.loaded::before {
-    display: none;
+    display: none !important;
+}
+.wp-full-overlay-main.loaded iframe {
+    background-color: #fff;
 }
 
 .theme-install-overlay iframe {
@@ -103,6 +110,7 @@ button {
     width: 100%;
     z-index: 20;
     transition: opacity 0.3s;
+
 }
 
 
@@ -161,14 +169,14 @@ button {
     }
 
     .the-copy {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
+        border-bottom-right-radius: 0 !important;
+        border-top-right-radius: 0 !important;
     }
 
     .the-hash {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-        border-left: 0;
+        border-bottom-left-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-left: 0 !important;
     }
 
     .hideMe {
