@@ -1,8 +1,6 @@
 const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
-const {Component, useState, useEffect} = wp.element
-const {Spinner} = wp.components;
-const {__} = wp.i18n
+const {useState, useEffect, useReducer} = wp.element
 import SitePreviewSidebar from './SitePreviewSidebar';
 import {ModalManager} from '../modal-manager'
 import ImportWizard from '../modal-import-wizard';
@@ -11,19 +9,59 @@ import SafeImageLoad from '~redux-templates/components/safe-image-load';
 import {processImportHelper} from '~redux-templates/stores/actionHelper';
 import './style.scss';
 
+const initialState = {
+    currentPageData: null,
+    currentIndex: 0,
+    itemData: null,
+    imageURL: ''
+};
+
+const previewReducer = (state, action) => {
+    let itemData;
+    let imageURL;
+    switch(action.type) {
+        case 'INDEX':
+            itemData = state.currentPageData[action.currentIndex];
+            if (itemData.image_full)
+                imageURL = itemData.image_full;
+            else 
+                imageURL = itemData.image
+        
+            return {
+                ...state,
+                currentIndex: action.currentIndex,
+                imageURL,
+                itemData
+            };
+        case 'DATA':
+            itemData = action.currentPageData[action.currentIndex];
+            if (itemData.image_full)
+                imageURL = itemData.image_full;
+            else 
+                imageURL = itemData.image
+            return {
+                currentPageData: action.currentPageData,
+                currentIndex: action.currentIndex,
+                imageURL,
+                itemData
+            };
+    }
+}
+
 function PreviewModal(props) {
 
     const {startIndex, currentPageData} = props;
     const {setImportingTemplate, importingTemplate} = props;
-    const [currentIndex, setCurrentIndex] = useState(startIndex);
+    
+    const [state, dispatch] = useReducer(previewReducer, initialState);
+
     const [previewClass, setPreviewClass] = useState('preview-desktop')
     const [expandedClass, toggleExpanded] = useState('expanded')
-    const [importingBlock, setImportingBlock] = useState(null);
-    const [missingPluginArray, setMissingPlugin] = useState([]);
-    const [missingProArray, setMissingPro] = useState([]);
     const [pressedKey, setPressedKey] = useState(null);
     const [overlayClassname, setOverlayClassname] = useState('wp-full-overlay-main');
+    const [wrapperClassName, setWrapperClassName] = useState('wp-full-overlay sites-preview theme-install-overlay ');
 
+    // Key event handling : event listener set up
     useEffect(() => {
         const handleKeyDown = ({keyCode}) => {
             setPressedKey(keyCode);
@@ -35,6 +73,7 @@ function PreviewModal(props) {
         }
     }, []);
 
+    // Key Event handling
     useEffect(() => {
         if (pressedKey !== null) {
             if (pressedKey === 37) onPrevBlock();
@@ -43,21 +82,42 @@ function PreviewModal(props) {
         }
     }, [pressedKey])
 
+    useEffect(() => {
+        if (isNaN(startIndex) === false && currentPageData)
+            dispatch({ type: 'DATA', currentIndex: startIndex, currentPageData });
+    }, [startIndex, currentPageData]);
+
+    // mobile/desktop preview status and sidebar collapse/expand
+    useEffect(() => {
+        setWrapperClassName(['wp-full-overlay sites-preview theme-install-overlay ', previewClass, expandedClass].join(' '));   
+    }, [previewClass, expandedClass])
+
     const onCloseCustomizer = () => {
         ModalManager.closeCustomizer();
     }
 
     const onNextBlock = () => {
-        if (currentIndex < currentPageData.length - 1) setCurrentIndex(currentIndex + 1);
+        if (state.currentIndex < currentPageData.length - 1) {
+            setOverlayClassname('wp-full-overlay-main');
+            setTimeout(() => {
+                dispatch({ type: 'INDEX', currentIndex: state.currentIndex + 1 });
+            }, 0)
+        }
     }
 
     const onPrevBlock = () => {
-        if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+        if (state.currentIndex > 0) {
+            setOverlayClassname('wp-full-overlay-main');
+            setTimeout(() => {
+                dispatch({ type: 'INDEX', currentIndex: state.currentIndex - 1 });
+            }, 0)
+
+        }
     }
 
 
     const importStarterBlock = () => {
-        setImportingTemplate(itemData);
+        setImportingTemplate(state.itemData);
         ModalManager.closeCustomizer();
     }
 
@@ -65,32 +125,28 @@ function PreviewModal(props) {
         if (importingTemplate) processImportHelper();
     }
 
+    // Called from iframe upon successful loading
     const hideSpinner = () => {
         setOverlayClassname('wp-full-overlay-main loaded');
     }
 
-    let wrapperClassName = ['wp-full-overlay sites-preview theme-install-overlay ', previewClass, expandedClass].join(' ');
-    let itemData = currentPageData[currentIndex];
-    let image_url = itemData.image
-    if (itemData.image_full) {
-        image_url = itemData.image_full;
-    }
+    if (!state || !state.itemData) return null;
 
     return (
         <Fragment>
             <div className={wrapperClassName} style={{display: 'block'}}>
-                <SitePreviewSidebar itemData={itemData} previewClass={previewClass} expandedClass={expandedClass}
+                <SitePreviewSidebar itemData={state.itemData} previewClass={previewClass} expandedClass={expandedClass}
                                     onNextBlock={onNextBlock} onPrevBlock={onPrevBlock}
                                     onCloseCustomizer={onCloseCustomizer} onToggleExpanded={e => toggleExpanded(e)}
                                     onImport={importStarterBlock}
                                     onChangePreviewClass={e => setPreviewClass(e)}/>
                 <div className={overlayClassname}>
-                    {itemData.url &&
-                        <iframe src={itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
+                    {state.itemData.url &&
+                        <iframe src={state.itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
                     }
-                    {!itemData.url &&
+                    {!state.itemData.url &&
                         <div className='redux-templates-modal-preview-box'>
-                            <SafeImageLoad url={image_url} />
+                            <SafeImageLoad url={state.imageURL} />
                         </div>
                     }
 
