@@ -97,12 +97,21 @@ button {
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
     background-color: unset;
-}
-.wp-full-overlay-main.loaded::before {
-    display: none !important;
-}
-.wp-full-overlay-main.loaded iframe {
-    background-color: #fff;
+    &.loaded {
+        &::before {
+            display: none !important;
+        }
+        iframe {
+            background-color: #fff;
+        }
+    }
+
+    .components-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
 }
 
 .theme-install-overlay iframe {

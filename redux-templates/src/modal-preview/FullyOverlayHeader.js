@@ -1,4 +1,3 @@
-const {Component} = wp.element
 const {__} = wp.i18n
 
 function FullyOverlayHeader(props) {

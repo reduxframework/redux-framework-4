@@ -1,10 +1,3 @@
-const {Component, useState} = wp.element
-const {compose} = wp.compose;
-const {withDispatch, withSelect, select} = wp.data;
-const {parse} = wp.blocks;
-
-import {Modal, ModalManager} from '../modal-manager'
-
 import FullyOverlayHeader from './FullyOverlayHeader';
 import SidebarContent from './SidebarContent';
 import FullyOverlayFooter from './FullyOverlayFooter';
@@ -13,7 +6,7 @@ import {isBlockPro} from '../stores/helper';
 function SitePreviewSidebar(props) {
 	const {itemData, previewClass, expandedClass, onImport} = props;
 	const {onCloseCustomizer, onChangePreviewClass, onToggleExpanded, onNextBlock, onPrevBlock} = props;
-    const isPro = isBlockPro(itemData.pro, itemData.source);
+  const isPro = isBlockPro(itemData.pro, itemData.source);
 
 	return (
 		<div className="wp-full-overlay-sidebar">

@@ -1,6 +1,7 @@
 const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect, useReducer} = wp.element
+const {Spinner} = wp.components;
 import SitePreviewSidebar from './SitePreviewSidebar';
 import {ModalManager} from '../modal-manager'
 import ImportWizard from '../modal-import-wizard';
@@ -16,36 +17,30 @@ const initialState = {
     imageURL: ''
 };
 
+
 const previewReducer = (state, action) => {
-    let itemData;
+    let currentPageData;
     let imageURL;
     switch(action.type) {
         case 'INDEX':
-            itemData = state.currentPageData[action.currentIndex];
-            if (itemData.image_full)
-                imageURL = itemData.image_full;
-            else 
-                imageURL = itemData.image
-        
-            return {
-                ...state,
-                currentIndex: action.currentIndex,
-                imageURL,
-                itemData
-            };
+            currentPageData = state.currentPageData;
+            break;
         case 'DATA':
-            itemData = action.currentPageData[action.currentIndex];
-            if (itemData.image_full)
-                imageURL = itemData.image_full;
-            else 
-                imageURL = itemData.image
-            return {
-                currentPageData: action.currentPageData,
-                currentIndex: action.currentIndex,
-                imageURL,
-                itemData
-            };
+            currentPageData = action.currentPageData;
+            break;
     }
+    const itemData = currentPageData[action.currentIndex];
+    if (itemData.image_full)
+        imageURL = itemData.image_full;
+    else 
+        imageURL = itemData.image
+
+        return {
+        currentPageData,
+        currentIndex: action.currentIndex,
+        imageURL,
+        itemData
+    };
 }
 
 function PreviewModal(props) {
@@ -58,7 +53,7 @@ function PreviewModal(props) {
     const [previewClass, setPreviewClass] = useState('preview-desktop')
     const [expandedClass, toggleExpanded] = useState('expanded')
     const [pressedKey, setPressedKey] = useState(null);
-    const [overlayClassname, setOverlayClassname] = useState('wp-full-overlay-main');
+    const [loading, setLoading] = useState(true);
     const [wrapperClassName, setWrapperClassName] = useState('wp-full-overlay sites-preview theme-install-overlay ');
 
     // Key event handling : event listener set up
@@ -98,20 +93,15 @@ function PreviewModal(props) {
 
     const onNextBlock = () => {
         if (state.currentIndex < currentPageData.length - 1) {
-            setOverlayClassname('wp-full-overlay-main');
-            setTimeout(() => {
-                dispatch({ type: 'INDEX', currentIndex: state.currentIndex + 1 });
-            }, 0)
+            setLoading(true);
+            dispatch({ type: 'INDEX', currentIndex: state.currentIndex + 1 });
         }
     }
 
     const onPrevBlock = () => {
         if (state.currentIndex > 0) {
-            setOverlayClassname('wp-full-overlay-main');
-            setTimeout(() => {
-                dispatch({ type: 'INDEX', currentIndex: state.currentIndex - 1 });
-            }, 0)
-
+            setLoading(true);
+            dispatch({ type: 'INDEX', currentIndex: state.currentIndex - 1 });
         }
     }
 
@@ -127,7 +117,7 @@ function PreviewModal(props) {
 
     // Called from iframe upon successful loading
     const hideSpinner = () => {
-        setOverlayClassname('wp-full-overlay-main loaded');
+        setLoading(false);
     }
 
     if (!state || !state.itemData) return null;
@@ -140,7 +130,10 @@ function PreviewModal(props) {
                                     onCloseCustomizer={onCloseCustomizer} onToggleExpanded={e => toggleExpanded(e)}
                                     onImport={importStarterBlock}
                                     onChangePreviewClass={e => setPreviewClass(e)}/>
-                <div className={overlayClassname}>
+                <div className="wp-full-overlay-main loaded">
+                    {
+                        loading && <Spinner />
+                    }
                     {state.itemData.url &&
                         <iframe src={state.itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
                     }
