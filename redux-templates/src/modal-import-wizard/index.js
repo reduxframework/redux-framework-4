@@ -6,12 +6,14 @@ const {useState, useEffect} = wp.element;
 import InstallPluginStep from './InstallPluginStep';
 import ProPluginStep from './ProPluginsStep';
 import ImportingStep from './ImportingStep';
+import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import '../modals.scss'
 import './style.scss'
 
 const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
 const IMPORT_STEP = 2;
+const REDUX_PRO_STEP = -1;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 function ImportWizard(props) {
@@ -21,6 +23,12 @@ function ImportWizard(props) {
 
     useEffect(() => {
         if (importingTemplate) {
+            // IMPORTANT First check: can you use redux pro?
+            const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
+            if (redux_templates.mokama !== '1' && leftTry < 1) {
+                setCurrentStep(REDUX_PRO_STEP);
+                return;
+            }
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
                 setCurrentStep(PLUGIN_STEP);
             if (importingTemplate && currentStep === PLUGIN_STEP && requiresInstall(importingTemplate) === false)
@@ -68,14 +76,13 @@ function ImportWizard(props) {
                     </button>
                 </div>
                 <div className="redux-templates-importmodal-content">
+                    {(currentStep === PRO_STEP) && requiresPro(importingTemplate) &&
+                        <ProPluginStep missingPros={importingTemplate.proDependenciesMissing } onCloseWizard={onCloseWizard} />}
                     {(currentStep === PLUGIN_STEP) &&
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
-                    {(currentStep === PRO_STEP) && requiresPro(importingTemplate) &&
-                        <ProPluginStep missingPros={importingTemplate.proDependenciesMissing } onCloseWizard={onCloseWizard}/>}
-                    {(currentStep === IMPORT_STEP) &&
-                        <ImportingStep />
-                    }
+                    {(currentStep === IMPORT_STEP) && <ImportingStep />}
+                    {(currentStep === REDUX_PRO_STEP) && <ReduxTemplatesPremiumBox />}
                 </div>
             </div>
         </div>
