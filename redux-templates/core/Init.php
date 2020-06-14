@@ -89,7 +89,9 @@ class Init {
             'redux_templates',
             $global_vars
         );
-
+        wp_enqueue_style(
+            'redux-fontawesome', REDUXTEMPLATES_DIR_URL . 'assets/css/font-awesome.min.css', false, REDUXTEMPLATES_VERSION
+        );
     }
 
     /**
