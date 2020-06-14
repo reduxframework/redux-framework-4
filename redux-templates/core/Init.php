@@ -65,12 +65,20 @@ class Init {
         $global_vars = array(
             'i18n'              => 'redux-framework',
             'plugin'            => REDUXTEMPLATES_DIR_URL,
-            'mokama'            => \Redux_Core::$pro_loaded,
+            'mokama'            => \Redux_Core::$pro_loaded, // TODO - Validate active key
             'icon'              => file_get_contents( REDUXTEMPLATES_DIR_URL . 'assets/img/logo.svg' ),
             'version'           => \Redux_Core::$version,
             'theme_name'        => $theme_details->get( 'Name' ),
             'supported_plugins' => [], // Load the supported plugins,
         );
+        if ( ! \Redux_Core::$pro_loaded ) {
+//            delete_user_meta( get_current_user_id(), '_redux_templates_count');
+            $count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
+            if ( empty( $count ) ) {
+                $count = 5;
+            }
+            $global_vars['left'] = $count;
+        }
 
         if ( ! $global_vars['mokama'] ) {
             $global_vars['u'] = 'https://redux.io/pricing/&utm_source=plugin&utm_medium=modal&utm_campaign=template';

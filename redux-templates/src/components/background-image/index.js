@@ -15,7 +15,7 @@ function BackgroundImage(props) {
 
     if (data && dataLoaded === false) {
         const type = activeItemType === 'section' ? 'sections' : 'pages';
-        let the_url = 'redux-templates/v1/template?type=' + type + '&id=' + data.id;
+        let the_url = 'redux-templates/v1/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
         if ('source' in data) {
             the_url += '&source=' + data.source;
         }

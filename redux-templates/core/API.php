@@ -463,6 +463,20 @@ class API {
             unset( $response['message'] );
         }
 
+//        delete_user_meta( $parameters['uid'], '_redux_templates_count');
+        // TODO - Validate active key
+        if ( ! \Redux_Core::$pro_loaded ) {
+            $count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
+            if ( $count === '' ) {
+                $count = 5;
+            }
+            $count = intval( $count ) - 1;
+            if ( intval($count) <= 0 ) {
+                wp_send_json_error( array( 'message' => 'Please activate Redux.') );
+            }
+            update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
+            $response['left'] = $count;
+        }
 
         wp_send_json_success( $response );
     }
