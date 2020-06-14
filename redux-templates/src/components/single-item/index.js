@@ -15,7 +15,6 @@ import './style.scss'
 function SingleItem (props) {
     // Decoupling props
     const {pageData, tourActiveButtonGroup, index} = props;
-    const {backgroundImage} = props;
     const [data, setData] = useState(null);
     // const {ID, image, url, pro, source, requirements} = data;
     const [innerClassname, setInnerClassname] = useState('redux-templates-single-item-inner redux-templates-item-wrapper ');
@@ -34,8 +33,7 @@ function SingleItem (props) {
         <div className="redux-templates-single-section-item">
             <div className={innerClassname}>
                 <div className="redux-templates-default-template-image">
-
-                    {data.source !== 'wp_block_patterns' && <SafeImageLoad url={backgroundImage(data.image)}/> }
+                    {data.source !== 'wp_block_patterns' && <SafeImageLoad url={data.image}/> }
                     {data.source === 'wp_block_patterns' && <BackgroundImage data={data} />}
                     {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
                     {!requiresPro(data) && requiresInstall(data) && <span className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></span>}

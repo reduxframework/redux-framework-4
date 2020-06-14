@@ -26,8 +26,7 @@ domReady(() => {
     setTimeout(() => {
         let toolbar = document.querySelector('.edit-post-header-toolbar');
         if (!toolbar) {
-            toolbar = document.querySelector('.edit-post-header__toolbar');
-            if (!toolbar) return;
+            return;
         }
         const challengeDiv = document.createElement('div');
         challengeDiv.className = 'challenge-tooltip-holder';

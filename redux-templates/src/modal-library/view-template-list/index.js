@@ -43,7 +43,6 @@ function TemplateList(props) {
         setColumnizedData(newData);
         setShouldShowPagination(activeItemType !== 'collection' && pageData && pageSize < pageData.length);
     }, [columns, pageData]);
-    let types = redux_templates.mokama === '1' ? 'active' : 'inactive';
 
 
     if (!loading)
@@ -61,18 +60,15 @@ function TemplateList(props) {
                                                 <SingleItem
                                                     key={cellIndex}
                                                     index={data.index}
-                                                    backgroundImage={(data) => getBackgroundImage(data)}
                                                 />
                                                 :
                                                 <MultipleItem
                                                     key={cellIndex}
                                                     data={data}
                                                     index={data.index}
-                                                    types={types}
                                                     itemType={activeItemType}
                                                     spinner={false}
                                                     onSelectCollection={onSelectCollection}
-                                                    backgroundImage={getBackgroundImage.bind(data)}
                                                 />
                                         ))
                                     }
