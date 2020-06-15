@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
 
 /**
  * Notices class to ensure WP is the proper version (block editor exists).

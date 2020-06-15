@@ -1,4 +1,5 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
+
 /**
  * Initialize the Redux Template Library.
  *
@@ -18,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Redux Templates Init Class
  *
- * @since       3.0.0
+ * @since 4.0.0
  */
 class Init {
 
@@ -72,21 +73,22 @@ class Init {
 			'redux-templates-js-vendor',
 			plugins_url( 'assets/js/vendor.dev.js', REDUXTEMPLATES_FILE ),
 			array(),
-			REDUXTEMPLATES_VERSION
+			REDUXTEMPLATES_VERSION,
+			true
 		);
 
 		$theme_details = wp_get_theme();
 		$global_vars   = array(
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
-			'mokama'            => \Redux_Core::$pro_loaded, // TODO - Validate active key
+			'mokama'            => \Redux_Core::$pro_loaded, // TODO - Validate active key.
 			'icon'              => file_get_contents( REDUXTEMPLATES_DIR_URL . 'assets/img/logo.svg' ),
 			'version'           => \Redux_Core::$version,
 			'theme_name'        => $theme_details->get( 'Name' ),
 			'supported_plugins' => array(), // Load the supported plugins.
 		);
 		if ( ! \Redux_Core::$pro_loaded ) {
-			// delete_user_meta( get_current_user_id(), '_redux_templates_count');
+			// delete_user_meta( get_current_user_id(), '_redux_templates_count'); // To test left.
 			$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
 			if ( empty( $count ) ) {
 				$count = 5;

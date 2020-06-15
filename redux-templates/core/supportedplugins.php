@@ -1,35 +1,71 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
+
+/**
+ * Detect supported plugins with the given instance.
+ *
+ * @since   4.0.0
+ * @package Redux Framework
+ */
 
 namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
+/**
+ * Redux Templates SupportedPlugins Class
+ *
+ * @since 4.0.0
+ */
 class SupportedPlugins {
 
-	protected static $plugins   = array();
-	protected static $_instance = null;
+	/**
+	 * List of all supported plugins from the library.
+	 *
+	 * @var array|null
+	 */
+	protected static $plugins = array();
+	/**
+	 * List of all supported plugins from the library.
+	 *
+	 * @var SupportedPlugins|null
+	 */
+	protected static $instance = null;
 
+	/**
+	 * Return or generate instance, singleton.
+	 *
+	 * @return object Instance
+	 * @since 4.0.0
+	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return self::$_instance;
+		return self::$instance;
 	}
 
+	/**
+	 * Include the template
+	 *
+	 * @param array|null $plugins List of all possible plugins from the library.
+	 *
+	 * @return void
+	 * @since 4.0.0
+	 */
 	public function init( $plugins = array() ) {
-
-		self::set_plugins( $plugins );
+		self::$plugins = $plugins;
 		self::detect_versions();
-
-		// self::detect_stackable();
-		// self::detect_qubely();
-		// self::detect_coblocks();
-		// self::detect_kioken();
 	}
 
+	/**
+	 * Detect all versions of plugins had in library and installed locally.
+	 *
+	 * @return void
+	 * @since 4.0.0
+	 */
 	private static function detect_versions() {
 		$all_plugins = get_plugins();
 
@@ -40,7 +76,6 @@ class SupportedPlugins {
 			$slug          = explode( '/', $plugin )[0];
 			$data[ $slug ] = $all_plugins[ $plugin ];
 		}
-		// print_r($data);
 
 		foreach ( self::$plugins as $key => $plugin ) {
 			$selector = false;
@@ -53,7 +88,7 @@ class SupportedPlugins {
 			}
 			if ( isset( $plugin['detect'] ) ) {
 				if ( isset( $plugin['detect']['freemius'] ) && $plugin['detect']['freemius'] ) {
-					// Freemius Version Detection
+					// Freemius Version Detection.
 					if ( isset( $GLOBALS[ $plugin['detect']['freemius'] ] ) && ! empty( $GLOBALS[ $plugin['detect']['freemius'] ] ) ) {
 						$freemius  = $GLOBALS[ $plugin['detect']['freemius'] ];
 						$selector  = $freemius->get_plugin_basename();
@@ -62,7 +97,7 @@ class SupportedPlugins {
 							self::$plugins[ $key ]['true_slug'] = $true_slug;
 						}
 						if ( isset( self::$plugins[ $key ]['free_slug'] ) ) {
-							continue;  // Let's only store the info on the free version
+							continue;  // Let's only store the info on the free version.
 						}
 						$plugin_info = $freemius->get_plugin_data();
 						if ( $selector && ! isset( $data[ $selector ]['Version'] ) ) {
@@ -97,152 +132,12 @@ class SupportedPlugins {
 		}
 	}
 
-	private static function set_plugins( $plugins = array() ) {
-		self::$plugins = $plugins;
-
-		return;
-		self::$plugins = array(
-			'acf-blocks-pro'             => array(
-				'name' => 'ACF Blocks Pro',
-				'url'  => 'https://www.acfblocks.com/pro/',
-			),
-			'acf-blocks'                 => array(
-				'name' => 'ACF Blocks',
-				'url'  => 'https://wordpress.org/plugins/acf-blocks/',
-			),
-			'acf'                        => array(
-				'name' => 'Advanced Custom Fields',
-				'url'  => 'https://wordpress.org/plugins/advanced-custom-fields/',
-				'slug' => 'advanced-custom-fields',
-			),
-			'acf-pro'                    => array(
-				'name' => 'ACF Pro',
-				'url'  => 'https://www.advancedcustomfields.com/pro/',
-			),
-			'advgb'                      => array(
-				'name' => 'Advanced Gutenberg',
-				'url'  => 'https://www.joomunited.com/wordpress-products/advanced-gutenberg',
-			),
-			'advanced-gutenberg-blocks'  => array(
-				'name' => 'Adv. Gutenberg Blocks',
-				'url'  => 'https://advanced-gutenberg-blocks.com/',
-			),
-			'atomic-blocks'              => array(
-				'name' => 'Atomic Blocks',
-				'url'  => 'https://atomicblocks.com/',
-			),
-			'blocks-css'                 => array(
-				'name' => 'Blocks CSS',
-				'url'  => 'https://wordpress.org/plugins/blocks-css/',
-			),
-			'block-slider'               => array(
-				'name' => 'Block Slider',
-				'url'  => 'https://wordpress.org/plugins/block-slider',
-			),
-			'coblocks'                   => array(
-				'name' => 'CoBlocks',
-				'url'  => 'https://coblocks.com/',
-			),
-			'cpblocks'                   => array(
-				'name'    => 'CP Blocks',
-				'url'     => 'https://services.dwbooster.com/pricing',
-				'has_pro' => true,
-			),
-			'essential-gutenberg-blocks' => array(
-				'name' => 'Easy Blocks',
-				'url'  => 'https://jeweltheme.com/shop/easy-gutenberg-blocks/',
-				'slug' => 'easy-gutenberg-blocks',
-			),
-			'block-options'              => array(
-				'name' => 'EditorsKit',
-				'url'  => 'https://wordpress.org/plugins/block-options/',
-			),
-			'essential-blocks'           => array(
-				'name' => 'Essential Blocks',
-				'url'  => 'https://essential-blocks.com/',
-			),
-			'getwid'                     => array(
-				'name' => 'Getwid',
-				'url'  => 'https://motopress.com/products/getwid/',
-			),
-			'guteblock'                  => array(
-				'name' => 'Guteblock',
-				'url'  => 'https://guteblock.com/',
-			),
-			'forms-gutenberg'            => array(
-				'name' => 'Gutenberg Forms',
-				'url'  => 'https://wordpress.org/plugins/forms-gutenberg',
-			),
-			'themeisle-blocks'           => array(
-				'name' => 'Gutenberg Blocks by Otter',
-				'url'  => 'https://themeisle.com/plugins/otter-blocks',
-			),
-			'gutenberg'                  => array(
-				'name' => 'Gutenberg',
-				'url'  => 'https://www.cssigniter.com/plugins/gutenberg/',
-			),
-			'gutenbee'                   => array(
-				'name' => 'Gutenbee',
-				'url'  => 'https://www.cssigniter.com/plugins/gutenbee/',
-			),
-			'kadence'                    => array(
-				'name'    => 'Kadence Blocks',
-				'url'     => 'https://www.kadencewp.com/product/kadence-gutenberg-blocks/',
-				'has_pro' => true,
-			),
-			'kioken'                     => array(
-				'name'    => 'Kioken Blocks',
-				'url'     => 'https://kiokengutenberg.com/',
-				'has_pro' => true,
-				'slug'    => 'kioken-blocks',
-			),
-			'premium'                    => array(
-				'name' => 'Premium Blocks',
-				'url'  => 'https://premiumblocks.io/',
-			),
-			'qubely'                     => array(
-				'name'         => 'Qubely',
-				'url'          => 'https://www.themeum.com/qubely-pricing/',
-				'has_pro'      => true,
-				'premium_slug' => 'qubely-pro',
-			),
-			'qodeblock'                  => array(
-				'name'    => 'Quodeblocks',
-				'url'     => 'https://qodeblock.com/',
-				'has_pro' => true,
-			),
-			'block-slider'               => array(
-				'name' => 'Block Slider',
-				'url'  => 'https://wordpress.org/plugins/block-slider',
-				'slug' => 'block-slider',
-			),
-			'cwp'                        => array(
-				'name' => 'Gutenberg Forms',
-				'url'  => 'http://www.gutenbergforms.com',
-				'slug' => 'forms-gutenberg',
-			),
-			'snow-monkey-blocks'         => array(
-				'name' => 'Snow Monkey Blocks',
-				'url'  => 'https://wordpress.org/plugins/snow-monkey-blocks/',
-			),
-			'ugb'                        => array(
-				'name'         => 'Stackable',
-				'url'          => 'https://wpstackable.com/premium/#pricing-table',
-				'has_pro'      => true,
-				'slug'         => 'stackable-ultimate-gutenberg-blocks',
-				'premium_slug' => 'stackable-ultimate-gutenberg-blocks-premium',
-			),
-			'uagb'                       => array(
-				'name' => 'Ultimate Addons Blocks',
-				'url'  => 'https://github.com/brainstormforce/ultimate-addons-for-gutenberg',
-			),
-			'ub'                         => array(
-				'name' => 'Ultimate Blocks',
-				'url'  => 'https://ultimateblocks.com/',
-			),
-		);
-	}
-
+	/**
+	 * Helper function to return all installed plugins.
+	 *
+	 * @return array Array of plugins and which are installed.
+	 * @since 4.0.0
+	 */
 	public static function get_plugins() {
 		$instance = self::instance();
 		if ( empty( $instance::$plugins ) ) {
@@ -252,40 +147,4 @@ class SupportedPlugins {
 		return $instance::$plugins;
 	}
 
-	private static function detect_stackable() {
-		if ( defined( 'STACKABLE_VERSION' ) ) {
-			$slug                              = 'ugb';
-			self::$plugins[ $slug ]['version'] = STACKABLE_VERSION;
-			self::$plugins[ $slug ]['is_pro']  = function_exists( 'sugb_fs' ) && sugb_fs()->can_use_premium_code(
-			) ? true : false;
-		}
-	}
-
-	private static function detect_qubely() {
-		if ( defined( 'QUBELY_VERSION' ) || defined( 'QUBELY_PRO_VERSION' ) ) {
-			$slug                              = 'qubely';
-			self::$plugins[ $slug ]['version'] = defined(
-				'QUBELY_PRO_VERSION'
-			) ? QUBELY_PRO_VERSION : QUBELY_VERSION;
-			if ( isset( self::$plugins[ $slug ]['version'] ) && defined( 'QUBELY_PRO_VERSION' ) ) {
-				self::$plugins[ $slug ]['is_pro'] = true;
-			}
-		}
-	}
-
-	private static function detect_coblocks() {
-		if ( defined( 'COBLOCKS_VERSION' ) ) {
-			$slug                              = 'coblocks';
-			self::$plugins[ $slug ]['version'] = COBLOCKS_VERSION;
-		}
-	}
-
-	private static function detect_kioken() {
-		if ( defined( 'KK_BLOCKS_VERSION' ) ) {
-			$slug                              = 'kioken';
-			self::$plugins[ $slug ]['version'] = KK_BLOCKS_VERSION;
-			self::$plugins[ $slug ]['is_pro']  = function_exists( 'kkb_fs' ) && kkb_fs()->can_use_premium_code(
-			) ? true : false;
-		}
-	}
 }

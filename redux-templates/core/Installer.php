@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
 
 /**
  * Installer class which installs and/or activates block plugins.

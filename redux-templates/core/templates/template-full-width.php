@@ -2,7 +2,7 @@
 /**
  * ReduxTemplates - Full Width / Stretched
  *
- * @since v.4.0.0
+ * @since 4.0.0
  * @package redux-framework
  */
 

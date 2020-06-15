@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
 /**
  * Redux templates API class
  *
@@ -226,7 +226,7 @@ class API {
 
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Get library index. Support for library, collections, pages, sections all in a single request.
 	 *
 	 * @param     WP_REST_Request $request
@@ -291,7 +291,7 @@ class API {
 	}
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Method for transmitting a template the user is sharing remotely.
 	 *
 	 * @param     WP_REST_Request $request
@@ -426,7 +426,7 @@ class API {
 	}
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Fetch a single template.
 	 *
 	 * @param     WP_REST_Request $request
@@ -506,7 +506,7 @@ class API {
 
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Get all saved blocks (reusable blocks).
 	 */
 	public function get_saved_blocks( \WP_REST_Request $request ) {
@@ -521,7 +521,7 @@ class API {
 	}
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Delete a single saved (reusable) block
 	 */
 	public function delete_saved_block( \WP_REST_Request $request ) {
@@ -532,7 +532,7 @@ class API {
 	}
 
 	/**
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 * Method used to register all rest endpoint hooks.
 	 * redux-templates api routes
 	 */
