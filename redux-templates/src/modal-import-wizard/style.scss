@@ -103,25 +103,28 @@
 
         .redux-templates-upgrade-button {
             border: none;
-            border-radius: 35px;
+            border-radius: 4px;
             cursor: pointer;
             opacity: 1;
-            background: #8c33da;
-            background: linear-gradient(90deg, #7557ff -30%, #c751ff 130%);
+            background: #24b0a6;
+            //background: linear-gradient(90deg, #7557ff -30%, #c751ff 130%);
             transition: opacity 0.2s ease-in-out;
             box-shadow: none !important;
             color: #fff;
             text-decoration: none;
             padding: 0.75em 1.25em;
             display: block;
-            margin: 0 auto;
+            //margin: 0 auto;
+            margin: 30px auto 0 auto;
             max-width: 200px;
             text-align: center;
-            font-size: calc(13px + 0.1vw);
+            //font-size: calc(13px + 0.1vw);
+            font-size: 1em;
             &:hover {
                 color: #fff;
                 opacity: 0.85;
                 box-shadow: none !important;
+                background: #19837c;
             }
         }
     }
