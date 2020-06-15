@@ -17,6 +17,9 @@ const initialState = {
     imageURL: ''
 };
 
+const LOADING_RESET = 0;
+const IN_PROGRESS = 1; 
+const FULLY_LOADED = 2;
 
 const previewReducer = (state, action) => {
     let currentPageData;
@@ -53,7 +56,7 @@ function PreviewModal(props) {
     const [previewClass, setPreviewClass] = useState('preview-desktop')
     const [expandedClass, toggleExpanded] = useState('expanded')
     const [pressedKey, setPressedKey] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(IN_PROGRESS);
     const [wrapperClassName, setWrapperClassName] = useState('wp-full-overlay sites-preview theme-install-overlay ');
 
     // Key event handling : event listener set up
@@ -93,16 +96,23 @@ function PreviewModal(props) {
 
     const onNextBlock = () => {
         if (state.currentIndex < currentPageData.length - 1) {
-            setLoading(true);
+            startLoading();
             dispatch({ type: 'INDEX', currentIndex: state.currentIndex + 1 });
         }
     }
 
     const onPrevBlock = () => {
         if (state.currentIndex > 0) {
-            setLoading(true);
+            setLoading();
             dispatch({ type: 'INDEX', currentIndex: state.currentIndex - 1 });
         }
+    }
+
+    const startLoading = () => {
+        setLoading(LOADING_RESET);
+        setTimeout(() => {
+            setLoading(IN_PROGRESS);
+        }, 100)
     }
 
 
@@ -117,7 +127,7 @@ function PreviewModal(props) {
 
     // Called from iframe upon successful loading
     const hideSpinner = () => {
-        setLoading(false);
+        setLoading(FULLY_LOADED);
     }
 
     if (!state || !state.itemData) return null;
@@ -132,10 +142,10 @@ function PreviewModal(props) {
                                     onChangePreviewClass={e => setPreviewClass(e)}/>
                 <div className="wp-full-overlay-main loaded">
                     {
-                        loading && <Spinner />
+                        (loading < FULLY_LOADED) && <Spinner />
                     }
                     {state.itemData.url &&
-                        <iframe src={state.itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
+                        <iframe src={(loading === LOADING_RESET) ? '' : state.itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
                     }
                     {!state.itemData.url &&
                         <div className='redux-templates-modal-preview-box'>

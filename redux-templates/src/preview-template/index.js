@@ -1,13 +1,9 @@
 const { compose } = wp.compose;
 const { withDispatch, withSelect } = wp.data;
-const { Component, useState } = wp.element
-const { Spinner } = wp.components;
-const { __ } = wp.i18n
+const { useState } = wp.element
 import SitePreviewSidebar from './SitePreviewSidebar';
 import { ModalManager } from '../modal-manager'
 import ImportWizard from '../import-wizard';
-import {handleBlock} from '~redux-templates/stores/actionHelper';
-import uniq from 'lodash/uniq';
 import './style.scss';
 import { Fragment } from 'react';
 
@@ -18,8 +14,6 @@ function PreviewTemplate(props) {
     const [ currentIndex, setCurrentIndex ] = useState(startIndex);
     const [ previewClass, setPreviewClass ] = useState('preview-desktop')
     const [ expandedClass, toggleExpanded ] = useState('expanded')
-    const [missingPluginArray, setMissingPlugin] = useState([]);
-    const [missingProArray, setMissingPro] = useState([]);
 
 
     const onCloseCustomizer = () => {
