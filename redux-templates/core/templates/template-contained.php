@@ -1,16 +1,18 @@
 <?php
+/**
+ * ReduxTemplates - Full Width / Contained
+ *
+ * @since v.4.0.0
+ * @package redux-framework
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/**
- * ReduxTemplates - Full Width / Contained
- *
- * @since v.1.0.0
- * @package redux-templates
- */
 get_header();
-while ( have_posts() ) : the_post();
+while ( have_posts() ) :
+	the_post();
 	the_content();
 endwhile; // End of the loop.
 
