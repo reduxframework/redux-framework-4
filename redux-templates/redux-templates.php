@@ -1,7 +1,24 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName
+/**
+ * Redux Framework is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ * Redux Framework is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Redux Framework. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package     Redux_Framework
+ * @subpackage  Core
+ * @subpackage  Core
+ * @author      Redux Framework + Dovy Paukstys
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly
+    exit; // Exit if accessed directly.
 }
 
 // Define Version
@@ -18,13 +35,16 @@ define( 'REDUXTEMPLATES_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 // Version Check & Include Core
 if ( ! version_compare( PHP_VERSION, '5.4', '>=' ) ) {
-    add_action( 'admin_notices', 'ReduxTemplates\Notices\Notices::php_error_notice' ); // PHP Version Check
-} elseif ( ! version_compare( get_bloginfo( 'version' ), '4.5', '>=' ) ) {
+    add_action( 'admin_notices', 'ReduxTemplates\Notices\Notices::php_error_notice' ); // PHP Version Check.
+} elseif ( ! version_compare(
+    get_bloginfo( 'version' ),
+    '4.5',
+    '>='
+) ) {
     add_action(
         'admin_notices', 'ReduxTemplates\Notices\Notices::wordpress_error_notice'
-    ); // WordPress Version Check
+    ); // WordPress Version Check.
 } else {
-//        $class = 'ReduxTemplates\Init\Init';
     new ReduxTemplates\Init();
 }
 

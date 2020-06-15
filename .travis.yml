@@ -9,7 +9,6 @@ services:
 
 # Declare versions of PHP to use. Use one decimal max.
 php:
-    - "7.1"
     - "7.2"
     - "7.3"
     - "7.4"

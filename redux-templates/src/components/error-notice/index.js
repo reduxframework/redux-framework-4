@@ -3,14 +3,14 @@ import {compose} from '@wordpress/compose';
 import {withDispatch} from '@wordpress/data';
 import {Notice} from '@wordpress/components';
 
-import './style.scss'
+import './style.scss';
 
 export function ErrorNotice(props) {
     const {discardAllErrorMessages, errorMessages} = props;
     return (
         <div className='redux-templates-error-notice'>
             <Notice status="error" onRemove={discardAllErrorMessages}>
-                <p>An error occurred:&nbsp;
+                <p>
                     {
                         errorMessages.join(', ')
                     }
