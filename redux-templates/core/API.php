@@ -471,7 +471,7 @@ class API {
                 $count = 5;
             }
             $count = intval( $count ) - 1;
-            if ( intval($count) <= 0 ) {
+            if ( intval($count) < 0 ) {
                 wp_send_json_error( array( 'message' => 'Please activate Redux.') );
             }
             update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
