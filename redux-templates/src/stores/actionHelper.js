@@ -62,8 +62,16 @@ export const processImportHelper = () => {
     window.redux_templates_tempdata = [];
 
     apiFetch(options).then(response => {
+        // First, let's give user feedback.
+        displayNotice(response.data, {type: 'snackbar'});
+
         if (response.success && response.data) {
             let responseBlockData = response.data;
+
+            // Important: Update left count from the response in case of no Redux PRO
+            if (redux_templates.mokama !== '1' && isNaN(responseBlockData.left) === false)
+                redux_templates.left = responseBlockData.left;
+
             let handledData = [];
             if (responseBlockData.hasOwnProperty('template') || responseBlockData.hasOwnProperty('attributes'))
                 handledData = handleBlock(responseBlockData, installedDependencies);
@@ -88,7 +96,10 @@ export const processImportHelper = () => {
             afterImportHandling(data, handledData);
             
         } else {
-            errorCallback(response.data.error);
+            if (response.success === false)
+                errorCallback(response.data.message);
+            else
+                errorCallback(response.data.error);
         }
     }).catch(error => {
         errorCallback(error.code + ' : ' + error.message);
@@ -98,6 +109,14 @@ export const processImportHelper = () => {
 const detectInvalidBlocks = (handleBlock) => {
     if (Array.isArray(handleBlock) === true) return handleBlock.filter(block => block.isValid === false);
     return handleBlock && handleBlock.isValid===false ? [handleBlock] : null;
+}
+
+// used for displaying notice from response data
+const displayNotice = (data, options) => {
+    if (data && data.message) {
+        const noticeType = data.messageType || 'info';
+        createNotice(noticeType, data.message, options)
+    }
 }
 
 // show notice or feedback modal dialog based on imported block valid status
