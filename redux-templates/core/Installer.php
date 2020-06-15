@@ -12,7 +12,7 @@ namespace ReduxTemplates;
 use ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
@@ -21,15 +21,23 @@ require_once ABSPATH . 'wp-admin/includes/misc.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
-class InstallerMuter extends \WP_Upgrader_Skin {
-	public function feedback( $string, ...$args ) {
-		/* no output */ }
-}
-
+/**
+ * ReduxTemplates Installer.
+ *
+ * @since 4.0.0
+ */
 class Installer {
 
+	/**
+	 * Run command.
+	 *
+	 * @param string $slug Plugin Slug.
+	 *
+	 * @return array
+	 * @since 4.0.0
+	 */
 	public static function run( $slug ) {
-		$pluginDir = WP_PLUGIN_DIR . '/' . $slug;
+		$plugin_dir = WP_PLUGIN_DIR . '/' . $slug;
 
 		/*
 		 * Don't try installing plugins that already exist (wastes time downloading files that
@@ -37,7 +45,7 @@ class Installer {
 		 */
 
 		$status = array();
-		if ( ! is_dir( $pluginDir ) ) {
+		if ( ! is_dir( $plugin_dir ) ) {
 
 			$api = plugins_api(
 				'plugin_information',
@@ -62,17 +70,18 @@ class Installer {
 
 			ob_start();
 
-			$skin     = new InstallerMuter( array( 'api' => $api ) );
+			$skin     = new ReduxTemplates\InstallerMuter( array( 'api' => $api ) );
 			$upgrader = new \Plugin_Upgrader( $skin );
 			$install  = $upgrader->install( $api->download_link );
 
 			ob_end_clean();
 
-			if ( $install !== true ) {
+			if ( true !== $install ) {
 				$status['error'] = 'Install process failed for ' . $slug . '.';
 
 				if ( ! empty( $install ) ) {
 					ob_start();
+					// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 					\var_dump( $install );
 					$result = ob_get_clean();
 
@@ -91,14 +100,14 @@ class Installer {
 		 * activate based on the slug. It may fail, in which case the plugin will have to be activated
 		 * manually from the admin screen.
 		 */
-		$pluginPath  = false;
-		$pluginCheck = false;
-		if ( file_exists( $pluginDir . '/' . $slug . '.php' ) ) {
-			$pluginPath  = $pluginDir . '/' . $slug . '.php';
-			$pluginCheck = $slug . '/' . $slug . '.php';
-		} elseif ( file_exists( $pluginDir . '/plugin.php' ) ) {
-			$pluginPath  = $pluginDir . '/' . $slug . '.php';
-			$pluginCheck = $slug . '/plugin.php';
+		$plugin_path  = false;
+		$plugin_check = false;
+		if ( file_exists( $plugin_dir . '/' . $slug . '.php' ) ) {
+			$plugin_path  = $plugin_dir . '/' . $slug . '.php';
+			$plugin_check = $slug . '/' . $slug . '.php';
+		} elseif ( file_exists( $plugin_dir . '/plugin.php' ) ) {
+			$plugin_path  = $plugin_dir . '/' . $slug . '.php';
+			$plugin_check = $slug . '/plugin.php';
 		} else {
 			$split        = explode( '-', $slug );
 			$new_filename = '';
@@ -107,15 +116,15 @@ class Installer {
 					$new_filename .= $s[0];
 				}
 			}
-			$pluginPath  = $pluginDir . '/' . $new_filename . '.php';
-			$pluginCheck = $slug . '/' . $new_filename . '.php';
+			$plugin_path  = $plugin_dir . '/' . $new_filename . '.php';
+			$plugin_check = $slug . '/' . $new_filename . '.php';
 		}
 
-		if ( ! empty( $pluginPath ) ) {
-			if ( is_plugin_active( $pluginCheck ) && ! isset( $status['install'] ) ) {
+		if ( ! empty( $plugin_path ) ) {
+			if ( is_plugin_active( $plugin_check ) && ! isset( $status['install'] ) ) {
 				$status['activate'] = 'active';
 			} else {
-				activate_plugin( $pluginCheck );
+				activate_plugin( $plugin_check );
 				$status['activate'] = 'success';
 			}
 		} else {

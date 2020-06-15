@@ -1,11 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName
 /**
- * Redux templates API class
+ * Redux templates API class.
  *
  * @since 4.0.0
  * @package Redux Framework
  */
-
 
 namespace ReduxTemplates;
 
@@ -13,28 +12,58 @@ use ReduxTemplates;
 use WP_Patterns_Registry;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
+/**
+ * ReduxTemplates API class.
+ *
+ * @since 4.0.0
+ */
 class API {
 
-	private $cache_time                = 24 * 3600; // 24 hours
-	protected $api_base_url            = 'https://api.starterblocks.io/';
+	/**
+	 * Seconds to cache the local files.
+	 *
+	 * @var int
+	 */
+	private $cache_time = 24 * 3600; // 24 hours
+	/**
+	 * API URL.
+	 *
+	 * @var string
+	 */
+	protected $api_base_url = 'https://api.starterblocks.io/';
+	/**
+	 * Default headers array.
+	 *
+	 * @var array
+	 */
 	protected $default_request_headers = array();
+	/**
+	 * Filesystem object instance.
+	 *
+	 * @var Filesystem
+	 */
 	protected $filesystem;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct() {
 
-		add_filter( 'redux-templates_api_headers', array( $this, 'request_verify' ) );
-		$this->default_request_headers = apply_filters( 'redux-templates_api_headers', $this->default_request_headers );
+		add_filter( 'redux_templates_api_headers', array( $this, 'request_verify' ) );
+		$this->default_request_headers = apply_filters( 'redux_templates_api_headers', $this->default_request_headers );
 
 		add_action( 'rest_api_init', array( $this, 'register_api_hooks' ), 0 );
 
 	}
 
+	/**
+	 * Get the filesystem.
+	 *
+	 * @return Filesystem
+	 */
 	private function get_filesystem() {
 		if ( empty( $this->filesystem ) ) {
 			$this->filesystem = new Filesystem();
@@ -43,6 +72,12 @@ class API {
 		return $this->filesystem;
 	}
 
+	/**
+	 * Process the registered blocks from the library.
+	 *
+	 * @param array $parameters Array to be returned if no response, or to have data appended to.
+	 * @return array Array of properly processed blocks and supported plugins.
+	 */
 	private function process_registered_blocks( $parameters ) {
 		$data = $this->api_cache_fetch( array(), array(), 'library.json' );
 
@@ -59,14 +94,14 @@ class API {
 
 		foreach ( $plugins as $key => $value ) {
 			if ( isset( $value['version'] ) ) {
-				array_push( $installed_plugins, $key );
-				$found_already = array_search( $key, $parameters['registered_blocks'] );
-				if ( $found_already !== false ) {
+				array_push( $installed_plugins, $key, true );
+				$found_already = array_search( $key, $parameters['registered_blocks'], true );
+				if ( false !== $found_already ) {
 					unset( $parameters['registered_blocks'][ $found_already ] );
 				}
-				if ( isset( $value['namespace'] ) && $value['namespace'] != $key ) {
-					$found = array_search( $value['namespace'], $parameters['registered_blocks'] );
-					if ( $found !== false ) {
+				if ( isset( $value['namespace'] ) && $key !== $value['namespace'] ) {
+					$found = array_search( $value['namespace'], $parameters['registered_blocks'], true );
+					if ( false !== $found ) {
 						unset( $parameters['registered_blocks'][ $found ] );
 					}
 				}
@@ -77,13 +112,18 @@ class API {
 		return $parameters;
 	}
 
+	/**
+	 * Process the dependencies.
+	 *
+	 * @param array  $data Data array.
+	 * @param string $key Key param.
+	 * @return array Data array with dependencies outlined.
+	 */
 	private function process_dependencies( $data, $key ) {
 
 		foreach ( $data[ $key ] as $kk => $pp ) {
 			$debug = false;
-			if ( $pp == '449dc59dcbb7c002132807ac127292b9' ) {
-				// $debug = true;
-			}
+			// Add debug if statement if key matches here.
 
 			if ( isset( $pp['dependencies'] ) ) {
 				foreach ( $pp['dependencies'] as $dep ) {
@@ -120,16 +160,21 @@ class API {
 					}
 				}
 			}
-			if ( $debug ) {
-				print_r( $data[ $key ][ $kk ] );
-				exit();
-			}
+
+			// Print the debug here if the key exists. Use `print_r( $data[ $key ][ $kk ] );exit();`.
+
 		}
 
 		return $data;
 
 	}
 
+	/**
+	 * Get the last cache time.
+	 *
+	 * @param string $abs_path Absolute path to a file.
+	 * @return string|bool Last modified time.
+	 */
 	private function get_cache_time( $abs_path ) {
 		$filesystem    = $this->get_filesystem();
 		$last_modified = false;
@@ -140,7 +185,15 @@ class API {
 		return $last_modified;
 	}
 
-
+	/**
+	 * Fetch from the cache if had.
+	 *
+	 * @param array  $parameters Absolute path to a file.
+	 * @param array  $config Absolute path to a file.
+	 * @param string $path URL path perform a request to a file.
+	 * @param bool   $cache_only Set to only fetch from the local cache.
+	 * @return array Response and possibly the template if recovered.
+	 */
 	public function api_cache_fetch( $parameters, $config, $path, $cache_only = false ) {
 		$filesystem = $this->get_filesystem();
 
@@ -168,6 +221,7 @@ class API {
 		}
 		$data = array();
 		if ( $use_cache ) {
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$data = @json_decode( $filesystem->get_contents( $path ), true );
 		}
 		if ( $cache_only ) {
@@ -187,18 +241,20 @@ class API {
 			$results = $this->api_request( $config );
 
 			if ( ! empty( $results ) ) {
+				// phpcs:ignore WordPress.PHP.NoSilencedErrors
 				$data = @json_decode( $results, true );
 				if ( isset( $data['use_cache'] ) ) {
+					// phpcs:ignore WordPress.PHP.NoSilencedErrors
 					$data          = @json_decode( $filesystem->get_contents( $path ), true );
 					$data['cache'] = 'used';
 				} else {
 					if ( empty( $data ) ) {
 						$data = array( 'message' => $results );
 					}
-					if ( isset( $data['status'] ) && $data['status'] == 'error' ) {
+					if ( isset( $data['status'] ) && 'error' === $data['status'] ) {
 						wp_send_json_error( array( 'message' => $data['message'] ) );
 					}
-					$filesystem->put_contents( $path, json_encode( $data ) );
+					$filesystem->put_contents( $path, wp_json_encode( $data ) );
 				}
 			} else {
 				wp_send_json_error( array( 'message' => __( 'API fetch failure.', 'redux-framework' ) ) );
@@ -206,6 +262,7 @@ class API {
 		}
 
 		if ( empty( $data ) ) {
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$data = @json_decode( $filesystem->get_contents( $path ), true );
 			if ( $data ) {
 				$data['status']  = 'error';
@@ -250,7 +307,7 @@ class API {
 		$test_path = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'library.json';
 
 		if ( file_exists( $test_path ) ) {
-			$data = json_decode( file_get_contents( $test_path ), true );
+			$data = json_decode( ReduxTemplates\Init::get_local_file_contents( $test_path ), true );
 		} else {
 			$data = $this->api_cache_fetch( $parameters, $config, 'library.json' );
 		}
@@ -280,6 +337,12 @@ class API {
 		wp_send_json_success( $data );
 	}
 
+	/**
+	 * Filter an array recursively.
+	 *
+	 * @param array $input Array to filter.
+	 * @return array Filtered array.
+	 */
 	function array_filter_recursive( $input ) {
 		foreach ( $input as &$value ) {
 			if ( is_array( $value ) ) {
@@ -353,6 +416,12 @@ class API {
 
 	}
 
+	/**
+	 * Run an API request.
+	 *
+	 * @param array $data Array related to an API request.
+	 * @return string API response string.
+	 */
 	public function api_request( $data ) {
 		$apiUrl = $this->api_base_url . $data['path'];
 
@@ -386,7 +455,7 @@ class API {
 
 		$post_args = array(
 			'timeout'     => 120,
-			'body'        => json_encode( $data ),
+			'body'        => wp_json_encode( $data ),
 			'method'      => 'POST',
 			'data_format' => 'body',
 			'redirection' => 5,

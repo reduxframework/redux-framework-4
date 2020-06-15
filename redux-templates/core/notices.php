@@ -11,15 +11,24 @@
 namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
-
+/**
+ * ReduxTemplates Notices.
+ *
+ * @since 4.0.0
+ */
 class Notices {
 
-	// PHP Error Notice
+	/**
+	 * PHP Error Notice.
+	 *
+	 * @return void
+	 * @since 4.0.0
+	 */
 	public static function php_error_notice() {
-		$message      = sprintf(
+		$message      = sprintf( /* translators: %s: php version number */
 			esc_html__( 'ReduxTemplates requires PHP version %s or more.', 'redux-templates' ),
 			'5.4'
 		);
@@ -27,9 +36,14 @@ class Notices {
 		echo wp_kses_post( $html_message );
 	}
 
-	// WordPress Error Notice
+	/**
+	 * WordPress version error notice.
+	 *
+	 * @return void
+	 * @since 4.0.0
+	 */
 	public static function wordpress_error_notice() {
-		$message      = sprintf(
+		$message      = sprintf( /* translators: %s: WordPress version number */
 			esc_html__( 'ReduxTemplates requires WordPress version %s or more.', 'redux-templates' ),
 			'4.7'
 		);
