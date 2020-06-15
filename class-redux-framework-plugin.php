@@ -89,7 +89,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 
 			return self::$instance;
 		}
-		
+
 		/**
 		 * Shim for geting instance
 		 *
