@@ -100,17 +100,6 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		public static function get_instance() {
 			return self::instance();
 		}
-		
-		/**
-		 * Shim for removing plugin metalinks
-		 *
-		 * @access      public
-		 * @since       4.0.1
-		 * @return      array
-		 */
-		public function plugin_metalinks( $links ) {
-			return $links;
-		}
 
 		/**
 		 * Get Redux options
