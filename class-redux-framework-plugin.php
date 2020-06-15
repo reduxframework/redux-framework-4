@@ -89,6 +89,28 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 
 			return self::$instance;
 		}
+		
+		/**
+		 * Shim for geting instance
+		 *
+		 * @access      public
+		 * @since       4.0.1
+		 * @return      self::$instance The one true Redux_Framework_Plugin
+		 */
+		public static function get_instance() {
+			return self::instance();
+		}
+		
+		/**
+		 * Shim for removing plugin metalinks
+		 *
+		 * @access      public
+		 * @since       4.0.1
+		 * @return      array
+		 */
+		public function plugin_metalinks( $links ) {
+			return $links;
+		}
 
 		/**
 		 * Get Redux options
