@@ -292,6 +292,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					return;
 				}
 
+				if ( class_exists( 'Redux_Framework_Plugin' ) ) {
+					require_once Redux_Path::get_path( '/inc/classes/class-redux-user-feedback.php' );
+				}
+
 				// Everything else.
 				$file = 'class.' . strtolower( $class_name ) . '.php';
 
