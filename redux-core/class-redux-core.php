@@ -286,7 +286,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					return;
 				}
 
-				if ( 'Redux_ConnectionBanner' === $class_name ) {
+				if ( 'Redux_Connection_Banner' === $class_name ) {
 					require_once Redux_Path::get_path( '/inc/welcome/class-redux-connection-banner.php' );
 
 					return;
@@ -320,8 +320,11 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			do_action( 'redux/core/hooks', $this );
 		}
 
-		function admin_init() {
-			Redux_ConnectionBanner::init();
+		/**
+		 * Display the connection banner.
+		 */
+		public function admin_init() {
+			Redux_Connection_Banner::init();
 		}
 
 		/**

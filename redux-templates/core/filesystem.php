@@ -10,9 +10,14 @@
 namespace ReduxTemplates;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
+/**
+ * ReduxTemplates Filesystem class.
+ *
+ * @since 4.0.0
+ */
 class Filesystem {
 
 	/**
@@ -23,39 +28,44 @@ class Filesystem {
 	private $wp_filesystem;
 
 	/**
-	 * Result of call to `request_filesystem_credentials()`
+	 * Result of call to `request_filesystem_credentials().
 	 *
-	 * @var bool
+	 * @var array
 	 */
 	private $credentials;
 
 	/**
-	 * If DBI_Filesystem should attempt to use the WP_Filesystem class
+	 * If DBI_Filesystem should attempt to use the WP_Filesystem class.
 	 *
 	 * @var bool
 	 */
 	private $use_filesystem = false;
 
 	/**
-	 * Default chmod octal value for directories
+	 * Default chmod octal value for directories.
 	 *
 	 * @var int
 	 */
 	private $chmod_dir;
 
 	/**
-	 * Default chmod octal value for files
+	 * Default chmod octal value for files.
 	 *
 	 * @var int
 	 */
 	private $chmod_file;
 
+	/**
+	 * Default cache folder.
+	 *
+	 * @var string
+	 */
 	public $cache_folder;
 
 	/**
-	 * Pass `true` when instantiating to skip using WP_Filesystem
+	 * Pass `true` when instantiating to skip using WP_Filesystem.
 	 *
-	 * @param     bool $force_no_fs
+	 * @param bool $force_no_fs Force no use of the filesystem.
 	 */
 	public function __construct( $force_no_fs = false ) {
 		if ( ! $force_no_fs && function_exists( 'request_filesystem_credentials' ) ) {
@@ -64,7 +74,7 @@ class Filesystem {
 			}
 		}
 
-		// Set default permissions
+		// Set default permissions.
 		if ( defined( 'FS_CHMOD_DIR' ) ) {
 			$this->chmod_dir = FS_CHMOD_DIR;
 		} else {
@@ -85,10 +95,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Getter for the instantiated WP_Filesystem
+	 * Getter for the instantiated WP_Filesystem. This should be used carefully since $wp_filesystem won't always have a value.
 	 *
 	 * @return WP_Filesystem|false
-	 * This should be used carefully since $wp_filesystem won't always have a value.
 	 */
 	public function get_wp_filesystem() {
 		if ( $this->use_filesystem ) {
@@ -99,7 +108,7 @@ class Filesystem {
 	}
 
 	/**
-	 * Is WP_Filesystem being used?
+	 * Check if WP_Filesystem being used.
 	 *
 	 * @return bool
 	 */
@@ -108,10 +117,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Attempts to use the correct path for the FS method being used
+	 * Attempts to use the correct path for the FS method being used.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return string
 	 */
 	public function get_sanitized_path( $abs_path ) {
@@ -144,20 +152,21 @@ class Filesystem {
 	/**
 	 * Create file if not exists then set mtime and atime on file
 	 *
-	 * @param     string $abs_path
-	 * @param     int    $time
-	 * @param     int    $atime
+	 * @param string $abs_path Absolute path.
+	 * @param int    $time Time.
+	 * @param int    $atime Altered time.
 	 *
 	 * @return bool
 	 */
 	public function touch( $abs_path, $time = 0, $atime = 0 ) {
-		if ( 0 == $time ) {
+		if ( 0 === $time ) {
 			$time = time();
 		}
-		if ( 0 == $atime ) {
+		if ( 0 === $atime ) {
 			$atime = time();
 		}
 
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @touch( $abs_path, $time, $atime );
 
 		if ( ! $return && $this->use_filesystem ) {
@@ -169,16 +178,19 @@ class Filesystem {
 	}
 
 	/**
-	 * file_put_contents with chmod
+	 * Calls file_put_contents with chmod.
 	 *
-	 * @param     string $abs_path
-	 * @param     string $contents
+	 * @param string $abs_path Absolute path.
+	 * @param string $contents Content to write to the file.
 	 *
 	 * @return bool
 	 */
 	public function put_contents( $abs_path, $contents ) {
 
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
+		// @codingStandardsIgnoreStart
 		$return = @file_put_contents( $abs_path, $contents );
+		// @codingStandardsIgnoreEnd
 		$this->chmod( $abs_path );
 
 		if ( ! $return && $this->use_filesystem ) {
@@ -189,16 +201,22 @@ class Filesystem {
 		return (bool) $return;
 	}
 
+	/**
+	 * Calls file_put_contents with chmod.
+	 *
+	 * @param string $path Get full cache path.
+	 *
+	 * @return string
+	 */
 	public function get_cache_path( $path ) {
 		return $this->folder . $path;
 	}
 
 	/**
-	 * file_put_contents with chmod in cache directory
+	 * Calls file_put_contents with chmod in cache directory.
 	 *
-	 * @param     string $abs_path
-	 * @param     string $contents
-	 *
+	 * @param string $abs_path Absolute path.
+	 * @param string $contents Contents to put in the cache.
 	 * @return bool
 	 */
 	public function put_contents_cache( $abs_path, $contents ) {
@@ -206,10 +224,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Does the specified file or dir exist
+	 * Does the specified file or dir exist.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return bool
 	 */
 	public function file_exists( $abs_path ) {
@@ -224,10 +241,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Get a file's size
+	 * Get a file's size.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return int
 	 */
 	public function filesize( $abs_path ) {
@@ -242,14 +258,28 @@ class Filesystem {
 	}
 
 	/**
-	 * Get the contents of a file as a string
+	 * Get the contents of a file as a string.
 	 *
-	 * @param     string $abs_path
+	 * @param string $abs_path Absolute path.
+	 * @return string
+	 */
+	public function get_local_file_contents( $abs_path ) {
+		ob_start();
+		include $abs_path;
+		$contents = ob_get_clean();
+
+		return $contents;
+	}
+
+	/**
+	 * Get the contents of a file as a string.
 	 *
+	 * @param string $abs_path Absolute path.
 	 * @return string
 	 */
 	public function get_contents( $abs_path ) {
-		$return = @file_get_contents( $abs_path );
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
+		$return = $this->get_local_file_contents( $abs_path );
 
 		if ( ! $return && $this->use_filesystem ) {
 			$abs_path = $this->get_sanitized_path( $abs_path );
@@ -260,13 +290,13 @@ class Filesystem {
 	}
 
 	/**
-	 * Delete a file
+	 * Delete a file.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path  Absolute path.
 	 * @return bool
 	 */
 	public function unlink( $abs_path ) {
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @unlink( $abs_path );
 
 		if ( ! $return && $this->use_filesystem ) {
@@ -278,19 +308,17 @@ class Filesystem {
 	}
 
 	/**
-	 * chmod a file
+	 * Chmod a file.
 	 *
-	 * @param     string $abs_path
-	 * @param     int    $perms
-	 *
+	 * @param string $abs_path Absolute path.
+	 * @param int    $perms Permission value, if not provided, defaults to WP standards.
 	 * @return bool
-	 * Leave $perms blank to use $this->chmod_file/DIR or pass value like 0777
 	 */
 	public function chmod( $abs_path, $perms = null ) {
 		if ( is_null( $perms ) ) {
 			$perms = $this->is_file( $abs_path ) ? $this->chmod_file : $this->chmod_dir;
 		}
-
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @chmod( $abs_path, $perms );
 
 		if ( ! $return && $this->use_filesystem ) {
@@ -302,10 +330,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Is the specified path a directory?
+	 * Check if this path is a directory.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return bool
 	 */
 	public function is_dir( $abs_path ) {
@@ -320,10 +347,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Is the specified path a file?
+	 * Check if the specified path is a file.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return bool
 	 */
 	public function is_file( $abs_path ) {
@@ -338,10 +364,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Is the specified path readable
+	 * Is the specified path readable.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return bool
 	 */
 	public function is_readable( $abs_path ) {
@@ -356,10 +381,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Is the specified path writable
+	 * Is the specified path writable.
 	 *
-	 * @param     string $abs_path
-	 *
+	 * @param string $abs_path Absolute path.
 	 * @return bool
 	 */
 	public function is_writable( $abs_path ) {
@@ -373,6 +397,11 @@ class Filesystem {
 		return $return;
 	}
 
+	/**
+	 * Create an index file at the given path.
+	 *
+	 * @param string $path Directory to add the index to.
+	 */
 	private function create_index( $path ) {
 		$index_path = trailingslashit( $path ) . 'index.php';
 		if ( ! $this->file_exists( $index_path ) ) {
@@ -381,11 +410,10 @@ class Filesystem {
 	}
 
 	/**
-	 * Recursive mkdir
+	 * Recursive mkdir.
 	 *
-	 * @param     string $abs_path
-	 * @param     int    $perms
-	 *
+	 * @param string $abs_path Absolute path.
+	 * @param int    $perms Permissions, if default not required.
 	 * @return bool
 	 */
 	public function mkdir( $abs_path, $perms = null ) {
@@ -412,7 +440,7 @@ class Filesystem {
 
 			return true;
 		}
-
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @mkdir( $abs_path, $perms, true );
 
 		if ( ! $return && $this->use_filesystem ) {
@@ -424,7 +452,7 @@ class Filesystem {
 				return true;
 			}
 
-			// WP_Filesystem doesn't offer a recursive mkdir()
+			// WP_Filesystem doesn't offer a recursive mkdir().
 			$abs_path = str_replace( '//', '/', $abs_path );
 			$abs_path = rtrim( $abs_path, '/' );
 			if ( empty( $abs_path ) ) {
@@ -448,11 +476,10 @@ class Filesystem {
 	}
 
 	/**
-	 * Delete a directory
+	 * Delete a directory.
 	 *
-	 * @param     string $abs_path
-	 * @param     bool   $recursive
-	 *
+	 * @param string $abs_path Absolute path.
+	 * @param bool   $recursive Set to recursive create.
 	 * @return bool
 	 */
 	public function rmdir( $abs_path, $recursive = false ) {
@@ -460,12 +487,13 @@ class Filesystem {
 			return false;
 		}
 
-		// taken from WP_Filesystem_Direct
+		// Taken from WP_Filesystem_Direct.
 		if ( ! $recursive ) {
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$return = @rmdir( $abs_path );
 		} else {
 
-			// At this point it's a folder, and we're in recursive mode
+			// At this point it's a folder, and we're in recursive mode.
 			$abs_path = trailingslashit( $abs_path );
 			$filelist = $this->scandir( $abs_path );
 
@@ -480,7 +508,7 @@ class Filesystem {
 					}
 				}
 			}
-
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			if ( file_exists( $abs_path ) && ! @rmdir( $abs_path ) ) {
 				$return = false;
 			}
@@ -497,14 +525,13 @@ class Filesystem {
 	}
 
 	/**
-	 * Get a list of files/folders under specified directory
+	 * Get a list of files/folders under specified directory.
 	 *
-	 * @param $abs_path
-	 *
+	 * @param array $abs_path Absolute path.
 	 * @return array|bool
 	 */
 	public function scandir( $abs_path ) {
-
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$dirlist = @scandir( $abs_path );
 		if ( false === $dirlist ) {
 			if ( $this->use_filesystem ) {
@@ -518,7 +545,7 @@ class Filesystem {
 
 		$return = array();
 
-		// normalize return to look somewhat like the return value for WP_Filesystem::dirlist
+		// Normalize return to look somewhat like the return value for WP_Filesystem::dirlist.
 		foreach ( $dirlist as $entry ) {
 			if ( '.' === $entry || '..' === $entry ) {
 				continue;
@@ -534,16 +561,16 @@ class Filesystem {
 	}
 
 	/**
-	 * Light wrapper for move_uploaded_file with chmod
+	 * Light wrapper for move_uploaded_file with chmod.
 	 *
-	 * @param     string $file
-	 * @param     string $destination
-	 * @param     int    $perms
-	 *
+	 * @param string   $file Source file.
+	 * @param string   $destination File destination.
+	 * @param int|null $perms Permission value.
 	 * @return bool
-	 * TODO: look into replicating more functionality from wp_handle_upload()
 	 */
 	public function move_uploaded_file( $file, $destination, $perms = null ) {
+		// TODO: look into replicating more functionality from wp_handle_upload().
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @move_uploaded_file( $file, $destination );
 
 		if ( $return ) {
@@ -554,19 +581,18 @@ class Filesystem {
 	}
 
 	/**
-	 * Copy a file
+	 * Copy a file.
 	 *
-	 * @param     string $source_abs_path
-	 * @param     string $destination_abs_path
-	 * @param     bool   $overwrite
-	 * @param     mixed  $perms
-	 *
+	 * @param string $source_abs_path Source path.
+	 * @param string $destination_abs_path Destination path.
+	 * @param bool   $overwrite Overwrite file.
+	 * @param mixed  $perms Permission value.
 	 * @return bool
 	 * Taken from WP_Filesystem_Direct
 	 */
 	public function copy( $source_abs_path, $destination_abs_path, $overwrite = true, $perms = false ) {
 
-		// error if source file doesn't exist
+		// Error if source file doesn't exist.
 		if ( ! $this->file_exists( $source_abs_path ) ) {
 			return false;
 		}
@@ -574,7 +600,7 @@ class Filesystem {
 		if ( ! $overwrite && $this->file_exists( $destination_abs_path ) ) {
 			return false;
 		}
-
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$return = @copy( $source_abs_path, $destination_abs_path );
 		if ( $perms && $return ) {
 			$this->chmod( $destination_abs_path, $perms );
@@ -595,26 +621,25 @@ class Filesystem {
 	}
 
 	/**
-	 * Move a file
+	 * Move a file.
 	 *
-	 * @param     string $source_abs_path
-	 * @param     string $destination_abs_path
-	 * @param     bool   $overwrite
-	 *
+	 * @param string $source_abs_path Source absolute path.
+	 * @param string $destination_abs_path Destination absolute path.
+	 * @param bool   $overwrite Overwrite if file exists.
 	 * @return bool
 	 */
 	public function move( $source_abs_path, $destination_abs_path, $overwrite = true ) {
 
-		// Error if source file doesn't exist
+		// Error if source file doesn't exist.
 		if ( ! $this->file_exists( $source_abs_path ) ) {
 			return false;
 		}
 
 		// Try using rename first. if that fails (for example, source is read only) try copy.
-		// Taken in part from WP_Filesystem_Direct
+		// Taken in part from WP_Filesystem_Direct.
 		if ( ! $overwrite && $this->file_exists( $destination_abs_path ) ) {
 			return false;
-		} elseif ( @rename( $source_abs_path, $destination_abs_path ) ) {
+		} elseif ( @rename( $source_abs_path, $destination_abs_path ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors
 			return true;
 		} else {
 			if ( $this->copy( $source_abs_path, $destination_abs_path, $overwrite ) && $this->file_exists(
