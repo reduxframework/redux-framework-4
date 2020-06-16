@@ -95,7 +95,7 @@ export default function FabWrapper() {
             {/*    <i className="fa fa-life-ring"/>*/}
             {/*</Action>*/}
             {
-                redux_templates.mokama !== 1 &&
+                redux_templates.mokama !== '1' &&
                 <Action
                     style={actionButtonStyles}
                     text={__('Upgrade to Redux Pro', redux_templates.i18n)}

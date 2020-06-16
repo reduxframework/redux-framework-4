@@ -20,7 +20,7 @@ const checkTemplateDependencies = (data) => {
     if (data !== undefined && 'source' in data && data.source !== 'wp_block_patterns') { // We only want to check non wp-block-patterns.
         // Template itself check
         if ('pro' in data && data.pro) {
-            if (!redux_templates.mokama && data.source === redux_templates.i18n)
+            if (redux_templates.mokama !== '1' && data.source === redux_templates.i18n)
                 missingProArray.push(redux_templates.i18n);
         }
 

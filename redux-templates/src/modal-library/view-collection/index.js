@@ -17,7 +17,14 @@ function CollectionView(props) {
     const dataLength = pageData.length;
 
     useEffect(() => {
-        if (pageData) setPreviewData(pageData[previewDataIndex]);
+        if (pageData) {
+            const itemData = pageData[previewDataIndex];
+            if (itemData.image_full) {
+                setPreviewData({...itemData, backgroundImage: itemData.image_full, previewImageClassname: 'details-preview has_full'})
+            } else {
+                setPreviewData({...itemData, backgroundImage: itemData.image, previewImageClassname: 'details-preview'})
+            }
+        }
     }, [pageData, previewDataIndex]);
 
     if (previewData)
@@ -27,7 +34,7 @@ function CollectionView(props) {
                     <div className="details-back" onClick={() => setActiveCollection(null)}>
                         <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Template Kits', redux_templates.i18n)}
                     </div>
-                    <div className="details-preview" style={{backgroundImage: `url('${previewData.image}')`}}>
+                    <div className={previewData.previewImageClassname} style={{backgroundImage: `url('${previewData.backgroundImage}')`}}>
 
                     </div>
                 </div>
