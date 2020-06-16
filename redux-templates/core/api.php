@@ -283,10 +283,10 @@ class API {
 
 
 	/**
-	 * @since 4.0.0
 	 * Get library index. Support for library, collections, pages, sections all in a single request.
 	 *
-	 * @param     WP_REST_Request $request
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
 	 */
 	public function get_index( \WP_REST_Request $request ) {
 
@@ -343,7 +343,7 @@ class API {
 	 * @param array $input Array to filter.
 	 * @return array Filtered array.
 	 */
-	function array_filter_recursive( $input ) {
+	private function array_filter_recursive( $input ) {
 		foreach ( $input as &$value ) {
 			if ( is_array( $value ) ) {
 				$value = $this->array_filter_recursive( $value );
@@ -354,10 +354,11 @@ class API {
 	}
 
 	/**
-	 * @since 4.0.0
+
 	 * Method for transmitting a template the user is sharing remotely.
 	 *
-	 * @param     WP_REST_Request $request
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
 	 */
 	public function share_template( \WP_REST_Request $request ) {
 		$parameters = $request->get_params();
@@ -406,9 +407,10 @@ class API {
 
 		$response = $this->api_request( $config );
 
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors
 		$data = @json_decode( $response, true );
 
-		if ( $data['status'] == 'success' && isset( $data['url'] ) ) {
+		if ( 'success' === $data['status'] && isset( $data['url'] ) ) {
 			wp_send_json_success( array( 'url' => $data['url'] ) );
 		}
 
@@ -423,7 +425,7 @@ class API {
 	 * @return string API response string.
 	 */
 	public function api_request( $data ) {
-		$apiUrl = $this->api_base_url . $data['path'];
+		$api_url = $this->api_base_url . $data['path'];
 
 		if ( isset( $data['_locale'] ) ) {
 			unset( $data['_locale'] );
@@ -448,7 +450,7 @@ class API {
 		$headers                 = array_filter( $headers );
 
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			$headers['SB-User-Agent'] = (string) sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] );
+			$headers['SB-User-Agent'] = (string) sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
 
 		$headers['SB-SiteURL'] = get_site_url( get_current_blog_id() );
@@ -462,18 +464,12 @@ class API {
 			'headers'     => $headers,
 		);
 
-		// echo $apiUrl . PHP_EOL;
-		// print_r( $post_args );
-		// exit();
 		$request = wp_remote_post(
-			$apiUrl,
+			$api_url,
 			$post_args
 		);
 
-		// print_r( $request );
-		// exit();
-
-		// Handle redirects
+		// Handle redirects.
 		if (
 			! is_wp_error( $request )
 			&& isset( $request['http_response'] )
@@ -495,10 +491,10 @@ class API {
 	}
 
 	/**
-	 * @since 4.0.0
 	 * Fetch a single template.
 	 *
-	 * @param     WP_REST_Request $request
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
 	 */
 	public function get_template( \WP_REST_Request $request ) {
 
@@ -506,7 +502,7 @@ class API {
 		$attributes = $request->get_attributes();
 		$parameters = $this->process_registered_blocks( $parameters );
 
-		if ( in_array( $parameters['type'], array( 'sections', 'pages' ) ) ) {
+		if ( in_array( $parameters['type'], array( 'sections', 'pages' ), true ) ) {
 			$parameters['type'] = substr_replace( $parameters['type'], '', - 1 );
 		}
 
@@ -518,7 +514,7 @@ class API {
 		);
 
 		$response = array();
-		if ( $config['source'] == 'wp_block_patterns' && class_exists( 'WP_Patterns_Registry' ) ) {
+		if ( 'wp_block_patterns' === $config['source'] && class_exists( 'WP_Patterns_Registry' ) ) {
 			$patterns = \WP_Patterns_Registry::get_instance()->get_all_registered();
 			$id       = explode( '_', $config['id'] );
 			$id       = end( $id );
@@ -537,11 +533,10 @@ class API {
 			unset( $response['message'] );
 		}
 
-		// delete_user_meta( $parameters['uid'], '_redux_templates_count');
-		// TODO - Validate active key
+		// TODO - Validate active key.
 		if ( ! \Redux_Core::$pro_loaded ) {
 			$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
-			if ( $count === '' ) {
+			if ( '' === $count ) {
 				$count = 5;
 			}
 			$count = intval( $count ) - 1;
@@ -555,14 +550,20 @@ class API {
 		wp_send_json_success( $response );
 	}
 
-	public function request_verify( $data ) {
-
+	/**
+	 * Fetch a single template.
+	 *
+	 * @param array $data Data array.
+	 * @since 4.0.0
+	 * @return array
+	 */
+	public function request_verify( $data = array() ) {
 		$config = array(
 			'SB-Version'   => REDUXTEMPLATES_VERSION,
 			'SB-Multisite' => is_multisite(),
 		);
 
-		// TODO - Update this with the EDD key or developer key
+		// TODO - Update this with the EDD key or developer key.
 		$config['SB-API-Key'] = \Redux_Helpers::get_hash();
 
 		if ( ! empty( \Redux_Core::$pro_loaded ) && \Redux_Core::$pro_loaded ) {
@@ -575,8 +576,10 @@ class API {
 
 
 	/**
-	 * @since 4.0.0
 	 * Get all saved blocks (reusable blocks).
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
 	 */
 	public function get_saved_blocks( \WP_REST_Request $request ) {
 		$args      = array(
@@ -590,58 +593,71 @@ class API {
 	}
 
 	/**
-	 * @since 4.0.0
 	 * Delete a single saved (reusable) block
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
 	 */
 	public function delete_saved_block( \WP_REST_Request $request ) {
-		$block_id      = (int) sanitize_text_field( $_REQUEST['block_id'] );
+		$parameters = $request->get_params();
+		$attributes = $request->get_attributes();
+		if ( ! isset( $parameters['block_id'] ) ) {
+			return wp_send_json_error(
+				array(
+					'status'  => 'error',
+					'message' => 'Missing block_id.',
+				)
+			);
+		}
+
+		$block_id      = (int) sanitize_text_field( wp_unslash( $parameters['block_id'] ) );
 		$deleted_block = wp_delete_post( $block_id );
 
 		wp_send_json_success( $deleted_block );
 	}
 
 	/**
-	 * @since 4.0.0
 	 * Method used to register all rest endpoint hooks.
-	 * redux-templates api routes
+	 *
+	 * @since 4.0.0
 	 */
 	public function register_api_hooks() {
 
 		$hooks = array(
-			'/library/'            => array(
+			'library'            => array(
 				'callback' => 'get_index',
 			),
-			'/pages/'              => array(
+			'pages'              => array(
 				'callback' => 'get_index',
 			),
-			'/sections/'           => array(
+			'sections'           => array(
 				'callback' => 'get_index',
 			),
-			'/collections/'        => array(
+			'collections'        => array(
 				'callback' => 'get_index',
 			),
-			'/feedback/'           => array(
+			'feedback'           => array(
 				'callback' => 'send_feedback',
 			),
-			'/suggestion/'         => array(
+			'suggestion'         => array(
 				'callback' => 'send_suggestion',
 			),
-			'/template/'           => array(
+			'template'           => array(
 				'callback' => 'get_template',
 			),
-			'/share/'              => array(
+			'share'              => array(
 				'method'   => 'POST',
 				'callback' => 'share_template',
 			),
-			'/get_saved_blocks/'   => array(
+			'get_saved_blocks'   => array(
 				'callback' => 'get_saved_blocks',
 			),
-			'/delete_saved_block/' => array(
+			'delete_saved_block' => array(
 				'method'   => 'POST',
 				'callback' => 'delete_saved_block',
 			),
 
-			'/plugin-install/'     => array(
+			'plugin-install'     => array(
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
@@ -655,19 +671,16 @@ class API {
 
 			foreach ( $methods as $method ) {
 				register_rest_route(
-					'redux-templates/v1',
+					'redux/v1/templates',
 					$route,
 					array(
-						array(
-							'methods'      => $method,
-							'callback'     => array( $this, $data['callback'] ),
-							// TODO - Re-enable permission requirements for safety
-							// 'permission_callback' => function () {
-							// return current_user_can( 'edit_posts' );
-							// },
-									'args' => array(
-										'route' => $route,
-									),
+						'methods'             => $method,
+						'callback'            => array( $this, $data['callback'] ),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+						'args'                => array(
+							'route' => $route,
 						),
 					)
 				);
@@ -676,6 +689,12 @@ class API {
 
 	}
 
+	/**
+	 * Install plugin endpoint.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.0.0
+	 */
 	public function plugin_install( \WP_REST_Request $request ) {
 		$data = $request->get_params();
 		if ( empty( $data['slug'] ) ) {

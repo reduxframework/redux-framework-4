@@ -77,9 +77,9 @@ function ShareModal(props) {
         if (loading) return;
         setLoading(true);
         apiFetch({
-            path: 'redux-templates/v1/share/',
+            path: 'redux/v1/templates/share/',
             method: 'POST',
-            headers: {'Registed-Blocks': installedBlocksTypes()},
+            headers: {'Registered-Blocks': installedBlocksTypes()},
             data: {
                 'postID': select('core/editor').getCurrentPostId(),
                 'editor_blocks': blocksSelection,

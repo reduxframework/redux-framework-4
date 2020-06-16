@@ -201,7 +201,7 @@ registerStore('redux-templates/sectionslist', {
     resolvers: {
         * fetchLibraryFromAPI(state) {
             try {
-                const receiveSectionResult = yield actions.fetchLibraryFromAPI('redux-templates/v1/library');
+                const receiveSectionResult = yield actions.fetchLibraryFromAPI('redux/v1/templates/library');
                 return actions.setLibrary(receiveSectionResult.data);
             } catch (error) {
                 return actions.appendErrorMessage(error.code + ' ' + error.message)

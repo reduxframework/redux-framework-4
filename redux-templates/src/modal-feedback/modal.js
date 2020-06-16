@@ -29,7 +29,7 @@ export default function FeedbackModal(props) {
         apiFetch({
             path: 'redux-templates/v1/feedback/',
             method: 'POST',
-            headers: {'Registed-Blocks': installedBlocksTypes()},
+            headers: {'Registered-Blocks': installedBlocksTypes()},
             data
         }).then(data => {
             setLoading(false);

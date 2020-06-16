@@ -16,7 +16,7 @@ function FeedbackDialog(props) {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const onSubmit = ({formData}) => {
-        const path = `redux-templates/v1/${endpoint ? endpoint : 'feedback'}`;
+        const path = `redux/v1/templates/${endpoint ? endpoint : 'feedback'}`;
         if (loading) return;
         setLoading(true);
         apiFetch({

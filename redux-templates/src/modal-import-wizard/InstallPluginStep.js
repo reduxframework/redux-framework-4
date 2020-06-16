@@ -35,7 +35,7 @@ function InstallPluginStep(props) {
             setWaitingList(localWaitingList);
             let pluginSlug = pluginInstance.free_slug ? pluginInstance.free_slug : pluginKey;
             await apiFetch({
-                path: 'redux-templates/v1/plugin-install?slug=' + pluginSlug
+                path: 'redux/v1/templates/plugin-install?slug=' + pluginSlug,
             })
                 .then(res => {
                     if (res.success) {

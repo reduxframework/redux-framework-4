@@ -18,7 +18,7 @@ function SavedView(props) {
     const [dataLoaded, setDataLoaded] = useState(false);
     if (dataLoaded === false) {
         // Initial fetch
-        apiFetch({path: 'redux-templates/v1/get_saved_blocks'}).then(response => {
+        apiFetch({path: 'redux/v1/templates/get_saved_blocks'}).then(response => {
             if (response.success) {
                 setSavedSections(response.data);
             } else {
@@ -54,8 +54,7 @@ function SavedView(props) {
         discardAllErrorMessages();
         const options = {
             method: 'POST',
-            path: 'redux-templates/v1/delete_saved_block/?block_id=' + sectionID,
-            headers: {'Content-Type': 'application/json'}
+            path: 'redux/v1/templates/delete_saved_block/?block_id=' + sectionID,
         }
         apiFetch(options).then(response => {
             if (response.success) {

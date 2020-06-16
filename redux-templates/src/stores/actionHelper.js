@@ -44,7 +44,7 @@ export const processImportHelper = () => {
     const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
 
     discardAllErrorMessages();
-    let the_url = 'redux-templates/v1/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
+    let the_url = 'redux/v1/templates/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
     if ('source' in data) {
         the_url += '&source=' + data.source;
     }
@@ -227,7 +227,7 @@ export const reloadLibrary = () => {
     const { setLoading, setLibrary } = dispatch('redux-templates/sectionslist');
     setLoading(true);
     apiFetch({
-        path: 'redux-templates/v1/library?no_cache=1',
+        path: 'redux/v1/templates/library?no_cache=1',
         method: 'POST',
         data: {
             'registered_blocks': installedBlocksTypes(),
