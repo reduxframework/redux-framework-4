@@ -221,10 +221,11 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			// *****************************************************************
 			// JQuery UI CSS
 			// *****************************************************************
+
 			wp_enqueue_style(
 				'jquery-ui-css',
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				apply_filters(
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/page/{$core->args['opt_name']}/enqueue/jquery-ui-css",
 					Redux_Core::$url . 'assets/css/vendor/jquery-ui-1.10.0.custom.css'
 				),
@@ -399,8 +400,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 					$filter_path = $core_path;
 				}
 
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$class_file = apply_filters(
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/{$core->args['opt_name']}/field/class/{$field['type']}",
 					$filter_path,
 					$field
@@ -609,8 +610,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        save_pending string
 			 */
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$save_pending = apply_filters(
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/save_pending",
 				esc_html__(
 					'You have changes that are not saved. Would you like to save them now?',
@@ -624,8 +625,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        reset all string
 			 */
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_all = apply_filters(
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/reset",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values.',
@@ -639,8 +640,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        reset section string
 			 */
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_section = apply_filters(
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/reset_section",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values in this section.',
@@ -654,8 +655,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        preset confirm string
 			 */
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$preset_confirm = apply_filters(
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/preset",
 				esc_html__(
 					'Your current options will be replaced with the values of this preset. Would you like to proceed?',
@@ -669,8 +670,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        import confirm string
 			 */
-			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$import_confirm = apply_filters(
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/import",
 				esc_html__(
 					'Your current options will be replaced with the values of this import. Would you like to proceed?',

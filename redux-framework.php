@@ -1,8 +1,6 @@
 <?php
 /**
- * The Redux Plugin
- *
- * A simple, truly extensible and fully responsive options framework
+ * Redux, a simple, truly extensible and fully responsive options framework
  * for WordPress themes and plugins. Developed with WordPress coding
  * standards and PHP best practices in mind.
  *
@@ -47,6 +45,9 @@ Redux_Framework_Plugin::instance();
  * @return void
  */
 if ( ! function_exists( 'appsero_init_tracker_redux_framework' ) ) {
+	/**
+	 * Load the Appsero client.
+	 */
 	function appsero_init_tracker_redux_framework() {
 
 		if ( ! class_exists( 'Appsero\Client' ) ) {
