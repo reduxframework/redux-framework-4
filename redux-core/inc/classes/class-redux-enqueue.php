@@ -224,6 +224,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			wp_enqueue_style(
 				'jquery-ui-css',
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				apply_filters(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/page/{$core->args['opt_name']}/enqueue/jquery-ui-css",
@@ -400,6 +401,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 					$filter_path = $core_path;
 				}
 
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$class_file = apply_filters(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/{$core->args['opt_name']}/field/class/{$field['type']}",
@@ -610,6 +612,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        save_pending string
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$save_pending = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/save_pending",
@@ -625,6 +628,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        reset all string
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_all = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/reset",
@@ -640,6 +644,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        reset section string
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_section = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/reset_section",
@@ -655,6 +660,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        preset confirm string
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$preset_confirm = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/preset",
@@ -670,6 +676,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			 *
 			 * @param     string        import confirm string
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$import_confirm = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/{$core->args['opt_name']}/localize/import",

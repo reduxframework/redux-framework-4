@@ -11,9 +11,9 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Sorter', 'your-domain-here' ),
+		'title'      => esc_html__( 'Sorter', 'your-textdomain-here' ),
 		'id'         => 'additional-sorter',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/sorter/" target="_blank">docs.redux.io/core/fields/sorter/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/sorter/" target="_blank">docs.redux.io/core/fields/sorter/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

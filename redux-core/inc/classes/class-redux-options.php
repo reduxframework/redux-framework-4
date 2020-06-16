@@ -903,6 +903,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			 *
 			 * @param  &array [&$plugin_options, redux_options]
 			 */
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action_ref_array(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/options/{$core->args['opt_name']}/validate",

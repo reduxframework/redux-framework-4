@@ -11,8 +11,8 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'            => esc_html__( 'Text', 'your-domain-here' ),
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">docs.redux.io/core/fields/text/</a>',
+		'title'            => esc_html__( 'Text', 'your-textdomain-here' ),
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">docs.redux.io/core/fields/text/</a>',
 		'id'               => 'basic-text',
 		'subsection'       => true,
 		'customizer_width' => '700px',
@@ -20,17 +20,17 @@ Redux::set_section(
 			array(
 				'id'       => 'text-example',
 				'type'     => 'text',
-				'title'    => esc_html__( 'Text Field', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Subtitle', 'your-domain-here' ),
-				'desc'     => esc_html__( 'Field Description', 'your-domain-here' ),
+				'title'    => esc_html__( 'Text Field', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Subtitle', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'Field Description', 'your-textdomain-here' ),
 				'default'  => 'Default Text',
 			),
 			array(
 				'id'        => 'text-example-hint',
 				'type'      => 'text',
-				'title'     => esc_html__( 'Text Field w/ Hint', 'your-domain-here' ),
-				'subtitle'  => esc_html__( 'Subtitle', 'your-domain-here' ),
-				'desc'      => esc_html__( 'Field Description', 'your-domain-here' ),
+				'title'     => esc_html__( 'Text Field w/ Hint', 'your-textdomain-here' ),
+				'subtitle'  => esc_html__( 'Subtitle', 'your-textdomain-here' ),
+				'desc'      => esc_html__( 'Field Description', 'your-textdomain-here' ),
 				'default'   => 'Default Text',
 				'text_hint' => array(
 					'title'   => 'Hint Title',
@@ -40,9 +40,9 @@ Redux::set_section(
 			array(
 				'id'          => 'text-placeholder',
 				'type'        => 'text',
-				'title'       => esc_html__( 'Text Field', 'your-domain-here' ),
-				'subtitle'    => esc_html__( 'Subtitle', 'your-domain-here' ),
-				'desc'        => esc_html__( 'Field Description', 'your-domain-here' ),
+				'title'       => esc_html__( 'Text Field', 'your-textdomain-here' ),
+				'subtitle'    => esc_html__( 'Subtitle', 'your-textdomain-here' ),
+				'desc'        => esc_html__( 'Field Description', 'your-textdomain-here' ),
 				'placeholder' => 'Placeholder Text',
 			),
 		),

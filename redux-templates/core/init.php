@@ -109,6 +109,7 @@ class Init {
 			$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
 			if ( empty( $count ) ) {
 				$count = 5;
+				update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 			}
 			$global_vars['left'] = $count;
 		}

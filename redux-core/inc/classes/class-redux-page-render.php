@@ -394,6 +394,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 * @param array  $field field data
 				 * @param string $value field.id
 				 */
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/{$field['type']}/callback/before",
@@ -409,6 +410,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 * @param array  $field field data
 				 * @param string $value field.id
 				 */
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/callback/before",
@@ -426,6 +428,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 * @param array  $field field data
 				 * @param string $value field.id
 				 */
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/{$field['type']}/callback/after",
@@ -441,6 +444,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 * @param array  $field field data
 				 * @param string $value field.id
 				 */
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/callback/after",
@@ -524,7 +528,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
-
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/render/before",
@@ -540,7 +544,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
-
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/render/before",
@@ -615,6 +619,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/fieldset/before/{$core->args['opt_name']}",
@@ -630,6 +635,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/fieldset/before/{$core->args['opt_name']}",
@@ -679,6 +685,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/fieldset/after/{$core->args['opt_name']}",
@@ -694,6 +701,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 * @param array  $field field data
 					 * @param string $value field id
 					 */
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/fieldset/after/{$core->args['opt_name']}",

@@ -69,9 +69,9 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function add_templates( $post_templates ) {
-		$post_templates['redux-templates_contained']  = __( 'Redux Contained', 'redux-templates' );
-		$post_templates['redux-templates_full_width'] = __( 'Redux Full Width', 'redux-templates' );
-		$post_templates['redux-templates_canvas']     = __( 'Redux Canvas', 'redux-templates' );
+		$post_templates['redux-templates_contained']  = __( 'Redux Contained', 'redux-framework' );
+		$post_templates['redux-templates_full_width'] = __( 'Redux Full Width', 'redux-framework' );
+		$post_templates['redux-templates_canvas']     = __( 'Redux Canvas', 'redux-framework' );
 
 		return $post_templates;
 	}

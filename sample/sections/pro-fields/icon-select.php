@@ -13,15 +13,15 @@ require_once Redux_Pro::$dir . 'core/inc/extensions/icon_select/font-awesome-5-f
 Redux::setSection(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Icon Select', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extensions/icon-select/" target="_blank">docs.reduxframework.com/extensions/icon-select/</a>',
+		'title'      => esc_html__( 'Icon Select', 'your-textdomain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extensions/icon-select/" target="_blank">docs.reduxframework.com/extensions/icon-select/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'               => 'icon_select_field',
 				'type'             => 'icon_select',
-				'title'            => esc_html__( 'Icon Select', 'your-domain-here' ),
-				'subtitle'         => esc_html__( 'Select an icon.', 'your-domain-here' ),
+				'title'            => esc_html__( 'Icon Select', 'your-textdomain-here' ),
+				'subtitle'         => esc_html__( 'Select an icon.', 'your-textdomain-here' ),
 				'default'          => '',
 				'options'          => redux_icon_select_fa_5_free(),
 

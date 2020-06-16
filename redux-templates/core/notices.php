@@ -29,7 +29,7 @@ class Notices {
 	 */
 	public static function php_error_notice() {
 		$message      = sprintf( /* translators: %s: php version number */
-			esc_html__( 'ReduxTemplates requires PHP version %s or more.', 'redux-templates' ),
+			esc_html__( 'ReduxTemplates requires PHP version %s or more.', 'redux-framework' ),
 			'5.4'
 		);
 		$html_message = sprintf( '<div class="notice notice-error is-dismissible">%s</div>', wpautop( $message ) );
@@ -44,7 +44,7 @@ class Notices {
 	 */
 	public static function wordpress_error_notice() {
 		$message      = sprintf( /* translators: %s: WordPress version number */
-			esc_html__( 'ReduxTemplates requires WordPress version %s or more.', 'redux-templates' ),
+			esc_html__( 'ReduxTemplates requires WordPress version %s or more.', 'redux-framework' ),
 			'4.7'
 		);
 		$html_message = sprintf( '<div class="notice notice-error is-dismissible">%s</div>', wpautop( $message ) );

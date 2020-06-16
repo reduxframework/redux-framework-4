@@ -11,17 +11,17 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Callback', 'your-domain-here' ),
+		'title'      => esc_html__( 'Callback', 'your-textdomain-here' ),
 		'id'         => 'additional-callback',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/callback/" target="_blank">docs.redux.io/core/fields/callback/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/callback/" target="_blank">docs.redux.io/core/fields/callback/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'       => 'opt-custom-callback',
 				'type'     => 'callback',
-				'title'    => esc_html__( 'Custom Field Callback', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'This is a completely unique field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is created with a callback function, so anything goes in this field. Make sure to define the function though.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Custom Field Callback', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'This is a completely unique field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is created with a callback function, so anything goes in this field. Make sure to define the function though.', 'your-textdomain-here' ),
 				'callback' => 'redux_my_custom_field',
 			),
 		),
