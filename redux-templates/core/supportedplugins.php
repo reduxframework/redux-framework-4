@@ -73,7 +73,10 @@ class SupportedPlugins {
 
 		$data = array();
 		foreach ( $active_plugins as $plugin ) {
-			$slug          = explode( '/', $plugin )[0];
+			$slug = explode( '/', $plugin )[0];
+			if ( ! isset( $all_plugins[ $plugin ] ) ) {
+				$all_plugins[ $plugin ] = array();
+			}
 			$data[ $slug ] = $all_plugins[ $plugin ];
 		}
 

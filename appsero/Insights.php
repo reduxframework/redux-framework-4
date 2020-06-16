@@ -145,7 +145,7 @@ class Insights {
 
         if ( $this->show_notice ) {
             // tracking notice
-            add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+            add_action( 'redux_admin_notices_run', array( $this, 'admin_notice' ), 100, 2 );
         }
 
         add_action( 'admin_init', array( $this, 'handle_optin_optout' ) );
@@ -348,7 +348,7 @@ class Insights {
      *
      * @return void
      */
-    public function admin_notice() {
+    public function admin_notice( $args ) {
 
         if ( $this->notice_dismissed() ) {
             return;
@@ -368,20 +368,30 @@ class Insights {
             $optout_url = add_query_arg( $this->client->slug . '_tracker_optout', 'true' );
 
             if ( empty( $this->notice ) ) {
-                $notice = sprintf( __( 'Want to help make <strong>%1$s</strong> even more awesome? Allow %1$s to collect non-sensitive diagnostic data and usage information.', 'redux-framework' ), $this->client->name );
+            	$name = 'Redux';
+            	if ( isset( $args['display_name'] ) && !empty( $args['display_name'] )) {
+            		$name = $name . ' & '.$args['display_name'];
+	            }
+                $notice = sprintf( __( 'Want to help make <strong>%1$s</strong> even more awesome? Allow us to collect non-sensitive diagnostic data and usage information.', 'redux-framework' ), $name );
             } else {
                 $notice = $this->notice;
             }
 
             $notice .= ' (<a class="' . $this->client->slug . '-insights-data-we-collect" href="#">' . __( 'what we collect', 'redux-framework' ) . '</a>)';
-            $notice .= '<p class="description" style="display:none;">' . implode( ', ', $this->data_we_collect() ) . '. No sensitive data is tracked. ';
-            $notice .= 'We are using Appsero to collect your data. <a href="https://appsero.com/privacy-policy/">Learn more</a> about how Appsero collects and handle your data.</p>';
+
+	        $text = sprintf(
+	        	__( 'No sensitive data is tracked. By clicking the <strong>Allow</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
+		        esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=activate' ),
+		        esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=activate' )
+	        );
+
+            $notice .= '<p class="description" style="display:none;">' . implode( ', ', $this->data_we_collect() ) . ' . ' . $text . ' </p>';
 
             echo '<div class="updated"><p>';
                 echo $notice;
                 echo '</p><p class="submit">';
                 echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large">' . __( 'Allow', 'redux-framework' ) . '</a>';
-                echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary button-large">' . __( 'No thanks', 'redux-framework' ) . '</a>';
+                echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $optout_url ) . '" style="color: #aaa;">' . __( 'Not now, thank you.', 'redux-framework' ) . '</a>';
             echo '</p></div>';
 
             echo "<script type='text/javascript'>jQuery('." . $this->client->slug . "-insights-data-we-collect').on('click', function(e) {

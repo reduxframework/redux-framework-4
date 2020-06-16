@@ -97,12 +97,12 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 		public function admin_notices( $notices = array() ) {
 			global $current_user, $pagenow;
 
-			// Check for an active admin notice array.
-			if ( ! empty( $notices ) ) {
-				$core = $this->core();
+			$core = $this->core();
+			if ( isset( $_GET ) && isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+				do_action( 'redux_admin_notices_run', $core->args );
 
-				if ( isset( $_GET ) && isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-
+				// Check for an active admin notice array.
+				if ( ! empty( $notices ) ) {
 					if ( isset( $notices[ $core->args['page_slug'] ] ) ) {
 						// Enum admin notices.
 						foreach ( $notices[ $core->args['page_slug'] ] as $notice ) {
@@ -161,7 +161,6 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 						}
 					}
 				}
-
 				// Clear the admin notice array.
 				self::$notices[ $core->args['opt_name'] ] = array();
 			}
