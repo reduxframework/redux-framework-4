@@ -368,12 +368,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				$args['global_variable'] = str_replace( '-', '_', $args['opt_name'] );
 			}
 
-			// Force dev_mode on WP_DEBUG = true and if it's a local server.
-			if ( Redux_Helpers::is_wp_debug() ) {
-				$this->dev_mode_forced = true;
-				$args['dev_mode']      = true;
-			}
-
 			if ( isset( $args['customizer_only'] ) && $args['customizer_only'] ) {
 				$args['menu_type']      = 'hidden';
 				$args['customizer']     = true;

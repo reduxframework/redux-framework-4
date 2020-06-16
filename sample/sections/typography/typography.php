@@ -11,16 +11,16 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'  => esc_html__( 'Typography', 'your-domain-here' ),
+		'title'  => esc_html__( 'Typography', 'your-textdomain-here' ),
 		'id'     => 'typography',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/typography/" target="_blank">docs.redux.io/core/fields/typography/</a>',
+		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/typography/" target="_blank">docs.redux.io/core/fields/typography/</a>',
 		'icon'   => 'el el-font',
 		'fields' => array(
 			array(
 				'id'                => 'opt-typography-body',
 				'type'              => 'typography',
-				'title'             => esc_html__( 'Body Font', 'your-domain-here' ),
-				'subtitle'          => esc_html__( 'Specify the body font properties.', 'your-domain-here' ),
+				'title'             => esc_html__( 'Body Font', 'your-textdomain-here' ),
+				'subtitle'          => esc_html__( 'Specify the body font properties.', 'your-textdomain-here' ),
 				'google'            => true,
 				'font_family_clear' => false,
 				'default'           => array(
@@ -34,7 +34,7 @@ Redux::set_section(
 			array(
 				'id'          => 'opt-typography',
 				'type'        => 'typography',
-				'title'       => esc_html__( 'Typography h2.site-description', 'your-domain-here' ),
+				'title'       => esc_html__( 'Typography h2.site-description', 'your-textdomain-here' ),
 
 				// Use if you want to hook in your own CSS compiler.
 				'compiler'    => true,
@@ -46,7 +46,7 @@ Redux::set_section(
 				'all-styles'  => true,
 				'all-subsets' => true,
 				'units'       => 'px',
-				'subtitle'    => esc_html__( 'Typography option with each property can be called individually.', 'your-domain-here' ),
+				'subtitle'    => esc_html__( 'Typography option with each property can be called individually.', 'your-textdomain-here' ),
 				'default'     => array(
 					'color'       => '#333',
 					'font-style'  => '700',

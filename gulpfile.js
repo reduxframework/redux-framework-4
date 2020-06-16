@@ -663,7 +663,9 @@ function productionMode() {
 
 function admin_css() {
 	return gulp.src(['./redux-templates/src/scss/*.scss'])
-		.pipe(sass())
+		.pipe(sourcemaps.init())
+		.pipe(sass().on('error', sass.logError))
+		.pipe(sourcemaps.write())
 		.pipe(autoprefixer({
 			cascade: false
 		}))

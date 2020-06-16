@@ -1,8 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName
+
 /**
  * Redux templates API class.
  *
- * @since 4.0.0
+ * @since   4.0.0
  * @package Redux Framework
  */
 
@@ -76,6 +77,7 @@ class API {
 	 * Process the registered blocks from the library.
 	 *
 	 * @param array $parameters Array to be returned if no response, or to have data appended to.
+	 *
 	 * @return array Array of properly processed blocks and supported plugins.
 	 */
 	private function process_registered_blocks( $parameters ) {
@@ -116,7 +118,8 @@ class API {
 	 * Process the dependencies.
 	 *
 	 * @param array  $data Data array.
-	 * @param string $key Key param.
+	 * @param string $key  Key param.
+	 *
 	 * @return array Data array with dependencies outlined.
 	 */
 	private function process_dependencies( $data, $key ) {
@@ -173,6 +176,7 @@ class API {
 	 * Get the last cache time.
 	 *
 	 * @param string $abs_path Absolute path to a file.
+	 *
 	 * @return string|bool Last modified time.
 	 */
 	private function get_cache_time( $abs_path ) {
@@ -189,9 +193,10 @@ class API {
 	 * Fetch from the cache if had.
 	 *
 	 * @param array  $parameters Absolute path to a file.
-	 * @param array  $config Absolute path to a file.
-	 * @param string $path URL path perform a request to a file.
+	 * @param array  $config     Absolute path to a file.
+	 * @param string $path       URL path perform a request to a file.
 	 * @param bool   $cache_only Set to only fetch from the local cache.
+	 *
 	 * @return array Response and possibly the template if recovered.
 	 */
 	public function api_cache_fetch( $parameters, $config, $path, $cache_only = false ) {
@@ -286,6 +291,7 @@ class API {
 	 * Get library index. Support for library, collections, pages, sections all in a single request.
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function get_index( \WP_REST_Request $request ) {
@@ -341,6 +347,7 @@ class API {
 	 * Filter an array recursively.
 	 *
 	 * @param array $input Array to filter.
+	 *
 	 * @return array Filtered array.
 	 */
 	private function array_filter_recursive( $input ) {
@@ -354,10 +361,10 @@ class API {
 	}
 
 	/**
-
 	 * Method for transmitting a template the user is sharing remotely.
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function share_template( \WP_REST_Request $request ) {
@@ -374,25 +381,13 @@ class API {
 			'uid'            => get_current_user_id(),
 			'editor_content' => isset( $parameters['editor_content'] ) ? (string) $parameters['editor_content'] : '',
 			'editor_blocks'  => isset( $parameters['editor_blocks'] ) ? $parameters['editor_blocks'] : '',
-			'postID'         => isset( $parameters['postID'] ) ? (string) sanitize_text_field(
-				$parameters['postID']
-			) : '',
-			'title'          => isset( $parameters['title'] ) ? (string) sanitize_text_field(
-				$parameters['title']
-			) : 'The Title',
-			'type'           => isset( $parameters['type'] ) ? (string) sanitize_text_field(
-				$parameters['type']
-			) : 'page',
-			'categories'     => isset( $parameters['categories'] ) ? (string) sanitize_text_field(
-				$parameters['categories']
-			) : '',
-			'description'    => isset( $parameters['description'] ) ? (string) sanitize_text_field(
-				$parameters['description']
-			) : '',
+			'postID'         => isset( $parameters['postID'] ) ? (string) sanitize_text_field( $parameters['postID'] ) : '',
+			'title'          => isset( $parameters['title'] ) ? (string) sanitize_text_field( $parameters['title'] ) : 'The Title',
+			'type'           => isset( $parameters['type'] ) ? (string) sanitize_text_field( $parameters['type'] ) : 'page',
+			'categories'     => isset( $parameters['categories'] ) ? (string) sanitize_text_field( $parameters['categories'] ) : '',
+			'description'    => isset( $parameters['description'] ) ? (string) sanitize_text_field( $parameters['description'] ) : '',
 			'headers'        => array(
-				'SB-Registered-Blocks' => isset( $parameters['registered_blocks'] ) ? (string) sanitize_text_field(
-					implode( ',', $parameters['registered_blocks'] )
-				) : '',
+				'SB-Registered-Blocks' => isset( $parameters['registered_blocks'] ) ? (string) sanitize_text_field( implode( ',', $parameters['registered_blocks'] ) ) : '',
 			),
 		);
 
@@ -422,10 +417,15 @@ class API {
 	 * Run an API request.
 	 *
 	 * @param array $data Array related to an API request.
+	 *
 	 * @return string API response string.
 	 */
 	public function api_request( $data ) {
-		$api_url = $this->api_base_url . $data['path'];
+
+		$api_url = $this->api_base_url;
+		if ( isset( $data['path'] ) ) {
+			$api_url = $api_url . $data['path'];
+		}
 
 		if ( isset( $data['_locale'] ) ) {
 			unset( $data['_locale'] );
@@ -464,23 +464,11 @@ class API {
 			'headers'     => $headers,
 		);
 
-		$request = wp_remote_post(
-			$api_url,
-			$post_args
-		);
+		$request = wp_remote_post( $api_url, $post_args );
 
 		// Handle redirects.
-		if (
-			! is_wp_error( $request )
-			&& isset( $request['http_response'] )
-			&& $request['http_response'] instanceof \WP_HTTP_Requests_Response
-			&& method_exists( $request['http_response'], 'get_response_object' )
-			&& strpos( $request['http_response']->get_response_object()->url, 'files.starterblocks.io' ) !== false
-		) {
-			$request = wp_remote_get(
-				$request['http_response']->get_response_object()->url,
-				array( 'timeout' => 145 )
-			);
+		if ( ! is_wp_error( $request ) && isset( $request['http_response'] ) && $request['http_response'] instanceof \WP_HTTP_Requests_Response && method_exists( $request['http_response'], 'get_response_object' ) && strpos( $request['http_response']->get_response_object()->url, 'files.starterblocks.io' ) !== false ) {
+			$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => 145 ) );
 		}
 
 		if ( is_wp_error( $request ) ) {
@@ -494,6 +482,7 @@ class API {
 	 * Fetch a single template.
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function get_template( \WP_REST_Request $request ) {
@@ -513,7 +502,8 @@ class API {
 			'source' => isset( $parameters['source'] ) ? $parameters['source'] : '',
 		);
 
-		$response = array();
+		$response = $this->check_template_response( $parameters );
+
 		if ( 'wp_block_patterns' === $config['source'] && class_exists( 'WP_Patterns_Registry' ) ) {
 			$patterns = \WP_Patterns_Registry::get_instance()->get_all_registered();
 			$id       = explode( '_', $config['id'] );
@@ -533,8 +523,21 @@ class API {
 			unset( $response['message'] );
 		}
 
+		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Check template reponse.
+	 *
+	 * @param array $parameters Parameters array.
+	 *
+	 * @return array
+	 * @since 4.0.0
+	 */
+	public function check_template_response( $parameters ) {
+		$response = array();
 		// TODO - Validate active key.
-		if ( ! \Redux_Core::$pro_loaded ) {
+		if ( ! ReduxTemplates\Init::mokama() ) {
 			$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
 			if ( '' === $count ) {
 				$count = 5;
@@ -547,15 +550,16 @@ class API {
 			$response['left'] = $count;
 		}
 
-		wp_send_json_success( $response );
+		return $response;
 	}
 
 	/**
 	 * Fetch a single template.
 	 *
 	 * @param array $data Data array.
-	 * @since 4.0.0
+	 *
 	 * @return array
+	 * @since 4.0.0
 	 */
 	public function request_verify( $data = array() ) {
 		$config = array(
@@ -579,6 +583,7 @@ class API {
 	 * Get all saved blocks (reusable blocks).
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function get_saved_blocks( \WP_REST_Request $request ) {
@@ -596,6 +601,7 @@ class API {
 	 * Delete a single saved (reusable) block
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function delete_saved_block( \WP_REST_Request $request ) {
@@ -656,7 +662,6 @@ class API {
 				'method'   => 'POST',
 				'callback' => 'delete_saved_block',
 			),
-
 			'plugin-install'     => array(
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
@@ -693,6 +698,7 @@ class API {
 	 * Install plugin endpoint.
 	 *
 	 * @param \WP_REST_Request $request WP Rest request.
+	 *
 	 * @since 4.0.0
 	 */
 	public function plugin_install( \WP_REST_Request $request ) {

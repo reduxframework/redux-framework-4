@@ -85,6 +85,7 @@
   },
   "scripts": {
     "test": "jest --watchAll",
+    "phpcs": "phpcs -v --standard=ruleset.xml .",
     "start": "webpack --config .config/webpack.config.dev.js --watch",
     "watch": "yarn start",
     "build": "NODE_ENV=production webpack --config .config/webpack.config.prod.js",

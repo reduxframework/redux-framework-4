@@ -11,9 +11,9 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Password', 'your-domain-here' ),
+		'title'      => esc_html__( 'Password', 'your-textdomain-here' ),
 		'id'         => 'basic-password',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/password/" target="_blank">docs.redux.io/core/fields/password/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/password/" target="_blank">docs.redux.io/core/fields/password/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

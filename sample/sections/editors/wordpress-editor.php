@@ -11,22 +11,22 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'WordPress Editor', 'your-domain-here' ),
+		'title'      => esc_html__( 'WordPress Editor', 'your-textdomain-here' ),
 		'id'         => 'editor-wordpress',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/editor/" target="_blank">docs.redux.io/core/fields/editor/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/editor/" target="_blank">docs.redux.io/core/fields/editor/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'       => 'opt-editor',
 				'type'     => 'editor',
-				'title'    => esc_html__( 'Editor', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Use any of the features of WordPress editor inside your panel!', 'your-domain-here' ),
+				'title'    => esc_html__( 'Editor', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Use any of the features of WordPress editor inside your panel!', 'your-textdomain-here' ),
 				'default'  => 'Powered by Redux Framework.',
 			),
 			array(
 				'id'      => 'opt-editor-tiny',
 				'type'    => 'editor',
-				'title'   => esc_html__( 'Editor w/o Media Button', 'your-domain-here' ),
+				'title'   => esc_html__( 'Editor w/o Media Button', 'your-textdomain-here' ),
 				'default' => 'Powered by Redux Framework.',
 				'args'    => array(
 					'wpautop'       => false,
@@ -39,7 +39,7 @@ Redux::set_section(
 			array(
 				'id'         => 'opt-editor-full',
 				'type'       => 'editor',
-				'title'      => esc_html__( 'Editor - Full Width', 'your-domain-here' ),
+				'title'      => esc_html__( 'Editor - Full Width', 'your-textdomain-here' ),
 				'full_width' => true,
 			),
 		),

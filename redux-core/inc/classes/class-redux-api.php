@@ -142,7 +142,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 						esc_html__( 'Warning, Premature Initialization', 'redux-framework' ),
 						'self::init("' . esc_html( $opt_name ) . '")',
 						// translators: This is only shown to developers, should not impact users.
-						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'redux-framework ' ), '<code>plugins_loaded</code>' )
+						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'redux-framework' ), '<code>plugins_loaded</code>' )
 					);
 
 					$data = array(

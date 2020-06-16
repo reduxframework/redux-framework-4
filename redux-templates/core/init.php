@@ -59,11 +59,8 @@ class Init {
 	 * @return string
 	 */
 	public static function get_local_file_contents( $file_path ) {
-		ob_start();
-		include $file_path;
-		$contents = ob_get_clean();
-
-		return $contents;
+		$fs = new ReduxTemplates\Filesystem();
+		return $fs->get_contents( $file_path );
 	}
 
 	/**
@@ -97,18 +94,20 @@ class Init {
 		$global_vars   = array(
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
-			'mokama'            => \Redux_Core::$pro_loaded, // TODO - Validate active key.
-			'icon'              => self::get_local_file_contents( REDUXTEMPLATES_DIR_URL . 'assets/img/logo.svg' ),
+			'mokama'            => ReduxTemplates\Init::mokama(),
+			'icon'              => self::get_local_file_contents( REDUXTEMPLATES_DIR_PATH . 'assets/img/logo.svg' ),
 			'version'           => \Redux_Core::$version,
 			'theme_name'        => $theme_details->get( 'Name' ),
 			'supported_plugins' => array(), // Load the supported plugins.
 		);
-		if ( ! \Redux_Core::$pro_loaded ) {
+
+		if ( ! $global_vars['mokama'] ) {
 			// phpcs:disable Squiz.PHP.CommentedOutCode
 			// delete_user_meta( get_current_user_id(), '_redux_templates_count'); // To test left.
 			$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
 			if ( empty( $count ) ) {
 				$count = 5;
+				update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 			}
 			$global_vars['left'] = $count;
 		}
@@ -128,6 +127,16 @@ class Init {
 			false,
 			REDUXTEMPLATES_VERSION
 		);
+	}
+
+	/**
+	 * Check mokama.
+	 *
+	 * @access public
+	 * @since 4.0.0
+	 */
+	public static function mokama() {
+		return true;
 	}
 
 	/**

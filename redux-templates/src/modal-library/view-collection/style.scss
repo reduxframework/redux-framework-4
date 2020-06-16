@@ -30,15 +30,25 @@
         .details-preview {
             transition: all linear 1s;
             background-position: center top;
-            background-size: cover;
+            background-size: contain;
+            width: 100%;
             background-repeat: no-repeat;
             height: 84.71%;
-
-            &:hover {
-                background-position: center bottom;
+            &.has_full {
+                transition: all linear 1s;
+                background-position: center top;
                 background-size: cover;
+                width: 100%;
+                background-repeat: no-repeat;
+                -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+                &:hover {
+                    background-position: center bottom;
+                    background-size: cover;
+                }
             }
         }
+
     }
 
     .redux-templates-collection-details-right {
