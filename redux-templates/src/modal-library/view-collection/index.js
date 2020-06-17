@@ -17,7 +17,7 @@ function CollectionView(props) {
     const dataLength = pageData.length;
 
     useEffect(() => {
-        if (pageData) {
+        if (pageData && previewDataIndex && pageData[previewDataIndex]) {
             const itemData = pageData[previewDataIndex];
             if (itemData.image_full) {
                 setPreviewData({...itemData, backgroundImage: itemData.image_full, previewImageClassname: 'details-preview has_full'})
