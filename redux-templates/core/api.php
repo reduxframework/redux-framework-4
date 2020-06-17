@@ -322,7 +322,14 @@ class API {
 			$supported = ReduxTemplates\SupportedPlugins::instance();
 			$supported->init( $data['plugins'] );
 			$data['plugins'] = $supported::get_plugins();
-
+			$data['plugins']['redux-framework']['version'] = \Redux_Core::$version;
+			if ( ReduxTemplates\Init::mokama() ) {
+				if ( class_exists( 'Redux_Pro' ) ) {
+					$data['plugins']['redux-framework']['is_pro'] = \Redux_Pro::$version;
+				} else {
+					$data['plugins']['redux-framework']['is_pro'] = \Redux_Core::$version;
+				}
+			}
 			$data = $this->process_dependencies( $data, 'sections' );
 			$data = $this->process_dependencies( $data, 'pages' );
 		}
