@@ -154,3 +154,5 @@ class Init {
 		);
 	}
 }
+
+new ReduxTemplates\Init();

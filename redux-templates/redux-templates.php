@@ -11,10 +11,10 @@
  * You should have received a copy of the GNU General Public License
  * along with Redux Framework. If not, see <http://www.gnu.org/licenses/>.
  *
- * @package     Redux_Framework
+ * @package     Redux_Templates
  * @subpackage  Core
  * @subpackage  Core
- * @author      Redux Framework + Dovy Paukstys
+ * @author      Redux.io + Dovy Paukstys
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,6 +34,6 @@ define( 'REDUXTEMPLATES_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'REDUXTEMPLATES_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 // Version Check & Include Core.
-if ( version_compare( PHP_VERSION, '5.4', '>=' ) && version_compare( get_bloginfo( 'version' ), '4.5', '>=' ) ) {
-	new ReduxTemplates\Init();
+if ( version_compare( PHP_VERSION, '5.4', '>=' ) && version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
+	include_once REDUXTEMPLATES_DIR_PATH . 'core/init.php';
 }
