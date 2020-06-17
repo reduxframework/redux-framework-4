@@ -5,6 +5,9 @@
  *
  * @since 4.0.0
  */
+namespace ReduxTemplates;
+use ReduxTemplates;
+
 class InstallerMuter extends \WP_Upgrader_Skin {
 	/**
 	 * Suppress feedback.
