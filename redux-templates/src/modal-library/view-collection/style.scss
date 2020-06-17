@@ -28,14 +28,14 @@
         }
 
         .details-preview {
-            transition: all linear 1s;
             background-position: center top;
             background-size: contain;
             width: 100%;
             background-repeat: no-repeat;
+            transition: background 1.5s ease;
             height: 84.71%;
             &.has_full {
-                transition: all linear 1s;
+                transition: background-position 1.5s linear;
                 background-position: center top;
                 background-size: cover;
                 width: 100%;

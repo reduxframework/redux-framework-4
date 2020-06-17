@@ -321,7 +321,7 @@ class API {
 		if ( isset( $data['plugins'] ) ) {
 			$supported = ReduxTemplates\SupportedPlugins::instance();
 			$supported->init( $data['plugins'] );
-			$data['plugins'] = $supported::get_plugins();
+			$data['plugins']                               = $supported::get_plugins();
 			$data['plugins']['redux-framework']['version'] = \Redux_Core::$version;
 			if ( ReduxTemplates\Init::mokama() ) {
 				if ( class_exists( 'Redux_Pro' ) ) {
