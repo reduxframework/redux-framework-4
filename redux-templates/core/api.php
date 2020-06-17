@@ -575,7 +575,7 @@ class API {
 		);
 
 		// TODO - Update this with the EDD key or developer key.
-		$config['SB-API-Key'] = \Redux_Helpers::get_hash();
+		$config['SB-API-Key'] = '';
 
 		if ( ! empty( \Redux_Core::$pro_loaded ) && \Redux_Core::$pro_loaded ) {
 			$config['SB-Pro'] = \Redux_Core::$pro_loaded;
