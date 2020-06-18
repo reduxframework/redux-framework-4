@@ -6,6 +6,8 @@ import ChallengeContact from './contact';
 import './style.scss'
 
 export default function ChallengeFinalTemplate({finalStatus}) {
-    if (finalStatus === 'success') return <ChallengeCongrats />
-    return <ChallengeContact />;
+	return <ChallengeCongrats />
+	// TODO - When feedback is working, uncomment this.
+    // if (finalStatus === 'success') return <ChallengeCongrats />
+    // return <ChallengeContact />;
 }

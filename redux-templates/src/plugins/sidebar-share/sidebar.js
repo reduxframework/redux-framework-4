@@ -44,6 +44,7 @@ const uiSchema = {
 
 function Sidebar(props) {
     if (!wp.editPost) return null;
+	return null; // TODO - Finish fixing this experience.
     const {PluginSidebar, PluginSidebarMoreMenuItem} = wp.editPost;
     const {getEditorBlocks} = props;
     const onShare = () => {
@@ -53,9 +54,9 @@ function Sidebar(props) {
             type: 'page'
         };
         ModalManager.openFeedback(
-            <FeedbackDialog 
-                title={__('Redux Shares', redux_templates.i18n)} 
-                description={__('Share this design', redux_templates.i18n)} 
+            <FeedbackDialog
+                title={__('Redux Shares', redux_templates.i18n)}
+                description={__('Share this design', redux_templates.i18n)}
                 schema={schema}
                 uiSchema={uiSchema}
                 data={data}

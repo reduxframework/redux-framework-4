@@ -158,7 +158,7 @@ $item-completed-color: #6ab255;
 
 .feedback-popup-btn {
     display: inline-block;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -216,7 +216,7 @@ $item-completed-color: #6ab255;
     .fixed-control {
         input,
         select {
-            width: 250px;
+            width: 100%;
         }
     }
 }
@@ -254,7 +254,7 @@ $item-completed-color: #6ab255;
         flex-direction: row;
         justify-content: space-between;
         form {
-            width: 300px;
+            width: 100%;
         }
     }
 
@@ -271,7 +271,6 @@ $item-completed-color: #6ab255;
         top: 0;
     }
     .preview-panel {
-        width: 330px;
         height: 250px;
         overflow-y: auto;
         overflow-x: hidden;

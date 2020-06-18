@@ -67,7 +67,7 @@ function FeedbackDialog(props) {
                                 {buttonLabel}
                             </button>
                         </Form>
-                        { data && data.editor_blocks && 
+                        { data && data.editor_blocks &&
                             <div className="preview-panel">
                                 <div className="redux-templates-block-preview-hover" />
                                 <BlockPreview blocks={data.editor_blocks} />

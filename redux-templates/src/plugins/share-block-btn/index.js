@@ -14,10 +14,10 @@ if (wp.plugins) {
         return {
             clientIds: getSelectedBlockClientIds(),
         }
-    } )( ShareBlockButton )
-
-    registerPlugin( 'redux-templates-share-block-btn', {
-        icon: ReduxTemplatesIcon,
-        render: Buttons,
-    } );
+    } )( ShareBlockButton );
+	// TODO - Finish this off and show to users.
+    // registerPlugin( 'redux-templates-share-block-btn', {
+    //     icon: ReduxTemplatesIcon,
+    //     render: Buttons,
+    // } );
 }

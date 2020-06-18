@@ -113,7 +113,7 @@ class Init {
 		}
 
 		if ( ! $global_vars['mokama'] ) {
-			$global_vars['u'] = 'https://redux.io/pricing/&utm_source=plugin&utm_medium=modal&utm_campaign=template';
+			$global_vars['u'] = 'https://redux.io/pricing/?utm_source=plugin&utm_medium=modal&utm_campaign=template';
 		}
 
 		wp_localize_script(
