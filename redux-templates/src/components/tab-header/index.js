@@ -38,7 +38,7 @@ export function TabHeader(props) {
             </div>
 
             <div className="redux-templates-template-list-header" data-tut="tour__navigation">
-                <button className={ isActive('section') } onClick={e => changeTab('section')}> {__('Blocks', redux_templates.i18n)} </button>
+                <button className={ isActive('section') } onClick={e => changeTab('section')}> {__('Sections', redux_templates.i18n)} </button>
                 <button className={ isActive('page') } onClick={e => changeTab('page')}> {__('Templates', redux_templates.i18n)} </button>
                 <button className={ isActive('collection') } onClick={e => changeTab('collection')}> {__('Template Kits', redux_templates.i18n)} </button>
                 <button className={ isActive('saved') } onClick={e => changeTab('saved')}> {__('Saved', redux_templates.i18n)} </button>

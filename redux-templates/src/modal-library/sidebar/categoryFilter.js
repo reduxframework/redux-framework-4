@@ -11,7 +11,7 @@ function CategoryFilter (props) {
 
     // On the top, All Block, All Template, All Template Kit etc
     const itemTypeLabel = () => {
-        if (itemType === 'section') return __('Block', redux_templates.i18n);
+        if (itemType === 'section') return __('Section', redux_templates.i18n);
         if (itemType === 'page') return __('Template', redux_templates.i18n);
         if (itemType === 'collection') return __('Template Kit', redux_templates.i18n);
     };

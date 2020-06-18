@@ -28,7 +28,7 @@ export default {
                     {__('These are the different types of templates we have.', redux_templates.i18n)}
                     <ul>
                         <li>
-                            <strong>{__('Blocks', redux_templates.i18n)}</strong>
+                            <strong>{__('Sections', redux_templates.i18n)}</strong>
                             {__(' are the building blocks of a page. Each "row" of content on a page we consider a section.', redux_templates.i18n)}
                         </li>
                         <li>
