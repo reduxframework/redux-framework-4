@@ -24,9 +24,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<style type="text/css">
 		body {background: unset !important;}
 		body:before, body:after {height: 0 !important;}
+		#wrapper {min-height: auto;}
 	</style>
 </head>
 <body <?php body_class(); ?>>
+<?php $content_width = 1200;?>
+
 <?php wp_body_open(); ?>
 <?php
 while ( have_posts() ) :

@@ -27,12 +27,30 @@ class Templates {
 	public function __construct() {
 		// Include ReduxTemplates default template without wrapper.
 		add_filter( 'template_include', array( $this, 'template_include' ) );
+		// Override the default content-width when using Redux templates so the template doesn't look like crao.
+		add_action( 'wp', array( $this, 'redux_change_content_width' ) );
 
 		// Add ReduxTemplates supported Post type in page template.
 		$post_types = get_post_types();
 		if ( ! empty( $post_types ) ) {
 			foreach ( $post_types as $post_type ) {
 				add_filter( "theme_{$post_type}_templates", array( $this, 'add_templates' ) );
+			}
+		}
+	}
+
+	/**
+	 * Override the $content_width variable for themes so block plugins properly work.
+	 *
+	 * @since 4.0.0
+	 */
+	public function redux_change_content_width() {
+		global $post;
+		if ( !empty( $post ) ) {
+			global $content_width;
+			$template = get_page_template_slug( $post->ID );
+			if ( false !== strpos( $template, 'redux-templates' ) && 'redux-templates_contained' !== $template ) {
+				$content_width = 1200;
 			}
 		}
 	}
@@ -46,6 +64,7 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function template_include( $template ) {
+
 		if ( is_singular() ) {
 			$page_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
 			if ( 'redux-templates_full_width' === $page_template ) {
