@@ -28,7 +28,7 @@ class Templates {
 		// Include ReduxTemplates default template without wrapper.
 		add_filter( 'template_include', array( $this, 'template_include' ) );
 		// Override the default content-width when using Redux templates so the template doesn't look like crao.
-		add_action( 'wp', array( $this, 'redux_change_content_width' ) );
+		add_action( 'wp', array( $this, 'modify_template_content_width' ) );
 
 		// Add ReduxTemplates supported Post type in page template.
 		$post_types = get_post_types();
@@ -40,11 +40,11 @@ class Templates {
 	}
 
 	/**
-	 * Override the $content_width variable for themes so block plugins properly work.
+	 * Override the $content_width variable for themes so our templates work properly and don't look squished.
 	 *
 	 * @since 4.0.0
 	 */
-	public function redux_change_content_width() {
+	public function modify_template_content_width() {
 		global $post;
 		if ( ! empty( $post ) ) {
 			global $content_width;
