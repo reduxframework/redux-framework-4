@@ -35,5 +35,5 @@ define( 'REDUXTEMPLATES_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 // Version Check & Include Core.
 if ( version_compare( PHP_VERSION, '5.4', '>=' ) && version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
-	include_once REDUXTEMPLATES_DIR_PATH . 'core/init.php';
+	include_once REDUXTEMPLATES_DIR_PATH . 'core/Init.php';
 }

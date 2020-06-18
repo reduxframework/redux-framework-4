@@ -457,29 +457,31 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$extensions = array();
 
-			foreach ( $instances as $instance ) {
-				if ( isset( $instance->extensions ) && is_array( $instance->extensions ) && ! empty( $instance->extensions ) ) {
-					foreach ( $instance->extensions as $key => $extension ) {
-						if ( in_array(
-							$key,
-							array(
-								'metaboxes_lite',
-								'import_export',
-								'customizer',
-								'options_object',
-							),
-							true
-						)
-						) {
-							continue;
-						}
+			if ( ! empty( $instances ) ) {
+				foreach ( $instances as $instance ) {
+					if ( isset( $instance->extensions ) && is_array( $instance->extensions ) && ! empty( $instance->extensions ) ) {
+						foreach ( $instance->extensions as $key => $extension ) {
+							if ( in_array(
+								$key,
+								array(
+									'metaboxes_lite',
+									'import_export',
+									'customizer',
+									'options_object',
+								),
+								true
+							)
+							) {
+								continue;
+							}
 
-						if ( isset( $extension::$version ) ) {
-							$extensions[ $key ] = $extension::$version;
-						} elseif ( isset( $extension->version ) ) {
-							$extensions[ $key ] = $extension->version;
-						} else {
-							$extensions[ $key ] = true;
+							if ( isset( $extension::$version ) ) {
+								$extensions[ $key ] = $extension::$version;
+							} elseif ( isset( $extension->version ) ) {
+								$extensions[ $key ] = $extension->version;
+							} else {
+								$extensions[ $key ] = true;
+							}
 						}
 					}
 				}
@@ -921,7 +923,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$array = array(
 				'hash'       => self::get_hash(),
-				'opt_names'  => join( '|', array_keys( $instances ) ),
 				'developers' => wp_json_encode( self::get_developer_keys() ),
 				'redux'      => Redux_Core::$version,
 				'installed'  => Redux_Core::$installed,
@@ -932,6 +933,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'auto_fonts' => get_option( 'auto_update_redux_google_fonts', false ),
 				'extensions' => join( '|', array_keys( self::get_extensions() ) ),
 			);
+			if ( ! empty( $instances ) ) {
+				$array['opt_names'] = join( '|', array_keys( $instances ) );
+			}
 
 			if ( ! empty( $args ) ) {
 				return wp_parse_args( $args, $array );
@@ -977,7 +981,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$f = 'fo' . 'pen';
 
 			$res = true;
-			if ( $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) === false ) {
+			if ( ! file_exists( Redux_Core::$upload_dir . 'test-log.log' ) ) {
+				$res = false;
+			} else if ( $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) === false ) {
 				$res = false;
 			}
 
