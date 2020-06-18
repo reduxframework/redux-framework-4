@@ -50,9 +50,9 @@ class Templates {
 			global $content_width;
 			$template = get_page_template_slug( $post->ID );
 
-			$to_find = [ 'cover', 'canvas', 'fullwidth' ];
-			$test = strtolower( preg_replace("/[^A-Za-z0-9 ]/", '', $template ) );
-			foreach( $to_find as $key ) {
+			$to_find = array( 'cover', 'canvas', 'fullwidth' );
+			$test    = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
+			foreach ( $to_find as $key ) {
 				if ( false !== strpos( $test, $key ) ) {
 					$content_width = 1200;
 				}
