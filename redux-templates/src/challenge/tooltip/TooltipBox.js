@@ -1,3 +1,5 @@
+import {__} from '@wordpress/i18n';
+
 const { compose } = wp.compose;
 const { withDispatch, withSelect } = wp.data;
 const { useState, useEffect } = wp.element;
@@ -109,7 +111,7 @@ function TooltipBox(props) {
                 default:
                     setWrapperClassname('challenge-tooltip tooltipster-sidetip tooltipster-left');
             }
-            
+
         }
     }, [challengeStep])
 
@@ -122,17 +124,17 @@ function TooltipBox(props) {
             setChallengePassed(true);
             setChallengeListExpanded(true);
             setImportingTemplate(null);
-        } else 
+        } else
             setChallengeStep(challengeStep + 1);
     }
 
-    
+
     return (
         <div className={wrapperClassname}>
             <div className="tooltipster-box" style={style}>
                 {content}
                 <div className="btn-row">
-                    <button className="challenge-done-btn" onClick={toNextStep}>Done</button>
+                    <button className="challenge-done-btn" onClick={toNextStep}>{__('Next', redux_templates.i18n)}</button>
                 </div>
             </div>
             <div className="tooltipster-arrow" style={arrowStyle}>
