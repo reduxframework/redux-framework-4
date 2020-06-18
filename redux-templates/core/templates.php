@@ -46,7 +46,7 @@ class Templates {
 	 */
 	public function redux_change_content_width() {
 		global $post;
-		if ( !empty( $post ) ) {
+		if ( ! empty( $post ) ) {
 			global $content_width;
 			$template = get_page_template_slug( $post->ID );
 			if ( false !== strpos( $template, 'redux-templates' ) && 'redux-templates_contained' !== $template ) {

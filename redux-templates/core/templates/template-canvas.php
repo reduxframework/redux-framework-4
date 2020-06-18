@@ -28,8 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</style>
 </head>
 <body <?php body_class(); ?>>
-<?php $content_width = 1200;?>
-
 <?php wp_body_open(); ?>
 <?php
 while ( have_posts() ) :
