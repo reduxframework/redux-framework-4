@@ -978,7 +978,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$sysinfo['redux_data_dir'] = Redux_Core::$upload_dir;
 
 			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-			$f = 'fo' . 'pen';
+			$f   = 'fo' . 'pen';
 			$res = true;
 			if ( ! file_exists( Redux_Core::$upload_dir . 'test-log.log' ) ) {
 				$res = false;
