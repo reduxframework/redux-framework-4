@@ -979,11 +979,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 			$f = 'fo' . 'pen';
-
 			$res = true;
 			if ( ! file_exists( Redux_Core::$upload_dir . 'test-log.log' ) ) {
 				$res = false;
-			} else if ( $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) === false ) {
+			} elseif ( false === $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) ) {
 				$res = false;
 			}
 
