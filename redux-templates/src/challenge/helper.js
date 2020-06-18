@@ -6,10 +6,9 @@ export default {
      * Get number of seconds left to complete the Challenge.
      */
     getSecondsLeft: function() {
-
         var secondsLeft = localStorage.getItem( 'reduxChallengeSecondsLeft' );
 
-        secondsLeft = isNaN(secondsLeft) ? CONFIG.initialSecondsLeft : parseInt( secondsLeft, 10 );
+        secondsLeft = isNaN(secondsLeft) || secondsLeft == null ? CONFIG.initialSecondsLeft : parseInt( secondsLeft, 10 );
 
         return secondsLeft;
     },
