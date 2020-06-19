@@ -14,6 +14,7 @@ import { render } from '@wordpress/element'
 import './editor.scss'
 import './plugins/sidebar-share'
 import './plugins/share-block-btn'
+import './plugins/export'
 import ToolbarLibraryButton from './toolbar-library-button'
 import TooltipBox from './challenge/tooltip/TooltipBox';
 import {handlingLocalStorageData} from './stores/helper';

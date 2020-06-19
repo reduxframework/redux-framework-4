@@ -4,7 +4,7 @@ import {__} from '@wordpress/i18n'
 import {select, withDispatch} from '@wordpress/data'
 import {compose} from '@wordpress/compose'
 import {PluginBlockSettingsMenuItem} from '@wordpress/edit-post'
-import ReduxTemplatesIcon from './icons'
+import ReduxTemplatesIcon from '../icons'
 import {ModalManager} from '../../modal-manager'
 import FeedbackDialog from '~redux-templates/modal-feedback';
 import sortBy from 'lodash/sortBy';

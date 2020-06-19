@@ -1,73 +1,16 @@
-const block_export_json = function (el, type) {
-    if (!el) {
-        return
-    }
+import ExportManager from './export';
+if (wp.plugins) {
+	const { registerPlugin } = wp.plugins;
 
-    if (el) {
-        t ? t += '.json' : t = 'block.json', 'object' === ('undefined' === typeof e ? 'undefined' : u(e)) && (el = 1 === a.count ? JSON.stringify(e.shift(), void 0, 4) : JSON.stringify(e, void 0, 4));
-        var n = new Blob([el], {
-                type: 'text/json'
-            }),
-            o = document.createEvent('MouseEvents'),
-            l = document.createElement('a');
-        l.download = t, l.href = window.URL.createObjectURL(n), l.dataset.downloadurl = ['text/json', l.download, l.href].join(':'), o.initMouseEvent('click', !0, !1, window, 0, 0, 0, 0, 0, !1, !1, !1, !1, 0, null), l.dispatchEvent(o)
-    }
-}
+	const redux_templatesIcon = <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 19 19">
+	<g>
+		<path d="M10.9,17.7H7.4l-0.9-1.5l2.1-2.4L10.9,17.7L10.9,17.7z M5.6,16.1l-1.5,1.6H0.1L4,13.3L5.6,16.1L5.6,16.1z"/>
+		<polygon points="6.1,15.6 0.4,5.9 3.9,5.9 6.6,10.4 14.6,1.3 18.9,1.3 6.1,15.6 	"/>
+	</g>
+	</svg>
 
-const block_export_html = function (el, type) {
-    if (!el) {
-        return
-    }
-
-    if (el) {
-        t ? t += '.json' : t = 'block.json', 'object' === ('undefined' === typeof e ? 'undefined' : u(e)) && (el = 1 === a.count ? JSON.stringify(e.shift(), void 0, 4) : JSON.stringify(e, void 0, 4));
-        var n = new Blob([el], {
-                type: 'text/json'
-            }),
-            o = document.createEvent('MouseEvents'),
-            l = document.createElement('a');
-        l.download = t, l.href = window.URL.createObjectURL(n), l.dataset.downloadurl = ['text/json', l.download, l.href].join(':'), o.initMouseEvent('click', !0, !1, window, 0, 0, 0, 0, 0, !1, !1, !1, !1, 0, null), l.dispatchEvent(o)
-    }
-}
-
-const block_export_page = function (el, type) {
-    if (!el) {
-        return
-    }
-
-    if (el) {
-        t ? t += '.json' : t = 'block.json', 'object' === ('undefined' === typeof e ? 'undefined' : u(e)) && (el = 1 === a.count ? JSON.stringify(e.shift(), void 0, 4) : JSON.stringify(e, void 0, 4));
-        var n = new Blob([el], {
-                type: 'text/json'
-            }),
-            o = document.createEvent('MouseEvents'),
-            l = document.createElement('a');
-        l.download = t, l.href = window.URL.createObjectURL(n), l.dataset.downloadurl = ['text/json', l.download, l.href].join(':'), o.initMouseEvent('click', !0, !1, window, 0, 0, 0, 0, 0, !1, !1, !1, !1, 0, null), l.dispatchEvent(o)
-    }
-}
-
-/**
- * Downloads a file.
- *
- * @param {string} fileName    File Name.
- * @param {string} content     File Content.
- * @param {string} contentType File mime type.
- */
-export function download( fileName, content, contentType ) {
-    const file = new window.Blob( [ content ], { type: contentType } );
-
-    // IE11 can't use the click to download technique
-    // we use a specific IE11 technique instead.
-    if ( window.navigator.msSaveOrOpenBlob ) {
-        window.navigator.msSaveOrOpenBlob( file, fileName );
-    } else {
-        const a = document.createElement( 'a' );
-        a.href = URL.createObjectURL( file );
-        a.download = fileName;
-
-        a.style.display = 'none';
-        document.body.appendChild( a );
-        a.click();
-        document.body.removeChild( a );
-    }
+	registerPlugin( 'redux-templates-export', {
+		icon: redux_templatesIcon,
+		render: ExportManager,
+	} );
 }
