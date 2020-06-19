@@ -6,6 +6,7 @@ import { ModalManager } from '../modal-manager'
 import ImportWizard from '../import-wizard';
 import './style.scss';
 import { Fragment } from 'react';
+import {processImportHelper} from '~redux-templates/stores/actionHelper';
 
 function PreviewTemplate(props) {
 

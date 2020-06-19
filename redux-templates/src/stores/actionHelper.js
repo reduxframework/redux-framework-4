@@ -2,7 +2,7 @@ const { parse, createBlock } = wp.blocks;
 const { apiFetch } = wp;
 const { dispatch, select } = wp.data;
 const { getBlockTypes } = select('core/blocks');
-const { savePost } = dispatch('core/editor');
+const { savePost, editPost } = dispatch('core/editor');
 const { insertBlocks } = dispatch('core/block-editor');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
 import { __ } from '@wordpress/i18n'
@@ -42,6 +42,8 @@ export const processImportHelper = () => {
     const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
     const data = select('redux-templates/sectionslist').getImportingTemplate();
     const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
+
+    if (type === 'pages') editPost({'template': 'redux-templates_full_width'});
 
     discardAllErrorMessages();
     let the_url = 'redux/v1/templates/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
@@ -84,6 +86,7 @@ export const processImportHelper = () => {
 
             insertBlocks(handledData);
             createSuccessNotice('Template inserted', { type: 'snackbar' });
+
             if (installedDependencies === true)
                 savePost()
                     .then(() => window.location.reload())
