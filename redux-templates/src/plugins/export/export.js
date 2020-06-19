@@ -7,9 +7,8 @@ import { kebabCase } from 'lodash';
  * Internal dependencies
  */
 import ReduxTemplatesIcon from '../icons';
-// import exportReusableBlock from '../utils/export';
+import exportReusableBlock from './reusable';
 import { download } from './file';
-
 /**
  * WordPress dependencies
  */
@@ -38,7 +37,7 @@ function ExportManager(props) {
 		if ( selectedBlockCount === 1 ) {
 			//export as reusable when reusable is selected
 			if ( selectedBlock.name === 'core/block' ) {
-				// exportReusableBlock( selectedBlock.attributes.ref );
+				exportReusableBlock( selectedBlock.attributes.ref );
 				return;
 			}
 
