@@ -15,6 +15,7 @@ const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
 const IMPORT_STEP = 2;
 const REDUX_PRO_STEP = -1;
+const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 function ImportWizard(props) {
@@ -27,9 +28,14 @@ function ImportWizard(props) {
             // IMPORTANT First check: can you use redux pro?
             const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
             if (redux_templates.mokama !== '1' && leftTry < 1) {
+                setCurrentStep(REDUX_ACTIVATE_STEP);
+                return;
+            }
+            if (redux_templates.proDependenciesMissing && redux_templates.proDependenciesMissing.includes('redux-pro')) {
                 setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
+            // setCurrentStep(REDUX_PRO_STEP);
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
                 setCurrentStep(PLUGIN_STEP);
             if (importingTemplate && currentStep === PLUGIN_STEP && requiresInstall(importingTemplate) === false)
@@ -60,6 +66,12 @@ function ImportWizard(props) {
         setImportingTemplate(null);
     };
 
+    const activateReduxTracking = () => {
+        window.jQuery.get( redux_templates.activate, {}, function() {} );
+        redux_templates.left = 999;
+        setCurrentStep(PRO_STEP);
+    }
+
 
     if (isChallengeOpen) {
         // exception handling for tour mode
@@ -83,8 +95,8 @@ function ImportWizard(props) {
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
                     {(currentStep === IMPORT_STEP) && <ImportingStep />}
-	                {redux_templates.left && redux_templates.left == 0 && <ReduxTemplatesActivateBox />}
-                    {(currentStep === REDUX_PRO_STEP && ! (redux_templates.left && redux_templates.left == 0)) && <ReduxTemplatesPremiumBox />}
+	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} />}
+                    {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
                 </div>
             </div>
         </div>

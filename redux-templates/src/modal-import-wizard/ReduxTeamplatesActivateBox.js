@@ -1,15 +1,7 @@
 const {__} = wp.i18n
-// const [activating] = useState(null);
-function onActivateRedux() {
-	// activating = true;
-	window.jQuery.get( redux_templates.activate, {}, function() {} );
-	delete redux_templates.left;
-	alert('Now we should reload the import wizard!');
-}
 
 
-export default function ReduxTemplatesActivateBox(props) {
-
+export default function ReduxTemplatesActivateBox({onActivateRedux}) {
 
     return (
         <div className="redux-templates-modal-body">
