@@ -194,21 +194,21 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
 				self::$as_plugin = true;
 				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
-				$client->type 	 =  'plugin';
+				$client->type    = 'plugin';
 			} else {
 				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
 				if ( false !== $theme_info ) {
 					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
 					self::$in_theme  = true;
 					self::$installed = 'in_theme';
-					$client->type 	 =  'theme';
+					$client->type    = 'theme';
 				} // TODO - Can an else ever happen here?
 			}
 
 			$client->textdomain = 'redux-framework';
-			$client->slug = 'redux-framework';
-			$client->version = \Redux_Core::$version;
-			self::$appsero = $client;
+			$client->slug       = 'redux-framework';
+			$client->version    = \Redux_Core::$version;
+			self::$appsero      = $client;
 
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
@@ -236,9 +236,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$upload_url = apply_filters( 'redux/upload_url', self::$upload_url );
 
 			self::$server = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
-
-
-
 
 		}
 

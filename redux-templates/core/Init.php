@@ -119,12 +119,10 @@ class Init {
 					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 				}
 				$global_vars['left'] = $count;
-				$global['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+				$global['activate']  = add_query_arg( 'redux-framework_tracker_optin', 'true' );
 			} else {
 				$global_vars['left'] = 999;
 			}
-
-
 		}
 
 		if ( ! $global_vars['mokama'] ) {
@@ -157,9 +155,15 @@ class Init {
 		return false;
 	}
 
+	/**
+	 * Check if Redux is activated.
+	 *
+	 * @access public
+	 * @since 4.0.0
+	 */
 	public static function activated() {
 		$allowed = get_option( 'redux-framework_allow_tracking', 'no' );
-		// if it wasn't allowed before, do nothing
+		// if it wasn't allowed before, do nothing.
 		if ( 'yes' === $allowed ) {
 			return true;
 		}

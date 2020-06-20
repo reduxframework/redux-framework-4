@@ -181,8 +181,8 @@ $args = array(
 	// You may download the Redux Vendor Support plugin to run locally or embed it in your code.
 	'use_cdn'                   => true,
 
-	// Set the theme of the option panel.  Use 'classic' to revert to the Redux 3 style.
-	//'admin_theme'               => 'wp',
+	// Set the theme of the option panel.  Use 'wp' to use a more modern style, default is classic.
+	 'admin_theme'               => 'classic',
 
 	// HINTS.
 	'hints'                     => array(

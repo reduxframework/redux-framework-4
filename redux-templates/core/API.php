@@ -523,7 +523,7 @@ class API {
 			$cache_path             = $config['type'] . DIRECTORY_SEPARATOR . $config['id'] . '.json';
 			$parameters['no_cache'] = 1;
 			$response               = $this->api_cache_fetch( $parameters, $config, $cache_path );
-			$response = wp_parse_args( $response, $template_response );
+			$response               = wp_parse_args( $response, $template_response );
 		}
 
 		if ( ! empty( $response ) && isset( $response['message'] ) ) {
@@ -548,7 +548,6 @@ class API {
 			if ( ReduxTemplates\Init::activated() ) {
 				$response['left'] = 999;
 			} else {
-				//update_user_meta( $parameters['uid'], '_redux_templates_count', 3 ); // TODO - Remove me
 				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
 				if ( false === $count ) {
 					$count = ReduxTemplates\Init::$default_left;
@@ -556,13 +555,17 @@ class API {
 				$count = intval( $count ) - 1;
 				if ( intval( $count ) < 0 ) {
 					update_user_meta( $parameters['uid'], '_redux_templates_count', 0 );
-					wp_send_json_error( array( 'message' => 'Please activate Redux', 'left' => 0 ) );
+					wp_send_json_error(
+						array(
+							'message' => 'Please activate Redux',
+							'left'    => 0,
+						)
+					);
 				} else {
 					update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
 				}
 				$response['left'] = $count;
 			}
-
 		}
 
 		return $response;
@@ -694,12 +697,12 @@ class API {
 					'redux/v1/templates',
 					$route,
 					array(
-						'methods'             => $method,
-						'callback'            => array( $this, $data['callback'] ),
-						//'permission_callback' => function () {
-						//	return current_user_can( 'edit_posts' );
-						//},
-						'args'                => array(
+						'methods'  => $method,
+						'callback' => array( $this, $data['callback'] ),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+					    },
+						'args'     => array(
 							'route' => $route,
 						),
 					)
