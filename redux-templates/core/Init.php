@@ -118,8 +118,8 @@ class Init {
 					$count = self::$default_left;
 					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 				}
-				$global_vars['left'] = $count;
-				$global_vars['activate']  = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+				$global_vars['left']     = $count;
+				$global_vars['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
 			} else {
 				$global_vars['left'] = 999;
 			}
