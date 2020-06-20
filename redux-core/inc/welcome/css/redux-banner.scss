@@ -101,7 +101,7 @@
 
 .redux-tos-blurb {
     font-size: 0.6875rem;
-    margin: 0 auto 1rem;
+    margin-left: 1.125rem;
 }
 
 .redux-dismiss {
@@ -221,7 +221,7 @@
 
 .redux-banner-container-top-text {
     padding: 15px 35px 25px 15px;
-    background-color: #00BE28;
+    background-color: #24b0a6;
     color: white;
     display: flex;
     align-items: baseline;
@@ -259,7 +259,7 @@
     display: block;
     position: relative;
     box-sizing: border-box;
-    background-color: #00BE28;
+    background-color: #24b0a6;
 }
 
 .redux-banner-inner-container > a:first-child {
@@ -292,6 +292,22 @@
     display: block;
     margin-bottom: 1.5rem;
 }
+@media (min-width: 1300px) {
+    .redux-banner-hide-phone-and-smaller {
+        max-width: 300px !important;
+    }
+}
+.redux-banner-hide-phone-and-smaller {
+    max-width: 400px;
+}
+
+
+@media (max-width: 530px) {
+    .redux-banner-hide-phone-and-smaller {
+        display: none !important;
+    }
+}
+
 
 @media (max-width: 530px) {
     .redux-banner-hide-phone-and-smaller {
@@ -301,8 +317,17 @@
 
 .redux-banner-content-icon {
     margin: 0 1.5rem;
+    margin-right: 0;
     display: flex;
     flex-direction: column;
+}
+
+.redux-banner-button-container .dops-button.is-primary {
+    background: #24b0a6;
+    border-color: #00a523;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    flex-shrink: 0;
 }
 
 .redux-illo img {
@@ -405,7 +430,7 @@
     background: #f1f1f1;
     text-align: center;
 }
-  
+
 @media (max-width: 530px) {
     .redux-disconnected .redux-banner-full-container {
         top: 42px;
@@ -488,5 +513,5 @@
 img.redux-banner-logo {
     width: 50px;
     height: auto;
-    margin-bottom: 10px;    
+    margin-bottom: 10px;
 }

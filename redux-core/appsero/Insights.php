@@ -1,7 +1,7 @@
 <?php /* @noinspection ALL */
 // phpcs:ignoreFile
 
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero Insights
@@ -24,7 +24,7 @@ class Insights {
      *
      * @var boolean
      */
-    protected $show_notice = true;
+    public $show_notice = true;
 
     /**
      * If extra data needs to be sent
@@ -34,7 +34,7 @@ class Insights {
     protected $extra_data = array();
 
     /**
-     * AppSero\Client
+     * ReduxAppsero\Client
      *
      * @var object
      */
@@ -43,7 +43,7 @@ class Insights {
     /**
      * Initialize the class
      *
-     * @param AppSero\Client
+     * @param ReduxAppsero\Client
      */
     public function __construct( $client, $name = null, $file = null ) {
 
@@ -51,9 +51,10 @@ class Insights {
             $client = new Client( $client, $name, $file );
         }
 
-        if ( is_object( $client ) && is_a( $client, 'Appsero\Client' ) ) {
+        if ( is_object( $client ) && is_a( $client, 'ReduxAppsero\Client' ) ) {
             $this->client = $client;
         }
+
     }
 
     /**
@@ -314,9 +315,47 @@ class Insights {
      * @return boolean
      */
     private function is_local_server() {
-        return false;
 
-        $is_local = in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) );
+	    $is_local = false;
+
+	    $domains_to_check = array_unique(
+		    array(
+			    'siteurl' => wp_parse_url( get_site_url(), PHP_URL_HOST ),
+			    'homeurl' => wp_parse_url( get_home_url(), PHP_URL_HOST ),
+		    )
+	    );
+
+	    $forbidden_domains = array(
+		    'wordpress.com',
+		    'localhost',
+		    'localhost.localdomain',
+		    '127.0.0.1',
+		    '::1',
+		    'local.wordpress.test',         // VVV pattern.
+		    'local.wordpress-trunk.test',   // VVV pattern.
+		    'src.wordpress-develop.test',   // VVV pattern.
+		    'build.wordpress-develop.test', // VVV pattern.
+	    );
+
+	    foreach( $domains_to_check as $domain ) {
+		    // If it's empty, just fail out.
+		    if ( ! $domain ) {
+			    $is_local = true;
+			    break;
+		    }
+
+		    // None of the explicit localhosts.
+		    if ( in_array( $domain, $forbidden_domains, true ) ) {
+			    $is_local = true;
+			    break;
+		    }
+
+		    // No .test or .local domains.
+		    if ( preg_match( '#\.(test|local)$#i', $domain ) ) {
+			    $is_local = true;
+			    break;
+		    }
+	    }
 
         return apply_filters( 'appsero_is_local', $is_local );
     }
@@ -362,6 +401,10 @@ class Insights {
             return;
         }
 
+        if ( ! apply_filters( $this->client->slug . '_display_admin_notice', true ) ) {
+        	return;
+        }
+
         // don't show tracking if a local server
         if ( ! $this->is_local_server() ) {
             $optin_url  = add_query_arg( $this->client->slug . '_tracker_optin', 'true' );
@@ -372,27 +415,28 @@ class Insights {
             	if ( isset( $args['display_name'] ) && !empty( $args['display_name'] )) {
             		$name = $name . ' & '.$args['display_name'];
 	            }
-                $notice = sprintf( __( 'Want to help make <strong>%1$s</strong> even more awesome? Allow us to collect non-sensitive diagnostic data and usage information.', 'redux-framework' ), $name );
+                $notice = sprintf( __( 'INSIDE Activate <strong>%1$s</strong> now to unlock powerful tools to help you build pages faster in WordPress with our block template library.', 'redux-framework' ), $name );
             } else {
                 $notice = $this->notice;
             }
 
-            $notice .= ' (<a class="' . $this->client->slug . '-insights-data-we-collect" href="#">' . __( 'what we collect', 'redux-framework' ) . '</a>)';
+            $notice .= ' (<a class="' . $this->client->slug . '-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'redux-framework' ) . '</a>)';
 
 	        $text = sprintf(
-	        	__( 'No sensitive data is tracked. By clicking the <strong>Allow</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
-		        esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=activate' ),
-		        esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=activate' )
+	        	__( 'By clicking the <strong>Activate</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
+		        esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' ),
+		        esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' )
 	        );
 
-            $notice .= '<p class="description" style="display:none;">' . implode( ', ', $this->data_we_collect() ) . ' . ' . $text . ' </p>';
+            $notice .= '<p class="description" style="display:none;">' . $text . ' </p>';
 
-            echo '<div class="updated"><p>';
+            echo '<div class="updated" style="border-left-color: #24b0a6;"><p>';
                 echo $notice;
                 echo '</p><p class="submit">';
-                echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large">' . __( 'Allow', 'redux-framework' ) . '</a>';
-                echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $optout_url ) . '" style="color: #aaa;">' . __( 'Not now, thank you.', 'redux-framework' ) . '</a>';
+                echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large redux-activate-connection">' . __( 'Activate', 'redux-framework' ) . '</a>';
+                echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $optout_url ) . '" style="color: #aaa;">' . __( 'Not now, thank you', 'redux-framework' ) . '</a>';
             echo '</p></div>';
+            echo '<style type="text/css">.wp-core-ui .button-primary.redux-activate-connection{background: #24b0a6;}.wp-core-ui .button-primary.redux-activate-connection:hover{background: #19837c;}</style>';
 
             echo "<script type='text/javascript'>jQuery('." . $this->client->slug . "-insights-data-we-collect').on('click', function(e) {
                     e.preventDefault();

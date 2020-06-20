@@ -53,13 +53,16 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
-			/*
+
+//			delete_option( 'redux-framework_tracking_notice' );
+//			echo get_option('redux-framework_allow_tracking');exit();
 			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
-			add_action( 'admin_notices', array( $this, 'render_banner' ) );
-			add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
-			add_action( 'admin_head', array( $this, 'admin_head' ) );
-			add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
-			*/
+			add_action( 'redux-framework_display_admin_notice', array( $this, 'hide_appsero_insight_banner' ) );
+
+		}
+
+		public function hide_appsero_insight_banner() {
+			return false;
 		}
 
 		public function admin_body_class( $admin_body_class = '' ) {
@@ -92,6 +95,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				false,
 				sprintf( 'connect-banner-%s-%s', $version_banner_added, $current_screen->base )
 			);*/
+			$url = '';
 			return add_query_arg( 'auth_approved', 'true', $url );
 		}
 
@@ -108,28 +112,28 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 *
 		 * @param $current_screen
 		 */
-		private function maybe_initialize_hooks( $current_screen ) {
+		public function maybe_initialize_hooks( $current_screen ) {
 
 			// Kill if banner has been dismissed
-			/*
-			 if ( Redux_Options::get( 'dismissed_ConnectionBanner' ) ) {
-				return;
-			}*/
 
-			// Don't show the connect notice anywhere but the plugins.php after activating
-			if ( 'plugins' !== $current_screen->base && 'dashboard' !== $current_screen->base ) {
+			if ( 'hide' === get_option( 'redux-framework_tracking_notice', null ) ) {
 				return;
 			}
 
-			if ( ! current_user_can( 'Redux_connect' ) ) {
+			// Don't show the connect notice anywhere but the plugins.php after activating
+			if ( 'plugins' !== $current_screen->base && 'dashboard' !== $current_screen->base ) {
+				add_action( 'redux_admin_notices_run', array( $this, 'panel_admin_notice' ), 100, 2 );
+				add_action( 'admin_head', array( $this, 'admin_head' ) );
 				return;
 			}
 
 			add_action( 'admin_notices', array( $this, 'render_banner' ) );
 
-			if ( Redux::state( 'network_nag' ) ) {
+//			if ( Redux::state( 'network_nag' ) ) {
 				add_action( 'network_admin_notices', array( $this, 'network_connect_notice' ) );
-			}
+				add_action( 'admin_head', array( $this, 'admin_head' ) );
+				add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
+//			}
 
 			// Only fires immediately after plugin activation
 			if ( get_transient( 'activated_Redux' ) ) {
@@ -153,7 +157,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					'_inc/connect-button.js',
 				// ),
 				array( 'jquery' ),
-				$this->version,
+				Redux_Core::$version,
 				true
 			);
 
@@ -190,7 +194,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					'registrationNonce'     => wp_create_nonce( 'Redux-registration-nonce' ),
 					'apiNonce'              => wp_create_nonce( 'wp_rest' ),
 					'apiSiteDataNonce'      => wp_create_nonce( 'wp_rest' ),
-					'buttonTextRegistering' => __( 'Loading...', 'Redux' ),
+					'buttonTextRegistering' => __( 'Loading...', 'redux-framework' ),
 					'ReduxApiDomain'        => $ReduxApiUrl['scheme'] . '://' . $ReduxApiUrl['host'],
 					'forceVariation'        => $force_variation,
 					'connectInPlaceUrl'     => Redux::admin_url( 'page=Redux#/setup' ),
@@ -200,6 +204,55 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					'preFetchScript'        => plugins_url( '_inc/build/admin.js', Redux__PLUGIN_FILE ) . '?ver=' . Redux__VERSION,
 				)
 			);
+		}
+
+		/**
+		 * Display the admin notice to users that have not opted-in or out
+		 *
+		 * @return void
+		 */
+		public function panel_admin_notice( $args ) {
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+			}
+			$this->client = Redux_Core::$appsero;
+			// don't show tracking if a local server
+
+			$optin_url  = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+			$optout_url = add_query_arg( 'redux-framework_tracker_optout', 'true' );
+
+			if ( empty( $this->notice ) ) {
+				$name = 'Redux';
+				if ( isset( $args['display_name'] ) && !empty( $args['display_name'] )) {
+					$name = $name . ' & '.$args['display_name'];
+				}
+				$notice = sprintf( __( 'Activate <strong>%1$s</strong> now to unlock powerful tools to help you build pages faster in WordPress with our block template library.', 'redux-framework' ), $name );
+			} else {
+				$notice = $this->notice;
+			}
+
+			$notice .= ' (<a class="redux-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'redux-framework' ) . '</a>)';
+
+			$text = sprintf(
+				__( 'By clicking the <strong>Activate</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
+				esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' ),
+				esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' )
+			);
+
+			$notice .= '<p class="description" style="display:none;">' . $text . ' </p>';
+
+			echo '<div class="updated" id="redux-connect-message" style="border-left-color: #24b0a6;"><p>';
+			echo $notice;
+			echo '</p><p class="submit">';
+			echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large redux-activate-connection redux-connection-banner-action">' . __( 'Activate', 'redux-framework' ) . '</a>';
+			echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $optout_url ) . '" style="color: #aaa;" class="redux-connection-banner-action">' . __( 'Not now, thank you', 'redux-framework' ) . '</a>';
+			echo '</p></div>';
+			echo '<style type="text/css">.wp-core-ui .button-primary.redux-activate-connection{background: #24b0a6;}.wp-core-ui .button-primary.redux-activate-connection:hover{background: #19837c;}</style>';
+
+			echo "
+		";
+
 		}
 
 		/**
@@ -230,19 +283,22 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * @since 4.4.0
 		 */
 		public function render_banner() {
+			$optin_url  = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+			$optout_url = add_query_arg( 'redux-framework_tracker_optout', 'true' );
+
 			?>
-			<div id="message" class="updated redux-banner-container">
+			<div id="redux-connect-message" class="updated redux-banner-container">
 				<div class="redux-banner-container-top-text">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"/><g><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2l-.5-6h3l-.5 6z"/></g></svg>
 					<span>
-						<?php esc_html_e( 'You’re almost done. Set up Redux to enable powerful security and performance tools for WordPress.', 'Redux' ); ?>
+						<?php esc_html_e( 'You’re almost done. Activate Redux to enable powerful tools to help you build better fast in WordPress.', 'redux-framework' ); ?>
 					</span>
 				</div>
 				<div class="redux-banner-inner-container">
-					<span
-						class="notice-dismiss connection-banner-dismiss"
-						title="<?php esc_attr_e( 'Dismiss this notice', 'Redux' ); ?>">
-					</span>
+					<a href="<?php echo esc_url( $optout_url ); ?>"
+						class="notice-dismiss redux-connection-banner-dismiss redux-connection-banner-action"
+						title="<?php esc_attr_e( 'Dismiss this notice', 'redux-framework' ); ?>">
+					</a>
 
 					<div class="redux-banner-content-container">
 
@@ -251,8 +307,8 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 
 							<div class="redux-banner-content-icon redux-illo">
 								<?php
-								// $logo = new Logo();
-								// echo $logo->render();
+								 //$logo = new Logo();
+								 //echo $logo->render();
 								?>
 								<img
 									src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/redux-powering-up.svg"
@@ -262,7 +318,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 									esc_attr_e(
 										'Redux premium services offer even more powerful performance, security, ' .
 										'and revenue tools to help you keep your site safe, fast, and help generate income.',
-										'redux-template'
+										'redux-framework'
 									);
 									?>
 									"
@@ -272,15 +328,13 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 							</div>
 
 							<div class="redux-banner-slide-text">
-								<h2><?php esc_html_e( 'Simplify your site security and performance with Redux', 'Redux' ); ?></h2>
+								<h2><?php esc_html_e( 'Build better sites faster with Redux', 'redux-framework' ); ?></h2>
 
 								<p>
 									<?php
 									esc_html_e(
-										'Redux protects you against brute force attacks and unauthorized logins. Basic protection ' .
-										'is always free, while premium plans add unlimited backups of your whole site, spam protection, ' .
-										'malware scanning, and automated fixes.',
-										'Redux'
+										'Bit of text here.',
+										'redux-framework'
 									);
 									?>
 								</p>
@@ -288,10 +342,8 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								<p>
 									<?php
 									esc_html_e(
-										'Activate site accelerator tools and watch your page load times decrease—we’ll ' .
-										'optimize your images and serve them from our own powerful global network of servers, ' .
-										'and speed up your mobile site to reduce bandwidth usage.',
-										'Redux'
+										'Bit of text there.',
+										'redux_framework'
 									);
 									?>
 								</p>
@@ -299,9 +351,9 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								<div class="redux-banner-button-container">
 									<span class="redux-tos-blurb"><?php self::redux_tos_blurb(); ?></span>
 									<a
-											href="<?php echo esc_url( $this->build_connect_url_for_slide( '72' ) ); ?>"
-											class="dops-button is-primary redux-alt-connect-button">
-										<?php esc_html_e( 'Set up Redux', 'Redux' ); ?>
+											href="<?php echo esc_url( $optin_url ); ?>"
+											class="dops-button is-primary redux-alt-connect-button redux-connection-banner-action">
+										<?php esc_html_e( 'Activate Redux', 'redux-framework' ); ?>
 									</a>
 								</div>
 
@@ -347,7 +399,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					<p class="redux-banner-button-container">
 						<a href=""
 						class="dops-button is-primary redux-button">
-							<?php esc_html_e( 'Set up Redux', 'redux-framework' ); ?>
+							<?php esc_html_e( 'Activate Redux', 'redux-framework' ); ?>
 						</a>
 					</p>
 
@@ -447,11 +499,11 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			printf(
 				wp_kses(
 					/* Translators: placeholders are links. */
-					__( 'By clicking the <strong>Set up Redux</strong> button, you agree to our <a href="" target="_blank" rel="noopener noreferrer">Terms of Service</a> and to <a href="" target="_blank" rel="noopener noreferrer">share details</a> with WordPress.com.', 'redux-framework' ),
+					__( 'By clicking the <strong>Activate Redux</strong> button, you agree to our <a href="" target="_blank" rel="noopener noreferrer">Terms of Service</a> and to <a href="" target="_blank" rel="noopener noreferrer">share details</a> with Redux.io.', 'redux-framework' ),
 					array(
 						'a'      => array(
-							'href'   => array(),
-							'target' => array(),
+							'href'   => array('https://redux.io/terms'),
+							'target' => array('_blank'),
 							'rel'    => array(),
 						),
 						'strong' => true,

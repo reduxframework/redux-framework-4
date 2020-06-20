@@ -137,7 +137,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'cdn_check_time'                   => 1440,
 				'options_api'                      => true,
 				'allow_tracking'                   => true,
-				'admin_theme'                      => 'wordpress',
+				'admin_theme'                      => 'classic',
 				'elusive_frontend'                 => false,
 				'pro'                              => array(),
 			);

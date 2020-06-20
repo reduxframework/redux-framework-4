@@ -1,7 +1,7 @@
 <?php /* @noinspection ALL */
 // phpcs:ignoreFile
 
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero Client

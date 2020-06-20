@@ -1,7 +1,7 @@
 <?php/** @noinspection ALL */
 // phpcs:ignoreFile
 
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero Updater
@@ -11,7 +11,7 @@ namespace Appsero;
 class Updater {
 
     /**
-     * Appsero\Client
+     * ReduxAppsero\Client
      *
      * @var object
      */
@@ -20,7 +20,7 @@ class Updater {
     /**
      * Initialize the class
      *
-     * @param Appsero\Client
+     * @param ReduxAppsero\Client
      */
     public function __construct( Client $client ) {
 

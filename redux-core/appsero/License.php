@@ -1,7 +1,7 @@
 <?php /** @noinspection ALL */
 // phpcs:ignoreFile
 
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero License Checker
@@ -11,7 +11,7 @@ namespace Appsero;
 class License {
 
     /**
-     * AppSero\Client
+     * ReduxAppsero\Client
      *
      * @var object
      */
@@ -62,7 +62,7 @@ class License {
     /**
      * Initialize the class
      *
-     * @param Appsero\Client
+     * @param ReduxAppsero\Client
      */
     public function __construct( Client $client ) {
         $this->client = $client;

@@ -39,28 +39,3 @@ register_deactivation_hook( __FILE__, array( 'Redux_Framework_Plugin', 'deactiva
 // Get plugin instance.
 Redux_Framework_Plugin::instance();
 require_once plugin_dir_path( __FILE__ ) . 'redux-templates/redux-templates.php';
-
-/**
- * Initialize the plugin tracker
- *
- * @return void
- */
-if ( ! function_exists( 'appsero_init_tracker_redux_framework' ) ) {
-	/**
-	 * Load the Appsero client.
-	 */
-	function appsero_init_tracker_redux_framework() {
-
-		if ( ! class_exists( 'Appsero\Client' ) ) {
-			require_once __DIR__ . '/appsero/Client.php';
-		}
-
-		$client = new Appsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
-
-		// Active insights.
-		$client->insights()->init();
-
-	}
-}
-
-appsero_init_tracker_redux_framework();

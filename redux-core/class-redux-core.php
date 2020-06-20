@@ -143,6 +143,20 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		public static $welcome = null;
 
 		/**
+		 * Redux Appsero object.
+		 *
+		 * @var null
+		 */
+		public static $appsero = null;
+
+		/**
+		 * Redux Insights object.
+		 *
+		 * @var null
+		 */
+		public static $insights = null;
+
+		/**
 		 * Creates instance of class.
 		 *
 		 * @return Redux_Core
@@ -168,6 +182,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			Redux_Functions_Ex::generator();
 
+			if ( ! class_exists( 'ReduxAppsero\Client' ) ) {
+				require_once __DIR__ . '/appsero/Client.php';
+			}
+			$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
 			// See if Redux is a plugin or not.
 			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
 			if ( false !== $plugin_info ) {
@@ -176,14 +194,27 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
 				self::$as_plugin = true;
 				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
+				$client->type 	 =  'plugin';
 			} else {
 				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
 				if ( false !== $theme_info ) {
 					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
 					self::$in_theme  = true;
 					self::$installed = 'in_theme';
+					$client->type 	 =  'theme';
 				} // TODO - Can an else ever happen here?
 			}
+
+			$client->textdomain = 'redux-framework';
+			$client->slug = 'redux-framework';
+			$client->version = \Redux_Core::$version;
+			self::$appsero = $client;
+
+			// Activate insights.
+			self::$insights = self::$appsero->insights();
+			self::$insights->init();
+
+			remove_action( 'redux_admin_notices_run', array( 'ReduxAppsero\Insights', 'admin_notice' ) );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			self::$url = apply_filters( 'redux/url', self::$url );
@@ -205,6 +236,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$upload_url = apply_filters( 'redux/upload_url', self::$upload_url );
 
 			self::$server = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
+
+
+
+
 		}
 
 		/**

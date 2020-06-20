@@ -182,7 +182,7 @@ $args = array(
 	'use_cdn'                   => true,
 
 	// Set the theme of the option panel.  Use 'classic' to revert to the Redux 3 style.
-	'admin_theme'               => 'wp',
+	//'admin_theme'               => 'wp',
 
 	// HINTS.
 	'hints'                     => array(
