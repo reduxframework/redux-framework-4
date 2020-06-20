@@ -40,7 +40,7 @@ function ChallengeDot(props) {
         return null;
     }
     if (isVisible() && challengeStep === step)
-        return <i class="challenge-dot tooltipstered" ref={selectedElement}>
+        return <i className="challenge-dot tooltipstered" ref={selectedElement}>
             &nbsp;
         </i>;
     return null;

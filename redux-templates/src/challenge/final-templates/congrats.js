@@ -10,12 +10,12 @@ const { withDispatch, withSelect } = wp.data;
 
 
 const ratingStars = (
-    <span class="rating-stars">
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
+    <span className="rating-stars">
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
     </span>
 );
 
@@ -29,13 +29,13 @@ function ChallengeCongrats(props) {
     return (
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper challenge-popup-wrapper">
-                <div class="challenge-popup-header challenge-popup-header-congrats"
+                <div className="challenge-popup-header challenge-popup-header-congrats"
                     style={{backgroundImage: `url(${redux_templates.plugin + 'assets/img/popup-congrats.png'})`}}>
                     <a className="challenge-popup-close" onClick={closeModal}>
                         <i className='fas fa-times' />
                     </a>
                 </div>
-                <div class="challenge-popup-content">
+                <div className="challenge-popup-content">
                     <h3>{__( 'Congrats, you did it!', redux_templates.i18n )}</h3>
                     <p>
                         {__( 'You completed the Redux Challenge in ', redux_templates.i18n )}<b>{helper.getLocalizedDuration()}</b>.
@@ -43,9 +43,9 @@ function ChallengeCongrats(props) {
                         <b>{__('by giving Redux a 5-star rating (', redux_templates.i18n)} {ratingStars}{__(') on WordPress.org', redux_templates.i18n)}</b>.
                         {__('Thanks for your support and we look forward to bringing more awesome features.', redux_templates.i18n)}
                     </p>
-                    <a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post" class="challenge-popup-btn challenge-popup-rate-btn" target="_blank" rel="noopener">
+                    <a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post" className="challenge-popup-btn challenge-popup-rate-btn" target="_blank" rel="noopener">
                         {__( 'Rate Redux on Wordpress.org', redux_templates.i18n ) }
-                        <span class="dashicons dashicons-external"></span>
+                        <span className="dashicons dashicons-external"></span>
                     </a>
                 </div>
             </div>

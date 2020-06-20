@@ -234,13 +234,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 
 			$notice .= ' (<a class="redux-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'redux-framework' ) . '</a>)';
 
-			$text = sprintf(
-				__( 'By clicking the <strong>Activate</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
-				esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' ),
-				esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=option_panel' )
-			);
-
-			$notice .= '<p class="description" style="display:none;">' . $text . ' </p>';
+			$notice .= '<p class="description" style="display:none;">' . self::tos_blurb( 'option_panel' ) . ' </p>';
 
 			echo '<div class="updated" id="redux-connect-message" style="border-left-color: #24b0a6;"><p>';
 			echo $notice;
@@ -259,7 +253,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * Hide Individual Dashboard Pages
 		 *
 		 * @access public
-		 * @since  1.4
+		 * @since  4.0.0
 		 * @return void
 		 */
 		public function admin_head() {
@@ -394,7 +388,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 						<h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'redux-framework' ); ?></h2>
 					</div>
 					<p class="redux-banner-full-tos-blurb">
-						<?php self::redux_tos_blurb(); ?>
+						<?php self::tos_blurb( 'fullscreen' ); ?>
 					</p>
 					<p class="redux-banner-button-container">
 						<a href=""
@@ -495,20 +489,11 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 *
 		 * @echo string
 		 */
-		public static function redux_tos_blurb() {
-			printf(
-				wp_kses(
-					/* Translators: placeholders are links. */
-					__( 'By clicking the <strong>Activate Redux</strong> button, you agree to our <a href="" target="_blank" rel="noopener noreferrer">Terms of Service</a> and to <a href="" target="_blank" rel="noopener noreferrer">share details</a> with Redux.io.', 'redux-framework' ),
-					array(
-						'a'      => array(
-							'href'   => array('https://redux.io/terms'),
-							'target' => array('_blank'),
-							'rel'    => array(),
-						),
-						'strong' => true,
-					)
-				)
+		public static function tos_blurb($campaign = "options_panel") {
+			return sprintf(
+				__( 'By clicking the <strong>Activate</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
+				esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign ),
+				esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign )
 			);
 		}
 

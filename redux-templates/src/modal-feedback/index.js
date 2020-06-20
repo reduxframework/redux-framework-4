@@ -49,20 +49,20 @@ function FeedbackDialog(props) {
     return (
         <div className="redux-templates-modal-overlay">
             <div className={wrapperClassname} style={style}>
-                <div class="feedback-popup-header feedback-popup-header-contact">
+                <div className="feedback-popup-header feedback-popup-header-contact">
                     {headerImage}
                     {headerIcon}
                     <a className="feedback-popup-close" onClick={onCloseModal}>
                         <i className='fas fa-times' />
                     </a>
                 </div>
-                <div class="feedback-popup-content">
+                <div className="feedback-popup-content">
                     <h3>{title}</h3>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <p>{description}</p>
                     <div className="col-wrapper">
                         <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit}>
-                            <button class="feedback-popup-btn feedback-popup-rate-btn" type="submit">
+                            <button className="feedback-popup-btn feedback-popup-rate-btn" type="submit">
                                 {loading && <i className="fas fa-spinner fa-pulse"/>}
                                 {buttonLabel}
                             </button>

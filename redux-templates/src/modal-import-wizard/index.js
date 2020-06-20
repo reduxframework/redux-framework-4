@@ -71,7 +71,7 @@ function ImportWizard(props) {
         <div className="redux-templates-modal-overlay">
             <div className="redux-templates-modal-wrapper" data-tut="tour__import_wizard">
                 <div className="redux-templates-modal-header">
-                    <h3>{__('Template Import Wizard', redux_templates.i18n)}</h3>
+                    <h3>{__('Import Wizard', redux_templates.i18n)}</h3>
                     <button className="redux-templates-modal-close" onClick={onCloseWizard}>
                         <i className={'fas fa-times'}/>
                     </button>
