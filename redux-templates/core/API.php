@@ -550,12 +550,12 @@ class API {
 			} else {
 				//update_user_meta( $parameters['uid'], '_redux_templates_count', 3 ); // TODO - Remove me
 				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
-				if ( false === $count || '' == $count ) {
+				if ( false === $count ) {
 					$count = ReduxTemplates\Init::$default_left;
 				}
 				$count = intval( $count ) - 1;
 				if ( intval( $count ) < 0 ) {
-					update_user_meta( $parameters['uid'], '_redux_templates_count', false );
+					update_user_meta( $parameters['uid'], '_redux_templates_count', 0 );
 					wp_send_json_error( array( 'message' => 'Please activate Redux', 'left' => 0 ) );
 				} else {
 					update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
