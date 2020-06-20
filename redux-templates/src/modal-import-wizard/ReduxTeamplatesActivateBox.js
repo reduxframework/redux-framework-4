@@ -1,7 +1,7 @@
 const {__} = wp.i18n
 
 
-export default function ReduxTemplatesActivateBox({onActivateRedux}) {
+export default function ReduxTemplatesActivateBox({onActivateRedux, activating}) {
 
     return (
         <div className="redux-templates-modal-body">
@@ -17,9 +17,9 @@ export default function ReduxTemplatesActivateBox({onActivateRedux}) {
                 </ul>
                 <p>
 	                <button className="button button-primary"
-	                        // disabled={activating !== null}
+	                        disabled={activating}
 	                        onClick={() => onActivateRedux()}>
-		                {/*{activating !== null && <i className="fas fa-spinner fa-pulse"/>}*/}
+		                {activating && <i className="fas fa-spinner fa-pulse"/>}
 		                <span>{__('Activate Redux', redux_templates.i18n)}</span>
 	                </button>
                 </p>

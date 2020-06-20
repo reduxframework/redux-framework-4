@@ -22,6 +22,7 @@ function ImportWizard(props) {
     const {startImportTemplate, setImportingTemplate, isChallengeOpen, importingTemplate} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
+    const [activating, setActivating] = useState(false);
 
     useEffect(() => {
         if (importingTemplate) {
@@ -67,9 +68,12 @@ function ImportWizard(props) {
     };
 
     const activateReduxTracking = () => {
-        window.jQuery.get( redux_templates.activate, {}, function() {} );
-        redux_templates.left = 999;
-        setCurrentStep(PRO_STEP);
+        setActivating(true);
+        window.jQuery.get( redux_templates.activate, {}, function() {
+            redux_templates.left = 999;
+            setCurrentStep(PRO_STEP);
+            setActivating(false);
+        } );
     }
 
 
@@ -95,7 +99,7 @@ function ImportWizard(props) {
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
                     {(currentStep === IMPORT_STEP) && <ImportingStep />}
-	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} />}
+	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
                     {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
                 </div>
             </div>
