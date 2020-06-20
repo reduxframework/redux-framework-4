@@ -24,6 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Init {
 
 	/**
+	 * Default left value
+	 *
+	 * @var int
+	 */
+	public static $default_left = 5;
+
+	/**
 	 * Init constructor.
 	 *
 	 * @access public
@@ -108,11 +115,13 @@ class Init {
 			if ( ! $this->activated() ) {
 				$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
 				if ( false === $count ) {
-					$count = 5;
+					$count = self::$default_left;
 					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 				}
 				$global_vars['left'] = $count;
 				$global['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+			} else {
+				$global_vars['left'] = 999;
 			}
 
 

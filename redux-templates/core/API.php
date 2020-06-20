@@ -550,8 +550,8 @@ class API {
 			} else {
 				//update_user_meta( $parameters['uid'], '_redux_templates_count', 3 ); // TODO - Remove me
 				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
-				if ( '' === $count ) {
-					$count = 5;
+				if ( false === $count || '' == $count ) {
+					$count = ReduxTemplates\Init::$default_left;
 				}
 				$count = intval( $count ) - 1;
 				if ( intval( $count ) < 0 ) {
@@ -560,8 +560,9 @@ class API {
 				} else {
 					update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
 				}
+				$response['left'] = $count;
 			}
-			$response['left'] = $count;
+
 		}
 
 		return $response;
