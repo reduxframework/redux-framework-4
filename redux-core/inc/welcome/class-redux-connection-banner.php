@@ -54,7 +54,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 */
 		private function __construct() {
 
-//			delete_option( 'redux-framework_tracking_notice' );
+			delete_option( 'redux-framework_tracking_notice' );
 //			echo get_option('redux-framework_allow_tracking');exit();
 			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
 			add_action( 'redux-framework_display_admin_notice', array( $this, 'hide_appsero_insight_banner' ) );
@@ -343,7 +343,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								</p>
 
 								<div class="redux-banner-button-container">
-									<span class="redux-tos-blurb"><?php self::redux_tos_blurb(); ?></span>
+									<span class="redux-tos-blurb"><?php echo self::tos_blurb( 'plugin_dashboard' ); ?></span>
 									<a
 											href="<?php echo esc_url( $optin_url ); ?>"
 											class="dops-button is-primary redux-alt-connect-button redux-connection-banner-action">
