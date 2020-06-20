@@ -7,6 +7,7 @@ import InstallPluginStep from './InstallPluginStep';
 import ProPluginStep from './ProPluginsStep';
 import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
+import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
 import '../modals.scss'
 import './style.scss'
 
@@ -82,7 +83,8 @@ function ImportWizard(props) {
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
                     {(currentStep === IMPORT_STEP) && <ImportingStep />}
-                    {(currentStep === REDUX_PRO_STEP) && <ReduxTemplatesPremiumBox />}
+	                {redux_templates.left && redux_templates.left == 0 && <ReduxTemplatesActivateBox />}
+                    {(currentStep === REDUX_PRO_STEP && ! (redux_templates.left && redux_templates.left == 0)) && <ReduxTemplatesPremiumBox />}
                 </div>
             </div>
         </div>

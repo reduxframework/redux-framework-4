@@ -182,7 +182,7 @@ $args = array(
 	'use_cdn'                   => true,
 
 	// Set the theme of the option panel.  Use 'wp' to use a more modern style, default is classic.
-	 'admin_theme'               => 'classic',
+	'admin_theme'               => 'classic',
 
 	// HINTS.
 	'hints'                     => array(

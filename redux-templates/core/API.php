@@ -697,12 +697,12 @@ class API {
 					'redux/v1/templates',
 					$route,
 					array(
-						'methods'  => $method,
-						'callback' => array( $this, $data['callback'] ),
+						'methods'             => $method,
+						'callback'            => array( $this, $data['callback'] ),
 						'permission_callback' => function () {
 							return current_user_can( 'edit_posts' );
 					    },
-						'args'     => array(
+						'args'                => array(
 							'route' => $route,
 						),
 					)
