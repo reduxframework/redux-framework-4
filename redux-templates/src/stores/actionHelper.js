@@ -97,7 +97,7 @@ export const processImportHelper = () => {
                 setImportingTemplate(null);
             }
             afterImportHandling(data, handledData);
-            
+
         } else {
             if (response.success === false)
                 errorCallback(response.data.message);
@@ -161,7 +161,7 @@ export const afterImportHandling = (data, handledBlock) => {
                 default: description,
                 title: __('Description', redux_templates.i18n)
             },
-            
+
         }
     }
     const uiSchema = {
@@ -177,14 +177,14 @@ export const afterImportHandling = (data, handledBlock) => {
     const feedbackData = {
         content: handledBlock
     };
-    if (invalidBlocks && invalidBlocks.length > 0) { // in case there 
+    if (invalidBlocks && invalidBlocks.length > 0) { // in case there
         createNotice('error', 'Please let us know if there was an issue importing this Redux template.', {
                 isDismissible: true,
                 id: 'redux-templatesimportfeedback',
                 actions: [
                     {
-                    onClick: () => ModalManager.openFeedback(<FeedbackDialog 
-                        title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
+                    onClick: () => ModalManager.openFeedback(<FeedbackDialog
+                        title={__('Thank you for reporting an issue.', redux_templates.i18n)}
                         description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
                         schema={schema}
                         uiSchema={uiSchema}
@@ -204,8 +204,8 @@ export const afterImportHandling = (data, handledBlock) => {
             id: 'redux-templatesimportfeedback',
             actions: [
                 {
-                    onClick: () => ModalManager.openFeedback(<FeedbackDialog 
-                        title={__('Thank you for reporting an issue.', redux_templates.i18n)} 
+                    onClick: () => ModalManager.openFeedback(<FeedbackDialog
+                        title={__('Thank you for reporting an issue.', redux_templates.i18n)}
                         description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
                         schema={schema}
                         uiSchema={uiSchema}

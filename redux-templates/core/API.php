@@ -509,7 +509,7 @@ class API {
 			'source' => isset( $parameters['source'] ) ? $parameters['source'] : '',
 		);
 
-		$response = $this->check_template_response( $parameters );
+		$template_response = $this->check_template_response( $parameters );
 
 		if ( 'wp_block_patterns' === $config['source'] && class_exists( 'WP_Patterns_Registry' ) ) {
 			$patterns = \WP_Patterns_Registry::get_instance()->get_all_registered();
@@ -523,6 +523,7 @@ class API {
 			$cache_path             = $config['type'] . DIRECTORY_SEPARATOR . $config['id'] . '.json';
 			$parameters['no_cache'] = 1;
 			$response               = $this->api_cache_fetch( $parameters, $config, $cache_path );
+			$response = wp_parse_args( $response, $template_response );
 		}
 
 		if ( ! empty( $response ) && isset( $response['message'] ) ) {
@@ -543,17 +544,23 @@ class API {
 	 */
 	public function check_template_response( $parameters ) {
 		$response = array();
-		// TODO - Validate active key.
 		if ( ! ReduxTemplates\Init::mokama() ) {
-			$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
-			if ( '' === $count ) {
-				$count = 5;
+			if ( ReduxTemplates\Init::activated() ) {
+				$response['left'] = 999;
+			} else {
+				//update_user_meta( $parameters['uid'], '_redux_templates_count', 3 ); // TODO - Remove me
+				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
+				if ( '' === $count ) {
+					$count = 5;
+				}
+				$count = intval( $count ) - 1;
+				if ( intval( $count ) < 0 ) {
+					update_user_meta( $parameters['uid'], '_redux_templates_count', false );
+					wp_send_json_error( array( 'message' => 'Please activate Redux', 'left' => 0 ) );
+				} else {
+					update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
+				}
 			}
-			$count = intval( $count ) - 1;
-			if ( intval( $count ) < 0 ) {
-				wp_send_json_error( array( 'message' => 'Please activate Redux.' ) );
-			}
-			update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
 			$response['left'] = $count;
 		}
 
@@ -688,9 +695,9 @@ class API {
 					array(
 						'methods'             => $method,
 						'callback'            => array( $this, $data['callback'] ),
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
-						},
+						//'permission_callback' => function () {
+						//	return current_user_can( 'edit_posts' );
+						//},
 						'args'                => array(
 							'route' => $route,
 						),

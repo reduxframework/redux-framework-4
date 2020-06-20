@@ -53,7 +53,7 @@ function ImportWizard(props) {
     };
 
     const onCloseWizard = () => {
-        if (isChallengeOpen) return; // When in tour mode, we don't accpet mouse event.
+        if (isChallengeOpen) return; // When in tour mode, we don't accept mouse event.
         if (importing) return;
         setCurrentStep(PLUGIN_STEP);
         setImportingTemplate(null);

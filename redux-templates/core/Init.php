@@ -104,12 +104,17 @@ class Init {
 		if ( ! $global_vars['mokama'] ) {
 			// phpcs:disable Squiz.PHP.CommentedOutCode
 			// delete_user_meta( get_current_user_id(), '_redux_templates_count'); // To test left.
-			$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
-			if ( empty( $count ) ) {
-				$count = 5;
-				update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
+			update_user_meta( get_current_user_id(), '_redux_templates_count', 0 );
+			if ( ! $this->activated() ) {
+				$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
+				if ( false === $count ) {
+					$count = 5;
+					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
+				}
+				$global_vars['left'] = $count;
 			}
-			$global_vars['left'] = $count;
+
+
 		}
 
 		if ( ! $global_vars['mokama'] ) {
@@ -136,7 +141,19 @@ class Init {
 	 * @since 4.0.0
 	 */
 	public static function mokama() {
-		return true;
+		if ( class_exists( 'Redux_Pro' ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	public static function activated() {
+		$allowed = get_option( 'redux-framework_allow_tracking', 'no' );
+		// if it wasn't allowed before, do nothing
+		if ( 'yes' === $allowed ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
