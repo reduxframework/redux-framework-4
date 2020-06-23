@@ -73,13 +73,13 @@ class Edit extends Component {
                 let uiMessage;
                 switch ( error.message ) {
                     case 'Invalid JSON file':
-                        uiMessage = __( 'Invalid JSON file', 'block-options' );
+                        uiMessage = __( 'Invalid JSON file', redux_templates.i18n );
                         break;
                     case 'Invalid Reusable Block JSON file':
-                        uiMessage = __( 'Invalid Reusable Block JSON file', 'block-options' );
+                        uiMessage = __( 'Invalid Reusable Block JSON file', redux_templates.i18n );
                         break;
                     default:
-                        uiMessage = __( 'Unknown error', 'block-options' );
+                        uiMessage = __( 'Unknown error', redux_templates.i18n );
                 }
 
                 this.setState( { isLoading: false, error: uiMessage } );
@@ -92,8 +92,8 @@ class Edit extends Component {
         return (
             <Placeholder
                 icon="download"
-                label={ __( 'Import from JSON', 'block-options' ) }
-                instructions={ __( 'Drag a file or upload a new one from your device.', 'block-options' ) }
+                label={ __( 'Redux! / Import from JSON', redux_templates.i18n ) }
+                instructions={ __( 'Drag a file or upload a new one from your device.', redux_templates.i18n ) }
                 className="editor-media-placeholder"
                 notices={ error && (
                     <Notice status="error">
@@ -105,7 +105,7 @@ class Edit extends Component {
                     <MediaUploadCheck>
                         <DropZone
                             onFilesDrop={ this.addFile }
-                            label={ __( 'Import from JSON', 'block-options' ) }
+                            label={ __( 'Import from JSON', redux_templates.i18n ) }
                         />
                         <FormFileUpload
                             isLarge
@@ -116,7 +116,7 @@ class Edit extends Component {
                             disabled={ isLoading }
                             multiple={ false }
                         >
-                            { __( 'Upload', 'block-options' ) }
+                            { __( 'Upload', redux_templates.i18n ) }
                         </FormFileUpload>
                     </MediaUploadCheck>
                 </Fragment>

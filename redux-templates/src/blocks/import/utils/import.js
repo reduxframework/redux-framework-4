@@ -18,9 +18,13 @@ async function importReusableBlock( file ) {
     const fileContent = await readTextFile( file );
     let parsedContent;
     try {
-        parsedContent = JSON.parse( fileContent );
+        parsedContent = JSON.parse(JSON.parse(JSON.stringify(fileContent)));
     } catch ( e ) {
         throw new Error( 'Invalid JSON file' );
+    }
+
+    if (parsedContent.__file === 'redux_template') {
+        return parsedContent.contant;
     }
 
     if (
