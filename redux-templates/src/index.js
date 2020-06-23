@@ -12,6 +12,7 @@ import { render } from '@wordpress/element'
  * External dependencies
  */
 import './editor.scss'
+import './blocks/blocks'
 import './plugins/sidebar-share'
 import './plugins/share-block-btn'
 import './plugins/export'
