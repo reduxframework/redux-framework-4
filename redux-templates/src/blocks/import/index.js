@@ -20,43 +20,43 @@ const category = 'common';
 const title = __( 'Redux Import', redux_templates.i18n );
 
 const keywords = [
-	__( 'import', redux_templates.i18n ),
-	__( 'download', redux_templates.i18n ),
-	__( 'migrate', redux_templates.i18n ),
+    __( 'import', redux_templates.i18n ),
+    __( 'download', redux_templates.i18n ),
+    __( 'migrate', redux_templates.i18n ),
 ];
 
 const blockAttributes = {
-	file: {
-		type: 'object',
-	},
+    file: {
+        type: 'object',
+    },
 };
 
 const settings = {
 
-	title,
+    title,
 
-	description: __( 'Import blocks exported using Redux plugin.', redux_templates.i18n ),
+    description: __( 'Import blocks exported using Redux plugin.', redux_templates.i18n ),
 
-	keywords,
+    keywords,
 
-	attributes: blockAttributes,
+    attributes: blockAttributes,
 
-	supports: {
-		align: true,
-		alignWide: false,
-		alignFull: false,
-		customClassName: false,
-		className: false,
-		html: false,
-	},
+    supports: {
+        align: true,
+        alignWide: false,
+        alignFull: false,
+        customClassName: false,
+        className: false,
+        html: false,
+    },
 
-	transforms,
+    transforms,
 
-	edit: Edit,
+    edit: Edit,
 
-	save() {
-		return null;
-	},
+    save() {
+        return null;
+    },
 };
 
 export { name, title, category, icon, settings };

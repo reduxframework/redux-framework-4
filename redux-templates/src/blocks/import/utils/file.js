@@ -5,11 +5,11 @@
  * @return {Promise<string>}  Content of the file.
  */
 export function readTextFile( file ) {
-	const reader = new window.FileReader();
-	return new Promise( ( resolve ) => {
-		reader.onload = function() {
-			resolve( reader.result );
-		};
-		reader.readAsText( file );
-	} );
+    const reader = new window.FileReader();
+    return new Promise( ( resolve ) => {
+        reader.onload = function() {
+            resolve( reader.result );
+        };
+        reader.readAsText( file );
+    } );
 }
