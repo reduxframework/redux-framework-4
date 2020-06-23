@@ -54,7 +54,8 @@ export const initialState = {
         listExpanded: true
     },
     plugins: {},
-    importingTemplate: null
+    importingTemplate: null,
+    activateDialog: false
 };
 
 export const reducer = ( state = initialState, action ) => {
@@ -268,6 +269,11 @@ export const reducer = ( state = initialState, action ) => {
                     ...state.challenge,
                     listExpanded: action.data
                 }
+            }
+        case 'SET_ACTIVATE_DIALOG_DISPLAY':
+            return {
+                ...state,
+                activateDialog: action.data
             }
     }
 

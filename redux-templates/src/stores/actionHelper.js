@@ -8,7 +8,6 @@ const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = d
 import { __ } from '@wordpress/i18n'
 import { ModalManager } from '~redux-templates/modal-manager';
 import PreviewModal from '../modal-preview';
-import FeedbackModal from '../modal-feedback/modal';
 import FeedbackDialog from '~redux-templates/modal-feedback';
 
 
@@ -273,7 +272,12 @@ export const openSitePreviewModal = (index, pageData) => {
 }
 
 const errorCallback = (errorMessage) => {
-    const { appendErrorMessage, setImportingTemplate } = dispatch('redux-templates/sectionslist');
-    appendErrorMessage(errorMessage);
-    setImportingTemplate(null);
+    const { appendErrorMessage, setImportingTemplate, setActivateDialogDisplay } = dispatch('redux-templates/sectionslist');
+    if (errorMessage === 'Please activate Redux') {
+        setActivateDialogDisplay(true);
+        redux_templates.left = 0;
+    } else {
+        appendErrorMessage(errorMessage);
+        setImportingTemplate(null);
+    }
 }

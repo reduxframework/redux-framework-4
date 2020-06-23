@@ -147,5 +147,11 @@ export const actions = {
             type: 'SET_CHALLENGE_LIST_EXPANDED',
             data
         }
+    },
+    setActivateDialogDisplay(data) {
+        return {
+            type: 'SET_ACTIVATE_DIALOG_DISPLAY',
+            data
+        }
     }
 };

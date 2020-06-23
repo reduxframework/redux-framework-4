@@ -186,6 +186,9 @@ registerStore('redux-templates/sectionslist', {
         },
         getChallengeListExpanded(state) {
             return state.challenge.listExpanded;
+        },
+        getActivateDialogDisplay(state) {
+            return state.activateDialog;
         }
     },
 

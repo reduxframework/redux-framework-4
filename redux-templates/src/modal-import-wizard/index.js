@@ -8,6 +8,9 @@ import ProPluginStep from './ProPluginsStep';
 import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
+
+import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
+
 import '../modals.scss'
 import './style.scss'
 
@@ -17,9 +20,10 @@ const IMPORT_STEP = 2;
 const REDUX_PRO_STEP = -1;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
-import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
+
 function ImportWizard(props) {
-    const {startImportTemplate, setImportingTemplate, isChallengeOpen, importingTemplate} = props;
+    const {startImportTemplate, setImportingTemplate, setActivateDialogDisplay} = props;
+    const {isChallengeOpen, importingTemplate, activateDialogDisplay} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
     const [activating, setActivating] = useState(false);
@@ -53,7 +57,20 @@ function ImportWizard(props) {
                 }
             }
         }
-    }, [importingTemplate, currentStep])
+    }, [importingTemplate, currentStep, activateDialogDisplay])
+
+    // Activate dialog disply
+    useEffect(() => {
+        if (activateDialogDisplay === true) { // Activate dialog hard reset case
+            setCurrentStep(REDUX_ACTIVATE_STEP);
+            setActivateDialogDisplay(false);
+        }
+    }, [activateDialogDisplay]);
+
+    // On the initial loading
+    useEffect(() => {
+        setActivateDialogDisplay(false);
+    }, []);
 
     const toNextStep = () => {
         if (isChallengeOpen) return;
@@ -110,17 +127,19 @@ function ImportWizard(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setImportingTemplate} = dispatch('redux-templates/sectionslist');
+        const {setImportingTemplate, setActivateDialogDisplay} = dispatch('redux-templates/sectionslist');
         return {
-            setImportingTemplate
+            setImportingTemplate,
+            setActivateDialogDisplay
         };
     }),
 
     withSelect((select, props) => {
-        const {getChallengeOpen, getImportingTemplate} = select('redux-templates/sectionslist');
+        const {getChallengeOpen, getImportingTemplate, getActivateDialogDisplay} = select('redux-templates/sectionslist');
         return {
             isChallengeOpen: getChallengeOpen(),
-            importingTemplate: getImportingTemplate()
+            importingTemplate: getImportingTemplate(),
+            activateDialogDisplay: getActivateDialogDisplay()
         };
     })
 ])(ImportWizard);
