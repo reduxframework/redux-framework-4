@@ -16,6 +16,7 @@ import './blocks/blocks'
 import './plugins/sidebar-share'
 import './plugins/share-block-btn'
 import './plugins/export'
+import './plugins/export-content-menu-item'
 import ToolbarLibraryButton from './toolbar-library-button'
 import TooltipBox from './challenge/tooltip/TooltipBox';
 import {handlingLocalStorageData} from './stores/helper';
@@ -40,7 +41,7 @@ domReady(() => {
         const buttonDiv = document.createElement('div');
         toolbar.appendChild(buttonDiv);
         render(<ToolbarLibraryButton/>, buttonDiv);
-        
+
         if (window.location.hash == '#redux_templates_tour=1') {
             window.location.hash = '';
             ModalManager.open(<LibraryModal />);

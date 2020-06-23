@@ -7,6 +7,8 @@ import { isString } from 'lodash';
  * Internal dependencies
  */
 import { readTextFile } from './file';
+const { dispatch } = wp.data;
+const { editPost } = dispatch('core/editor');
 
 /**
  * Import a reusable block from a JSON file.
@@ -24,6 +26,7 @@ async function importReusableBlock( file ) {
     }
 
     if (parsedContent.__file === 'redux_template') {
+		editPost({'template': 'redux-templates_full_width'});
         return parsedContent.contant;
     }
 

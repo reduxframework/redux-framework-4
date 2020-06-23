@@ -120,7 +120,7 @@ class Init {
 				}
 				$global_vars['left']     = $count;
 				$global_vars['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
-				$global_vars['tos'] = \Redux_Connection_Banner::tos_blurb( 'import_wizard' );
+				$global_vars['tos'] 	 = \Redux_Connection_Banner::tos_blurb( 'import_wizard' );
 			} else {
 				$global_vars['left'] = 999;
 			}

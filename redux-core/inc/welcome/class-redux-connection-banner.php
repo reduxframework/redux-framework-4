@@ -57,7 +57,6 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			delete_option( 'redux-framework_tracking_notice' );
 //			echo get_option('redux-framework_allow_tracking');exit();
 			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
-			add_action( 'redux-framework_display_admin_notice', array( $this, 'hide_appsero_insight_banner' ) );
 
 		}
 

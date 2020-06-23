@@ -212,7 +212,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
-			self::$insights->init();
+			self::$insights->hide_notice()->init();
 
 			remove_action( 'redux_admin_notices_run', array( 'ReduxAppsero\Insights', 'admin_notice' ) );
 

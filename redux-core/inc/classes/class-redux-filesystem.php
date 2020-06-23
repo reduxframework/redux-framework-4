@@ -46,6 +46,14 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		public $parent = null;
 
 		/**
+		 * Empty class constructor.
+		 *
+		 * @since     4.0.0
+		 */
+		public function __construct() {
+		}
+
+		/**
 		 * Return an instance of this class.
 		 *
 		 * @param object $parent ReduxFramework pointer.
