@@ -233,14 +233,14 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			}
 
 			if ( empty( $args['footer_credit'] ) ) {
-				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf(
-					// translators: Redux URL with title.
-					esc_html__( 'Powered by  %1$s', 'redux-framework' ),
-					'<a href="' . esc_url( '//www.redux.io' ) . '" target="_blank">' . esc_html__(
-						'Redux Framework',
-						'redux-framework'
-					) . '</a> v' . Redux_Core::$version
-				) . '</span>';
+
+				$footer_text = sprintf(
+				/* translators: 1: Redux, 2: Link to plugin review */
+					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'elementor' ),
+					'<strong>' . __( 'Redux', 'redux-framework' ) . '</strong>',
+					 '<a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5/#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+				);
+				$args['footer_credit'] = '<span id="footer-thankyou">' . $footer_text . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {

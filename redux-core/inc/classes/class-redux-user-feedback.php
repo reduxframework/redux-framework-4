@@ -177,7 +177,7 @@ class Redux_User_Feedback {
 
 			<style>
 				.notice.redux-notice {
-					border-left-color: #19837c !important;
+					border-left-color: #24b0a6 !important;
 					padding: 20px;
 				}
 				.rtl .notice.redux-notice {

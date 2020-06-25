@@ -1297,7 +1297,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			if ( ! empty( $data[0] ) ) {
 				return $data[0];
 			} else {
-				$file_data = $filesystem->execute( 'get_contents', $file );
+				$file_data = $filesystem->get_contents( $file );
 
 				$file_data = str_replace( "\r", "\n", $file_data );
 				$version   = '1.0.0';
@@ -1639,7 +1639,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					if ( ! is_wp_error( $request ) ) {
 						$body = wp_remote_retrieve_body( $request );
 						if ( ! empty( $body ) ) {
-							$filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
+							$filesystem->put_contents( $path, $body );
 							Redux_Core::$google_fonts = json_decode( $body, true );
 						}
 					} else {
@@ -1647,9 +1647,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					}
 				}
 			} elseif ( file_exists( $path ) ) {
-				Redux_Core::$google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
+				Redux_Core::$google_fonts = json_decode( $filesystem->get_contents( $path ), true );
 				if ( empty( Redux_Core::$google_fonts ) ) {
-					$filesystem->execute( 'delete', $path );
+					$filesystem->unlink( $path );
 				}
 			}
 

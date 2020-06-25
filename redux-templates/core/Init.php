@@ -66,7 +66,7 @@ class Init {
 	 * @return string
 	 */
 	public static function get_local_file_contents( $file_path ) {
-		$fs = new ReduxTemplates\Filesystem();
+		$fs = \Redux_Filesystem::get_instance();
 		return $fs->get_contents( $file_path );
 	}
 

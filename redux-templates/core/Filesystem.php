@@ -88,7 +88,7 @@ class Filesystem {
 		}
 
 		$uploads_dir        = wp_upload_dir();
-		$this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'redux-templates/';
+		$this->cache_folder = trailingslashit( $uploads_dir['basedir'] ) . 'redux/';
 		if ( ! $this->file_exists( $this->cache_folder ) ) {
 			$this->mkdir( $this->cache_folder );
 		}
@@ -314,7 +314,7 @@ class Filesystem {
 	 * @param int    $perms Permission value, if not provided, defaults to WP standards.
 	 * @return bool
 	 */
-	public function chmod( $abs_path, $perms = null ) {
+	public function chmod( $abs_path, $perms = null, $recursive = false ) {
 		if ( is_null( $perms ) ) {
 			$perms = $this->is_file( $abs_path ) ? $this->chmod_file : $this->chmod_dir;
 		}
@@ -323,7 +323,7 @@ class Filesystem {
 
 		if ( ! $return && $this->use_filesystem ) {
 			$abs_path = $this->get_sanitized_path( $abs_path );
-			$return   = $this->wp_filesystem->chmod( $abs_path, $perms, false );
+			$return   = $this->wp_filesystem->chmod( $abs_path, $perms, $recursive );
 		}
 
 		return $return;

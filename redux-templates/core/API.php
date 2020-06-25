@@ -48,6 +48,9 @@ class API {
 	 */
 	protected $filesystem;
 
+
+	protected $cache_folder;
+
 	/**
 	 * Constructor.
 	 */
@@ -67,7 +70,7 @@ class API {
 	 */
 	private function get_filesystem() {
 		if ( empty( $this->filesystem ) ) {
-			$this->filesystem = new Filesystem();
+			$this->filesystem = \Redux_Filesystem::get_instance();;
 		}
 
 		return $this->filesystem;
@@ -202,8 +205,13 @@ class API {
 	public function api_cache_fetch( $parameters, $config, $path, $cache_only = false ) {
 		$filesystem = $this->get_filesystem();
 
-		if ( strpos( $path, $filesystem->cache_folder ) === false ) {
-			$path = $filesystem->cache_folder . $path;
+		$this->cache_folder = trailingslashit( $filesystem->cache_folder ) . 'templates/';
+		if ( ! $filesystem->file_exists( $this->cache_folder ) ) {
+			$filesystem->mkdir( $this->cache_folder );
+		}
+
+		if ( strpos( $path, $this->cache_folder ) === false ) {
+			$path = $this->cache_folder . $path;
 		}
 		if ( ! $filesystem->file_exists( dirname( $path ) ) ) {
 			$filesystem->mkdir( dirname( $path ) );

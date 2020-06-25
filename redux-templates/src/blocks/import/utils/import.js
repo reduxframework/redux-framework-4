@@ -27,7 +27,7 @@ async function importReusableBlock( file ) {
 
     if (parsedContent.__file === 'redux_template') {
 		editPost({'template': 'redux-templates_full_width'});
-        return parsedContent.contant;
+        return parsedContent.content;
     }
 
     if (
