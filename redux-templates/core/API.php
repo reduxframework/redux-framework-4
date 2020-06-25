@@ -47,8 +47,11 @@ class API {
 	 * @var Filesystem
 	 */
 	protected $filesystem;
-
-
+	/**
+	 * Cache folder location.
+	 *
+	 * @var string
+	 */
 	protected $cache_folder;
 
 	/**
@@ -70,7 +73,8 @@ class API {
 	 */
 	private function get_filesystem() {
 		if ( empty( $this->filesystem ) ) {
-			$this->filesystem = \Redux_Filesystem::get_instance();;
+			$this->filesystem = \Redux_Filesystem::get_instance();
+
 		}
 
 		return $this->filesystem;

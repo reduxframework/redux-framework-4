@@ -167,8 +167,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			$this->credentials = request_filesystem_credentials( '', '', false, false, null );
 			$ob_contents       = ob_get_contents();
 			ob_end_clean();
-
-			if ( @wp_filesystem( $this->credentials ) ) {
+			if ( @wp_filesystem( $this->credentials ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors
 				global $wp_filesystem;
 				$this->wp_filesystem  = $wp_filesystem;
 				$this->use_filesystem = true;
@@ -214,7 +213,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			}
 
 			/* now we got some credentials - try to use them */
-			if ( ! @wp_filesystem( $this->creds ) ) {
+			if ( ! @wp_filesystem( $this->creds ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors
 				$this->creds = array();
 				/* incorrect connection data - ask for credentials again, now with error message */
 				request_filesystem_credentials( $form_url, '', true, $context );
@@ -278,6 +277,12 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			return $this->do_action( $action, $file, $params );
 		}
 
+
+		/**
+		 * Generates the default Redux cache folder.
+		 *
+		 * @return void
+		 */
 		private function generate_default_files() {
 
 			// Set default permissions.
@@ -307,7 +312,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				$this->put_contents( $version_path, Redux_Core::$version );
 			} else {
 				$version_compare = $this->get_contents( $version_path );
-				if ( $version_compare !== Redux_Core::$version ) {
+				if ( Redux_Core::$version !== $version_compare ) {
 					$this->put_contents( $version_path, Redux_Core::$version );
 				}
 			}
@@ -519,10 +524,11 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 *
 		 * @param string $abs_path Absolute path.
 		 * @param string $contents Content to write to the file.
+		 * @param string $perms Default permissions value.
 		 *
 		 * @return bool
 		 */
-		public function put_contents( $abs_path, $contents, $perms = null  ) {
+		public function put_contents( $abs_path, $contents, $perms = null ) {
 
 			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			// @codingStandardsIgnoreStart
@@ -869,6 +875,8 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 * Get a list of files/folders under specified directory.
 		 *
 		 * @param array $abs_path Absolute path.
+		 * @param bool  $include_hidden Include hidden files, defaults to true.
+		 * @param bool  $recursive Recursive search, defaults to false.
 		 * @return array|bool
 		 */
 		public function scandir( $abs_path, $include_hidden = true, $recursive = false ) {
@@ -984,8 +992,8 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				return true;
 			} else {
 				if ( $this->copy( $source_abs_path, $destination_abs_path, $overwrite ) && $this->file_exists(
-						$destination_abs_path
-					) ) {
+					$destination_abs_path
+				) ) {
 					$this->unlink( $source_abs_path );
 
 					return true;
