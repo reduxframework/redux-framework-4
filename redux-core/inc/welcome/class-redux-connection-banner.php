@@ -53,11 +53,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
-
-			delete_option( 'redux-framework_tracking_notice' );
-//			echo get_option('redux-framework_allow_tracking');exit();
 			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
-
 		}
 
 		public function hide_appsero_insight_banner() {
