@@ -109,7 +109,7 @@
 }
 
 .redux-banner-full-dismiss-paragraph {
-    font-size: .6875rem;
+    font-size: 0.6875rem;
 }
 
 .redux-tos-blurb a,
@@ -408,7 +408,8 @@
     color: #fff;
 }
 
-.redux-banner-button-container .dops-button.is-primary:hover, .redux-banner-button-container .dops-button.is-primary:focus {
+.redux-banner-button-container .dops-button.is-primary:hover,
+.redux-banner-button-container .dops-button.is-primary:focus {
     background: #0071a1;
     border: 1px solid #0071a1;
 }

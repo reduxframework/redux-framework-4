@@ -6,10 +6,10 @@
     fieldset.disabled,
     .redux-group-tab.disabled {
         h2 {
-            padding-top:10px;
+            padding-top: 10px;
         }
 
-        &:before {
+        &::before {
             color: $primary;
         }
     }
@@ -17,19 +17,19 @@
 
 // Header
 #redux-header {
-    border-color: $secondary!important;
-    background: $header_background!important;
-    
+    border-color: $secondary !important;
+    background: $header_background !important;
+
     .display_header {
-        
+
         // Theme Title
         h2 {
             color: $header_text;
         }
-        
+
         // Theme version
         span {
-            color: $header_text!important;
+            color: $header_text !important;
         }
     }
 }
@@ -37,7 +37,7 @@
 // Entire background
 .redux-container {
     background: $background;
-    
+
     .redux-main {
         border-left-width: 0;
     }
@@ -47,41 +47,41 @@
 .redux-sidebar {
     background-color: $background;
     font-size: 13px;
-    font-weight: 400!important;
+    font-weight: 400 !important;
     line-height: 18px;
-    
+
     .redux-group-menu {
         li {
             &.divide {
-                border-bottom-color: lighten($primary, 20%)!important;
-                border-top-color: lighten($primary, 20%)!important;
+                border-bottom-color: lighten($primary, 20%) !important;
+                border-top-color: lighten($primary, 20%) !important;
             }
-            
+
             &.activeChild {
                 &.hasSubSections {
-                    
+
                     // Menu item with closed subsection
                     a {
-                        background-color: $primary!important;
-                        
+                        background-color: $primary !important;
+
                         //@if $text_shadow == 1 {
                         //    text-shadow: 1px 1px darken($primary, 30%)!important;
                         //} @else {
                         //    text-shadow: 1px 1px transparent!important;
                         //}
-                        
-                        color: $active_menu_text!important;
+
+                        color: $active_menu_text !important;
                     }
 
                     .subsection {
                         li {
                             &.active {
-                                
+
                                 // Subsection selected item
                                 a {
-                                    font-weight: 700!important;
-                                    color: $active_submenu_text!important;
-                                    
+                                    font-weight: 700 !important;
+                                    color: $active_submenu_text !important;
+
                                     //@if $text_shadow == 1 {
                                     //    text-shadow: 1px 1px darken($primary, 20%)!important;
                                     //} @else {
@@ -97,54 +97,54 @@
             // Active menu item, no subsection
             &.active {
                 a {
-                    background-color: $primary!important;
-                    color: $active_menu_text!important;
-                    opacity: 1!important;
-                    font-weight: 700!important;
-            
+                    background-color: $primary !important;
+                    color: $active_menu_text !important;
+                    opacity: 1 !important;
+                    font-weight: 700 !important;
+
                     // Active menu item, no subsection hover
                     &:hover {
                         background-color: $primary;
-                        color: $menu_hover_text!important;
+                        color: $menu_hover_text !important;
                     }
                 }
             }
 
             // Inactive menu item, no subsection
             a {
-                font-weight: 400!important;
-                color: $text!important;
-                opacity: 0.9!important;
-                border-style: hidden!important;
-                -webkit-transition: all 0.2s ease-in-out!important;
-                -moz-transition: all 0.2s ease-in-out!important;
-                -ms-transition: all 0.2s ease-in-out!important;
-                -o-transition: all 0.2s ease-in-out!important;
-                transition: all 0.2s ease-in-out!important;
+                font-weight: 400 !important;
+                color: $text !important;
+                opacity: 0.9 !important;
+                border-style: hidden !important;
+                -webkit-transition: all 0.2s ease-in-out !important;
+                -moz-transition: all 0.2s ease-in-out !important;
+                -ms-transition: all 0.2s ease-in-out !important;
+                -o-transition: all 0.2s ease-in-out !important;
+                transition: all 0.2s ease-in-out !important;
 
                 // Inactive menu item, no subsection hover
                 &:hover {
-                    color: $menu_hover_text!important;
-                    background-color: $primary!important;
+                    color: $menu_hover_text !important;
+                    background-color: $primary !important;
                 }
             }
 
             .subsection {
                 background: $subsection_background;
-                
+
                 .redux-group-tab-link-li {
-                    
+
                     // subsection inactive menu
                     .redux-group-tab-link-a {
-                        font-weight: 400!important;
+                        font-weight: 400 !important;
                         //opacity: 0.7!important;
-                        color: $subsection_text!important;
-                        background-color: $subsection_background!important;
+                        color: $subsection_text !important;
+                        background-color: $subsection_background !important;
 
                         // subsection inactive menu hover
                         &:hover {
-                            background-color: $subsection_background_hover!important;
-                            color: $menu_hover!important;
+                            background-color: $subsection_background_hover !important;
+                            color: $menu_hover !important;
                             opacity: 1;
                         }
                     }
@@ -153,13 +153,13 @@
 
             &.hasSubSections {
                 &.redux-section-hover {
-                    
+
                     // subsection item with flyout inactive
                     > a {
                         background-color: $primary;
-                        color: $menu_hover_text!important;
-                        
-                        &:after {
+                        color: $menu_hover_text !important;
+
+                        &::after {
                             border-right-color: $subsection_background;
                         }
                     }
@@ -167,9 +167,9 @@
                     // subsection item with flyout inactive hover
                     .redux-group-tab-link-a {
                         //color: $menu_hover_text!important;
-                        
+
                         &:hover {
-                            color: $menu_hover_text!important;
+                            color: $menu_hover_text !important;
                         }
                     }
 
@@ -187,7 +187,7 @@
                             // flyout subsection inactive hover
                             &:hover {
                                 background-color: $background;
-                                color: $menu_hover!important;
+                                color: $menu_hover !important;
                             }
                         }
                     }
@@ -263,7 +263,7 @@ button.ui-datepicker-close {
 }
 
 .redux-container-spinner .ui-widget .ui-spinner-button.ui-state-hover span {
-   @include backgroundGradient(lighten($primary, 5%));
+    @include backgroundGradient(lighten($primary, 5%));
     border-color: lighten($primary, 5%) !important;
     border-color: lighten($primary, 1%) !important;
 }
@@ -272,7 +272,7 @@ button.ui-datepicker-close {
     @include backgroundGradient(darken($primary, 15%));
     border-color: darken($primary, 25%) !important;
     border-color: darken($primary, 20%) !important;
-    color: #ffffff;
+    color: #fff;
 }
 
 .redux-container-spinner .ui-widget .ui-spinner-button .ui-icon,
@@ -281,21 +281,21 @@ button.ui-datepicker-close {
     @include backgroundGradient($primary);
     border-color: darken($primary, 15%) !important;
     border-color: darken($primary, 10%) !important;
-    -webkit-box-shadow: inset 0 1px 0 lighten($primary, 15%), 0 1px 0 rgba(0, 0, 0, .15) !important;
-    box-shadow: inset 0 1px 0 lighten($primary, 15%), 0 1px 0 rgba(0, 0, 0, .15) !important;
+    -webkit-box-shadow: inset 0 1px 0 lighten($primary, 15%), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
+    box-shadow: inset 0 1px 0 lighten($primary, 15%), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
 
 }
 
 .redux-container-image_select .redux-image-select-selected img {
-    border-color: $primary!important;
+    border-color: $primary !important;
 }
 
 .redux-container-image_select .redux-image-select-selected .tiles {
-    border-color: $primary!important;
+    border-color: $primary !important;
 }
 
 .select2-results .select2-results__option--highlighted {
-    background: $primary!important;
+    background: $primary !important;
 }
 
 .select2-container--classic {
@@ -303,7 +303,7 @@ button.ui-datepicker-close {
     &.select2-container--open .select2-selection--single,
     &.select2-container--open .select2-selection--multiple,
     .select2-selection--single:focus {
-        border-color: $primary!important;
+        border-color: $primary !important;
     }
 }
 

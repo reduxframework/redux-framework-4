@@ -78,7 +78,9 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 				wp_enqueue_style( 'redux-color-picker-css' );
 			}
 
-			wp_enqueue_style( 'wp-color-picker' );
+			if ( ! wp_style_is( 'wp-color-picker' ) ) {
+				wp_enqueue_style( 'wp-color-picker' );
+			}
 
 			$dep_array = array( 'jquery', 'wp-color-picker', 'redux-js' );
 

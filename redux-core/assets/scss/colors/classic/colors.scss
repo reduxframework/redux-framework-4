@@ -52,14 +52,14 @@
         @include backgroundGradient(#646464, #929292);
         border-color: #767676 !important;
     }
-    
+
     .redux-container-switch .cb-enable.selected,
     .redux-field-container .ui-buttonset .ui-state-active {
         @include backgroundGradient($accentColor);
         border-color: darken($accentColor, 15%) !important;
         border-color: darken($accentColor, 10%) !important;
-        -webkit-box-shadow: inset 0 1px 0 lighten($accentColor, 15%), 0 1px 0 rgba(0, 0, 0, .15) !important;
-        box-shadow: inset 0 1px 0 lighten($accentColor, 15%), 0 1px 0 rgba(0, 0, 0, .15) !important;
+        -webkit-box-shadow: inset 0 1px 0 lighten($accentColor, 15%), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
+        box-shadow: inset 0 1px 0 lighten($accentColor, 15%), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
 
     }
 
@@ -91,19 +91,19 @@
                     }
                 }
             }
-            
+
             &.hasSubSections {
                 &.redux-section-hover {
-                    .redux-group-tab-link-a{
+                    .redux-group-tab-link-a {
                         color: $accentColor;
 
                         :hover {
                             color: $accentColor;
                         }
                     }
-                }            
+                }
             }
-            
+
             &.active {
                 &.hasSubSections {
                     a {
@@ -115,7 +115,7 @@
                     }
                 }
             }
-            
+
             &.activeChild {
                 &.hasSubSections {
                     a {
@@ -138,7 +138,7 @@
                     }
                 }
             }
-            
+
             &.redux-section-hover {
                 a {
                     background: $secondaryColor;
@@ -153,27 +153,27 @@
             }
         }
     }
-    
+
     .redux-container-image_select .redux-image-select-selected img {
         border-color: $accentColor;
     }
-    
+
     .redux-container-image_select .redux-image-select-selected .tiles {
         border-color: $accentColor;
     }
-    
+
     #redux-footer #redux-share a {
         color: $accentColor;
-        
+
         &:hover {
             color: darken($accentColor, 20%);
         }
     }
-    
+
     .select2-results .select2-highlighted {
         background: $accentColor;
     }
-    
+
     .select2-drop-active,
     .select2-container-multi.select2-container-active .select2-choices,
     .select2-drop.select2-drop-above.select2-drop-active,
@@ -183,19 +183,20 @@
     .select2-dropdown-open.select2-drop-above .select2-choices {
         border-color: $accentColor;
     }
-    
+
     .select2-dropdown-open.select2-drop-above .select2-choice,
     .select2-dropdown-open.select2-drop-above .select2-choices {
         border-top: inherit;
     }
-    
+
     .noUi-connect {
         @include backgroundGradient(lighten($accentColor, 3%));
     }
 }
 
 /* Light fresh theme */
-.admin-color-fresh, .wp-customizer {
+.admin-color-fresh,
+.wp-customizer {
     @include adminThemeColorOverrides(#a0a5aa, #0073aa, #23282d, #1e8cbe);
 }
 

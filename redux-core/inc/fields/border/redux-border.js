@@ -120,6 +120,7 @@
 						$( this ).data( 'oldkeypress', $( this ).val() );
 					}
 				);
+
 			}
 		);
 	};

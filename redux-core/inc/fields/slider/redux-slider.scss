@@ -67,9 +67,11 @@
             position: inherit;
             width: 25%;
             text-align: center;
-            margin-left:0;
+            margin-left: 0;
         }
-        .redux-slider-input, .redux-slider-select-one, .redux-slider-select-two {
+        .redux-slider-input,
+        .redux-slider-select-one,
+        .redux-slider-select-two {
             width: 25% !important;
         }
         .redux-slider-container {

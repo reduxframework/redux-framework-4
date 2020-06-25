@@ -72,9 +72,8 @@
 							redux.field_objects.background.preview( $( this ) );
 						},
 
-						clear: function( e, ui ) {
+						clear: function( e ) {
 							e = null;
-							$( this ).val( ui.color.toString() );
 							redux_change( $( this ).parent().find( '.redux-color-init' ) );
 							redux.field_objects.background.preview( $( this ) );
 						}
@@ -140,22 +139,16 @@
 						if ( $( this ).is( ':checked' ) ) {
 							el.find( '.redux-saved-color' ).val( $( '#' + $( this ).data( 'id' ) ).val() );
 							el.find( '#' + $( this ).data( 'id' ) ).val( 'transparent' );
-							el.find( '#' + $( this ).data( 'id' ) ).parent().parent().find( '.wp-color-result' ).css( 'background-color', 'transparent' );
+							el.find( '#' + $( this ).data( 'id' ) ).parents( '.redux-field-container' ).find( '.wp-color-result' ).css( 'background-color', 'transparent' );
 						} else {
-							if ( 'transparent' === el.find( '#' + $( this ).data( 'id' ) ).val() ) {
-								prevColor = $( '.redux-saved-color' ).val();
-
-								if ( '' === prevColor ) {
-									prevColor = $( '#' + $( this ).data( 'id' ) ).data( 'default-color' );
-								}
-
-								el.find( '#' + $( this ).data( 'id' ) ).parent().parent().find( '.wp-color-result' ).css( 'background-color', prevColor );
-
-								el.find( '#' + $( this ).data( 'id' ) ).val( prevColor );
+							prevColor =  $( this ).parents( '.redux-field-container' ).find( '.redux-saved-color' ).val();
+							if ( '' === prevColor ) {
+								prevColor = $( '#' + $( this ).data( 'id' ) ).data( 'default-color' );
 							}
+							el.find( '#' + $( this ).data( 'id' ) ).parents( '.redux-field-container' ).find( '.wp-color-result' ).css( 'background-color', prevColor );
+							el.find( '#' + $( this ).data( 'id' ) ).val( prevColor );
 						}
 
-						redux.field_objects.background.preview( $( this ) );
 						redux_change( $( this ) );
 					}
 				);

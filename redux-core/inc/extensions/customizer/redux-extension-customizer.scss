@@ -2,13 +2,13 @@
     .redux-container {
         .redux-main {
             input {
-                margin:0!important;
+                margin: 0 !important;
             }
 
-            input.spinner-input{
-                margin-right: 30px!important;
-                margin-left: 30px!important;
-                margin-top: 0px!important;
+            input.spinner-input {
+                margin-right: 30px !important;
+                margin-left: 30px !important;
+                margin-top: 0px !important;
             }
         }
     }
@@ -29,13 +29,13 @@
 
     #customize-controls {
         .description {
-            display:block;
+            display: block;
         }
         .customize-info {
             margin-bottom: 0;
         }
         .redux-section .accordion-section-content {
-            background: #FCFCFC;
+            background: #fcfcfc;
         }
     }
 
@@ -104,7 +104,8 @@
         }
     }
 
-    .select2-drop, .select2-container {
+    .select2-drop,
+    .select2-container {
         z-index: 999999;
     }
 

@@ -13,7 +13,7 @@
         &.bugger {
             margin-bottom: 0px !important;
             font-size: 12px !important;
-            color: #999999;
+            color: #999;
         }
     }
 
@@ -25,10 +25,10 @@
         width: 100%;
 
         label {
-            margin-bottom: 2px!important;
+            margin-bottom: 2px !important;
             cursor: inherit;
         }
-        
+
         .drag {
             float: right;
             margin-left: 10px;
@@ -41,18 +41,18 @@
                 padding: 5px 10px;
                 border: 1px solid #333;
                 background: #fff;
-                margin-bottom: 5px!important;
+                margin-bottom: 5px !important;
 
                 .dashicons.visibility {
                     padding-top: 4px;
                     margin-right: 10px;
                     cursor: pointer;
                 }
-                
+
                 &.invisible {
                     color: #aaa;
                     border: 1px dashed #aaa;
-                    
+
                     .dashicons.visibility {
                         color: #aaa;
                     }

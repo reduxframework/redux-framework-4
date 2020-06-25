@@ -10,7 +10,7 @@
         .clearfix {
             clear: both;
 
-            &:after {
+            &::after {
                 visibility: hidden;
                 display: block;
                 font-size: 0;
@@ -30,7 +30,6 @@
             padding: 0 14px !important;
             margin-top: 0;
             margin-bottom: 0;
-            margin-left: 4px !important;
             font-size: 12px !important;
         }
 
@@ -59,7 +58,7 @@
 
             &.typography-family {
                 .select2-container {
-                    width: 100%
+                    width: 100%;
                 }
             }
 
@@ -144,19 +143,19 @@
         }
 
         label {
-            display: block;
+
             position: relative;
             font-size: 12px !important;
             text-align: left;
-            color: #999999;
-            margin: 4px 0 2px 0 !important;
+            color: #999;
+            //margin: 4px 0 2px 0 !important;
             cursor: default;
         }
 
         .typography-preview {
             display: none;
             width: 100%;
-            border: 1px dotted lightgray;
+            border: 1px dotted #d3d3d3;
             max-width: 850px;
             padding: 10px;
             font-size: 10pt;
