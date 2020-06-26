@@ -977,13 +977,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$sysinfo['redux_ver']      = esc_html( Redux_Core::$version );
 			$sysinfo['redux_data_dir'] = Redux_Core::$upload_dir;
 
-			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-			$f   = 'fo' . 'pen';
-			$res = true;
-			if ( ! file_exists( Redux_Core::$upload_dir . 'test-log.log' ) ) {
-				$res = false;
-			} elseif ( false === $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) ) {
-				$res = false;
+			$fs = Redux_Filesystem::get_instance();
+			$test_file = Redux_Core::$upload_dir . 'test-log.log';
+			if ( $fs->is_file( $test_file ) ) {
+				$res = $fs->unlink( $test_file );
+			} else {
+				$res = $fs->touch( $test_file );
+				$fs->unlink( $test_file );
 			}
 
 			// Only is a file-write check.
