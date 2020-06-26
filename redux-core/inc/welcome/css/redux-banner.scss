@@ -40,7 +40,7 @@
     color: inherit;
 }
 
-.jp-banner .notice-dismiss {
+.redux-connection-banner-dismiss {
     text-decoration: none;
 }
 
@@ -294,17 +294,25 @@
 }
 @media (min-width: 1300px) {
     .redux-banner-hide-phone-and-smaller {
-        max-width: 300px !important;
+        width: 320px !important;
     }
 }
 .redux-banner-hide-phone-and-smaller {
     max-width: 400px;
 }
 
+.redux-banner-content-logo {
+    width: 150px;
+    margin-bottom: 20px !important;
+}
 
 @media (max-width: 530px) {
     .redux-banner-hide-phone-and-smaller {
         display: none !important;
+    }
+    .redux-banner-content-logo {
+        margin-left: 0 !important;
+        margin-bottom: 40px !important;
     }
 }
 

@@ -1936,5 +1936,18 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			die();
 		}
+
+		/**
+		 * Check mokama.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function mokama() {
+			if ( class_exists( 'Redux_Pro' ) ) {
+				return true;
+			}
+			return false;
+		}
 	}
 }

@@ -335,7 +335,7 @@ class API {
 			$supported->init( $data['plugins'] );
 			$data['plugins']                               = $supported::get_plugins();
 			$data['plugins']['redux-framework']['version'] = \Redux_Core::$version;
-			if ( ReduxTemplates\Init::mokama() ) {
+			if ( \Redux_Helpers::mokama() ) {
 				if ( class_exists( 'Redux_Pro' ) ) {
 					$data['plugins']['redux-framework']['is_pro'] = \Redux_Pro::$version;
 				} else {
@@ -556,8 +556,8 @@ class API {
 	 */
 	public function check_template_response( $parameters ) {
 		$response = array();
-		if ( ! ReduxTemplates\Init::mokama() ) {
-			if ( ReduxTemplates\Init::activated() ) {
+		if ( ! \Redux_Helpers::mokama() ) {
+			if ( \Redux_Functions_Ex::activated() ) {
 				$response['left'] = 999;
 			} else {
 				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );

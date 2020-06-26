@@ -101,18 +101,19 @@ class Init {
 		$global_vars   = array(
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
-			'mokama'            => ReduxTemplates\Init::mokama(),
+			'mokama'            => \Redux_Helpers::mokama(),
 			'icon'              => self::get_local_file_contents( REDUXTEMPLATES_DIR_PATH . 'assets/img/logo.svg' ),
 			'version'           => \Redux_Core::$version,
 			'theme_name'        => $theme_details->get( 'Name' ),
 			'supported_plugins' => array(), // Load the supported plugins.
+			'tos'               => \Redux_Connection_Banner::tos_blurb( 'import_wizard' ),
 		);
 
 		if ( ! $global_vars['mokama'] ) {
 			// phpcs:disable Squiz.PHP.CommentedOutCode
 			// delete_user_meta( get_current_user_id(), '_redux_templates_count'); // To test left.
 			update_user_meta( get_current_user_id(), '_redux_templates_count', 0 );
-			if ( ! $this->activated() ) {
+			if ( ! \Redux_Functions_Ex::activated() ) {
 				$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
 				if ( false === $count ) {
 					$count = self::$default_left;
@@ -120,7 +121,7 @@ class Init {
 				}
 				$global_vars['left']     = $count;
 				$global_vars['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
-				$global_vars['tos']      = \Redux_Connection_Banner::tos_blurb( 'import_wizard' );
+
 			} else {
 				$global_vars['left'] = 999;
 			}
@@ -141,34 +142,6 @@ class Init {
 			false,
 			REDUXTEMPLATES_VERSION
 		);
-	}
-
-	/**
-	 * Check mokama.
-	 *
-	 * @access public
-	 * @since 4.0.0
-	 */
-	public static function mokama() {
-		if ( class_exists( 'Redux_Pro' ) ) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Check if Redux is activated.
-	 *
-	 * @access public
-	 * @since 4.0.0
-	 */
-	public static function activated() {
-		$allowed = get_option( 'redux-framework_allow_tracking', 'no' );
-		// if it wasn't allowed before, do nothing.
-		if ( 'yes' === $allowed ) {
-			return true;
-		}
-		return false;
 	}
 
 	/**

@@ -53,7 +53,9 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
+			//delete_option( 'redux-framework_tracking_notice' );
 			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
+
 		}
 
 		public function hide_appsero_insight_banner() {
@@ -280,7 +282,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				<div class="redux-banner-container-top-text">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"/><g><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2l-.5-6h3l-.5 6z"/></g></svg>
 					<span>
-						<?php esc_html_e( 'You’re almost done. Activate Redux to enable powerful tools to help you build better fast in WordPress.', 'redux-framework' ); ?>
+						<?php esc_html_e( 'You’re almost done. Activate Redux to enable powerful tools to help you build better sites faster in WordPress.', 'redux-framework' ); ?>
 					</span>
 				</div>
 				<div class="redux-banner-inner-container">
@@ -295,24 +297,30 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 						<div class="redux-banner-slide redux-banner-slide-one redux-slide-is-active">
 
 							<div class="redux-banner-content-icon redux-illo">
-								<?php
-								 //$logo = new Logo();
-								 //echo $logo->render();
-								?>
+								<a href="<?php echo esc_url( 'https://redux.io/?utm_source=plugin&utm_medium=appsero&utm_campaign=redux_banner_logo'); ?>" target="_blank"><img
+									src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/logo--color.svg"
+									class="redux-banner-content-logo"
+									alt="
+									<?php
+									esc_attr_e(
+										'Visit our website to learn more!',
+										'redux-framework'
+									);
+									?>
+									"
+								/></a>
 								<img
 									src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/redux-powering-up.svg"
 									class="redux-banner-hide-phone-and-smaller"
 									alt="
 									<?php
 									esc_attr_e(
-										'Redux premium services offer even more powerful performance, security, ' .
-										'and revenue tools to help you keep your site safe, fast, and help generate income.',
+										'Redux helps you to take your site to the next level with tools that greatly enhance your WordPress experience.',
 										'redux-framework'
 									);
 									?>
 									"
 									height="auto"
-									width="225"
 								/>
 							</div>
 
@@ -338,7 +346,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								</p>
 
 								<div class="redux-banner-button-container">
-									<span class="redux-tos-blurb"><?php echo self::tos_blurb( 'plugin_dashboard' ); ?></span>
+									<span class="redux-banner-tos-blurb"><?php echo self::tos_blurb( 'plugin_dashboard' ); ?></span>
 									<a
 											href="<?php echo esc_url( $optin_url ); ?>"
 											class="dops-button is-primary redux-alt-connect-button redux-connection-banner-action">

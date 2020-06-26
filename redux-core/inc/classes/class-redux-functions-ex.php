@@ -342,5 +342,28 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			return $key;
 		}
 
+		/**
+		 * Check if Redux is activated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function activated() {
+			if ( Redux_Core::$insights->tracking_allowed() ) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * Set Redux to activated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function set_activated() {
+			Redux_Core::$insights->optin();
+		}
+
 	}
 }
