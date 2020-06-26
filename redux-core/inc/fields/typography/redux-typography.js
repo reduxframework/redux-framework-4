@@ -159,6 +159,11 @@
 								$( this ).find( '.redux-typography-font-variant' ).select2();
 								$( this ).find( '.redux-typography-decoration' ).select2();
 
+								$( this ).find( '.redux-insights-data-we-collect-typography' ).on( 'click', function( e ) {
+									e.preventDefault();
+									$( this ).parent().find( '.description' ).toggle();
+								});
+
 								// Init select2 for indicated fields.
 								redux.field_objects.typography.select( family, true, false, null, true );
 

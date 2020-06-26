@@ -709,7 +709,19 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 					echo '<div data-nonce="' . esc_attr( $nonce ) . '" class="redux-update-google-fonts update-message notice inline notice-warning notice-alt">';
 					echo '<p>' . esc_html__( 'Your Google Fonts are out of date.', 'redux-framework' );
-					echo '&nbsp;<a href="#" class="update-google-fonts" data-action="automatic" aria-label="' . esc_attr__( 'Keep updated', 'redux-framework' ) . '">' . esc_html__( 'Keep updated', 'redux-framework' ) . '</a> or <a href="#" class="update-google-fonts" data-action="manual" aria-label="' . esc_attr__( 'one-time update', 'redux-framework' ) . '">' . esc_html__( 'one-time update', 'redux-framework' ) . '</a>.';
+					if ( ! Redux_Functions_Ex::activated() ) {
+						echo '&nbsp;<a href="#" class="update-google-fonts" data-action="activate" aria-label="' . esc_attr__( 'Activate', 'redux-framework' ) . '">' . esc_html__( 'Activate', 'redux-framework' ) . '</a> ' . esc_html__( 'and run a one-time update', 'redux-framework' ) . '.';
+						echo ' (<a class="redux-insights-data-we-collect-typography" href="#" style="white-space: nowrap;">' . esc_html__( 'learn more', 'redux-framework' ) . '</a>)';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<small class="description" style="display:none;"><br />' . Redux_Connection_Banner::tos_blurb( 'google_fonts' ) . ' </small>';
+					} else {
+						if ( ! Redux_Helpers::mokama() ) {
+							echo '&nbsp;' . esc_html__( 'Run a', 'redux-framework' ) . ' <a href="#" class="update-google-fonts" data-action="manual" aria-label="' . esc_attr__( 'one-time update', 'redux-framework' ) . '">' . esc_html__( 'one-time update', 'redux-framework' ) . '</a>.';
+						} else {
+							echo '&nbsp;<a href="#" class="update-google-fonts" data-action="automatic" aria-label="' . esc_attr__( 'Automated updates', 'redux-framework' ) . '">' . esc_html__( 'Automated updates', 'redux-framework' ) . '</a> or <a href="#" class="update-google-fonts" data-action="manual" aria-label="' . esc_attr__( 'one-time update', 'redux-framework' ) . '">' . esc_html__( 'one-time update', 'redux-framework' ) . '</a>.';
+						}
+					}
+
 					echo '</p>';
 					echo '</div>';
 				}
@@ -758,7 +770,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						// translators: Aria title, link title.
 						'error'    => sprintf( esc_html__( 'Update Failed|msg. %1$s', 'redux-framework' ), sprintf( '<a href="#" class="update-google-fonts" data-action="manual" aria-label="%s">%s</a>', esc_html__( 'Retry?', 'redux-framework' ), esc_html__( 'Retry?', 'redux-framework' ) ) ),
 						// translators: Javascript reload command, link title.
-						'success'  => sprintf( esc_html__( 'Updated! %1$s to view your updated fonts.', 'redux-framework' ), sprintf( '<a href="%s">%s</a>', 'javascript:location.reload();', esc_html__( 'Reload the page', 'redux-framework' ) ) ),
+						'success'  => sprintf( esc_html__( 'Updated! %1$s to start using your updated fonts.', 'redux-framework' ), sprintf( '<a href="%s">%s</a>', 'javascript:location.reload();', esc_html__( 'Reload the page', 'redux-framework' ) ) ),
 					),
 				)
 			);
@@ -1390,6 +1402,10 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			if ( isset( $_POST['data'] ) && 'automatic' === $_POST['data'] ) {
 				update_option( 'auto_update_redux_google_fonts', true );
+			}
+
+			if ( ! Redux_Functions_Ex::activated() ) {
+				Redux_Functions_Ex::set_activated();
 			}
 
 			$fonts = Redux_Helpers::google_fonts_array( true );
