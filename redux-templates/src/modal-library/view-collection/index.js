@@ -8,7 +8,8 @@ import './style.scss'
 import ButtonGroup from '~redux-templates/components/button-group';
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
-const DURATION_UNIT= 800;
+const DURATION_UNIT= 500;
+const PREVIEW_PANEL_HEIGHT = 515;
 
 // Collection Detail view: preview, item list and import
 function CollectionView(props) {
@@ -33,7 +34,7 @@ function CollectionView(props) {
                 backgroundImage.src = itemData.image;
             }
             backgroundImage.onload = function () {
-                setTransitionDuration(backgroundImage.height / DURATION_UNIT  + 's');
+                setTransitionDuration((backgroundImage.height - PREVIEW_PANEL_HEIGHT) / DURATION_UNIT  + 's');
             };
         }
     }, [pageData, previewDataIndex]);
