@@ -977,7 +977,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$sysinfo['redux_ver']      = esc_html( Redux_Core::$version );
 			$sysinfo['redux_data_dir'] = Redux_Core::$upload_dir;
 
-			$fs = Redux_Filesystem::get_instance();
+			$fs        = Redux_Filesystem::get_instance();
 			$test_file = Redux_Core::$upload_dir . 'test-log.log';
 			if ( $fs->is_file( $test_file ) ) {
 				$res = $fs->unlink( $test_file );
