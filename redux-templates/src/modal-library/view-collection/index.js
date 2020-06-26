@@ -8,22 +8,33 @@ import './style.scss'
 import ButtonGroup from '~redux-templates/components/button-group';
 import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
 
+const DURATION_UNIT= 800;
+
+// Collection Detail view: preview, item list and import
 function CollectionView(props) {
     const {pageData, activeCollectionData} = props;
     const {setActiveCollection} = props;
     const [previewData, setPreviewData] = useState(null);
     const [previewDataIndex, setPreviewDataIndex] = useState(0);
+    const [transitionDuration, setTransitionDuration] = useState('1.5s');
 
     const dataLength = pageData.length;
 
+    // To be called when switching over
     useEffect(() => {
         if (pageData && pageData[previewDataIndex]) {
             const itemData = pageData[previewDataIndex];
+            const backgroundImage = new Image();
             if (itemData.image_full) {
-                setPreviewData({...itemData, backgroundImage: itemData.image_full, previewImageClassname: 'details-preview has_full'})
+                setPreviewData({...itemData, backgroundImage: itemData.image_full, previewImageClassname: 'details-preview has_full'});
+                backgroundImage.src = itemData.image_full;
             } else {
                 setPreviewData({...itemData, backgroundImage: itemData.image, previewImageClassname: 'details-preview'})
+                backgroundImage.src = itemData.image;
             }
+            backgroundImage.onload = function () {
+                setTransitionDuration(backgroundImage.height / DURATION_UNIT  + 's');
+            };
         }
     }, [pageData, previewDataIndex]);
 
@@ -34,8 +45,8 @@ function CollectionView(props) {
                     <div className="details-back" onClick={() => setActiveCollection(null)}>
                         <span className="dashicons dashicons-arrow-left-alt"/>&nbsp;{__('Back to Template Kits', redux_templates.i18n)}
                     </div>
-                    <div className={previewData.previewImageClassname} style={{backgroundImage: `url('${previewData.backgroundImage}')`}}>
-
+                    <div className={previewData.previewImageClassname} 
+                        style={{backgroundImage: `url('${previewData.backgroundImage}')`, transitionDuration}}>
                     </div>
                 </div>
                 <div className="redux-templates-collection-details-right">
