@@ -24,7 +24,7 @@ if ( ! class_exists( 'Redux_Validation_Color', false ) ) {
 		 */
 		public function validate() {
 
-			if ( empty( $this->value ) || ( !empty( $this->value ) && 'transparent' == $this->value ) ) {
+			if ( empty( $this->value ) || ( ! empty( $this->value ) && 'transparent' === $this->value ) ) {
 				return;
 			}
 
