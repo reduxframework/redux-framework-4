@@ -365,5 +365,31 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			Redux_Core::$insights->optin();
 		}
 
+		/**
+		 * Set Redux to deactivated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function set_deactivated() {
+			Redux_Core::$insights->optout();
+		}
+
+		/**
+		 * Register a class path to be autoloaded.
+		 *
+		 * Registers a namespace to be autoloaded from a given path, using the
+		 * WordPress/HM-style filenames (`class-{name}.php`).
+		 *
+		 * @link https://engineering.hmn.md/standards/style/php/#file-naming
+		 *
+		 * @param string $prefix Prefix to autoload from.
+		 * @param string $path Path to validate.
+		 */
+		public static function register_class_path( $prefix = '', $path = '' ) {
+			$loader = new Redux_Autoloader( $prefix, $path );
+			spl_autoload_register( array( $loader, 'load' ) );
+		}
+
 	}
 }

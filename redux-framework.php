@@ -22,12 +22,12 @@
  * @copyright       2012-2019 Redux.io
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
 
 // Require the main plugin class.
 require_once plugin_dir_path( __FILE__ ) . 'class-redux-framework-plugin.php';

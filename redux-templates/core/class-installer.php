@@ -70,7 +70,7 @@ class Installer {
 
 			ob_start();
 
-			$skin     = new ReduxTemplates\InstallerMuter( array( 'api' => $api ) );
+			$skin     = new ReduxTemplates\Installer_Muter( array( 'api' => $api ) );
 			$upgrader = new \Plugin_Upgrader( $skin );
 			$install  = $upgrader->install( $api->download_link );
 

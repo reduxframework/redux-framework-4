@@ -93,7 +93,7 @@ class API {
 		if ( empty( $data ) || ( ! empty( $data ) && ! isset( $data['plugins'] ) ) ) {
 			return $parameters;
 		}
-		$supported = ReduxTemplates\SupportedPlugins::instance();
+		$supported = ReduxTemplates\Supported_Plugins::instance();
 		$supported->init( $data['plugins'] );
 		$plugins           = $supported::get_plugins();
 		$installed_plugins = array();
@@ -331,7 +331,7 @@ class API {
 		}
 
 		if ( isset( $data['plugins'] ) ) {
-			$supported = ReduxTemplates\SupportedPlugins::instance();
+			$supported = ReduxTemplates\Supported_Plugins::instance();
 			$supported->init( $data['plugins'] );
 			$data['plugins']                               = $supported::get_plugins();
 			$data['plugins']['redux-framework']['version'] = \Redux_Core::$version;

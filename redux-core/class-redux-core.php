@@ -185,7 +185,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			if ( ! class_exists( 'ReduxAppsero\Client' ) ) {
 				require_once __DIR__ . '/appsero/Client.php';
 			}
-			$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
+			$client = new Appsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
 			// See if Redux is a plugin or not.
 			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
 			if ( false !== $plugin_info ) {
@@ -213,6 +213,26 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
 			self::$insights->hide_notice()->init();
+
+			// Shim for old activation code
+			if ( isset( $_GET['redux_framework_disable_tracking'] ) && ! empty( $_GET['redux_framework_disable_tracking'] ) ) {
+				Redux_Functions_Ex::set_deactivated();
+			}
+			if ( isset( $_GET['redux_framework_enable_tracking'] ) && ! empty( $_GET['redux_framework_enable_tracking'] ) ) {
+				Redux_Functions_Ex::set_activated();
+			}
+			if ( ! self::$insights->tracking_allowed() ) {
+				if ( ! self::$insights->notice_dismissed() ) {
+					// Old tracking permissions
+					$tracking_options = get_option( 'redux-framework-tracking', array() );
+					if ( ! empty( $tracking_options ) ) {
+						if ( isset( $tracking_options['allow_tracking'] ) && $tracking_options['allow_tracking'] == 'yes' ) {
+							Redux_Functions_Ex::set_activated();
+						}
+						delete_option( 'redux-framework-tracking' );
+					}
+				}
+			}
 
 			remove_action( 'redux_admin_notices_run', array( 'ReduxAppsero\Insights', 'admin_notice' ) );
 
@@ -265,6 +285,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
 
 			spl_autoload_register( array( $this, 'register_classes' ) );
+			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) );
 
 			self::$welcome = new Redux_Welcome();
 			new Redux_Rest_Api_Builder( $this );

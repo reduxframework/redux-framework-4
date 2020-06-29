@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Redux Templates SupportedPlugins Class
+ * Redux Templates Supported_Plugins Class
  *
  * @since 4.0.0
  */
-class SupportedPlugins {
+class Supported_Plugins {
 
 	/**
 	 * List of all supported plugins from the library.
@@ -29,7 +29,7 @@ class SupportedPlugins {
 	/**
 	 * List of all supported plugins from the library.
 	 *
-	 * @var SupportedPlugins|null
+	 * @var Supported_Plugins|null
 	 */
 	protected static $instance = null;
 

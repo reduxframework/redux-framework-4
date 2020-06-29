@@ -9,7 +9,7 @@ use ReduxTemplates;
  *
  * @since 4.0.0
  */
-class InstallerMuter extends \WP_Upgrader_Skin {
+class Installer_Muter extends \WP_Upgrader_Skin {
 	/**
 	 * Suppress feedback.
 	 *
