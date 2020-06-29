@@ -214,19 +214,18 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$insights = self::$appsero->insights();
 			self::$insights->hide_notice()->init();
 
-			// Shim for old activation code
-			if ( isset( $_GET['redux_framework_disable_tracking'] ) && ! empty( $_GET['redux_framework_disable_tracking'] ) ) {
+			// Shim for old activation code.
+			if ( isset( $_GET['redux_framework_disable_tracking'] ) && ! empty( $_GET['redux_framework_disable_tracking'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				Redux_Functions_Ex::set_deactivated();
-			}
-			if ( isset( $_GET['redux_framework_enable_tracking'] ) && ! empty( $_GET['redux_framework_enable_tracking'] ) ) {
+			} elseif ( isset( $_GET['redux_framework_enable_tracking'] ) && ! empty( $_GET['redux_framework_enable_tracking'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				Redux_Functions_Ex::set_activated();
 			}
 			if ( ! self::$insights->tracking_allowed() ) {
 				if ( ! self::$insights->notice_dismissed() ) {
-					// Old tracking permissions
+					// Old tracking permissions.
 					$tracking_options = get_option( 'redux-framework-tracking', array() );
 					if ( ! empty( $tracking_options ) ) {
-						if ( isset( $tracking_options['allow_tracking'] ) && $tracking_options['allow_tracking'] == 'yes' ) {
+						if ( isset( $tracking_options['allow_tracking'] ) && 'yes' === $tracking_options['allow_tracking'] ) {
 							Redux_Functions_Ex::set_activated();
 						}
 						delete_option( 'redux-framework-tracking' );

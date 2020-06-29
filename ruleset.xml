@@ -17,5 +17,6 @@
 	<file>./</file>
 
 	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>redux-core/appsero/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
 </ruleset>
