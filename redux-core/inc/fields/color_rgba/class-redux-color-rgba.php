@@ -207,7 +207,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 
 					// Sanitize alpha.
 					if ( 'alpha' === $id ) {
-						$alpha = ! empty( $val ) ? $val : 1;
+						$alpha = is_numeric( $val ) ? $val : 1;
 					} elseif ( 'color' === $id ) {
 						$color = ! empty( $val ) ? $val : '';
 					} elseif ( 'rgba' === $id ) {
