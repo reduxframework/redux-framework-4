@@ -1,5 +1,5 @@
 <?php
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero License Checker

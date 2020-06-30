@@ -111,6 +111,7 @@ class Init {
 
 		if ( ! $global_vars['mokama'] ) {
 			// phpcs:disable Squiz.PHP.CommentedOutCode
+
 			// delete_user_meta( get_current_user_id(), '_redux_templates_count'); // To test left.
 			update_user_meta( get_current_user_id(), '_redux_templates_count', 0 );
 			if ( ! \Redux_Functions_Ex::activated() ) {
@@ -119,8 +120,7 @@ class Init {
 					$count = self::$default_left;
 					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
 				}
-				$global_vars['left']     = $count;
-				$global_vars['activate'] = add_query_arg( 'redux-framework_tracker_optin', 'true' );
+				$global_vars['left'] = $count;
 
 			} else {
 				$global_vars['left'] = 999;

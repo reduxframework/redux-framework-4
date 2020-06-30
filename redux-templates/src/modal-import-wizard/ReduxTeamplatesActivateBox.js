@@ -19,11 +19,11 @@ export default function ReduxTemplatesActivateBox({onActivateRedux, activating})
 	                <button className="button button-primary"
 	                        disabled={activating}
 	                        onClick={() => onActivateRedux()}>
-		                {activating && <i className="fas fa-spinner fa-pulse"/>}
+		                {activating && <i className="fas fa-spinner fa-pulse" style={{marginRight:'5px'}}/>}
 		                <span>{__('Activate Redux', redux_templates.i18n)}</span>
 	                </button>
                 </p>
-	            <p style={{fontSize:'1.1em'}}><small><em dangerouslySetInnerHTML={{__html: redux_templates.tos.replace("to our", "to our<br />")}} /></small></p>
+	            <p style={{fontSize:'1.1em'}}><small><em dangerouslySetInnerHTML={{__html: redux_templates.tos.replace('to our', 'to our<br />')}} /></small></p>
             </div>
         </div>
     );

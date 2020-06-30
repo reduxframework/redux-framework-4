@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 4.0.0
  */
-class API {
+class Api {
 
 	/**
 	 * Seconds to cache the local files.
@@ -584,6 +584,37 @@ class API {
 	}
 
 	/**
+	 * Check template reponse.
+	 *
+	 * @param array $parameters Parameters array.
+	 *
+	 * @since 4.0.0
+	 */
+	public function activate_redux( $parameters ) {
+		if ( \Redux_Functions_Ex::activated() ) {
+			$response['left'] = 999;
+		} else {
+			\Redux_Core::$insights->optin();
+			if ( \Redux_Functions_Ex::activated() ) {
+				$response['left'] = 999;
+			} else {
+				$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
+				if ( false === $count ) {
+					$count = Init::$default_left;
+					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
+				}
+				$response = array(
+					'left' => $count,
+				);
+			}
+		}
+		if ( 999 === $response['left'] ) {
+			wp_send_json_success( $response );
+		}
+		wp_send_json_error( $response );
+	}
+
+	/**
 	 * Fetch a single template.
 	 *
 	 * @param array $data Data array.
@@ -691,6 +722,10 @@ class API {
 			'delete_saved_block' => array(
 				'method'   => 'POST',
 				'callback' => 'delete_saved_block',
+			),
+			'activate'           => array(
+				'method'   => 'GET',
+				'callback' => 'activate_redux',
 			),
 			'plugin-install'     => array(
 				'method'   => 'GET',

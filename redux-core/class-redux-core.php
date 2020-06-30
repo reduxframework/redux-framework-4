@@ -185,41 +185,49 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			if ( ! class_exists( 'ReduxAppsero\Client' ) ) {
 				require_once __DIR__ . '/appsero/Client.php';
 			}
-			$client = new Appsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
-			// See if Redux is a plugin or not.
-			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
-			if ( false !== $plugin_info ) {
-				self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
 
-				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
-				self::$as_plugin = true;
-				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
-				$client->type    = 'plugin';
+			if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
+				$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', REDUX_PLUGIN_FILE );
 			} else {
-				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
-				if ( false !== $theme_info ) {
-					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
-					self::$in_theme  = true;
-					self::$installed = 'in_theme';
-					$client->type    = 'theme';
-				} // TODO - Can an else ever happen here?
+				$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
+				// See if Redux is a plugin or not.
+				$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
+
+				if ( false !== $plugin_info ) {
+					self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
+					self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
+					self::$as_plugin = true;
+					self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
+					if ( isset( $plugin_info['slug'] ) && ! empty( $plugin_info['slug'] ) ) {
+						$client->slug = $plugin_info['slug'];
+					}
+					$client->type = 'plugin';
+				} else {
+					$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
+					if ( false !== $theme_info ) {
+						self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
+						self::$in_theme  = true;
+						self::$installed = 'in_theme';
+						if ( isset( $theme_info['slug'] ) && ! empty( $theme_info['slug'] ) ) {
+							$client->slug = $theme_info['slug'];
+						}
+						$client->type = 'theme';
+					} // TODO - Can an else ever happen here?
+				}
+				$client->slug       = 'redux-framework';
+				$client->textdomain = 'redux-framework';
+				$client->version    = \Redux_Core::$version;
 			}
 
-			$client->textdomain = 'redux-framework';
-			$client->slug       = 'redux-framework';
-			$client->version    = \Redux_Core::$version;
-			self::$appsero      = $client;
+			self::$appsero = $client;
 
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
 			self::$insights->hide_notice()->init();
-
-			// Shim for old activation code.
-			if ( isset( $_GET['redux_framework_disable_tracking'] ) && ! empty( $_GET['redux_framework_disable_tracking'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				Redux_Functions_Ex::set_deactivated();
-			} elseif ( isset( $_GET['redux_framework_enable_tracking'] ) && ! empty( $_GET['redux_framework_enable_tracking'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				Redux_Functions_Ex::set_activated();
+			if ( ! defined( 'REDUX_PLUGIN_FILE' ) ) {
+				remove_action( 'admin_footer', array( self::$insights, 'deactivate_scripts' ) );
 			}
+
 			if ( ! self::$insights->tracking_allowed() ) {
 				if ( ! self::$insights->notice_dismissed() ) {
 					// Old tracking permissions.
@@ -228,7 +236,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 						if ( isset( $tracking_options['allow_tracking'] ) && 'yes' === $tracking_options['allow_tracking'] ) {
 							Redux_Functions_Ex::set_activated();
 						}
-						delete_option( 'redux-framework-tracking' );
 					}
 				}
 			}

@@ -1,5 +1,5 @@
 <?php
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero Insights
@@ -49,7 +49,7 @@ class Insights {
 			$client = new Client( $client, $name, $file );
 		}
 
-		if ( is_object( $client ) && is_a( $client, 'Appsero\Client' ) ) {
+		if ( is_object( $client ) && is_a( $client, 'ReduxAppsero\Client' ) ) {
 			$this->client = $client;
 		}
 	}
@@ -692,45 +692,45 @@ class Insights {
 		$reasons = array(
 			array(
 				'id'          => 'could-not-understand',
-				'text'        => "I couldn't understand how to make it work",
+				'text'        => $this->client->__trans( 'I couldn\'t understand how to make it work' ),
 				'type'        => 'textarea',
-				'placeholder' => 'Would you like us to assist you?',
+				'placeholder' => $this->client->__trans( 'Would you like us to assist you?' )
 			),
 			array(
 				'id'          => 'found-better-plugin',
-				'text'        => 'I found a better plugin',
+				'text'        => $this->client->__trans( 'I found a better plugin' ),
 				'type'        => 'text',
-				'placeholder' => 'Which plugin?',
+				'placeholder' => $this->client->__trans( 'Which plugin?' )
 			),
 			array(
 				'id'          => 'not-have-that-feature',
-				'text'        => 'The plugin is great, but I need specific feature that you don\'t support',
+				'text'        => $this->client->__trans( 'The plugin is great, but I need specific feature that you don\'t support' ),
 				'type'        => 'textarea',
-				'placeholder' => 'Could you tell us more about that feature?',
+				'placeholder' => $this->client->__trans( 'Could you tell us more about that feature?' )
 			),
 			array(
 				'id'          => 'is-not-working',
-				'text'        => 'The plugin is not working',
+				'text'        => $this->client->__trans( 'The plugin is not working' ),
 				'type'        => 'textarea',
-				'placeholder' => 'Could you tell us a bit more whats not working?',
+				'placeholder' => $this->client->__trans( 'Could you tell us a bit more whats not working?' )
 			),
 			array(
 				'id'          => 'looking-for-other',
-				'text'        => "It's not what I was looking for",
+				'text'        => $this->client->__trans( 'It\'s not what I was looking for' ),
 				'type'        => '',
-				'placeholder' => '',
+				'placeholder' => ''
 			),
 			array(
 				'id'          => 'did-not-work-as-expected',
-				'text'        => "The plugin didn't work as expected",
+				'text'        => $this->client->__trans( 'The plugin didn\'t work as expected' ),
 				'type'        => 'textarea',
-				'placeholder' => 'What did you expect?',
+				'placeholder' => $this->client->__trans( 'What did you expect?' )
 			),
 			array(
 				'id'          => 'other',
-				'text'        => 'Other',
+				'text'        => $this->client->__trans( 'Other' ),
 				'type'        => 'textarea',
-				'placeholder' => 'Could you tell us a bit more?',
+				'placeholder' => $this->client->__trans( 'Could you tell us a bit more?' )
 			),
 		);
 
@@ -800,15 +800,19 @@ class Insights {
 
 				<div class="wd-dr-modal-body">
 					<ul class="reasons">
-						<?php foreach ( $reasons as $reason ) { ?>
+						<?php foreach ($reasons as $reason) { ?>
 							<li data-type="<?php echo esc_attr( $reason['type'] ); ?>" data-placeholder="<?php echo esc_attr( $reason['placeholder'] ); ?>">
 								<label><input type="radio" name="selected-reason" value="<?php echo $reason['id']; ?>"> <?php echo $reason['text']; ?></label>
 							</li>
 						<?php } ?>
 					</ul>
 					<p class="wd-dr-modal-reasons-bottom">
-						We share your data with <a href="<?php echo 'https://appsero.com'; ?>">Appsero</a> to troubleshoot problems &amp; make product improvements.
-						<a href="<?php echo 'https://appsero.com/privacy-policy'; ?>">Learn more</a> about how Appsero handles your data.
+						<?php
+						echo sprintf(
+							$this->client->__trans( 'We use this information to troubleshoot problems and make product improvements. <a href="%1$s" target="_blank">Learn more</a> about how we handle you data.' ),
+							esc_url( 'https://redux.io/privacy?utm_source=plugin&utm_medium=appsero&utm_campaign=deactivate' )
+						);
+						?>
 					</p>
 				</div>
 

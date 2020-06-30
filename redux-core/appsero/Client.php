@@ -1,5 +1,5 @@
 <?php
-namespace Appsero;
+namespace ReduxAppsero;
 
 /**
  * Appsero Client
@@ -219,7 +219,50 @@ class Client {
 	 * @return boolean
 	 */
 	public function is_local_server() {
-		return in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) );
+
+		$is_local = false;
+
+		$domains_to_check = array_unique(
+			array(
+				'siteurl' => wp_parse_url( get_site_url(), PHP_URL_HOST ),
+				'homeurl' => wp_parse_url( get_home_url(), PHP_URL_HOST ),
+			)
+		);
+
+		$forbidden_domains = array(
+			'wordpress.com',
+			'localhost',
+			'localhost.localdomain',
+			'127.0.0.1',
+			'::1',
+			'local.wordpress.test',         // VVV pattern.
+			'local.wordpress-trunk.test',   // VVV pattern.
+			'src.wordpress-develop.test',   // VVV pattern.
+			'build.wordpress-develop.test', // VVV pattern.
+		);
+
+		foreach ( $domains_to_check as $domain ) {
+			// If it's empty, just fail out.
+			if ( ! $domain ) {
+				$is_local = true;
+				break;
+			}
+
+			// None of the explicit localhosts.
+			if ( in_array( $domain, $forbidden_domains, true ) ) {
+				$is_local = true;
+				break;
+			}
+
+			// No .test or .local domains.
+			if ( preg_match( '#\.(test|local)$#i', $domain ) ) {
+				$is_local = true;
+				break;
+			}
+		}
+
+		return apply_filters( 'appsero_is_local', $is_local );
+
 	}
 
 	/**

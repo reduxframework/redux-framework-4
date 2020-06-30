@@ -2,6 +2,7 @@ const {__} = wp.i18n;
 const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
+const {apiFetch} = wp;
 
 import InstallPluginStep from './InstallPluginStep';
 import ProPluginStep from './ProPluginsStep';
@@ -86,11 +87,18 @@ function ImportWizard(props) {
 
     const activateReduxTracking = () => {
         setActivating(true);
-        window.jQuery.get( redux_templates.activate, {}, function() {
-            redux_templates.left = 999;
-            setCurrentStep(PRO_STEP);
-            setActivating(false);
-        } );
+	    apiFetch({path: 'redux/v1/templates/activate'}).then(response => {
+		    if (response.success) {
+			    redux_templates.left = response.data.left;
+		    }
+		    setCurrentStep(PRO_STEP);
+		    setActivating(false);
+	    }).catch(error => {
+	    	// TODO - Fix this import for the appendErrorMessage.
+		    appendErrorMessage(error.code + ' : ' + error.message);
+		    setCurrentStep(PRO_STEP);
+		    setActivating(false);
+	    });
     }
 
 
