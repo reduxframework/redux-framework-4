@@ -188,35 +188,38 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
 				$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', REDUX_PLUGIN_FILE );
+				$plugin_info = Redux_Functions_Ex::is_inside_plugin( REDUX_PLUGIN_FILE );
 			} else {
 				$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
 				// See if Redux is a plugin or not.
-				$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
 
-				if ( false !== $plugin_info ) {
-					self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
-					self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
-					self::$as_plugin = true;
-					self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
-					if ( isset( $plugin_info['slug'] ) && ! empty( $plugin_info['slug'] ) ) {
-						$client->slug = $plugin_info['slug'];
-					}
-					$client->type = 'plugin';
-				} else {
-					$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
-					if ( false !== $theme_info ) {
-						self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
-						self::$in_theme  = true;
-						self::$installed = 'in_theme';
-						if ( isset( $theme_info['slug'] ) && ! empty( $theme_info['slug'] ) ) {
-							$client->slug = $theme_info['slug'];
-						}
-						$client->type = 'theme';
-					} // TODO - Can an else ever happen here?
-				}
 				$client->slug       = 'redux-framework';
 				$client->textdomain = 'redux-framework';
 				$client->version    = \Redux_Core::$version;
+			}
+
+			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
+
+			if ( false !== $plugin_info ) {
+				self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
+				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
+				self::$as_plugin = true;
+				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
+				if ( isset( $plugin_info['slug'] ) && ! empty( $plugin_info['slug'] ) ) {
+					$client->slug = $plugin_info['slug'];
+				}
+				$client->type = 'plugin';
+			} else {
+				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
+				if ( false !== $theme_info ) {
+					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
+					self::$in_theme  = true;
+					self::$installed = 'in_theme';
+					if ( isset( $theme_info['slug'] ) && ! empty( $theme_info['slug'] ) ) {
+						$client->slug = $theme_info['slug'];
+					}
+					$client->type = 'theme';
+				}
 			}
 
 			self::$appsero = $client;
