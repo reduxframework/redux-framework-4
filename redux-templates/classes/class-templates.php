@@ -73,11 +73,11 @@ class Templates {
 		if ( is_singular() ) {
 			$page_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
 			if ( 'redux-templates_full_width' === $page_template ) {
-				$template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-full-width.php';
+				$template = REDUXTEMPLATES_DIR_PATH . 'classes/templates/template-full-width.php';
 			} elseif ( 'redux-templates_contained' === $page_template ) {
-				$template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-contained.php';
+				$template = REDUXTEMPLATES_DIR_PATH . 'classes/templates/template-contained.php';
 			} elseif ( 'redux-templates_canvas' === $page_template ) {
-				$template = REDUXTEMPLATES_DIR_PATH . 'core/templates/template-canvas.php';
+				$template = REDUXTEMPLATES_DIR_PATH . 'classes/templates/template-canvas.php';
 			}
 		}
 
