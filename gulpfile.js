@@ -726,6 +726,6 @@ gulp.task(
 		'styles',
 		'vendorsJS',
 		'reduxJS',
-		'fieldsJS',
+		'fieldsJS'
 	)
 );
