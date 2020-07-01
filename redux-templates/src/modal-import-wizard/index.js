@@ -23,7 +23,7 @@ const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 
 function ImportWizard(props) {
-    const {startImportTemplate, setImportingTemplate, setActivateDialogDisplay} = props;
+    const {startImportTemplate, setImportingTemplate, setActivateDialogDisplay, appendErrorMessage} = props;
     const {isChallengeOpen, importingTemplate, activateDialogDisplay} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
@@ -94,7 +94,6 @@ function ImportWizard(props) {
 		    setCurrentStep(PRO_STEP);
 		    setActivating(false);
 	    }).catch(error => {
-	    	// TODO - Fix this import for the appendErrorMessage.
 		    appendErrorMessage(error.code + ' : ' + error.message);
 		    setCurrentStep(PRO_STEP);
 		    setActivating(false);
@@ -135,10 +134,11 @@ function ImportWizard(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setImportingTemplate, setActivateDialogDisplay} = dispatch('redux-templates/sectionslist');
+        const {setImportingTemplate, setActivateDialogDisplay, appendErrorMessage} = dispatch('redux-templates/sectionslist');
         return {
             setImportingTemplate,
-            setActivateDialogDisplay
+            setActivateDialogDisplay,
+            appendErrorMessage
         };
     }),
 
