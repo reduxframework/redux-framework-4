@@ -1,8 +1,6 @@
 /*global redux_change, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.slides = redux.field_objects.slides || {};
 

@@ -1,8 +1,6 @@
 /*global jQuery, document, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects      = redux.field_objects || {};
 	redux.field_objects.date = redux.field_objects.date || {};
 

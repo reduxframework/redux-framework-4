@@ -5,8 +5,6 @@
 /*global jQuery, document, redux, redux_change */
 
 (function( $ ) {
-	
-
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.button_set = redux.field_objects.button_set || {};
 

@@ -1,8 +1,6 @@
 /* global redux_change, wp, redux */
 
 (function( $ ) {
-	
-
 	redux.field_objects         = redux.field_objects || {};
 	redux.field_objects.gallery = redux.field_objects.gallery || {};
 

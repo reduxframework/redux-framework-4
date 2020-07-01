@@ -5,8 +5,6 @@
 /*global jQuery, document, redux, colorValidate */
 
 ( function( $ ) {
-	
-
 	var proLoaded = true;
 
 	redux.field_objects                = redux.field_objects || {};

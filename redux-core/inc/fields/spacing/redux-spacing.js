@@ -1,8 +1,6 @@
 /*global redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects         = redux.field_objects || {};
 	redux.field_objects.spacing = redux.field_objects.spacing || {};
 

@@ -11,8 +11,6 @@
  * And again on:        April 4, 2017 for v4.0
  */
 (function( $ ) {
-	
-
 	var selVals     = [];
 	var isSelecting = false;
 	var proLoaded   = true;

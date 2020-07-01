@@ -1,8 +1,6 @@
 /*global jQuery, document, redux, redux_change, ace */
 
 ( function( $ ) {
-	
-
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.ace_editor = redux.field_objects.ace_editor || {};
 

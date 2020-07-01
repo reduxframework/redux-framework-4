@@ -5,9 +5,7 @@
  */
 
 ( function( $ ) {
-	
-
-	$(
+$(
 		function() {
 			$( '#theme-check > h2' ).html( $( '#theme-check > h2' ).html() + ' with Redux Theme-Check' );
 

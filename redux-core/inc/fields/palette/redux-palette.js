@@ -5,8 +5,6 @@
 /*global jQuery, document, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects         = redux.field_objects || {};
 	redux.field_objects.palette = redux.field_objects.palette || {};
 

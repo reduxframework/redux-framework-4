@@ -1,8 +1,6 @@
 /* global redux, redux_change */
 
 (function( $ ) {
-	
-
 	redux.field_objects                    = redux.field_objects || {};
 	redux.field_objects.color_rgba         = redux.field_objects.color_rgba || {};
 	redux.field_objects.color_rgba.fieldID = '';

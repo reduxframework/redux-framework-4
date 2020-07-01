@@ -1,8 +1,6 @@
 /* global confirm, redux, redux_change */
 
 (function( $ ) {
-	
-
 	redux.field_objects              = redux.field_objects || {};
 	redux.field_objects.image_select = redux.field_objects.image_select || {};
 

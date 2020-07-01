@@ -1,8 +1,6 @@
 /* global jQuery, document, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects               = redux.field_objects || {};
 	redux.field_objects.import_export = redux.field_objects.import_export || {};
 

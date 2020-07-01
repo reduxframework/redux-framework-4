@@ -8,8 +8,6 @@
 /*global redux_change, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects          = redux.field_objects || {};
 	redux.field_objects.checkbox = redux.field_objects.checkbox || {};
 

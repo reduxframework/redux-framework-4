@@ -1,8 +1,6 @@
 /*global redux, jsonView */
 
 (function( $ ) {
-	
-
 	redux.field_objects                = redux.field_objects || {};
 	redux.field_objects.options_object = redux.field_objects.options_object || {};
 

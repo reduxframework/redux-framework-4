@@ -1,9 +1,7 @@
 /* global window */
 
 ( function( $ ) {
-	
-
-	$.redux_welcome = $.redux_welcome || {};
+$.redux_welcome = $.redux_welcome || {};
 
 	$( document ).ready(
 		function() {

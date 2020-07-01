@@ -5,8 +5,6 @@
 /*global jQuery, document, redux_change, redux, colorValidate */
 
 (function( $ ) {
-	
-
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.link_color = redux.field_objects.link_color || {};
 

@@ -9,8 +9,6 @@
 /*global redux_change, tinymce, redux*/
 
 (function( $ ) {
-	
-
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.editor = redux.field_objects.editor || {};
 
