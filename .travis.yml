@@ -79,7 +79,7 @@ before_script:
     - wget https://develop.svn.wordpress.org/trunk/.jshintrc
     # Install Yarn
     - curl -o- -L https://yarnpkg.com/install.sh | bash
-    - yarn install
+    - yarn install --ignore-engines
 
 # Run test script commands.
 # Default is specific to project language.
