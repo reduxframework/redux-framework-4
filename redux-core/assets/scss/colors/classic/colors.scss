@@ -8,19 +8,19 @@
 
     .ui-datepicker-buttonpane button.ui-datepicker-current {
         background: $buttonPrimary !important;
-        color: white !important;
+        color: #fff !important;
         border: 1px solid darken($buttonPrimary, 20%) !important;
 
     }
 
     .ui-datepicker-header {
         background-color: $secondaryColor !important;
-        color: white !important;
+        color: #fff !important;
     }
 
     .ui-datepicker td .ui-state-active {
         background-color: lighten($accentColor, 3%) !important;
-        color: white !important;
+        color: #fff !important;
     }
 
     .ui-datepicker td .ui-state-hover {
@@ -30,7 +30,7 @@
     .ui-datepicker td .ui-state-highlight {
         background: $accentColor !important;
         border: 1px solid $secondaryColor !important;
-        color: white !important;
+        color: #fff !important;
     }
 
     .redux-container-switch .cb-disable,
@@ -43,9 +43,9 @@
     }
 
     .ui-datepicker td .ui-state-active {
-        color: black !important;
+        color: #000 !important;
         font-weight: 700 !important;
-        background: white !important;
+        background: #fff !important;
     }
 
     .redux-container-switch .cb-disable.selected {

@@ -8,7 +8,7 @@
 /*global redux_change, wp, redux, colorValidate */
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.background = redux.field_objects.background || {};

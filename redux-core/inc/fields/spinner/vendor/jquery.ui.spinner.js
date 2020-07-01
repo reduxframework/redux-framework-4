@@ -18,7 +18,7 @@
  */
 
 jQuery.uaMatch = function( ua ) {
-	'use strict';
+	
 
 	var match;
 
@@ -36,7 +36,7 @@ jQuery.uaMatch = function( ua ) {
 };
 
 (function( $ ) {
-	'use strict';
+	
 
 	var active   = 'ui-state-active';
 	var hover    = 'ui-state-hover';

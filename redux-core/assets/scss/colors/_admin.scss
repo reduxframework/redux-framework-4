@@ -220,21 +220,21 @@ button.ui-datepicker-close {
 
 .ui-datepicker-buttonpane button.ui-datepicker-current {
     background: $primary !important;
-    color: white !important;
+    color: #fff !important;
     border: 1px solid darken($primary, 20%) !important;
 
 }
 
 .ui-datepicker-header {
     background-color: $secondary !important;
-    color: white !important;
+    color: #fff !important;
 }
 
 .ui-datepicker td {
     .ui-state-active {
-        color: black !important;
+        color: #000 !important;
         font-weight: 700 !important;
-        background: white !important;
+        background: #fff !important;
     }
 
     .ui-state-hover {
@@ -244,7 +244,7 @@ button.ui-datepicker-close {
     .ui-state-highlight {
         background: $primary !important;
         border: 1px solid $secondary !important;
-        color: white !important;
+        color: #fff !important;
     }
 }
 

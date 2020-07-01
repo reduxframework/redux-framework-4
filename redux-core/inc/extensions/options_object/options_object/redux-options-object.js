@@ -1,7 +1,7 @@
 /*global redux, jsonView */
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects                = redux.field_objects || {};
 	redux.field_objects.options_object = redux.field_objects.options_object || {};

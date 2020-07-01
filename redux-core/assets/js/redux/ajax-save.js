@@ -1,7 +1,6 @@
 /* global redux, tinyMCE, ajaxurl */
 
 (function( $ ) {
-	'use strict';
 
 	$.redux = $.redux || {};
 

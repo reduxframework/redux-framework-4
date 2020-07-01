@@ -482,9 +482,9 @@ p.redux-actions {
 }
 
 #redux-message {
+    margin: 5px 0 15px;
     margin-top: 15px !important;
     display: block !important;
-    margin: 5px 0 15px;
     border-color: #00a2e3;
 
     h4 {
@@ -554,7 +554,7 @@ p.redux-actions {
         text-align: center;
         position: relative;
         fieldset {
-            background: white;
+            background: #fff;
             border: 0 none;
             border-radius: 3px;
             box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -594,7 +594,7 @@ p.redux-actions {
             width: 100px;
             background: #27ae60;
             font-weight: bold;
-            color: white;
+            color: #fff;
             border: 0 none;
             border-radius: 1px;
             cursor: pointer;
@@ -605,7 +605,7 @@ p.redux-actions {
             }
             &:hover,
             &:focus {
-                box-shadow: 0 0 0 2px white, 0 0 0 3px #27ae60;
+                box-shadow: 0 0 0 2px #fff, 0 0 0 3px #27ae60;
             }
         }
         /*headings*/
@@ -672,7 +672,7 @@ p.redux-actions {
             width: auto;
             margin: 0;
             line-height: 36px;
-            color: white;
+            color: #fff;
             /*need more margin on the left of links to accomodate the numbers*/
             padding: 0 10px 0 60px;
             background: #666;

@@ -1,7 +1,7 @@
 /* global redux, redux_change */
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects                    = redux.field_objects || {};
 	redux.field_objects.color_rgba         = redux.field_objects.color_rgba || {};

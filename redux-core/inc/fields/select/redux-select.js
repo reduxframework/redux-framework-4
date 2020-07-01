@@ -1,7 +1,7 @@
 /*global redux_change, redux, ajaxurl*/
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.select = redux.field_objects.select || {};

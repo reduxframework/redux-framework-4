@@ -5,7 +5,7 @@
  */
 
 ( function( $ ) {
-	'use strict';
+	
 
 	$(
 		function() {

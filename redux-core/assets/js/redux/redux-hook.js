@@ -1,8 +1,6 @@
 /* jshint unused:false */
 
 function redux_hook( object, functionName, callback, before ) {
-	'use strict';
-
 	(function( originalFunction ) {
 		object[functionName] = function() {
 			var returnValue;

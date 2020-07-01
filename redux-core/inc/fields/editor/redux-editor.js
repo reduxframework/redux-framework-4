@@ -9,7 +9,7 @@
 /*global redux_change, tinymce, redux*/
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.editor = redux.field_objects.editor || {};

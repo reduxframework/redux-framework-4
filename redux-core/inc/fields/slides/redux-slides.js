@@ -1,7 +1,7 @@
 /*global redux_change, redux*/
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.slides = redux.field_objects.slides || {};

@@ -77,10 +77,16 @@ class Init {
 	 * @since 4.0.0
 	 */
 	public function editor_assets() {
+		$fs  = \Redux_Filesystem::get_instance();
+		$min = \Redux_Functions::is_min();
+
+		if ( ! $fs->file_exists( REDUXTEMPLATES_DIR_PATH . "assets/js/redux-templates{$min}.js" ) ) {
+			$min = false;
+		}
 
 		wp_enqueue_script(
 			'redux-templates-js',
-			plugins_url( 'assets/js/redux-templates.dev.js', REDUXTEMPLATES_FILE ),
+			plugins_url( "assets/js/redux-templates{$min}.js", REDUXTEMPLATES_FILE ),
 			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 			REDUXTEMPLATES_VERSION,
 			true
@@ -91,7 +97,7 @@ class Init {
 		// Backend editor scripts: common vendor files.
 		wp_enqueue_script(
 			'redux-templates-js-vendor',
-			plugins_url( 'assets/js/vendor.dev.js', REDUXTEMPLATES_FILE ),
+			plugins_url( "assets/js/vendor{$min}.js", REDUXTEMPLATES_FILE ),
 			array(),
 			REDUXTEMPLATES_VERSION,
 			true

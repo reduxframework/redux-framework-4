@@ -1,7 +1,7 @@
 /* global window */
 
 ( function( $ ) {
-	'use strict';
+	
 
 	$.redux_welcome = $.redux_welcome || {};
 

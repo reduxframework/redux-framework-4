@@ -1,6 +1,4 @@
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.stickyInfo = function() {

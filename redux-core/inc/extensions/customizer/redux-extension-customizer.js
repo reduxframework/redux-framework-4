@@ -10,7 +10,7 @@
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  */
 (function( $ ) {
-	'use strict';
+	
 
 	// Usage: jQuery('form').serializeJSON() .
 	$.fn.serializeJSON = function( options ) {
@@ -370,7 +370,7 @@
 }( window.jQuery || window.$ ) );
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.customizer = redux.customizer || {};
 

@@ -7,7 +7,7 @@
  */
 
 (function( $ ) {
-	'use strict';
+	
 
 	var scrollDir = '';
 

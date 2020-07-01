@@ -1,8 +1,6 @@
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.tabCheck = function() {

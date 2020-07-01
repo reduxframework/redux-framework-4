@@ -1,7 +1,7 @@
 /* global jQuery, document, redux */
 
 (function( $ ) {
-	'use strict';
+	
 
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.dimensions = redux.field_objects.dimensions || {};

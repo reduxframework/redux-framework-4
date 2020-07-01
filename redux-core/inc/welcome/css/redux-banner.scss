@@ -79,7 +79,7 @@
     margin: 1.5rem 10% 0;
     font-size: 1.375rem;
     font-weight: bold;
-    color: black;
+    color: #000;
 }
 
 @media (max-width: 530px) {
@@ -164,7 +164,7 @@
     margin: 1rem 0 0;
     font-size: 1.375rem;
     font-weight: normal;
-    color: black;
+    color: #000;
 }
 
 .redux-banner-full-step-support h3 {
@@ -216,13 +216,13 @@
 }
 
 .redux-banner-container-top-text + .redux-banner-inner-container .notice-dismiss::before {
-    color: white;
+    color: #fff;
 }
 
 .redux-banner-container-top-text {
     padding: 15px 35px 25px 15px;
     background-color: #24b0a6;
-    color: white;
+    color: #fff;
     display: flex;
     align-items: baseline;
 }
@@ -423,10 +423,8 @@
 }
 
 .redux-banner-button-container .dops-button.is-primary:focus {
-    box-shadow: 0 0 0 1px white, 0 0 0 3px #0071a1;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #0071a1;
 }
-
-
 
 .redux-disconnected .redux-banner-full-container {
     box-sizing: border-box;
@@ -454,7 +452,7 @@
 
 .redux-disconnected .redux-banner-full-container .redux-banner-full-container-card {
     padding: 4rem 4rem 6rem;
-    background: white;
+    background: #fff;
     margin: 1em;
 }
 

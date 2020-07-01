@@ -5,7 +5,7 @@
 /*global jQuery, document, redux, colorValidate */
 
 ( function( $ ) {
-	'use strict';
+	
 
 	var proLoaded = true;
 

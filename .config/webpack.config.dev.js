@@ -15,7 +15,7 @@ module.exports = [ {
 
 	output: {
 		path: path.join(__dirname, '../redux-templates/assets/js'),
-		filename: '[name].dev.js',
+		filename: '[name].js',
 	},
 
 	// Permit importing @wordpress/* packages.

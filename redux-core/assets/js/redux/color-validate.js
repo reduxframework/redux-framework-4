@@ -1,8 +1,6 @@
 /* jshint unused:false */
 
 function colorValidate( field ) {
-	'use strict';
-
 	var value = jQuery( field ).val();
 
 	var hex = colorNameToHex( value );
@@ -14,8 +12,6 @@ function colorValidate( field ) {
 }
 
 function colorNameToHex( colour ) {
-	'use strict';
-
 	var tcolour = colour.replace( /^\s\s*/, '' ).replace( /\s\s*$/, '' ).replace( '#', '' );
 
 	var colours = {

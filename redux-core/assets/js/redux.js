@@ -1,7 +1,6 @@
 /* global redux, tinyMCE, ajaxurl */
 
 (function( $ ) {
-	'use strict';
 
 	$.redux = $.redux || {};
 
@@ -143,8 +142,6 @@
 /* jshint unused:false */
 
 function colorValidate( field ) {
-	'use strict';
-
 	var value = jQuery( field ).val();
 
 	var hex = colorNameToHex( value );
@@ -156,8 +153,6 @@ function colorValidate( field ) {
 }
 
 function colorNameToHex( colour ) {
-	'use strict';
-
 	var tcolour = colour.replace( /^\s\s*/, '' ).replace( /\s\s*$/, '' ).replace( '#', '' );
 
 	var colours = {
@@ -312,8 +307,6 @@ function colorNameToHex( colour ) {
 }
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.expandOptions = function( parent ) {
@@ -376,8 +369,6 @@ function colorNameToHex( colour ) {
 /* global redux, redux_change */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.initEvents = function( el ) {
@@ -532,8 +523,6 @@ function colorNameToHex( colour ) {
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.initFields = function() {
@@ -573,8 +562,6 @@ function colorNameToHex( colour ) {
 /* global redux */
 
 ( function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$( document ).ready(
@@ -716,8 +703,6 @@ function colorNameToHex( colour ) {
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.sanitize = function() {
@@ -909,8 +894,6 @@ function colorNameToHex( colour ) {
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.initQtip = function() {
@@ -1115,8 +1098,6 @@ var confirmOnPageExit = function( e ) {
 
 	// Return; // ONLY FOR DEBUGGING.
 	// If we haven't been passed the event get the window.event.
-	'use strict';
-
 	var message;
 
 	e = e || window.event;
@@ -1135,8 +1116,6 @@ var confirmOnPageExit = function( e ) {
 };
 
 function redux_change( variable ) {
-	'use strict';
-
 	(function( $ ) {
 		var rContainer;
 		var opt_name;
@@ -1255,8 +1234,6 @@ function redux_change( variable ) {
 /* jshint unused:false */
 
 function redux_hook( object, functionName, callback, before ) {
-	'use strict';
-
 	(function( originalFunction ) {
 		object[functionName] = function() {
 			var returnValue;
@@ -1279,8 +1256,6 @@ function redux_hook( object, functionName, callback, before ) {
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.makeBoolStr = function( val ) {
@@ -1828,8 +1803,6 @@ function redux_hook( object, functionName, callback, before ) {
 })( jQuery );
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.stickyInfo = function() {
@@ -1864,8 +1837,6 @@ function redux_hook( object, functionName, callback, before ) {
 /* global redux */
 
 (function( $ ) {
-	'use strict';
-
 	$.redux = $.redux || {};
 
 	$.redux.tabCheck = function() {

@@ -11,7 +11,7 @@
  * And again on:        April 4, 2017 for v4.0
  */
 (function( $ ) {
-	'use strict';
+	
 
 	var selVals     = [];
 	var isSelecting = false;
