@@ -86,17 +86,16 @@
 	},
 	"scripts": {
 		"test": "jest --watchAll",
-		"phpcs": "phpcs -v --standard=ruleset.xml .",
-		"phpcbf": "phpcbf -v --standard=ruleset.xml .",
 		"start": "webpack --config .config/webpack.config.dev.js --watch",
 		"watch": "yarn start",
 		"build": "NODE_ENV=production webpack --config .config/webpack.config.prod.js",
 		"release": "yarn build && gulp",
 		"deploy": "yarn release && .config/push_to_master.sh",
 		"testOne": "jest src/components/dependent-plugins/tests/index.test.js",
+		"phpcs": "phpcs -v --standard=ruleset.xml .",
+		"phpcbf": "phpcbf -v --standard=ruleset.xml .",
 		"stylelint": "wp-scripts lint-style ./**/*.scss",
-		"jslint": "wp-scripts lint-js",
-		"templates-stylelint": "yarn run stylelint redux-templates/src/"
+		"jslint": "wp-scripts lint-js"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.8.4",
