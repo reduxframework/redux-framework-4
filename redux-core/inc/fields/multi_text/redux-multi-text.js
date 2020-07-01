@@ -1,6 +1,8 @@
 /*global redux_change, redux*/
 
 (function( $ ) {
+	'use strict';
+
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.multi_text = redux.field_objects.multi_text || {};
 

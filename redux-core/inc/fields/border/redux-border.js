@@ -5,6 +5,8 @@
 /*global redux_change, redux, colorValidate */
 
 (function( $ ) {
+	'use strict';
+
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.border = redux.field_objects.border || {};
 

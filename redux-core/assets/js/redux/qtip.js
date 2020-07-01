@@ -1,6 +1,8 @@
 /* global redux */
 
 (function( $ ) {
+	'use strict';
+
 	$.redux = $.redux || {};
 
 	$.redux.initQtip = function() {

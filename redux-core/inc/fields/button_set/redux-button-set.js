@@ -5,6 +5,8 @@
 /*global jQuery, document, redux, redux_change */
 
 (function( $ ) {
+	'use strict';
+
 	redux.field_objects            = redux.field_objects || {};
 	redux.field_objects.button_set = redux.field_objects.button_set || {};
 

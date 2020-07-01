@@ -1,6 +1,8 @@
 /* global redux, redux_change */
 
 (function( $ ) {
+	'use strict';
+
 	$.redux = $.redux || {};
 
 	$.redux.initEvents = function( el ) {

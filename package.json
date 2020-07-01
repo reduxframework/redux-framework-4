@@ -16,6 +16,7 @@
 	"resolutions": {
 		"lodash": "4.17.5"
 	},
+	"sourcType": "script",
 	"dependencies": {
 		"browser-sync": "^2.26.7",
 		"gifsicle": "^4.0.1",

@@ -8,6 +8,8 @@
  */
 
 (function( $ ) {
+	'use strict';
+
 	redux.field_objects        = redux.field_objects || {};
 	redux.field_objects.switch = redux.field_objects.switch || {};
 

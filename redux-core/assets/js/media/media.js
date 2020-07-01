@@ -8,6 +8,7 @@
  */
 
 ( function( $ ) {
+	'use strict';
 
 	var isFiltered;
 

@@ -5,6 +5,8 @@ var confirmOnPageExit = function( e ) {
 
 	// Return; // ONLY FOR DEBUGGING.
 	// If we haven't been passed the event get the window.event.
+	'use strict';
+
 	var message;
 
 	e = e || window.event;
@@ -23,6 +25,8 @@ var confirmOnPageExit = function( e ) {
 };
 
 function redux_change( variable ) {
+	'use strict';
+
 	(function( $ ) {
 		var rContainer;
 		var opt_name;

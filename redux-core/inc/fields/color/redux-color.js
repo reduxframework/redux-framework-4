@@ -5,6 +5,8 @@
 /*global jQuery, document, redux_change, redux, colorValidate */
 
 (function( $ ) {
+	'use strict';
+
 	redux.field_objects       = redux.field_objects || {};
 	redux.field_objects.color = redux.field_objects.color || {};
 

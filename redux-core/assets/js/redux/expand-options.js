@@ -1,4 +1,6 @@
 (function( $ ) {
+	'use strict';
+
 	$.redux = $.redux || {};
 
 	$.redux.expandOptions = function( parent ) {

@@ -1,6 +1,8 @@
 /*global jQuery, document, redux_change, redux*/
 
 (function( $ ) {
+	'use strict';
+
 	var scrollDir = '';
 
 	redux.field_objects          = redux.field_objects || {};

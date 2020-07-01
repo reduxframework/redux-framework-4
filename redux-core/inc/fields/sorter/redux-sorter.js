@@ -7,6 +7,8 @@
  */
 
 (function( $ ) {
+	'use strict';
+
 	var scrollDir = '';
 
 	redux.field_objects        = redux.field_objects || {};
