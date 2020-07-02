@@ -11,7 +11,7 @@ const {dispatch} = wp.data;
 const {createSuccessNotice} = dispatch('core/notices');
 const {insertBlocks} = dispatch('core/block-editor');
 
-const prefix = 'sb_';
+const prefix = 'redux_';
 const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
