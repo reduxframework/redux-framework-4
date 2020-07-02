@@ -178,17 +178,22 @@
         cursor: pointer;
         font-size: 13px;
         margin: 10px 1px 0 0;
-        color: #007cba;
+        font-weight: 500;
         background: transparent;
 
         &.active {
             box-shadow: inset 0 -2px #007cba;
-            border: 1px solid #007cba;
-            font-weight: 600;
+            border: 1px solid transparent;
+            border-bottom: 1px solid #007cba;
+
             color: #191e23;
+        }
+        &:hover {
+            color: #007cba;
         }
 
         &:focus {
+            border: 1px solid #007cba;
             outline: none;
         }
     }

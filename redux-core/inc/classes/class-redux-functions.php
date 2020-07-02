@@ -149,20 +149,22 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 */
 		public static function is_min() {
 			$min      = '';
-			$dev_mode = false;
+			$dev_mode = true;
 			// Sometimes, love ain't enough!
 			if ( ! isset( self::$parent ) ) {
 				$redux_all = Redux::all_instances();
-
 				if ( $redux_all > 0 ) {
 
 					foreach ( $redux_all as $opt_name => $arr ) {
+						if ( 'redux_demo' === $opt_name ) {
+							continue;
+						}
 						if ( empty( self::$parent ) ) {
 							self::$parent  = $redux_all[ $opt_name ];
 							self::$_parent = self::$parent;
 						}
-						if ( false !== $redux_all[ $opt_name ]->args['dev_mode'] ) {
-							$dev_mode      = true;
+						if ( false === $redux_all[ $opt_name ]->args['dev_mode'] ) {
+							$dev_mode      = false;
 							self::$parent  = $redux_all[ $opt_name ];
 							self::$_parent = self::$parent;
 						}

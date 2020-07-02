@@ -12,9 +12,9 @@
         h3 {
             color: $secondaryColor;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1px;
-            line-height: 14px;
+            line-height: 13px;
             font-family: pn, "Open Sans", Arial, sans-serif;
             text-transform: uppercase;
             display: -webkit-box;
@@ -30,7 +30,8 @@
                 content: "";
                 width: 100%;
                 height: 1px;
-                background-color: #424951;
+                margin-top: -3px;
+                background-color: $secondaryColor;
                 margin-left: 20px;
                 display: block;
             }
