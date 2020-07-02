@@ -170,18 +170,22 @@
 
     button:not(.redux-templates-builder-close-modal) {
         display: inline-block;
-        line-height: 30px;
-        padding: 15px 20px;
+        line-height: 28px;
+        padding: 10px 15px;
+        text-align: left;
+        width: 150px;
         border: none;
         cursor: pointer;
         font-size: 13px;
-        margin: 0 1px 0 0;
-        color: #191e23;
+        margin: 10px 1px 0 0;
+        color: $primary-color;
         background: transparent;
 
         &.active {
             box-shadow: inset 0 -2px #007cba;
+            border: 1px solid #007cba;
             font-weight: 600;
+            color: #191e23;
         }
 
         &:focus {
