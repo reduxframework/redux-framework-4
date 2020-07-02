@@ -100,6 +100,15 @@
                 right: 20px;
                 left: auto;
             }
+            &.clear-search {
+                right: 20px;
+                left: auto;
+                color: #fff;
+                font-size: 12px;
+                display: none;
+                cursor: pointer;
+                padding: 5px;
+            }
         }
 
         input {
@@ -122,6 +131,9 @@
                 box-shadow: none;
                 outline: 0;
             }
+        }
+        &:hover .clear-search {
+            display: block;
         }
     }
 }

@@ -36,7 +36,7 @@ export function TabHeader(props) {
                         <i className="fas fa-search" />
                         <input type="text" placeholder={__('Type to search', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
                         <ChallengeDot step={1} />
-                        <i className="fas fa-times" />
+                        <i className="fas fa-times clear-search" onClick={() => setSearchContext('')} />
                     </div>
                 }
             </div>
