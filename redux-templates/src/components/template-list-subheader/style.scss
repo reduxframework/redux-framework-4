@@ -1,6 +1,13 @@
 .redux-templates-template-filters .is-active {
-    background: #555;
-    color: #fff;
+    background: #fff;
+    color: #191e23;
+    box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
+}
+
+.redux-templates-template-filters .components-button:focus:not(:disabled):not(.is-active) {
+    background: transparent;
+    box-shadow: none;
+    color: #555d66;
 }
 
 .refresh-library {
