@@ -37,7 +37,7 @@ export const handleBlock = (data, installedDependencies) => {
 }
 
 export const processImportHelper = () => {
-    const { setImportingTemplate, discardAllErrorMessages } = dispatch('redux-templates/sectionslist');
+    const { setImportingTemplate, discardAllErrorMessages, clearSearch } = dispatch('redux-templates/sectionslist');
     const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
     const data = select('redux-templates/sectionslist').getImportingTemplate();
     const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
@@ -93,6 +93,7 @@ export const processImportHelper = () => {
             else {
                 ModalManager.close();
                 ModalManager.closeCustomizer();
+                clearSearch();
                 setImportingTemplate(null);
             }
             afterImportHandling(data, handledData);

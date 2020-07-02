@@ -14,7 +14,7 @@ export const initialState = {
         priceFilter: getWithExpiry('section_price', ''),
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
-        searchContext: getWithExpiry('section_search', ''),
+        searchContext: '',
         sortBy: getWithExpiry('section_sort', 'name'),
         currentPage: getWithExpiry('section_page', 0)
     },
@@ -24,7 +24,7 @@ export const initialState = {
         priceFilter: getWithExpiry('page_price', ''),
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
-        searchContext: getWithExpiry('page_search', ''),
+        searchContext: '',
         sortBy: getWithExpiry('page_sort', 'name'),
         currentPage: getWithExpiry('page_page', 0)
     },
@@ -34,7 +34,7 @@ export const initialState = {
         priceFilter: getWithExpiry('collection_price', ''),
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
-        searchContext: getWithExpiry('collection_search', ''),
+        searchContext: '',
         activeCollection: null,
         sortBy: getWithExpiry('collection_sort', 'name'),
         currentPage: getWithExpiry('collection_page', 0)
@@ -274,6 +274,22 @@ export const reducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 activateDialog: action.data
+            }
+        case 'CLEAR_SEARCH':
+            return {
+                ...state,
+                section: {
+                    ...state.section,
+                    searchContext: ''
+                },
+                page: {
+                    ...state.page,
+                    searchContext: ''
+                },
+                collection: {
+                    ...state.collection,
+                    searchContext: ''
+                }
             }
     }
 

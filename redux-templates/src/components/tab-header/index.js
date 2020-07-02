@@ -5,7 +5,7 @@ import {ModalManager} from '../../modal-manager';
 import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 export function TabHeader(props) {
     const { activeItemType, searchContext, activeCollection, isChallengeOpen } = props;
-    const { setActiveItemType, setSearchContext, setChallengeOpen } = props;
+    const { setActiveItemType, setSearchContext, setChallengeOpen, clearSearch } = props;
 
     const isActive = (itemType) => {
         return (activeItemType === itemType) ? 'active' : '';
@@ -21,7 +21,10 @@ export function TabHeader(props) {
     }
 
     const closeModal = () => {
-        if (isChallengeOpen === false) ModalManager.close();
+        if (isChallengeOpen === false) {
+            clearSearch();
+            ModalManager.close();
+        }
     }
 
     return (
@@ -31,8 +34,9 @@ export function TabHeader(props) {
                     ((activeItemType !== 'collection'  || activeCollection === null) && activeItemType !== 'saved') &&
                     <div>
                         <i className="fas fa-search" />
-                        <input type="search" placeholder={__('Type to search', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
+                        <input type="text" placeholder={__('Type to search', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
                         <ChallengeDot step={1} />
+                        <i className="fas fa-times" />
                     </div>
                 }
             </div>
@@ -56,11 +60,13 @@ export default compose([
         const {
             setActiveItemType,
             setSearchContext,
+            clearSearch
         } = dispatch('redux-templates/sectionslist');
 
         return {
             setActiveItemType,
-            setSearchContext
+            setSearchContext,
+            clearSearch
         };
     }),
 

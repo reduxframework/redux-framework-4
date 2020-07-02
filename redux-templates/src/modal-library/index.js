@@ -19,7 +19,7 @@ import './style.scss'
 function LibraryModal(props) {
     const {
         fetchLibraryFromAPI, activeCollection, activeItemType, errorMessages, importingTemplate, challengeFinalStatus, isChallengeOpen,
-        setLoading, setImportingTemplate
+        setLoading, setImportingTemplate, clearSearch
     } = props;
     const [loaded, setLoaded] = useState(false);
     const [escKeyPressed, setEscKeyPressed] = useState(false);
@@ -50,8 +50,10 @@ function LibraryModal(props) {
             } else {
                 if (importingTemplate)
                     setImportingTemplate(null);
-                else
+                else {
                     ModalManager.close();
+                    clearSearch();
+                }
             }
         }
     }, [escKeyPressed])
@@ -95,13 +97,15 @@ export default compose([
         const {
             setLoading,
             setLibrary,
-            setImportingTemplate
+            setImportingTemplate,
+            clearSearch
         } = dispatch('redux-templates/sectionslist');
 
         return {
             setLoading,
             setLibrary,
-            setImportingTemplate
+            setImportingTemplate,
+            clearSearch
         };
     }),
 

@@ -153,5 +153,10 @@ export const actions = {
             type: 'SET_ACTIVATE_DIALOG_DISPLAY',
             data
         }
+    },
+    clearSearch() {
+        return {
+            type: 'CLEAR_SEARCH'
+        }
     }
 };

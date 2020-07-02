@@ -3597,7 +3597,8 @@ function TabHeader(props) {
         isChallengeOpen = props.isChallengeOpen;
   const setActiveItemType = props.setActiveItemType,
         setSearchContext = props.setSearchContext,
-        setChallengeOpen = props.setChallengeOpen;
+        setChallengeOpen = props.setChallengeOpen,
+        clearSearch = props.clearSearch;
 
   const isActive = itemType => {
     return activeItemType === itemType ? 'active' : '';
@@ -3613,7 +3614,10 @@ function TabHeader(props) {
   };
 
   const closeModal = () => {
-    if (isChallengeOpen === false) _modal_manager__WEBPACK_IMPORTED_MODULE_3__["ModalManager"].close();
+    if (isChallengeOpen === false) {
+      clearSearch();
+      _modal_manager__WEBPACK_IMPORTED_MODULE_3__["ModalManager"].close();
+    }
   };
 
   return wp.element.createElement("div", {
@@ -3623,13 +3627,15 @@ function TabHeader(props) {
   }, (activeItemType !== 'collection' || activeCollection === null) && activeItemType !== 'saved' && wp.element.createElement("div", null, wp.element.createElement("i", {
     className: "fas fa-search"
   }), wp.element.createElement("input", {
-    type: "search",
+    type: "text",
     placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Type to search', redux_templates.i18n),
     className: "form-control",
     value: searchContext,
     onChange: onSearchContextUpdate
   }), wp.element.createElement(_redux_templates_challenge_tooltip_ChallengeDot__WEBPACK_IMPORTED_MODULE_4__["default"], {
     step: 1
+  }), wp.element.createElement("i", {
+    className: "fas fa-times"
   }))), wp.element.createElement("div", {
     className: "redux-templates-template-list-header",
     "data-tut": "tour__navigation"
@@ -3657,11 +3663,13 @@ function TabHeader(props) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["compose"])([Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withDispatch"])(dispatch => {
   const _dispatch = dispatch('redux-templates/sectionslist'),
         setActiveItemType = _dispatch.setActiveItemType,
-        setSearchContext = _dispatch.setSearchContext;
+        setSearchContext = _dispatch.setSearchContext,
+        clearSearch = _dispatch.clearSearch;
 
   return {
     setActiveItemType,
-    setSearchContext
+    setSearchContext,
+    clearSearch
   };
 }), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])((select, props) => {
   const _select = select('redux-templates/sectionslist'),
@@ -5407,7 +5415,8 @@ function LibraryModal(props) {
         challengeFinalStatus = props.challengeFinalStatus,
         isChallengeOpen = props.isChallengeOpen,
         setLoading = props.setLoading,
-        setImportingTemplate = props.setImportingTemplate;
+        setImportingTemplate = props.setImportingTemplate,
+        clearSearch = props.clearSearch;
 
   const _useState = useState(false),
         _useState2 = _slicedToArray(_useState, 2),
@@ -5449,7 +5458,10 @@ function LibraryModal(props) {
       if (_modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].isCustomizerOpened()) {
         _modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].closeCustomizer();
       } else {
-        if (importingTemplate) setImportingTemplate(null);else _modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].close();
+        if (importingTemplate) setImportingTemplate(null);else {
+          _modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].close();
+          clearSearch();
+        }
       }
     }
   }, [escKeyPressed]);
@@ -5483,12 +5495,14 @@ function LibraryModal(props) {
   const _dispatch = dispatch('redux-templates/sectionslist'),
         setLoading = _dispatch.setLoading,
         setLibrary = _dispatch.setLibrary,
-        setImportingTemplate = _dispatch.setImportingTemplate;
+        setImportingTemplate = _dispatch.setImportingTemplate,
+        clearSearch = _dispatch.clearSearch;
 
   return {
     setLoading,
     setLibrary,
-    setImportingTemplate
+    setImportingTemplate,
+    clearSearch
   };
 }), withSelect(select => {
   const _select = select('redux-templates/sectionslist'),
@@ -6381,7 +6395,8 @@ const __ = wp.i18n.__;
 function SavedView(props) {
   const insertBlocks = props.insertBlocks,
         discardAllErrorMessages = props.discardAllErrorMessages,
-        appendErrorMessage = props.appendErrorMessage;
+        appendErrorMessage = props.appendErrorMessage,
+        clearSearch = props.clearSearch;
 
   const _useState = useState([]),
         _useState2 = _slicedToArray(_useState, 2),
@@ -6428,6 +6443,7 @@ function SavedView(props) {
   const importSections = rawData => {
     let pageData = parse(rawData);
     insertBlocks(pageData);
+    clearSearch();
     _modal_manager__WEBPACK_IMPORTED_MODULE_2__["ModalManager"].close(); //close modal
   };
 
@@ -6499,12 +6515,14 @@ function SavedView(props) {
 
   const _dispatch2 = dispatch('redux-templates/sectionslist'),
         appendErrorMessage = _dispatch2.appendErrorMessage,
-        discardAllErrorMessages = _dispatch2.discardAllErrorMessages;
+        discardAllErrorMessages = _dispatch2.discardAllErrorMessages,
+        clearSearch = _dispatch2.clearSearch;
 
   return {
     insertBlocks,
     appendErrorMessage,
-    discardAllErrorMessages
+    discardAllErrorMessages,
+    clearSearch
   };
 })])(SavedView));
 
@@ -8305,7 +8323,8 @@ const handleBlock = (data, installedDependencies) => {
 const processImportHelper = () => {
   const _dispatch4 = dispatch('redux-templates/sectionslist'),
         setImportingTemplate = _dispatch4.setImportingTemplate,
-        discardAllErrorMessages = _dispatch4.discardAllErrorMessages;
+        discardAllErrorMessages = _dispatch4.discardAllErrorMessages,
+        clearSearch = _dispatch4.clearSearch;
 
   const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
   const data = select('redux-templates/sectionslist').getImportingTemplate();
@@ -8360,6 +8379,7 @@ const processImportHelper = () => {
       }));else {
         _redux_templates_modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].close();
         _redux_templates_modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].closeCustomizer();
+        clearSearch();
         setImportingTemplate(null);
       }
       afterImportHandling(data, handledData);
@@ -8735,6 +8755,12 @@ const actions = {
     return {
       type: 'SET_ACTIVATE_DIALOG_DISPLAY',
       data
+    };
+  },
+
+  clearSearch() {
+    return {
+      type: 'CLEAR_SEARCH'
     };
   }
 
@@ -9689,7 +9715,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_category', ''),
     dependencyFilters: {},
-    searchContext: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_search', ''),
+    searchContext: '',
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_page', 0)
   },
@@ -9699,7 +9725,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_category', ''),
     dependencyFilters: {},
-    searchContext: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_search', ''),
+    searchContext: '',
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_page', 0)
   },
@@ -9709,7 +9735,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_category', 'name'),
     dependencyFilters: {},
-    searchContext: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_search', ''),
+    searchContext: '',
     activeCollection: null,
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_page', 0)
@@ -9925,6 +9951,19 @@ const reducer = (state = initialState, action) => {
     case 'SET_ACTIVATE_DIALOG_DISPLAY':
       return _objectSpread(_objectSpread({}, state), {}, {
         activateDialog: action.data
+      });
+
+    case 'CLEAR_SEARCH':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        section: _objectSpread(_objectSpread({}, state.section), {}, {
+          searchContext: ''
+        }),
+        page: _objectSpread(_objectSpread({}, state.page), {}, {
+          searchContext: ''
+        }),
+        collection: _objectSpread(_objectSpread({}, state.collection), {}, {
+          searchContext: ''
+        })
       });
   }
 

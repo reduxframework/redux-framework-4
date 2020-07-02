@@ -13,7 +13,7 @@ import {Modal, ModalManager} from '../../modal-manager'
 import reject from 'lodash/reject';
 
 function SavedView(props) {
-    const {insertBlocks, discardAllErrorMessages, appendErrorMessage} = props;
+    const {insertBlocks, discardAllErrorMessages, appendErrorMessage, clearSearch} = props;
     const [savedSections, setSavedSections] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
     if (dataLoaded === false) {
@@ -46,6 +46,7 @@ function SavedView(props) {
     const importSections = (rawData) => {
         let pageData = parse(rawData);
         insertBlocks(pageData);
+        clearSearch();
         ModalManager.close(); //close modal
     }
 
@@ -127,13 +128,15 @@ export default compose([
 
         const {
             appendErrorMessage,
-            discardAllErrorMessages
+            discardAllErrorMessages,
+            clearSearch
         } = dispatch('redux-templates/sectionslist');
 
         return {
             insertBlocks,
             appendErrorMessage,
-            discardAllErrorMessages
+            discardAllErrorMessages,
+            clearSearch
         };
     })
 ])(SavedView);
