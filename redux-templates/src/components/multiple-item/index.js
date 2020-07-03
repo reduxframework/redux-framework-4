@@ -15,17 +15,20 @@ const MultipleItem = (props) => {
     return (
         <div className="redux-templates-multiple-template-box">
             <div className="multiple-template-view" onClick={ () => onSelectCollection( ID ) } >
-                <div className="redux-templates-default-template-image">
+				<div className="redux-templates-box-shadow">
+					<div className="redux-templates-default-template-image">
+						<SafeImageLoad url={image} alt={__('Default Template', redux_templates.i18n)} />
+						{requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
+						{!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux_templates.i18n)} position="bottom" key={ID}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
+					</div>
 					<div className="redux-templates-button-overlay">
 						{requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
 						{!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux_templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
-
+						<div className="redux-templates-import-button-group">
+							<div className="action-buttons"><a className="redux-templates-button download-button">{__('View Templates', redux_templates.i18n)}</a></div>
+						</div>
 					</div>
-                    <SafeImageLoad url={image} alt={__('Default Template', redux_templates.i18n)} />
-                    {requiresPro(data) && <span className="redux-templates-pro-badge">{__('Premium', redux_templates.i18n)}</span>}
-                    {!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Required Plugins', redux_templates.i18n)} position="bottom" key={ID}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
-                </div>
-
+				</div>
                 <div className="redux-templates-tmpl-info">
                     <h5 className="redux-templates-tmpl-title" dangerouslySetInnerHTML={{__html:name}}/>
                     <span className="redux-templates-temp-count">{ pages ? pages.length : 0 } {__('Templates', redux_templates.i18n)}</span>
