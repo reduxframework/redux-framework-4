@@ -291,6 +291,28 @@ export const reducer = ( state = initialState, action ) => {
                     searchContext: ''
                 }
             }
+		case 'CLEAR_STATE':
+			return {
+				...state,
+				section: {
+					...state.section,
+					priceFilter: '',
+					activeCategory: '',
+					searchContext: '',
+				},
+				page: {
+					...state.page,
+					priceFilter: '',
+					activeCategory: '',
+					searchContext: '',
+				},
+				collection: {
+					...state.collection,
+					priceFilter: '',
+					activeCategory: '',
+					searchContext: '',
+				}
+			}
     }
 
     return state;

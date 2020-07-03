@@ -3685,7 +3685,6 @@ function TabHeader(props) {
 
   const closeModal = () => {
     if (isChallengeOpen === false) {
-      clearSearch();
       _modal_manager__WEBPACK_IMPORTED_MODULE_3__["ModalManager"].close();
     }
   };
@@ -5487,7 +5486,8 @@ function LibraryModal(props) {
         isChallengeOpen = props.isChallengeOpen,
         setLoading = props.setLoading,
         setImportingTemplate = props.setImportingTemplate,
-        clearSearch = props.clearSearch;
+        clearSearch = props.clearSearch,
+        clearState = props.clearState;
 
   const _useState = useState(false),
         _useState2 = _slicedToArray(_useState, 2),
@@ -5501,6 +5501,7 @@ function LibraryModal(props) {
 
   let stateLibrary = null;
   useEffect(() => {
+    clearState();
     stateLibrary = fetchLibraryFromAPI();
 
     if (stateLibrary === null && loaded === false) {
@@ -5531,7 +5532,6 @@ function LibraryModal(props) {
       } else {
         if (importingTemplate) setImportingTemplate(null);else {
           _modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].close();
-          clearSearch();
         }
       }
     }
@@ -5567,13 +5567,15 @@ function LibraryModal(props) {
         setLoading = _dispatch.setLoading,
         setLibrary = _dispatch.setLibrary,
         setImportingTemplate = _dispatch.setImportingTemplate,
-        clearSearch = _dispatch.clearSearch;
+        clearSearch = _dispatch.clearSearch,
+        clearState = _dispatch.clearState;
 
   return {
     setLoading,
     setLibrary,
     setImportingTemplate,
-    clearSearch
+    clearSearch,
+    clearState
   };
 }), withSelect(select => {
   const _select = select('redux-templates/sectionslist'),
@@ -6514,7 +6516,6 @@ function SavedView(props) {
   const importSections = rawData => {
     let pageData = parse(rawData);
     insertBlocks(pageData);
-    clearSearch();
     _modal_manager__WEBPACK_IMPORTED_MODULE_2__["ModalManager"].close(); //close modal
   };
 
@@ -6586,14 +6587,12 @@ function SavedView(props) {
 
   const _dispatch2 = dispatch('redux-templates/sectionslist'),
         appendErrorMessage = _dispatch2.appendErrorMessage,
-        discardAllErrorMessages = _dispatch2.discardAllErrorMessages,
-        clearSearch = _dispatch2.clearSearch;
+        discardAllErrorMessages = _dispatch2.discardAllErrorMessages;
 
   return {
     insertBlocks,
     appendErrorMessage,
-    discardAllErrorMessages,
-    clearSearch
+    discardAllErrorMessages
   };
 })])(SavedView));
 
@@ -8450,7 +8449,6 @@ const processImportHelper = () => {
       }));else {
         _redux_templates_modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].close();
         _redux_templates_modal_manager__WEBPACK_IMPORTED_MODULE_1__["ModalManager"].closeCustomizer();
-        clearSearch();
         setImportingTemplate(null);
       }
       afterImportHandling(data, handledData);
@@ -8807,6 +8805,12 @@ const actions = {
   clearSearch() {
     return {
       type: 'CLEAR_SEARCH'
+    };
+  },
+
+  clearState() {
+    return {
+      type: 'CLEAR_STATE'
     };
   }
 
@@ -10008,6 +10012,25 @@ const reducer = (state = initialState, action) => {
           searchContext: ''
         }),
         collection: _objectSpread(_objectSpread({}, state.collection), {}, {
+          searchContext: ''
+        })
+      });
+
+    case 'CLEAR_STATE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        section: _objectSpread(_objectSpread({}, state.section), {}, {
+          priceFilter: '',
+          activeCategory: '',
+          searchContext: ''
+        }),
+        page: _objectSpread(_objectSpread({}, state.page), {}, {
+          priceFilter: '',
+          activeCategory: '',
+          searchContext: ''
+        }),
+        collection: _objectSpread(_objectSpread({}, state.collection), {}, {
+          priceFilter: '',
+          activeCategory: '',
           searchContext: ''
         })
       });

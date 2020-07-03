@@ -158,5 +158,10 @@ export const actions = {
         return {
             type: 'CLEAR_SEARCH'
         }
-    }
+    },
+	clearState() {
+		return {
+			type: 'CLEAR_STATE'
+		}
+	}
 };

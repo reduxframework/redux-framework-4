@@ -22,7 +22,6 @@ export function TabHeader(props) {
 
     const closeModal = () => {
         if (isChallengeOpen === false) {
-            clearSearch();
             ModalManager.close();
         }
     }

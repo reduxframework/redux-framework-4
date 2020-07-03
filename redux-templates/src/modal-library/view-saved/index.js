@@ -46,7 +46,6 @@ function SavedView(props) {
     const importSections = (rawData) => {
         let pageData = parse(rawData);
         insertBlocks(pageData);
-        clearSearch();
         ModalManager.close(); //close modal
     }
 
@@ -128,15 +127,13 @@ export default compose([
 
         const {
             appendErrorMessage,
-            discardAllErrorMessages,
-            clearSearch
+            discardAllErrorMessages
         } = dispatch('redux-templates/sectionslist');
 
         return {
             insertBlocks,
             appendErrorMessage,
-            discardAllErrorMessages,
-            clearSearch
+            discardAllErrorMessages
         };
     })
 ])(SavedView);

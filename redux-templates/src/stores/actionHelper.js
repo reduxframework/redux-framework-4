@@ -93,7 +93,6 @@ export const processImportHelper = () => {
             else {
                 ModalManager.close();
                 ModalManager.closeCustomizer();
-                clearSearch();
                 setImportingTemplate(null);
             }
             afterImportHandling(data, handledData);
