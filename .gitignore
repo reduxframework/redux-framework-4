@@ -75,18 +75,7 @@ yarn-debug.log*
 yarn-error.log*
 */.DS_Store
 build
-redux-templates/build
 */.DS_Store
 
-redux-templates/assets/js/*.dev.js
-redux-templates/assets/js/*.map
-redux-templates/assets/js/starterblocks.*.js.map
-redux-templates/assets/js/starterblocks.*.js
-redux-templates/assets/js/vendor.*.js.map
-redux-templates/assets/js/vendor.*.js
-vendor/composer/installers/**/*
-vendor/composer/LICENSE
-vendor/composer/installed.json
-redux-templates/composer.lock
-redux-templates/core/library.json
+vendor/*
 redux-templates/classes/library.json

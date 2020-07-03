@@ -1,0 +1,77 @@
+/*multiple box*/
+.redux-templates-multiple-template-box {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    position: relative;
+    transition: all 0.05s ease-in-out;
+
+    .multiple-template-view {
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 10px 0 -5px #fff, 0 10px 1px -4px rgba(0, 0, 0, 0.08), 0 20px 0 -10px #fff, 0 20px 1px -9px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        min-height: 100px;
+    }
+
+    .redux-templates-tmpl-info {
+        padding: 10px 12px;
+        position: absolute;
+        bottom: -1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-top: 1px solid #f2f4f7;
+        border-bottom: 1px solid #edeff2;
+
+        h5 {
+            margin: 0;
+            font-size: 14px;
+            color: #23282d;
+            line-height: 19px;
+
+            span {
+                font-size: 13px;
+                color: #cdcfd1;
+                line-height: 18px;
+            }
+        }
+    }
+
+    .redux-templates-button-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 0px;
+        opacity: 0;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
+        box-sizing: border-box;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+
+    &::after {
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    .redux-templates-button-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+
+    &:hover {
+        .multiple-template-view {
+            border-color: transparent;
+        }
+        .redux-templates-button-overlay {
+            opacity: 1;
+        }
+    }
+}

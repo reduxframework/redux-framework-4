@@ -28,10 +28,10 @@ define( 'REDUXTEMPLATES_VERSION', Redux_Core::$version );
 define( 'REDUXTEMPLATES_FILE', __FILE__ );
 
 // Define Dir URL.
-define( 'REDUXTEMPLATES_DIR_URL', plugin_dir_url( __FILE__ ) );
+define( 'REDUXTEMPLATES_DIR_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 // Define Physical Path.
-define( 'REDUXTEMPLATES_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'REDUXTEMPLATES_DIR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 // Version Check & Include Core.
 if ( version_compare( PHP_VERSION, '5.4', '>=' ) && version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
