@@ -23,6 +23,7 @@
 ehthumbs.db
 Thumbs.db
 ._*
+yarn.lock
 
 # Vim generated files #
 ######################
