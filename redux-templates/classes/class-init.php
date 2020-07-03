@@ -80,8 +80,13 @@ class Init {
 		$fs  = \Redux_Filesystem::get_instance();
 		$min = \Redux_Functions::is_min();
 
+		// Little safety here for developers.
 		if ( ! $fs->file_exists( REDUXTEMPLATES_DIR_PATH . "assets/js/redux-templates{$min}.js" ) ) {
-			$min = '';
+			if ( '.min' === $min ) {
+				$min = '';
+			} else {
+				$min = '.min';
+			}
 		}
 
 		wp_enqueue_script(
