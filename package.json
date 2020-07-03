@@ -95,7 +95,8 @@
 		"phpcs": "phpcs -v --standard=ruleset.xml .",
 		"phpcbf": "phpcbf -v --standard=ruleset.xml .",
 		"stylelint": "wp-scripts lint-style ./**/*.scss",
-		"jslint": "wp-scripts lint-js"
+		"jslint": "wp-scripts lint-js",
+		"update_nodelock": "rm package-lock.json && synp -s yarn.lock"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.8.4",
