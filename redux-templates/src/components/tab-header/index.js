@@ -32,10 +32,9 @@ export function TabHeader(props) {
                 {
                     ((activeItemType !== 'collection'  || activeCollection === null) && activeItemType !== 'saved') &&
                     <div>
-                        <i className="fas fa-search" />
-                        <input type="text" placeholder={__('Type to search', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
+                        <input type="text" placeholder={__('Search for a block', redux_templates.i18n)} className="form-control" value={searchContext} onChange={onSearchContextUpdate} />
                         <ChallengeDot step={1} />
-                        <i className="fas fa-times clear-search" onClick={() => setSearchContext('')} />
+                        <i className="fas fa-search" />
                     </div>
                 }
             </div>
