@@ -12,14 +12,16 @@ function Sidebar(props) {
         return (itemType !== 'collection' || layer === null);
     };
     return (
-        <div className="redux-templates-modal-sidebar-content" data-tut="tour__filtering">
+        <div>
             {
                 hasSidebar() &&
-                <div>
+                <>
                     <PriceFilter/>
-                    <CategoryFilter/>
-                    <DependencyFilter/>
-                </div>
+                    <div className="redux-templates-modal-sidebar-content">
+                        <CategoryFilter/>
+                        <DependencyFilter/>
+                    </div>
+                </>
             }
         </div>
     );

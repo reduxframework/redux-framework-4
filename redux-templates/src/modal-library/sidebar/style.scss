@@ -5,9 +5,60 @@
     background: $secondaryBack;
     color: $primaryColor; /* $secondaryColor;*/
     overflow-y: auto;
+    .redux-templates-template-filter-button-group {
+        margin: 10px 0;
+        border-bottom: 1px solid #383e48;
+        width: 100%;
+        display: inline-flex;
+
+        > div {
+            display: flex;
+
+            &:last-child button {
+                color: #f5a623;
+            }
+
+            button {
+                display: inline-flex;
+                line-height: 20px;
+                padding: 8px 10px;
+                width: 80px;
+                align-items: center;
+                background: none;
+                border: none;
+                position: relative;
+                z-index: 1;
+                cursor: pointer;
+                outline: none;
+                color: #fff;
+                box-shadow: none;
+                border: 1px solid transparent;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &.active {
+                    border-bottom: 1px solid $missingColorHover;
+                }
+
+                &.disabled {
+                    opacity: 0.5;
+                }
+
+                img {
+                    display: inline-block;
+                    width: auto;
+                    height: 14px;
+                    margin-right: 4px;
+                }
+            }
+        }
+
+    }
 
     .redux-templates-modal-sidebar-content {
-        padding: 25px;
+        padding: 0 25px 25px;
 
         h3 {
             color: $secondaryColor;
@@ -35,100 +86,6 @@
                 margin-left: 20px;
                 display: block;
             }
-        }
-
-        .redux-templates-template-filter-button-group {
-            margin: 0;
-            border: 1px solid #383e48;
-            width: 100%;
-            display: inline-flex;
-            margin-bottom: 10px;
-
-            > div {
-                display: flex;
-
-                &:last-child button {
-                    color: #f5a623;
-                }
-
-                button {
-                    display: inline-flex;
-                    line-height: 20px;
-                    padding: 5px 10px;
-                    align-items: center;
-                    background: none;
-                    border: none;
-                    position: relative;
-                    z-index: 1;
-                    cursor: pointer;
-                    outline: none;
-                    color: #fff;
-                    box-shadow: none;
-                    border: 1px solid transparent;
-                    border-radius: 4px;
-                    margin: 5px;
-
-                    &:hover {
-                        border: 1px solid #424951;
-                        color: $secondaryColor;
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
-
-                    &.active {
-                        background: #383e48;
-                        color: $missingColorHover !important;
-                        border: 1px solid #555d66;
-                    }
-
-                    &.disabled {
-                        opacity: 0.5;
-                    }
-
-                    img {
-                        display: inline-block;
-                        width: auto;
-                        height: 14px;
-                        margin-right: 4px;
-                    }
-
-                    //&:not(:last-child)::after {
-                    //	content: "";
-                    //	height: 13px;
-                    //	background-color: #c4cbcf;
-                    //	width: 1px;
-                    //	right: 0px;
-                    //	top: 50%;
-                    //	position: absolute;
-                    //	transform: translateY(-50%);
-                    //}
-
-                    //&.active::after {
-                    //	display: none;
-                    //}
-
-                    //&::before {
-                    //	content: "";
-                    //	position: absolute;
-                    //	background: $missingColorHover;
-                    //	height: calc(100% + 4px);
-                    //	width: calc(100% + 4px);
-                    //	left: -2px;
-                    //	top: -2px;
-                    //	z-index: -1;
-                    //	border-radius: 4px;
-                    //	box-shadow: 0 0 4px rgba(33, 32, 249, 0.3);
-                    //	opacity: 0;
-                    //}
-                    //
-                    //&.active::before {
-                    //	opacity: 1;
-                    //}
-                }
-            }
-
         }
 
         ul {
