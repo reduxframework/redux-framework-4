@@ -27,12 +27,14 @@
     }
 
     .redux-templates-import-wizard-spinner-wrapper {
+        position: absolute;
+        width: calc(100% - 60px); // as the parent has 30px each horizontal padding
+        height: 100%;
         flex: 1 1 auto;
         align-items: center;
         justify-content: center;
         display: flex;
         flex-direction: column;
-        height: 100%;
         .text-transition {
             text-align: center;
             font-size: 18px;
