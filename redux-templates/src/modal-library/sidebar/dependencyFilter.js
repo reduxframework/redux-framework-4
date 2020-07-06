@@ -10,15 +10,14 @@ import {getDefaultDependencies, getInstalledDependencies} from '../../stores/hel
 
 function DependencyFilter(props) {
     const {dependencyFilters, loading, wholePlugins} = props;
-    const {setDependencyFilters} = props;
-
+    const {setDependencyFilters, selectDependencies} = props;
     // Give the selected category(activeCategory) label className as "active"
     const isNoneChecked = () => {
         if (dependencyFilters.hasOwnProperty('none'))
             return dependencyFilters['none'].hasOwnProperty('value') ? dependencyFilters['none'].value : dependencyFilters['none'];
         return false;
     };
-
+    
     const toggleNoneChecked = () => {
         setDependencyFilters({...dependencyFilters,
             none: { value: dependencyFilters['none'].value === false, disabled: dependencyFilters['none']['disabled'] === true }
@@ -42,15 +41,16 @@ function DependencyFilter(props) {
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
                     <h3>{__('Required Plugins', redux_templates.i18n)}</h3>
                     <div className="redux-templates-select-actions">
-                        <Tooltip text={__('Select All', redux_templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(true)}>{__('All', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)}><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)}><a href="#" onClick={() => setAllCheckedAs(false)}>{__('None', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)}><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)}><a href="#" onClick={() => setDependencyFilters(getInstalledDependencies(dependencyFilters))}>
+                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)}><a href="#" 
+                            onClick={() => selectDependencies('installed')}>
                             {__('Installed', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
                         <Tooltip text={__('Reset Dependencies', redux_templates.i18n)}>
-                            <a href="#" onClick={() => setDependencyFilters(getDefaultDependencies(dependencyFilters))}>
+                            <a href="#" onClick={() => selectDependencies('default')}>
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
 
@@ -58,10 +58,6 @@ function DependencyFilter(props) {
                     <ul className="redux-templates-sidebar-dependencies">
                         { (loading === false) &&
                             <li>
-                                {/*<Tooltip*/}
-                                {/*    position='right'*/}
-                                {/*    text="These templates only use native WordPress Gutenberg Blocks"*/}
-                                {/*>*/}
                                 <CheckboxControl
                                     label={__('Native', redux_templates.i18n)}
                                     checked={isNoneChecked()}
@@ -70,7 +66,6 @@ function DependencyFilter(props) {
                                 <Tooltip text={__('Only default WordPress blocks used.', redux_templates.i18n)} position='right'>
                                     <span style={{float:'right', marginRight:'2px'}}><i className="fa fa-info-circle" /></span>
                                 </Tooltip>
-                                {/*</Tooltip>*/}
                             </li>
                         }
                         {
@@ -90,9 +85,10 @@ function DependencyFilter(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setDependencyFilters} = dispatch('redux-templates/sectionslist');
+        const {setDependencyFilters, selectDependencies} = dispatch('redux-templates/sectionslist');
         return {
-            setDependencyFilters
+            setDependencyFilters,
+            selectDependencies
         };
     }),
 

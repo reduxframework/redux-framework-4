@@ -154,6 +154,12 @@ export const actions = {
             data
         }
     },
+    selectDependencies(data) {
+        return {
+            type: 'SELECT_DEPENDENCIES',
+            data
+        }
+    },
     clearSearch() {
         return {
             type: 'CLEAR_SEARCH'

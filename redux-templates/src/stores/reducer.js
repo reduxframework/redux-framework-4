@@ -1,4 +1,4 @@
-import {parseSectionData, parsePageData, parseCollectionData} from './helper';
+import {parseSectionData, parsePageData, parseCollectionData, getInstalledDependencies} from './helper';
 import {getDefaultDependencies} from './helper';
 import {loadChallengeStep, saveChallengeStep, setWithExpiry, getWithExpiry} from './helper';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
@@ -15,6 +15,7 @@ export const initialState = {
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
         searchContext: '',
+        wholePlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
         currentPage: getWithExpiry('section_page', 0)
     },
@@ -25,6 +26,7 @@ export const initialState = {
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
         searchContext: '',
+        wholePlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
         currentPage: getWithExpiry('page_page', 0)
     },
@@ -35,6 +37,7 @@ export const initialState = {
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
         searchContext: '',
+        wholePlugins: [],
         activeCollection: null,
         sortBy: getWithExpiry('collection_sort', 'name'),
         currentPage: getWithExpiry('collection_page', 0)
@@ -63,10 +66,10 @@ export const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case 'SET_LIBRARY':
             redux_templates.supported_plugins = action.library.plugins;
-            const dependencies = getDefaultDependencies(action.library.dependencies);
-            let parsedSection = parseSectionData(action.library.sections);
-            let parsedPage = parsePageData(action.library.pages);
-			let parsedCollection = parseCollectionData(action.library);
+            const dependencies = getDefaultDependencies(Object.keys(action.library.dependencies));
+            const parsedSection = parseSectionData(action.library.sections);
+            const parsedPage = parsePageData(action.library.pages);
+			const parsedCollection = parseCollectionData(action.library);
             return {
                 ...state,
                 loading: false,
@@ -275,6 +278,40 @@ export const reducer = ( state = initialState, action ) => {
                 ...state,
                 activateDialog: action.data
             }
+        case 'SELECT_DEPENDENCIES':
+            const types = ['section', 'page', 'collection'];
+            let atomHandler;
+            switch(action.data) {
+                case 'all': 
+                case 'none':
+                    const newValue = action.data === 'all';
+                    atomHandler = (plugins) => plugins.reduce(
+                            (acc, key) => {
+                                return { ...acc, [key]: { value: newValue, disabled: false } }
+                            }, 
+                            { none: {value: true, disabled: false} }
+                        )
+                    break;
+                case 'installed':
+                    atomHandler = (plugins) => getInstalledDependencies(plugins);
+                    break;
+                default:
+                    atomHandler = (plugins) => getDefaultDependencies(plugins);
+                    break;
+            }
+            const filtered = types.reduce( (acc, cur) => {
+                return {
+                    ...acc,
+                    [cur]: {
+                        ...state[cur],
+                        dependencyFilters: atomHandler(state[cur].wholePlugins)
+                    }
+                }
+            }, {});
+            return {
+                ...state,
+                ...filtered
+            };
         case 'CLEAR_SEARCH':
             return {
                 ...state,
