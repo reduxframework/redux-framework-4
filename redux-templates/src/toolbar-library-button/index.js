@@ -12,11 +12,12 @@ import {ModalManager} from '../modal-manager';
 import LibraryModal from '../modal-library';
 import { ReduxTemplatesIcon } from '~redux-templates/icons'
 import {Tooltip} from '@wordpress/components';
+import {alignCenter} from '@wordpress/block-editor/build-module/components/block-vertical-alignment-toolbar/icons';
 
 
 function ToolbarLibraryButton (props) {
     return (
-        <Tooltip text={`Block Templates for ${redux_templates.theme_name}`}>
+        <Tooltip text={__( 'Redux Templates Library', redux_templates.i18n )} position={'bottom'}>
             <IconButton data-tut="tour__library_button"
                 onClick={ () => {
                     ModalManager.open(<LibraryModal />);

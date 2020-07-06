@@ -2,111 +2,145 @@
 
 .redux-templates-collection-modal-sidebar {
     min-width: 270px;
-    background: $secondaryBack;
+    background: #fff;
     color: $primaryColor; /* $secondaryColor;*/
+
+    border-right: 1px solid #e2e4e7;
     overflow-y: auto;
+
     .redux-templates-template-filter-button-group {
         margin: 10px 0;
-        border-bottom: 1px solid #383e48;
+        border-bottom: 1px solid #e2e4e7;
         width: 100%;
         display: inline-flex;
 
-        > div {
-            display: flex;
+        button {
+            flex-grow: 1;
+            min-width: 25%;
+            line-height: 20px;
+            padding: 8px 0 10px 15px;
+            align-items: center;
+            text-align: left;
+            background: none;
+            position: relative;
+            margin-bottom: -1px;
+            border-width: 0;
+            z-index: 1;
+            cursor: pointer;
+            outline: none;
+            border-color: transparent;
+            box-shadow: none;
+            border-bottom: unset;
 
-            &:last-child button {
-                color: #f5a623;
+            &::after {
+                content: attr(data-label);
+                display: block;
+                height: 0;
+                overflow: hidden;
+                speak: none;
+                visibility: hidden;
+            }
+            &:hover {
+                color: #007cba;
+                color: var(--wp-admin-theme-color);
             }
 
-            button {
-                display: inline-flex;
-                line-height: 20px;
-                padding: 8px 10px;
-                width: 80px;
-                align-items: center;
-                background: none;
-                border: none;
-                position: relative;
-                z-index: 1;
-                cursor: pointer;
-                outline: none;
-                color: #fff;
-                box-shadow: none;
-                border: 1px solid transparent;
+            &:focus {
+                box-shadow: inset 0 0 0 1.5px #007cba;
+                box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color);
+            }
+
+            &.active {
+                box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;
+                box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color);
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 1px;
+                    right: 0;
+                    left: 0;
+                    border-bottom: 4px solid transparent;
+                }
 
                 &:focus {
-                    outline: none;
-                }
-
-                &.active {
-                    border-bottom: 1px solid $missingColorHover;
-                }
-
-                &.disabled {
-                    opacity: 0.5;
-                }
-
-                img {
-                    display: inline-block;
-                    width: auto;
-                    height: 14px;
-                    margin-right: 4px;
+                    box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;
+                    box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color);
                 }
             }
+
+            &.disabled {
+                opacity: 0.5;
+            }
+
+            img {
+                display: inline-block;
+                width: auto;
+                height: 14px;
+                margin-right: 4px;
+            }
+            &:last-child {
+                color: #f5a623;
+            }
         }
+
 
     }
 
     .redux-templates-modal-sidebar-content {
-        padding: 0 25px 25px;
+        padding: 0 15px 15px;
 
         h3 {
-            color: $secondaryColor;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            line-height: 13px;
-            font-family: pn, "Open Sans", Arial, sans-serif;
+            margin: 5px 12px 10px 0;
+            color: #757575;
             text-transform: uppercase;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-align: center;
-            white-space: nowrap;
-            -ms-flex-align: center;
-            align-items: center;
-            margin-bottom: 10px;
+            font-size: 11px;
+            font-weight: 500;
 
             &::after {
-                content: "";
-                width: 100%;
-                height: 1px;
-                margin-top: -3px;
-                background-color: $secondaryColor;
-                margin-left: 20px;
-                display: block;
+                //content: "";
+                //width: 100%;
+                //height: 1px;
+                //margin-top: -3px;
+                //background-color: $secondaryColor;
+                //margin-left: 20px;
+                //display: block;
             }
         }
 
         ul {
-            list-style: none;
-            margin: 0;
+            list-style: unset;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                                             supported by Chrome, Edge, Opera and Firefox */
+
+            margin: 0 15px 15px 15px;
             padding: 0;
 
             li {
-                padding: 2px 0;
+                //padding: 2px 0;
                 display: block;
-                font-size: 14px;
+                font-size: 13px;
                 overflow: hidden;
                 cursor: pointer;
                 transition: 300ms;
 
                 &:not(.disabled):hover {
-                    color: $secondaryColor;
+                    color: #007cba;
+                    color: var(--wp-admin-theme-color);
                 }
 
                 &.active {
-                    color: $missingColorHover;
+                    color: #007cba;
+                    color: var(--wp-admin-theme-color);
+                    text-shadow: 0 0 0.5px #007cba;
+                    text-shadow: 0 0 0.5px var(--wp-admin-theme-color);
                 }
 
                 &.disabled {
@@ -116,20 +150,26 @@
                 span {
                     float: right;
                 }
+                i {
+                    font-size: 1.1em;
+                }
 
                 &.missing-dependency {
                     color: $missingColor;
 
                     &:hover {
-                        color: #b76914;
+                        color: $missingColorHover;
                     }
 
                     &.active {
                         color: $missingColorHover;
                     }
                     i {
-                        font-size: 0.9em;
                         margin-left: 5px;
+                        &.fa-exclamation-triangle {
+                            font-size: 0.9em;
+                            line-height: 1.5em;
+                        }
                     }
                 }
             }
@@ -154,8 +194,9 @@
 
     .redux-templates-select-actions {
         //text-align: center;
-        margin-bottom: 8px;
+        margin: 0 0 10px 15px;
         display: inline-flex;
+
         i.challenge-dot {
             margin-left: 10px;
         }

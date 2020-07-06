@@ -1,4 +1,5 @@
 @import "../variables";
+
 .redux-templates-collections-modal-body {
     display: flex;
     flex: 1;
@@ -72,6 +73,7 @@
     .components-base-control__field {
         display: flex;
     }
+
     textarea {
         width: 100%;
         height: 80px;
@@ -81,27 +83,30 @@
 .redux-templates-builder-modal-header {
     display: flex;
     //z-index: 9999;
-
-    box-shadow: inset 0 -1px #e2e4e7;
+    border-bottom: 1px solid #e2e4e7;
     background: #fff;
 
     .template-search-box {
         position: relative;
         width: 270px;
+
         > div {
             padding: 10px;
         }
+
         i {
-            font-size: 16px;
+            font-size: 13px;
             color: $secondaryColor;
             position: absolute;
             top: 50%;
             right: 30px;
             transform: translateY(-50%);
+
             &.challenge-dot {
                 right: 20px;
                 left: auto;
             }
+
             &.clear-search {
                 right: 20px;
                 left: auto;
@@ -116,22 +121,30 @@
         input {
             display: block;
             width: 100%;
-            height: 40px;
-            color: #191e23;
+            box-shadow: 0 0 0 transparent;
+            transition: box-shadow 0.1s linear;
+            border-radius: 2px;
+            line-height: normal;
+            display: block;
+            padding: 16px 48px 16px 16px;
             background: #f3f4f5;
             border: none;
-            font-size: 15px;
-            padding: 0 75px 0 20px;
-            margin: 0;
-            font-weight: 300;
-            border-radius: 0 !important;
-            @include placeholder-color(rgba(25, 30, 35, 0.6));
+            width: 100%;
+            height: 40px;
+            font-size: 13px;
+
+            @include placeholder-color(#606a73);
 
             &:focus {
-                box-shadow: none;
-                outline: 0;
+                border-color: #007cba;
+                border-color: var(--wp-admin-theme-color);
+                background: #fff;
+                box-shadow: 0 0 0 1.5px #007cba;
+                box-shadow: 0 0 0 1.5px var(--wp-admin-theme-color);
+                outline: 2px solid transparent;
             }
         }
+
         &:hover .clear-search {
             display: block;
         }
@@ -168,34 +181,99 @@
     flex-grow: 1;
     padding-right: 50px;
 
+
     button:not(.redux-templates-builder-close-modal) {
-        display: inline-block;
+        flex-grow: 1;
         line-height: 28px;
-        padding: 10px 15px;
+        margin-top: 6px;
+        padding: 14px 15px 13px 15px;
         text-align: left;
         width: 150px;
-        border: none;
+        align-items: center;
+        background: none;
+        position: relative;
+        margin-bottom: -1px;
+        border-width: 0;
+        z-index: 1;
         cursor: pointer;
-        font-size: 13px;
-        margin: 10px 1px 0 0;
-        font-weight: 500;
-        background: transparent;
+        outline: none;
+        border-color: transparent;
+        box-shadow: none;
+        border-bottom: unset;
 
-        &.active {
-            box-shadow: inset 0 -2px #007cba;
-            border: 1px solid transparent;
-            border-bottom: 1px solid #007cba;
-
-            color: #191e23;
+        &::after {
+            content: attr(data-label);
+            display: block;
+            height: 0;
+            overflow: hidden;
+            speak: none;
+            visibility: hidden;
         }
+
         &:hover {
             color: #007cba;
+            color: var(--wp-admin-theme-color);
         }
 
         &:focus {
-            outline: none;
+            box-shadow: inset 0 0 0 1.5px #007cba;
+            box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color);
         }
+
+        &.active {
+            box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;
+            box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 1px;
+                right: 0;
+                left: 0;
+                border-bottom: 4px solid transparent;
+            }
+
+            &:focus {
+                box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;
+                box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color);
+            }
+        }
+
+        &.disabled {
+            opacity: 0.5;
+        }
+
     }
+
+    //button:not(.redux-templates-builder-close-modal) {
+    //    display: inline-block;
+    //    line-height: 28px;
+    //    padding: 10px 15px;
+    //    text-align: left;
+    //    width: 150px;
+    //    border: none;
+    //    cursor: pointer;
+    //    font-size: 13px;
+    //    margin: 10px 1px 0 0;
+    //    font-weight: 500;
+    //    background: transparent;
+    //
+    //    &.active {
+    //        box-shadow: inset 0 -2px #007cba;
+    //        border: 1px solid transparent;
+    //        border-bottom: 1px solid #007cba;
+    //
+    //        color: #191e23;
+    //    }
+    //    &:hover {
+    //        color: #007cba;
+    //    }
+    //
+    //    &:focus {
+    //        outline: none;
+    //    }
+    //}
 
     .redux-templates-builder-close-modal {
         position: absolute;
@@ -240,6 +318,7 @@
         color: #0e2244;
         font-weight: 500;
         margin: 0;
+
         i.challenge-dot {
             margin-left: 10px;
         }

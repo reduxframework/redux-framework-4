@@ -22,21 +22,15 @@ function PriceFilter (props) {
 
     return (
         <div className='redux-templates-template-filter-button-group'>
-            <div>
                 <button onClick={() => setActivePriceFilter('')}
                         className={getClassnames('')}>{__('All', redux_templates.i18n)}</button>
-            </div>
-            <div>
                 <button onClick={() => setActivePriceFilter('free')} className={getClassnames('free')}
                         disabled={noStatistics('free')}>{__('Free', redux_templates.i18n)}</button>
-            </div>
-            <div>
                 <button onClick={() => setActivePriceFilter('pro')} className={getClassnames('pro')}
                         disabled={noStatistics('pro')}>
                     <img src={redux_templates.plugin + 'assets/img/icon-premium.svg'} alt=""/>
                     {__('Premium', redux_templates.i18n)}
                 </button>
-            </div>
         </div>
     );
 }
