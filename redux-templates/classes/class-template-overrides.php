@@ -27,18 +27,37 @@ class Template_Overrides {
 	public function __construct() { }
 
 	/**
+	 * Detects if the current page has blocks or not.
+	 *
+	 * @since 4.0.0
+	 * @return bool
+	 */
+	public static function is_gutenberg() {
+		global $post;
+		if ( function_exists( 'has_blocks' ) && has_blocks( $post->ID ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Detects the current theme and provides overrides.
 	 *
 	 * @since 4.0.0
 	 * @return string
 	 */
 	public static function get_overrides() {
+
+		if ( ! self::is_gutenberg() ) {
+			return;
+		}
+
 		$template = strtolower( get_template() );
 
-		$css = "";
-		if ( method_exists(__CLASS__, $template ) ) {
+		$css = '';
+		if ( method_exists( __CLASS__, $template ) ) {
 			$css = call_user_func( array( __CLASS__, $template ) );
-			$css = preg_replace( '/\s+/S', " ", $css );
+			$css = preg_replace( '/\s+/S', ' ', $css );
 		}
 
 		$css .= <<<'EOD'
@@ -53,10 +72,23 @@ class Template_Overrides {
 			}
 			.alignfull, .alignwide {
 				margin: unset !important;
+				max-width: unset !important;
+				width: unset !important;
 			}
+}
 EOD;
+		// Remove comments.
+		$css = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css );
+		// Remove space after colons.
+		$css = str_replace( ': ', ':', $css );
+		// Remove space after commas.
+		$css = str_replace( ', ', ',', $css );
+		// Remove space after opening bracket.
+		$css = str_replace( ' {', '{', $css );
+		// Remove whitespace.
+		$css = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ), '', $css );
 
-		return preg_replace( '/\s+/S', " ", $css );
+		return $css;
 	}
 
 	/**
@@ -74,6 +106,22 @@ EOD;
 	}
 
 	/**
+	 * Avada theme overrides.
+	 *
+	 * @since 4.0.0
+	 * @return string
+	 */
+	public static function avada() {
+		return <<<'EOD'
+			#main .fusion-row {
+				max-width: unset;
+			}
+EOD;
+	}
+
+
+
+	/**
 	 * TwentyTwenty theme overrides.
 	 *
 	 * @since 4.0.0
@@ -88,7 +136,6 @@ EOD;
 				margin-top: unset;
 				margin-bottom: unset;
 			}
-			
 EOD;
 	}
 

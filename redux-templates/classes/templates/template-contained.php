@@ -2,7 +2,7 @@
 /**
  * ReduxTemplates - Full Width / Contained
  *
- * @since 4.0.0
+ * @since   4.0.0
  * @package redux-framework
  */
 
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-?><style type="text/css"><?php echo ReduxTemplates\Template_Overrides::get_overrides(); ?></style><?php
+echo '<style type="text/css" id="redux-template-overrides">' . esc_html( ReduxTemplates\Template_Overrides::get_overrides() ) . '</style>';
 while ( have_posts() ) :
 	the_post();
 	the_content();

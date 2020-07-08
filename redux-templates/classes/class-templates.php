@@ -43,14 +43,17 @@ class Templates {
 	/**
 	 * Override the $content_width variable for themes so our templates work properly and don't look squished.
 	 *
+	 * @param array $to_find Template keys to check against.
+	 *
 	 * @since 4.0.0
+	 * @return bool
 	 */
 	public function check_template( $to_find = array() ) {
 		global $post;
 		if ( ! empty( $post ) ) {
 			$template = get_page_template_slug( $post->ID );
-			if ( false !== strpos( $template, 'redux' ) ){
-				$test    = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
+			if ( false !== strpos( $template, 'redux' ) ) {
+				$test = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
 				foreach ( $to_find as $key ) {
 					if ( false !== strpos( $test, $key ) ) {
 						return true;

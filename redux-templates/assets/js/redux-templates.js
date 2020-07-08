@@ -6065,7 +6065,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dependencyFilterRow */ "./redux-templates/src/modal-library/sidebar/dependencyFilterRow.js");
-/* harmony import */ var _stores_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../stores/helper */ "./redux-templates/src/stores/helper.js");
+/* harmony import */ var _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~redux-templates/stores/helper */ "./redux-templates/src/stores/helper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6166,7 +6166,7 @@ function DependencyFilter(props) {
     }
   }, wp.element.createElement("i", {
     className: "fa fa-info-circle"
-  })))), Object.keys(dependencyFilters).filter(pluginKey => wholePlugins.indexOf(pluginKey) !== -1).sort().map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })))), Object.keys(dependencyFilters).filter(pluginKey => wholePlugins.indexOf(pluginKey) !== -1 || pluginKey === _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["REDUXTEMPLATES_PRO_KEY"]).sort().map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: pluginKey,
     pluginKey: pluginKey
   })))));
@@ -8774,6 +8774,11 @@ const processImportHelper = () => {
     displayNotice(response.data, {
       type: 'snackbar'
     });
+    /* if (installedDependencies) { // To hijack redirect, for example, after installing Stackable
+        let iframe = document.createElement('iframe');
+        iframe.src= './';
+        document.body.appendChild(iframe);
+    } */
 
     if (response.success && response.data) {
       let responseBlockData = response.data; // Important: Update left count from the response in case of no Redux PRO
@@ -9394,11 +9399,12 @@ const valueOfDependencyFilter = dependencyFilter => {
 /*!**********************************************!*\
   !*** ./redux-templates/src/stores/helper.js ***!
   \**********************************************/
-/*! exports provided: getCurrentState, categorizeData, parseSectionData, parsePageData, parseCollectionData, getCollectionChildrenData, isBlockPro, missingPro, missingRequirement, setWithExpiry, getWithExpiry, handlingLocalStorageData, columnMap, pageSizeMap, getOnlySelectedDependencyFilters, getDefaultDependencies, getInstalledDependencies, missingPluginsArray, loadChallengeStep, saveChallengeStep */
+/*! exports provided: REDUXTEMPLATES_PRO_KEY, getCurrentState, categorizeData, parseSectionData, parsePageData, parseCollectionData, getCollectionChildrenData, isBlockPro, missingPro, missingRequirement, setWithExpiry, getWithExpiry, handlingLocalStorageData, columnMap, pageSizeMap, getOnlySelectedDependencyFilters, getDefaultDependencies, getInstalledDependencies, missingPluginsArray, loadChallengeStep, saveChallengeStep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDUXTEMPLATES_PRO_KEY", function() { return REDUXTEMPLATES_PRO_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentState", function() { return getCurrentState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categorizeData", function() { return categorizeData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseSectionData", function() { return parseSectionData; });
@@ -9691,8 +9697,7 @@ const getDefaultDependencies = dependencies => {
   return dependencies.reduce((acc, cur) => {
     // special handling for pro plugin not activated.
     let value = true;
-    if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
-    if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
+    if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY) value = false;
     return _objectSpread(_objectSpread({}, acc), {}, {
       [cur]: {
         value,
@@ -9704,10 +9709,12 @@ const getDefaultDependencies = dependencies => {
       value: true,
       disabled: false
     },
+    // Native element is included in default dependencies
     [REDUXTEMPLATES_PRO_KEY]: {
       value: true,
       disabled: false
-    }
+    } // Redux pro is included in default dependencies
+
   });
 };
 const getInstalledDependencies = dependencies => {
@@ -10356,6 +10363,7 @@ const reducer = (state = initialState, action) => {
       return _objectSpread(_objectSpread({}, state), {}, {
         activateDialog: action.data
       });
+    // Dependency Shortcut click handler: All, None, Installed and Reset
 
     case 'SELECT_DEPENDENCIES':
       const types = ['section', 'page', 'collection'];
@@ -10394,6 +10402,8 @@ const reducer = (state = initialState, action) => {
       }
 
       const filtered = types.reduce((acc, cur) => {
+        // save to the local storage as well
+        Object(_helper__WEBPACK_IMPORTED_MODULE_0__["setWithExpiry"])(state.activeItemType + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
             dependencyFilters: atomHandler(state[cur].wholePlugins)
