@@ -1,6 +1,7 @@
 import { withSelect } from '@wordpress/data'
 import ShareBlockButton from './buttons'
-import ReduxTemplatesIcon from '../icons'
+import { ReduxTemplatesIcon } from '~redux-templates/icons';
+
 if (wp.plugins) {
     const { registerPlugin } = wp.plugins;
     const Buttons = withSelect( select => {

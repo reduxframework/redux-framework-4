@@ -6,9 +6,11 @@ import { __ } from '@wordpress/i18n';
 import { compose, ifCondition } from '@wordpress/compose';
 import { download } from '../export/file';
 const { Fragment } = wp.element;
-import { ReduxTemplatesIconColor } from '../../icons';
+import { colorizeIcon } from '~redux-templates/icons'
 
-function ExportContentMenuItem( { createNotice, editedPostContent } ) {
+import { Dashicon } from '@wordpress/components';
+
+function ExportPageContentMenuItem( { createNotice, editedPostContent } ) {
     if (!wp.plugins) return null;
 
     const { PluginMoreMenuItem } = wp.editPost;
@@ -19,7 +21,7 @@ function ExportContentMenuItem( { createNotice, editedPostContent } ) {
             content: editedPostContent,
         }, null, 2 );
 
-        const fileName = 'redux-template-export.json';
+        const fileName = 'page-template-export.json';
         download( fileName, fileContent, 'application/json' );
     }
 
@@ -27,7 +29,7 @@ function ExportContentMenuItem( { createNotice, editedPostContent } ) {
     return (
         <Fragment>
             <PluginMoreMenuItem
-                icon={ ReduxTemplatesIconColor() }
+                icon={ colorizeIcon( <Dashicon icon="migrate" /> ) }
                 role="menuitemcheckbox"
                 onClick={ exportFullpage }
             >
@@ -37,7 +39,7 @@ function ExportContentMenuItem( { createNotice, editedPostContent } ) {
     );
 }
 
-const ExportContentMenu = compose(
+const ExportPageContentMenu = compose(
     withSelect( ( select ) => ( {
         editedPostContent: select( 'core/editor' ).getEditedPostAttribute(
             'content'
@@ -51,11 +53,11 @@ const ExportContentMenu = compose(
         };
     } ),
     ifCondition( ( { editedPostContent } ) => editedPostContent.length > 0 )
-)( ExportContentMenuItem );
+)( ExportPageContentMenuItem );
 
 if (wp.plugins) {
     const { registerPlugin } = wp.plugins;
-    registerPlugin('redux-full-template-export', {
-         render: ExportContentMenu,
+    registerPlugin('redux-templates-export-page', {
+         render: ExportPageContentMenu,
     });
 }

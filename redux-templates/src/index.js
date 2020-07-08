@@ -16,7 +16,7 @@ import './blocks/blocks'
 import './plugins/sidebar-share'
 import './plugins/share-block-btn'
 import './plugins/export'
-import './plugins/export-content-menu-item'
+import './plugins/export-page-menu-item'
 import './plugins/library-context-menu-item'
 import TooltipBox from './challenge/tooltip/TooltipBox';
 import {handlingLocalStorageData} from './stores/helper';
