@@ -10,13 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 get_header();
+?><style type="text/css"><?php echo ReduxTemplates\Template_Overrides::get_overrides(); ?></style><?php
 
-echo '</div></div>';
-echo '<style type="text/css">#wrapper {min-height: auto;}</style>';
+//echo '</div></div>';
 while ( have_posts() ) :
 	the_post();
 
 	the_content();
 endwhile; // End of the loop.
-echo '<div><div>';
+//echo '<div><div>';
 get_footer();

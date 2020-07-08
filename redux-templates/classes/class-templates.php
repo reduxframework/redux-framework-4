@@ -37,6 +37,28 @@ class Templates {
 				add_filter( "theme_{$post_type}_templates", array( $this, 'add_templates' ) );
 			}
 		}
+
+	}
+
+	/**
+	 * Override the $content_width variable for themes so our templates work properly and don't look squished.
+	 *
+	 * @since 4.0.0
+	 */
+	public function check_template( $to_find = array() ) {
+		global $post;
+		if ( ! empty( $post ) ) {
+			$template = get_page_template_slug( $post->ID );
+			if ( false !== strpos( $template, 'redux' ) ){
+				$test    = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
+				foreach ( $to_find as $key ) {
+					if ( false !== strpos( $test, $key ) ) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -45,17 +67,11 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function modify_template_content_width() {
-		global $post;
-		if ( ! empty( $post ) ) {
+		$to_find = array( 'cover', 'canvas', 'fullwidth' );
+		if ( $this->check_template( $to_find ) ) {
 			global $content_width;
-			$template = get_page_template_slug( $post->ID );
-
-			$to_find = array( 'cover', 'canvas', 'fullwidth' );
-			$test    = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
-			foreach ( $to_find as $key ) {
-				if ( false !== strpos( $test, $key ) ) {
-					$content_width = 1200;
-				}
+			if ( $content_width < 1000 ) {
+				$content_width = 1200;
 			}
 		}
 	}
@@ -69,7 +85,6 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function template_include( $template ) {
-
 		if ( is_singular() ) {
 			$page_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
 			if ( 'redux-templates_full_width' === $page_template ) {

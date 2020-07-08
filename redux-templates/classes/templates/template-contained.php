@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+?><style type="text/css"><?php echo ReduxTemplates\Template_Overrides::get_overrides(); ?></style><?php
 while ( have_posts() ) :
 	the_post();
 	the_content();

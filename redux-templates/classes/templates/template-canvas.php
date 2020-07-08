@@ -21,13 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<title><?php echo esc_html( wp_get_document_title() ); ?></title>
 	<?php endif; ?>
 	<?php wp_head(); ?>
-	<style type="text/css">
-		body {background: unset !important;}
-		body:before, body:after {height: 0 !important;}
-		#wrapper {min-height: auto;}
-	</style>
+	<style type="text/css"><?php echo ReduxTemplates\Template_Overrides::get_overrides(); ?>body {background: unset !important;}body:before, body:after {height: 0 !important;}</style>
 </head>
-<body <?php body_class(); ?>>
+<body <?php echo body_class(); ?>>
 <?php wp_body_open(); ?>
 <?php
 while ( have_posts() ) :
