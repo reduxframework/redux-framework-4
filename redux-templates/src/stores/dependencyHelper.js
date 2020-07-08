@@ -64,5 +64,5 @@ export const isTemplatePremium = (data, activeDependencyFilter) => {
     if (data && data.proDependencies && data.proDependencies.length > 0) {
         return data.proDependencies.reduce((acc, cur) => acc || activeDependencyFilter[cur].value, false);
     }
-    return false;
+    return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0);
 }
