@@ -34,7 +34,7 @@ function ExportManager(props) {
         }
 
         let blocks;
-        const title = 'redux_templates/export';
+        let title = 'redux_templates/export';
 
         if ( selectedBlockCount === 1 ) {
             //export as reusable when reusable is selected
@@ -44,6 +44,7 @@ function ExportManager(props) {
             }
 
             blocks = serialize( selectedBlock );
+            title = selectedBlock.name;
         }
 
         if ( selectedBlockCount > 1 ) {
