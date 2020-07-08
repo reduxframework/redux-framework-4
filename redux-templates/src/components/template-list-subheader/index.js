@@ -3,7 +3,7 @@ const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
-import {IconButton} from '@wordpress/components'
+import {Button} from '@wordpress/components'
 import SVGViewFew from './images/view-few.svg'
 import SVGViewMany from './images/view-many.svg'
 import SVGViewNormal from './images/view-normal.svg'
@@ -40,31 +40,31 @@ function TemplateListSubHeader(props) {
                 <ChallengeDot step={3} />
             </h4>
             <div className="redux-templates-template-filters">
-                <IconButton
+                <Button
                     icon={<i className={triggerTourClassname} />}
                     label={__('Trigger Tour', redux_templates.i18n)}
                     onClick={() => setChallengeOpen(true)}
                 />
 
-                <IconButton
+                <Button
                     icon="image-rotate"
                     label={__('Refresh Library', redux_templates.i18n)}
                     className="refresh-library"
                     onClick={reloadLibrary}
                 />
-                <IconButton
+                <Button
                     icon={<SVGViewFew width="18" height="18"/>}
                     className={columns === 'large' ? 'is-active' : ''}
                     label={__('Large preview', redux_templates.i18n)}
                     onClick={() => setColumns('large')}
                 />
-                <IconButton
+                <Button
                     icon={<SVGViewNormal width="18" height="18"/>}
                     className={columns === '' ? 'is-active' : ''}
                     label={__('Medium preview', redux_templates.i18n)}
                     onClick={(e) => setColumns('')}
                 />
-                <IconButton
+                <Button
                     icon={<SVGViewMany width="18" height="18"/>}
                     className={columns === 'small' ? 'is-active' : ''}
                     label={__('Small preview', redux_templates.i18n)}

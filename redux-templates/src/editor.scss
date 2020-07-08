@@ -73,3 +73,11 @@
     justify-content: center;
 }
 
+// Hide Qubely Library
+.qubely-import-layout-btn-container,
+#qubelyImportLayoutBtn,
+.gutentor-export-button,
+#getwid-layout-insert-button,
+.kb-toolbar-insert-layout {
+    display: none !important;
+}

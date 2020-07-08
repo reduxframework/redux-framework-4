@@ -41,7 +41,7 @@ class Init {
 			$this->load();
 		}
 		// Editor Load.
-		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ), 1 );
 		// Admin Load.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 	}
@@ -88,6 +88,7 @@ class Init {
 				$min = '.min';
 			}
 		}
+		$min = '';
 
 		wp_enqueue_script(
 			'redux-templates-js',
@@ -113,7 +114,6 @@ class Init {
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
 			'mokama'            => \Redux_Helpers::mokama(),
-			'icon'              => self::get_local_file_contents( REDUXTEMPLATES_DIR_PATH . 'assets/img/logo.svg' ),
 			'version'           => \Redux_Core::$version,
 			'theme_name'        => $theme_details->get( 'Name' ),
 			'supported_plugins' => array(), // Load the supported plugins.

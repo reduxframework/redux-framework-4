@@ -17,7 +17,7 @@ import './plugins/sidebar-share'
 import './plugins/share-block-btn'
 import './plugins/export'
 import './plugins/export-content-menu-item'
-import ToolbarLibraryButton from './toolbar-library-button'
+import './plugins/library-context-menu-item'
 import TooltipBox from './challenge/tooltip/TooltipBox';
 import {handlingLocalStorageData} from './stores/helper';
 import ReduxTemplatesChallenge from './challenge'
@@ -27,10 +27,6 @@ import LibraryModal from './modal-library';
 
 domReady(() => {
     setTimeout(() => {
-        let toolbar = document.querySelector('.edit-post-header-toolbar');
-        if (!toolbar) {
-            return;
-        }
         const challengeDiv = document.createElement('div');
         challengeDiv.className = 'challenge-tooltip-holder';
         document.body.appendChild(challengeDiv);
@@ -38,14 +34,14 @@ domReady(() => {
         challengeWrapperDiv.className = 'challenge-wrapper';
         document.body.appendChild(challengeWrapperDiv);
 
-        const buttonDiv = document.createElement('div');
-        toolbar.appendChild(buttonDiv);
-        render(<ToolbarLibraryButton/>, buttonDiv);
-
         if (window.location.hash == '#redux_challenge=1') {
             window.location.hash = '';
             ModalManager.open(<LibraryModal />);
         }
+		if (window.location.hash == '#redux_templates=1') {
+			window.location.hash = '';
+			ModalManager.open(<LibraryModal />);
+		}
         render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
         render(<TooltipBox />, challengeDiv);
 

@@ -2,7 +2,8 @@
  * External dependencies
  */
 import React, {Component} from 'react';
-import SVGReduxTemplatesIcon from './images/redux-templates-icon.svg'
+import SVGReduxTemplatesIcon from '../../assets/img/icon.svg'
+import SVGReduxTemplatesColorIcon from '../../assets/img/icon-color.svg'
 import SVGAdvancedGutenbergBlocksIcon from './images/third-party/advanced-gutenberg-blocks.svg'
 import SVGCoBlocksIcon from './images/third-party/coblocks.svg'
 import SVGCreativeBlocksIcon from './images/third-party/creative-blocks.svg'
@@ -61,6 +62,10 @@ export const ReduxTemplatesIcon = () => {
 }
 
 export const ReduxTemplatesIconColor = () => {
+	return <SVGReduxTemplatesColorIcon width="20" height="20"/>
+}
+
+export const ReduxTemplatesIconColorize = () => {
 	return colorizeIcon(<SVGReduxTemplatesIcon width="20" height="20"/>)
 }
 
@@ -113,4 +118,3 @@ export const EssentialBlocks = () => {
 }
 export const essentialblocks = () => <EssentialBlocks/>
 export const eb = () => <EssentialBlocks/>
-

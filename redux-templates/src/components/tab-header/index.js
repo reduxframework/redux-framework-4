@@ -46,7 +46,7 @@ export function TabHeader(props) {
                 <button className={ isActive('saved') } onClick={e => changeTab('saved')}> {__('Saved', redux_templates.i18n)} </button>
                 <ChallengeDot step={0} />
                 <button className="redux-templates-builder-close-modal" onClick={closeModal} >
-                    <i className={'fas fa-times'} />
+					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M13 11.9l3.3-3.4-1.1-1-3.2 3.3-3.2-3.3-1.1 1 3.3 3.4-3.5 3.6 1 1L12 13l3.5 3.5 1-1z"></path></svg>
                 </button>
             </div>
         </div>

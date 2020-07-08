@@ -24,7 +24,7 @@ const { serialize } = wp.blocks;
  */
 function ExportManager(props) {
     const { selectedBlockCount, selectedBlock, selectedBlocks } = props;
-    
+
     if (!wp.editPost) return null;
 
     const { PluginBlockSettingsMenuItem } = wp.editPost;
@@ -65,7 +65,7 @@ function ExportManager(props) {
         <Fragment>
             <PluginBlockSettingsMenuItem
                 icon={ReduxTemplatesIcon}
-                label={ __( 'Export as JSON', 'block-options' ) }
+                label={ __( 'Export Block', redux_templates.i18n ) }
                 onClick={ saveAsJSON }
             >
 

@@ -6,13 +6,7 @@ import { __ } from '@wordpress/i18n';
 import { compose, ifCondition } from '@wordpress/compose';
 import { download } from '../export/file';
 const { Fragment } = wp.element;
-
-const redux_templatesIcon = <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 19 19">
-	<g>
-		<path d="M10.9,17.7H7.4l-0.9-1.5l2.1-2.4L10.9,17.7L10.9,17.7z M5.6,16.1l-1.5,1.6H0.1L4,13.3L5.6,16.1L5.6,16.1z"/>
-		<polygon points="6.1,15.6 0.4,5.9 3.9,5.9 6.6,10.4 14.6,1.3 18.9,1.3 6.1,15.6 	"/>
-	</g>
-</svg>
+import { ReduxTemplatesIconColor } from '../../icons';
 
 function ExportContentMenuItem( { createNotice, editedPostContent } ) {
     if (!wp.plugins) return null;
@@ -25,7 +19,7 @@ function ExportContentMenuItem( { createNotice, editedPostContent } ) {
             content: editedPostContent,
         }, null, 2 );
 
-        const fileName = 'redux-template.json';
+        const fileName = 'redux-template-export.json';
         download( fileName, fileContent, 'application/json' );
     }
 
@@ -33,11 +27,11 @@ function ExportContentMenuItem( { createNotice, editedPostContent } ) {
     return (
         <Fragment>
             <PluginMoreMenuItem
-                icon={ redux_templatesIcon }
+                icon={ ReduxTemplatesIconColor() }
                 role="menuitemcheckbox"
                 onClick={ exportFullpage }
             >
-                { __( 'Export page to JSON', redux_templates.i18n ) }
+                { __( 'Export Page', redux_templates.i18n ) }
             </PluginMoreMenuItem>
         </Fragment>
     );
@@ -62,7 +56,6 @@ const ExportContentMenu = compose(
 if (wp.plugins) {
     const { registerPlugin } = wp.plugins;
     registerPlugin('redux-full-template-export', {
-         icon: redux_templatesIcon,
          render: ExportContentMenu,
     });
 }

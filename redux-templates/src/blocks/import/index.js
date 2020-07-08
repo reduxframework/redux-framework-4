@@ -4,6 +4,7 @@
 import Edit from './components/edit';
 import icon from './icon';
 import transforms from './transforms';
+import { colorizeIcon } from '../../icons';
 
 /**
  * WordPress dependencies
@@ -17,7 +18,7 @@ const name = 'import';
 
 const category = 'common';
 
-const title = __( 'Redux Import', redux_templates.i18n );
+const title = __( 'Template Import', redux_templates.i18n );
 
 const keywords = [
     __( 'import', redux_templates.i18n ),

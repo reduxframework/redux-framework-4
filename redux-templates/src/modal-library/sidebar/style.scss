@@ -15,6 +15,7 @@
         display: inline-flex;
 
         button {
+            font-weight: 500;
             flex-grow: 1;
             min-width: 25%;
             line-height: 20px;
@@ -71,7 +72,7 @@
             }
 
             &.disabled {
-                opacity: 0.5;
+                opacity: 0.4;
             }
 
             img {
@@ -81,7 +82,9 @@
                 margin-right: 4px;
             }
             &:last-child {
-                color: #f5a623;
+                img {
+                    margin-bottom: -2px;
+                }
             }
         }
 
