@@ -278,6 +278,7 @@ export const reducer = ( state = initialState, action ) => {
                 ...state,
                 activateDialog: action.data
             }
+        // Dependency Shortcut click handler: All, None, Installed and Reset
         case 'SELECT_DEPENDENCIES':
             const types = ['section', 'page', 'collection'];
             let atomHandler;
@@ -300,6 +301,8 @@ export const reducer = ( state = initialState, action ) => {
                     break;
             }
             const filtered = types.reduce( (acc, cur) => {
+                // save to the local storage as well
+                setWithExpiry(state.activeItemType + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
                 return {
                     ...acc,
                     [cur]: {

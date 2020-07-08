@@ -12,7 +12,7 @@ const {createSuccessNotice} = dispatch('core/notices');
 const {insertBlocks} = dispatch('core/block-editor');
 
 const prefix = 'redux_';
-const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
+export const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
 export const getCurrentState = (state) => state[state.activeItemType]
@@ -241,13 +241,12 @@ export const getDefaultDependencies = (dependencies) => {
         (acc, cur) => {
             // special handling for pro plugin not activated.
             let value = true;
-            if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
-            if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
+            if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY) value = false;
             return {...acc, [cur]: {value, disabled: false}};
         }, 
         {
-            none: {value: true, disabled: false}, 
-            [REDUXTEMPLATES_PRO_KEY]: {value: true, disabled: false}
+            none: {value: true, disabled: false}, // Native element is included in default dependencies
+            [REDUXTEMPLATES_PRO_KEY]: {value: true, disabled: false} // Redux pro is included in default dependencies
         }
     );
 }
