@@ -65,6 +65,11 @@ export const processImportHelper = () => {
     apiFetch(options).then(response => {
         // First, let's give user feedback.
         displayNotice(response.data, {type: 'snackbar'});
+        /* if (installedDependencies) { // To hijack redirect, for example, after installing Stackable
+            let iframe = document.createElement('iframe');
+            iframe.src= './';
+            document.body.appendChild(iframe);
+        } */
 
         if (response.success && response.data) {
             let responseBlockData = response.data;
