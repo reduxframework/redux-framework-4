@@ -4,7 +4,7 @@ import {__} from '@wordpress/i18n'
 import {select, withDispatch} from '@wordpress/data'
 import {compose} from '@wordpress/compose'
 import {PluginBlockSettingsMenuItem} from '@wordpress/edit-post'
-import ReduxTemplatesIcon from '../icons'
+import { ReduxTemplatesIcon } from '../../icons';
 import {ModalManager} from '../../modal-manager'
 import FeedbackDialog from '~redux-templates/modal-feedback';
 import sortBy from 'lodash/sortBy';
@@ -52,7 +52,7 @@ const uiSchema = {
     }
 };
 
-export function ShareBlockButton({clientIds}) 
+export function ShareBlockButton({clientIds})
 {
     // Only supported by WP >= 5.3.
     if (!clientIds) {
@@ -66,10 +66,10 @@ export function ShareBlockButton({clientIds})
             type: 'block'
         };
         ModalManager.openFeedback(
-            <FeedbackDialog 
-                title={__('Redux Shares', redux_templates.i18n)} 
+            <FeedbackDialog
+                title={__('Redux Shares', redux_templates.i18n)}
                 width={700}
-                description={__('Share this design', redux_templates.i18n)} 
+                description={__('Share this design', redux_templates.i18n)}
                 schema={schema}
                 uiSchema={uiSchema}
                 data={data}

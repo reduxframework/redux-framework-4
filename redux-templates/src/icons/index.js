@@ -22,8 +22,8 @@ import {updateCategory} from '@wordpress/blocks'
 
 export const colorizeIcon = SvgIcon => {
 	return cloneElement(SvgIcon, {
-		fill: 'url(#redux-templates-gradient)',
-		className: 'redux-templates-icon-gradient',
+		fill: 'url(#redux-gradient)',
+		className: 'redux-icon-gradient',
 	})
 }
 
@@ -41,13 +41,13 @@ domReady(() => {
 	render(
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			className="redux-templates-gradient"
+			className="redux-gradient"
 			height="0"
 			width="0"
 			style={{opacity: 0}}
 		>
 			<defs>
-				<linearGradient id="redux-templates-gradient">
+				<linearGradient id="redux-gradient">
 					<stop offset="0%" stopColor="#8c33da" stopOpacity="1"/>
 					<stop offset="100%" stopColor="#f34957" stopOpacity="1"/>
 				</linearGradient>
