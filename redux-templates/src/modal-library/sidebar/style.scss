@@ -130,7 +130,7 @@
                 //padding: 2px 0;
                 display: block;
                 font-size: 13px;
-
+                cursor: pointer;
                 transition: 300ms;
 
                 &:not(.disabled):hover {
@@ -158,7 +158,6 @@
 
                 &.missing-dependency {
                     i {
-
                         margin-left: 5px;
                         &.fa-exclamation-triangle {
                             font-size: 0.9em;
