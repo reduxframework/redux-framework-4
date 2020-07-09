@@ -127,11 +127,15 @@
             padding: 0;
 
             li {
-                //padding: 2px 0;
                 display: block;
                 font-size: 13px;
                 cursor: pointer;
-                transition: 300ms;
+                height: auto;
+                -webkit-transition: height 0.5s linear;
+                -moz-transition: height 0.5s linear;
+                -ms-transition: height 0.5s linear;
+                -o-transition: height 0.5s linear;
+                transition: height 0.5s linear;
 
                 &:not(.disabled):hover {
                     color: #007cba;
@@ -146,7 +150,13 @@
                 }
 
                 &.disabled {
-                    opacity: 0.5;
+                    display: none;
+                    height: 0px;
+                    -webkit-transition: height 0.5s linear;
+                    -moz-transition: height 0.5s linear;
+                    -ms-transition: height 0.5s linear;
+                    -o-transition: height 0.5s linear;
+                    transition: height 0.5s linear;
                 }
 
                 span {

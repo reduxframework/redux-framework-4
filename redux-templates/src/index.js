@@ -23,6 +23,7 @@ import {handlingLocalStorageData} from './stores/helper';
 import ReduxTemplatesChallenge from './challenge'
 import {ModalManager} from './modal-manager';
 import LibraryModal from './modal-library';
+import './custom-css'
 
 
 domReady(() => {

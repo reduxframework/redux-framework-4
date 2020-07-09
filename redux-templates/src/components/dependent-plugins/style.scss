@@ -5,14 +5,14 @@
     span {
         svg {
             margin-right: 5px;
+            cursor: pointer;
         }
         svg * {
             fill: #f7f7f7;
-            box-shadow: 0 1px 0 #ccc;
         }
         &.missing-dependency {
             svg * {
-                fill: #f5a623;
+                fill: rgba(247, 247, 247, 0.5);
             }
         }
     }

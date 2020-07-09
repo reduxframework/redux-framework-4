@@ -11501,6 +11501,13 @@ lint-staged@^10.2.2:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
+list-react-files@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/list-react-files/-/list-react-files-0.2.0.tgz#5d5102d42270328e085dfee6b90338bbc4cbe234"
+  integrity sha512-ZbBO+Ch76klfcD+bf/0FCBzCMZ16moT598cUo5yn0PbdQzQp4C11hZiHXAUnm3OZUXfV/ze1mog6wzwH4AGdKQ==
+  dependencies:
+    glob "^7.1.2"
+
 listr2@^2.1.0:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.1.9.tgz#ec4ba417831197f71f63d716ff8869b292be096b"

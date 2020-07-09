@@ -83,13 +83,13 @@
         display: inline-block;
     }
 
-    .components-tooltip {
-        z-index: 9999 !important;
-
-        .components-popover__content > div {
-            padding-bottom: 0;
-        }
-    }
+    //.components-tooltip {
+    //    z-index: 9999 !important;
+    //
+    //    .components-popover__content > div {
+    //        padding-bottom: 0;
+    //    }
+    //}
 
     button.components-button {
         z-index: unset;
@@ -590,3 +590,4 @@
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
 }
+

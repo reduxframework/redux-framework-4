@@ -44,6 +44,9 @@ class Init {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ), 1 );
 		// Admin Load.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
+		// Initiate the custom css fields.
+		Gutenberg_Custom_CSS::instance();
+
 	}
 
 	/**
@@ -88,19 +91,20 @@ class Init {
 				$min = '.min';
 			}
 		}
+		$version = REDUXTEMPLATES_VERSION;
 		// When doing local dev work. Otherwise follow the check for dev_mode or not.
 		if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
-			if ( $fs->file_exists( dirname( REDUX_PLUGIN_FILE ) . "/local_developer.txt" ) ) {
+			if ( $fs->file_exists( trailingslashit( dirname( REDUX_PLUGIN_FILE ) ) . 'local_developer.txt' ) ) {
 				$min = '';
 			}
+			$version = time();
 		}
-
 
 		wp_enqueue_script(
 			'redux-templates-js',
 			plugins_url( "assets/js/redux-templates{$min}.js", REDUXTEMPLATES_FILE ),
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-			REDUXTEMPLATES_VERSION,
+			array( 'code-editor', 'csslint', 'wp-i18n', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-editor', 'wp-element', 'wp-hooks' ),
+			$version,
 			true
 		);
 
@@ -111,17 +115,15 @@ class Init {
 			'redux-templates-js-vendor',
 			plugins_url( "assets/js/vendor{$min}.js", REDUXTEMPLATES_FILE ),
 			array(),
-			REDUXTEMPLATES_VERSION,
+			$version,
 			true
 		);
 
-		$theme_details = wp_get_theme();
-		$global_vars   = array(
+		$global_vars = array(
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
 			'mokama'            => \Redux_Helpers::mokama(),
 			'version'           => \Redux_Core::$version,
-			'theme_name'        => $theme_details->get( 'Name' ),
 			'supported_plugins' => array(), // Load the supported plugins.
 			'tos'               => \Redux_Connection_Banner::tos_blurb( 'import_wizard' ),
 		);
@@ -153,11 +155,12 @@ class Init {
 			'redux_templates',
 			$global_vars
 		);
+
 		wp_enqueue_style(
 			'redux-fontawesome',
 			REDUXTEMPLATES_DIR_URL . 'assets/css/font-awesome.min.css',
 			false,
-			REDUXTEMPLATES_VERSION
+			$version
 		);
 	}
 

@@ -1,3 +1,5 @@
+@import "../_variables";
+
 .wp-full-overlay {
     margin-left: 300px;
 }
@@ -23,6 +25,15 @@ button {
     max-height: 300px;
     margin: 15px 0;
     border: 1px solid #ccc;
+}
+.install-theme-info {
+    h3 a {
+        float: right;
+        opacity: 0.6;
+        &:hover {
+            opacity: 1;
+        }
+    }
 }
 
 .install-theme-info .theme-screenshot {
@@ -97,10 +108,12 @@ button {
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
     background-color: unset;
+
     &.loaded {
         &::before {
             display: none !important;
         }
+
         iframe {
             background-color: #fff;
         }
@@ -135,14 +148,94 @@ button {
 
 
 .requirements-list {
-    margin-top: 50px;
+    width: 100%;
 
-    a.missing {
-        display: inline-flex;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            cursor: pointer;
+
+            svg {
+                margin-right: 5px;
+
+                * {
+                    fill: rgb(154, 154, 154);
+                }
+            }
+
+            line-height: 20px;
+            padding-bottom: 25px;
+            clear: left;
+
+            svg,
+            span,
+            div {
+                float: left;
+            }
+
+            transition: 300ms;
+
+            .redux-icon-wrapper {
+                display: inline;
+            }
+
+            span.pluginURL {
+                float: right;
+            }
+
+            i {
+                font-size: 1.1em;
+            }
+
+            .redux-icon-wrapper {
+                padding-left: 5px;
+            }
+
+            i {
+                &.fa-exclamation-triangle {
+                    font-size: 0.9em;
+                    line-height: 1.5em;
+                    color: $missingColor;
+                }
+            }
+
+            &:hover {
+                svg * {
+                    fill: rgb(105, 105, 105);
+                }
+
+                i.fa-exclamation-triangle {
+                    color: $missingColorHover;
+                }
+            }
+        }
     }
+}
 
-    .list-type ul {
-        padding-left: 25px;
+
+.redux-block-pills {
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            margin: 10px 0;
+            span {
+                --bg-opacity: 1 !important;
+                background-color: #edf2f7 !important;
+                background-color: rgba(237, 242, 247, var(--bg-opacity)) !important;
+                border-radius: 9999px !important;
+                padding-top: 0.25rem !important;
+                padding-bottom: 0.25rem !important;
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+                --text-opacity: 1 !important;
+                color: #4a5568 !important;
+                color: rgba(74, 85, 104, var(--text-opacity)) !important;
+            }
+        }
     }
 }
 
