@@ -17,7 +17,7 @@
         button {
             font-weight: 500;
             flex-grow: 1;
-            min-width: 25%;
+            min-width: 30%;
             line-height: 20px;
             padding: 8px 0 10px 15px;
             align-items: center;
@@ -158,20 +158,27 @@
                 }
 
                 &.missing-dependency {
-                    color: $missingColor;
-
-                    &:hover {
-                        color: $missingColorHover;
-                    }
-
-                    &.active {
-                        color: $missingColorHover;
-                    }
                     i {
+
                         margin-left: 5px;
                         &.fa-exclamation-triangle {
                             font-size: 0.9em;
                             line-height: 1.5em;
+                        }
+
+                        &.fa-exclamation-triangle {
+                            color: $missingColor;
+                        }
+                    }
+                    &:hover {
+                        i.fa-exclamation-triangle {
+                            color: $missingColorHover;
+                        }
+                    }
+
+                    &.active {
+                        i.fa-exclamation-triangle {
+                            color: $missingColorHover;
                         }
                     }
                 }

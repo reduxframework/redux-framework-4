@@ -78,6 +78,22 @@
         width: 100%;
         height: 80px;
     }
+
+    .redux-icon-wrapper {
+        display: inline-block;
+    }
+
+    .components-tooltip {
+        z-index: 9999 !important;
+
+        .components-popover__content > div {
+            padding-bottom: 0;
+        }
+    }
+
+    button.components-button {
+        z-index: unset;
+    }
 }
 
 .redux-templates-builder-modal-header {
@@ -261,12 +277,15 @@
         cursor: pointer;
         outline: none;
         transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+
         i {
             -webkit-text-stroke: 1.2px #fff;
         }
+
         svg {
             margin-top: 4px;
         }
+
         &:hover,
         &:active {
             color: #00a0d2;
@@ -422,31 +441,41 @@
 
 .redux-templates-pro-badge {
     position: absolute;
-    background: #f00;
+    background: rgba(255, 0, 0, 0.75);
+    cursor: pointer;
     padding: 4px 5px;
     border-radius: 3px;
     color: #fff;
     font-size: 10px;
     right: 20px;
     top: 20px;
-    text-transform: uppercase;
     line-height: 1;
+    transition: background 0.1s linear;
 }
-
 
 .redux-templates-missing-badge {
     position: absolute;
-    background: #f2a848;
+    cursor: pointer;
+    background: rgba(242, 168, 72, 0.75);
     border-radius: 3px;
     color: #fff;
     font-size: 10px;
     right: 20px;
     top: 20px;
-    text-transform: uppercase;
     line-height: 1;
-
+    transition: background 0.1s linear;
     i {
         margin: 5px;
+    }
+}
+
+.redux-templates-button-overlay {
+    .redux-templates-pro-badge {
+        background: rgba(255, 0, 0, 0.85);
+    }
+
+    .redux-templates-missing-badge {
+        background: rgba(242, 168, 72, 0.85);
     }
 }
 

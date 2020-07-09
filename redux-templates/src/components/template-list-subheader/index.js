@@ -45,7 +45,6 @@ function TemplateListSubHeader(props) {
                     label={__('Trigger Tour', redux_templates.i18n)}
                     onClick={() => setChallengeOpen(true)}
                 />
-
                 <Button
                     icon="image-rotate"
                     label={__('Refresh Library', redux_templates.i18n)}

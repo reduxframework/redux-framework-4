@@ -20,7 +20,7 @@ export default function ProPluginStep(props) {
                             return (
                                 <li className='installing' key={pluginKey}>
                                     {plugin.name} {plugin.url &&
-                                <a href={plugin.url} target="_blank"><i className="fa fa-external-link-alt"/></a>
+                                <a href={plugin.url} target="_blank"><i className="fas fa-external-link-alt"/></a>
                                 }
                                 </li>);
                         })

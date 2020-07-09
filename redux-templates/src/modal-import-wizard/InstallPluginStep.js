@@ -87,7 +87,7 @@ function InstallPluginStep(props) {
                                     className="fas fa-exclamation-triangle"/></li>);
                             if (waitingList.includes(pluginKey))
                                 return (<li className="todo" key={pluginKey}>{plugin.name} {plugin.url &&
-                                <a href={plugin.url} target="_blank"><i className="fa fa-external-link-alt"/></a>
+                                <a href={plugin.url} target="_blank"><i className="fas fa-external-link-alt"/></a>
                                 }</li>);
                             if (installedList.includes(pluginKey))
                                 return (<li className="success" key={pluginKey}>{plugin.name} <i

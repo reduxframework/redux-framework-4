@@ -83,7 +83,7 @@ export default function FabWrapper() {
 			        window.open('https://redux.io?utm_source=plugin&utm_medium=modal&utm_campaign=tinyfab', '_blank')
 		        }}
 	        >
-		        <i className="fa fa-external-link-alt"/>
+		        <i className="fas fa-external-link-alt"/>
 	        </Action>
             {/*<Action*/}
             {/*    style={actionButtonStyles}*/}
