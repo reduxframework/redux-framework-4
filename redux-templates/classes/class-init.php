@@ -88,7 +88,13 @@ class Init {
 				$min = '.min';
 			}
 		}
-		$min = '';
+		// When doing local dev work. Otherwise follow the check for dev_mode or not.
+		if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
+			if ( $fs->file_exists( dirname( REDUX_PLUGIN_FILE ) . "/local_developer.txt" ) ) {
+				$min = '';
+			}
+		}
+
 
 		wp_enqueue_script(
 			'redux-templates-js',

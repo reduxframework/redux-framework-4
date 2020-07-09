@@ -5428,7 +5428,7 @@ function ProPluginStep(props) {
   if (missingPros.indexOf(REDUXTEMPLATES_PRO_KEY) >= 0) return wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_0__["default"], null);
   return wp.element.createElement(Fragment, null, wp.element.createElement("div", {
     className: "redux-templates-modal-body"
-  }, wp.element.createElement("h5", null, __('External Dependencies Required', redux_templates.i18n)), wp.element.createElement("p", null, __('The following premium plugin(s) are required to import this template:', redux_templates.i18n)), wp.element.createElement("ul", {
+  }, wp.element.createElement("h5", null, __('Additional Plugins Required', redux_templates.i18n)), wp.element.createElement("p", null, __('The following premium plugin(s) are required to import this template:', redux_templates.i18n)), wp.element.createElement("ul", {
     className: "redux-templates-import-progress"
   }, missingPros.map(pluginKey => {
     let plugin = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_1__["pluginInfo"])(pluginKey);
@@ -6359,15 +6359,15 @@ function DependencyFilterRow(props) {
     checked: isChecked,
     onChange: toggleChecked
   }), pluginClassname.includes('missing-dependency') && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    position: "right",
+    position: 'top right',
     text: __('Missing Plugin', redux_templates.i18n)
   }, wp.element.createElement("div", {
     className: "redux-icon-wrapper"
   }, wp.element.createElement("i", {
     className: "fa fa-exclamation-triangle"
   }))), pluginInstanceURL ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    position: "right",
-    text: __('Learn More', redux_templates.i18n)
+    position: 'top right',
+    text: __('Visit Plugin Website', redux_templates.i18n)
   }, wp.element.createElement("span", null, wp.element.createElement("a", {
     href: pluginInstanceURL,
     target: "_blank"

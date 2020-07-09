@@ -11,7 +11,7 @@ export default function ProPluginStep(props) {
     return (
         <Fragment>
             <div className="redux-templates-modal-body">
-                <h5>{__('External Dependencies Required', redux_templates.i18n)}</h5>
+                <h5>{__('Additional Plugins Required', redux_templates.i18n)}</h5>
                 <p>{__('The following premium plugin(s) are required to import this template:', redux_templates.i18n)}</p>
                 <ul className="redux-templates-import-progress">
                     {

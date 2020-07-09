@@ -200,7 +200,8 @@
 		"s3-deploy": "^1.4.0",
 		"sprintf-js": "^1.1.2",
 		"stylelint": "^10.1.0",
-		"stylelint-config-wordpress": "^14.0.0"
+		"stylelint-config-wordpress": "^14.0.0",
+		"create-file-webpack": "^1.0.2"
 	},
 	"keywords": [
 		"WordPress",

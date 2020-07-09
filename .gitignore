@@ -79,3 +79,4 @@ build
 
 vendor/*
 redux-templates/classes/library.json
+local_developer.txt
