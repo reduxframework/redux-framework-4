@@ -17,7 +17,7 @@ function DependencyFilter(props) {
             return dependencyFilters['none'].hasOwnProperty('value') ? dependencyFilters['none'].value : dependencyFilters['none'];
         return false;
     };
-    
+
     const toggleNoneChecked = () => {
         setDependencyFilters({...dependencyFilters,
             none: { value: dependencyFilters['none'].value === false, disabled: dependencyFilters['none']['disabled'] === true }
@@ -41,15 +41,15 @@ function DependencyFilter(props) {
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
                     <h3>{__('Required Plugins', redux_templates.i18n)}</h3>
                     <div className="redux-templates-select-actions">
-                        <Tooltip text={__('Select All', redux_templates.i18n)}><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)} position="bottom"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)}><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="bottom"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)}><a href="#" 
+                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="bottom"><a href="#"
                             onClick={() => selectDependencies('installed')}>
                             {__('Installed', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)}>
+                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="bottom">
                             <a href="#" onClick={() => selectDependencies('default')}>
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
