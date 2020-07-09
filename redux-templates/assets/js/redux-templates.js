@@ -940,7 +940,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const dispatch = wp.data.dispatch;
+const _wp$data = wp.data,
+      dispatch = _wp$data.dispatch,
+      select = _wp$data.select;
 
 const _dispatch = dispatch('core/editor'),
       editPost = _dispatch.editPost;
@@ -970,6 +972,12 @@ async function importReusableBlock(file) {
   }
 
   if (parsedContent.__file !== 'wp_block' || !parsedContent.title || !parsedContent.content || !Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isString"])(parsedContent.title) || !Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isString"])(parsedContent.content)) {
+    if ('' === select('core/editor').getEditedPostAttribute('template')) {
+      editPost({
+        'template': 'redux-templates_contained'
+      });
+    }
+
     return importCoreBlocks(parsedContent);
   }
 
@@ -8755,9 +8763,19 @@ const processImportHelper = () => {
   const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
   const data = select('redux-templates/sectionslist').getImportingTemplate();
   const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
-  if (type === 'pages') editPost({
-    'template': 'redux-templates_full_width'
-  });
+
+  if (type === 'pages') {
+    editPost({
+      'template': 'redux-templates_full_width'
+    });
+  } else {
+    if ('' === select('core/editor').getEditedPostAttribute('template')) {
+      editPost({
+        'template': 'redux-templates_contained'
+      });
+    }
+  }
+
   discardAllErrorMessages();
   let the_url = 'redux/v1/templates/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
 

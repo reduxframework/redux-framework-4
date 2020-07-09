@@ -7,7 +7,7 @@ import { isString } from 'lodash';
  * Internal dependencies
  */
 import { readTextFile } from './file';
-const { dispatch } = wp.data;
+const { dispatch, select } = wp.data;
 const { editPost } = dispatch('core/editor');
 
 /**
@@ -25,8 +25,8 @@ async function importReusableBlock( file ) {
         throw new Error( 'Invalid JSON file' );
     }
 
-    if (parsedContent.__file === 'redux_template') {
-		editPost({'template': 'redux-templates_full_width'});
+    if ( parsedContent.__file === 'redux_template' ) {
+		editPost( { 'template': 'redux-templates_full_width' } );
         return parsedContent.content;
     }
 
@@ -37,6 +37,9 @@ async function importReusableBlock( file ) {
         ! isString( parsedContent.title ) ||
         ! isString( parsedContent.content )
     ) {
+	    if ( '' === select( 'core/editor' ).getEditedPostAttribute( 'template' ) ) {
+		    editPost({'template': 'redux-templates_contained'});
+	    }
         return importCoreBlocks( parsedContent );
     }
 

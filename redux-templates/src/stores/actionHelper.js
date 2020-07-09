@@ -42,7 +42,13 @@ export const processImportHelper = () => {
     const data = select('redux-templates/sectionslist').getImportingTemplate();
     const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
 
-    if (type === 'pages') editPost({'template': 'redux-templates_full_width'});
+    if (type === 'pages') {
+    	editPost({'template': 'redux-templates_full_width'});
+    } else {
+	    if ( '' === select( 'core/editor' ).getEditedPostAttribute( 'template' ) ) {
+		    editPost({'template': 'redux-templates_contained'});
+	    }
+    }
 
     discardAllErrorMessages();
     let the_url = 'redux/v1/templates/template?type=' + type + '&id=' + data.id + '&uid=' + window.userSettings.uid;
