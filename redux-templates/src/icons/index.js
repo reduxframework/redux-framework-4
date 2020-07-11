@@ -8,6 +8,7 @@ import SVGAcfBlocks from './images/acf-blocks.svg'
 import SVGAdvancedCustomFields from './images/advanced-custom-fields.svg'
 import SVGAdvancedGutenbergBlocks from './images/advanced-gutenberg-blocks.svg'
 import SVGBlockOptions from './images/block-options.svg'
+import SVGBlockSlider from './images/block-slider.svg'
 import SVGCoblocks from './images/coblocks.svg'
 import SVGCreativeBlocks from './images/creative-blocks.svg'
 import SVGElegantBlocks from './images/elegant-blocks.svg'
@@ -41,6 +42,7 @@ export const acfblocks = () => { return <SVGAcfBlocks width="20" height="20"/> }
 export const advancedcustomfields = () => { return <SVGAdvancedCustomFields width="20" height="20"/> }
 export const advancedgutenbergblocks = () => { return <SVGAdvancedGutenbergBlocks width="20" height="20"/> }
 export const blockoptions = () => { return <SVGBlockOptions width="20" height="20"/> }
+export const blockslider = () => { return <SVGBlockSlider width="20" height="20"/> }
 export const coblocks = () => { return <SVGCoblocks width="20" height="20"/> }
 export const creativeblocks = () => { return <SVGCreativeBlocks width="20" height="20"/> }
 export const elegantblocks = () => { return <SVGElegantBlocks width="20" height="20"/> }

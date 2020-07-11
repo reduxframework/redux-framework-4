@@ -68,7 +68,7 @@ export default function SidebarContent(props) {
 						<div className="requirements-list">
 							<ul>
 								{
-									installDependencies.sort().map(pluginKey => {
+									installDependencies.map(pluginKey => {
 										const pluginInstance = redux_templates.supported_plugins[pluginKey];
 										if (!pluginInstance) {
 											console.log('Missing plugin details for ' + pluginKey);
@@ -112,7 +112,7 @@ export default function SidebarContent(props) {
 					<PanelRow className="redux-block-pills">
 						<ul>
 						{
-							blocks.sort().map(block => {
+							blocks.map(block => {
 								return (
 									<li><span>{block}</span></li>
 								)

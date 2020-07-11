@@ -40,11 +40,6 @@ export const processPlugin = (pluginKey) => {
         pluginInstance = new_instance
     }
     pluginInstance.slug = pluginInstance.slug ? pluginInstance.slug : pluginKey;
-    if (!('url' in pluginInstance)) {
-        if (!('wp_org' in pluginInstance)) {
-            pluginInstance.url = 'https://wordpress.org/plugins/' + pluginKey
-        }
-    }
 
     return pluginInstance
 }
