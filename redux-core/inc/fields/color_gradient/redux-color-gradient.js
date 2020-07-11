@@ -122,24 +122,21 @@
 						if ( $( this ).is( ':checked' ) ) {
 							el.find( '.redux-saved-color' ).val( $( '#' + $( this ).data( 'id' ) ).val() );
 							el.find( '#' + $( this ).data( 'id' ) ).val( 'transparent' );
-							el.find( '#' + $( this ).data( 'id' ) ).parent().parent().find( '.wp-color-result' ).css( 'background-color', 'transparent' );
+							el.find( '#' + $( this ).data( 'id' ) ).parents( '.colorGradient' ).find( '.wp-color-result' ).css( 'background-color', 'transparent' );
 						} else {
-							if ( 'transparent' === el.find( '#' + $( this ).data( 'id' ) ).val() ) {
-								prevColor = $( '.redux-saved-color' ).val();
-
-								if ( '' === prevColor ) {
-									prevColor = $( '#' + $( this ).data( 'id' ) ).data( 'default-color' );
-								}
-
-								el.find( '#' + $( this ).data( 'id' ) ).parent().parent().find( '.wp-color-result' ).css( 'background-color', prevColor );
-
-								el.find( '#' + $( this ).data( 'id' ) ).val( prevColor );
+							prevColor =  $( this ).parents( '.colorGradient' ).find( '.redux-saved-color' ).val();
+							if ( '' === prevColor ) {
+								prevColor = $( '#' + $( this ).data( 'id' ) ).data( 'default-color' );
 							}
+							el.find( '#' + $( this ).data( 'id' ) ).parents( '.colorGradient' ).find( '.wp-color-result' ).css( 'background-color', prevColor );
+							el.find( '#' + $( this ).data( 'id' ) ).val( prevColor );
 						}
 
 						if ( proLoaded ) {
 							redux.field_objects.pro.gradient_filters.changeValue( $( this ), true, 'color_gradient' );
 						}
+
+						redux_change( $( this ) );
 					}
 				);
 			}

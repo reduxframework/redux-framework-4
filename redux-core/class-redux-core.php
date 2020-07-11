@@ -143,6 +143,20 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		public static $welcome = null;
 
 		/**
+		 * Redux Appsero object.
+		 *
+		 * @var null
+		 */
+		public static $appsero = null;
+
+		/**
+		 * Redux Insights object.
+		 *
+		 * @var null
+		 */
+		public static $insights = null;
+
+		/**
 		 * Creates instance of class.
 		 *
 		 * @return Redux_Core
@@ -168,22 +182,68 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			Redux_Functions_Ex::generator();
 
-			// See if Redux is a plugin or not.
+			if ( ! class_exists( 'ReduxAppsero\Client' ) ) {
+				require_once __DIR__ . '/appsero/Client.php';
+			}
+
+			if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
+				$client      = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', REDUX_PLUGIN_FILE );
+				$plugin_info = Redux_Functions_Ex::is_inside_plugin( REDUX_PLUGIN_FILE );
+			} else {
+				$client = new ReduxAppsero\Client( 'f6b61361-757e-4600-bb0f-fe404ae9871b', 'Redux Framework', __FILE__ );
+				// See if Redux is a plugin or not.
+
+				$client->slug       = 'redux-framework';
+				$client->textdomain = 'redux-framework';
+				$client->version    = \Redux_Core::$version;
+			}
+
 			$plugin_info = Redux_Functions_Ex::is_inside_plugin( __FILE__ );
+
 			if ( false !== $plugin_info ) {
 				self::$installed = class_exists( 'Redux_Framework_Plugin' ) ? 'plugin' : 'in_plugin';
-
 				self::$is_plugin = class_exists( 'Redux_Framework_Plugin' );
 				self::$as_plugin = true;
 				self::$url       = trailingslashit( dirname( $plugin_info['url'] ) );
+				if ( isset( $plugin_info['slug'] ) && ! empty( $plugin_info['slug'] ) ) {
+					$client->slug = $plugin_info['slug'];
+				}
+				$client->type = 'plugin';
 			} else {
 				$theme_info = Redux_Functions_Ex::is_inside_theme( __FILE__ );
 				if ( false !== $theme_info ) {
 					self::$url       = trailingslashit( dirname( $theme_info['url'] ) );
 					self::$in_theme  = true;
 					self::$installed = 'in_theme';
-				} // TODO - Can an else ever happen here?
+					if ( isset( $theme_info['slug'] ) && ! empty( $theme_info['slug'] ) ) {
+						$client->slug = $theme_info['slug'];
+					}
+					$client->type = 'theme';
+				}
 			}
+
+			self::$appsero = $client;
+
+			// Activate insights.
+			self::$insights = self::$appsero->insights();
+			self::$insights->hide_notice()->init();
+			if ( ! defined( 'REDUX_PLUGIN_FILE' ) ) {
+				remove_action( 'admin_footer', array( self::$insights, 'deactivate_scripts' ) );
+			}
+
+			if ( ! self::$insights->tracking_allowed() ) {
+				if ( ! self::$insights->notice_dismissed() ) {
+					// Old tracking permissions.
+					$tracking_options = get_option( 'redux-framework-tracking', array() );
+					if ( ! empty( $tracking_options ) ) {
+						if ( isset( $tracking_options['allow_tracking'] ) && 'yes' === $tracking_options['allow_tracking'] ) {
+							Redux_Functions_Ex::set_activated();
+						}
+					}
+				}
+			}
+
+			remove_action( 'redux_admin_notices_run', array( 'ReduxAppsero\Insights', 'admin_notice' ) );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			self::$url = apply_filters( 'redux/url', self::$url );
@@ -205,6 +265,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			self::$upload_url = apply_filters( 'redux/upload_url', self::$upload_url );
 
 			self::$server = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
+
 		}
 
 		/**
@@ -233,9 +294,12 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
 
 			spl_autoload_register( array( $this, 'register_classes' ) );
+			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) );
 
 			self::$welcome = new Redux_Welcome();
 			new Redux_Rest_Api_Builder( $this );
+
+			add_action( 'admin_init', array( $this, 'admin_init' ) );
 
 			$support_hash = md5( md5( Redux_Functions_Ex::hash_key() . '-redux' ) . '-support' );
 			add_action( 'wp_ajax_nopriv_' . $support_hash, array( 'Redux_Helpers', 'support_args' ) );
@@ -284,6 +348,16 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					return;
 				}
 
+				if ( 'Redux_Connection_Banner' === $class_name ) {
+					require_once Redux_Path::get_path( '/inc/welcome/class-redux-connection-banner.php' );
+
+					return;
+				}
+
+				if ( class_exists( 'Redux_Framework_Plugin' ) ) {
+					require_once Redux_Path::get_path( '/inc/classes/class-redux-user-feedback.php' );
+				}
+
 				// Everything else.
 				$file = 'class.' . strtolower( $class_name ) . '.php';
 
@@ -310,6 +384,13 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		private function hooks() {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( 'redux/core/hooks', $this );
+		}
+
+		/**
+		 * Display the connection banner.
+		 */
+		public function admin_init() {
+			Redux_Connection_Banner::init();
 		}
 
 		/**

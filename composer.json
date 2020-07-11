@@ -1,21 +1,44 @@
 {
-  "name": "reduxframework/redux-framework-4",
-  "version": "4.0.2",
-  "authors": [
-    {
-      "name": "Team Redux"
-    }
-  ],
-  "type": "wordpress-plugin",
-  "description": "Redux is a simple, truly extensible options framework for WordPress themes and plugins.",
-  "homepage": "http://redux.io",
-  "license": "GPL-3.0+",
-  "keywords": ["settings", "wordpress", "options", "framework", "redux", "customizer", "plugin"],
-  "support": {
-   	"issues": "https://github.com/reduxframework/redux-framework-4/issues"
-  },
-  "require" : {
-    "php" : ">=5.2.0",
-    "composer/installers": "~1.0"
-  }
+	"name": "reduxframework/redux-framework-4",
+	"version": "4.0.2",
+	"authors": [
+		{
+			"name": "Redux.io",
+			"homepage": "http://redux.io",
+			"email": "hi@redux.io",
+			"role": "Developer"
+		},
+		{
+			"name": "Dōvy Paukstys",
+			"homepage": "http://dovy.io",
+			"email": "dovy@redux.io",
+			"role": "Developer"
+		}
+	],
+	"type": "wordpress-plugin",
+	"description": "Build better and beautiful sites in WordPress, faster.",
+	"homepage": "http://redux.io",
+	"license": "GPL-3.0+",
+	"keywords": [
+		"settings",
+		"wordpress",
+		"options",
+		"framework",
+		"redux",
+		"customizer",
+		"plugin"
+	],
+	"support": {
+		"issues": "https://github.com/reduxframework/redux-framework-4/issues",
+		"docs": "https://docs.redux.io",
+		"forum": "https://wordpress.org/support/plugin/redux-framework/"
+	},
+	"require": {
+		"php": ">=5.2.0",
+		"composer/installers": "~1.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.6",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
+	}
 }

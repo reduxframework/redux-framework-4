@@ -64,7 +64,7 @@ class Redux_Rest_Api_Builder {
 			array(
 				'args'     => array(
 					'type' => array(
-						'description' => __( 'The field type' ),
+						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),
@@ -78,7 +78,7 @@ class Redux_Rest_Api_Builder {
 			array(
 				'args'     => array(
 					'name' => array(
-						'description' => __( 'The field type' ),
+						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),

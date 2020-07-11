@@ -12,16 +12,16 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Color Schemes', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/extensions/color-schemes" target="_blank">docs.reduxframework.com/extensions/color-schemes</a>',
+		'title'      => esc_html__( 'Color Schemes', 'your-textdomain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extensions/color-schemes" target="_blank">docs.reduxframework.com/extensions/color-schemes</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'       => 'opt-color-scheme',
 				'type'     => 'color_scheme',
-				'title'    => esc_html__( 'Color Schemes', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Save and load color schemes', '' ),
-				'desc'     => esc_html__( 'If you\'re using the theme 2014, you will be able to see many changes on the current site.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Color Schemes', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Save and load color schemes', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'If you\'re using the theme 2014, you will be able to see many changes on the current site.', 'your-textdomain-here' ),
 				'output'   => true,
 				'compiler' => true,
 				'simple'   => false,
@@ -42,14 +42,14 @@ Redux::set_section(
 					'palette'                => null,  // show default.
 				),
 				'groups'   => array(
-					esc_html__( 'Header', 'your-domain-here' ) => array(
-						'desc'           => esc_html__( 'Set header and nav colors here. (Group open by default)', 'your-domain-here' ),
+					esc_html__( 'Header', 'your-textdomain-here' ) => array(
+						'desc'           => esc_html__( 'Set header and nav colors here. (Group open by default)', 'your-textdomain-here' ),
 						'hidden'         => false,
 						'accordion_open' => true,
 					),
-					esc_html__( 'Body', 'your-domain-here' ) => esc_html__( 'Set body and content colors here.', 'your-domain-here' ),
-					esc_html__( 'Widget', 'your-domain-here' ) => '',
-					'' => esc_html__( 'These colors are not asigned to any group.', 'your-domain-here' ),
+					esc_html__( 'Body', 'your-textdomain-here' ) => esc_html__( 'Set body and content colors here.', 'your-textdomain-here' ),
+					esc_html__( 'Widget', 'your-textdomain-here' ) => '',
+					'' => esc_html__( 'These colors are not asigned to any group.', 'your-textdomain-here' ),
 				),
 				'default'  => array(
 					array(
@@ -63,7 +63,7 @@ Redux::set_section(
 						),
 						'mode'      => 'background-color',
 						'important' => true,
-						'group'     => esc_html__( 'Header', 'your-domain-here' ),
+						'group'     => esc_html__( 'Header', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'site-header-border',
@@ -73,7 +73,7 @@ Redux::set_section(
 						'selector'  => '.site-header',
 						'mode'      => 'border-color',
 						'important' => true,
-						'group'     => esc_html__( 'Header', 'your-domain-here' ),
+						'group'     => esc_html__( 'Header', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'home-link',     // ID.
@@ -83,7 +83,7 @@ Redux::set_section(
 						'selector'  => '.home-link',    // CSS selector.
 						'mode'      => 'color',         // CSS mode.
 						'important' => true,            // CSS important.
-						'group'     => esc_html__( 'Header', 'your-domain-here' ),
+						'group'     => esc_html__( 'Header', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'site-description',
@@ -93,7 +93,7 @@ Redux::set_section(
 						'selector'  => 'h2.site-description',
 						'mode'      => 'color',
 						'important' => true,
-						'group'     => esc_html__( 'Header', 'your-domain-here' ),
+						'group'     => esc_html__( 'Header', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'navbar',
@@ -102,7 +102,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.navbar',
 						'mode'     => 'background-color',
-						'group'    => esc_html__( 'Header', 'your-domain-here' ),
+						'group'    => esc_html__( 'Header', 'your-textdomain-here' ),
 
 					),
 					array(
@@ -110,9 +110,9 @@ Redux::set_section(
 						'title'    => 'body text',
 						'color'    => '#000000',
 						'alpha'    => 1,
-						'selector' => esc_html__( 'Body', 'your-domain-here' ),
+						'selector' => esc_html__( 'Body', 'your-textdomain-here' ),
 						'mode'     => 'color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'site-content',
@@ -121,7 +121,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.site-content',
 						'mode'     => 'background-color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'entry-content',
@@ -130,7 +130,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.entry-content',
 						'mode'     => 'background-color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'entry-title',
@@ -139,7 +139,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.entry-title a',
 						'mode'     => 'color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'entry-title-hover',
@@ -148,7 +148,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.entry-title a:hover',
 						'mode'     => 'color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'entry-meta',
@@ -157,7 +157,7 @@ Redux::set_section(
 						'alpha'    => 1,
 						'selector' => '.entry-meta a',
 						'mode'     => 'color',
-						'group'    => esc_html__( 'Body', 'your-domain-here' ),
+						'group'    => esc_html__( 'Body', 'your-textdomain-here' ),
 					),
 					array(
 						'id'       => 'widget-container',
@@ -166,7 +166,7 @@ Redux::set_section(
 						'alpha'    => .5,
 						'selector' => '.widget',
 						'mode'     => 'background-color',
-						'group'    => esc_html__( 'Widget', 'your-domain-here' ),
+						'group'    => esc_html__( 'Widget', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'widget-title',
@@ -176,7 +176,7 @@ Redux::set_section(
 						'selector'  => '.widget-title',
 						'mode'      => 'color',
 						'important' => true,
-						'group'     => esc_html__( 'Widget', 'your-domain-here' ),
+						'group'     => esc_html__( 'Widget', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'widget-text',
@@ -186,7 +186,7 @@ Redux::set_section(
 						'selector'  => '.widget a',
 						'mode'      => 'color',
 						'important' => true,
-						'group'     => esc_html__( 'Widget', 'your-domain-here' ),
+						'group'     => esc_html__( 'Widget', 'your-textdomain-here' ),
 					),
 					array(
 						'id'        => 'sidebar-container',

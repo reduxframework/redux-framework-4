@@ -18,8 +18,6 @@
  */
 
 jQuery.uaMatch = function( ua ) {
-	'use strict';
-
 	var match;
 
 	ua = ua.toLowerCase();
@@ -36,8 +34,6 @@ jQuery.uaMatch = function( ua ) {
 };
 
 (function( $ ) {
-	'use strict';
-
 	var active   = 'ui-state-active';
 	var hover    = 'ui-state-hover';
 	var disabled = 'ui-state-disabled';

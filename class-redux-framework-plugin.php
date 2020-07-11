@@ -149,6 +149,10 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				require_once dirname( __FILE__ ) . '/redux-core/framework.php';
 			}
 
+			if ( file_exists( dirname( __FILE__ ) . '/redux-templates/redux-templates.php' ) ) {
+				require_once dirname( __FILE__ ) . '/redux-templates/redux-templates.php';
+			}
+
 			if ( isset( Redux_Core::$as_plugin ) ) {
 				Redux_Core::$as_plugin = true;
 			}

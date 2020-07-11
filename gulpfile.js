@@ -35,52 +35,56 @@
 var projectURL = 'http://127.0.0.1/redux-demo'; // Project URL. Could be something like localhost:8888.
 
 // Translation related.
-var text_domain    = 'redux-framework';                         // Your textdomain here.
-var destFile       = 'redux-framework.pot';                     // Name of the transalation file.
-var packageName    = 'redux-framework';                         // Package name.
-var bugReport      = 'https://redux.io/support';                // Where can users report bugs.
+var text_domain = 'redux-framework';                         // Your textdomain here.
+var destFile = 'redux-framework.pot';                     // Name of the transalation file.
+var packageName = 'redux-framework';                         // Package name.
+var bugReport = 'https://redux.io/support';                // Where can users report bugs.
 var lastTranslator = 'Dovy Paukstys <dovy@redux.io>';           // Last translator Email ID.
-var team           = 'Team Redux <info@redux.io>';    // Team's Email ID.
-var translatePath  = './redux-core/languages/';                  // Where to save the translation files.
+var team = 'Team Redux <info@redux.io>';    // Team's Email ID.
+var translatePath = './redux-core/languages/';                  // Where to save the translation files.
 
 var styles = [
-	{ 'path': './redux-core/assets/scss/vendor/elusive-icons/elusive-icons.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/select2/select2.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/jquery-ui-1.10.0.custom.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/nouislider.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/qtip.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/spectrum.scss', 'dest': './redux-core/assets/css/vendor/' },
-	{ 'path': './redux-core/assets/scss/vendor/vendor.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/assets/scss/color-picker.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/assets/scss/media.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/assets/scss/redux-admin.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/assets/scss/rtl.scss', 'dest': './redux-core/assets/css/' },
-	{ 'path': './redux-core/inc/welcome/css/redux-welcome.scss', 'dest': './redux-core/inc/welcome/css/' }
+	{
+		'path': './redux-core/assets/scss/vendor/elusive-icons/elusive-icons.scss',
+		'dest': './redux-core/assets/css/vendor/'
+	},
+	{'path': './redux-core/assets/scss/vendor/select2/select2.scss', 'dest': './redux-core/assets/css/vendor/'},
+	{'path': './redux-core/assets/scss/vendor/jquery-ui-1.10.0.custom.scss', 'dest': './redux-core/assets/css/vendor/'},
+	{'path': './redux-core/assets/scss/vendor/nouislider.scss', 'dest': './redux-core/assets/css/vendor/'},
+	{'path': './redux-core/assets/scss/vendor/qtip.scss', 'dest': './redux-core/assets/css/vendor/'},
+	{'path': './redux-core/assets/scss/vendor/spectrum.scss', 'dest': './redux-core/assets/css/vendor/'},
+	{'path': './redux-core/assets/scss/vendor/vendor.scss', 'dest': './redux-core/assets/css/'},
+	{'path': './redux-core/assets/scss/color-picker.scss', 'dest': './redux-core/assets/css/'},
+	{'path': './redux-core/assets/scss/media.scss', 'dest': './redux-core/assets/css/'},
+	{'path': './redux-core/assets/scss/redux-admin.scss', 'dest': './redux-core/assets/css/'},
+	{'path': './redux-core/assets/scss/rtl.scss', 'dest': './redux-core/assets/css/'},
+	{'path': './redux-core/inc/welcome/css/redux-welcome.scss', 'dest': './redux-core/inc/welcome/css/'},
+	{'path': './redux-core/inc/welcome/css/redux-banner.scss', 'dest': './redux-core/inc/welcome/css/'}
 ];
 
 // JS Vendor related.
-var jsVendorSRC         = './redux-core/assets/js/vendor/*.js'; // Path to JS vendor folder.
+var jsVendorSRC = './redux-core/assets/js/vendor/*.js'; // Path to JS vendor folder.
 var jsVendorDestination = './redux-core/assets/js/'; // Path to place the compiled JS vendors file.
-var jsVendorFile        = 'redux-vendors'; // Compiled JS vendors file name.
+var jsVendorFile = 'redux-vendors'; // Compiled JS vendors file name.
 
 // JS Custom related.
-var jsReduxSRC         = './redux-core/assets/js/redux.js'; // Path to redux.js script.
+var jsReduxSRC = './redux-core/assets/js/redux.js'; // Path to redux.js script.
 var jsReduxDestination = './redux-core/assets/js/'; // Path to place the compiled JS custom scripts file.
-var jsReduxFile        = 'redux'; // Compiled JS custom file name.
+var jsReduxFile = 'redux'; // Compiled JS custom file name.
 
 // Images related.
-var imagesSRC         = './redux-core/assets/img/raw/**/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
+var imagesSRC = './redux-core/assets/img/raw/**/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
 var imagesDestination = './redux-core/assets/img/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.
 
 // Watch files paths.
 // var styleWatchFiles      = './redux-core/assets/css/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 // var vendorJSWatchFiles   = './redux-core/assets/js/vendor/*.js'; // Path to all vendor JS files.
-var reduxJSWatchFiles    = './redux-core/assets/js/redux/*.js'; // Path to all custom JS files.
+var reduxJSWatchFiles = './redux-core/assets/js/redux/*.js'; // Path to all custom JS files.
 var projectPHPWatchFiles = './**/*.php'; // Path to all PHP files.
 
 // Browsers you care about for autoprefixing.
 // Browserlist https://github.com/ai/browserslist.
-var AUTOPREFIXER_BROWSERS = [ 'last 2 version', '> 1%', 'ie > 10', 'ie_mob > 10', 'ff >= 30', 'chrome >= 34', 'safari >= 7', 'opera >= 23', 'ios >= 7', 'android >= 4', 'bb >= 10' ];
+var AUTOPREFIXER_BROWSERS = ['last 2 version', '> 1%', 'ie > 10', 'ie_mob > 10', 'ff >= 30', 'chrome >= 34', 'safari >= 7', 'opera >= 23', 'ios >= 7', 'android >= 4', 'bb >= 10'];
 
 // STOP Editing Project Variables.
 
@@ -92,35 +96,40 @@ var AUTOPREFIXER_BROWSERS = [ 'last 2 version', '> 1%', 'ie > 10', 'ie_mob > 10'
 var gulp = require( 'gulp' ); // Gulp of-course.
 
 // CSS related plugins.
-var sass      = require( 'gulp-sass' ); // Gulp pluign for Sass compilation.
+var sass = require( 'gulp-sass' ); // Gulp pluign for Sass compilation.
 sass.compiler = require( 'node-sass' );
 
-var minifycss    = require( 'gulp-uglifycss' ); // Minifies CSS files.
+var minifycss = require( 'gulp-uglifycss' ); // Minifies CSS files.
 var autoprefixer = require( 'gulp-autoprefixer' ); // Autoprefixing magic.
-var mmq          = require( 'gulp-merge-media-queries' ); // Combine matching media queries into one media query definition.
+var mmq = require( 'gulp-merge-media-queries' ); // Combine matching media queries into one media query definition.
 
 // JS related plugins.
 var concat = require( 'gulp-concat' ); // Concatenates JS files.
 var uglify = require( 'gulp-uglify' ); // Minifies JS files.
 var jshint = require( 'gulp-jshint' );
-var jscs   = require( 'gulp-jscs' );
+var jscs = require( 'gulp-jscs' );
 
 // Image realted plugins.
 var imagemin = require( 'gulp-imagemin' ); // Minify PNG, JPEG, GIF and SVG images with imagemin.
 
 // Utility related plugins.
-var rename      = require( 'gulp-rename' );                // Renames files E.g. style.css -> style.min.css.
-var lineec      = require( 'gulp-line-ending-corrector' ); // Consistent Line Endings for non UIX systems. Gulp Plugin for Line Ending Corrector (A utility that makes sure your files have consistent line endings).
-var filter      = require( 'gulp-filter' );                // Enables you to work on a subset of the original files by filtering them using globbing.
-var sourcemaps  = require( 'gulp-sourcemaps' );            // Maps code in a compressed file (E.g. style.css) back to itâ€™s original position in a source file.
+var rename = require( 'gulp-rename' );                // Renames files E.g. style.css -> style.min.css.
+var lineec = require( 'gulp-line-ending-corrector' ); // Consistent Line Endings for non UIX systems. Gulp Plugin for Line Ending Corrector (A utility that makes sure your files have consistent line endings).
+var filter = require( 'gulp-filter' );                // Enables you to work on a subset of the original files by filtering them using globbing.
+var sourcemaps = require( 'gulp-sourcemaps' );            // Maps code in a compressed file (E.g. style.css) back to itâ€™s original position in a source file.
 var browserSync = require( 'browser-sync' ).create();      // Reloads browser and injects CSS. Time-saving synchronised browser testing.
 // var reload       = browserSync.reload;                  // For manual browser reload.
-var wpPot        = require( 'gulp-wp-pot' );               // For generating the .pot file.
-var sort         = require( 'gulp-sort' );                 // Recommended to prevent unnecessary changes in pot-file.
-var fs           = require( 'fs' );
-var path         = require( 'path' );
-var merge        = require( 'merge-stream' );
+var wpPot = require( 'gulp-wp-pot' );               // For generating the .pot file.
+var sort = require( 'gulp-sort' );                 // Recommended to prevent unnecessary changes in pot-file.
+var fs = require( 'fs' );
+var path = require( 'path' );
+var merge = require( 'merge-stream' );
 var sassPackager = require( 'gulp-sass-packager' );
+var zip = require( 'gulp-zip' );
+var replace = require( 'gulp-replace' );
+var clean = require( 'gulp-clean' );
+var minifyCSS = require( 'gulp-csso' );
+var minifyJS = require( 'gulp-minify' );
 
 /**
  * Task: `browser-sync`.
@@ -136,7 +145,6 @@ var sassPackager = require( 'gulp-sass-packager' );
 gulp.task(
 	'browser-sync',
 	function() {
-		'use strict';
 		browserSync.init(
 			{
 				// For more options.
@@ -160,7 +168,6 @@ gulp.task(
 );
 
 function getFolders( dir ) {
-	'use strict';
 	return fs.readdirSync( dir ).filter(
 		function( file ) {
 			return fs.statSync( path.join( dir, file ) ).isDirectory();
@@ -169,9 +176,8 @@ function getFolders( dir ) {
 }
 
 function process_scss( source, dest, add_min ) {
-	'use strict';
 
-	var process = gulp.src( source, { allowEmpty: true } )
+	var process = gulp.src( source, {allowEmpty: true} )
 	.pipe( sourcemaps.init() )
 	.pipe(
 		sass(
@@ -230,7 +236,6 @@ function process_scss( source, dest, add_min ) {
  *    7. Injects CSS or reloads the browser via browserSync
  */
 function reduxStyles() {
-	'use strict';
 
 	// Core styles.
 	var core = styles.map(
@@ -241,7 +246,7 @@ function reduxStyles() {
 
 	// Colors.
 	var color_dirs = getFolders( 'redux-core/assets/scss/colors/' );
-	var colors     = color_dirs.map(
+	var colors = color_dirs.map(
 		function( folder ) {
 			var the_path = './redux-core/assets/css/colors/' + folder + '/';
 			return process_scss( './redux-core/assets/scss/colors/' + folder + '/colors.scss', the_path, true );
@@ -250,22 +255,22 @@ function reduxStyles() {
 
 	// Fields.
 	var field_dirs = getFolders( 'redux-core/inc/fields/' );
-	var fields     = field_dirs.map(
+	var fields = field_dirs.map(
 		function( folder ) {
 			var the_path = './redux-core/inc/fields/' + folder + '/';
-			folder       = folder.replace( '_', '-' );
+			folder = folder.replace( '_', '-' );
 			return process_scss( the_path + 'redux-' + folder + '.scss', the_path );
 		}
 	);
 
 	// Extensions.
 	var extension_dirs = getFolders( 'redux-core/inc/extensions/' );
-	var extensions     = extension_dirs.map(
+	var extensions = extension_dirs.map(
 		function( folder ) {
 			var the_path = './redux-core/inc/extensions/' + folder + '/';
-			folder       = folder.replace( '_', '-' );
+			folder = folder.replace( '_', '-' );
 
-			if ( folder === 'metaboxes-lite') {
+			if ( folder === 'metaboxes-lite' ) {
 				folder = 'metaboxes';
 			}
 
@@ -276,12 +281,15 @@ function reduxStyles() {
 	var extension_fields = extension_dirs.map(
 		function( folder ) {
 			var the_path = './redux-core/inc/extensions/' + folder + '/' + folder + '/';
-			folder       = folder.replace( '_', '-' );
+			folder = folder.replace( '_', '-' );
 			return process_scss( the_path + 'redux-' + folder + '.scss', the_path );
 		}
 	);
 
-	var redux_files = gulp.src( ['./redux-core/inc/fields/**/*.scss', './redux-core/inc/extensions/*.scss', './redux-core/inc/extensions/**/*.scss'], { allowEmpty: true } )
+	var redux_files = gulp.src(
+		['./redux-core/inc/fields/**/*.scss', './redux-core/inc/extensions/*.scss', './redux-core/inc/extensions/**/*.scss'],
+		{allowEmpty: true}
+	)
 
 	.pipe( sassPackager( {} ) )
 	.pipe( concat( 'redux-fields.min.scss' ) )
@@ -309,7 +317,6 @@ function reduxStyles() {
 }
 
 function extFieldJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
@@ -318,7 +325,7 @@ function extFieldJS( done ) {
 
 			folder = folder.replace( '_', '-' );
 
-			gulp.src( the_path + 'redux-' + folder + '.js', { allowEmpty: true } )
+			gulp.src( the_path + 'redux-' + folder + '.js', {allowEmpty: true} )
 			.pipe( jshint() )
 			.pipe( jshint.reporter( 'default' ) )
 			.pipe( jscs() )
@@ -343,7 +350,6 @@ function extFieldJS( done ) {
 }
 
 function extJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/extensions' );
 	field_dirs.map(
@@ -352,11 +358,11 @@ function extJS( done ) {
 
 			folder = folder.replace( '_', '-' );
 
-			if( folder === 'metaboxes-lite') {
+			if ( folder === 'metaboxes-lite' ) {
 				folder = 'metaboxes';
 			}
 
-			gulp.src( the_path + 'redux-extension-' + folder + '.js', { allowEmpty: true } )
+			gulp.src( the_path + 'redux-extension-' + folder + '.js', {allowEmpty: true} )
 			.pipe( jshint() )
 			.pipe( jshint.reporter( 'default' ) )
 			.pipe( jscs() )
@@ -381,7 +387,6 @@ function extJS( done ) {
 }
 
 function fieldsJS( done ) {
-	'use strict';
 
 	var field_dirs = getFolders( 'redux-core/inc/fields' );
 	field_dirs.map(
@@ -390,7 +395,7 @@ function fieldsJS( done ) {
 
 			folder = folder.replace( '_', '-' );
 
-			gulp.src( the_path + '/redux-' + folder + '.js', { allowEmpty: true } )
+			gulp.src( the_path + '/redux-' + folder + '.js', {allowEmpty: true} )
 			.pipe( jshint() )
 			.pipe( jshint.reporter( 'default' ) )
 			.pipe( jscs() )
@@ -424,8 +429,7 @@ function fieldsJS( done ) {
  *     1. Gets the source folder for Redux JS javascrip modules.
  *     2. Concatenates all the files and generates redux.js
  */
-function reduxCombineModules( done ){
-	'use strict';
+function reduxCombineModules( done ) {
 
 	gulp.src( jsReduxSRC )
 	.pipe( jshint() )
@@ -448,7 +452,6 @@ function reduxCombineModules( done ){
 }
 
 function reduxMedia( done ) {
-	'use strict';
 
 	gulp.src( './redux-core/assets/js/media/media.js' )
 	.pipe( jshint() )
@@ -472,7 +475,6 @@ function reduxMedia( done ) {
 }
 
 function reduxSpinner( done ) {
-	'use strict';
 
 	gulp.src( './redux-core/inc/fields/spinner/vendor/jquery.ui.spinner.js' )
 	.pipe( jshint() )
@@ -506,7 +508,6 @@ function reduxSpinner( done ) {
  *     3. Uglifes/Minifies the JS file and generates redux.min.js
  */
 function reduxJS( done ) {
-	'use strict';
 
 	gulp.src( reduxJSWatchFiles )
 	.pipe( jshint() )
@@ -533,7 +534,6 @@ function reduxJS( done ) {
  *     4. Uglifes/Minifies the JS file and generates vendors.min.js
  */
 function vendorsJS( done ) {
-	'use strict';
 
 	gulp.src( jsVendorSRC )
 	.pipe( concat( jsVendorFile + '.js' ) )
@@ -567,8 +567,7 @@ function vendorsJS( done ) {
  * This task will run only once, if you want to run it
  * again, do it with the command `gulp images`.
  */
-function reduxImages( done ){
-	'use strict';
+function reduxImages( done ) {
 
 	gulp.src( imagesSRC )
 	.pipe(
@@ -596,7 +595,6 @@ function reduxImages( done ){
  *     4. Generate a .pot file of i18n that can be used for l10n to build .mo file
  */
 function translate() {
-	'use strict';
 	return gulp.src( projectPHPWatchFiles )
 	.pipe( sort() )
 	.pipe(
@@ -625,6 +623,98 @@ gulp.task( 'vendorsJS', vendorsJS );
 gulp.task( 'images', reduxImages );
 gulp.task( 'translate', translate );
 
+
+function cleanBuild() {
+	return gulp.src( './build', {read: false, allowEmpty: true} )
+	.pipe( clean() );
+}
+
+function makeBuild() {
+	return gulp.src( [
+		'./**/*.*',
+		'!./assets/js/*.dev.*',
+		'!./node_modules/**/*.*',
+		'!./src/**/*.*',
+		'!./.wordpress-org/**/*.*',
+		'!./.github/**/*.*',
+		'!./build/**/*.zip',
+		'!./gulpfile.js',
+		'!./yarn.lock',
+		'!./yarn-error.log',
+		'!.babelrc',
+		'!./languages/**/*',
+		'!.eslintrc',
+		'!./package-lock.json',
+		'!./composer-lock.json',
+		'!./composer.lock',
+		'!./webpack.*.js',
+		'!./jest.config.js',
+		'!./babel.config.js',
+		'!./jsconfig.json',
+		'!vendor/composer/installers/**/*',
+		'!vendor/composer/LICENSE',
+		'!vendor/composer/installed.json',
+	] ).pipe( gulp.dest( 'build/' ) );
+}
+
+function productionMode() {
+	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
+	return gulp.src( ['./build/redux-templates/core/Init.php'] )
+	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
+	.pipe( replace( /redux_templates\.dev/g, 'redux_templates.min' ) )
+	.pipe( replace( /vendor\.dev/g, 'vendor.min' ) )
+	.pipe( replace( /map\.js/g, 'map.min.js' ) )
+	.pipe( gulp.dest( './build/redux-templates/core/' ) );
+}
+
+function admin_css() {
+	return gulp.src( ['./redux-templates/src/scss/*.scss'] )
+	.pipe( sass() )
+	.pipe( autoprefixer( {
+		cascade: false
+	} ) )
+	.pipe( minifyCSS() )
+	.pipe( concat( 'admin.min.css' ) )
+	.pipe( gulp.dest( 'redux-templates/assets/css/' ) );
+}
+
+
+function minify_js() {
+	return gulp.src( ['./build/redux-templates/assets/js/*.js'] )
+	.pipe( minifyJS( {
+		ext: {
+			src: '.js',
+			min: '.min.js'
+		},
+		exclude: ['tasks'],
+		ignoreFiles: ['redux-templates.min.js', '*-min.js', '*.min.js']
+	} ) )
+	.pipe( gulp.dest( ['./build/redux-templates/assets/js/'] ) );
+
+}
+
+
+function makeZip() {
+	return gulp.src( './build/**/*.*' )
+	.pipe( zip( './build/redux.zip' ) )
+	.pipe( gulp.dest( './' ) );
+}
+
+gulp.task( 'makeBuild', makeBuild );
+gulp.task( 'productionMode', productionMode );
+gulp.task( 'admin_css', admin_css );
+gulp.task( 'minify_js', minify_js );
+gulp.task( 'cleanBuild', cleanBuild );
+gulp.task( 'makeZip', makeZip );
+
+gulp.task( 'templates', gulp.series(
+	'cleanBuild',
+	'makeBuild',
+	'productionMode',
+	'admin_css',
+	'minify_js',
+	'makeZip'
+) );
 /**
  * Watch Tasks.
  *
@@ -636,7 +726,6 @@ gulp.task(
 		'styles',
 		'vendorsJS',
 		'reduxJS',
-		'fieldsJS',
-		'images'
+		'fieldsJS'
 	)
 );

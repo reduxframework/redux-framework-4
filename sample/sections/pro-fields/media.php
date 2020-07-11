@@ -12,19 +12,19 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Media', 'your-domain-here' ),
+		'title'      => esc_html__( 'Media', 'your-textdomain-here' ),
 		'id'         => 'pro-media-media',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'           => 'pro-opt-media',
 				'type'         => 'pro-media',
 				'url'          => true,
-				'title'        => esc_html__( 'Media w/ URL', 'your-domain-here' ),
+				'title'        => esc_html__( 'Media w/ URL', 'your-textdomain-here' ),
 				'compiler'     => 'true',
-				'desc'         => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
-				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+				'desc'         => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-textdomain-here' ),
+				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'your-textdomain-here' ),
 				'default'      => array(
 					'url'    => 'http://s.wordpress.org/style/images/codeispoetry.png',
 					'filter' => array(
@@ -51,9 +51,9 @@ Redux::set_section(
 			array(
 				'id'       => 'pro-media-no-url',
 				'type'     => 'media',
-				'title'    => esc_html__( 'Media w/o URL', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+				'title'    => esc_html__( 'Media w/o URL', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-textdomain-here' ),
 				'url'      => false,
 				'filter'   => array(
 					'grayscale' => true,
@@ -65,23 +65,23 @@ Redux::set_section(
 				'id'       => 'pro-media-no-preview',
 				'type'     => 'media',
 				'preview'  => false,
-				'title'    => esc_html__( 'Media No Preview', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+				'title'    => esc_html__( 'Media No Preview', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Upload any media using the WordPress native uploader', 'your-textdomain-here' ),
 				'hint'     => array(
-					'title'   => esc_html__( 'Test', 'your-domain-here' ),
+					'title'   => esc_html__( 'Test', 'your-textdomain-here' ),
 					'content' => 'This is a <b>hint</b> tool-tip for the webFonts field.<br/><br/>Add any HTML based text you like here.',
 				),
 			),
 			array(
 				'id'         => 'pro-opt-random-upload',
 				'type'       => 'media',
-				'title'      => esc_html__( 'Upload Anything - Disabled Mode', 'your-domain-here' ),
+				'title'      => esc_html__( 'Upload Anything - Disabled Mode', 'your-textdomain-here' ),
 				'full_width' => true,
 				'mode'       => false,
 				// Can be set to false to allow any media type, or can also be set to any mime type.
-				'desc'       => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-domain-here' ),
-				'subtitle'   => esc_html__( 'Upload any media using the WordPress native uploader', 'your-domain-here' ),
+				'desc'       => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-textdomain-here' ),
+				'subtitle'   => esc_html__( 'Upload any media using the WordPress native uploader', 'your-textdomain-here' ),
 			),
 		),
 	)

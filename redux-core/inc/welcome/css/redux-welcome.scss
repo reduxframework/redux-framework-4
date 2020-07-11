@@ -4,9 +4,9 @@ $orange: #ffba00;
 $blue: #2ea2cc;
 
 #wpbody-content .wrap {
-    height:auto!important;
-    overflow: initial!important;
-    max-width: initial!important;
+    height: auto !important;
+    overflow: initial !important;
+    max-width: initial !important;
 }
 
 .about-wrap {
@@ -28,7 +28,7 @@ $blue: #2ea2cc;
 
         .redux-message {
             position: relative;
-            border-left-color: #00A2E3 !important;
+            border-left-color: #00a2e3 !important;
             overflow: hidden;
 
             a.skip,
@@ -148,22 +148,22 @@ $blue: #2ea2cc;
 
 .about-wrap {
     #footer-upgrade {
-        display: none;;
+        display: none;
     }
 
     .redux-badge {
         position: absolute;
         top: 0;
 
-        background: #00A2E3;
+        background: #00a2e3;
         padding: 20px;
 
         color: #efefef;
         margin: 5px 0 0 0;
-        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
-        &:before {
+        &::before {
             color: #fff;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -180,7 +180,7 @@ $blue: #2ea2cc;
         }
 
         .el {
-            background: #00A2E3;
+            background: #00a2e3;
             display: block !important;
             font-size: 8em;
             color: #fff;
@@ -199,7 +199,7 @@ $blue: #2ea2cc;
             padding: 8px;
         }
         small {
-            clear:both;
+            clear: both;
             font-weight: 600;
             font-size: 14px;
             text-align: center;
@@ -216,13 +216,13 @@ $blue: #2ea2cc;
         overflow: visible !important;
         *zoom: 1;
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             content: " ";
             display: table;
         }
 
-        &:after {
+        &::after {
             clear: both;
         }
 
@@ -239,7 +239,7 @@ $blue: #2ea2cc;
         box-sizing: border-box;
         margin: 0 !important;
 
-        &.icon:before {
+        &.icon::before {
             font-weight: normal;
             width: 100%;
             font-size: 170px;
@@ -269,7 +269,7 @@ $blue: #2ea2cc;
     .changelog {
         h2 {
             line-height: 1.4;
-            padding-bottom: 0;;
+            padding-bottom: 0;
         }
 
         .feature-section {
@@ -323,7 +323,7 @@ $blue: #2ea2cc;
                 font-size: 120px;
             }
 
-            .theme-screenshot:after {
+            .theme-screenshot::after {
                 content: inherit;
                 display: inherit;
                 padding-top: inherit;
@@ -353,8 +353,8 @@ $blue: #2ea2cc;
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
 
-                &:before,
-                &:after {
+                &::before,
+                &::after {
                     pointer-events: none;
                 }
             }
@@ -408,7 +408,7 @@ $blue: #2ea2cc;
             opacity: 1;
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
-            text-shadow: 2px 2px 1px rgba(0, 0, 0, .3);
+            text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
         }
 
     }
@@ -422,7 +422,7 @@ $blue: #2ea2cc;
                 right: 15px;
                 bottom: 15px;
                 left: 15px;
-                content: '';
+                content: "";
                 opacity: 0;
                 -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
                 transition: opacity 0.35s, transform 0.35s;
@@ -467,12 +467,12 @@ p.redux-actions {
     a {
         &.donate,
         &.review-us {
-            opacity: .5;
+            opacity: 0.5;
             text-decoration: none !important;
         }
     }
     a.button-demo {
-        margin-left:15px;
+        margin-left: 15px;
         color: #a00;
 
         &.active {
@@ -482,13 +482,13 @@ p.redux-actions {
 }
 
 #redux-message {
+    margin: 5px 0 15px;
     margin-top: 15px !important;
     display: block !important;
-    margin: 5px 0 15px;
-    border-color: #00A2E3;
+    border-color: #00a2e3;
 
     h4 {
-        margin-top: .5em;
+        margin-top: 0.5em;
     }
 }
 
@@ -544,7 +544,7 @@ p.redux-actions {
     }
 
     .previous {
-        opacity: .8;
+        opacity: 0.8;
     }
 
     /*form styles*/
@@ -554,7 +554,7 @@ p.redux-actions {
         text-align: center;
         position: relative;
         fieldset {
-            background: white;
+            background: #fff;
             border: 0 none;
             border-radius: 3px;
             box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -571,7 +571,8 @@ p.redux-actions {
             }
         }
         /*inputs*/
-        input, textarea {
+        input,
+        textarea {
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 3px;
@@ -579,7 +580,7 @@ p.redux-actions {
             width: 100%;
             box-sizing: border-box;
             font-family: montserrat;
-            color: #2C3E50;
+            color: #2c3e50;
             font-size: 13px;
         }
 
@@ -591,26 +592,27 @@ p.redux-actions {
         /*buttons*/
         .action-button {
             width: 100px;
-            background: #27AE60;
+            background: #27ae60;
             font-weight: bold;
-            color: white;
+            color: #fff;
             border: 0 none;
             border-radius: 1px;
             cursor: pointer;
             padding: 10px 5px;
             margin: 10px 5px;
             &:disabled {
-                opacity: .5;
+                opacity: 0.5;
             }
-            &:hover, &:focus {
-                box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+            &:hover,
+            &:focus {
+                box-shadow: 0 0 0 2px #fff, 0 0 0 3px #27ae60;
             }
         }
         /*headings*/
         .fs-title {
             font-size: 15px;
             text-transform: uppercase;
-            color: #2C3E50;
+            color: #2c3e50;
             margin-bottom: 10px;
         }
 
@@ -637,7 +639,7 @@ p.redux-actions {
                     margin-bottom: 10px;
                 }
                 &:hover i {
-                    color: #176C8E;
+                    color: #176c8e;
                 }
                 small {
                     line-height: 2.5em;
@@ -670,7 +672,7 @@ p.redux-actions {
             width: auto;
             margin: 0;
             line-height: 36px;
-            color: white;
+            color: #fff;
             /*need more margin on the left of links to accomodate the numbers*/
             padding: 0 10px 0 60px;
             background: #666;
@@ -680,7 +682,7 @@ p.redux-actions {
             &:first-child {
                 padding-left: 46px;
                 border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
-                &:before {
+                &::before {
                     left: 14px;
                 }
             }
@@ -688,24 +690,24 @@ p.redux-actions {
                 border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
                 padding-right: 20px;
                 /*we dont need an arrow after the last link*/
-                &:after {
+                &::after {
                     content: none;
                 }
             }
             &.active {
                 background: #333;
                 //background: linear-gradient(#333, #000);
-                &:after {
+                &::after {
                     background: #333;
                     //background: linear-gradient(135deg, #333, #000);
                 }
-                &:before {
+                &::before {
                     background: #555;
                 }
             }
             /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
-            &:after {
-                content: '';
+            &::after {
+                content: "";
                 position: absolute;
                 top: 0;
                 right: -18px; /*half of square's length*/
@@ -722,8 +724,9 @@ p.redux-actions {
                 background: #666;
                 //background: linear-gradient(135deg, #666, #333);
                 /*stylish arrow design using box shadow*/
-                box-shadow: 2px -2px 0 2px rgba(0, 0, 0, 0.4),
-                3px -3px 0 2px rgba(255, 255, 255, 0.1);
+                box-shadow:
+                    2px -2px 0 2px rgba(0, 0, 0, 0.4),
+                    3px -3px 0 2px rgba(255, 255, 255, 0.1);
                 /*
                     5px - for rounded arrows and
                     50px - to prevent hover glitches on the border created using shadows*/
@@ -731,7 +734,7 @@ p.redux-actions {
                 transition: all 0.5s;
             }
             /*we will use the :before element to show numbers*/
-            &:before {
+            &::before {
                 transition: all 0.5s;
                 content: counter(flag);
                 counter-increment: flag;
@@ -790,7 +793,7 @@ p.redux-actions {
         margin-left: 5px;
         background-color: #f0ad4e;
         display: inline;
-        padding: .2em .5em .2em;
+        padding: 0.2em 0.5em 0.2em;
         font-weight: 400;
         line-height: 1;
         font-size: 12px;
@@ -798,7 +801,7 @@ p.redux-actions {
         text-align: center;
         white-space: nowrap;
         vertical-align: baseline;
-        border-radius: .25em;
+        border-radius: 0.25em;
         &.theme {
             background-color: #0099d5;
         }

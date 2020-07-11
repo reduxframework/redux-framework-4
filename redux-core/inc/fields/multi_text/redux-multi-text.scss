@@ -11,17 +11,17 @@
 
     a.redux-multi-text-remove {
         &.deletion {
-            color: #F00;
+            color: #f00;
             padding: 2px 4px;
             margin-left: 5px;
 
             &:hover {
-                background: red;
+                background: #ff0;
                 color: #fff;
                 text-decoration: none;
             }
         }
-    } 
+    }
 }
 
 @media screen and (max-width: 782px) {
@@ -51,5 +51,3 @@
         }
     }
 }
-
-

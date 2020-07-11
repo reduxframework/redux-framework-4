@@ -11,17 +11,17 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Palette', 'your-domain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/palette-color/" target="_blank">docs.redux.io/core/fields/palette-color/</a>',
+		'title'      => esc_html__( 'Palette', 'your-textdomain-here' ),
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/palette-color/" target="_blank">docs.redux.io/core/fields/palette-color/</a>',
 		'id'         => 'palette',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'       => 'opt-palette-color',
 				'type'     => 'palette',
-				'title'    => esc_html__( 'Palette Color Option', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'Only color validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Palette Color Option', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Only color validation can be done on this field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 				'default'  => 'red',
 				'palettes' => array(
 					'red'  => array(

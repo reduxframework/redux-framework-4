@@ -97,6 +97,10 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( "redux/page/{$this->parent->args['opt_name']}/form/before", $this );
 
+			if ( is_rtl() ) {
+				$this->parent->args['class'] = ' redux-rtl';
+			}
+
 			$this->get_template( 'container.tpl.php' );
 
 			/**

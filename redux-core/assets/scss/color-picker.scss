@@ -1,5 +1,5 @@
 .redux-main {
-    input{
+    input {
         &.redux-color {
             float: left;
             width: 70px;
@@ -36,8 +36,8 @@
             border-width: 4px 3px;
             width: auto;
             border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-            opacity: .9;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
             z-index: 5;
             cursor: ns-resize;
         }
@@ -68,8 +68,8 @@
         .wp-color-result {
             outline: 0;
             margin: 0;
-            height: 24px!important;
-            margin: 0 6px 6px 0!important;
+            height: 24px !important;
+            margin: 0 6px 6px 0 !important;
         }
 
         .wp-picker-default {
@@ -84,18 +84,20 @@
 
     .color-transparency-check {
         line-height: 1;
-/*        margin-top: 5px !important;*/
-        margin: 0!important;
+        margin: 0 !important;
         padding-top: 10px;
     }
 
     .wp-picker-clear {
-        margin-top: 0 !important;
+        min-height: 30px !important;
+        margin-left: 5px;
     }
 }
 
 .wp-customizer {
-    .redux-main input.wp-picker-default, .redux-main .redux-typography-container input.wp-picker-default, .redux-main .redux-typography-container .redux-typography-color {
+    .redux-main input.wp-picker-default,
+    .redux-main .redux-typography-container input.wp-picker-default,
+    .redux-main .redux-typography-container .redux-typography-color {
         padding: 0px 4px !important;
     }
     .redux-main input.wp-color-picker {

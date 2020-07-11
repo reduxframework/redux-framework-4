@@ -12,16 +12,16 @@ defined( 'ABSPATH' ) || exit;
 Redux::setSection(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Typography', 'your-domain-here' ),
+		'title'      => esc_html__( 'Typography', 'your-textdomain-here' ),
 		'id'         => 'pro-typography',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
 				'id'                => 'opt-pro-typography-body',
 				'type'              => 'typography',
-				'title'             => esc_html__( 'Body Font', 'your-domain-here' ),
-				'subtitle'          => esc_html__( 'Specify the body font properties.', 'your-domain-here' ),
+				'title'             => esc_html__( 'Body Font', 'your-textdomain-here' ),
+				'subtitle'          => esc_html__( 'Specify the body font properties.', 'your-textdomain-here' ),
 				'google'            => true,
 				'font_family_clear' => false,
 				'text-shadow'       => true,

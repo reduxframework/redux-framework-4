@@ -11,26 +11,26 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'            => esc_html__( 'Checkbox', 'your-domain-here' ),
+		'title'            => esc_html__( 'Checkbox', 'your-textdomain-here' ),
 		'id'               => 'basic-checkbox',
 		'subsection'       => true,
 		'customizer_width' => '450px',
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-checkbox',
 				'type'     => 'checkbox',
-				'title'    => esc_html__( 'Checkbox Option', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Checkbox Option', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 				'default'  => '1', // 1 = on | 0 = off.
 			),
 			array(
 				'id'       => 'opt-multi-check',
 				'type'     => 'checkbox',
-				'title'    => esc_html__( 'Multi Checkbox Option', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Multi Checkbox Option', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 
 				// Must provide key => value pairs for multi checkbox options.
 				'options'  => array(
@@ -47,17 +47,17 @@ Redux::set_section(
 			array(
 				'id'       => 'opt-checkbox-data',
 				'type'     => 'checkbox',
-				'title'    => esc_html__( 'Multi Checkbox Option (with menu data)', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Multi Checkbox Option (with menu data)', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 				'data'     => 'menu',
 			),
 			array(
 				'id'       => 'opt-checkbox-sidebar',
 				'type'     => 'checkbox',
-				'title'    => esc_html__( 'Multi Checkbox Option (with sidebar data)', 'your-domain-here' ),
-				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-domain-here' ),
-				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-domain-here' ),
+				'title'    => esc_html__( 'Multi Checkbox Option (with sidebar data)', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'No validation can be done on this field type', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 				'data'     => 'sidebars',
 			),
 		),

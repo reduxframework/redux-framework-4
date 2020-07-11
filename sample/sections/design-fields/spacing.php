@@ -11,9 +11,9 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Spacing', 'your-domain-here' ),
+		'title'      => esc_html__( 'Spacing', 'your-textdomain-here' ),
 		'id'         => 'design-spacing',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-domain-here' ) . '<a href="//docs.redux.io/core/fields/spacing/" target="_blank">docs.redux.io/core/fields/spacing/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/spacing/" target="_blank">docs.redux.io/core/fields/spacing/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -32,9 +32,9 @@ Redux::set_section(
 
 				// Set to false to hide the units if the units are specified.
 				'display_units' => false,
-				'title'         => esc_html__( 'Padding/Margin Option', 'your-domain-here' ),
-				'subtitle'      => esc_html__( 'Allow your users to choose the spacing or margin they want.', 'your-domain-here' ),
-				'desc'          => esc_html__( 'You can enable or disable any piece of this field. Top, Right, Bottom, Left, or Units.', 'your-domain-here' ),
+				'title'         => esc_html__( 'Padding/Margin Option', 'your-textdomain-here' ),
+				'subtitle'      => esc_html__( 'Allow your users to choose the spacing or margin they want.', 'your-textdomain-here' ),
+				'desc'          => esc_html__( 'You can enable or disable any piece of this field. Top, Right, Bottom, Left, or Units.', 'your-textdomain-here' ),
 				'default'       => array(
 					'margin-top'    => '1',
 					'margin-right'  => '2',
@@ -58,9 +58,9 @@ Redux::set_section(
 				'all'            => false,
 				'units'          => array( 'em', 'px', '%' ),
 				'units_extended' => true,
-				'title'          => __( 'Padding/Margin Option', 'your-domain-here' ),
-				'subtitle'       => __( 'Allow your users to choose the spacing or margin they want.', 'your-domain-here' ),
-				'desc'           => __( 'You can enable or disable any piece of this field. Top, Right, Bottom, Left, or Units.', 'your-domain-here' ),
+				'title'          => __( 'Padding/Margin Option', 'your-textdomain-here' ),
+				'subtitle'       => __( 'Allow your users to choose the spacing or margin they want.', 'your-textdomain-here' ),
+				'desc'           => __( 'You can enable or disable any piece of this field. Top, Right, Bottom, Left, or Units.', 'your-textdomain-here' ),
 				'default'        => array(
 					'margin-top'    => '1',
 					'margin-right'  => '2',

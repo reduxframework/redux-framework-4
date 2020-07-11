@@ -7,8 +7,7 @@
 ( function( $ ) {
 	'use strict';
 
-	$(
-		function() {
+	$(function() {
 			$( '#theme-check > h2' ).html( $( '#theme-check > h2' ).html() + ' with Redux Theme-Check' );
 
 			if ( 'undefined' !== typeof redux_check_intro ) {

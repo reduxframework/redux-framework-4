@@ -16,7 +16,7 @@
 
 .redux-container {
     .form-table > tbody > tr > th {
-        width: 30%
+        width: 30%;
     }
 
     .form-table th,
@@ -43,18 +43,18 @@
         display: none;
     }
 
-    background-color: #f5f5f5; /* Old browsers */
+    background-color: #fff; /* Old browsers */
     background-repeat: repeat-x; /* Repeat the gradient */
-    background-image: -moz-linear-gradient(top, #f2f2f2 0%, #f5f5f5 100%); /* FF3.6+ */
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #f5f5f5)); /* Chrome,Safari4+ */
-    background-image: -webkit-linear-gradient(top, #f2f2f2 0%, #f5f5f5 100%); /* Chrome 10+,Safari 5.1+ */
-    background-image: -ms-linear-gradient(top, #f2f2f2 0%, #f5f5f5 100%); /* IE10+ */
-    background-image: -o-linear-gradient(top, #f2f2f2 0%, #f5f5f5 100%); /* Opera 11.10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0); /* IE6-9 */
-    background-image: -linear-gradient(top, #f2f2f2 0%, #f5f5f5 100%); /* W3C */
+    background-image: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f2f2f2)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%); /* Chrome 10+,Safari 5.1+ */
+    background-image: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%); /* IE10+ */
+    background-image: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%); /* Opera 11.10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fff", endColorstr="#f2f2f2", GradientType=0); /* IE6-9 */
+    background-image: -linear-gradient(top, #fff 0%, #f2f2f2 100%); /* W3C */
     border: 1px solid #dedede;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
     margin-top: 5px;
     overflow: hidden;
@@ -72,7 +72,7 @@
     }
 
     #redux-header {
-        border-bottom-width: 3px; 
+        border-bottom-width: 3px;
         border-bottom-style: solid;
 
         .display_header {
@@ -80,7 +80,7 @@
             margin: 20px 10px;
 
             img {
-                transition: all .1s ease-in-out;
+                transition: all 0.1s ease-in-out;
             }
 
             h2 {
@@ -103,14 +103,14 @@
                 &.redux-dev-mode-notice {
                     background-color: #f0ad4e;
                     display: inline;
-                    padding: .2em .5em .2em;
+                    padding: 0.2em 0.5em 0.2em;
                     font-weight: 700;
                     line-height: 1;
                     color: #fff !important;
                     text-align: center;
                     white-space: nowrap;
                     vertical-align: baseline;
-                    border-radius: .25em;
+                    border-radius: 0.25em;
                 }
             }
         }
@@ -122,7 +122,7 @@
     }
 
     #redux-footer {
-        border-top: 1px solid #E7E7E7;
+        border-top: 1px solid #e7e7e7;
         z-index: 999;
 
         #redux-share {
@@ -143,8 +143,8 @@
 
     .notice-green {
         margin: 0;
-        border-bottom: 1px solid #E7E7E7;
-        background-color: #DFF0D8;
+        border-bottom: 1px solid #e7e7e7;
+        background-color: #dff0d8;
         color: #468847;
         padding: 8px 35px 8px 14px;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -152,18 +152,18 @@
 
     .notice-blue {
         margin: 0;
-        border-bottom: 1px solid #BCE8F1;
-        background-color: #D9EDF7;
-        color: #3A87AD;
+        border-bottom: 1px solid #bce8f1;
+        background-color: #d9edf7;
+        color: #3a87ad;
         padding: 8px 35px 8px 14px;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .notice-yellow {
         margin: 0;
-        border-bottom: 1px solid #E7E7E7;
-        background-color: #FCF8E3;
-        color: #C09853;
+        border-bottom: 1px solid #e7e7e7;
+        background-color: #fcf8e3;
+        color: #c09853;
         padding: 8px 35px 8px 14px;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
@@ -171,22 +171,26 @@
     .notice-red,
     .redux-field-errors {
         margin: 0;
-        border-bottom: 1px solid #E7E7E7;
-        background-color: #F2DEDE;
-        color: #B94A48;
+        border-bottom: 1px solid #e7e7e7;
+        background-color: #f2dede;
+        color: #b94a48;
         padding: 8px 35px 8px 14px;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .redux-field-error {
-        input, textarea, checkbox {
-            background-color: #FFF6F6;
-            color: #A00;
+        input,
+        textarea,
+        input[type="checkbox"] {
+            background-color: #fff6f6;
+            color: #a00;
         }
     }
 
     .redux-field-warning {
-        input, textarea, checkbox {
+        input,
+        textarea,
+        input[type="checkbox"] {
             background-color: #fcf8e3;
             color: #444;
         }
@@ -227,7 +231,7 @@
 
         .redux-theme-data {
             padding: 20px 0;
-            border-top: 1px solid #E7E7E7;
+            border-top: 1px solid #e7e7e7;
 
             &.theme-description {
                 padding: 10px 0;
@@ -245,7 +249,7 @@
         h3 {
             margin-top: 0;
             line-height: 2em;
-            border-bottom: 1px solid #E7E7E7;
+            border-bottom: 1px solid #e7e7e7;
         }
 
         .redux-section-desc {
@@ -264,7 +268,7 @@
 
     .redux-ajax-loading {
         display: none;
-        background: red url(data:image/gif;base64,R0lGODlhEAAQAPUAAIiIiIqKio2NjZSUlJqamp6enqKioqSkpK+vr7i4uL+/v8PDw8XFxcnJyc/Pz9HR0dTU1NjY2Nzc3OLi4ubm5unp6ezs7PPz88vLy83NzdDQ0NXV1d3d3eHh4bu7u8zMzOvr6+3t7ZiYmNbW1sDAwMTExNra2s7OztPT09vb2+Xl5QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/i1NYWRlIGJ5IEtyYXNpbWlyYSBOZWpjaGV2YSAod3d3LmxvYWRpbmZvLm5ldCkAIfkEAAoA/wAsAAAAABAAEAAABXDgJY6XZZEoOTnOlI5WdUFNA5UnSR3FJNUSieFAIUUEgcdl4noEBBGSZaHIiSqKhTX2GhVFiQGjuxgkSoYAoosAGE6RhKQrUURHlS+pItMVCHMjEgQ9JBJISg+JT3ciFg4NFkcCNw0OViiDgF0oTC8hACH5BAAKAP8ALAAAAAAQABAAAAVx4CWOZGle1qJYp2hV1xYE29V1JXUYHWUcnQgGwyFFBAENiqUZ1kapFamTyeBcsNOLMkoMGC3GIIEyBBAtRMDAiiSKp04iQqpwc9kRpUCAizgEBVciEQNJFxpKGgECdFAYYBsCAjUMGS0XgAODmDacIyEAIfkEAAoA/wAsAAAAABAAEAAABnbAi3BILBovIMUidBSGQJdNIKBBMomUg6FDMRgoHcOBQowIqNaLJiCIEEMLxdWpnIfITRAHnxgwjiEfDR8UIQYBCEcgDYwdUR6ORxEfG3MgeFiFRB0FBBxEHAQFkUJmaBofamxuRB9/GwICGxeMTRehnrabpERBACH5BAAKAP8ALAAAAAAQABAAAAZ9wItwSCwaL5aFwnIUWiqXUSAwulSYRMrB0KEYDJSO4UAhRgQBDZLpCAgixOSSWFEssEho81IWJgYMTQwDCUgGAQhNCAEGTCMJHU0dCXBDFX1DFhwdeHwFIhxmGBihQxEDaRcOGhYao1WZGIFnAiMUDg6YRR0ioE57Fx2RRkEAIfkEAAoA/wAsAAAAABAAEAAABXLgJY5kaV7WolinaLGQEEBXxZLUUUyUYVATw4FCisg0NZYmIIiQUosKqaJY3FDS1oUoSgwYrcUggTIAEC1EwMCKJCatSYI2qnBx2dGkQOCQOAQFdxdGARoVGhCITE4kGBgWEI8QFgwYWhGTWiMWERFXIyEAIfkEAAoA/wAsAAAAABAAEAAABn/Ai3BILBovloXCchRaKpdRIDC6VJhEysHQoRgMlI7hQCFGBAENkukICCLE5JJYUSywSGjzUhYmBgxNDAMJSAYBCE0IAAZMEQkdTRwKVUMcHHhCFXpDERgYcJYEBZFDI58aFhoOFxpuoUIUGhoUZwJVGA6ZaxccBAQce0QdpUVBACH5BAAKAP8ALAAAAAAQABAAAAZ8wItwSCwaLyEFKXQUhioXSCAAuVSYRMrB0KEYDJSO4UAhmgQBDZKpCQhMxFBJgRVWlFkOtElhUj4NH3VEJQMJFx0NintFCAEGISEQH3BHHR5VThVlRRSMQh0FBBxEHAQFnEJnaRcfHxdtb0WKIWcCVSUNTYgEo7tEHR1HQQAh+QQACgD/ACwAAAAAEAAQAAAGdcCLcEgsGi8hhSJ0FHY6l1EgMLqAmEROo5HqGAwqL5g42qKsoAsqIEgRVacTdAhSLLBI1bWpwiYGDE0MAwlIBgEITQgBBkwjCRxNHQlVdCpGekUqBQSRQxwEBZdDKQIBZ3FqbG5EDYEjpikhW3hFoJ1NRU9HQQA7) no-repeat;
+        background: #a00 url(data:image/gif;base64,R0lGODlhEAAQAPUAAIiIiIqKio2NjZSUlJqamp6enqKioqSkpK+vr7i4uL+/v8PDw8XFxcnJyc/Pz9HR0dTU1NjY2Nzc3OLi4ubm5unp6ezs7PPz88vLy83NzdDQ0NXV1d3d3eHh4bu7u8zMzOvr6+3t7ZiYmNbW1sDAwMTExNra2s7OztPT09vb2+Xl5QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/i1NYWRlIGJ5IEtyYXNpbWlyYSBOZWpjaGV2YSAod3d3LmxvYWRpbmZvLm5ldCkAIfkEAAoA/wAsAAAAABAAEAAABXDgJY6XZZEoOTnOlI5WdUFNA5UnSR3FJNUSieFAIUUEgcdl4noEBBGSZaHIiSqKhTX2GhVFiQGjuxgkSoYAoosAGE6RhKQrUURHlS+pItMVCHMjEgQ9JBJISg+JT3ciFg4NFkcCNw0OViiDgF0oTC8hACH5BAAKAP8ALAAAAAAQABAAAAVx4CWOZGle1qJYp2hV1xYE29V1JXUYHWUcnQgGwyFFBAENiqUZ1kapFamTyeBcsNOLMkoMGC3GIIEyBBAtRMDAiiSKp04iQqpwc9kRpUCAizgEBVciEQNJFxpKGgECdFAYYBsCAjUMGS0XgAODmDacIyEAIfkEAAoA/wAsAAAAABAAEAAABnbAi3BILBovIMUidBSGQJdNIKBBMomUg6FDMRgoHcOBQowIqNaLJiCIEEMLxdWpnIfITRAHnxgwjiEfDR8UIQYBCEcgDYwdUR6ORxEfG3MgeFiFRB0FBBxEHAQFkUJmaBofamxuRB9/GwICGxeMTRehnrabpERBACH5BAAKAP8ALAAAAAAQABAAAAZ9wItwSCwaL5aFwnIUWiqXUSAwulSYRMrB0KEYDJSO4UAhRgQBDZLpCAgixOSSWFEssEho81IWJgYMTQwDCUgGAQhNCAEGTCMJHU0dCXBDFX1DFhwdeHwFIhxmGBihQxEDaRcOGhYao1WZGIFnAiMUDg6YRR0ioE57Fx2RRkEAIfkEAAoA/wAsAAAAABAAEAAABXLgJY5kaV7WolinaLGQEEBXxZLUUUyUYVATw4FCisg0NZYmIIiQUosKqaJY3FDS1oUoSgwYrcUggTIAEC1EwMCKJCatSYI2qnBx2dGkQOCQOAQFdxdGARoVGhCITE4kGBgWEI8QFgwYWhGTWiMWERFXIyEAIfkEAAoA/wAsAAAAABAAEAAABn/Ai3BILBovloXCchRaKpdRIDC6VJhEysHQoRgMlI7hQCFGBAENkukICCLE5JJYUSywSGjzUhYmBgxNDAMJSAYBCE0IAAZMEQkdTRwKVUMcHHhCFXpDERgYcJYEBZFDI58aFhoOFxpuoUIUGhoUZwJVGA6ZaxccBAQce0QdpUVBACH5BAAKAP8ALAAAAAAQABAAAAZ8wItwSCwaLyEFKXQUhioXSCAAuVSYRMrB0KEYDJSO4UAhmgQBDZKpCQhMxFBJgRVWlFkOtElhUj4NH3VEJQMJFx0NintFCAEGISEQH3BHHR5VThVlRRSMQh0FBBxEHAQFnEJnaRcfHxdtb0WKIWcCVSUNTYgEo7tEHR1HQQAh+QQACgD/ACwAAAAAEAAQAAAGdcCLcEgsGi8hhSJ0FHY6l1EgMLqAmEROo5HqGAwqL5g42qKsoAsqIEgRVacTdAhSLLBI1bWpwiYGDE0MAwlIBgEITQgBBkwjCRxNHQlVdCpGekUqBQSRQxwEBZdDKQIBZ3FqbG5EDYEjpikhW3hFoJ1NRU9HQQA7) no-repeat;
         width: 16px;
         height: 16px;
         margin: 3px 4px 0;
@@ -303,7 +307,7 @@
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAyCAIAAAAm4OfBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNrslT0KhDAQhTeLR7ATT6IXSKGFYO0lciFrO1N4AU8TLNXKv0CaJbLJRAZxl1hYyJuXN+PoR/Z9fyFdBNNr27Zf8Oq6bhgGSGUYhpTSzyeBNi8hRFVVEK+6rrXaQFOs6yrvTdOYjcqyVEpTLqXI89yaSypBudq2xckF2TipOSvfmmhZFuAGnJV6Licvey5gj7fnwpwXvEfLfqnT0jQ1OBJCQLnUBvZ9b85VFAV076UU8g1ZckVRxBiDzD6OY62WzPOM9i+cpunvvcZxfCQfPWs9a91Ym2UZ5xyHtd/e8hXWng+/zlrD9jmz1tDj7bkw5wXv0Y210itJEs9az9oHsPYQYACveK0/IuB51AAAAABJRU5ErkJggg==) no-repeat -2px -26px;
 
         &.expanded {
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAyCAIAAAAm4OfBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNrslT0KhDAQhTeLR7ATT6IXSKGFYO0lciFrO1N4AU8TLNXKv0CaJbLJRAZxl1hYyJuXN+PoR/Z9fyFdBNNr27Zf8Oq6bhgGSGUYhpTSzyeBNi8hRFVVEK+6rrXaQFOs6yrvTdOYjcqyVEpTLqXI89yaSypBudq2xckF2TipOSvfmmhZFuAGnJV6Licvey5gj7fnwpwXvEfLfqnT0jQ1OBJCQLnUBvZ9b85VFAV076UU8g1ZckVRxBiDzD6OY62WzPOM9i+cpunvvcZxfCQfPWs9a91Ym2UZ5xyHtd/e8hXWng+/zlrD9jmz1tDj7bkw5wXv0Y210itJEs9az9oHsPYQYACveK0/IuB51AAAAABJRU5ErkJggg==) no-repeat -2px -1px
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAyCAIAAAAm4OfBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNrslT0KhDAQhTeLR7ATT6IXSKGFYO0lciFrO1N4AU8TLNXKv0CaJbLJRAZxl1hYyJuXN+PoR/Z9fyFdBNNr27Zf8Oq6bhgGSGUYhpTSzyeBNi8hRFVVEK+6rrXaQFOs6yrvTdOYjcqyVEpTLqXI89yaSypBudq2xckF2TipOSvfmmhZFuAGnJV6Licvey5gj7fnwpwXvEfLfqnT0jQ1OBJCQLnUBvZ9b85VFAV076UU8g1ZckVRxBiDzD6OY62WzPOM9i+cpunvvcZxfCQfPWs9a91Ym2UZ5xyHtd/e8hXWng+/zlrD9jmz1tDj7bkw5wXv0Y210itJEs9az9oHsPYQYACveK0/IuB51AAAAABJRU5ErkJggg==) no-repeat -2px -1px;
         }
 
         &:hover {
@@ -325,26 +329,33 @@
 
     }
     .redux-main {
-        background: #FCFCFC;
+        background: #fff;
         margin-left: 201px;
-        border-left: 1px solid #D8D8D8;
+        border-left: 1px solid #d8d8d8;
         padding: 10px 20px;
         -moz-box-shadow: inset 0 1px 0 #fff;
-        -webkit-box-shadow: inset 0 1px 0 #FFF;
-        box-shadow: inset 0 1px 0 #FFF;
+        -webkit-box-shadow: inset 0 1px 0 #fff;
+        box-shadow: inset 0 1px 0 #fff;
         position: relative;
+
+        fieldset.disabled {
+            padding-top: 10px;
+        }
+        .redux-group-tab.disabled {
+            padding-top: 1px;
+        }
 
         fieldset.disabled,
         .redux-group-tab.disabled {
-            position:relative;
+            position: relative;
 
-            &:before {
-                color: #ffffff;
-                font-family: "Elusive-Icons";
+            &::before {
+                color: #fff;
+                font-family: Elusive-Icons;
                 content: "";
                 font-size: 38px;
                 position: absolute;
-                z-index: 100;
+                z-index: 1000;
                 text-shadow: 2px 2px #0e0e0e;
                 left: 50%;
                 top: 50%;
@@ -355,10 +366,17 @@
 
         .disabled {
             pointer-events: none;
-            opacity: 0.4;
-            background: rgba(0, 0, 0, 0.13);
-            padding-left: 10px!important;
-            padding-right: 10px!important;
+            background: rgba(0, 0, 0, 0.25);
+            opacity: 0.45;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
         }
 
         #redux_ajax_overlay {
@@ -367,9 +385,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            -moz-opacity: 0.10;
-            -khtml-opacity: 0.10;
-            opacity: 0.10;
+            -moz-opacity: 0.1;
+            -khtml-opacity: 0.1;
+            opacity: 0.1;
             filter: progid:DXImageTransform.Microsoft.Alpha(opacity=10);
             filter: alpha(opacity=10);
             background: #000;
@@ -382,7 +400,7 @@
         }
 
         .form-table tr {
-            border-bottom: 1px solid #E7E7E7;
+            border-bottom: 1px solid #e7e7e7;
 
             &:last-child {
                 border-bottom: none !important;
@@ -404,20 +422,20 @@
 
             .redux-th-warning {
                 font-size: 1em;
-                color: #C09853;
+                color: #c09853;
                 font-weight: normal;
                 display: block;
                 margin-top: 10px;
             }
 
             .redux-field-warning {
-                border-color: #C09853;
+                border-color: #c09853;
                 margin-top: 10px;
             }
 
             .redux-th-error {
                 font-size: 1em;
-                color: #B94A48;
+                color: #b94a48;
                 font-weight: normal;
                 display: block;
                 margin-top: 10px;
@@ -441,7 +459,7 @@
         }
 
         .mini,
-        input[type=text].mini {
+        input[type="text"].mini {
             width: 60px;
             text-align: center;
         }
@@ -459,7 +477,7 @@
         .showDefaults {
             display: block;
             font-weight: normal;
-            font-size: .8em;
+            font-size: 0.8em;
             color: #888;
         }
 
@@ -515,8 +533,8 @@
         .input-append input {
             border-right: 0;
             margin-bottom: 0;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
             margin-right: 0;
             float: left;
             margin-top: 0;
@@ -534,8 +552,8 @@
         .input-prepend input {
             border-left: 0;
             margin-bottom: 0;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
             margin-left: 0;
             padding-top: 2px;
             padding-bottom: 5px;
@@ -557,6 +575,7 @@
             float: left;
             display: inline-block;
             margin-bottom: 6px;
+
         }
 
         .input-append .add-on,
@@ -567,11 +586,17 @@
             padding: 3px 4px;
             font-size: 12px;
             font-weight: 400;
-            line-height: 20px;
+            line-height: 22px;
             text-align: center;
-            text-shadow: 0 1px 0 #ffffff;
-            background-color: #eeeeee;
-            border: 1px solid #cccccc;
+            text-shadow: 0 1px 0 #fff;
+            background-color: #eee;
+            border: 1px solid #7e8993;
+        }
+        .input-append .add-on {
+            border-left-color: #ccc;
+        }
+        .input-prepend .add-on {
+            border-right-color: #ccc;
         }
 
         .input-prepend {
@@ -596,15 +621,11 @@
 .no-js {
     border: 1px solid #ffbaba;
     margin: 0;
-    border-bottom: 1px solid #E7E7E7;
-    background-color: #F2DEDE;
-    color: #B94A48;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #f2dede;
+    color: #b94a48;
     padding: 8px 35px 8px 14px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 27px !important;
 }
 
 /* main */
@@ -614,6 +635,7 @@
 
     .redux-group-menu {
         margin-top: 0 !important;
+        background: #f2f2f2;
 
         li {
             margin-top: 0;
@@ -622,7 +644,7 @@
             &.active a:hover,
             &.activeChild a,
             &.activeChild a:hover {
-                background: #FCFCFC;
+                background: #fcfcfc;
                 color: #269ad6;
                 width: 184px;
                 opacity: 1;
@@ -637,8 +659,8 @@
                 padding: 0;
                 border-width: 1px 0;
                 border-style: solid;
-                border-bottom-color: #E7E7E7;
-                border-top-color: #F9F9F9;
+                border-bottom-color: #e7e7e7;
+                border-top-color: #f9f9f9;
             }
 
             a:first-child {
@@ -652,8 +674,8 @@
                 background: transparent;
                 border-width: 1px 0;
                 border-style: solid;
-                border-bottom-color: #E7E7E7;
-                border-top-color: #F9F9F9;
+                border-bottom-color: #e7e7e7;
+                border-top-color: #f9f9f9;
                 opacity: 0.7;
                 color: #555;
                 font-weight: 600;
@@ -709,8 +731,8 @@
     }
 
     .redux-menu-warning {
-        background-color: #C09853;
-        color: #FCF8E3;
+        background-color: #c09853;
+        color: #fcf8e3;
     }
 
     ul {
@@ -737,7 +759,7 @@
         }
     }
 
-    .redux-group-menu > li.redux-section-hover > a:after {
+    .redux-group-menu > li.redux-section-hover > a::after {
         right: 0;
         border: 9px solid transparent;
         content: " ";
@@ -760,9 +782,9 @@
                 position: relative;
 
                 > a {
-                    background-color: white;
+                    background-color: #fff;
 
-                    &:after {
+                    &::after {
                         border-right-color: #46403c;
                     }
                 }
@@ -791,7 +813,7 @@
                         }
 
                         .redux-group-tab-link-a {
-                            color: #ffffff;
+                            color: #fff;
 
                             .group_title {
                                 padding-left: 0;
@@ -887,11 +909,11 @@
                 left: 44px;
                 padding: 12px;
                 width: 200px;
-                background: #eeeeee;
+                background: #eee;
                 border: 1px solid #ccc;
-                -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
-                -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
-                box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+                -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
                 border-width: 1px 1px 1px 0px;
                 z-index: 3;
             }
@@ -919,11 +941,13 @@
         padding: 0px !important;
     }
 
-    .form-table > tbody > tr > th, .form-table > tbody > tr > td {
+    .form-table > tbody > tr > th,
+    .form-table > tbody > tr > td {
         padding: 10px !important;
     }
 
-    .form-table > tbody > tr > th, .form-table > tbody > tr > td {
+    .form-table > tbody > tr > th,
+    .form-table > tbody > tr > td {
         padding: 10px !important;
     }
 }
@@ -982,7 +1006,9 @@ pre {
     height: inherit;
 }
 
-.redux-main dd, .redux-main li, .redux-sidebar li {
+.redux-main dd,
+.redux-main li,
+.redux-sidebar li {
     margin-bottom: 0 !important;
 }
 
@@ -1039,7 +1065,7 @@ pre {
 
 .select2-container--default .select2-selection--single .select2-selection__clear {
     font-size: 1.2em;
-    top:-1px;
+    top: -1px;
 }
 
 .redux-sidebar .redux-group-menu {
@@ -1067,7 +1093,7 @@ pre {
 
                 .active {
                     a {
-                        &:after {
+                        &::after {
                             right: 0;
                             border: solid 8px transparent;
                             content: "\0020";
@@ -1163,7 +1189,7 @@ pre {
                 a {
                     position: relative;
 
-                    &:after {
+                    &::after {
                         right: 0;
                         border: solid 8px transparent;
                         content: "\0020";
@@ -1179,7 +1205,7 @@ pre {
                 }
 
                 ul.subsection li a {
-                    &:after {
+                    &::after {
                         border: 0 none !important;
                         content: "\0020" !important;
 
@@ -1190,55 +1216,56 @@ pre {
     }
 }
 
-div.redux-star-holder { 
-    position: relative; 
-    height:19px; 
-    width:100px; 
-    font-size:19px;
+div.redux-star-holder {
+    position: relative;
+    height: 19px;
+    width: 100px;
+    font-size: 19px;
 }
 
 div.redux-star {
-    height: 100%; 
-    position:absolute; 
-    top:0px; 
-    left:0px; 
-    background-color: transparent; 
-    letter-spacing:1ex; border:none;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: transparent;
+    letter-spacing: 1ex;
+    border: none;
 
     img {
-        width:19px; 
-        height:19px; 
-        border-left:1px solid #f1f1f1; 
-        border-right:1px solid #f1f1f1;
-        display:block; 
-        position:absolute; 
-        right:0px; 
-        border:none; 
-        text-decoration:none;        
+        width: 19px;
+        height: 19px;
+        border-left: 1px solid #f1f1f1;
+        border-right: 1px solid #f1f1f1;
+        display: block;
+        position: absolute;
+        right: 0px;
+        border: none;
+        text-decoration: none;
     }
-    
+
     &.redux-star-rating {
         background-color: #fc0;
     }
-    
+
     &.redux-star1 {
-        width:20%;
-    } 
+        width: 20%;
+    }
 
     &.redux-star2 {
-        width:40%;
-    } 
+        width: 40%;
+    }
 
     &.redux-star3 {
-        width:60%;
+        width: 60%;
     }
 
     &.redux-star4 {
-        width:80%;
+        width: 80%;
     }
 
     &.redux-star5 {
-        width:100%;
+        width: 100%;
     }
 }
 
@@ -1355,13 +1382,13 @@ div.redux-star {
 
     .redux-main {
         .form-table-section-indented {
-            input[type=text] {
+            input[type="text"] {
                 width: 95% !important;
             }
         }
 
         .redux-container-sortable {
-            input[type=text] {
+            input[type="text"] {
                 width: 80%;
                 display: initial;
             }

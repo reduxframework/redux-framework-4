@@ -1,9 +1,7 @@
-/* global console:true, ajaxurl */
+/* global window */
 
-(function( $ ) {
-	'use strict';
-
-	$.redux_welcome = $.redux_welcome || {};
+( function( $ ) {
+$.redux_welcome = $.redux_welcome || {};
 
 	$( document ).ready(
 		function() {
@@ -53,14 +51,14 @@
 				$button.closest( '.spinner' ).fadeIn();
 
 				if ( ! window.console ) {
-					console = {};
+					window.console = {};
 				}
 
 				$.ajax(
 					{
 						type: 'post',
 						dataType: 'json',
-						url: ajaxurl,
+						url: window.ajaxurl,
 						data: {
 							action: 'redux_support_hash',
 							nonce: $nonce
@@ -76,7 +74,7 @@
 								$( '#support_hash' ).val( 'https://support.redux.io/?id=' + response.identifier );
 								$button.parents( 'fieldset:first' ).find( '.next' ).removeAttr( 'disabled' ).click();
 							} else {
-								console.log( response );
+								window.console.log( response );
 								alert( 'There was an error. Please try again later.' );
 							}
 						}

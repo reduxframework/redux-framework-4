@@ -2,7 +2,6 @@
 
 function redux_add_date() {
 	(function( $ ) {
-		'use strict';
 
 		var date = new Date();
 		var text = $( '#opt-blank-text' );

@@ -457,29 +457,31 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$extensions = array();
 
-			foreach ( $instances as $instance ) {
-				if ( isset( $instance->extensions ) && is_array( $instance->extensions ) && ! empty( $instance->extensions ) ) {
-					foreach ( $instance->extensions as $key => $extension ) {
-						if ( in_array(
-							$key,
-							array(
-								'metaboxes_lite',
-								'import_export',
-								'customizer',
-								'options_object',
-							),
-							true
-						)
-						) {
-							continue;
-						}
+			if ( ! empty( $instances ) ) {
+				foreach ( $instances as $instance ) {
+					if ( isset( $instance->extensions ) && is_array( $instance->extensions ) && ! empty( $instance->extensions ) ) {
+						foreach ( $instance->extensions as $key => $extension ) {
+							if ( in_array(
+								$key,
+								array(
+									'metaboxes_lite',
+									'import_export',
+									'customizer',
+									'options_object',
+								),
+								true
+							)
+							) {
+								continue;
+							}
 
-						if ( isset( $extension::$version ) ) {
-							$extensions[ $key ] = $extension::$version;
-						} elseif ( isset( $extension->version ) ) {
-							$extensions[ $key ] = $extension->version;
-						} else {
-							$extensions[ $key ] = true;
+							if ( isset( $extension::$version ) ) {
+								$extensions[ $key ] = $extension::$version;
+							} elseif ( isset( $extension->version ) ) {
+								$extensions[ $key ] = $extension->version;
+							} else {
+								$extensions[ $key ] = true;
+							}
 						}
 					}
 				}
@@ -921,7 +923,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			$array = array(
 				'hash'       => self::get_hash(),
-				'opt_names'  => join( '|', array_keys( $instances ) ),
 				'developers' => wp_json_encode( self::get_developer_keys() ),
 				'redux'      => Redux_Core::$version,
 				'installed'  => Redux_Core::$installed,
@@ -932,6 +933,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'auto_fonts' => get_option( 'auto_update_redux_google_fonts', false ),
 				'extensions' => join( '|', array_keys( self::get_extensions() ) ),
 			);
+			if ( ! empty( $instances ) ) {
+				$array['opt_names'] = join( '|', array_keys( $instances ) );
+			}
 
 			if ( ! empty( $args ) ) {
 				return wp_parse_args( $args, $array );
@@ -973,12 +977,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			$sysinfo['redux_ver']      = esc_html( Redux_Core::$version );
 			$sysinfo['redux_data_dir'] = Redux_Core::$upload_dir;
 
-			// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-			$f = 'fo' . 'pen';
-
-			$res = true;
-			if ( $f( Redux_Core::$upload_dir . 'test-log.log', 'a' ) === false ) {
-				$res = false;
+			$fs        = Redux_Filesystem::get_instance();
+			$test_file = Redux_Core::$upload_dir . 'test-log.log';
+			if ( $fs->is_file( $test_file ) ) {
+				$res = $fs->unlink( $test_file );
+			} else {
+				$res = $fs->touch( $test_file );
+				$fs->unlink( $test_file );
 			}
 
 			// Only is a file-write check.
@@ -1292,7 +1297,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			if ( ! empty( $data[0] ) ) {
 				return $data[0];
 			} else {
-				$file_data = $filesystem->execute( 'get_contents', $file );
+				$file_data = $filesystem->get_contents( $file );
 
 				$file_data = str_replace( "\r", "\n", $file_data );
 				$version   = '1.0.0';
@@ -1634,7 +1639,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					if ( ! is_wp_error( $request ) ) {
 						$body = wp_remote_retrieve_body( $request );
 						if ( ! empty( $body ) ) {
-							$filesystem->execute( 'put_contents', $path, array( 'content' => $body ) );
+							$filesystem->put_contents( $path, $body );
 							Redux_Core::$google_fonts = json_decode( $body, true );
 						}
 					} else {
@@ -1642,9 +1647,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					}
 				}
 			} elseif ( file_exists( $path ) ) {
-				Redux_Core::$google_fonts = json_decode( $filesystem->execute( 'get_contents', $path ), true );
+				Redux_Core::$google_fonts = json_decode( $filesystem->get_contents( $path ), true );
 				if ( empty( Redux_Core::$google_fonts ) ) {
-					$filesystem->execute( 'delete', $path );
+					$filesystem->unlink( $path );
 				}
 			}
 
@@ -1930,6 +1935,19 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			echo @htmlspecialchars( @wp_json_encode( $array, true ), ENT_QUOTES, 'UTF-8' );
 
 			die();
+		}
+
+		/**
+		 * Check mokama.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function mokama() {
+			if ( class_exists( 'Redux_Pro' ) ) {
+				return true;
+			}
+			return false;
 		}
 	}
 }

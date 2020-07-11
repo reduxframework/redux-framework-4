@@ -137,7 +137,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'cdn_check_time'                   => 1440,
 				'options_api'                      => true,
 				'allow_tracking'                   => true,
-				'admin_theme'                      => 'wordpress',
+				'admin_theme'                      => 'classic',
 				'elusive_frontend'                 => false,
 				'pro'                              => array(),
 			);
@@ -233,14 +233,14 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			}
 
 			if ( empty( $args['footer_credit'] ) ) {
-				$args['footer_credit'] = '<span id="footer-thankyou">' . sprintf(
-					// translators: Redux URL with title.
-					esc_html__( 'Powered by  %1$s', 'redux-framework' ),
-					'<a href="' . esc_url( '//www.redux.io' ) . '" target="_blank">' . esc_html__(
-						'Redux Framework',
-						'redux-framework'
-					) . '</a> v' . Redux_Core::$version
-				) . '</span>';
+
+				$footer_text = sprintf(
+				/* translators: 1: Redux, 2: Link to plugin review */
+					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'redux-framework' ),
+					'<strong>' . __( 'Redux', 'redux-framework' ) . '</strong>',
+					'<a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5/#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+				);
+				$args['footer_credit'] = '<span id="footer-thankyou">' . $footer_text . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {
@@ -366,12 +366,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			// Fix the global variable name.
 			if ( '' === $args['global_variable'] && false !== $args['global_variable'] ) {
 				$args['global_variable'] = str_replace( '-', '_', $args['opt_name'] );
-			}
-
-			// Force dev_mode on WP_DEBUG = true and if it's a local server.
-			if ( Redux_Helpers::is_wp_debug() ) {
-				$this->dev_mode_forced = true;
-				$args['dev_mode']      = true;
 			}
 
 			if ( isset( $args['customizer_only'] ) && $args['customizer_only'] ) {

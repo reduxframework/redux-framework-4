@@ -274,8 +274,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			$upload_dir = ReduxFramework::$_upload_dir . '/compatibility/';
 			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
 				if ( ! is_dir( $upload_dir ) ) {
-					$parent->filesystem->execute( 'mkdir', $upload_dir );
-					$parent->filesystem->execute( 'put_contents', $upload_dir . 'index.php', array( 'content' => '<?php // Silence is golden.' ) );
+					$parent->filesystem->mkdir( $upload_dir );
+					$parent->filesystem->put_contents( $upload_dir . 'index.php', '<?php // Silence is golden.' );
 				}
 				if ( ! class_exists( $ext_class ) ) {
 					require_once $path;
@@ -298,7 +298,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'    }' . PHP_EOL .
 						'}' . PHP_EOL;
 					$template   = str_replace( '{{ext_class}}', $new_class_name, $class_file );
-					$parent->filesystem->execute( 'put_contents', $upload_dir . $new_class_name . '.php', array( 'content' => $template ) );
+					$parent->filesystem->put_contents( $upload_dir . $new_class_name . '.php', $template );
 				}
 				if ( file_exists( $upload_dir . $new_class_name . '.php' ) ) {
 					include_once $upload_dir . $new_class_name . '.php';
@@ -340,6 +340,55 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			$key .= defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
 
 			return $key;
+		}
+
+		/**
+		 * Check if Redux is activated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function activated() {
+			if ( Redux_Core::$insights->tracking_allowed() ) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * Set Redux to activated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function set_activated() {
+			Redux_Core::$insights->optin();
+		}
+
+		/**
+		 * Set Redux to deactivated.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function set_deactivated() {
+			Redux_Core::$insights->optout();
+		}
+
+		/**
+		 * Register a class path to be autoloaded.
+		 *
+		 * Registers a namespace to be autoloaded from a given path, using the
+		 * WordPress/HM-style filenames (`class-{name}.php`).
+		 *
+		 * @link https://engineering.hmn.md/standards/style/php/#file-naming
+		 *
+		 * @param string $prefix Prefix to autoload from.
+		 * @param string $path Path to validate.
+		 */
+		public static function register_class_path( $prefix = '', $path = '' ) {
+			$loader = new Redux_Autoloader( $prefix, $path );
+			spl_autoload_register( array( $loader, 'load' ) );
 		}
 
 	}
