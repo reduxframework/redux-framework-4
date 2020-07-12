@@ -16,7 +16,7 @@ export default function DependentPlugins (props) {
         return (
             <div className="redux-templates-button-display-dependencies">
                 { data.dependencies &&
-                    data.dependencies.sort().map(plugin => {
+                    data.dependencies.map(plugin => {
 						const pluginInstance = redux_templates.supported_plugins[plugin];
 						if (!pluginInstance) {
 							console.log( 'Missing plugin details for '+ plugin );
