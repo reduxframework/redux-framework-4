@@ -41,6 +41,7 @@ export const processImportHelper = () => {
     const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
     const data = select('redux-templates/sectionslist').getImportingTemplate();
     const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
+    const isImportToAppend = select('redux-templates/sectionslist').getImportToAppend();
 
     if (type === 'pages') {
     	editPost({'template': 'redux-templates_full_width'});
@@ -93,6 +94,7 @@ export const processImportHelper = () => {
 
             localStorage.setItem('importing_data', JSON.stringify(data));
             localStorage.setItem('block_data', JSON.stringify(redux_templates_tempdata));
+            localStorage.setItem('is_appending', isImportToAppend);
 
             insertBlocks(handledData);
             createSuccessNotice('Template inserted', { type: 'snackbar' });
@@ -189,10 +191,10 @@ export const afterImportHandling = (data, handledBlock) => {
     };
     if (invalidBlocks && invalidBlocks.length > 0) { // in case there
         createNotice('error', 'Please let us know if there was an issue importing this Redux template.', {
-                isDismissible: true,
-                id: 'redux-templatesimportfeedback',
-                actions: [
-                    {
+            isDismissible: true,
+            id: 'redux-templatesimportfeedback',
+            actions: [
+                {
                     onClick: () => ModalManager.openFeedback(<FeedbackDialog
                         title={__('Thank you for reporting an issue.', redux_templates.i18n)}
                         description={__('We want to make Redux perfect. Please send whatever you are comfortable sending, and we will do our best to resolve the problem.', redux_templates.i18n)}
