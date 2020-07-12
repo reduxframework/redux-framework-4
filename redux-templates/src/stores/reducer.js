@@ -292,11 +292,17 @@ export const reducer = ( state = initialState, action ) => {
                 case 'all': 
                 case 'none':
                     const newValue = action.data === 'all';
-                    atomHandler = (plugins) => plugins.reduce(
+                    atomHandler = (plugins) => plugins
+                        .filter(plugin => ['none', 'gutenberghub.com', 'shareablock.com'].includes(plugin) === false)
+                        .reduce(
                             (acc, key) => {
                                 return { ...acc, [key]: { value: newValue, disabled: false } }
                             }, 
-                            { none: {value: true, disabled: false} }
+                            {
+                                none: {value: true, disabled: false},
+                                'gutenberghub.com': {value: true, disabled: false},
+                                'shareablock.com': {value: true, disabled: false}
+                            }
                         )
                     break;
                 case 'installed':
