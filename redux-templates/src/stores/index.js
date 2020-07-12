@@ -189,6 +189,9 @@ registerStore('redux-templates/sectionslist', {
         },
         getActivateDialogDisplay(state) {
             return state.activateDialog;
+        },
+        getImportToAppend(state) {
+            return state.isImportToAppend;
         }
     },
 

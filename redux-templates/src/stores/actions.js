@@ -154,6 +154,12 @@ export const actions = {
             data
         }
     },
+    setImportToAppend(data) {
+        return {
+            type: 'SET_IMPORT_TO_APPEND',
+            data
+        }
+    },
     selectDependencies(data) {
         return {
             type: 'SELECT_DEPENDENCIES',

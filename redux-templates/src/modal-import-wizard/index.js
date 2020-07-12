@@ -6,6 +6,7 @@ const {apiFetch} = wp;
 
 import InstallPluginStep from './InstallPluginStep';
 import ProPluginStep from './ProPluginsStep';
+import OptionStep from './OptionStep';
 import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
@@ -17,14 +18,15 @@ import './style.scss'
 
 const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
-const IMPORT_STEP = 2;
+const OPTION_STEP = 2;
+const IMPORT_STEP = 3;
 const REDUX_PRO_STEP = -1;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 
 function ImportWizard(props) {
     const {startImportTemplate, setImportingTemplate, setActivateDialogDisplay, appendErrorMessage} = props;
-    const {isChallengeOpen, importingTemplate, activateDialogDisplay} = props;
+    const {isChallengeOpen, importingTemplate, activateDialogDisplay, isPostEmpty} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
     const [activating, setActivating] = useState(false);
@@ -41,10 +43,11 @@ function ImportWizard(props) {
                 setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
-            // setCurrentStep(REDUX_PRO_STEP);
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
                 setCurrentStep(PLUGIN_STEP);
             if (importingTemplate && currentStep === PLUGIN_STEP && requiresInstall(importingTemplate) === false)
+                setCurrentStep(OPTION_STEP);
+            if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true)
                 setCurrentStep(IMPORT_STEP);
             if (importingTemplate && currentStep === IMPORT_STEP && importing === false) {
                 setImporting(true);
@@ -122,7 +125,8 @@ function ImportWizard(props) {
                     {(currentStep === PLUGIN_STEP) &&
                         <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
-                    {(currentStep === IMPORT_STEP) && <ImportingStep />}
+                    {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
+                    {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
                     {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
                 </div>
@@ -144,10 +148,12 @@ export default compose([
 
     withSelect((select, props) => {
         const {getChallengeOpen, getImportingTemplate, getActivateDialogDisplay} = select('redux-templates/sectionslist');
+        const {isEditedPostEmpty} = select('core/editor');
         return {
             isChallengeOpen: getChallengeOpen(),
             importingTemplate: getImportingTemplate(),
-            activateDialogDisplay: getActivateDialogDisplay()
+            activateDialogDisplay: getActivateDialogDisplay(),
+            isPostEmpty: isEditedPostEmpty()
         };
     })
 ])(ImportWizard);

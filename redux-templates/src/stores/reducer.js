@@ -43,6 +43,7 @@ export const initialState = {
         currentPage: getWithExpiry('collection_page', 0)
     },
     installedDependencies: false, // used when deciding should or not reload page after importing the template
+    isImportToAppend: true, // append to or replace the current page content for importing
     tour: {
         isOpen: false,
         activeButtonGroup: null,
@@ -277,6 +278,11 @@ export const reducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 activateDialog: action.data
+            }
+        case 'SET_IMPORT_TO_APPEND':
+            return {
+                ...state,
+                isImportToAppend: action.data
             }
         // Dependency Shortcut click handler: All, None, Installed and Reset
         case 'SELECT_DEPENDENCIES':
