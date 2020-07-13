@@ -46,7 +46,7 @@ function ImportWizard(props) {
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
                 setCurrentStep(PLUGIN_STEP);
             if (importingTemplate && currentStep === PLUGIN_STEP && requiresInstall(importingTemplate) === false)
-                setCurrentStep(OPTION_STEP);
+                if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
             if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true)
                 setCurrentStep(IMPORT_STEP);
             if (importingTemplate && currentStep === IMPORT_STEP && importing === false) {
