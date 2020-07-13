@@ -129,7 +129,7 @@ function ImportWizard(props) {
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
                     {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
-                    {isInstalledDependencies && <iframe src='http://localhost/front/wp-admin/' width="0" height="0" />}
+                    {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
             </div>
         </div>
