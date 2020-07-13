@@ -26,7 +26,7 @@ const tourPlugins = ['qubely', 'kioken-blocks'];
 
 function ImportWizard(props) {
     const {startImportTemplate, setImportingTemplate, setActivateDialogDisplay, appendErrorMessage} = props;
-    const {isChallengeOpen, importingTemplate, activateDialogDisplay, isPostEmpty} = props;
+    const {isChallengeOpen, importingTemplate, activateDialogDisplay, isPostEmpty, isInstalledDependencies} = props;
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
     const [activating, setActivating] = useState(false);
@@ -45,7 +45,7 @@ function ImportWizard(props) {
             }
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
                 setCurrentStep(PLUGIN_STEP);
-            if (importingTemplate && currentStep === PLUGIN_STEP && requiresInstall(importingTemplate) === false)
+            if (importingTemplate && currentStep === PLUGIN_STEP &&  requiresInstall(importingTemplate) === false)
                 if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
             if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true)
                 setCurrentStep(IMPORT_STEP);
@@ -129,6 +129,7 @@ function ImportWizard(props) {
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
                     {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
+                    {isInstalledDependencies && <iframe src='http://localhost/front/wp-admin/' width="0" height="0" />}
                 </div>
             </div>
         </div>
@@ -147,13 +148,14 @@ export default compose([
     }),
 
     withSelect((select, props) => {
-        const {getChallengeOpen, getImportingTemplate, getActivateDialogDisplay} = select('redux-templates/sectionslist');
+        const {getChallengeOpen, getImportingTemplate, getActivateDialogDisplay, getInstalledDependencies} = select('redux-templates/sectionslist');
         const {isEditedPostEmpty} = select('core/editor');
         return {
             isChallengeOpen: getChallengeOpen(),
             importingTemplate: getImportingTemplate(),
             activateDialogDisplay: getActivateDialogDisplay(),
-            isPostEmpty: isEditedPostEmpty()
+            isPostEmpty: isEditedPostEmpty(),
+            isInstalledDependencies: getInstalledDependencies()
         };
     })
 ])(ImportWizard);
