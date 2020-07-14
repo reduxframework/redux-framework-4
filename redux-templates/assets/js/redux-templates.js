@@ -3980,7 +3980,7 @@ function SingleItem(props) {
   }, wp.element.createElement("div", {
     className: "redux-templates-pro-badge"
   }, __('Premium', redux_templates.i18n))), !Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_4__["requiresPro"])(data) && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_4__["requiresInstall"])(data) && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["Tooltip"], {
-    text: __('Missing Plugin(s)', redux_templates.i18n),
+    text: __('Not Installed', redux_templates.i18n),
     position: "bottom",
     key: data.source + data.source_id
   }, wp.element.createElement("div", {
@@ -7996,7 +7996,7 @@ function DependencyFilterRow(props) {
     onChange: toggleChecked
   }), pluginClassname.includes('missing-dependency') && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     position: 'top right',
-    text: __('Missing Plugin', redux_templates.i18n)
+    text: __('Not Installed', redux_templates.i18n)
   }, wp.element.createElement("div", {
     className: "redux-icon-wrapper"
   }, wp.element.createElement("i", {

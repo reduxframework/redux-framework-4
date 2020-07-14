@@ -1,20 +1,21 @@
 /* global console:true, ajaxurl */
 
 (function( $ ) {
-    
     $.redux_banner = $.redux_banner || {};
     $( document ).ready( function() {
-        $( '.redux-banner-svg-dismiss' ).on( 'click', function () {
-            $( '.redux-banner-full-container' ).hide();
-        });
-		$( '.redux-connection-banner-action' ).on( 'click', function (e) {
+    	var post_data = {
+		    'action': 'redux_activation',
+		    'nonce': $( '#redux-connect-message' ).data( 'nonce' )
+	    };
+		$( '.redux-connection-banner-action' ).on( 'click', function ( e ) {
 			$( '#redux-connect-message' ).hide();
-			$.get( $( this ).attr('href'), {}, function( response ) {} );
 			e.preventDefault();
+			post_data['activate'] = $(this).data( 'activate' );
+			$.post( $( this ).data('url'), post_data );
 		});
-		jQuery('.redux-insights-data-we-collect').on('click', function(e) {
+		jQuery('.redux-insights-data-we-collect').on('click', function( e ) {
 			e.preventDefault();
-			jQuery(this).parents('.updated').find('p.description').slideToggle('fast');
+			jQuery( this ).parents('.updated').find('p.description').slideToggle('fast');
 		});
     });
 })( jQuery );

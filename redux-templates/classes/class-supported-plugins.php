@@ -137,15 +137,15 @@ class Supported_Plugins {
 			if ( ! isset( $plugin['url'] ) || ( isset( $plugin['url'] ) && empty( $plugin['url'] ) ) ) {
 				if ( isset( $plugin['free_slug'] ) ) {
 					if ( isset( $plugin['free_slug'] ) ) {
-						$free_plugin = self::$plugins[$plugin['free_slug']];
+						$free_plugin = self::$plugins[ $plugin['free_slug'] ];
 						if ( isset( $free_plugin['url'] ) ) {
-							self::$plugins[$key]['url'] = $free_plugin['url'];
+							self::$plugins[ $key ]['url'] = $free_plugin['url'];
 						} else {
-							self::$plugins[$key]['url'] = "https://wordpress.org/plugins/{$plugin['free_slug']}/";
+							self::$plugins[ $key ]['url'] = "https://wordpress.org/plugins/{$plugin['free_slug']}/";
 						}
 					}
 				} else {
-					self::$plugins[$key]['url'] = "https://wordpress.org/plugins/{$key}/";
+					self::$plugins[ $key ]['url'] = "https://wordpress.org/plugins/{$key}/";
 				}
 			}
 		}

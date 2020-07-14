@@ -73,7 +73,7 @@ function DependencyFilterRow(props) {
                 onChange={toggleChecked}
             />
             {pluginClassname.includes('missing-dependency') &&
-                <Tooltip position={'top right'} text={__('Missing Plugin', redux_templates.i18n)}><div className='redux-icon-wrapper'><i className="fa fa-exclamation-triangle" /></div></Tooltip>
+                <Tooltip position={'top right'} text={__('Not Installed', redux_templates.i18n)}><div className='redux-icon-wrapper'><i className="fa fa-exclamation-triangle" /></div></Tooltip>
             }
 
             {pluginInstanceURL ?
