@@ -6,6 +6,7 @@ import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 
 import {CheckboxControl, Tooltip} from '@wordpress/components';
 import DependencyFilterRow from './dependencyFilterRow';
+import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {REDUXTEMPLATES_PRO_KEY} from '~redux-templates/stores/helper';
 
 function DependencyFilter(props) {
@@ -34,7 +35,6 @@ function DependencyFilter(props) {
                 }, {none: {value: true, disabled: false}})
         );
     };
-
     return (
         <Fragment>
             {!loading && wholePlugins &&
@@ -71,7 +71,15 @@ function DependencyFilter(props) {
                         {
                             Object.keys(dependencyFilters)
                                 .filter(pluginKey => (wholePlugins.indexOf(pluginKey)!==-1 || pluginKey === REDUXTEMPLATES_PRO_KEY))
-                                .sort()
+                                .sort((a, b) => {
+                                    const pluginInstanceA = pluginInfo(a);
+                                    const pluginInstanceB = pluginInfo(b);
+                                    if (pluginInstanceA.name < pluginInstanceB.name)
+                                        return -1;
+                                    if (pluginInstanceA.name > pluginInstanceB.name)
+                                        return 1;
+                                    return 0;
+                                })
                                 .map(pluginKey =>
                                     <DependencyFilterRow key={pluginKey} pluginKey={pluginKey} />
                                 )
