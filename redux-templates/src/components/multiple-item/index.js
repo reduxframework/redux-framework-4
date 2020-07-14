@@ -23,7 +23,7 @@ const MultipleItem = (props) => {
 					</div>
 					<div className="redux-templates-button-overlay">
 						{requiresPro(data) && <Tooltip text={__('Premium Requirements', redux_templates.i18n)} position="bottom" key={data.source+data.source_id}><span className="redux-templates-pro-badge">{__('Premium Requirements', redux_templates.i18n)}</span></Tooltip>}
-						{!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Missing Plugin(s)', redux_templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
+						{!requiresPro(data) && requiresInstall(data) && <Tooltip text={__('Not Installed', redux_templates.i18n)} position="bottom" key={data.source+data.source_id}><div className="redux-templates-missing-badge"><i className="fas fa-exclamation-triangle" /></div></Tooltip>}
 						<div className="redux-templates-import-button-group">
 							<div className="action-buttons"><a className="redux-templates-button download-button">{__('View Templates', redux_templates.i18n)}</a></div>
 						</div>

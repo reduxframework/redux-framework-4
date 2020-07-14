@@ -3508,7 +3508,7 @@ const MultipleItem = props => {
   }, wp.element.createElement("span", {
     className: "redux-templates-pro-badge"
   }, __('Premium Requirements', redux_templates.i18n))), !Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresPro"])(data) && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresInstall"])(data) && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    text: __('Missing Plugin(s)', redux_templates.i18n),
+    text: __('Not Installed', redux_templates.i18n),
     position: "bottom",
     key: data.source + data.source_id
   }, wp.element.createElement("div", {
@@ -6947,6 +6947,74 @@ function InstallPluginStep(props) {
 
 /***/ }),
 
+/***/ "./redux-templates/src/modal-import-wizard/OptionStep.js":
+/*!***************************************************************!*\
+  !*** ./redux-templates/src/modal-import-wizard/OptionStep.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const _wp = wp,
+      apiFetch = _wp.apiFetch;
+const compose = wp.compose.compose;
+const withDispatch = wp.data.withDispatch;
+const _wp$element = wp.element,
+      Fragment = _wp$element.Fragment,
+      useState = _wp$element.useState;
+const __ = wp.i18n.__;
+
+function OptionStep(props) {
+  const setImportToAppend = props.setImportToAppend,
+        toNextStep = props.toNextStep,
+        onCloseWizard = props.onCloseWizard;
+
+  const onNextStep = isToAppend => {
+    setImportToAppend(isToAppend);
+    toNextStep();
+  };
+
+  return wp.element.createElement(Fragment, null, wp.element.createElement("div", {
+    className: "redux-templates-modal-body"
+  }, wp.element.createElement("h5", null, __('Append or Replace', redux_templates.i18n)), wp.element.createElement("p", null, __('You have existing content on this page. How would you like to handle the import of this page template?', redux_templates.i18n)), wp.element.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginTop: '30px'
+    }
+  }, wp.element.createElement("button", {
+    className: "button button-primary",
+    onClick: () => onNextStep(true),
+    style: {
+      marginRight: '10px'
+    }
+  }, __('Append to Content', redux_templates.i18n)), wp.element.createElement("button", {
+    className: "button button-primary",
+    onClick: () => onNextStep(false)
+  }, __('Replace all Content', redux_templates.i18n)))), wp.element.createElement("div", {
+    className: "redux-templates-modal-footer"
+  }, wp.element.createElement("button", {
+    className: "button button-secondary",
+    onClick: onCloseWizard
+  }, __('Cancel', redux_templates.i18n))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (compose([withDispatch(dispatch => {
+  const _dispatch = dispatch('redux-templates/sectionslist'),
+        setImportToAppend = _dispatch.setImportToAppend;
+
+  return {
+    setImportToAppend
+  };
+})])(OptionStep));
+
+/***/ }),
+
 /***/ "./redux-templates/src/modal-import-wizard/ProPluginsStep.js":
 /*!*******************************************************************!*\
   !*** ./redux-templates/src/modal-import-wizard/ProPluginsStep.js ***!
@@ -7021,7 +7089,7 @@ function ReduxTemplatesActivateBox({
     style: {
       marginRight: '5px'
     }
-  }), wp.element.createElement("span", null, __('Activate Redux', redux_templates.i18n)))), wp.element.createElement("p", {
+  }), wp.element.createElement("span", null, __('Activate Redux for Free', redux_templates.i18n)))), wp.element.createElement("p", {
     style: {
       fontSize: '1.1em'
     }
@@ -7071,14 +7139,15 @@ function ReduxTemplatesPremiumBox(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _InstallPluginStep__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InstallPluginStep */ "./redux-templates/src/modal-import-wizard/InstallPluginStep.js");
 /* harmony import */ var _ProPluginsStep__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProPluginsStep */ "./redux-templates/src/modal-import-wizard/ProPluginsStep.js");
-/* harmony import */ var _ImportingStep__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ImportingStep */ "./redux-templates/src/modal-import-wizard/ImportingStep.js");
-/* harmony import */ var _ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReduxTemplatesPremiumBox */ "./redux-templates/src/modal-import-wizard/ReduxTemplatesPremiumBox.js");
-/* harmony import */ var _ReduxTeamplatesActivateBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReduxTeamplatesActivateBox */ "./redux-templates/src/modal-import-wizard/ReduxTeamplatesActivateBox.js");
-/* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
-/* harmony import */ var _modals_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../modals.scss */ "./redux-templates/src/modals.scss");
-/* harmony import */ var _modals_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modals_scss__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./style.scss */ "./redux-templates/src/modal-import-wizard/style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _OptionStep__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OptionStep */ "./redux-templates/src/modal-import-wizard/OptionStep.js");
+/* harmony import */ var _ImportingStep__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ImportingStep */ "./redux-templates/src/modal-import-wizard/ImportingStep.js");
+/* harmony import */ var _ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReduxTemplatesPremiumBox */ "./redux-templates/src/modal-import-wizard/ReduxTemplatesPremiumBox.js");
+/* harmony import */ var _ReduxTeamplatesActivateBox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReduxTeamplatesActivateBox */ "./redux-templates/src/modal-import-wizard/ReduxTeamplatesActivateBox.js");
+/* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
+/* harmony import */ var _modals_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modals.scss */ "./redux-templates/src/modals.scss");
+/* harmony import */ var _modals_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modals_scss__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style.scss */ "./redux-templates/src/modal-import-wizard/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_8__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -7109,9 +7178,11 @@ const _wp = wp,
 
 
 
+
 const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
-const IMPORT_STEP = 2;
+const OPTION_STEP = 2;
+const IMPORT_STEP = 3;
 const REDUX_PRO_STEP = -1;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
@@ -7123,7 +7194,9 @@ function ImportWizard(props) {
         appendErrorMessage = props.appendErrorMessage;
   const isChallengeOpen = props.isChallengeOpen,
         importingTemplate = props.importingTemplate,
-        activateDialogDisplay = props.activateDialogDisplay;
+        activateDialogDisplay = props.activateDialogDisplay,
+        isPostEmpty = props.isPostEmpty,
+        isInstalledDependencies = props.isInstalledDependencies;
 
   const _useState = useState(PRO_STEP),
         _useState2 = _slicedToArray(_useState, 2),
@@ -7153,11 +7226,11 @@ function ImportWizard(props) {
       if (redux_templates.proDependenciesMissing && redux_templates.proDependenciesMissing.includes('redux-pro')) {
         setCurrentStep(REDUX_PRO_STEP);
         return;
-      } // setCurrentStep(REDUX_PRO_STEP);
+      }
 
-
-      if (importingTemplate && currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_5__["requiresPro"])(importingTemplate) === false) setCurrentStep(PLUGIN_STEP);
-      if (importingTemplate && currentStep === PLUGIN_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_5__["requiresInstall"])(importingTemplate) === false) setCurrentStep(IMPORT_STEP);
+      if (importingTemplate && currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresPro"])(importingTemplate) === false) setCurrentStep(PLUGIN_STEP);
+      if (importingTemplate && currentStep === PLUGIN_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresInstall"])(importingTemplate) === false) if (isPostEmpty === false) setCurrentStep(OPTION_STEP);else setCurrentStep(IMPORT_STEP);
+      if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true) setCurrentStep(IMPORT_STEP);
 
       if (importingTemplate && currentStep === IMPORT_STEP && importing === false) {
         setImporting(true);
@@ -7237,17 +7310,24 @@ function ImportWizard(props) {
     className: 'fas fa-times'
   }))), wp.element.createElement("div", {
     className: "redux-templates-importmodal-content"
-  }, currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_5__["requiresPro"])(importingTemplate) && wp.element.createElement(_ProPluginsStep__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresPro"])(importingTemplate) && wp.element.createElement(_ProPluginsStep__WEBPACK_IMPORTED_MODULE_1__["default"], {
     missingPros: importingTemplate.proDependenciesMissing,
     onCloseWizard: onCloseWizard
   }), currentStep === PLUGIN_STEP && wp.element.createElement(_InstallPluginStep__WEBPACK_IMPORTED_MODULE_0__["default"], {
     missingPlugins: isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || [],
     toNextStep: toNextStep,
     onCloseWizard: onCloseWizard
-  }), currentStep === IMPORT_STEP && wp.element.createElement(_ImportingStep__WEBPACK_IMPORTED_MODULE_2__["default"], null), currentStep === REDUX_ACTIVATE_STEP && wp.element.createElement(_ReduxTeamplatesActivateBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), currentStep === OPTION_STEP && wp.element.createElement(_OptionStep__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    toNextStep: toNextStep,
+    onCloseWizard: onCloseWizard
+  }), currentStep === IMPORT_STEP && wp.element.createElement(_ImportingStep__WEBPACK_IMPORTED_MODULE_3__["default"], null), currentStep === REDUX_ACTIVATE_STEP && wp.element.createElement(_ReduxTeamplatesActivateBox__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onActivateRedux: activateReduxTracking,
     activating: activating
-  }), currentStep === REDUX_PRO_STEP && wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
+  }), currentStep === REDUX_PRO_STEP && wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_4__["default"], null), isInstalledDependencies && wp.element.createElement("iframe", {
+    src: "./",
+    width: "0",
+    height: "0"
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (compose([withDispatch(dispatch => {
@@ -7265,12 +7345,18 @@ function ImportWizard(props) {
   const _select = select('redux-templates/sectionslist'),
         getChallengeOpen = _select.getChallengeOpen,
         getImportingTemplate = _select.getImportingTemplate,
-        getActivateDialogDisplay = _select.getActivateDialogDisplay;
+        getActivateDialogDisplay = _select.getActivateDialogDisplay,
+        getInstalledDependencies = _select.getInstalledDependencies;
+
+  const _select2 = select('core/editor'),
+        isEditedPostEmpty = _select2.isEditedPostEmpty;
 
   return {
     isChallengeOpen: getChallengeOpen(),
     importingTemplate: getImportingTemplate(),
-    activateDialogDisplay: getActivateDialogDisplay()
+    activateDialogDisplay: getActivateDialogDisplay(),
+    isPostEmpty: isEditedPostEmpty(),
+    isInstalledDependencies: getInstalledDependencies()
   };
 })])(ImportWizard));
 
@@ -7619,7 +7705,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dependencyFilterRow */ "./redux-templates/src/modal-library/sidebar/dependencyFilterRow.js");
-/* harmony import */ var _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~redux-templates/stores/helper */ "./redux-templates/src/stores/helper.js");
+/* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
+/* harmony import */ var _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ~redux-templates/stores/helper */ "./redux-templates/src/stores/helper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7632,6 +7719,7 @@ const _wp$data = wp.data,
       withDispatch = _wp$data.withDispatch,
       withSelect = _wp$data.withSelect;
 const __ = wp.i18n.__;
+
 
 
 
@@ -7724,7 +7812,13 @@ function DependencyFilter(props) {
     }
   }, wp.element.createElement("i", {
     className: "fa fa-info-circle"
-  })))), Object.keys(dependencyFilters).filter(pluginKey => wholePlugins.indexOf(pluginKey) !== -1 || pluginKey === _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["REDUXTEMPLATES_PRO_KEY"]).sort().map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })))), Object.keys(dependencyFilters).filter(pluginKey => wholePlugins.indexOf(pluginKey) !== -1 || pluginKey === _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["REDUXTEMPLATES_PRO_KEY"]).sort((a, b) => {
+    const pluginInstanceA = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(a);
+    const pluginInstanceB = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(b);
+    if (pluginInstanceA.name < pluginInstanceB.name) return -1;
+    if (pluginInstanceA.name > pluginInstanceB.name) return 1;
+    return 0;
+  }).map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: pluginKey,
     pluginKey: pluginKey
   })))));
@@ -10302,15 +10396,20 @@ const _wp$data = wp.data,
       dispatch = _wp$data.dispatch,
       select = _wp$data.select;
 
-const _select = select('core/blocks'),
-      getBlockTypes = _select.getBlockTypes;
+const _select = select('core/block-editor'),
+      getBlockOrder = _select.getBlockOrder;
+
+const _select2 = select('core/blocks'),
+      getBlockTypes = _select2.getBlockTypes;
 
 const _dispatch = dispatch('core/editor'),
       savePost = _dispatch.savePost,
       editPost = _dispatch.editPost;
 
 const _dispatch2 = dispatch('core/block-editor'),
-      insertBlocks = _dispatch2.insertBlocks;
+      insertBlocks = _dispatch2.insertBlocks,
+      removeBlocks = _dispatch2.removeBlocks,
+      multiSelect = _dispatch2.multiSelect;
 
 const _dispatch3 = dispatch('core/notices'),
       createSuccessNotice = _dispatch3.createSuccessNotice,
@@ -10359,6 +10458,7 @@ const processImportHelper = () => {
   const type = select('redux-templates/sectionslist').getActiveItemType() === 'section' ? 'sections' : 'pages';
   const data = select('redux-templates/sectionslist').getImportingTemplate();
   const installedDependencies = select('redux-templates/sectionslist').getInstalledDependencies();
+  const isImportToAppend = select('redux-templates/sectionslist').getImportToAppend();
 
   if (type === 'pages') {
     editPost({
@@ -10401,11 +10501,12 @@ const processImportHelper = () => {
     displayNotice(response.data, {
       type: 'snackbar'
     });
-    /* if (installedDependencies) { // To hijack redirect, for example, after installing Stackable
-        let iframe = document.createElement('iframe');
-        iframe.src= './';
-        document.body.appendChild(iframe);
-    } */
+
+    if (isImportToAppend === false) {
+      const rootBlocksClientIds = getBlockOrder();
+      multiSelect(rootBlocksClientIds[0], rootBlocksClientIds[rootBlocksClientIds.length - 1]);
+      removeBlocks(rootBlocksClientIds);
+    }
 
     if (response.success && response.data) {
       let responseBlockData = response.data; // Important: Update left count from the response in case of no Redux PRO
@@ -10415,6 +10516,7 @@ const processImportHelper = () => {
       if (responseBlockData.hasOwnProperty('template') || responseBlockData.hasOwnProperty('attributes')) handledData = handleBlock(responseBlockData, installedDependencies);else handledData = Object.keys(responseBlockData).filter(key => key !== 'cache').map(key => handleBlock(responseBlockData[key], installedDependencies));
       localStorage.setItem('importing_data', JSON.stringify(data));
       localStorage.setItem('block_data', JSON.stringify(redux_templates_tempdata));
+      localStorage.setItem('is_appending', isImportToAppend);
       insertBlocks(handledData);
       createSuccessNotice('Template inserted', {
         type: 'snackbar'
@@ -10777,6 +10879,13 @@ const actions = {
     };
   },
 
+  setImportToAppend(data) {
+    return {
+      type: 'SET_IMPORT_TO_APPEND',
+      data
+    };
+  },
+
   selectDependencies(data) {
     return {
       type: 'SELECT_DEPENDENCIES',
@@ -11004,7 +11113,7 @@ const isTemplateDependencyFilterIncluded = (item, dependencyFilters) => {
   if (!item.dependencies || Object.keys(item.dependencies).length === 0) return valueOfDependencyFilter(dependencyFilters['none']);
   return item.dependencies.reduce((acc, k) => {
     if (acc === undefined) return valueOfDependencyFilter(dependencyFilters[k]);
-    if (missingProList.indexOf(k) === -1 || k === REDUXTEMPLATES_PRO_KEY) return acc || valueOfDependencyFilter(dependencyFilters[k]);else return acc && valueOfDependencyFilter(dependencyFilters[k]);
+    return acc || valueOfDependencyFilter(dependencyFilters[k]);
   }, undefined);
 };
 
@@ -11668,6 +11777,10 @@ registerStore('redux-templates/sectionslist', {
 
     getActivateDialogDisplay(state) {
       return state.activateDialog;
+    },
+
+    getImportToAppend(state) {
+      return state.isImportToAppend;
     }
 
   },
@@ -11773,6 +11886,8 @@ const initialState = {
   },
   installedDependencies: false,
   // used when deciding should or not reload page after importing the template
+  isImportToAppend: true,
+  // append to or replace the current page content for importing
   tour: {
     isOpen: false,
     activeButtonGroup: null,
@@ -11983,6 +12098,11 @@ const reducer = (state = initialState, action) => {
       return _objectSpread(_objectSpread({}, state), {}, {
         activateDialog: action.data
       });
+
+    case 'SET_IMPORT_TO_APPEND':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isImportToAppend: action.data
+      });
     // Dependency Shortcut click handler: All, None, Installed and Reset
 
     case 'SELECT_DEPENDENCIES':
@@ -11994,7 +12114,7 @@ const reducer = (state = initialState, action) => {
         case 'none':
           const newValue = action.data === 'all';
 
-          atomHandler = plugins => plugins.reduce((acc, key) => {
+          atomHandler = plugins => plugins.filter(plugin => ['none', 'gutenberghub.com', 'shareablock.com'].includes(plugin) === false).reduce((acc, key) => {
             return _objectSpread(_objectSpread({}, acc), {}, {
               [key]: {
                 value: newValue,
@@ -12003,6 +12123,14 @@ const reducer = (state = initialState, action) => {
             });
           }, {
             none: {
+              value: true,
+              disabled: false
+            },
+            'gutenberghub.com': {
+              value: true,
+              disabled: false
+            },
+            'shareablock.com': {
               value: true,
               disabled: false
             }
