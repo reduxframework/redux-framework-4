@@ -1,9 +1,10 @@
 const { parse, createBlock } = wp.blocks;
 const { apiFetch } = wp;
 const { dispatch, select } = wp.data;
+const { getBlockOrder } = select( 'core/block-editor' );
 const { getBlockTypes } = select('core/blocks');
 const { savePost, editPost } = dispatch('core/editor');
-const { insertBlocks } = dispatch('core/block-editor');
+const { insertBlocks, removeBlocks, multiSelect } = dispatch('core/block-editor');
 const { createSuccessNotice, createErrorNotice, createNotice, removeNotice } = dispatch('core/notices');
 import { __ } from '@wordpress/i18n'
 import { ModalManager } from '~redux-templates/modal-manager';
@@ -72,11 +73,15 @@ export const processImportHelper = () => {
     apiFetch(options).then(response => {
         // First, let's give user feedback.
         displayNotice(response.data, {type: 'snackbar'});
-        /* if (installedDependencies) { // To hijack redirect, for example, after installing Stackable
-            let iframe = document.createElement('iframe');
-            iframe.src= './';
-            document.body.appendChild(iframe);
-        } */
+        
+        if (isImportToAppend === false) {
+            const rootBlocksClientIds = getBlockOrder();
+            multiSelect(
+                rootBlocksClientIds[0],
+                rootBlocksClientIds[rootBlocksClientIds.length - 1]
+            );
+            removeBlocks( rootBlocksClientIds );
+        }
 
         if (response.success && response.data) {
             let responseBlockData = response.data;
