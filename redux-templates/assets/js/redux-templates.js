@@ -509,7 +509,7 @@ exports.push([module.i, "#collections-sections-list {\n  width: 100%;\n  display
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".wp-full-overlay {\n  margin-left: 300px; }\n\n@media screen and (min-width: 1667px) {\n  .wp-full-overlay {\n    margin-left: 18%; } }\n\nbutton {\n  box-sizing: border-box;\n  pointer-events: all; }\n\n.wp-full-overlay.hide {\n  display: none; }\n\n.theme-screenshot-wrap {\n  overflow: hidden;\n  position: relative;\n  max-height: 300px;\n  margin: 15px 0;\n  border: 1px solid #ccc; }\n\n.install-theme-info h3 a {\n  float: right;\n  opacity: 0.6; }\n  .install-theme-info h3 a:hover {\n    opacity: 1; }\n\n.install-theme-info .theme-screenshot {\n  width: 100% !important;\n  border: none !important;\n  margin: 0 !important;\n  display: block; }\n\n.expanded .wp-full-overlay-footer {\n  height: 111px !important;\n  left: initial; }\n  .expanded .wp-full-overlay-footer .button-hero {\n    text-align: center; }\n\n.wp-full-overlay .wp-full-overlay-sidebar-content {\n  bottom: 100px; }\n  .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list {\n    border-top: 1px solid #eee;\n    color: #82878c;\n    font-size: 13px;\n    font-weight: 400;\n    margin: 30px 0 0 0; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list h4 {\n      color: #23282d;\n      font-size: 1.1em;\n      text-align: center; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list .redux-templates-dependency-blocks .redux-templates-dependency-name {\n      color: #444;\n      font-weight: 600;\n      margin-right: 5px; }\n\n.footer-import-button-wrap {\n  padding: 10px 20px;\n  display: flex;\n  justify-content: center; }\n\n.wp-full-overlay-footer .view-site,\n.wp-full-overlay-footer .go-pro,\n.wp-full-overlay-footer .redux-templates-import {\n  width: 100%; }\n\n.redux-templates-button-download {\n  border: 1px solid #3dbfe8;\n  background: #3dbfe8;\n  box-shadow: 0 1px 0 #165cb4;\n  color: #fff; }\n\n.wp-full-overlay-main {\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  height: 100%;\n  -webkit-transition: background-color 1000ms linear;\n  -ms-transition: background-color 1000ms linear;\n  transition: background-color 1000ms linear;\n  background-color: unset; }\n  .wp-full-overlay-main.loaded::before {\n    display: none !important; }\n  .wp-full-overlay-main.loaded iframe {\n    background-color: #fff; }\n  .wp-full-overlay-main .components-spinner {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%); }\n\n.theme-install-overlay iframe {\n  height: 100%;\n  width: 100%;\n  z-index: 20;\n  transition: opacity 0.3s; }\n\n.redux-templates-dependency-blocks {\n  display: flex; }\n  .redux-templates-dependency-blocks .block-head {\n    text-align: center;\n    width: 60px;\n    margin-right: 10px; }\n\n.requirements-list {\n  width: 100%; }\n  .requirements-list ul {\n    margin: 0;\n    padding: 0;\n    list-style: none; }\n    .requirements-list ul li {\n      cursor: pointer;\n      line-height: 20px;\n      padding-bottom: 25px;\n      clear: left;\n      transition: 300ms; }\n      .requirements-list ul li svg {\n        margin-right: 5px; }\n        .requirements-list ul li svg * {\n          fill: #9a9a9a; }\n      .requirements-list ul li svg,\n      .requirements-list ul li span,\n      .requirements-list ul li div {\n        float: left; }\n      .requirements-list ul li .redux-icon-wrapper {\n        display: inline; }\n      .requirements-list ul li span.pluginURL {\n        float: right; }\n      .requirements-list ul li i {\n        font-size: 1.1em; }\n      .requirements-list ul li .redux-icon-wrapper {\n        padding-left: 5px; }\n      .requirements-list ul li i.fa-exclamation-triangle {\n        font-size: 0.9em;\n        line-height: 1.5em;\n        color: #b27823; }\n      .requirements-list ul li:hover svg * {\n        fill: dimgray; }\n      .requirements-list ul li:hover i.fa-exclamation-triangle {\n        color: #f5a623; }\n\n.redux-block-pills ul {\n  margin: 0;\n  padding: 0; }\n  .redux-block-pills ul li {\n    margin: 10px 0; }\n    .redux-block-pills ul li span {\n      --bg-opacity: 1 !important;\n      background-color: #edf2f7 !important;\n      background-color: rgba(237, 242, 247, var(--bg-opacity)) !important;\n      border-radius: 9999px !important;\n      padding-top: 0.25rem !important;\n      padding-bottom: 0.25rem !important;\n      padding-left: 0.75rem !important;\n      padding-right: 0.75rem !important;\n      --text-opacity: 1 !important;\n      color: #4a5568 !important;\n      color: rgba(74, 85, 104, var(--text-opacity)) !important; }\n\n.redux-templates-modal-preview-box {\n  background: #f1f1f1; }\n  .redux-templates-modal-preview-box img {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    max-width: 100%;\n    max-height: 100%; }\n\n.theme-hash {\n  text-align: center;\n  font-size: 14px;\n  position: relative; }\n  .theme-hash i {\n    cursor: pointer;\n    margin-right: 5px;\n    margin-left: 5px; }\n  .theme-hash .copied {\n    color: #656a6f;\n    position: absolute;\n    line-height: 75%;\n    margin-left: 10px;\n    opacity: 0.6; }\n  .theme-hash .the-copy {\n    border-bottom-right-radius: 0 !important;\n    border-top-right-radius: 0 !important; }\n  .theme-hash .the-hash {\n    border-bottom-left-radius: 0 !important;\n    border-top-left-radius: 0 !important;\n    border-left: 0 !important; }\n  .theme-hash .hideMe {\n    -webkit-animation: cssAnimation 3s forwards;\n    animation: cssAnimation 3s forwards; }\n\n@keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n@-webkit-keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n", ""]);
+exports.push([module.i, ".wp-full-overlay {\n  margin-left: 300px; }\n\n@media screen and (min-width: 1667px) {\n  .wp-full-overlay {\n    margin-left: 18%; } }\n\nbutton {\n  box-sizing: border-box;\n  pointer-events: all; }\n\n.wp-full-overlay.hide {\n  display: none; }\n\n.theme-screenshot-wrap {\n  overflow: hidden;\n  position: relative;\n  max-height: 300px;\n  margin: 15px 0;\n  border: 1px solid #ccc; }\n\n.install-theme-info h3 a {\n  float: right;\n  opacity: 0.6; }\n  .install-theme-info h3 a:hover {\n    opacity: 1; }\n\n.install-theme-info .theme-screenshot {\n  width: 100% !important;\n  border: none !important;\n  margin: 0 !important;\n  display: block; }\n\n.expanded .wp-full-overlay-footer {\n  height: 111px !important;\n  left: initial; }\n  .expanded .wp-full-overlay-footer .button-hero {\n    text-align: center; }\n\n.wp-full-overlay .wp-full-overlay-sidebar-content {\n  bottom: 100px; }\n  .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list {\n    border-top: 1px solid #eee;\n    color: #82878c;\n    font-size: 13px;\n    font-weight: 400;\n    margin: 30px 0 0 0; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list h4 {\n      color: #23282d;\n      font-size: 1.1em;\n      text-align: center; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list .redux-templates-dependency-blocks .redux-templates-dependency-name {\n      color: #444;\n      font-weight: 600;\n      margin-right: 5px; }\n\n.footer-import-button-wrap {\n  padding: 10px 20px;\n  display: flex;\n  justify-content: center; }\n\n.wp-full-overlay-footer .view-site,\n.wp-full-overlay-footer .go-pro,\n.wp-full-overlay-footer .redux-templates-import {\n  width: 100%; }\n\n.redux-templates-button-download {\n  border: 1px solid #3dbfe8;\n  background: #3dbfe8;\n  box-shadow: 0 1px 0 #165cb4;\n  color: #fff; }\n\n.wp-full-overlay-main {\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  height: 100%;\n  -webkit-transition: background-color 1000ms linear;\n  -ms-transition: background-color 1000ms linear;\n  transition: background-color 1000ms linear;\n  background-color: unset; }\n  .wp-full-overlay-main.loaded::before {\n    display: none !important; }\n  .wp-full-overlay-main.loaded iframe {\n    background-color: #fff; }\n  .wp-full-overlay-main .components-spinner {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%); }\n\n.theme-install-overlay iframe {\n  height: 100%;\n  width: 100%;\n  z-index: 20;\n  transition: opacity 0.3s; }\n\n.redux-templates-dependency-blocks {\n  display: flex; }\n  .redux-templates-dependency-blocks .block-head {\n    text-align: center;\n    width: 60px;\n    margin-right: 10px; }\n\n.requirements-list {\n  width: 100%; }\n  .requirements-list ul {\n    margin: 0;\n    padding: 0;\n    list-style: none; }\n    .requirements-list ul li {\n      cursor: pointer;\n      line-height: 20px;\n      padding-bottom: 25px;\n      clear: left;\n      transition: 300ms; }\n      .requirements-list ul li svg {\n        margin-right: 5px; }\n        .requirements-list ul li svg * {\n          fill: #9a9a9a; }\n      .requirements-list ul li svg,\n      .requirements-list ul li span,\n      .requirements-list ul li div {\n        float: left; }\n      .requirements-list ul li .redux-icon-wrapper {\n        display: inline; }\n      .requirements-list ul li span.pluginURL {\n        float: right; }\n      .requirements-list ul li i {\n        font-size: 1.1em; }\n      .requirements-list ul li .redux-icon-wrapper {\n        padding-left: 5px; }\n      .requirements-list ul li i.fa-exclamation-triangle {\n        font-size: 0.9em;\n        line-height: 1.5em;\n        color: #b27823; }\n      .requirements-list ul li:hover svg * {\n        fill: dimgray; }\n      .requirements-list ul li:hover i.fa-exclamation-triangle {\n        color: #f5a623; }\n\n.redux-block-pills ul {\n  margin: 0;\n  padding: 0; }\n  .redux-block-pills ul li {\n    margin: 0px 5px 10px 0;\n    float: left; }\n    .redux-block-pills ul li span {\n      --bg-opacity: 1 !important;\n      background-color: #edf2f7 !important;\n      background-color: rgba(237, 242, 247, var(--bg-opacity)) !important;\n      border-radius: 9999px !important;\n      padding-top: 0.25rem !important;\n      padding-bottom: 0.25rem !important;\n      padding-left: 0.75rem !important;\n      padding-right: 0.75rem !important;\n      --text-opacity: 1 !important;\n      color: #4a5568 !important;\n      color: rgba(74, 85, 104, var(--text-opacity)) !important; }\n\n.redux-templates-modal-preview-box {\n  background: #f1f1f1; }\n  .redux-templates-modal-preview-box img {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    max-width: 100%;\n    max-height: 100%; }\n\n.theme-hash {\n  text-align: center;\n  font-size: 14px;\n  position: relative; }\n  .theme-hash i {\n    cursor: pointer;\n    margin-right: 5px;\n    margin-left: 5px; }\n  .theme-hash .copied {\n    color: #656a6f;\n    position: absolute;\n    line-height: 75%;\n    margin-left: 10px;\n    opacity: 0.6; }\n  .theme-hash .the-copy {\n    border-bottom-right-radius: 0 !important;\n    border-top-right-radius: 0 !important; }\n  .theme-hash .the-hash {\n    border-bottom-left-radius: 0 !important;\n    border-top-left-radius: 0 !important;\n    border-left: 0 !important; }\n  .theme-hash .hideMe {\n    -webkit-animation: cssAnimation 3s forwards;\n    animation: cssAnimation 3s forwards; }\n\n@keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n@-webkit-keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n", ""]);
 
 
 
@@ -3150,42 +3150,64 @@ function DependentPlugins(props) {
     return data.proDependenciesMissing && data.proDependenciesMissing.indexOf(plugin) >= 0 || data.installDependenciesMissing && data.installDependenciesMissing.indexOf(plugin) >= 0;
   };
 
-  if (showDependencyBlock) return wp.element.createElement("div", {
-    className: "redux-templates-button-display-dependencies"
-  }, data.dependencies && data.dependencies.map(plugin => {
-    const pluginInstance = redux_templates.supported_plugins[plugin];
+  if (showDependencyBlock) {
+    let index = data.dependencies.indexOf('core');
 
-    if (!pluginInstance) {
-      console.log('Missing plugin details for ' + plugin);
-      return null;
+    if (index > -1) {
+      data.dependencies.splice(index, 1);
+      data.dependencies.push('core');
     }
 
-    const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase(); // We don't want two of the same icons showing up.
+    return wp.element.createElement("div", {
+      className: "redux-templates-button-display-dependencies"
+    }, data.dependencies && data.dependencies.map(plugin => {
+      let pluginInstance = null;
 
-    if (!plugin.includes('-pro') && !plugin.includes('-premium')) {
-      if (data.dependencies.includes(plugin + '-pro') || data.dependencies.includes(plugin + '-premium')) {
+      if ('core' == plugin) {
+        pluginInstance = {
+          name: 'WordPress Native'
+        };
+      } else {
+        pluginInstance = redux_templates.supported_plugins[plugin];
+      }
+
+      if (!pluginInstance) {
+        console.log('Missing plugin details for ' + plugin);
+        return null;
+      }
+
+      const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase(); // We don't want two of the same icons showing up.
+
+      if (!plugin.includes('-pro') && !plugin.includes('-premium')) {
+        if (data.dependencies.includes(plugin + '-pro') || data.dependencies.includes(plugin + '-premium')) {
+          return;
+        }
+      }
+
+      if ('redux' === plugin_name) {
         return;
       }
-    }
 
-    if ('redux' === plugin_name) {
-      return;
-    }
+      const IconComponent = _redux_templates_icons__WEBPACK_IMPORTED_MODULE_1__[plugin_name];
 
-    const IconComponent = _redux_templates_icons__WEBPACK_IMPORTED_MODULE_1__[plugin_name];
+      if (IconComponent && pluginInstance) {
+        return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["Tooltip"], {
+          text: isMissingPlugin(plugin) && 'core' !== plugin ? pluginInstance.name + ' ( ' + __('Not Installed', redux_templates.i18n) + ' )' : pluginInstance.name,
+          position: "bottom center",
+          key: id + plugin
+        }, wp.element.createElement("span", {
+          className: isMissingPlugin(plugin) && 'core' !== plugin ? 'missing-dependency' : ''
+        }, wp.element.createElement(IconComponent, null)));
+      } else if ('shareablockcom' !== plugin_name && 'gutenberghubcom' !== plugin_name) {
+        console.log('Need icon for ' + plugin_name);
+      }
+    }), data.dependencies['core'] && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["Tooltip"], {
+      text: __('WordPress Core', redux_templates.i18n),
+      position: "bottom center",
+      key: id + 'core'
+    }, wp.element.createElement("span", null, wp.element.createElement(IconComponent, null))));
+  }
 
-    if (IconComponent && pluginInstance) {
-      return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["Tooltip"], {
-        text: isMissingPlugin(plugin) ? pluginInstance.name + ' ( ' + __('Not Installed', redux_templates.i18n) + ' )' : pluginInstance.name,
-        position: "bottom center",
-        key: id + plugin
-      }, wp.element.createElement("span", {
-        className: isMissingPlugin(plugin) ? 'missing-dependency' : ''
-      }, wp.element.createElement(IconComponent, null)));
-    } else if ('shareablockcom' !== plugin_name && 'gutenberghubcom' !== plugin_name) {
-      console.log('Need icon for ' + plugin_name);
-    }
-  }));
   return null;
 }
 
@@ -3507,7 +3529,7 @@ const MultipleItem = props => {
     key: data.source + data.source_id
   }, wp.element.createElement("span", {
     className: "redux-templates-pro-badge"
-  }, __('Premium Requirements', redux_templates.i18n))), !Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresPro"])(data) && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresInstall"])(data) && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+  }, __('Premium', redux_templates.i18n))), !Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresPro"])(data) && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["requiresInstall"])(data) && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Not Installed', redux_templates.i18n),
     position: "bottom",
     key: data.source + data.source_id
@@ -6009,7 +6031,7 @@ var SvgWordpress = function SvgWordpress(props) {
 /*!********************************************!*\
   !*** ./redux-templates/src/icons/index.js ***!
   \********************************************/
-/*! exports provided: redux, acfblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize */
+/*! exports provided: redux, acfblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize, core */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6047,6 +6069,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReduxTemplatesIcon", function() { return ReduxTemplatesIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReduxTemplatesIconColor", function() { return ReduxTemplatesIconColor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReduxTemplatesIconColorize", function() { return ReduxTemplatesIconColorize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "core", function() { return core; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assets_img_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/img/icon.svg */ "./redux-templates/assets/img/icon.svg");
@@ -6388,6 +6411,12 @@ const ReduxTemplatesIconColorize = () => {
     width: "20",
     height: "20"
   }));
+};
+const core = () => {
+  return wp.element.createElement(_images_wordpress_svg__WEBPACK_IMPORTED_MODULE_28__["default"], {
+    width: "20",
+    height: "20"
+  });
 }; //
 // export const AdvancedGutenbergBlocks = () => {
 // 	return <SVGAdvancedGutenbergBlocksIcon width="20" height="20"/>

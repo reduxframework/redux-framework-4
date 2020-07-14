@@ -158,6 +158,9 @@ export const ReduxTemplatesIconColor = () => {
 export const ReduxTemplatesIconColorize = () => {
 	return colorizeIcon(<SVGReduxTemplatesIcon width="20" height="20"/>)
 }
+export const core = () => {
+	return <SVGWordPress width="20" height="20"/>
+}
 //
 // export const AdvancedGutenbergBlocks = () => {
 // 	return <SVGAdvancedGutenbergBlocksIcon width="20" height="20"/>

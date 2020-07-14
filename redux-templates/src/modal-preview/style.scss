@@ -221,7 +221,8 @@ button {
         margin: 0;
         padding: 0;
         li {
-            margin: 10px 0;
+            margin: 0px 5px 10px 0;
+            float: left;
             span {
                 --bg-opacity: 1 !important;
                 background-color: #edf2f7 !important;
