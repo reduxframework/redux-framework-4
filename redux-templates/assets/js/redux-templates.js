@@ -1256,7 +1256,11 @@ const renderButton = function (toolbar) {
 };
 
 Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_4__["default"])(() => {
-  const toolbar = document.querySelector('.edit-post-header-toolbar');
+  let toolbar = document.querySelector('.edit-post-header__toolbar');
+
+  if (!toolbar) {
+    toolbar = document.querySelector('.edit-post-header__toolbar');
+  }
 
   if (!toolbar) {
     setTimeout(function () {
