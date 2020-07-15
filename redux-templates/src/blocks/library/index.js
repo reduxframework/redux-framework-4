@@ -85,17 +85,20 @@ const renderButton = function(toolbar) {
 }
 
 domReady( () => {
-	const toolbar = document.querySelector( '.edit-post-header-toolbar' )
+	let toolbar = document.querySelector( '.edit-post-header__toolbar' );
+	if ( ! toolbar ) {
+		toolbar = document.querySelector( '.edit-post-header__toolbar' );
+	}
 	if ( ! toolbar ) {
 		setTimeout(function(){
-			let toolbar = document.querySelector( '.edit-post-header__toolbar' )
+			let toolbar = document.querySelector( '.edit-post-header__toolbar' );
 			if ( toolbar ) {
 				renderButton( toolbar );
 			}
 		}, 500);
-		return
+		return;
 	}
-	renderButton(toolbar)
+	renderButton(toolbar);
 } )
 
 export { name, title, category, icon, settings };
