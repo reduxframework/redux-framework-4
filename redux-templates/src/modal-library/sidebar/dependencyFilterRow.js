@@ -58,9 +58,9 @@ function DependencyFilterRow(props) {
         let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
 
         if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
-            setDependencyFilters({...newDependencyFilters, none: {value: false, disabled: newDependencyFilters['none']['disabled']}});
+            setDependencyFilters({...newDependencyFilters, [NONE_KEY]: {value: false, disabled: newDependencyFilters[NONE_KEY]['disabled']}});
         } else {
-            setDependencyFilters({...newDependencyFilters, none: {value: true, disabled: newDependencyFilters['none']['disabled']}});
+            setDependencyFilters({...newDependencyFilters, [NONE_KEY]: {value: true, disabled: newDependencyFilters[NONE_KEY]['disabled']}});
         }
     };
 
