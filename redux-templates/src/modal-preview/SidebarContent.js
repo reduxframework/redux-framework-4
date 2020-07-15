@@ -62,7 +62,7 @@ export default function SidebarContent(props) {
 			</div>
 
 			{
-				installDependencies &&
+				installDependencies && installDependencies.length > 0 &&
 				<PanelBody title={__('Required Plugins', redux_templates.i18n)} icon={more} initialOpen={false}>
 					<PanelRow className="requirements-list-div">
 						<div className="requirements-list">
@@ -107,7 +107,7 @@ export default function SidebarContent(props) {
 					</PanelRow>
 				</PanelBody>
 			}
-			{ blocks &&
+			{ blocks && blocks.length > 0 &&
 				<PanelBody title={__('Blocks Used', redux_templates.i18n)} icon={more} initialOpen={false}>
 					<PanelRow className="redux-block-pills">
 						<ul>

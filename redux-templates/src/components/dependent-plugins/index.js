@@ -23,6 +23,7 @@ export default function DependentPlugins (props) {
 			    { data.dependencies &&
 			    data.dependencies.map(plugin => {
 			    	let pluginInstance = null;
+				    const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase();
 			    	if ( 'core' == plugin ) {
 					    pluginInstance = {
 					    	name: 'WordPress Native'
@@ -30,18 +31,20 @@ export default function DependentPlugins (props) {
 				    } else {
 					    pluginInstance = redux_templates.supported_plugins[plugin];
 				    }
-				    if (!pluginInstance) {
-					    console.log( 'Missing plugin details for '+ plugin );
-					    return null;
-				    }
-
-				    const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase();
+					if ( !pluginInstance ) {
+						pluginInstance = redux_templates.supported_plugins[plugin.replace('-pro', '').replace('-premium', '')];
+					}
 
 				    // We don't want two of the same icons showing up.
 				    if ( ! plugin.includes('-pro') && ! plugin.includes('-premium') ) {
 					    if ( data.dependencies.includes(plugin + '-pro') || data.dependencies.includes( plugin + '-premium' ) ) {
 						    return;
 					    }
+				    }
+				    if (!pluginInstance) {
+					    console.log( 'Missing plugin details for '+ plugin+' - ' + plugin.replace('-pro', '').replace('-premium', '') );
+					    console.log( redux_templates.supported_plugins );
+					    return;
 				    }
 				    if ( 'redux' === plugin_name ) {
 					    return;

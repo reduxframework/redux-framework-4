@@ -3166,6 +3166,7 @@ function DependentPlugins(props) {
       className: "redux-templates-button-display-dependencies"
     }, data.dependencies && data.dependencies.map(plugin => {
       let pluginInstance = null;
+      const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase();
 
       if ('core' == plugin) {
         pluginInstance = {
@@ -3176,16 +3177,20 @@ function DependentPlugins(props) {
       }
 
       if (!pluginInstance) {
-        console.log('Missing plugin details for ' + plugin);
-        return null;
-      }
+        pluginInstance = redux_templates.supported_plugins[plugin.replace('-pro', '').replace('-premium', '')];
+      } // We don't want two of the same icons showing up.
 
-      const plugin_name = plugin.replace('-pro', '').replace('-premium', '').replace(/\W/g, '').toLowerCase(); // We don't want two of the same icons showing up.
 
       if (!plugin.includes('-pro') && !plugin.includes('-premium')) {
         if (data.dependencies.includes(plugin + '-pro') || data.dependencies.includes(plugin + '-premium')) {
           return;
         }
+      }
+
+      if (!pluginInstance) {
+        console.log('Missing plugin details for ' + plugin + ' - ' + plugin.replace('-pro', '').replace('-premium', ''));
+        console.log(redux_templates.supported_plugins);
+        return;
       }
 
       if ('redux' === plugin_name) {
@@ -9274,7 +9279,7 @@ function SidebarContent(props) {
     title: __('Identifier', redux_templates.i18n)
   }, hash.substring(0, 7)), copied && wp.element.createElement("span", {
     className: "copied hideMe"
-  }, wp.element.createElement("br", null), __('copied', redux_templates.i18n))))), installDependencies && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
+  }, wp.element.createElement("br", null), __('copied', redux_templates.i18n))))), installDependencies && installDependencies.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
     title: __('Required Plugins', redux_templates.i18n),
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
     initialOpen: false
@@ -9319,7 +9324,7 @@ function SidebarContent(props) {
     }, wp.element.createElement("i", {
       className: "fas fa-external-link-alt"
     })))) : null);
-  }))))), blocks && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
+  }))))), blocks && blocks.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
     title: __('Blocks Used', redux_templates.i18n),
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
     initialOpen: false
