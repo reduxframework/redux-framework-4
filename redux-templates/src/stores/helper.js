@@ -244,7 +244,7 @@ export const getDefaultDependencies = (dependencies) => {
             let value = true;
             if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY) value = false;
             return {...acc, [cur]: {value, disabled: false}};
-        }, 
+        },
         {
             [NONE_KEY]: {value: true, disabled: false}, // Native element is included in default dependencies
             [REDUXTEMPLATES_PRO_KEY]: {value: true, disabled: false} // Redux pro is included in default dependencies
@@ -264,11 +264,11 @@ export const getInstalledDependencies = (dependencies) => {
                 if (pluginInstance) {
                     if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
                     if (isProPlugin(cur) === false && pluginInstance.hasOwnProperty('version') === false) value = false;
-                    if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
+                    if (cur === REDUXTEMPLATES_PRO_KEY) value = false;
                 } else
                     value = false;
                 return {...acc, [cur]: {value, disabled: false}};
-            }, 
+            },
             {
                 [NONE_KEY]: {value: true, disabled: false}
             }

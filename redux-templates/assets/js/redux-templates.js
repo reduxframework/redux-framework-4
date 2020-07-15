@@ -5060,6 +5060,36 @@ var SvgCreativeBlocks = function SvgCreativeBlocks(props) {
 
 /***/ }),
 
+/***/ "./redux-templates/src/icons/images/editorplus.svg":
+/*!*********************************************************!*\
+  !*** ./redux-templates/src/icons/images/editorplus.svg ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+var _ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+  d: "M17.4 0c1.1.1 1.9.5 2.3 1.5.5 1 .3 2-.5 2.8-1.6 1.7-7.5 7.6-8.9 8.9-.6.6-.7 1.5-1.1 2.2-.4.9-.8 1.9-1.1 2.9-.1.8-1.3.7-1.3.7l-5.4.7c-.4.1-.9.5-1.3.1-.3-.3.1-1.2.1-1.2l1-6.5s.3-.3.5-.4c1.5-.6 2.9-1.1 4.4-1.7.2 0 .4-.2.5-.3L15.4.9c.6-.5 1.2-.9 2-.9zM1.3 19c.5.1.8.1 1.1 0 1.3-.3 2.6-.4 3.9-.6 1 0 1.5-.4 1.8-1.4.7-2.2 1.4-4.4 3.4-5.8.3-.2.3-.5 0-.8-.5-.4-.9-.9-1.3-1.3-1.1-1-1.1-1-2.2.1-.5.5-.9 1.1-1.6 1.4-1.3.5-2.7 1.1-4.1 1.6-.5.2-.6.4-.7.8-.3 1.7-.5 3.3-.8 5 0 .2-.1.4.1.7 1-1 2-2 3-3.1.2-.2.2-.5.2-.7-.1-.7.4-1.3 1.1-1.3.6 0 1.2.6 1.2 1.2s-.6 1.1-1.2 1c-.3 0-.5 0-.8.2-1 .9-2 1.9-3.1 3zM17.4.8c-.6 0-1 .1-1.4.5-2 2-4 4.1-6.1 6.1-.3.2-.2.4 0 .6l2.1 2.1c.3.3.4.2.7 0l1.9-1.9L18.8 4c.5-.5.7-1.6.4-2.2-.4-.7-1-1.1-1.8-1z"
+});
+
+var SvgEditorplus = function SvgEditorplus(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", _extends({
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _ref);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SvgEditorplus);
+
+/***/ }),
+
 /***/ "./redux-templates/src/icons/images/elegant-blocks.svg":
 /*!*************************************************************!*\
   !*** ./redux-templates/src/icons/images/elegant-blocks.svg ***!
@@ -6035,7 +6065,7 @@ var SvgWordpress = function SvgWordpress(props) {
 /*!********************************************!*\
   !*** ./redux-templates/src/icons/index.js ***!
   \********************************************/
-/*! exports provided: redux, acfblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize, core */
+/*! exports provided: redux, acfblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, editorplus, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize, core */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6048,6 +6078,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockslider", function() { return blockslider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "coblocks", function() { return coblocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "creativeblocks", function() { return creativeblocks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editorplus", function() { return editorplus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "elegantblocks", function() { return elegantblocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enhancedblocks", function() { return enhancedblocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "essentialblocks", function() { return essentialblocks; });
@@ -6084,36 +6115,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_block_slider_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/block-slider.svg */ "./redux-templates/src/icons/images/block-slider.svg");
 /* harmony import */ var _images_coblocks_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./images/coblocks.svg */ "./redux-templates/src/icons/images/coblocks.svg");
 /* harmony import */ var _images_creative_blocks_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/creative-blocks.svg */ "./redux-templates/src/icons/images/creative-blocks.svg");
-/* harmony import */ var _images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/elegant-blocks.svg */ "./redux-templates/src/icons/images/elegant-blocks.svg");
-/* harmony import */ var _images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/enhanced-blocks.svg */ "./redux-templates/src/icons/images/enhanced-blocks.svg");
-/* harmony import */ var _images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/essential-blocks.svg */ "./redux-templates/src/icons/images/essential-blocks.svg");
-/* harmony import */ var _images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/forms-gutenberg.svg */ "./redux-templates/src/icons/images/forms-gutenberg.svg");
-/* harmony import */ var _images_getwid_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./images/getwid.svg */ "./redux-templates/src/icons/images/getwid.svg");
-/* harmony import */ var _images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/ghostkit.svg */ "./redux-templates/src/icons/images/ghostkit.svg");
-/* harmony import */ var _images_guteblock_svg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./images/guteblock.svg */ "./redux-templates/src/icons/images/guteblock.svg");
-/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./images/gutenberg-blocks.png */ "./redux-templates/src/icons/images/gutenberg-blocks.png");
-/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _images_gutentor_svg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./images/gutentor.svg */ "./redux-templates/src/icons/images/gutentor.svg");
-/* harmony import */ var _images_kadence_blocks_svg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./images/kadence-blocks.svg */ "./redux-templates/src/icons/images/kadence-blocks.svg");
-/* harmony import */ var _images_kioken_blocks_svg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./images/kioken-blocks.svg */ "./redux-templates/src/icons/images/kioken-blocks.svg");
-/* harmony import */ var _images_otter_blocks_svg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./images/otter-blocks.svg */ "./redux-templates/src/icons/images/otter-blocks.svg");
-/* harmony import */ var _images_qodeblock_svg__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./images/qodeblock.svg */ "./redux-templates/src/icons/images/qodeblock.svg");
-/* harmony import */ var _images_qubely_svg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./images/qubely.svg */ "./redux-templates/src/icons/images/qubely.svg");
-/* harmony import */ var _images_snow_monkey_blocks_svg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./images/snow-monkey-blocks.svg */ "./redux-templates/src/icons/images/snow-monkey-blocks.svg");
-/* harmony import */ var _images_stackable_ultimate_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./images/stackable-ultimate-gutenberg-blocks.svg */ "./redux-templates/src/icons/images/stackable-ultimate-gutenberg-blocks.svg");
-/* harmony import */ var _images_ultimate_addons_for_gutenberg_svg__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./images/ultimate-addons-for-gutenberg.svg */ "./redux-templates/src/icons/images/ultimate-addons-for-gutenberg.svg");
-/* harmony import */ var _images_ultimate_blocks_svg__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./images/ultimate-blocks.svg */ "./redux-templates/src/icons/images/ultimate-blocks.svg");
-/* harmony import */ var _images_ultimate_post_svg__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./images/ultimate-post.svg */ "./redux-templates/src/icons/images/ultimate-post.svg");
-/* harmony import */ var _images_wordpress_svg__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./images/wordpress.svg */ "./redux-templates/src/icons/images/wordpress.svg");
-/* harmony import */ var _assets_img_icon_color_svg__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../../assets/img/icon-color.svg */ "./redux-templates/assets/img/icon-color.svg");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_30__);
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @wordpress/dom-ready */ "./node_modules/@wordpress/dom-ready/build-module/index.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_32__);
+/* harmony import */ var _images_editorplus_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/editorplus.svg */ "./redux-templates/src/icons/images/editorplus.svg");
+/* harmony import */ var _images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/elegant-blocks.svg */ "./redux-templates/src/icons/images/elegant-blocks.svg");
+/* harmony import */ var _images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/enhanced-blocks.svg */ "./redux-templates/src/icons/images/enhanced-blocks.svg");
+/* harmony import */ var _images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/essential-blocks.svg */ "./redux-templates/src/icons/images/essential-blocks.svg");
+/* harmony import */ var _images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./images/forms-gutenberg.svg */ "./redux-templates/src/icons/images/forms-gutenberg.svg");
+/* harmony import */ var _images_getwid_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/getwid.svg */ "./redux-templates/src/icons/images/getwid.svg");
+/* harmony import */ var _images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./images/ghostkit.svg */ "./redux-templates/src/icons/images/ghostkit.svg");
+/* harmony import */ var _images_guteblock_svg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./images/guteblock.svg */ "./redux-templates/src/icons/images/guteblock.svg");
+/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./images/gutenberg-blocks.png */ "./redux-templates/src/icons/images/gutenberg-blocks.png");
+/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _images_gutentor_svg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./images/gutentor.svg */ "./redux-templates/src/icons/images/gutentor.svg");
+/* harmony import */ var _images_kadence_blocks_svg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./images/kadence-blocks.svg */ "./redux-templates/src/icons/images/kadence-blocks.svg");
+/* harmony import */ var _images_kioken_blocks_svg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./images/kioken-blocks.svg */ "./redux-templates/src/icons/images/kioken-blocks.svg");
+/* harmony import */ var _images_otter_blocks_svg__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./images/otter-blocks.svg */ "./redux-templates/src/icons/images/otter-blocks.svg");
+/* harmony import */ var _images_qodeblock_svg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./images/qodeblock.svg */ "./redux-templates/src/icons/images/qodeblock.svg");
+/* harmony import */ var _images_qubely_svg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./images/qubely.svg */ "./redux-templates/src/icons/images/qubely.svg");
+/* harmony import */ var _images_snow_monkey_blocks_svg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./images/snow-monkey-blocks.svg */ "./redux-templates/src/icons/images/snow-monkey-blocks.svg");
+/* harmony import */ var _images_stackable_ultimate_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./images/stackable-ultimate-gutenberg-blocks.svg */ "./redux-templates/src/icons/images/stackable-ultimate-gutenberg-blocks.svg");
+/* harmony import */ var _images_ultimate_addons_for_gutenberg_svg__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./images/ultimate-addons-for-gutenberg.svg */ "./redux-templates/src/icons/images/ultimate-addons-for-gutenberg.svg");
+/* harmony import */ var _images_ultimate_blocks_svg__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./images/ultimate-blocks.svg */ "./redux-templates/src/icons/images/ultimate-blocks.svg");
+/* harmony import */ var _images_ultimate_post_svg__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./images/ultimate-post.svg */ "./redux-templates/src/icons/images/ultimate-post.svg");
+/* harmony import */ var _images_wordpress_svg__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./images/wordpress.svg */ "./redux-templates/src/icons/images/wordpress.svg");
+/* harmony import */ var _assets_img_icon_color_svg__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../../assets/img/icon-color.svg */ "./redux-templates/assets/img/icon-color.svg");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_31__);
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @wordpress/dom-ready */ "./node_modules/@wordpress/dom-ready/build-module/index.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_33__);
 /**
  * External dependencies
  */
+
 
 
 
@@ -6194,122 +6227,128 @@ const creativeblocks = () => {
     height: "20"
   });
 };
+const editorplus = () => {
+  return wp.element.createElement(_images_editorplus_svg__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    width: "20",
+    height: "20"
+  });
+};
 const elegantblocks = () => {
-  return wp.element.createElement(_images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  return wp.element.createElement(_images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_10__["default"], {
     width: "20",
     height: "20"
   });
 };
 const enhancedblocks = () => {
-  return wp.element.createElement(_images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  return wp.element.createElement(_images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_11__["default"], {
     width: "20",
     height: "20"
   });
 };
 const essentialblocks = () => {
-  return wp.element.createElement(_images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return wp.element.createElement(_images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_12__["default"], {
     width: "20",
     height: "20"
   });
 };
 const formsgutenberg = () => {
-  return wp.element.createElement(_images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  return wp.element.createElement(_images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_13__["default"], {
     width: "20",
     height: "20"
   });
 };
 const getwid = () => {
-  return wp.element.createElement(_images_getwid_svg__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  return wp.element.createElement(_images_getwid_svg__WEBPACK_IMPORTED_MODULE_14__["default"], {
     width: "20",
     height: "20"
   });
 };
 const ghostkit = () => {
-  return wp.element.createElement(_images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  return wp.element.createElement(_images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_15__["default"], {
     width: "20",
     height: "20"
   });
 };
 const guteblock = () => {
-  return wp.element.createElement(_images_guteblock_svg__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  return wp.element.createElement(_images_guteblock_svg__WEBPACK_IMPORTED_MODULE_16__["default"], {
     width: "20",
     height: "20"
   });
 };
 const gutenbergblock = () => {
-  return wp.element.createElement(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_16___default.a, {
+  return wp.element.createElement(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17___default.a, {
     width: "20",
     height: "20"
   });
 };
 const gutentor = () => {
-  return wp.element.createElement(_images_gutentor_svg__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  return wp.element.createElement(_images_gutentor_svg__WEBPACK_IMPORTED_MODULE_18__["default"], {
     width: "20",
     height: "20"
   });
 };
 const kadenceblocks = () => {
-  return wp.element.createElement(_images_kadence_blocks_svg__WEBPACK_IMPORTED_MODULE_18__["default"], {
+  return wp.element.createElement(_images_kadence_blocks_svg__WEBPACK_IMPORTED_MODULE_19__["default"], {
     width: "20",
     height: "20"
   });
 };
 const kiokenblocks = () => {
-  return wp.element.createElement(_images_kioken_blocks_svg__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  return wp.element.createElement(_images_kioken_blocks_svg__WEBPACK_IMPORTED_MODULE_20__["default"], {
     width: "20",
     height: "20"
   });
 };
 const otterblocks = () => {
-  return wp.element.createElement(_images_otter_blocks_svg__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  return wp.element.createElement(_images_otter_blocks_svg__WEBPACK_IMPORTED_MODULE_21__["default"], {
     width: "20",
     height: "20"
   });
 };
 const qodeblock = () => {
-  return wp.element.createElement(_images_qodeblock_svg__WEBPACK_IMPORTED_MODULE_21__["default"], {
+  return wp.element.createElement(_images_qodeblock_svg__WEBPACK_IMPORTED_MODULE_22__["default"], {
     width: "20",
     height: "20"
   });
 };
 const qubely = () => {
-  return wp.element.createElement(_images_qubely_svg__WEBPACK_IMPORTED_MODULE_22__["default"], {
+  return wp.element.createElement(_images_qubely_svg__WEBPACK_IMPORTED_MODULE_23__["default"], {
     width: "20",
     height: "20"
   });
 };
 const snowmonkeyblocks = () => {
-  return wp.element.createElement(_images_snow_monkey_blocks_svg__WEBPACK_IMPORTED_MODULE_23__["default"], {
+  return wp.element.createElement(_images_snow_monkey_blocks_svg__WEBPACK_IMPORTED_MODULE_24__["default"], {
     width: "20",
     height: "20"
   });
 };
 const stackableultimategutenbergblocks = () => {
-  return wp.element.createElement(_images_stackable_ultimate_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_24__["default"], {
+  return wp.element.createElement(_images_stackable_ultimate_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_25__["default"], {
     width: "20",
     height: "20"
   });
 };
 const ultimateaddonsforgutenberg = () => {
-  return wp.element.createElement(_images_ultimate_addons_for_gutenberg_svg__WEBPACK_IMPORTED_MODULE_25__["default"], {
+  return wp.element.createElement(_images_ultimate_addons_for_gutenberg_svg__WEBPACK_IMPORTED_MODULE_26__["default"], {
     width: "20",
     height: "20"
   });
 };
 const ultimateblocks = () => {
-  return wp.element.createElement(_images_ultimate_blocks_svg__WEBPACK_IMPORTED_MODULE_26__["default"], {
+  return wp.element.createElement(_images_ultimate_blocks_svg__WEBPACK_IMPORTED_MODULE_27__["default"], {
     width: "20",
     height: "20"
   });
 };
 const ultimatepost = () => {
-  return wp.element.createElement(_images_ultimate_post_svg__WEBPACK_IMPORTED_MODULE_27__["default"], {
+  return wp.element.createElement(_images_ultimate_post_svg__WEBPACK_IMPORTED_MODULE_28__["default"], {
     width: "20",
     height: "20"
   });
 };
 const wordpress = () => {
-  return wp.element.createElement(_images_wordpress_svg__WEBPACK_IMPORTED_MODULE_28__["default"], {
+  return wp.element.createElement(_images_wordpress_svg__WEBPACK_IMPORTED_MODULE_29__["default"], {
     width: "20",
     height: "20"
   });
@@ -6350,7 +6389,7 @@ const wordpress = () => {
 
 
 const colorizeIcon = SvgIcon => {
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_30__["cloneElement"])(SvgIcon, {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_31__["cloneElement"])(SvgIcon, {
     fill: 'url(#redux-gradient)',
     className: 'redux-icon-gradient'
   });
@@ -6365,7 +6404,7 @@ const thirdPartyIcon = icon => {
 }; // Add an icon to our block category.
 
 if (typeof window.wp.blocks !== 'undefined' && typeof window.wp.blocks.updateCategory !== 'undefined') {
-  Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_32__["updateCategory"])(redux_templates.i18n, {
+  Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_33__["updateCategory"])(redux_templates.i18n, {
     icon: colorizeIcon(wp.element.createElement(_assets_img_icon_svg__WEBPACK_IMPORTED_MODULE_1__["default"], {
       className: "components-panel__icon",
       width: "20",
@@ -6375,10 +6414,10 @@ if (typeof window.wp.blocks !== 'undefined' && typeof window.wp.blocks.updateCat
 } // Add our SVG gradient placeholder definition that we'll reuse.
 
 
-Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_31__["default"])(() => {
+Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_32__["default"])(() => {
   const redux_templatesGradient = document.createElement('DIV');
   document.querySelector('body').appendChild(redux_templatesGradient);
-  Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_30__["render"])(wp.element.createElement("svg", {
+  Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_31__["render"])(wp.element.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     className: "redux-gradient",
     height: "0",
@@ -6405,7 +6444,7 @@ const ReduxTemplatesIcon = () => {
   });
 };
 const ReduxTemplatesIconColor = () => {
-  return wp.element.createElement(_assets_img_icon_color_svg__WEBPACK_IMPORTED_MODULE_29__["default"], {
+  return wp.element.createElement(_assets_img_icon_color_svg__WEBPACK_IMPORTED_MODULE_30__["default"], {
     width: "20",
     height: "20"
   });
@@ -6417,7 +6456,7 @@ const ReduxTemplatesIconColorize = () => {
   }));
 };
 const core = () => {
-  return wp.element.createElement(_images_wordpress_svg__WEBPACK_IMPORTED_MODULE_28__["default"], {
+  return wp.element.createElement(_images_wordpress_svg__WEBPACK_IMPORTED_MODULE_29__["default"], {
     width: "20",
     height: "20"
   });
@@ -7766,21 +7805,21 @@ function DependencyFilter(props) {
         selectDependencies = props.selectDependencies; // Give the selected category(activeCategory) label className as "active"
 
   const isNoneChecked = () => {
-    if (dependencyFilters.hasOwnProperty('none')) return dependencyFilters['none'].hasOwnProperty('value') ? dependencyFilters['none'].value : dependencyFilters['none'];
+    if (dependencyFilters.hasOwnProperty(_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"])) return dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]].hasOwnProperty('value') ? dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]].value : dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]];
     return false;
   };
 
   const toggleNoneChecked = () => {
     setDependencyFilters(_objectSpread(_objectSpread({}, dependencyFilters), {}, {
-      none: {
-        value: dependencyFilters['none'].value === false,
-        disabled: dependencyFilters['none']['disabled'] === true
+      [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]]: {
+        value: dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]].value === false,
+        disabled: dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]]['disabled'] === true
       }
     }));
   };
 
   const setAllCheckedAs = newVal => {
-    setDependencyFilters(Object.keys(dependencyFilters).filter(key => key !== 'none').reduce((acc, key) => {
+    setDependencyFilters(Object.keys(dependencyFilters).filter(key => key !== _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]).reduce((acc, key) => {
       const disabled = dependencyFilters[key] ? dependencyFilters[key]['disabled'] : false;
       return _objectSpread(_objectSpread({}, acc), {}, {
         [key]: {
@@ -7789,7 +7828,7 @@ function DependencyFilter(props) {
         }
       });
     }, {
-      none: {
+      [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]]: {
         value: true,
         disabled: false
       }
@@ -7895,8 +7934,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
-/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/groupBy */ "./node_modules/lodash/groupBy.js");
-/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_groupBy__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~redux-templates/stores/helper */ "./redux-templates/src/stores/helper.js");
+/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/groupBy */ "./node_modules/lodash/groupBy.js");
+/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7925,6 +7965,7 @@ const _wp$data = wp.data,
       withDispatch = _wp$data.withDispatch,
       withSelect = _wp$data.withSelect;
 const __ = wp.i18n.__;
+
 
 
 
@@ -7962,7 +8003,7 @@ function DependencyFilterRow(props) {
   useEffect(() => {
     const pluginInstance = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__["pluginInfo"])(pluginKey);
 
-    if (!pluginKey || pluginKey === 'none') {
+    if (!pluginKey || pluginKey === _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]) {
       setIsValidPlugin(false);
       return;
     }
@@ -8001,20 +8042,20 @@ function DependencyFilterRow(props) {
       }
     });
 
-    let valueCount = lodash_groupBy__WEBPACK_IMPORTED_MODULE_3___default()(Object.keys(newDependencyFilters), key => newDependencyFilters[key] === true || newDependencyFilters[key].value === true);
+    let valueCount = lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default()(Object.keys(newDependencyFilters), key => newDependencyFilters[key] === true || newDependencyFilters[key].value === true);
 
     if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
       setDependencyFilters(_objectSpread(_objectSpread({}, newDependencyFilters), {}, {
-        none: {
+        [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]: {
           value: false,
-          disabled: newDependencyFilters['none']['disabled']
+          disabled: newDependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]['disabled']
         }
       }));
     } else {
       setDependencyFilters(_objectSpread(_objectSpread({}, newDependencyFilters), {}, {
-        none: {
+        [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]: {
           value: true,
-          disabled: newDependencyFilters['none']['disabled']
+          disabled: newDependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]['disabled']
         }
       }));
     }
@@ -11024,7 +11065,10 @@ const isTemplateReadyToInstall = data => {
 };
 const isTemplatePremium = (data, activeDependencyFilter) => {
   if (data && data.proDependencies && data.proDependencies.length > 0) {
-    return data.proDependencies.reduce((acc, cur) => acc || activeDependencyFilter[cur].value, false);
+    return data.proDependencies.reduce((acc, cur) => {
+      if (activeDependencyFilter[cur] === undefined) return false;
+      return acc || activeDependencyFilter[cur].value;
+    }, false);
   }
 
   return data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0;
@@ -11130,29 +11174,39 @@ const applyPriceFilter = (pageData, activePriceFilter, activeDependencyFilter) =
   return pageData;
 };
 const applyDependencyFilters = (pageData, dependencyFilters) => {
+  const truthyDependenciesList = truthyDependencyFiltersList(dependencyFilters);
+
   if (Array.isArray(pageData)) {
-    return pageData.filter(item => isTemplateDependencyFilterIncluded(item, dependencyFilters));
+    return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
   } else {
     let newPageData = {};
     Object.keys(pageData).forEach(key => {
-      newPageData[key] = pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, dependencyFilters));
+      newPageData[key] = pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
     });
     return newPageData;
   }
 };
 
-const isTemplateDependencyFilterIncluded = (item, dependencyFilters) => {
-  const missingProList = Object(_helper__WEBPACK_IMPORTED_MODULE_1__["missingPluginsArray"])();
-  if (!item.dependencies || Object.keys(item.dependencies).length === 0) return valueOfDependencyFilter(dependencyFilters['none']);
-  return item.dependencies.reduce((acc, k) => {
-    if (acc === undefined) return valueOfDependencyFilter(dependencyFilters[k]);
-    return acc || valueOfDependencyFilter(dependencyFilters[k]);
-  }, undefined);
-};
+const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList) => {
+  // console.log("now", item.dependencies, dependencyFilters);
+  // No dependencies at all case
+  if (!item.dependencies || Object.keys(item.dependencies).length === 0) return truthyDependenciesList.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"]); // ONLY NONE_KEY dependency list
+
+  if (truthyDependenciesList.length === 1 && truthyDependenciesList.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"])) return item.dependencies.length === 1 && item.dependencies.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"]); // Normal dependencies filter check
+
+  const filteredList = item.dependencies.filter(dependency => truthyDependenciesList.includes(dependency));
+  return filteredList.length > 0;
+}; // check dependency filter is selected on sidebar
+// Input: dependencyFilter={'qubely', 
+
 
 const valueOfDependencyFilter = dependencyFilter => {
   if (dependencyFilter != null && dependencyFilter.hasOwnProperty('value')) return dependencyFilter.value === true;
   return dependencyFilter === true;
+};
+
+const truthyDependencyFiltersList = dependencyFilters => {
+  return Object.keys(dependencyFilters).filter(key => dependencyFilters[key].value === true);
 };
 
 /***/ }),
@@ -11161,12 +11215,13 @@ const valueOfDependencyFilter = dependencyFilter => {
 /*!**********************************************!*\
   !*** ./redux-templates/src/stores/helper.js ***!
   \**********************************************/
-/*! exports provided: REDUXTEMPLATES_PRO_KEY, getCurrentState, categorizeData, parseSectionData, parsePageData, parseCollectionData, getCollectionChildrenData, isBlockPro, missingPro, missingRequirement, setWithExpiry, getWithExpiry, handlingLocalStorageData, columnMap, pageSizeMap, getOnlySelectedDependencyFilters, getDefaultDependencies, getInstalledDependencies, missingPluginsArray, loadChallengeStep, saveChallengeStep */
+/*! exports provided: REDUXTEMPLATES_PRO_KEY, NONE_KEY, getCurrentState, categorizeData, parseSectionData, parsePageData, parseCollectionData, getCollectionChildrenData, isBlockPro, missingPro, missingRequirement, setWithExpiry, getWithExpiry, handlingLocalStorageData, columnMap, pageSizeMap, getOnlySelectedDependencyFilters, getDefaultDependencies, getInstalledDependencies, missingPluginsArray, loadChallengeStep, saveChallengeStep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDUXTEMPLATES_PRO_KEY", function() { return REDUXTEMPLATES_PRO_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NONE_KEY", function() { return NONE_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentState", function() { return getCurrentState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categorizeData", function() { return categorizeData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseSectionData", function() { return parseSectionData; });
@@ -11227,6 +11282,7 @@ const _dispatch2 = dispatch('core/block-editor'),
 
 const prefix = 'redux_';
 const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
+const NONE_KEY = 'core';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 const getCurrentState = state => state[state.activeItemType]; // Helper function not to be exported
 
@@ -11328,7 +11384,7 @@ const parseCollectionData = library => {
   const wholePlugins = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(libraryCollectionData, 'dependencies')));
   return _objectSpread(_objectSpread({}, categorizeData(libraryCollectionData)), {}, {
     dependencyFilters: _objectSpread({
-      none: true
+      [NONE_KEY]: true
     }, library.dependencies),
     wholePlugins
   });
@@ -11467,7 +11523,7 @@ const getDefaultDependencies = dependencies => {
       }
     });
   }, {
-    none: {
+    [NONE_KEY]: {
       value: true,
       disabled: false
     },
@@ -11481,7 +11537,7 @@ const getDefaultDependencies = dependencies => {
 };
 const getInstalledDependencies = dependencies => {
   const unSupportedPlugins = Object.keys(redux_templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
-  return dependencies.filter(key => key !== 'none').reduce((acc, cur) => {
+  return dependencies.filter(key => key !== NONE_KEY).reduce((acc, cur) => {
     // special handling for pro plugin not activated.
     let value = true;
     const pluginInstance = getPluginInstance(cur);
@@ -11489,7 +11545,7 @@ const getInstalledDependencies = dependencies => {
     if (pluginInstance) {
       if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
       if (isProPlugin(cur) === false && pluginInstance.hasOwnProperty('version') === false) value = false;
-      if (cur === REDUXTEMPLATES_PRO_KEY) value = true;
+      if (cur === REDUXTEMPLATES_PRO_KEY) value = false;
     } else value = false;
 
     return _objectSpread(_objectSpread({}, acc), {}, {
@@ -11499,7 +11555,7 @@ const getInstalledDependencies = dependencies => {
       }
     });
   }, {
-    none: {
+    [NONE_KEY]: {
       value: true,
       disabled: false
     }
@@ -11659,8 +11715,8 @@ const getDependencyFiltersStatistics = state => {
       disabled: dependentPluginsArray.indexOf(plugin) === -1
     });
   });
-  dependencyFilters['none'] = {
-    value: Object(_filters__WEBPACK_IMPORTED_MODULE_8__["valueOfDependencyFilter"])(dependencyFilters['none']),
+  dependencyFilters[_helper__WEBPACK_IMPORTED_MODULE_9__["NONE_KEY"]] = {
+    value: Object(_filters__WEBPACK_IMPORTED_MODULE_8__["valueOfDependencyFilter"])(dependencyFilters[_helper__WEBPACK_IMPORTED_MODULE_9__["NONE_KEY"]]),
     disabled: false
   };
   return dependencyFilters;
@@ -11950,13 +12006,13 @@ const reducer = (state = initialState, action) => {
         loading: false,
         library: action.library,
         section: _objectSpread(_objectSpread(_objectSpread({}, state.section), parsedSection), {}, {
-          dependencyFilters: _objectSpread(_objectSpread({}, dependencies), Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_plugin'))
+          dependencyFilters: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_plugin') ? Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_plugin') : dependencies
         }),
         page: _objectSpread(_objectSpread(_objectSpread({}, state.page), parsedPage), {}, {
-          dependencyFilters: _objectSpread(_objectSpread({}, dependencies), Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_plugin'))
+          dependencyFilters: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_plugin') ? Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_plugin') : dependencies
         }),
         collection: _objectSpread(_objectSpread(_objectSpread({}, state.collection), parsedCollection), {}, {
-          dependencyFilters: _objectSpread(_objectSpread({}, dependencies), Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_plugin'))
+          dependencyFilters: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_plugin') ? Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_plugin') : dependencies
         })
       });
 
@@ -12147,7 +12203,7 @@ const reducer = (state = initialState, action) => {
         case 'none':
           const newValue = action.data === 'all';
 
-          atomHandler = plugins => plugins.filter(plugin => ['none', 'gutenberghub.com', 'shareablock.com'].includes(plugin) === false).reduce((acc, key) => {
+          atomHandler = plugins => plugins.filter(plugin => plugin !== _helper__WEBPACK_IMPORTED_MODULE_0__["NONE_KEY"]).reduce((acc, key) => {
             return _objectSpread(_objectSpread({}, acc), {}, {
               [key]: {
                 value: newValue,
@@ -12155,15 +12211,7 @@ const reducer = (state = initialState, action) => {
               }
             });
           }, {
-            none: {
-              value: true,
-              disabled: false
-            },
-            'gutenberghub.com': {
-              value: true,
-              disabled: false
-            },
-            'shareablock.com': {
+            [_helper__WEBPACK_IMPORTED_MODULE_0__["NONE_KEY"]]: {
               value: true,
               disabled: false
             }

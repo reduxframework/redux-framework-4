@@ -138,7 +138,7 @@ class Api {
 			if ( isset( $pp['dependencies'] ) ) {
 				foreach ( $pp['dependencies'] as $dep ) {
 					if ( isset( $data['plugins'][ $dep ] ) ) {
-						if ( isset( $data['plugins'][ $dep ]['no_plugin'] ) ) {
+						if ( isset( $data['plugins'][ $dep ]['no_plugin'] ) || 'core' === $dep ) {
 							continue;
 						}
 						if ( isset( $data['plugins'][ $dep ]['free_slug'] ) ) {

@@ -11,6 +11,7 @@ import SVGBlockOptions from './images/block-options.svg'
 import SVGBlockSlider from './images/block-slider.svg'
 import SVGCoblocks from './images/coblocks.svg'
 import SVGCreativeBlocks from './images/creative-blocks.svg'
+import SVGEditorPlus from './images/editorplus.svg'
 import SVGElegantBlocks from './images/elegant-blocks.svg'
 import SVGEnhancedBlocks from './images/enhanced-blocks.svg'
 import SVGEssentialBlocks from './images/essential-blocks.svg'
@@ -45,6 +46,7 @@ export const blockoptions = () => { return <SVGBlockOptions width="20" height="2
 export const blockslider = () => { return <SVGBlockSlider width="20" height="20"/> }
 export const coblocks = () => { return <SVGCoblocks width="20" height="20"/> }
 export const creativeblocks = () => { return <SVGCreativeBlocks width="20" height="20"/> }
+export const editorplus = () => { return <SVGEditorPlus width="20" height="20"/> }
 export const elegantblocks = () => { return <SVGElegantBlocks width="20" height="20"/> }
 export const enhancedblocks = () => { return <SVGEnhancedBlocks width="20" height="20"/> }
 export const essentialblocks = () => { return <SVGEssentialBlocks width="20" height="20"/> }
