@@ -10,7 +10,7 @@ import map from 'lodash/map';
 import flattenDeep from 'lodash/flattenDeep';
 import uniq from 'lodash/uniq';
 import {applyCategoryFilter, applySearchFilter, applyHashFilter, applyPriceFilter, applyDependencyFilters, valueOfDependencyFilter} from './filters'
-import {getCurrentState, getCollectionChildrenData, loadChallengeStep} from './helper';
+import {getCurrentState, getCollectionChildrenData, loadChallengeStep, NONE_KEY} from './helper';
 import {isTemplatePremium} from './dependencyHelper'
 import {installedBlocksTypes} from './actionHelper';
 
@@ -70,7 +70,7 @@ const getDependencyFiltersStatistics = (state) => {
         .forEach((plugin) => {
             dependencyFilters[plugin] = {...dependencyFilters[plugin], disabled: dependentPluginsArray.indexOf(plugin) === -1}
         })
-    dependencyFilters['none'] = {value: valueOfDependencyFilter(dependencyFilters['none']), disabled: false};
+    dependencyFilters[NONE_KEY] = {value: valueOfDependencyFilter(dependencyFilters[NONE_KEY]), disabled: false};
     return dependencyFilters;
 };
 

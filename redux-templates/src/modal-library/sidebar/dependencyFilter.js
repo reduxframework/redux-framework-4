@@ -7,32 +7,32 @@ import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 import {CheckboxControl, Tooltip} from '@wordpress/components';
 import DependencyFilterRow from './dependencyFilterRow';
 import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
-import {REDUXTEMPLATES_PRO_KEY} from '~redux-templates/stores/helper';
+import {REDUXTEMPLATES_PRO_KEY, NONE_KEY} from '~redux-templates/stores/helper';
 
 function DependencyFilter(props) {
     const {dependencyFilters, loading, wholePlugins} = props;
     const {setDependencyFilters, selectDependencies} = props;
     // Give the selected category(activeCategory) label className as "active"
     const isNoneChecked = () => {
-        if (dependencyFilters.hasOwnProperty('none'))
-            return dependencyFilters['none'].hasOwnProperty('value') ? dependencyFilters['none'].value : dependencyFilters['none'];
+        if (dependencyFilters.hasOwnProperty(NONE_KEY))
+            return dependencyFilters[NONE_KEY].hasOwnProperty('value') ? dependencyFilters[NONE_KEY].value : dependencyFilters[NONE_KEY];
         return false;
     };
 
     const toggleNoneChecked = () => {
         setDependencyFilters({...dependencyFilters,
-            none: { value: dependencyFilters['none'].value === false, disabled: dependencyFilters['none']['disabled'] === true }
+            [NONE_KEY]: { value: dependencyFilters[NONE_KEY].value === false, disabled: dependencyFilters[NONE_KEY]['disabled'] === true }
         });
     };
 
     const setAllCheckedAs = (newVal) => {
         setDependencyFilters(
             Object.keys(dependencyFilters)
-                .filter(key => key!=='none')
+                .filter(key => key!== NONE_KEY )
                 .reduce((acc, key) => {
                     const disabled = dependencyFilters[key] ? dependencyFilters[key]['disabled'] : false;
                     return {...acc, [key]: {value: disabled ? false : newVal, disabled }}
-                }, {none: {value: true, disabled: false}})
+                }, {[NONE_KEY]: {value: true, disabled: false}})
         );
     };
     return (

@@ -6,6 +6,7 @@ const {__} = wp.i18n;
 
 import {CheckboxControl, Tooltip} from '@wordpress/components';
 import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
+import {NONE_KEY} from '~redux-templates/stores/helper';
 import groupBy from 'lodash/groupBy';
 
 function DependencyFilterRow(props) {
@@ -19,7 +20,7 @@ function DependencyFilterRow(props) {
 
     useEffect(() => {
         const pluginInstance = pluginInfo(pluginKey);
-        if (!pluginKey || pluginKey === 'none') {
+        if (!pluginKey || pluginKey === NONE_KEY) {
             setIsValidPlugin(false);
             return;
         }

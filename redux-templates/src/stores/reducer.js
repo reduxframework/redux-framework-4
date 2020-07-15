@@ -1,4 +1,4 @@
-import {parseSectionData, parsePageData, parseCollectionData, getInstalledDependencies} from './helper';
+import {parseSectionData, parsePageData, parseCollectionData, getInstalledDependencies, NONE_KEY} from './helper';
 import {getDefaultDependencies} from './helper';
 import {loadChallengeStep, saveChallengeStep, setWithExpiry, getWithExpiry} from './helper';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
@@ -78,17 +78,17 @@ export const reducer = ( state = initialState, action ) => {
                 section: {
                     ...state.section,
                     ...parsedSection,
-                    dependencyFilters: {...dependencies, ...getWithExpiry('section_plugin')}
+                    dependencyFilters: getWithExpiry('section_plugin') ? getWithExpiry('section_plugin') : dependencies
                 },
                 page: {
                     ...state.page,
                     ...parsedPage,
-                    dependencyFilters: {...dependencies, ...getWithExpiry('page_plugin')}
+                    dependencyFilters: getWithExpiry('page_plugin') ? getWithExpiry('page_plugin') : dependencies
                 },
                 collection: {
                     ...state.collection,
                     ...parsedCollection,
-                    dependencyFilters: {...dependencies, ...getWithExpiry('collection_plugin')}
+                    dependencyFilters: getWithExpiry('collection_plugin') ? getWithExpiry('collection_plugin') : dependencies
                 }
             };
         case 'SET_ACTIVE_CATEGORY':
@@ -293,15 +293,13 @@ export const reducer = ( state = initialState, action ) => {
                 case 'none':
                     const newValue = action.data === 'all';
                     atomHandler = (plugins) => plugins
-                        .filter(plugin => ['none', 'gutenberghub.com', 'shareablock.com'].includes(plugin) === false)
+                        .filter(plugin => plugin !== NONE_KEY)
                         .reduce(
                             (acc, key) => {
                                 return { ...acc, [key]: { value: newValue, disabled: false } }
                             }, 
                             {
-                                none: {value: true, disabled: false},
-                                'gutenberghub.com': {value: true, disabled: false},
-                                'shareablock.com': {value: true, disabled: false}
+                                [NONE_KEY]: {value: true, disabled: false}
                             }
                         )
                     break;

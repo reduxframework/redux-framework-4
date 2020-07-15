@@ -13,6 +13,7 @@ const {insertBlocks} = dispatch('core/block-editor');
 
 const prefix = 'redux_';
 export const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
+export const NONE_KEY = 'core';
 const EXIPRY_TIME = 5 * 24 * 3600 * 1000;
 
 export const getCurrentState = (state) => state[state.activeItemType]
@@ -94,7 +95,7 @@ export const parseCollectionData = (library) => {
         return collection;
     });
     const wholePlugins = uniq(flattenDeep(map(libraryCollectionData, 'dependencies')));
-    return {...categorizeData(libraryCollectionData), dependencyFilters: {none: true, ...library.dependencies}, wholePlugins};
+    return {...categorizeData(libraryCollectionData), dependencyFilters: {[NONE_KEY]: true, ...library.dependencies}, wholePlugins};
 }
 
 // one of important function
@@ -245,7 +246,7 @@ export const getDefaultDependencies = (dependencies) => {
             return {...acc, [cur]: {value, disabled: false}};
         }, 
         {
-            none: {value: true, disabled: false}, // Native element is included in default dependencies
+            [NONE_KEY]: {value: true, disabled: false}, // Native element is included in default dependencies
             [REDUXTEMPLATES_PRO_KEY]: {value: true, disabled: false} // Redux pro is included in default dependencies
         }
     );
@@ -254,7 +255,7 @@ export const getDefaultDependencies = (dependencies) => {
 export const getInstalledDependencies = (dependencies) => {
     const unSupportedPlugins = Object.keys(redux_templates.supported_plugins).filter(key => isPluginProActivated(key) === false);
     return dependencies
-        .filter(key => key !=='none')
+        .filter(key => key !== NONE_KEY)
         .reduce(
             (acc, cur) => {
                 // special handling for pro plugin not activated.
@@ -269,7 +270,7 @@ export const getInstalledDependencies = (dependencies) => {
                 return {...acc, [cur]: {value, disabled: false}};
             }, 
             {
-                none: {value: true, disabled: false}
+                [NONE_KEY]: {value: true, disabled: false}
             }
         );
 }

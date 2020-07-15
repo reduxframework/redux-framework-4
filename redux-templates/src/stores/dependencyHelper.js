@@ -57,7 +57,11 @@ export const isTemplateReadyToInstall = (data) => {
 
 export const isTemplatePremium = (data, activeDependencyFilter) => {
     if (data && data.proDependencies && data.proDependencies.length > 0) {
-        return data.proDependencies.reduce((acc, cur) => acc || activeDependencyFilter[cur].value, false);
+        return data.proDependencies.reduce((acc, cur) => {
+            if (activeDependencyFilter[cur] === undefined) 
+                return false;
+            return (acc || activeDependencyFilter[cur].value);
+        }, false);
     }
     return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0);
 }
