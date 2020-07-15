@@ -1,5 +1,5 @@
 import {isTemplatePremium} from './dependencyHelper';
-import {missingPluginsArray} from './helper';
+import {missingPluginsArray, NONE_KEY} from './helper';
 const REDUXTEMPLATES_PRO_KEY = 'redux-pro';
 // Just get current Page Data
 export const applyCategoryFilter = (pageData, activeCategory) => {
@@ -83,27 +83,39 @@ export const applyPriceFilter = (pageData, activePriceFilter, activeDependencyFi
 
 
 export const applyDependencyFilters = (pageData, dependencyFilters) => {
+    const truthyDependenciesList = truthyDependencyFiltersList(dependencyFilters);
     if (Array.isArray(pageData)) {
-        return pageData.filter(item => isTemplateDependencyFilterIncluded(item, dependencyFilters));
+        return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
     } else {
         let newPageData = {};
         Object.keys(pageData).forEach(key => {
-            newPageData[key] =  pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, dependencyFilters));
+            newPageData[key] =  pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
         });
         return newPageData;
     }
 }
 
-const isTemplateDependencyFilterIncluded = (item, dependencyFilters) => {
-    const missingProList = missingPluginsArray();
-    if (!item.dependencies || Object.keys(item.dependencies).length === 0) return valueOfDependencyFilter(dependencyFilters['none']);
-    return item.dependencies.reduce((acc, k) => {
-        if (acc === undefined) return valueOfDependencyFilter(dependencyFilters[k]);
-        return (acc || valueOfDependencyFilter(dependencyFilters[k]));
-    }, undefined);
+const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList) => {
+    // console.log("now", item.dependencies, dependencyFilters);
+    // No dependencies at all case
+    if (!item.dependencies || Object.keys(item.dependencies).length === 0) return truthyDependenciesList.includes(NONE_KEY);
+
+    // ONLY NONE_KEY dependency list
+    if (truthyDependenciesList.length === 1 && truthyDependenciesList.includes(NONE_KEY)) 
+        return (item.dependencies.length === 1 && item.dependencies.includes(NONE_KEY));
+
+    // Normal dependencies filter check
+    const filteredList = item.dependencies.filter((dependency) => truthyDependenciesList.includes(dependency));
+    return filteredList.length > 0;
 }
 
+// check dependency filter is selected on sidebar
+// Input: dependencyFilter={'qubely', 
 export const valueOfDependencyFilter = (dependencyFilter) => {
     if (dependencyFilter != null && dependencyFilter.hasOwnProperty('value')) return (dependencyFilter.value === true);
     return (dependencyFilter === true);
+}
+
+const truthyDependencyFiltersList = (dependencyFilters) => {
+    return Object.keys(dependencyFilters).filter((key) => dependencyFilters[key].value === true);
 }
