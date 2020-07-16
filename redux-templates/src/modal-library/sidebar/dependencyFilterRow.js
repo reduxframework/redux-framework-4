@@ -52,11 +52,12 @@ function DependencyFilterRow(props) {
     const toggleChecked = () => {
         // disable check first
         if (dependencyFilters[pluginKey] === null || dependencyFilters[pluginKey] === undefined || dependencyFilters[pluginKey].disabled) return;
-
+        // reflect on the item click event.
         let newDependencyFilters = {...dependencyFilters,
             [pluginKey]: { value: dependencyFilters[pluginKey].value === false, disabled: dependencyFilters[pluginKey]['disabled'] === true }};
-        let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
 
+        // if no item is selected, activate native, other wise conider to deactivate native
+        let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
         if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
             setDependencyFilters({...newDependencyFilters, [NONE_KEY]: {value: false, disabled: newDependencyFilters[NONE_KEY]['disabled']}});
         } else {

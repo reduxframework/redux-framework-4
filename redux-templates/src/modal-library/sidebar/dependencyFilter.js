@@ -24,18 +24,7 @@ function DependencyFilter(props) {
             [NONE_KEY]: { value: dependencyFilters[NONE_KEY].value === false, disabled: dependencyFilters[NONE_KEY]['disabled'] === true }
         });
     };
-
-    const setAllCheckedAs = (newVal) => {
-        setDependencyFilters(
-            Object.keys(dependencyFilters)
-                .filter(key => key!== NONE_KEY )
-                .reduce((acc, key) => {
-                    const disabled = dependencyFilters[key] ? dependencyFilters[key]['disabled'] : false;
-                    return {...acc, [key]: {value: disabled ? false : newVal, disabled }}
-                }, {[NONE_KEY]: {value: true, disabled: false}})
-        );
-    };
-    return (
+   return (
         <Fragment>
             {!loading && wholePlugins &&
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
