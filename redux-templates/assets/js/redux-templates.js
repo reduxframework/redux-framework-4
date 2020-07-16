@@ -7804,6 +7804,7 @@ const __ = wp.i18n.__;
 
 function DependencyFilter(props) {
   const dependencyFilters = props.dependencyFilters,
+        activeItemType = props.activeItemType,
         loading = props.loading,
         wholePlugins = props.wholePlugins,
         dependencyFilterRule = props.dependencyFilterRule;
@@ -7828,7 +7829,7 @@ function DependencyFilter(props) {
   return wp.element.createElement(Fragment, null, !loading && wholePlugins && wp.element.createElement("div", {
     id: "redux-templates-filter-dependencies",
     "data-tut": "tour__filter_dependencies"
-  }, wp.element.createElement("div", null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ButtonGroup"], {
+  }, wp.element.createElement(React.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ButtonGroup"], {
     style: {
       float: 'right'
     }
@@ -7839,7 +7840,8 @@ function DependencyFilter(props) {
     isSmall: true,
     isSecondary: true,
     isPressed: dependencyFilterRule === false,
-    onClick: () => setDependencyFilterRule(false)
+    onClick: () => setDependencyFilterRule(false),
+    disabled: activeItemType === 'collection'
   }, __('Any', redux_templates.i18n))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n),
     position: "top right"
@@ -7847,7 +7849,8 @@ function DependencyFilter(props) {
     isSmall: true,
     isSecondary: true,
     isPressed: dependencyFilterRule,
-    onClick: () => setDependencyFilterRule(true)
+    onClick: () => setDependencyFilterRule(true),
+    disabled: activeItemType === 'collection'
   }, __('Only', redux_templates.i18n)))), wp.element.createElement("h3", null, __('Required Plugins', redux_templates.i18n), " ")), wp.element.createElement("div", {
     className: "redux-templates-select-actions"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
@@ -7880,7 +7883,11 @@ function DependencyFilter(props) {
     step: 2
   })), wp.element.createElement("ul", {
     className: "redux-templates-sidebar-dependencies"
-  }, loading === false && wp.element.createElement("li", null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }, loading === false && wp.element.createElement("li", {
+    style: {
+      display: activeItemType === 'collection' ? 'none' : ''
+    }
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: __('Native', redux_templates.i18n),
     checked: isNoneChecked(),
     onChange: toggleNoneChecked
@@ -7921,6 +7928,7 @@ function DependencyFilter(props) {
   const _select = select('redux-templates/sectionslist'),
         getDependencyFiltersStatistics = _select.getDependencyFiltersStatistics,
         getLoading = _select.getLoading,
+        getActiveItemType = _select.getActiveItemType,
         getWholePlugins = _select.getWholePlugins,
         getDependencyFilterRule = _select.getDependencyFilterRule;
 
@@ -7928,7 +7936,8 @@ function DependencyFilter(props) {
     loading: getLoading(),
     dependencyFilters: getDependencyFiltersStatistics(),
     wholePlugins: getWholePlugins(),
-    dependencyFilterRule: getDependencyFilterRule()
+    dependencyFilterRule: getDependencyFilterRule(),
+    activeItemType: getActiveItemType()
   };
 })])(DependencyFilter));
 
@@ -11993,7 +12002,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_category', 'name'),
     dependencyFilters: {},
-    dependencyFilterRule: true,
+    dependencyFilterRule: false,
     searchContext: '',
     wholePlugins: [],
     activeCollection: null,
@@ -12270,7 +12279,8 @@ const reducer = (state = initialState, action) => {
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
             searchContext: '',
-            dependencyFilterRule: true,
+            dependencyFilterRule: state.activeItemType !== 'collection',
+            // We must always use false for collection to get template kits to work.
             dependencyFilters: atomHandler(state[cur].wholePlugins)
           })
         });

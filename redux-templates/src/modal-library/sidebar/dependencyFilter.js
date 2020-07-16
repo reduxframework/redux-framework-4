@@ -10,7 +10,7 @@ import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {REDUXTEMPLATES_PRO_KEY, NONE_KEY} from '~redux-templates/stores/helper';
 
 function DependencyFilter(props) {
-    const {dependencyFilters, loading, wholePlugins, dependencyFilterRule} = props;
+    const {dependencyFilters, activeItemType, loading, wholePlugins, dependencyFilterRule} = props;
     const {setDependencyFilters, selectDependencies, setDependencyFilterRule} = props;
     // Give the selected category(activeCategory) label className as "active"
     const isNoneChecked = () => {
@@ -28,21 +28,22 @@ function DependencyFilter(props) {
         <Fragment>
             {!loading && wholePlugins &&
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
-	                <div>
-		                <ButtonGroup style={{float:'right'}}>
-			                <Tooltip text={__('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top right">
-				                <Button isSmall isSecondary isPressed={dependencyFilterRule === false} onClick={() => setDependencyFilterRule(false)}>{__('Any', redux_templates.i18n)}</Button>
-			                </Tooltip>
-			                <Tooltip text={__('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top right">
-			                    <Button isSmall isSecondary isPressed={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)}>{__('Only', redux_templates.i18n)}</Button>
-			                </Tooltip>
-		                </ButtonGroup>
+	                <>
+			                <ButtonGroup style={{float:'right'}}>
+				                <Tooltip text={__('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top right">
+					                <Button isSmall isSecondary isPressed={dependencyFilterRule === false} onClick={() => setDependencyFilterRule(false)} disabled={activeItemType === 'collection'}>{__('Any', redux_templates.i18n)}</Button>
+				                </Tooltip>
+				                <Tooltip text={__('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top right">
+					                <Button isSmall isSecondary isPressed={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)} disabled={activeItemType === 'collection'}>{__('Only', redux_templates.i18n)}</Button>
+				                </Tooltip>
+			                </ButtonGroup>
+
 		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>
-	                </div>
+	                </>
                     <div className="redux-templates-select-actions">
                         <Tooltip text={__('Select All', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
-                        <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
+		                    <span>&nbsp; / &nbsp;</span>
+		                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
                         <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top right"><a href="#"
                             onClick={() => selectDependencies('installed')}>
@@ -56,7 +57,7 @@ function DependencyFilter(props) {
                     </div>
                     <ul className="redux-templates-sidebar-dependencies">
                         { (loading === false) &&
-                            <li>
+                            <li style={{display: activeItemType === 'collection' ? 'none': ''  }}>
                                 <CheckboxControl
                                     label={__('Native', redux_templates.i18n)}
                                     checked={isNoneChecked()}
@@ -101,12 +102,13 @@ export default compose([
     }),
 
     withSelect((select) => {
-        const {getDependencyFiltersStatistics, getLoading, getWholePlugins, getDependencyFilterRule} = select('redux-templates/sectionslist');
+        const {getDependencyFiltersStatistics, getLoading, getActiveItemType, getWholePlugins, getDependencyFilterRule} = select('redux-templates/sectionslist');
         return {
             loading: getLoading(),
             dependencyFilters: getDependencyFiltersStatistics(),
             wholePlugins: getWholePlugins(),
-            dependencyFilterRule: getDependencyFilterRule()
+            dependencyFilterRule: getDependencyFilterRule(),
+	        activeItemType: getActiveItemType()
         };
     })
 ])(DependencyFilter);
