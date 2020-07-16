@@ -300,17 +300,17 @@ export const reducer = ( state = initialState, action ) => {
             const types = ['section', 'page', 'collection'];
             let atomHandler;
             switch(action.data) {
-                case 'all': 
+                case 'all':
                 case 'none':
                     const newValue = action.data === 'all';
                     atomHandler = (plugins) => plugins
-                        .filter(plugin => plugin !== NONE_KEY)
+                        .filter(plugin => plugin !== NONE_KEY )
                         .reduce(
                             (acc, key) => {
                                 return { ...acc, [key]: { value: newValue, disabled: false } }
-                            }, 
+                            },
                             {
-                                [NONE_KEY]: {value: true, disabled: false}
+                                [NONE_KEY]: {value: true, disabled: false},
                             }
                         )
                     break;

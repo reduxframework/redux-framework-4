@@ -59,9 +59,9 @@ function DependencyFilterRow(props) {
         // if no item is selected, activate native, other wise conider to deactivate native
         let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
         if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
-            setDependencyFilters({...newDependencyFilters, [NONE_KEY]: {value: false, disabled: newDependencyFilters[NONE_KEY]['disabled']}});
+            setDependencyFilters({...newDependencyFilters});
         } else {
-            setDependencyFilters({...newDependencyFilters, [NONE_KEY]: {value: true, disabled: newDependencyFilters[NONE_KEY]['disabled']}});
+            setDependencyFilters({...newDependencyFilters});
         }
     };
 

@@ -434,7 +434,7 @@ exports.push([module.i, ".redux-templates-modal-wrapper {\n  /* ReduxTemplatesPr
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".redux-templates-collection-modal-sidebar {\n  min-width: 270px;\n  background: #fff;\n  color: #32373c;\n  /* $secondaryColor;*/\n  border-right: 1px solid #e2e4e7;\n  overflow-y: auto; }\n  .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group {\n    margin: 10px 0;\n    border-bottom: 1px solid #e2e4e7;\n    width: 100%;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button {\n      font-weight: 500;\n      flex-grow: 1;\n      min-width: 30%;\n      line-height: 20px;\n      padding: 8px 0 10px 15px;\n      align-items: center;\n      text-align: left;\n      background: none;\n      position: relative;\n      margin-bottom: -1px;\n      border-width: 0;\n      z-index: 1;\n      cursor: pointer;\n      outline: none;\n      border-color: transparent;\n      box-shadow: none;\n      border-bottom: unset; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button::after {\n        content: attr(data-label);\n        display: block;\n        height: 0;\n        overflow: hidden;\n        speak: none;\n        visibility: hidden; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:hover {\n        color: #007cba;\n        color: var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active {\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active::before {\n          content: \"\";\n          position: absolute;\n          top: 0;\n          bottom: 1px;\n          right: 0;\n          left: 0;\n          border-bottom: 4px solid transparent; }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active:focus {\n          box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n          box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.4; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:last-child img {\n        margin-bottom: -2px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content {\n    padding: 0 15px 15px; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content h3 {\n      margin: 5px 12px 10px 0;\n      color: #757575;\n      text-transform: uppercase;\n      font-size: 11px;\n      font-weight: 500; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul {\n      list-style: unset;\n      -webkit-touch-callout: none;\n      /* iOS Safari */\n      -webkit-user-select: none;\n      /* Safari */\n      -khtml-user-select: none;\n      /* Konqueror HTML */\n      -moz-user-select: none;\n      /* Old versions of Firefox */\n      -ms-user-select: none;\n      /* Internet Explorer/Edge */\n      user-select: none;\n      /* Non-prefixed version, currently\n                                             supported by Chrome, Edge, Opera and Firefox */\n      margin: 0 15px 15px 15px;\n      padding: 0; }\n      .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li {\n        display: block;\n        font-size: 13px;\n        cursor: pointer;\n        height: auto;\n        -webkit-transition: height 0.5s linear;\n        -moz-transition: height 0.5s linear;\n        -ms-transition: height 0.5s linear;\n        -o-transition: height 0.5s linear;\n        transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li:not(.disabled):hover {\n          color: #007cba;\n          color: var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.active {\n          color: #007cba;\n          color: var(--wp-admin-theme-color);\n          text-shadow: 0 0 0.5px #007cba;\n          text-shadow: 0 0 0.5px var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.disabled {\n          display: none;\n          height: 0px;\n          -webkit-transition: height 0.5s linear;\n          -moz-transition: height 0.5s linear;\n          -ms-transition: height 0.5s linear;\n          -o-transition: height 0.5s linear;\n          transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li span {\n          float: right; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li i {\n          font-size: 1.1em; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i {\n          margin-left: 5px; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            font-size: 0.9em;\n            line-height: 1.5em; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            color: #b27823; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency:hover i.fa-exclamation-triangle {\n          color: #f5a623; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency.active i.fa-exclamation-triangle {\n          color: #f5a623; }\n  .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control {\n    display: inline-block;\n    margin-bottom: 0 !important; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control .components-base-control__field {\n      margin-bottom: 3px; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control span {\n      float: none; }\n  .redux-templates-collection-modal-sidebar .redux-templates-select-actions {\n    margin: 0 0 10px 15px;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-select-actions i.challenge-dot {\n      margin-left: 10px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-sidebar-dependencies li a {\n    display: inline-block;\n    margin-left: 10px;\n    font-size: 90%;\n    float: right; }\n", ""]);
+exports.push([module.i, ".redux-templates-collection-modal-sidebar {\n  min-width: 270px;\n  background: #fff;\n  color: #32373c;\n  /* $secondaryColor;*/\n  border-right: 1px solid #e2e4e7;\n  overflow-y: auto; }\n  .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group {\n    margin: 10px 0;\n    border-bottom: 1px solid #e2e4e7;\n    width: 100%;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button {\n      font-weight: 500;\n      flex-grow: 1;\n      min-width: 30%;\n      line-height: 20px;\n      padding: 8px 0 10px 15px;\n      align-items: center;\n      text-align: left;\n      background: none;\n      position: relative;\n      margin-bottom: -1px;\n      border-width: 0;\n      z-index: 1;\n      cursor: pointer;\n      outline: none;\n      border-color: transparent;\n      box-shadow: none;\n      border-bottom: unset; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button::after {\n        content: attr(data-label);\n        display: block;\n        height: 0;\n        overflow: hidden;\n        speak: none;\n        visibility: hidden; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:hover {\n        color: #007cba;\n        color: var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active {\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active::before {\n          content: \"\";\n          position: absolute;\n          top: 0;\n          bottom: 1px;\n          right: 0;\n          left: 0;\n          border-bottom: 4px solid transparent; }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active:focus {\n          box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n          box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.4; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:last-child img {\n        margin-bottom: -2px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content {\n    padding: 0 15px 15px; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content h3 {\n      margin: 5px 12px 10px 0;\n      color: #757575;\n      text-transform: uppercase;\n      font-size: 11px;\n      font-weight: 500; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul {\n      list-style: unset;\n      -webkit-touch-callout: none;\n      /* iOS Safari */\n      -webkit-user-select: none;\n      /* Safari */\n      -khtml-user-select: none;\n      /* Konqueror HTML */\n      -moz-user-select: none;\n      /* Old versions of Firefox */\n      -ms-user-select: none;\n      /* Internet Explorer/Edge */\n      user-select: none;\n      /* Non-prefixed version, currently\n                                             supported by Chrome, Edge, Opera and Firefox */\n      margin: 0 15px 15px 15px;\n      padding: 0; }\n      .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li {\n        display: block;\n        font-size: 13px;\n        cursor: pointer;\n        height: auto;\n        -webkit-transition: height 0.5s linear;\n        -moz-transition: height 0.5s linear;\n        -ms-transition: height 0.5s linear;\n        -o-transition: height 0.5s linear;\n        transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li:not(.disabled):hover {\n          color: #007cba;\n          color: var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.active {\n          color: #007cba;\n          color: var(--wp-admin-theme-color);\n          text-shadow: 0 0 0.5px #007cba;\n          text-shadow: 0 0 0.5px var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.disabled {\n          display: none;\n          height: 0px;\n          -webkit-transition: height 0.5s linear;\n          -moz-transition: height 0.5s linear;\n          -ms-transition: height 0.5s linear;\n          -o-transition: height 0.5s linear;\n          transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li span {\n          float: right; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li i {\n          font-size: 1.1em; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i {\n          margin-left: 5px; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            font-size: 0.9em;\n            line-height: 1.5em; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            color: #b27823; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency:hover i.fa-exclamation-triangle {\n          color: #f5a623; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency.active i.fa-exclamation-triangle {\n          color: #f5a623; }\n  .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control {\n    display: inline-block;\n    margin-bottom: 0 !important; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control .components-base-control__field {\n      margin-bottom: 3px; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control span {\n      float: none; }\n  .redux-templates-collection-modal-sidebar .redux-templates-select-actions {\n    margin: 0 0 10px 15px;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-select-actions i.challenge-dot {\n      margin-left: 10px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-sidebar-dependencies li a {\n    display: inline-block;\n    margin-left: 10px;\n    font-size: 90%;\n    float: right; }\n  .redux-templates-collection-modal-sidebar #redux-templates-filter-dependencies h3 {\n    margin-top: 0;\n    padding-top: 3px; }\n", ""]);
 
 
 
@@ -7805,9 +7805,11 @@ const __ = wp.i18n.__;
 function DependencyFilter(props) {
   const dependencyFilters = props.dependencyFilters,
         loading = props.loading,
-        wholePlugins = props.wholePlugins;
+        wholePlugins = props.wholePlugins,
+        dependencyFilterRule = props.dependencyFilterRule;
   const setDependencyFilters = props.setDependencyFilters,
-        selectDependencies = props.selectDependencies; // Give the selected category(activeCategory) label className as "active"
+        selectDependencies = props.selectDependencies,
+        setDependencyFilterRule = props.setDependencyFilterRule; // Give the selected category(activeCategory) label className as "active"
 
   const isNoneChecked = () => {
     if (dependencyFilters.hasOwnProperty(_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"])) return dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]].hasOwnProperty('value') ? dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]].value : dependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]];
@@ -7823,49 +7825,52 @@ function DependencyFilter(props) {
     }));
   };
 
-  const setAllCheckedAs = newVal => {
-    setDependencyFilters(Object.keys(dependencyFilters).filter(key => key !== _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]).reduce((acc, key) => {
-      const disabled = dependencyFilters[key] ? dependencyFilters[key]['disabled'] : false;
-      return _objectSpread(_objectSpread({}, acc), {}, {
-        [key]: {
-          value: disabled ? false : newVal,
-          disabled
-        }
-      });
-    }, {
-      [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["NONE_KEY"]]: {
-        value: true,
-        disabled: false
-      }
-    }));
-  };
-
   return wp.element.createElement(Fragment, null, !loading && wholePlugins && wp.element.createElement("div", {
     id: "redux-templates-filter-dependencies",
     "data-tut": "tour__filter_dependencies"
-  }, wp.element.createElement("h3", null, __('Required Plugins', redux_templates.i18n)), wp.element.createElement("div", {
+  }, wp.element.createElement("div", null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ButtonGroup"], {
+    style: {
+      float: 'right'
+    }
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    text: __('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n),
+    position: "top right"
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    isSmall: true,
+    isSecondary: true,
+    isPressed: dependencyFilterRule === false,
+    onClick: () => setDependencyFilterRule(false)
+  }, __('Any', redux_templates.i18n))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    text: __('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n),
+    position: "top right"
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    isSmall: true,
+    isSecondary: true,
+    isPressed: dependencyFilterRule,
+    onClick: () => setDependencyFilterRule(true)
+  }, __('Only', redux_templates.i18n)))), wp.element.createElement("h3", null, __('Required Plugins', redux_templates.i18n), " ")), wp.element.createElement("div", {
     className: "redux-templates-select-actions"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Select All', redux_templates.i18n),
-    position: "bottom"
+    position: "top right"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('all')
   }, __('All', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Native Blocks Only', redux_templates.i18n),
-    position: "bottom"
+    position: "top right"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('none')
   }, __('None', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Installed Dependencies', redux_templates.i18n),
-    position: "bottom"
+    position: "top right"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('installed')
   }, __('Installed', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Reset Dependencies', redux_templates.i18n),
-    position: "bottom"
+    position: "top right"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('default')
@@ -7904,22 +7909,26 @@ function DependencyFilter(props) {
 /* harmony default export */ __webpack_exports__["default"] = (compose([withDispatch(dispatch => {
   const _dispatch = dispatch('redux-templates/sectionslist'),
         setDependencyFilters = _dispatch.setDependencyFilters,
-        selectDependencies = _dispatch.selectDependencies;
+        selectDependencies = _dispatch.selectDependencies,
+        setDependencyFilterRule = _dispatch.setDependencyFilterRule;
 
   return {
     setDependencyFilters,
-    selectDependencies
+    selectDependencies,
+    setDependencyFilterRule
   };
 }), withSelect(select => {
   const _select = select('redux-templates/sectionslist'),
         getDependencyFiltersStatistics = _select.getDependencyFiltersStatistics,
         getLoading = _select.getLoading,
-        getWholePlugins = _select.getWholePlugins;
+        getWholePlugins = _select.getWholePlugins,
+        getDependencyFilterRule = _select.getDependencyFilterRule;
 
   return {
     loading: getLoading(),
     dependencyFilters: getDependencyFiltersStatistics(),
-    wholePlugins: getWholePlugins()
+    wholePlugins: getWholePlugins(),
+    dependencyFilterRule: getDependencyFilterRule()
   };
 })])(DependencyFilter));
 
@@ -8038,31 +8047,22 @@ function DependencyFilterRow(props) {
 
   const toggleChecked = () => {
     // disable check first
-    if (dependencyFilters[pluginKey] === null || dependencyFilters[pluginKey] === undefined || dependencyFilters[pluginKey].disabled) return;
+    if (dependencyFilters[pluginKey] === null || dependencyFilters[pluginKey] === undefined || dependencyFilters[pluginKey].disabled) return; // reflect on the item click event.
 
     let newDependencyFilters = _objectSpread(_objectSpread({}, dependencyFilters), {}, {
       [pluginKey]: {
         value: dependencyFilters[pluginKey].value === false,
         disabled: dependencyFilters[pluginKey]['disabled'] === true
       }
-    });
+    }); // if no item is selected, activate native, other wise conider to deactivate native
+
 
     let valueCount = lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default()(Object.keys(newDependencyFilters), key => newDependencyFilters[key] === true || newDependencyFilters[key].value === true);
 
     if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
-      setDependencyFilters(_objectSpread(_objectSpread({}, newDependencyFilters), {}, {
-        [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]: {
-          value: false,
-          disabled: newDependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]['disabled']
-        }
-      }));
+      setDependencyFilters(_objectSpread({}, newDependencyFilters));
     } else {
-      setDependencyFilters(_objectSpread(_objectSpread({}, newDependencyFilters), {}, {
-        [_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]: {
-          value: true,
-          disabled: newDependencyFilters[_redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__["NONE_KEY"]]['disabled']
-        }
-      }));
+      setDependencyFilters(_objectSpread({}, newDependencyFilters));
     }
   };
 
@@ -10965,6 +10965,13 @@ const actions = {
     };
   },
 
+  setDependencyFilterRule(data) {
+    return {
+      type: 'SET_DEPENDENCY_FILTER_RULE',
+      data
+    };
+  },
+
   selectDependencies(data) {
     return {
       type: 'SELECT_DEPENDENCIES',
@@ -11178,29 +11185,27 @@ const applyPriceFilter = (pageData, activePriceFilter, activeDependencyFilter) =
 
   return pageData;
 };
-const applyDependencyFilters = (pageData, dependencyFilters) => {
+const applyDependencyFilters = (pageData, dependencyFilters, dependencyFilterRule) => {
   const truthyDependenciesList = truthyDependencyFiltersList(dependencyFilters);
 
   if (Array.isArray(pageData)) {
-    return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
+    return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList, dependencyFilterRule));
   } else {
     let newPageData = {};
     Object.keys(pageData).forEach(key => {
-      newPageData[key] = pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
+      newPageData[key] = pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList, dependencyFilterRule));
     });
     return newPageData;
   }
 };
 
-const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList) => {
+const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList, dependencyFilterRule) => {
   // console.log("now", item.dependencies, dependencyFilters);
   // No dependencies at all case
-  if (!item.dependencies || Object.keys(item.dependencies).length === 0) return truthyDependenciesList.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"]); // ONLY NONE_KEY dependency list
-
-  if (truthyDependenciesList.length === 1 && truthyDependenciesList.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"])) return item.dependencies.length === 1 && item.dependencies.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"]); // Normal dependencies filter check
+  if (!item.dependencies || Object.keys(item.dependencies).length === 0) return truthyDependenciesList.includes(_helper__WEBPACK_IMPORTED_MODULE_1__["NONE_KEY"]); // Normal dependencies filter check
 
   const filteredList = item.dependencies.filter(dependency => truthyDependenciesList.includes(dependency));
-  return filteredList.length > 0;
+  return dependencyFilterRule ? item.dependencies.length === filteredList.length : filteredList.length > 0; // filter rule = ture => AND operation
 }; // check dependency filter is selected on sidebar
 // Input: dependencyFilter={'qubely', 
 
@@ -11692,7 +11697,7 @@ const getPageData = (state, applyDependencyFilter = true) => {
 
   if (pageData && Object.keys(pageData).length > 0) {
     pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applySearchFilter"])(pageData, searchKeyword);
-    if (applyDependencyFilter) pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state));
+    if (applyDependencyFilter) pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
     pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyPriceFilter"])(pageData, getActivePriceFilter(state), getDependencyFilters(state));
 
     if (state.collection.activeCollection === null || state.activeItemType !== 'collection') {
@@ -11707,8 +11712,17 @@ const getPageData = (state, applyDependencyFilter = true) => {
 };
 
 const getDependencyFilters = state => {
-  return Object(_helper__WEBPACK_IMPORTED_MODULE_9__["getCurrentState"])(state).dependencyFilters;
-  ;
+  return _objectSpread(_objectSpread({}, getAllDependencFilters(state)), Object(_helper__WEBPACK_IMPORTED_MODULE_9__["getCurrentState"])(state).dependencyFilters);
+};
+
+const getAllDependencFilters = state => {
+  return state[state.activeItemType || 'section'].wholePlugins.reduce((acc, cur) => {
+    return _objectSpread(_objectSpread({}, acc), {}, {
+      [cur]: {
+        value: false
+      }
+    });
+  }, undefined);
 };
 
 const getDependencyFiltersStatistics = state => {
@@ -11725,6 +11739,10 @@ const getDependencyFiltersStatistics = state => {
     disabled: false
   };
   return dependencyFilters;
+};
+
+const getDependencyFilterRule = state => {
+  return state[state.activeItemType].dependencyFilterRule;
 };
 
 registerStore('redux-templates/sectionslist', {
@@ -11746,6 +11764,7 @@ registerStore('redux-templates/sectionslist', {
     getActiveItemType,
     getCurrentPage,
     getActiveCategory,
+    getDependencyFilterRule,
 
     getWholePlugins(state) {
       return state.activeItemType !== 'saved' ? Object(_helper__WEBPACK_IMPORTED_MODULE_9__["getCurrentState"])(state).wholePlugins : null;
@@ -11758,7 +11777,7 @@ registerStore('redux-templates/sectionslist', {
 
       if (pageData && Object.keys(pageData).length > 0) {
         pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applySearchFilter"])(pageData, getSearchContext(state));
-        pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state));
+        pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
         pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyPriceFilter"])(pageData, getActivePriceFilter(state), getDependencyFilters(state));
       }
 
@@ -11788,7 +11807,7 @@ registerStore('redux-templates/sectionslist', {
 
       if (pageData && Object.keys(pageData).length > 0) {
         pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applySearchFilter"])(pageData, getSearchContext(state));
-        pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state));
+        pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyDependencyFilters"])(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
         if (state.collection.activeCollection === null || state.activeItemType !== 'collection') pageData = Object(_filters__WEBPACK_IMPORTED_MODULE_8__["applyCategoryFilter"])(pageData, getActiveCategory(state));
         staticsData = lodash_countBy__WEBPACK_IMPORTED_MODULE_4___default()(pageData, item => Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_10__["isTemplatePremium"])(item, getDependencyFilters(state)) === true);
       }
@@ -11950,6 +11969,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_category', ''),
     dependencyFilters: {},
+    dependencyFilterRule: false,
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_sort', 'name'),
@@ -11961,6 +11981,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_category', ''),
     dependencyFilters: {},
+    dependencyFilterRule: false,
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_sort', 'name'),
@@ -11972,6 +11993,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_category', 'name'),
     dependencyFilters: {},
+    dependencyFilterRule: false,
     searchContext: '',
     wholePlugins: [],
     activeCollection: null,
@@ -12197,6 +12219,13 @@ const reducer = (state = initialState, action) => {
       return _objectSpread(_objectSpread({}, state), {}, {
         isImportToAppend: action.data
       });
+
+    case 'SET_DEPENDENCY_FILTER_RULE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        [state.activeItemType]: _objectSpread(_objectSpread({}, state[state.activeItemType]), {}, {
+          dependencyFilterRule: action.data
+        })
+      });
     // Dependency Shortcut click handler: All, None, Installed and Reset
 
     case 'SELECT_DEPENDENCIES':
@@ -12240,6 +12269,9 @@ const reducer = (state = initialState, action) => {
         Object(_helper__WEBPACK_IMPORTED_MODULE_0__["setWithExpiry"])(state.activeItemType + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
+            searchContext: '',
+            dependencyFilterRule: action.data !== 'all',
+            // Only all filter would start with OR
             dependencyFilters: atomHandler(state[cur].wholePlugins)
           })
         });

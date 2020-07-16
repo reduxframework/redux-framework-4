@@ -4,7 +4,7 @@ const {withDispatch, withSelect} = wp.data;
 const {__} = wp.i18n;
 import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
 
-import {CheckboxControl, Tooltip} from '@wordpress/components';
+import {CheckboxControl, Tooltip, Button, ButtonGroup} from '@wordpress/components';
 import DependencyFilterRow from './dependencyFilterRow';
 import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {REDUXTEMPLATES_PRO_KEY, NONE_KEY} from '~redux-templates/stores/helper';
@@ -28,33 +28,31 @@ function DependencyFilter(props) {
         <Fragment>
             {!loading && wholePlugins &&
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
-                    <h3>{__('Required Plugins', redux_templates.i18n)}</h3>
+	                <div>
+		                <ButtonGroup style={{float:'right'}}>
+			                <Tooltip text={__('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top right">
+				                <Button isSmall isSecondary isPressed={dependencyFilterRule === false} onClick={() => setDependencyFilterRule(false)}>{__('Any', redux_templates.i18n)}</Button>
+			                </Tooltip>
+			                <Tooltip text={__('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top right">
+			                    <Button isSmall isSecondary isPressed={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)}>{__('Only', redux_templates.i18n)}</Button>
+			                </Tooltip>
+		                </ButtonGroup>
+		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>
+	                </div>
                     <div className="redux-templates-select-actions">
-                        <Tooltip text={__('Select All', redux_templates.i18n)} position="bottom"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="bottom"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="bottom"><a href="#"
+                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top right"><a href="#"
                             onClick={() => selectDependencies('installed')}>
                             {__('Installed', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="bottom">
+                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="top right">
                             <a href="#" onClick={() => selectDependencies('default')}>
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
 
-                    </div>
-                    <div>
-                        <CheckboxControl
-                            label={__('OR', redux_templates.i18n)}
-                            checked={dependencyFilterRule === false}
-                            onChange={(e) => setDependencyFilterRule(!e)}
-                        />
-                        <CheckboxControl
-                            label={__('AND', redux_templates.i18n)}
-                            checked={dependencyFilterRule}
-                            onChange={(e) => setDependencyFilterRule(e)}
-                        />
                     </div>
                     <ul className="redux-templates-sidebar-dependencies">
                         { (loading === false) &&
