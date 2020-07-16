@@ -14,7 +14,7 @@ export const initialState = {
         priceFilter: getWithExpiry('section_price', ''),
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: false,
+        dependencyFilterRule: true,
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
@@ -26,7 +26,7 @@ export const initialState = {
         priceFilter: getWithExpiry('page_price', ''),
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: false,
+        dependencyFilterRule: true,
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
@@ -38,7 +38,7 @@ export const initialState = {
         priceFilter: getWithExpiry('collection_price', ''),
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
-        dependencyFilterRule: false,
+        dependencyFilterRule: true,
         searchContext: '',
         wholePlugins: [],
         activeCollection: null,
@@ -329,7 +329,7 @@ export const reducer = ( state = initialState, action ) => {
                     [cur]: {
                         ...state[cur],
                         searchContext: '',
-                        dependencyFilterRule: action.data !== 'all', // Only all filter would start with OR
+                        dependencyFilterRule: true,
                         dependencyFilters: atomHandler(state[cur].wholePlugins)
                     }
                 }

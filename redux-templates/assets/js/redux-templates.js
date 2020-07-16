@@ -11969,7 +11969,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_category', ''),
     dependencyFilters: {},
-    dependencyFilterRule: false,
+    dependencyFilterRule: true,
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_sort', 'name'),
@@ -11981,7 +11981,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_category', ''),
     dependencyFilters: {},
-    dependencyFilterRule: false,
+    dependencyFilterRule: true,
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_sort', 'name'),
@@ -11993,7 +11993,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_category', 'name'),
     dependencyFilters: {},
-    dependencyFilterRule: false,
+    dependencyFilterRule: true,
     searchContext: '',
     wholePlugins: [],
     activeCollection: null,
@@ -12270,8 +12270,7 @@ const reducer = (state = initialState, action) => {
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
             searchContext: '',
-            dependencyFilterRule: action.data !== 'all',
-            // Only all filter would start with OR
+            dependencyFilterRule: true,
             dependencyFilters: atomHandler(state[cur].wholePlugins)
           })
         });
