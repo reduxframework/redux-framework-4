@@ -47,6 +47,7 @@ const getPageData = (state, applyDependencyFilter = true) => {
     if (pageData && Object.keys(pageData).length > 0) {
         pageData = applySearchFilter(pageData, searchKeyword);
         if (applyDependencyFilter) pageData = applyDependencyFilters(pageData, getDependencyFilters(state));
+
         pageData = applyPriceFilter(pageData, getActivePriceFilter(state), getDependencyFilters(state));
         if (state.collection.activeCollection === null || state.activeItemType !== 'collection') {
             pageData = applyCategoryFilter(pageData, getActiveCategory(state));
@@ -58,7 +59,13 @@ const getPageData = (state, applyDependencyFilter = true) => {
 };
 
 const getDependencyFilters = (state) => {
-    return getCurrentState(state).dependencyFilters;;
+    return {...getAllDependencFilters(state), ...getCurrentState(state).dependencyFilters};
+};
+
+const getAllDependencFilters = (state) => {
+    return state[state.activeItemType || 'section'].wholePlugins.reduce((acc, cur) => {
+        return {...acc, [cur]: {value: false} };
+    }, undefined)
 };
 
 
