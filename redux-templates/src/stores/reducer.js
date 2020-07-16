@@ -317,6 +317,7 @@ export const reducer = ( state = initialState, action ) => {
                     ...acc,
                     [cur]: {
                         ...state[cur],
+                        searchContext: '',
                         dependencyFilters: atomHandler(state[cur].wholePlugins)
                     }
                 }
