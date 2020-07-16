@@ -9288,7 +9288,15 @@ function SidebarContent(props) {
     title: __('Identifier', redux_templates.i18n)
   }, hash.substring(0, 7)), copied && wp.element.createElement("span", {
     className: "copied hideMe"
-  }, wp.element.createElement("br", null), __('copied', redux_templates.i18n))))), installDependencies && installDependencies.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
+  }, wp.element.createElement("br", null), __('copied', redux_templates.i18n))))), blocks && blocks.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
+    title: __('Blocks Used', redux_templates.i18n),
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
+    initialOpen: false
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelRow"], {
+    className: "redux-block-pills"
+  }, wp.element.createElement("ul", null, blocks.map(block => {
+    return wp.element.createElement("li", null, wp.element.createElement("span", null, block));
+  })))), installDependencies && installDependencies.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
     title: __('Required Plugins', redux_templates.i18n),
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
     initialOpen: false
@@ -9333,15 +9341,7 @@ function SidebarContent(props) {
     }, wp.element.createElement("i", {
       className: "fas fa-external-link-alt"
     })))) : null);
-  }))))), blocks && blocks.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
-    title: __('Blocks Used', redux_templates.i18n),
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
-    initialOpen: false
-  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelRow"], {
-    className: "redux-block-pills"
-  }, wp.element.createElement("ul", null, blocks.map(block => {
-    return wp.element.createElement("li", null, wp.element.createElement("span", null, block));
-  })))), 'redux' !== source && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
+  }))))), 'redux' !== source && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
     title: __('Template Details', redux_templates.i18n),
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
     initialOpen: false

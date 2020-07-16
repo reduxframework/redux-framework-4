@@ -60,7 +60,21 @@ export default function SidebarContent(props) {
 
 				</h5>
 			</div>
-
+			{ blocks && blocks.length > 0 &&
+			<PanelBody title={__('Blocks Used', redux_templates.i18n)} icon={more} initialOpen={false}>
+				<PanelRow className="redux-block-pills">
+					<ul>
+						{
+							blocks.map(block => {
+								return (
+									<li><span>{block}</span></li>
+								)
+							} )
+						}
+					</ul>
+				</PanelRow>
+			</PanelBody>
+			}
 			{
 				installDependencies && installDependencies.length > 0 &&
 				<PanelBody title={__('Required Plugins', redux_templates.i18n)} icon={more} initialOpen={false}>
@@ -104,21 +118,6 @@ export default function SidebarContent(props) {
 								}
 							</ul>
 						</div>
-					</PanelRow>
-				</PanelBody>
-			}
-			{ blocks && blocks.length > 0 &&
-				<PanelBody title={__('Blocks Used', redux_templates.i18n)} icon={more} initialOpen={false}>
-					<PanelRow className="redux-block-pills">
-						<ul>
-						{
-							blocks.map(block => {
-								return (
-									<li><span>{block}</span></li>
-								)
-							} )
-						}
-						</ul>
 					</PanelRow>
 				</PanelBody>
 			}
