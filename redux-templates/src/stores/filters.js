@@ -82,31 +82,28 @@ export const applyPriceFilter = (pageData, activePriceFilter, activeDependencyFi
 }
 
 
-export const applyDependencyFilters = (pageData, dependencyFilters) => {
+export const applyDependencyFilters = (pageData, dependencyFilters, dependencyFilterRule) => {
     const truthyDependenciesList = truthyDependencyFiltersList(dependencyFilters);
     if (Array.isArray(pageData)) {
-        return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
+        return pageData.filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList, dependencyFilterRule));
     } else {
         let newPageData = {};
         Object.keys(pageData).forEach(key => {
-            newPageData[key] =  pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList));
+            newPageData[key] =  pageData[key].filter(item => isTemplateDependencyFilterIncluded(item, truthyDependenciesList, dependencyFilterRule));
         });
         return newPageData;
     }
 }
 
-const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList) => {
+const isTemplateDependencyFilterIncluded = (item, truthyDependenciesList, dependencyFilterRule) => {
     // console.log("now", item.dependencies, dependencyFilters);
     // No dependencies at all case
     if (!item.dependencies || Object.keys(item.dependencies).length === 0) return truthyDependenciesList.includes(NONE_KEY);
 
-    // ONLY NONE_KEY dependency list
-    if (truthyDependenciesList.length === 1 && truthyDependenciesList.includes(NONE_KEY)) 
-        return (item.dependencies.length === 1 && item.dependencies.includes(NONE_KEY));
-
     // Normal dependencies filter check
     const filteredList = item.dependencies.filter((dependency) => truthyDependenciesList.includes(dependency));
-    return filteredList.length > 0;
+
+    return dependencyFilterRule ? item.dependencies.length === filteredList.length : filteredList.length > 0; // filter rule = ture => AND operation
 }
 
 // check dependency filter is selected on sidebar

@@ -10,8 +10,8 @@ import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {REDUXTEMPLATES_PRO_KEY, NONE_KEY} from '~redux-templates/stores/helper';
 
 function DependencyFilter(props) {
-    const {dependencyFilters, loading, wholePlugins} = props;
-    const {setDependencyFilters, selectDependencies} = props;
+    const {dependencyFilters, loading, wholePlugins, dependencyFilterRule} = props;
+    const {setDependencyFilters, selectDependencies, setDependencyFilterRule} = props;
     // Give the selected category(activeCategory) label className as "active"
     const isNoneChecked = () => {
         if (dependencyFilters.hasOwnProperty(NONE_KEY))
@@ -43,6 +43,18 @@ function DependencyFilter(props) {
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
 
+                    </div>
+                    <div>
+                        <CheckboxControl
+                            label={__('OR', redux_templates.i18n)}
+                            checked={dependencyFilterRule === false}
+                            onChange={(e) => setDependencyFilterRule(!e)}
+                        />
+                        <CheckboxControl
+                            label={__('AND', redux_templates.i18n)}
+                            checked={dependencyFilterRule}
+                            onChange={(e) => setDependencyFilterRule(e)}
+                        />
                     </div>
                     <ul className="redux-templates-sidebar-dependencies">
                         { (loading === false) &&
@@ -82,19 +94,21 @@ function DependencyFilter(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setDependencyFilters, selectDependencies} = dispatch('redux-templates/sectionslist');
+        const {setDependencyFilters, selectDependencies, setDependencyFilterRule} = dispatch('redux-templates/sectionslist');
         return {
             setDependencyFilters,
-            selectDependencies
+            selectDependencies,
+            setDependencyFilterRule
         };
     }),
 
     withSelect((select) => {
-        const {getDependencyFiltersStatistics, getLoading, getWholePlugins} = select('redux-templates/sectionslist');
+        const {getDependencyFiltersStatistics, getLoading, getWholePlugins, getDependencyFilterRule} = select('redux-templates/sectionslist');
         return {
             loading: getLoading(),
             dependencyFilters: getDependencyFiltersStatistics(),
-            wholePlugins: getWholePlugins()
+            wholePlugins: getWholePlugins(),
+            dependencyFilterRule: getDependencyFilterRule()
         };
     })
 ])(DependencyFilter);

@@ -14,6 +14,7 @@ export const initialState = {
         priceFilter: getWithExpiry('section_price', ''),
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
+        dependencyFilterRule: false,
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
@@ -25,6 +26,7 @@ export const initialState = {
         priceFilter: getWithExpiry('page_price', ''),
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
+        dependencyFilterRule: false,
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
@@ -36,6 +38,7 @@ export const initialState = {
         priceFilter: getWithExpiry('collection_price', ''),
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
+        dependencyFilterRule: false,
         searchContext: '',
         wholePlugins: [],
         activeCollection: null,
@@ -284,6 +287,14 @@ export const reducer = ( state = initialState, action ) => {
                 ...state,
                 isImportToAppend: action.data
             }
+        case 'SET_DEPENDENCY_FILTER_RULE':
+            return {
+                ...state,
+                [state.activeItemType]: {
+                    ...state[state.activeItemType],
+                    dependencyFilterRule: action.data
+                }
+            }
         // Dependency Shortcut click handler: All, None, Installed and Reset
         case 'SELECT_DEPENDENCIES':
             const types = ['section', 'page', 'collection'];
@@ -318,6 +329,7 @@ export const reducer = ( state = initialState, action ) => {
                     [cur]: {
                         ...state[cur],
                         searchContext: '',
+                        dependencyFilterRule: action.data !== 'all', // Only all filter would start with OR
                         dependencyFilters: atomHandler(state[cur].wholePlugins)
                     }
                 }

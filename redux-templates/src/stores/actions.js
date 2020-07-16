@@ -160,6 +160,12 @@ export const actions = {
             data
         }
     },
+    setDependencyFilterRule(data) {
+        return {
+            type: 'SET_DEPENDENCY_FILTER_RULE',
+            data
+        }
+    },
     selectDependencies(data) {
         return {
             type: 'SELECT_DEPENDENCIES',

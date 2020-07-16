@@ -46,7 +46,7 @@ const getPageData = (state, applyDependencyFilter = true) => {
     if (state.activeItemType !== 'collection' && searchKeyword.length > 5) hashFilteredData = applyHashFilter(pageData, searchKeyword);
     if (pageData && Object.keys(pageData).length > 0) {
         pageData = applySearchFilter(pageData, searchKeyword);
-        if (applyDependencyFilter) pageData = applyDependencyFilters(pageData, getDependencyFilters(state));
+        if (applyDependencyFilter) pageData = applyDependencyFilters(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
 
         pageData = applyPriceFilter(pageData, getActivePriceFilter(state), getDependencyFilters(state));
         if (state.collection.activeCollection === null || state.activeItemType !== 'collection') {
@@ -80,7 +80,9 @@ const getDependencyFiltersStatistics = (state) => {
     dependencyFilters[NONE_KEY] = {value: valueOfDependencyFilter(dependencyFilters[NONE_KEY]), disabled: false};
     return dependencyFilters;
 };
-
+const getDependencyFilterRule = (state) => {
+    return state[state.activeItemType].dependencyFilterRule;
+};
 registerStore('redux-templates/sectionslist', {
 
     reducer,
@@ -101,6 +103,7 @@ registerStore('redux-templates/sectionslist', {
         getActiveItemType,
         getCurrentPage,
         getActiveCategory,
+        getDependencyFilterRule,
         getWholePlugins(state) {
             return (state.activeItemType !== 'saved') ? getCurrentState(state).wholePlugins : null;
         },
@@ -110,7 +113,7 @@ registerStore('redux-templates/sectionslist', {
             let pageData = getOriginalPageData(state);
             if (pageData && Object.keys(pageData).length > 0) {
                 pageData = applySearchFilter(pageData, getSearchContext(state));
-                pageData = applyDependencyFilters(pageData, getDependencyFilters(state));
+                pageData = applyDependencyFilters(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
                 pageData = applyPriceFilter(pageData, getActivePriceFilter(state), getDependencyFilters(state));
             }
             if (state.collection.activeCollection === null || state.activeItemType !== 'collection') {
@@ -132,7 +135,7 @@ registerStore('redux-templates/sectionslist', {
             let staticsData = {true: 0, false: 0};
             if (pageData && Object.keys(pageData).length > 0) {
                 pageData = applySearchFilter(pageData, getSearchContext(state));
-                pageData = applyDependencyFilters(pageData, getDependencyFilters(state));
+                pageData = applyDependencyFilters(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
                 if (state.collection.activeCollection === null || state.activeItemType !== 'collection') pageData = applyCategoryFilter(pageData, getActiveCategory(state));
                 staticsData = countBy(pageData, (item) => isTemplatePremium(item, getDependencyFilters(state)) === true);
             }
