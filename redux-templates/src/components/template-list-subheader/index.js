@@ -16,7 +16,7 @@ function TemplateListSubHeader(props) {
     const [triggerTourClassname, setTriggerTourClassname] = useState('far fa-question-circle tour-icon');
 
     useEffect(() => {
-        setTriggerTourClassname(challengePassed ? 'fas fa-trophy tour-icon' : 'far fa-question-circle tour-icon');
+        setTriggerTourClassname(challengePassed ? 'fas fa-trophy tour-icon' : 'fas fa-map-signs tour-icon');
     }, [challengePassed]);
 
     const itemTypeLabel = () => {
@@ -42,7 +42,7 @@ function TemplateListSubHeader(props) {
             <div className="redux-templates-template-filters">
                 <Button
                     icon={<i className={triggerTourClassname} />}
-                    label={__('Trigger Tour', redux_templates.i18n)}
+                    label={__('Take the Redux Challenge', redux_templates.i18n)}
                     onClick={() => {setChallengeOpen(true); setChallengeListExpanded(true); }}
                 />
                 <Button
