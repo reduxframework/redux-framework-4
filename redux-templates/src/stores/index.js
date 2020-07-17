@@ -9,6 +9,7 @@ import countBy from 'lodash/countBy';
 import map from 'lodash/map';
 import flattenDeep from 'lodash/flattenDeep';
 import uniq from 'lodash/uniq';
+import uniqBy from 'lodash/uniqBy';
 import {applyCategoryFilter, applySearchFilter, applyHashFilter, applyPriceFilter, applyDependencyFilters, valueOfDependencyFilter} from './filters'
 import {getCurrentState, getCollectionChildrenData, loadChallengeStep, NONE_KEY} from './helper';
 import {isTemplatePremium} from './dependencyHelper'
@@ -43,7 +44,9 @@ const getPageData = (state, applyDependencyFilter = true) => {
     let pageData = getOriginalPageData(state);
     const searchKeyword = getSearchContext(state);
     let hashFilteredData = [];
+    // Hash filter to take priority
     if (state.activeItemType !== 'collection' && searchKeyword.length > 5) hashFilteredData = applyHashFilter(pageData, searchKeyword);
+    // Full search for pageData
     if (pageData && Object.keys(pageData).length > 0) {
         pageData = applySearchFilter(pageData, searchKeyword);
         if (applyDependencyFilter) pageData = applyDependencyFilters(pageData, getDependencyFilters(state), getDependencyFilterRule(state));
@@ -53,7 +56,7 @@ const getPageData = (state, applyDependencyFilter = true) => {
             pageData = applyCategoryFilter(pageData, getActiveCategory(state));
             pageData = sortBy(pageData, getCurrentState(state).sortBy);
         }
-        return [...hashFilteredData, ...pageData];
+        return uniqBy([...pageData, ...hashFilteredData], 'ID');
     }
     return null;
 };
