@@ -12,7 +12,7 @@ import './style.scss'
 
 function TemplateListSubHeader(props) {
     const {itemType, sortBy, activeCollection, challengePassed, pageData, columns, loading} = props;
-    const {setSortBy, setColumns, setChallengeOpen} = props;
+    const {setSortBy, setColumns, setChallengeOpen, setChallengeListExpanded} = props;
     const [triggerTourClassname, setTriggerTourClassname] = useState('far fa-question-circle tour-icon');
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function TemplateListSubHeader(props) {
                 <Button
                     icon={<i className={triggerTourClassname} />}
                     label={__('Trigger Tour', redux_templates.i18n)}
-                    onClick={() => setChallengeOpen(true)}
+                    onClick={() => {setChallengeOpen(true); setChallengeListExpanded(true); }}
                 />
                 <Button
                     icon="image-rotate"
@@ -84,14 +84,15 @@ function TemplateListSubHeader(props) {
 
 export default compose([
     withDispatch((dispatch) => {
-        const {setLibrary, setActivePriceFilter, setActiveCollection, setSortBy, setColumns, setChallengeOpen} = dispatch('redux-templates/sectionslist');
+        const {setLibrary, setActivePriceFilter, setActiveCollection, setSortBy, setColumns, setChallengeOpen, setChallengeListExpanded} = dispatch('redux-templates/sectionslist');
         return {
             setLibrary,
             setActivePriceFilter,
             setActiveCollection,
             setSortBy,
             setColumns,
-            setChallengeOpen
+            setChallengeOpen,
+            setChallengeListExpanded
         };
     }),
 
