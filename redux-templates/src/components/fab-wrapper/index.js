@@ -67,6 +67,15 @@ export default function FabWrapper() {
             {/*>*/}
             {/*    <i className="fa fa-comments"/>*/}
             {/*</Action>*/}
+	        <Action
+		        style={actionButtonStyles}
+		        text={__('Get Support', redux_templates.i18n)}
+		        onClick={e => {
+			        window.open('https://wordpress.org/support/plugin/redux-framework/#new-topic-0', '_blank')
+		        }}
+	        >
+		        <i className="far fa-question-circle "/>
+	        </Action>
             <Action
                 style={actionButtonStyles}
                 text={__('Join our Community', redux_templates.i18n)}
@@ -76,33 +85,32 @@ export default function FabWrapper() {
             >
                 <i className="fa fa-comments"/>
             </Action>
-	        <Action
-		        style={actionButtonStyles}
-		        text={__('Visit our Website', redux_templates.i18n)}
-		        onClick={e => {
-			        window.open('https://redux.io?utm_source=plugin&utm_medium=modal&utm_campaign=tinyfab', '_blank')
-		        }}
-	        >
-		        <i className="fas fa-external-link-alt"/>
-	        </Action>
-            {/*<Action*/}
-            {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Take Our Tour', redux_templates.i18n)}*/}
-            {/*    onClick={e => {*/}
-            {/*        setTourOpen();*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <i className="fas fa-map-signs"/>*/}
-            {/*</Action>*/}
-            {/*<Action*/}
-            {/*    style={actionButtonStyles}*/}
-            {/*    text={__('Support & Docs', redux_templates.i18n)}*/}
-            {/*    onClick={e => {*/}
-            {/*        window.open('https://docs.redux.io/', "_blank")*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <i className="fa fa-life-ring"/>*/}
-            {/*</Action>*/}
+	        {
+		        redux_templates.mokama === '1' &&
+		        <Action
+			        style={actionButtonStyles}
+			        text={__('Visit our Website', redux_templates.i18n)}
+			        onClick={e => {
+				        window.open('https://redux.io?utm_source=plugin&utm_medium=modal&utm_campaign=tinyfab', '_blank')
+			        }}
+		        >
+			        <i className="fas fa-external-link-alt"/>
+		        </Action>
+	        }
+	        {/*{*/}
+		    {/*    redux_templates.left !== 999 &&*/}
+		    {/*    <Action*/}
+			{/*        style={actionButtonStyles}*/}
+			{/*        className="tour-icon"*/}
+			{/*        text={__( 'Take the Redux Challenge', redux_templates.i18n )}*/}
+			{/*        onClick={e => {*/}
+			{/*	        setTourOpen();*/}
+			{/*        }}*/}
+		    {/*    >*/}
+			{/*        <i className="fas fa-map-signs tour-icon"/>*/}
+		    {/*    </Action>*/}
+	        {/*}*/}
+
 	        {
 		        redux_templates.mokama !== '1' &&
 		        <Action
