@@ -323,7 +323,7 @@ export const reducer = ( state = initialState, action ) => {
             }
             const filtered = types.reduce( (acc, cur) => {
                 // save to the local storage as well
-                setWithExpiry(state.activeItemType + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
+                setWithExpiry(cur + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
                 return {
                     ...acc,
                     [cur]: {
