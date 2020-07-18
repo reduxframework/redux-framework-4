@@ -445,13 +445,25 @@ class Api {
 
 		if ( isset( $data['path'] ) ) {
 			if ( 'library/' === $data['path'] ) {
-				$api_url = "https://files.redux.io/templates/library.json";
+				$api_url = 'https://files.redux.io/templates/library.json';
 				$request = wp_remote_get( $api_url );
 				if ( is_wp_error( $request ) ) {
-					wp_send_json_error( array( 'success' => 'false', 'message' => $request->get_error_messages(), 'message_types' => 'error' ) );
+					wp_send_json_error(
+						array(
+							'success'       => 'false',
+							'message'       => $request->get_error_messages(),
+							'message_types' => 'error',
+						)
+					);
 				}
 				if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
-					wp_send_json_error( array( 'success' => 'false', 'message' => 'Error fetching library, URL not found. Please try again', 'message_types' => 'error' ) );
+					wp_send_json_error(
+						array(
+							'success'       => 'false',
+							'message'       => 'Error fetching library, URL not found. Please try again',
+							'message_types' => 'error',
+						)
+					);
 				}
 				return $request['body'];
 			}
@@ -503,11 +515,23 @@ class Api {
 		}
 
 		if ( is_wp_error( $request ) ) {
-			wp_send_json_error( array( 'success' => 'false', 'message' => $request->get_error_messages(), 'message_types' => 'error' ) );
+			wp_send_json_error(
+				array(
+					'success'       => 'false',
+					'message'       => $request->get_error_messages(),
+					'message_types' => 'error',
+				)
+			);
 		}
 
 		if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
-			wp_send_json_error( array( 'success' => 'false', 'message' => 'Error fetching template. Please try again', 'message_types' => 'error' ) );
+			wp_send_json_error(
+				array(
+					'success'       => 'false',
+					'message'       => 'Error fetching template. Please try again',
+					'message_types' => 'error',
+				)
+			);
 		}
 
 		return $request['body'];
