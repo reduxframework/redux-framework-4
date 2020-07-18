@@ -34,7 +34,7 @@ class Api {
 	 *
 	 * @var string
 	 */
-	protected $api_base_url = 'https://api.starterblocks.io/';
+	protected $api_base_url = 'https://api.redux.io/';
 	/**
 	 * Default headers array.
 	 *
@@ -103,7 +103,7 @@ class Api {
 
 		foreach ( $plugins as $key => $value ) {
 			if ( isset( $value['version'] ) ) {
-				array_push( $installed_plugins, $key, true );
+				array_push( $installed_plugins, $key . '~' . $value['version'] );
 				$found_already = array_search( $key, $parameters['registered_blocks'], true );
 				if ( false !== $found_already ) {
 					unset( $parameters['registered_blocks'][ $found_already ] );
@@ -116,7 +116,7 @@ class Api {
 				}
 			}
 		}
-		$parameters['registered_blocks'] = array_merge( $installed_plugins, $parameters['registered_blocks'] );
+		$parameters['registered_blocks'] = array_values( array_merge( $installed_plugins, $parameters['registered_blocks'] ) );
 
 		return $parameters;
 	}
@@ -227,7 +227,7 @@ class Api {
 			$use_cache = false;
 		}
 		if ( ! empty( $last_modified ) ) {
-			$config['headers']['SB-Cache-Time'] = $last_modified;
+			$config['headers']['Redux-Cache-Time'] = $last_modified;
 			if ( time() > $last_modified + $this->cache_time ) {
 				$use_cache = false;
 			}
@@ -245,14 +245,14 @@ class Api {
 			return $data;
 		}
 
-		if ( ! $use_cache && isset( $config['headers']['SB-Cache-Time'] ) ) {
-			unset( $config['headers']['SB-Cache-Time'] );
+		if ( ! $use_cache && isset( $config['headers']['Redux-Cache-Time'] ) ) {
+			unset( $config['headers']['Redux-Cache-Time'] );
 		}
 
 		if ( empty( $data ) ) {
 
 			if ( isset( $parameters['registered_blocks'] ) ) {
-				$config['headers']['SB-Registered-Blocks'] = implode( ',', $parameters['registered_blocks'] );
+				$config['headers']['Redux-Registered-Blocks'] = implode( ',', $parameters['registered_blocks'] );
 			}
 
 			$results = $this->api_request( $config );
@@ -396,7 +396,7 @@ class Api {
 		}
 
 		$config = array(
-			'path'           => 'share/',
+			'path'           => 'template_share/',
 			'uid'            => get_current_user_id(),
 			'editor_content' => isset( $parameters['editor_content'] ) ? (string) $parameters['editor_content'] : '',
 			'editor_blocks'  => isset( $parameters['editor_blocks'] ) ? $parameters['editor_blocks'] : '',
@@ -406,7 +406,7 @@ class Api {
 			'categories'     => isset( $parameters['categories'] ) ? (string) sanitize_text_field( $parameters['categories'] ) : '',
 			'description'    => isset( $parameters['description'] ) ? (string) sanitize_text_field( $parameters['description'] ) : '',
 			'headers'        => array(
-				'SB-Registered-Blocks' => isset( $parameters['registered_blocks'] ) ? (string) sanitize_text_field( implode( ',', $parameters['registered_blocks'] ) ) : '',
+				'Redux-Registered-Blocks' => isset( $parameters['registered_blocks'] ) ? (string) sanitize_text_field( implode( ',', $parameters['registered_blocks'] ) ) : '',
 			),
 		);
 
@@ -442,7 +442,19 @@ class Api {
 	public function api_request( $data ) {
 
 		$api_url = $this->api_base_url;
+
 		if ( isset( $data['path'] ) ) {
+			if ( 'library/' === $data['path'] ) {
+				$api_url = "https://files.redux.io/templates/library.json";
+				$request = wp_remote_get( $api_url );
+				if ( is_wp_error( $request ) ) {
+					wp_send_json_error( array( 'success' => 'false', 'message' => $request->get_error_messages(), 'message_types' => 'error' ) );
+				}
+				if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
+					wp_send_json_error( array( 'success' => 'false', 'message' => 'Error fetching library, URL not found. Please try again', 'message_types' => 'error' ) );
+				}
+				return $request['body'];
+			}
 			$api_url = $api_url . $data['path'];
 		}
 
@@ -455,11 +467,11 @@ class Api {
 			unset( $data['headers'] );
 		}
 		if ( isset( $data['p'] ) ) {
-			$headers['SB-P'] = $data['p'];
+			$headers['Redux-P'] = $data['p'];
 			unset( $data['p'] );
 		}
 		if ( isset( $data['path'] ) ) {
-			$headers['SB-Path'] = $data['path'];
+			$headers['Redux-Path'] = $data['path'];
 			unset( $data['path'] );
 		}
 
@@ -469,10 +481,10 @@ class Api {
 		$headers                 = array_filter( $headers );
 
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			$headers['SB-User-Agent'] = (string) sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
+			$headers['Redux-User-Agent'] = (string) sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
 
-		$headers['SB-SiteURL'] = get_site_url( get_current_blog_id() );
+		$headers['Redux-SiteURL'] = get_site_url( get_current_blog_id() );
 
 		$post_args = array(
 			'timeout'     => 120,
@@ -486,12 +498,16 @@ class Api {
 		$request = wp_remote_post( $api_url, $post_args );
 
 		// Handle redirects.
-		if ( ! is_wp_error( $request ) && isset( $request['http_response'] ) && $request['http_response'] instanceof \WP_HTTP_Requests_Response && method_exists( $request['http_response'], 'get_response_object' ) && strpos( $request['http_response']->get_response_object()->url, 'files.starterblocks.io' ) !== false ) {
+		if ( ! is_wp_error( $request ) && isset( $request['http_response'] ) && $request['http_response'] instanceof \WP_HTTP_Requests_Response && method_exists( $request['http_response'], 'get_response_object' ) && strpos( $request['http_response']->get_response_object()->url, 'files.redux.io' ) !== false ) {
 			$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => 145 ) );
 		}
 
 		if ( is_wp_error( $request ) ) {
-			wp_send_json_error( array( 'messages' => $request->get_error_messages() ) );
+			wp_send_json_error( array( 'success' => 'false', 'message' => $request->get_error_messages(), 'message_types' => 'error' ) );
+		}
+
+		if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
+			wp_send_json_error( array( 'success' => 'false', 'message' => 'Error fetching template. Please try again', 'message_types' => 'error' ) );
 		}
 
 		return $request['body'];
@@ -515,7 +531,7 @@ class Api {
 		}
 
 		$config = array(
-			'path'   => 'template',
+			'path'   => 'template/',
 			'id'     => sanitize_text_field( $parameters['id'] ),
 			'type'   => (string) sanitize_text_field( $parameters['type'] ),
 			'source' => isset( $parameters['source'] ) ? $parameters['source'] : '',
@@ -624,15 +640,15 @@ class Api {
 	 */
 	public function request_verify( $data = array() ) {
 		$config = array(
-			'SB-Version'   => REDUXTEMPLATES_VERSION,
-			'SB-Multisite' => is_multisite(),
+			'Redux-Version'   => REDUXTEMPLATES_VERSION,
+			'Redux-Multisite' => is_multisite(),
 		);
 
 		// TODO - Update this with the EDD key or developer key.
-		$config['SB-API-Key'] = '';
+		$config['Redux-API-Key'] = '';
 
 		if ( ! empty( \Redux_Core::$pro_loaded ) && \Redux_Core::$pro_loaded ) {
-			$config['SB-Pro'] = \Redux_Core::$pro_loaded;
+			$config['Redux-Pro'] = \Redux_Core::$pro_loaded;
 		}
 		$data = wp_parse_args( $data, $config );
 
