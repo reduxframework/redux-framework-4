@@ -12264,7 +12264,7 @@ const reducer = (state = initialState, action) => {
         case 'none':
           const newValue = action.data === 'all';
 
-          atomHandler = plugins => plugins.filter(plugin => plugin !== _helper__WEBPACK_IMPORTED_MODULE_0__["NONE_KEY"]).reduce((acc, key) => {
+          atomHandler = plugins => plugins.filter(plugin => [_helper__WEBPACK_IMPORTED_MODULE_0__["NONE_KEY"], 'gutenberghub.com', 'shareablock.com'].includes(plugin) === false).reduce((acc, key) => {
             return _objectSpread(_objectSpread({}, acc), {}, {
               [key]: {
                 value: newValue,
@@ -12273,6 +12273,14 @@ const reducer = (state = initialState, action) => {
             });
           }, {
             [_helper__WEBPACK_IMPORTED_MODULE_0__["NONE_KEY"]]: {
+              value: true,
+              disabled: false
+            },
+            'gutenberghub.com': {
+              value: true,
+              disabled: false
+            },
+            'shareablock.com': {
               value: true,
               disabled: false
             }
@@ -12293,7 +12301,7 @@ const reducer = (state = initialState, action) => {
 
       const filtered = types.reduce((acc, cur) => {
         // save to the local storage as well
-        Object(_helper__WEBPACK_IMPORTED_MODULE_0__["setWithExpiry"])(state.activeItemType + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
+        Object(_helper__WEBPACK_IMPORTED_MODULE_0__["setWithExpiry"])(cur + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
             searchContext: '',
