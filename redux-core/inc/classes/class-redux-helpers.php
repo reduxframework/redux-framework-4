@@ -945,6 +945,16 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		}
 
 		/**
+		 * Check mokama.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 */
+		public static function mokama() {
+			return defined( 'RDX_MOKAMA' );
+		}
+
+		/**
 		 * Deprecated. Compiles array of stsyem specs.
 		 *
 		 * @param boolean $json_output   Enable/Disable return in JSON format.
@@ -1935,19 +1945,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			echo @htmlspecialchars( @wp_json_encode( $array, true ), ENT_QUOTES, 'UTF-8' );
 
 			die();
-		}
-
-		/**
-		 * Check mokama.
-		 *
-		 * @access public
-		 * @since 4.0.0
-		 */
-		public static function mokama() {
-			if ( class_exists( 'Redux_Pro' ) ) {
-				return true;
-			}
-			return false;
 		}
 	}
 }
