@@ -7,7 +7,8 @@ const {__} = wp.i18n;
 import {CheckboxControl, Tooltip} from '@wordpress/components';
 import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {NONE_KEY} from '~redux-templates/stores/helper';
-import groupBy from 'lodash/groupBy';
+
+const specialPlugins = ['gutenberghub.com', 'editorplus'];
 
 function DependencyFilterRow(props) {
     const {pluginKey, dependencyFilters} = props;
@@ -53,16 +54,24 @@ function DependencyFilterRow(props) {
         // disable check first
         if (dependencyFilters[pluginKey] === null || dependencyFilters[pluginKey] === undefined || dependencyFilters[pluginKey].disabled) return;
         // reflect on the item click event.
-        let newDependencyFilters = {...dependencyFilters,
-            [pluginKey]: { value: dependencyFilters[pluginKey].value === false, disabled: dependencyFilters[pluginKey]['disabled'] === true }};
+        let newDependencyFilters = {
+            ...dependencyFilters,
+            [pluginKey]: { value: dependencyFilters[pluginKey].value === false, disabled: dependencyFilters[pluginKey]['disabled'] === true }
+        };
+
+        // gutenberg.com, EditorPlus check
+        if (specialPlugins.includes(pluginKey)) {
+            specialPlugins.forEach((plugin) => {
+                newDependencyFilters = {
+                    ...newDependencyFilters,
+                    [plugin]: { value: dependencyFilters[pluginKey].value === false, disabled: dependencyFilters[plugin]['disabled'] === true }
+                }
+            })
+        }
 
         // if no item is selected, activate native, other wise conider to deactivate native
-        let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
-        if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
-            setDependencyFilters({...newDependencyFilters});
-        } else {
-            setDependencyFilters({...newDependencyFilters});
-        }
+        // let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
+        setDependencyFilters({...newDependencyFilters});
     };
 
     if (isValidPlugin === false) return null;
