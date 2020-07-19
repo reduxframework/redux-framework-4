@@ -304,13 +304,15 @@ export const reducer = ( state = initialState, action ) => {
                 case 'none':
                     const newValue = action.data === 'all';
                     atomHandler = (plugins) => plugins
-                        .filter(plugin => plugin !== NONE_KEY )
+                        .filter(plugin => [ NONE_KEY, 'gutenberghub.com', 'shareablock.com' ].includes(plugin) === false )
                         .reduce(
                             (acc, key) => {
                                 return { ...acc, [key]: { value: newValue, disabled: false } }
                             },
                             {
                                 [NONE_KEY]: {value: true, disabled: false},
+                                'gutenberghub.com': {value: true, disabled: false},
+                                'shareablock.com': {value: true, disabled: false}
                             }
                         )
                     break;
