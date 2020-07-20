@@ -11,7 +11,7 @@ import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
 
-import {requiresInstall, requiresPro} from '~redux-templates/stores/dependencyHelper'
+import {requiresInstall, requiresPro, requiresReduxPro} from '~redux-templates/stores/dependencyHelper'
 
 import '../modals.scss'
 import './style.scss'
@@ -39,7 +39,8 @@ function ImportWizard(props) {
                 setCurrentStep(REDUX_ACTIVATE_STEP);
                 return;
             }
-            if (redux_templates.proDependenciesMissing && redux_templates.proDependenciesMissing.includes('redux-pro')) {
+            /* Redux pro check */
+            if (requiresReduxPro(importingTemplate)) {
                 setCurrentStep(REDUX_PRO_STEP);
                 return;
             }

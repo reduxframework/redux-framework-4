@@ -50,6 +50,21 @@ export const requiresPro = (data) => {
 export const requiresInstall = (data) => {
     return (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) ? true : false;
 }
+// Check if redux pro should be installed.
+export const requiresReduxPro = (data) => {
+    if (!data) return false;
+    const reduxProNotInstalled = needsPluginInstall('redux-pro');
+    let missingDependencies = [];
+    if (requiresInstall(data) === true) missingDependencies = [...data.installDependenciesMissing];
+    if (requiresPro(data)) missingDependencies = [...missingDependencies, ...data.proDependenciesMissing];
+
+    return missingDependencies.reduce((acc, curKey) => {
+        if (curKey === 'redux-pro') return true;
+        const pluginInstance = getPluginInstance(curKey);
+        if (pluginInstance === false) return acc || false; // handle exception case
+        return acc || (pluginInstance.redux_pro === true && reduxProNotInstalled === true); // main logic, above were execpetion handling
+    }, false);
+}
 
 export const isTemplateReadyToInstall = (data) => {
     return (requiresInstall(data) || requiresPro(data)) ? false : true;
