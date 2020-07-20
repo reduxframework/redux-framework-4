@@ -92,7 +92,7 @@ class Edit extends Component {
         return (
             <Placeholder
                 icon="download"
-                label={ __( 'Redux! / Import from JSON', redux_templates.i18n ) }
+                label={ __( 'Import a Template from JSON - Redux', redux_templates.i18n ) }
                 instructions={ __( 'Drag a file or upload a new one from your device.', redux_templates.i18n ) }
                 className="editor-media-placeholder"
                 notices={ error && (
@@ -109,7 +109,7 @@ class Edit extends Component {
                         />
                         <FormFileUpload
                             isLarge
-                            className="editor-media-placeholder__button"
+                            className="editor-media-placeholder__button button button-primary"
                             onChange={ this.addFile }
                             accept={ ALLOWED_BG_MEDIA_TYPES }
                             isBusy={ isLoading }

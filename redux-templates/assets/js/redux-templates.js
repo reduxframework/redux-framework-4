@@ -746,7 +746,7 @@ class Edit extends Component {
           error = _this$state.error;
     return wp.element.createElement(Placeholder, {
       icon: "download",
-      label: __('Redux! / Import from JSON', redux_templates.i18n),
+      label: __('Import a Template from JSON - Redux', redux_templates.i18n),
       instructions: __('Drag a file or upload a new one from your device.', redux_templates.i18n),
       className: "editor-media-placeholder",
       notices: error && wp.element.createElement(Notice, {
@@ -757,7 +757,7 @@ class Edit extends Component {
       label: __('Import from JSON', redux_templates.i18n)
     }), wp.element.createElement(FormFileUpload, {
       isLarge: true,
-      className: "editor-media-placeholder__button",
+      className: "editor-media-placeholder__button button button-primary",
       onChange: this.addFile,
       accept: ALLOWED_BG_MEDIA_TYPES,
       isBusy: isLoading,
@@ -834,20 +834,21 @@ const __ = wp.i18n.__;
 
 const name = 'import';
 const category = 'common';
-
-const title = __('Template Import', redux_templates.i18n);
-
-const keywords = [__('import', redux_templates.i18n), __('download', redux_templates.i18n), __('migrate', redux_templates.i18n)];
-const blockAttributes = {
+const schema = {
   file: {
     type: 'object'
   }
 };
+
+const title = __('Template Import', redux_templates.i18n);
+
+const keywords = [__('import', redux_templates.i18n), __('download', redux_templates.i18n), __('migrate', redux_templates.i18n)];
 const settings = {
-  title,
+  title: title,
   description: __('Import blocks exported using Redux plugin.', redux_templates.i18n),
-  keywords,
-  attributes: blockAttributes,
+  category: category,
+  keywords: keywords,
+  attributes: schema,
   supports: {
     align: true,
     alignWide: false,
@@ -7313,8 +7314,10 @@ function ImportWizard(props) {
         setCurrentStep(REDUX_ACTIVATE_STEP);
         return;
       }
+      /* Redux pro check */
 
-      if (redux_templates.proDependenciesMissing && redux_templates.proDependenciesMissing.includes('redux-pro')) {
+
+      if (Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresReduxPro"])(importingTemplate)) {
         setCurrentStep(REDUX_PRO_STEP);
         return;
       }
@@ -11027,7 +11030,7 @@ const actions = {
 /*!********************************************************!*\
   !*** ./redux-templates/src/stores/dependencyHelper.js ***!
   \********************************************************/
-/*! exports provided: getPluginInstance, needsPluginInstall, needsPluginPro, pluginInfo, processPlugin, requiresPro, requiresInstall, isTemplateReadyToInstall, isTemplatePremium */
+/*! exports provided: getPluginInstance, needsPluginInstall, needsPluginPro, pluginInfo, processPlugin, requiresPro, requiresInstall, requiresReduxPro, isTemplateReadyToInstall, isTemplatePremium */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11039,6 +11042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPlugin", function() { return processPlugin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresPro", function() { return requiresPro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresInstall", function() { return requiresInstall; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresReduxPro", function() { return requiresReduxPro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTemplateReadyToInstall", function() { return isTemplateReadyToInstall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTemplatePremium", function() { return isTemplatePremium; });
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -11099,6 +11103,21 @@ const requiresPro = data => {
 };
 const requiresInstall = data => {
   return data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0 ? true : false;
+}; // Check if redux pro should be installed.
+
+const requiresReduxPro = data => {
+  if (!data) return false;
+  const reduxProNotInstalled = needsPluginInstall('redux-pro');
+  let missingDependencies = [];
+  if (requiresInstall(data) === true) missingDependencies = [...data.installDependenciesMissing];
+  if (requiresPro(data)) missingDependencies = [...missingDependencies, ...data.proDependenciesMissing];
+  return missingDependencies.reduce((acc, curKey) => {
+    if (curKey === 'redux-pro') return true;
+    const pluginInstance = getPluginInstance(curKey);
+    if (pluginInstance === false) return acc || false; // handle exception case
+
+    return acc || pluginInstance.redux_pro === true && reduxProNotInstalled === true; // main logic, above were execpetion handling
+  }, false);
 };
 const isTemplateReadyToInstall = data => {
   return requiresInstall(data) || requiresPro(data) ? false : true;
