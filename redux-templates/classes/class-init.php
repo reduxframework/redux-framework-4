@@ -83,6 +83,13 @@ class Init {
 		$fs  = \Redux_Filesystem::get_instance();
 		$min = \Redux_Functions::is_min();
 
+		// We started using the CSS variables. This gives us the function before it's put in core.
+		if ( version_compare( get_bloginfo( 'version' ), '5.5', '<' ) ) {
+			if ( ! defined( 'GUTENBERG_VERSION' ) || ( defined( 'GUTENBERG_VERSION' ) && version_compare( GUTENBERG_VERSION, '8.5.1', '<' ) ) ) {
+				echo '<style>:root {--wp-admin-theme-color: #007cba;}</style>';
+			}
+		}
+
 		// Little safety here for developers.
 		if ( ! $fs->file_exists( REDUXTEMPLATES_DIR_PATH . "assets/js/redux-templates{$min}.js" ) ) {
 			if ( '.min' === $min ) {
