@@ -298,7 +298,6 @@ class Api {
 		return $data;
 	}
 
-
 	/**
 	 * Get library index. Support for library, collections, pages, sections all in a single request.
 	 *
@@ -487,6 +486,8 @@ class Api {
 			unset( $data['path'] );
 		}
 
+		$headers['Redux-Slug'] = \Redux_Helpers::get_hash();
+
 		$headers = wp_parse_args( $headers, $this->default_request_headers );
 
 		$headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -511,10 +512,15 @@ class Api {
 
 		// Handle redirects.
 		if ( ! is_wp_error( $request ) && isset( $request['http_response'] ) && $request['http_response'] instanceof \WP_HTTP_Requests_Response && method_exists( $request['http_response'], 'get_response_object' ) && strpos( $request['http_response']->get_response_object()->url, 'files.redux.io' ) !== false ) {
-			$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => 145 ) );
+			if ( isset( $data['no_redirect'] ) ) {
+				return $request['http_response']->get_response_object()->url;
+			} else {
+				$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => 145 ) );
+			}
 		}
 
 		if ( is_wp_error( $request ) ) {
+
 			wp_send_json_error(
 				array(
 					'success'       => 'false',
@@ -807,7 +813,9 @@ class Api {
 	 * @since 4.0.0
 	 */
 	public function plugin_install( \WP_REST_Request $request ) {
+
 		$data = $request->get_params();
+
 		if ( empty( $data['slug'] ) ) {
 			wp_send_json_error(
 				array(
@@ -816,8 +824,39 @@ class Api {
 			);
 		}
 
-		$slug   = (string) sanitize_text_field( $data['slug'] );
-		$status = ReduxTemplates\Installer::run( $slug );
+		$slug = (string) sanitize_text_field( $data['slug'] );
+		if ( ! empty( $data['redux_pro'] ) ) {
+			if ( \Redux_Helpers::mokama() ) {
+				$config                 = array(
+					'path'        => 'installer/',
+					'slug'        => $slug,
+					'no_redirect' => true,
+				);
+				$parameters['no_cache'] = 1;
+
+				$response = $this->api_cache_fetch( $parameters, $config, false, false );
+				if ( isset( $response['message'] ) && false !== strpos( $response['message'], 'redux.io' ) ) {
+					$status = ReduxTemplates\Installer::run( $slug, $response['message'] );
+				} else {
+					if ( isset( $response['error'] ) && ! empty( $response['error'] ) ) {
+						$status = array(
+							'error' => $response['error'],
+						);
+					} else {
+						$status = array(
+							'error' => __( 'A valid Redux Pro subscription is required.', 'redux-framework' ),
+						);
+					}
+				}
+			} else {
+				$status = array(
+					'error' => __( 'A valid Redux Pro subscription is required.', 'redux-framework' ),
+				);
+			}
+		} else {
+			$status = ReduxTemplates\Installer::run( $slug );
+		}
+
 		if ( isset( $status['error'] ) ) {
 			wp_send_json_error( $status );
 		}
