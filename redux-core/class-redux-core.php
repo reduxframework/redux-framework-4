@@ -226,6 +226,12 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
+
+			$metadata = array();
+			if ( defined( 'RDX_MOKAMA' ) ) {
+				self::$insights->add_extra( array( 'mokama' => RDX_MOKAMA ) );
+			}
+
 			self::$insights->hide_notice()->init();
 			if ( ! defined( 'REDUX_PLUGIN_FILE' ) ) {
 				remove_action( 'admin_footer', array( self::$insights, 'deactivate_scripts' ) );
