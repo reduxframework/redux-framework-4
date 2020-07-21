@@ -45,19 +45,28 @@ export const processPlugin = (pluginKey) => {
 }
 
 export const requiresPro = (data) => {
-    return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) ? true : false;
+    if (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) {
+        if (needsPluginInstall('redux-pro') === false) { // redux pro installed, then skip merged plugins
+            return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin) === false).length > 0
+        }
+        return true;
+    }
+    return false;
 }
 export const requiresInstall = (data) => {
-    return (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) ? true : false;
+    if (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) {
+        return true;
+    }
+    if (needsPluginInstall('redux-pro') === false && data.proDependenciesMissing) { // redux pro installed, then include merged plugins
+        return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin)).length > 0
+    }
+    return false;
 }
 // Check if redux pro should be installed.
 export const requiresReduxPro = (data) => {
     if (!data) return false;
     const reduxProNotInstalled = needsPluginInstall('redux-pro');
-    let missingDependencies = [];
-    if (requiresInstall(data) === true) missingDependencies = [...data.installDependenciesMissing];
-    if (requiresPro(data)) missingDependencies = [...missingDependencies, ...data.proDependenciesMissing];
-
+    const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
     return missingDependencies.reduce((acc, curKey) => {
         if (curKey === 'redux-pro') return true;
         return acc || (isPluginReduxProMerged(curKey) && reduxProNotInstalled === true); // main logic, above were execpetion handling

@@ -11,7 +11,7 @@ import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
 
-import {requiresInstall, requiresPro, requiresReduxPro} from '~redux-templates/stores/dependencyHelper'
+import {requiresInstall, requiresPro, requiresReduxPro, needsPluginInstall} from '~redux-templates/stores/dependencyHelper'
 
 import '../modals.scss'
 import './style.scss'
@@ -30,6 +30,7 @@ function ImportWizard(props) {
     const [currentStep, setCurrentStep] = useState(PRO_STEP);
     const [importing, setImporting] = useState(false);
     const [activating, setActivating] = useState(false);
+    const [missingPlugins, setMissingPlugins] = useState([]);
 
     useEffect(() => {
         if (importingTemplate) {
@@ -44,8 +45,15 @@ function ImportWizard(props) {
                 setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
-            if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false)
+            // Start with Pro step
+            // When all OK with Pro Step, move to Plugin Step, on the way, prepare reduxProMergedPlugins.
+            if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false) {
                 setCurrentStep(PLUGIN_STEP);
+                if (needsPluginInstall('redux-pro') === false) {
+                    setMissingPlugins([].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing));
+                } else
+                setMissingPlugins(importingTemplate.installDependenciesMissing);
+            }
             if (importingTemplate && currentStep === PLUGIN_STEP &&  requiresInstall(importingTemplate) === false)
                 if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
             if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true)
@@ -124,7 +132,7 @@ function ImportWizard(props) {
                     {(currentStep === PRO_STEP) && requiresPro(importingTemplate) &&
                         <ProPluginStep missingPros={importingTemplate.proDependenciesMissing } onCloseWizard={onCloseWizard} />}
                     {(currentStep === PLUGIN_STEP) &&
-                        <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || []} toNextStep={toNextStep}
+                        <InstallPluginStep missingPlugins={isChallengeOpen ? tourPlugins : missingPlugins} toNextStep={toNextStep}
                         onCloseWizard={onCloseWizard}/>}
                     {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
                     {currentStep === IMPORT_STEP && <ImportingStep />}
