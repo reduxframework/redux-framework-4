@@ -60,10 +60,14 @@ export const requiresReduxPro = (data) => {
 
     return missingDependencies.reduce((acc, curKey) => {
         if (curKey === 'redux-pro') return true;
-        const pluginInstance = getPluginInstance(curKey);
-        if (pluginInstance === false) return acc || false; // handle exception case
-        return acc || (pluginInstance.redux_pro === true && reduxProNotInstalled === true); // main logic, above were execpetion handling
+        return acc || (isPluginReduxProMerged(curKey) && reduxProNotInstalled === true); // main logic, above were execpetion handling
     }, false);
+}
+
+export const isPluginReduxProMerged = (pluginKey) => {
+    const pluginInstance = getPluginInstance(pluginKey);
+    return (pluginInstance !== false && pluginInstance.redux_pro === true);
+
 }
 
 export const isTemplateReadyToInstall = (data) => {
