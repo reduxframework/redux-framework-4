@@ -444,7 +444,7 @@ class Api {
 
 		if ( isset( $data['path'] ) ) {
 			if ( 'library/' === $data['path'] ) {
-				$api_url = 'https://files.redux.io/templates/library.json';
+				$api_url = 'https://files.redux.io/library.json';
 				$request = wp_remote_get( $api_url );
 				if ( is_wp_error( $request ) ) {
 					wp_send_json_error(
