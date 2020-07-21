@@ -31,10 +31,10 @@ function DependencyFilter(props) {
 	                <>
 		                <ButtonGroup style={{float:'right'}}>
 			                <Tooltip text={__('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top right">
-				                <Button isSmall isSecondary isPressed={dependencyFilterRule === false} onClick={() => setDependencyFilterRule(false)} disabled={activeItemType === 'collection'}>{__('Any', redux_templates.i18n)}</Button>
+				                <Button isSmall isPrimary={dependencyFilterRule === false} isSecondary={dependencyFilterRule} onClick={() => setDependencyFilterRule(false)} disabled={activeItemType === 'collection'}>{__('Any', redux_templates.i18n)}</Button>
 			                </Tooltip>
 			                <Tooltip text={__('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top right">
-				                <Button isSmall isSecondary isPressed={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)} disabled={activeItemType === 'collection'}>{__('Only', redux_templates.i18n)}</Button>
+				                <Button isSmall isSecondary={dependencyFilterRule === false} isPrimary={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)} disabled={activeItemType === 'collection'}>{__('Only', redux_templates.i18n)}</Button>
 			                </Tooltip>
 		                </ButtonGroup>
 		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>

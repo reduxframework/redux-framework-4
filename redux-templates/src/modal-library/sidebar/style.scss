@@ -136,6 +136,9 @@
                 -ms-transition: height 0.5s linear;
                 -o-transition: height 0.5s linear;
                 transition: height 0.5s linear;
+                .redux-icon-wrapper {
+                    margin-left: 10px;
+                }
 
                 &:not(.disabled):hover {
                     color: #007cba;
@@ -162,18 +165,9 @@
                 span {
                     float: right;
                 }
-                i {
-                    font-size: 1.1em;
-                }
 
                 &.missing-dependency {
                     i {
-                        margin-left: 5px;
-                        &.fa-exclamation-triangle {
-                            font-size: 0.9em;
-                            line-height: 1.5em;
-                        }
-
                         &.fa-exclamation-triangle {
                             color: $missingColor;
                         }
@@ -224,8 +218,6 @@
         display: inline-block;
         //color: #9b9b9b;
         margin-left: 10px;
-        font-size: 90%;
-        float: right;
     }
     #redux-templates-filter-dependencies {
         h3 {

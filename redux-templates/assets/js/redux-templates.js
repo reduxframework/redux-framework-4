@@ -7972,8 +7972,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ~redux-templates/stores/dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
 /* harmony import */ var _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~redux-templates/stores/helper */ "./redux-templates/src/stores/helper.js");
-/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/groupBy */ "./node_modules/lodash/groupBy.js");
-/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8005,7 +8003,7 @@ const __ = wp.i18n.__;
 
 
 
-
+const specialPlugins = ['gutenberghub.com', 'editorplus'];
 
 function DependencyFilterRow(props) {
   const pluginKey = props.pluginKey,
@@ -8077,16 +8075,23 @@ function DependencyFilterRow(props) {
         value: dependencyFilters[pluginKey].value === false,
         disabled: dependencyFilters[pluginKey]['disabled'] === true
       }
-    }); // if no item is selected, activate native, other wise conider to deactivate native
+    }); // gutenberg.com, EditorPlus check
 
 
-    let valueCount = lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default()(Object.keys(newDependencyFilters), key => newDependencyFilters[key] === true || newDependencyFilters[key].value === true);
+    if (specialPlugins.includes(pluginKey)) {
+      specialPlugins.forEach(plugin => {
+        newDependencyFilters = _objectSpread(_objectSpread({}, newDependencyFilters), {}, {
+          [plugin]: {
+            value: dependencyFilters[pluginKey].value === false,
+            disabled: dependencyFilters[plugin]['disabled'] === true
+          }
+        });
+      });
+    } // if no item is selected, activate native, other wise conider to deactivate native
+    // let valueCount = groupBy(Object.keys(newDependencyFilters), key => (newDependencyFilters[key] === true || newDependencyFilters[key].value === true));
 
-    if (valueCount['true'] && valueCount['true'].length > 0 && valueCount['false'] && valueCount['false'].length > 0) {
-      setDependencyFilters(_objectSpread({}, newDependencyFilters));
-    } else {
-      setDependencyFilters(_objectSpread({}, newDependencyFilters));
-    }
+
+    setDependencyFilters(_objectSpread({}, newDependencyFilters));
   };
 
   if (isValidPlugin === false) return null;
