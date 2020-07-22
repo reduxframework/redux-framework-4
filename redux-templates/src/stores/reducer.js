@@ -14,7 +14,7 @@ export const initialState = {
         priceFilter: getWithExpiry('section_price', ''),
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: true,
+        dependencyFilterRule: getWithExpiry('section_filterRule', true),
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
@@ -26,7 +26,7 @@ export const initialState = {
         priceFilter: getWithExpiry('page_price', ''),
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: true,
+        dependencyFilterRule: getWithExpiry('page_filterRule', true),
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
@@ -38,7 +38,7 @@ export const initialState = {
         priceFilter: getWithExpiry('collection_price', ''),
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
-        dependencyFilterRule: false,
+        dependencyFilterRule: getWithExpiry('collection_filterRule', false),
         searchContext: '',
         wholePlugins: [],
         activeCollection: null,
@@ -288,6 +288,7 @@ export const reducer = ( state = initialState, action ) => {
                 isImportToAppend: action.data
             }
         case 'SET_DEPENDENCY_FILTER_RULE':
+            setWithExpiry(state.activeItemType + '_filterRule', action.data, EXIPRY_TIME);
             return {
                 ...state,
                 [state.activeItemType]: {
