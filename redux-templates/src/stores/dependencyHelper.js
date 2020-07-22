@@ -46,7 +46,7 @@ export const processPlugin = (pluginKey) => {
 
 export const requiresPro = (data) => {
     if (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) {
-        if (needsPluginInstall('redux-pro') === false) { // redux pro installed, then skip merged plugins
+        if (isReduxProInstalled()) { // redux pro installed, then skip merged plugins
             return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin) === false).length > 0
         }
         return true;
@@ -57,7 +57,7 @@ export const requiresInstall = (data) => {
     if (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) {
         return true;
     }
-    if (needsPluginInstall('redux-pro') === false && data.proDependenciesMissing) { // redux pro installed, then include merged plugins
+    if (isReduxProInstalled() && data.proDependenciesMissing) { // redux pro installed, then include merged plugins
         return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin)).length > 0
     }
     return false;
@@ -65,18 +65,16 @@ export const requiresInstall = (data) => {
 // Check if redux pro should be installed.
 export const requiresReduxPro = (data) => {
     if (!data) return false;
-    const reduxProNotInstalled = needsPluginInstall('redux-pro');
     const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
     return missingDependencies.reduce((acc, curKey) => {
         if (curKey === 'redux-pro') return true;
-        return acc || (isPluginReduxProMerged(curKey) && reduxProNotInstalled === true); // main logic, above were execpetion handling
+        return acc || (isPluginReduxProMerged(curKey) && isReduxProInstalled() === false); // main logic, above were execpetion handling
     }, false);
 }
 
 export const isPluginReduxProMerged = (pluginKey) => {
     const pluginInstance = getPluginInstance(pluginKey);
     return (pluginInstance !== false && pluginInstance.redux_pro === true);
-
 }
 
 export const isTemplateReadyToInstall = (data) => {
@@ -92,4 +90,9 @@ export const isTemplatePremium = (data, activeDependencyFilter) => {
         }, false);
     }
     return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0);
+}
+
+export const isReduxProInstalled = () => {
+    const reduxProPluginInstance = redux_templates.supported_plugins['redux-framework'];
+    return reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
 }

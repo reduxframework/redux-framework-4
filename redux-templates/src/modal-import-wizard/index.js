@@ -11,7 +11,7 @@ import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
 import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
 
-import {requiresInstall, requiresPro, requiresReduxPro, needsPluginInstall} from '~redux-templates/stores/dependencyHelper'
+import {requiresInstall, requiresPro, requiresReduxPro, isReduxProInstalled} from '~redux-templates/stores/dependencyHelper'
 
 import '../modals.scss'
 import './style.scss'
@@ -49,10 +49,10 @@ function ImportWizard(props) {
             // When all OK with Pro Step, move to Plugin Step, on the way, prepare reduxProMergedPlugins.
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false) {
                 setCurrentStep(PLUGIN_STEP);
-                if (needsPluginInstall('redux-pro') === false) {
+                if (isReduxProInstalled()) {
                     setMissingPlugins([].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing));
                 } else
-                setMissingPlugins(importingTemplate.installDependenciesMissing);
+                    setMissingPlugins(importingTemplate.installDependenciesMissing);
             }
             if (importingTemplate && currentStep === PLUGIN_STEP &&  requiresInstall(importingTemplate) === false)
                 if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
