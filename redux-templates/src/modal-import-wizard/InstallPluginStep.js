@@ -30,14 +30,17 @@ function InstallPluginStep(props) {
         let localWaitingList = [...waitingList];
         for (let pluginKey of missingPlugins) {
             const pluginInstance = redux_templates.supported_plugins[pluginKey];
-            setInstallingPlugin({...pluginInstance, pluginKey});
             localWaitingList = localWaitingList.filter(key => key !== pluginKey)
             setWaitingList(localWaitingList);
-            let pluginSlug = pluginInstance.free_slug ? pluginInstance.free_slug : pluginKey;
+            if (!pluginKey || !pluginInstance) {
+                setInstallingPlugin(null);
+                break;
+            }
+            setInstallingPlugin({...pluginInstance, pluginKey});
+            const reduxProSurfix = (pluginInstance.redux_pro) ? '&redux_pro=1' : '';
             await apiFetch({
-                path: 'redux/v1/templates/plugin-install?slug=' + pluginSlug,
-            })
-                .then(res => {
+                path: 'redux/v1/templates/plugin-install?slug=' + pluginKey + reduxProSurfix,
+            }).then(res => {
                     if (res.success) {
                         setInstalledDependencies(true);
                         localInstalledList = [...localInstalledList, pluginKey];
