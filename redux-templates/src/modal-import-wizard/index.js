@@ -34,6 +34,12 @@ function ImportWizard(props) {
 
     useEffect(() => {
         if (importingTemplate) {
+        	if ( !importingTemplate.proDependenciesMissing ) {
+		        importingTemplate.proDependenciesMissing = [];
+	        }
+	        if ( !importingTemplate.installDependenciesMissing ) {
+		        importingTemplate.installDependenciesMissing = [];
+	        }
             // IMPORTANT First check: can you use redux pro?
             const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
             if (redux_templates.mokama !== '1' && leftTry < 1) {
@@ -54,8 +60,10 @@ function ImportWizard(props) {
                         [].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing)
                             .filter(plugin => plugin)
                     );
-                } else
-                    setMissingPlugins(importingTemplate.installDependenciesMissing.filter(plugin => plugin));
+                } else {
+	                setMissingPlugins(importingTemplate.installDependenciesMissing.filter(plugin => plugin));
+                }
+
             }
             if (importingTemplate && currentStep === PLUGIN_STEP &&  requiresInstall(importingTemplate) === false)
                 if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
