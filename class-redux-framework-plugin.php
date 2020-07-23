@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				}
 
 				if ( is_plugin_active( 'redux-framework/redux-framework.php' ) && true === $res ) {
-					echo '<div class="error"><p>' . esc_html__( 'Redux Framework version 4 is activated but not loaded.  Redux Framework version 3 is still installed and activated.  Please deactivate Redux Framework version 3.', 'redux-framework' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo '<div class="error"><p>' . esc_html__( 'Redux Framework version 4 is activated but not loaded. Redux Framework version 3 is still installed and activated.  Please deactivate Redux Framework version 3.', 'redux-framework' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 					return;
 				}
 			}

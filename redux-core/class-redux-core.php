@@ -355,7 +355,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				}
 
 				if ( 'Redux_Connection_Banner' === $class_name ) {
-					require_once Redux_Path::get_path( '/inc/welcome/class-redux-connection-banner.php' );
+					require_once Redux_Path::get_path( '/inc/classes/class-redux-connection-banner.php' );
 
 					return;
 				}

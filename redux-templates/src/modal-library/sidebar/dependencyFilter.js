@@ -39,7 +39,7 @@ function DependencyFilter(props) {
 		                </ButtonGroup>
 		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>
 	                </>
-                    <div className="redux-templates-select-actions">
+                    <div className='redux-templates-select-actions'>
                         <Tooltip text={__('Select All', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
 		                    <span>&nbsp; / &nbsp;</span>
 		                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>

@@ -81,31 +81,6 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		}
 
 		/**
-		 * Given a string for the the banner was added, and an int that represents the slide to
-		 * a URL for, this function returns a connection URL with a from parameter that will
-		 * support split testing.
-		 *
-		 * @since 7.2   Event key format is now banner-connect-banner-72-dashboard or connect-banner-72-plugins.
-		 *              The param $slide_num was removed since we removed all slides but the first one.
-		 * @since 4.4.0
-		 *
-		 * @param string $version_banner_added A short version of when the banner was added. Ex. 44
-		 *
-		 * @return string
-		 */
-		private function build_connect_url_for_slide( $version_banner_added ) {
-			global $current_screen;
-			/*
-			 $url = Redux::init()->build_connect_url(
-				true,
-				false,
-				sprintf( 'connect-banner-%s-%s', $version_banner_added, $current_screen->base )
-			);*/
-			$url = '';
-			return add_query_arg( 'auth_approved', 'true', $url );
-		}
-
-		/**
 		 * Will initialize hooks to display the new (as of 4.4) connection banner if the current user can
 		 * connect Redux, if Redux has not been deactivated, and if the current page is the plugins page.
 		 *
@@ -119,15 +94,11 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * @param $current_screen
 		 */
 		public function maybe_initialize_hooks( $current_screen ) {
-			//delete_option( 'redux-framework_tracking_notice' ); // Test code.
-			//delete_option( 'redux-framework_allow_tracking' ); //     Test code.
 			//Redux_Functions_Ex::set_deactivated(); // Test code.
 
 			if ( Redux_Functions_Ex::activated() || 'hide' === get_option( 'redux-framework_tracking_notice', null ) ) {
 				return;
 			}
-
-			//Redux_Core::$insights->optout();
 
 			// Don't show the connect notice anywhere but the plugins.php after activating
 			if ( 'plugins' !== $current_screen->base && 'dashboard' !== $current_screen->base ) {

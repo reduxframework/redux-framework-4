@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const LOADING_RESET = 0;
-const IN_PROGRESS = 1; 
+const IN_PROGRESS = 1;
 const FULLY_LOADED = 2;
 
 const previewReducer = (state, action) => {
@@ -35,7 +35,7 @@ const previewReducer = (state, action) => {
     const itemData = currentPageData[action.currentIndex];
     if (itemData.image_full)
         imageURL = itemData.image_full;
-    else 
+    else
         imageURL = itemData.image
 
         return {
@@ -50,7 +50,7 @@ function PreviewModal(props) {
 
     const {startIndex, currentPageData} = props;
     const {setImportingTemplate, importingTemplate} = props;
-    
+
     const [state, dispatch] = useReducer(previewReducer, initialState);
 
     const [previewClass, setPreviewClass] = useState('preview-desktop')
@@ -87,7 +87,7 @@ function PreviewModal(props) {
 
     // mobile/desktop preview status and sidebar collapse/expand
     useEffect(() => {
-        setWrapperClassName(['wp-full-overlay sites-preview theme-install-overlay ', previewClass, expandedClass].join(' '));   
+        setWrapperClassName(['wp-full-overlay sites-preview theme-install-overlay ', previewClass, expandedClass].join(' '));
     }, [previewClass, expandedClass])
 
     const onCloseCustomizer = () => {
@@ -145,7 +145,7 @@ function PreviewModal(props) {
                         (loading < FULLY_LOADED) && <Spinner />
                     }
                     {state.itemData.url &&
-                        <iframe src={(loading === LOADING_RESET) ? '' : state.itemData.url} target='Preview' onLoad={hideSpinner}></iframe>
+                        <iframe src={(loading === LOADING_RESET) ? '' : state.itemData.url + '?preview=1'} target='Preview' onLoad={hideSpinner}></iframe>
                     }
                     {!state.itemData.url &&
                         <div className='redux-templates-modal-preview-box'>

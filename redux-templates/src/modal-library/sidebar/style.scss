@@ -212,6 +212,14 @@
         i.challenge-dot {
             margin-left: 10px;
         }
+        &.disabled {
+            a {
+                pointer-events: none;
+                cursor: default;
+                text-decoration: none;
+                opacity: 0.6;
+            }
+        }
     }
 
     .redux-templates-sidebar-dependencies li a {
