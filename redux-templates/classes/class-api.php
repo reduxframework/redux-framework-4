@@ -241,6 +241,11 @@ class Api {
 			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$data = @json_decode( $filesystem->get_contents( $path ), true );
 		}
+		// If somehow we got an invalid response, let's not persist it.
+		if ( isset( $data['message'] ) && false !== strpos( $data['message'], 'meta http-equiv="refresh" content="0;URL=' ) ) {
+			$data = false;
+		}
+
 		if ( $cache_only ) {
 			return $data;
 		}
@@ -260,6 +265,7 @@ class Api {
 			if ( ! empty( $results ) ) {
 				// phpcs:ignore WordPress.PHP.NoSilencedErrors
 				$data = @json_decode( $results, true );
+
 				if ( isset( $data['use_cache'] ) ) {
 					// phpcs:ignore WordPress.PHP.NoSilencedErrors
 					$data          = @json_decode( $filesystem->get_contents( $path ), true );
@@ -778,6 +784,7 @@ class Api {
 				'callback' => 'plugin_install',
 			),
 		);
+		$fs  = \Redux_Filesystem::get_instance();
 
 		foreach ( $hooks as $route => $data ) {
 			$methods = array( 'GET', 'POST' );
@@ -786,19 +793,24 @@ class Api {
 			}
 
 			foreach ( $methods as $method ) {
+
+				$args = array(
+					'methods'             => $method,
+					'callback'            => array( $this, $data['callback'] ),
+					'args'                => array(
+						'route' => $route,
+					),
+				);
+				if ( ! $fs->file_exists( trailingslashit( dirname( REDUX_PLUGIN_FILE ) ) . 'local_developer.txt' ) ) {
+					$args['permission_callback'] = function () {
+						return current_user_can( 'edit_posts' );
+					};
+				}
+
 				register_rest_route(
 					'redux/v1/templates',
 					$route,
-					array(
-						'methods'             => $method,
-						'callback'            => array( $this, $data['callback'] ),
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
-						},
-						'args'                => array(
-							'route' => $route,
-						),
-					)
+					$args
 				);
 			}
 		}
