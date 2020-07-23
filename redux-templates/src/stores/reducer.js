@@ -38,7 +38,7 @@ export const initialState = {
         priceFilter: getWithExpiry('collection_price', ''),
         activeCategory: getWithExpiry('collection_category', 'name'),
         dependencyFilters: {},
-        dependencyFilterRule: getWithExpiry('collection_filterRule', false),
+        dependencyFilterRule: false,
         searchContext: '',
         wholePlugins: [],
         activeCollection: null,
@@ -332,7 +332,7 @@ export const reducer = ( state = initialState, action ) => {
                     [cur]: {
                         ...state[cur],
                         searchContext: '',
-                        dependencyFilterRule: state.activeItemType !== 'collection', // We must always use false for collection to get template kits to work.
+                        dependencyFilterRule: cur !== 'collection', // We must always use false for collection to get template kits to work.
                         dependencyFilters: atomHandler(state[cur].wholePlugins)
                     }
                 }
