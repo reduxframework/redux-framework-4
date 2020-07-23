@@ -50,9 +50,12 @@ function ImportWizard(props) {
             if (importingTemplate && currentStep === PRO_STEP && requiresPro(importingTemplate) === false) {
                 setCurrentStep(PLUGIN_STEP);
                 if (isReduxProInstalled()) {
-                    setMissingPlugins([].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing));
+                    setMissingPlugins(
+                        [].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing)
+                            .filter(plugin => plugin)
+                    );
                 } else
-                    setMissingPlugins(importingTemplate.installDependenciesMissing);
+                    setMissingPlugins(importingTemplate.installDependenciesMissing.filter(plugin => plugin));
             }
             if (importingTemplate && currentStep === PLUGIN_STEP &&  requiresInstall(importingTemplate) === false)
                 if (isPostEmpty === false) setCurrentStep(OPTION_STEP); else setCurrentStep(IMPORT_STEP);
