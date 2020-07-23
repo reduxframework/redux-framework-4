@@ -860,7 +860,7 @@ class Api {
 		if ( isset( $status['error'] ) ) {
 			wp_send_json_error( $status );
 		}
-		if ( $slug === 'otter-blocks' ) {
+		if ( 'otter-blocks' === $slug ) {
 			update_option( 'themeisle_blocks_settings_default_block', false );
 		}
 		wp_send_json_success( $status );
