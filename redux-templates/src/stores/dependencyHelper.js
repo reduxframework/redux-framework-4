@@ -45,10 +45,36 @@ export const processPlugin = (pluginKey) => {
 }
 
 export const requiresPro = (data) => {
-    return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) ? true : false;
+    if (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) {
+        if (isReduxProInstalled()) { // redux pro installed, then skip merged plugins
+            return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin) === false).length > 0
+        }
+        return true;
+    }
+    return false;
 }
 export const requiresInstall = (data) => {
-    return (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) ? true : false;
+    if (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) {
+        return true;
+    }
+    if (isReduxProInstalled() && data.proDependenciesMissing) { // redux pro installed, then include merged plugins
+        return data.proDependenciesMissing.filter((plugin) => isPluginReduxProMerged(plugin)).length > 0
+    }
+    return false;
+}
+// Check if redux pro should be installed.
+export const requiresReduxPro = (data) => {
+    if (!data) return false;
+    const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
+    return missingDependencies.reduce((acc, curKey) => {
+        if (curKey === 'redux-pro') return true;
+        return acc || (isPluginReduxProMerged(curKey) && isReduxProInstalled() === false); // main logic, above were execpetion handling
+    }, false);
+}
+
+export const isPluginReduxProMerged = (pluginKey) => {
+    const pluginInstance = getPluginInstance(pluginKey);
+    return (pluginInstance !== false && pluginInstance.redux_pro === true);
 }
 
 export const isTemplateReadyToInstall = (data) => {
@@ -64,4 +90,9 @@ export const isTemplatePremium = (data, activeDependencyFilter) => {
         }, false);
     }
     return (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0);
+}
+
+export const isReduxProInstalled = () => {
+    const reduxProPluginInstance = redux_templates.supported_plugins['redux-framework'];
+    return reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
 }

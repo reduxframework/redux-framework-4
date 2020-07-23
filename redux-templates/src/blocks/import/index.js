@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import Edit from './components/edit';
+import edit from './components/edit';
 import icon from './icon';
 import transforms from './transforms';
 import { colorizeIcon } from '../../icons';
@@ -17,6 +17,11 @@ const { __ } = wp.i18n;
 const name = 'import';
 
 const category = 'common';
+const schema = {
+	file: {
+		type: 'object',
+	},
+};
 
 const title = __( 'Template Import', redux_templates.i18n );
 
@@ -26,21 +31,16 @@ const keywords = [
     __( 'migrate', redux_templates.i18n ),
 ];
 
-const blockAttributes = {
-    file: {
-        type: 'object',
-    },
-};
+
 
 const settings = {
-
-    title,
-
+	title: title,
     description: __( 'Import blocks exported using Redux plugin.', redux_templates.i18n ),
 
-    keywords,
+	category: category,
+	keywords: keywords,
 
-    attributes: blockAttributes,
+    attributes: schema,
 
     supports: {
         align: true,
@@ -51,10 +51,8 @@ const settings = {
         html: false,
     },
 
-    transforms,
-
-    edit: Edit,
-
+    transforms: transforms,
+    edit: edit,
     save() {
         return null;
     },

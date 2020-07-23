@@ -14,7 +14,7 @@ export const initialState = {
         priceFilter: getWithExpiry('section_price', ''),
         activeCategory: getWithExpiry('section_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: true,
+        dependencyFilterRule: getWithExpiry('section_filterRule', true),
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
@@ -26,7 +26,7 @@ export const initialState = {
         priceFilter: getWithExpiry('page_price', ''),
         activeCategory: getWithExpiry('page_category', ''),
         dependencyFilters: {},
-        dependencyFilterRule: true,
+        dependencyFilterRule: getWithExpiry('page_filterRule', true),
         searchContext: '',
         wholePlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
@@ -288,6 +288,7 @@ export const reducer = ( state = initialState, action ) => {
                 isImportToAppend: action.data
             }
         case 'SET_DEPENDENCY_FILTER_RULE':
+            setWithExpiry(state.activeItemType + '_filterRule', action.data, EXIPRY_TIME);
             return {
                 ...state,
                 [state.activeItemType]: {
@@ -331,7 +332,7 @@ export const reducer = ( state = initialState, action ) => {
                     [cur]: {
                         ...state[cur],
                         searchContext: '',
-                        dependencyFilterRule: state.activeItemType !== 'collection', // We must always use false for collection to get template kits to work.
+                        dependencyFilterRule: cur !== 'collection', // We must always use false for collection to get template kits to work.
                         dependencyFilters: atomHandler(state[cur].wholePlugins)
                     }
                 }

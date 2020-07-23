@@ -42,7 +42,12 @@ domReady(() => {
 		if (window.location.hash == '#redux_templates=1') {
 			window.location.hash = '';
 			ModalManager.open(<LibraryModal />);
-		}
+        }
+
+        // For frontenberg, we open the dialog automatically.
+        if (document.body.classList.contains( 'logged-in' ) === false) {
+            ModalManager.open(<LibraryModal />);
+        }
         render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
         render(<TooltipBox />, challengeDiv);
 

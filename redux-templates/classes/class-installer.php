@@ -32,11 +32,12 @@ class Installer {
 	 * Run command.
 	 *
 	 * @param string $slug Plugin Slug.
+	 * @param string $download_link Install URL if from a custom URL.
 	 *
 	 * @return array
 	 * @since 4.0.0
 	 */
-	public static function run( $slug ) {
+	public static function run( $slug, $download_link = '' ) {
 		$plugin_dir = WP_PLUGIN_DIR . '/' . $slug;
 
 		/*
@@ -46,33 +47,41 @@ class Installer {
 
 		$status = array();
 		if ( ! is_dir( $plugin_dir ) ) {
+			if ( empty( $download_link ) ) {
+				$api = plugins_api(
+					'plugin_information',
+					array(
+						'slug'   => $slug,
+						'fields' => array(
+							'short_description' => false,
+							'sections'          => false,
+							'requires'          => false,
+							'rating'            => false,
+							'ratings'           => false,
+							'downloaded'        => false,
+							'last_updated'      => false,
+							'added'             => false,
+							'tags'              => false,
+							'compatibility'     => false,
+							'homepage'          => false,
+							'donate_link'       => false,
+						),
+					)
+				);
 
-			$api = plugins_api(
-				'plugin_information',
-				array(
-					'slug'   => $slug,
-					'fields' => array(
-						'short_description' => false,
-						'sections'          => false,
-						'requires'          => false,
-						'rating'            => false,
-						'ratings'           => false,
-						'downloaded'        => false,
-						'last_updated'      => false,
-						'added'             => false,
-						'tags'              => false,
-						'compatibility'     => false,
-						'homepage'          => false,
-						'donate_link'       => false,
-					),
-				)
-			);
+				$download_link = $api->download_link;
+			}
+
+			if ( empty( $download_link ) ) {
+				$status['error'] = 'Install url for ' . $slug . ' could not be located.';
+				return $status;
+			}
 
 			ob_start();
 
 			$skin     = new ReduxTemplates\Installer_Muter( array( 'api' => $api ) );
 			$upgrader = new \Plugin_Upgrader( $skin );
-			$install  = $upgrader->install( $api->download_link );
+			$install  = $upgrader->install( $download_link );
 
 			ob_end_clean();
 

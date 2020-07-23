@@ -6,6 +6,7 @@ import sortBy from 'lodash/sortBy';
 import map from 'lodash/map';
 import flattenDeep from 'lodash/flattenDeep';
 import {afterImportHandling} from './actionHelper';
+import {getPluginInstance, isPluginReduxProMerged} from './dependencyHelper';
 const {createBlock} = wp.blocks;
 const {dispatch} = wp.data;
 const {createSuccessNotice} = dispatch('core/notices');
@@ -242,7 +243,7 @@ export const getDefaultDependencies = (dependencies) => {
         (acc, cur) => {
             // special handling for pro plugin not activated.
             let value = true;
-            if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY) value = false;
+            if (isProPlugin(cur) && (cur !== REDUXTEMPLATES_PRO_KEY) && isPluginReduxProMerged(cur) === false) value = false; // Not including pro plugin in redux templates
             return {...acc, [cur]: {value, disabled: false}};
         },
         {
@@ -273,14 +274,6 @@ export const getInstalledDependencies = (dependencies) => {
                 [NONE_KEY]: {value: true, disabled: false}
             }
         );
-}
-
-
-const getPluginInstance = (pluginKey) => {
-    if (pluginKey in redux_templates.supported_plugins) {
-        return redux_templates.supported_plugins[pluginKey];
-    }
-    return false; // Deal with unknown plugins
 }
 
 const isProPlugin = (pluginKey) => {

@@ -122,7 +122,7 @@ class Init {
 		// We started using the CSS variables. This gives us the function before it's put in core.
 		if ( version_compare( get_bloginfo( 'version' ), '5.5', '<' ) ) {
 			if ( ! defined( 'GUTENBERG_VERSION' ) || ( defined( 'GUTENBERG_VERSION' ) && version_compare( GUTENBERG_VERSION, '8.5.1', '<' ) ) ) {
-				wp_register_style( 'redux-templates-gutenberg-compatibility', false );
+				wp_register_style( 'redux-templates-gutenberg-compatibility', false, array(), $version );
 				wp_enqueue_style( 'redux-templates-gutenberg-compatibility' );
 				wp_add_inline_style( 'redux-templates-gutenberg-compatibility', ':root {--wp-admin-theme-color: #007cba;}' );
 			}
