@@ -126,7 +126,6 @@ var path = require( 'path' );
 var merge = require( 'merge-stream' );
 var sassPackager = require( 'gulp-sass-packager' );
 var zip = require( 'gulp-zip' );
-var replace = require( 'gulp-replace' );
 var clean = require( 'gulp-clean' );
 var minifyCSS = require( 'gulp-csso' );
 var minifyJS = require( 'gulp-minify' );
@@ -649,7 +648,12 @@ function makeBuild() {
 		'!./composer.lock',
 		'!./webpack.*.js',
 		'!./jest.config.js',
-		'!./babel.config.js',
+		'!./**/jest.config.js',
+		'!./**/babel.config.js',
+		'!./package.json',
+		'!./ruleset.xml',
+		'!./codestyles/*',
+		'!./local_developer.txt',
 		'!./jsconfig.json',
 		'!./vendor/**/*',
 		'!./redux-core/assets/scss/**/*',
