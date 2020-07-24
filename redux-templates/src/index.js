@@ -45,7 +45,7 @@ domReady(() => {
         }
 
         // For frontenberg, we open the dialog automatically.
-        if (document.body.classList.contains( 'logged-in' ) === false) {
+        if (document.body.classList.contains( 'wp-admin' ) === false) {
             ModalManager.open(<LibraryModal />);
         }
         render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
