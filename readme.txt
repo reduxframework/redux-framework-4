@@ -1,14 +1,14 @@
 === Redux Framework ===
-Contributors: dovyp
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MMFMHWUPKHKPW
+Contributors: dovyp, redux
+Donate link: http://paypal.me/reduxframework
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings, web fonts, google fonts
 Requires at least: 4.0
-Tested up to: 5.3
-Stable tag: 4.0.1
+Tested up to: 5.6
+Stable tag: 4.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Redux is a simple, truly extensible and fully responsive options framework for WordPress themes and plugins. Ships with an integrated demo.
+Redux is a simple, truly extensible and fully responsive options framework for WordPress themes and plugins.
 
 == Description ==
 
@@ -76,7 +76,7 @@ It is hard to continue development and support for this free plugin without cont
 * Switch
 * Text
 * Textarea
-* Typography 
+* Typography
  * The most advanced typography module complete with preview, Google fonts, and auto-css output!
 
 = Additional Features =
@@ -88,10 +88,6 @@ It is hard to continue development and support for this free plugin without cont
 * Output CSS Automatically - Redux generates CSS and the appropriate Google Fonts stylesheets for you on select fields. You need only specify the CSS selector to apply the CSS to (limited to certain fields).
 * Compiler integration! A custom hook runs when any fields with the argument `compile => true` are changed.
 * Oh, and did we mention a fully integrated Google Webfonts setup that will make you so happy you'll want to cry?
-
-  
-= Translators & Non-English Speakers =
-We need your help to translate Redux into your language! Redux is part of the WP-Translations.org team. To help us translate Redux create a few account here: <a href="https://www.transifex.com/organization/wp-translations">https://www.transifex.com/organization/wp-translations</a>. Once you're in, you can head over to the <a href="https://www.transifex.com/projects/p/redux-framework/">Redux sub-project</a> and translate away. Thank you for your assistance.
 
 = Get Involved =
 Redux is an ever-changing, living system. Want to stay up to date or
@@ -119,7 +115,7 @@ Visit: [http://docs.redux.io/](http://docs.redux.io/)
 
 = Why doesn't this plugin do anything? =
 
-Redux is an options framework... in other words, it's not designed to do anything on its own! You can however activate a demo mode to see how it works. 
+Redux is an options framework... in other words, it's not designed to do anything on its own! You can however activate a demo mode to see how it works.
 
 = How can I learn more about Redux? =
 
@@ -134,6 +130,9 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 == Changelog ==
 
+= 4.0.4 =
+
+* Release date: July 24, 2020
 
 == Attribution ==
 
@@ -142,4 +141,4 @@ Redux is was originally based off the following frameworks:
 * [NHP](https://github.com/leemason/NHP-Theme-Options-Framework)
 * [SMOF](https://github.com/syamilmj/Options-Framework "Slightly Modified Options Framework")
 
-It has now a completely different code base. If you like what you see, realize this is a labor of love. Please [donate to the Redux Framework](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N5AD7TSH8YA5U) if you are able.
+It has now a completely different code base. If you like what you see, realize this is a labor of love. Please [donate to the Redux Framework](http://paypal.me/reduxframework) if you are able.

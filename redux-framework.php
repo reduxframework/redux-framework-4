@@ -10,16 +10,16 @@
  * Description:     Build better sites in WordPress fast
  * Author:          Redux.io + Dovy Paukstys
  * Author URI:      http://redux.io
- * Version:         4.0.3
+ * Version:         4.0.4
  * Text Domain:     redux-framework
  * License:         GPLv3 or later
  * License URI:     http://www.gnu.org/licenses/gpl-3.0.txt
  * Provides:        ReduxFramework
  *
  * @package         ReduxFramework
- * @author          Team Redux (Dovy Paukstys <dovy@redux.io>)
+ * @author          Redux.io by Dovy Paukstys <dovy@redux.io>
  * @license         GNU General Public License, version 3
- * @copyright       2012-2019 Redux.io
+ * @copyright       2012-2020 Redux.io
  */
 
 // Exit if accessed directly.
@@ -27,11 +27,6 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! defined( 'REDUX_PLUGIN_FILE' ) ) {
 	define( 'REDUX_PLUGIN_FILE', __FILE__ );
-}
-
-
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require_once __DIR__ . '/vendor/autoload.php';
 }
 
 // Require the main plugin class.

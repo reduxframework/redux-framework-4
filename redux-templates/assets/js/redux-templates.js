@@ -404,7 +404,7 @@ exports.push([module.i, ".redux-css-editor {\n  border: 1px solid #e2e4e7;\n  ma
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "#redux-templatesImportCollectionBtn {\n  vertical-align: middle;\n  display: inline-flex;\n  align-items: center;\n  text-decoration: none;\n  border: 1px solid #bababa;\n  border-radius: 3px;\n  white-space: nowrap;\n  color: #555d66;\n  font-size: 13px;\n  margin: 0 15px 0 15px;\n  padding: 9px 12px;\n  background: transparent;\n  cursor: pointer;\n  -webkit-appearance: none;\n  transition: 400ms; }\n  #redux-templatesImportCollectionBtn svg {\n    height: 16px;\n    width: 16px;\n    margin-right: 8px; }\n    #redux-templatesImportCollectionBtn svg * {\n      stroke: #555d66;\n      fill: #555d66;\n      stroke-width: 0; }\n  #redux-templatesImportCollectionBtn:hover, #redux-templatesImportCollectionBtn:focus, #redux-templatesImportCollectionBtn:active {\n    text-decoration: none;\n    border: 1px solid #191e23;\n    color: #191e23; }\n    #redux-templatesImportCollectionBtn:hover svg *, #redux-templatesImportCollectionBtn:focus svg *, #redux-templatesImportCollectionBtn:active svg * {\n      stroke: #191e23 !important;\n      fill: #191e23 !important;\n      stroke-width: 0; }\n\n.redux-templates-editor-btn {\n  background: none;\n  border: 0;\n  color: inherit;\n  font: inherit;\n  line-height: normal;\n  overflow: visible;\n  padding: 0;\n  -webkit-appearance: button;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none; }\n  .redux-templates-editor-btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n\n.d-flex {\n  display: flex; }\n\n.justify-content-center {\n  justify-content: center; }\n\n.qubely-import-layout-btn-container,\n#qubelyImportLayoutBtn,\n.gutentor-export-button,\n#getwid-layout-insert-button,\n.kb-toolbar-insert-layout,\n.edit-post-header .gutentor-import-button {\n  display: none !important; }\n\n.redux-css-editor {\n  border: 1px solid #e2e4e7;\n  margin-bottom: 20px; }\n\n.redux-css-editor-help {\n  background: #f7f7f7;\n  padding: 20px; }\n", ""]);
+exports.push([module.i, "#redux-templatesImportCollectionBtn {\n  vertical-align: middle;\n  display: inline-flex;\n  align-items: center;\n  text-decoration: none;\n  border: 1px solid #bababa;\n  border-radius: 3px;\n  white-space: nowrap;\n  color: #555d66;\n  font-size: 13px;\n  margin: 0 15px 0 15px;\n  padding: 9px 12px;\n  background: transparent;\n  cursor: pointer;\n  -webkit-appearance: none;\n  transition: 400ms; }\n  #redux-templatesImportCollectionBtn svg {\n    height: 16px;\n    width: 16px;\n    margin-right: 8px; }\n    #redux-templatesImportCollectionBtn svg * {\n      stroke: #555d66;\n      fill: #555d66;\n      stroke-width: 0; }\n  #redux-templatesImportCollectionBtn:hover, #redux-templatesImportCollectionBtn:focus, #redux-templatesImportCollectionBtn:active {\n    text-decoration: none;\n    border: 1px solid #191e23;\n    color: #191e23; }\n    #redux-templatesImportCollectionBtn:hover svg *, #redux-templatesImportCollectionBtn:focus svg *, #redux-templatesImportCollectionBtn:active svg * {\n      stroke: #191e23 !important;\n      fill: #191e23 !important;\n      stroke-width: 0; }\n\n.redux-templates-editor-btn {\n  background: none;\n  border: 0;\n  color: inherit;\n  font: inherit;\n  line-height: normal;\n  overflow: visible;\n  padding: 0;\n  -webkit-appearance: button;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none; }\n  .redux-templates-editor-btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n\n.d-flex {\n  display: flex; }\n\n.justify-content-center {\n  justify-content: center; }\n\n.qubely-import-layout-btn-container,\n#qubelyImportLayoutBtn,\n.gutentor-export-button,\n#getwid-layout-insert-button,\n.kb-toolbar-insert-layout,\n.edit-post-header .gutentor-import-button,\n.ab-toolbar-insert-layout {\n  display: none !important; }\n\n.redux-css-editor {\n  border: 1px solid #e2e4e7;\n  margin-bottom: 20px; }\n\n.redux-css-editor-help {\n  background: #f7f7f7;\n  padding: 20px; }\n", ""]);
 
 
 
@@ -434,7 +434,7 @@ exports.push([module.i, ".redux-templates-modal-wrapper {\n  /* ReduxTemplatesPr
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".redux-templates-collection-modal-sidebar {\n  min-width: 270px;\n  background: #fff;\n  color: #32373c;\n  /* $secondaryColor;*/\n  border-right: 1px solid #e2e4e7;\n  overflow-y: auto; }\n  .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group {\n    margin: 10px 0;\n    border-bottom: 1px solid #e2e4e7;\n    width: 100%;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button {\n      font-weight: 500;\n      flex-grow: 1;\n      min-width: 30%;\n      line-height: 20px;\n      padding: 8px 0 10px 15px;\n      align-items: center;\n      text-align: left;\n      background: none;\n      position: relative;\n      margin-bottom: -1px;\n      border-width: 0;\n      z-index: 1;\n      cursor: pointer;\n      outline: none;\n      border-color: transparent;\n      box-shadow: none;\n      border-bottom: unset; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button::after {\n        content: attr(data-label);\n        display: block;\n        height: 0;\n        overflow: hidden;\n        speak: none;\n        visibility: hidden; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:hover {\n        color: #007cba;\n        color: var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active {\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active::before {\n          content: \"\";\n          position: absolute;\n          top: 0;\n          bottom: 1px;\n          right: 0;\n          left: 0;\n          border-bottom: 4px solid transparent; }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active:focus {\n          box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n          box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.4; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:last-child img {\n        margin-bottom: -2px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content {\n    padding: 0 15px 15px; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content h3 {\n      margin: 5px 12px 10px 0;\n      color: #757575;\n      text-transform: uppercase;\n      font-size: 11px;\n      font-weight: 500; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul {\n      list-style: unset;\n      -webkit-touch-callout: none;\n      /* iOS Safari */\n      -webkit-user-select: none;\n      /* Safari */\n      -khtml-user-select: none;\n      /* Konqueror HTML */\n      -moz-user-select: none;\n      /* Old versions of Firefox */\n      -ms-user-select: none;\n      /* Internet Explorer/Edge */\n      user-select: none;\n      /* Non-prefixed version, currently\n                                             supported by Chrome, Edge, Opera and Firefox */\n      margin: 0 15px 15px 15px;\n      padding: 0; }\n      .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li {\n        display: block;\n        font-size: 13px;\n        cursor: pointer;\n        height: auto;\n        -webkit-transition: height 0.5s linear;\n        -moz-transition: height 0.5s linear;\n        -ms-transition: height 0.5s linear;\n        -o-transition: height 0.5s linear;\n        transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li:not(.disabled):hover {\n          color: #007cba;\n          color: var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.active {\n          color: #007cba;\n          color: var(--wp-admin-theme-color);\n          text-shadow: 0 0 0.5px #007cba;\n          text-shadow: 0 0 0.5px var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.disabled {\n          display: none;\n          height: 0px;\n          -webkit-transition: height 0.5s linear;\n          -moz-transition: height 0.5s linear;\n          -ms-transition: height 0.5s linear;\n          -o-transition: height 0.5s linear;\n          transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li span {\n          float: right; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li i {\n          font-size: 1.1em; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i {\n          margin-left: 5px; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            font-size: 0.9em;\n            line-height: 1.5em; }\n          .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n            color: #b27823; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency:hover i.fa-exclamation-triangle {\n          color: #f5a623; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency.active i.fa-exclamation-triangle {\n          color: #f5a623; }\n  .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control {\n    display: inline-block;\n    margin-bottom: 0 !important; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control .components-base-control__field {\n      margin-bottom: 3px; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control span {\n      float: none; }\n  .redux-templates-collection-modal-sidebar .redux-templates-select-actions {\n    margin: 0 0 10px 15px;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-select-actions i.challenge-dot {\n      margin-left: 10px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-sidebar-dependencies li a {\n    display: inline-block;\n    margin-left: 10px;\n    font-size: 90%;\n    float: right; }\n  .redux-templates-collection-modal-sidebar #redux-templates-filter-dependencies h3 {\n    margin-top: 0;\n    padding-top: 3px; }\n", ""]);
+exports.push([module.i, ".redux-templates-collection-modal-sidebar {\n  min-width: 270px;\n  background: #fff;\n  color: #32373c;\n  /* $secondaryColor;*/\n  border-right: 1px solid #e2e4e7;\n  overflow-y: auto; }\n  .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group {\n    margin: 10px 0;\n    border-bottom: 1px solid #e2e4e7;\n    width: 100%;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button {\n      font-weight: 500;\n      flex-grow: 1;\n      min-width: 30%;\n      line-height: 20px;\n      padding: 8px 0 10px 15px;\n      align-items: center;\n      text-align: left;\n      background: none;\n      position: relative;\n      margin-bottom: -1px;\n      border-width: 0;\n      z-index: 1;\n      cursor: pointer;\n      outline: none;\n      border-color: transparent;\n      box-shadow: none;\n      border-bottom: unset; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button::after {\n        content: attr(data-label);\n        display: block;\n        height: 0;\n        overflow: hidden;\n        speak: none;\n        visibility: hidden; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:hover {\n        color: #007cba;\n        color: var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active {\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active::before {\n          content: \"\";\n          position: absolute;\n          top: 0;\n          bottom: 1px;\n          right: 0;\n          left: 0;\n          border-bottom: 4px solid transparent; }\n        .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.active:focus {\n          box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n          box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.4; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-collection-modal-sidebar .redux-templates-template-filter-button-group button:last-child img {\n        margin-bottom: -2px; }\n  .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content {\n    padding: 0 15px 15px; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content h3 {\n      margin: 5px 12px 10px 0;\n      color: #757575;\n      text-transform: uppercase;\n      font-size: 11px;\n      font-weight: 500; }\n    .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul {\n      list-style: unset;\n      -webkit-touch-callout: none;\n      /* iOS Safari */\n      -webkit-user-select: none;\n      /* Safari */\n      -khtml-user-select: none;\n      /* Konqueror HTML */\n      -moz-user-select: none;\n      /* Old versions of Firefox */\n      -ms-user-select: none;\n      /* Internet Explorer/Edge */\n      user-select: none;\n      /* Non-prefixed version, currently\n                                             supported by Chrome, Edge, Opera and Firefox */\n      margin: 0 15px 15px 15px;\n      padding: 0; }\n      .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li {\n        display: block;\n        font-size: 13px;\n        cursor: pointer;\n        height: auto;\n        -webkit-transition: height 0.5s linear;\n        -moz-transition: height 0.5s linear;\n        -ms-transition: height 0.5s linear;\n        -o-transition: height 0.5s linear;\n        transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li .redux-icon-wrapper {\n          margin-left: 10px; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li:not(.disabled):hover {\n          color: #007cba;\n          color: var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.active {\n          color: #007cba;\n          color: var(--wp-admin-theme-color);\n          text-shadow: 0 0 0.5px #007cba;\n          text-shadow: 0 0 0.5px var(--wp-admin-theme-color); }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.disabled {\n          display: none;\n          height: 0px;\n          -webkit-transition: height 0.5s linear;\n          -moz-transition: height 0.5s linear;\n          -ms-transition: height 0.5s linear;\n          -o-transition: height 0.5s linear;\n          transition: height 0.5s linear; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li span {\n          float: right; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency i.fa-exclamation-triangle {\n          color: #b27823; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency:hover i.fa-exclamation-triangle {\n          color: #f5a623; }\n        .redux-templates-collection-modal-sidebar .redux-templates-modal-sidebar-content ul li.missing-dependency.active i.fa-exclamation-triangle {\n          color: #f5a623; }\n  .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control {\n    display: inline-block;\n    margin-bottom: 0 !important; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control .components-base-control__field {\n      margin-bottom: 3px; }\n    .redux-templates-collection-modal-sidebar ul.redux-templates-sidebar-dependencies li .components-base-control span {\n      float: none; }\n  .redux-templates-collection-modal-sidebar .redux-templates-select-actions {\n    margin: 0 0 10px 15px;\n    display: inline-flex; }\n    .redux-templates-collection-modal-sidebar .redux-templates-select-actions i.challenge-dot {\n      margin-left: 10px; }\n    .redux-templates-collection-modal-sidebar .redux-templates-select-actions.disabled a {\n      pointer-events: none;\n      cursor: default;\n      text-decoration: none;\n      opacity: 0.6; }\n  .redux-templates-collection-modal-sidebar .redux-templates-sidebar-dependencies li a {\n    display: inline-block;\n    margin-left: 10px; }\n  .redux-templates-collection-modal-sidebar #redux-templates-filter-dependencies h3 {\n    margin-top: 0;\n    padding-top: 3px; }\n", ""]);
 
 
 
@@ -449,7 +449,7 @@ exports.push([module.i, ".redux-templates-collection-modal-sidebar {\n  min-widt
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".redux-templates-collections-modal-body {\n  display: flex;\n  flex: 1;\n  overflow-y: auto; }\n\n.redux-templates-builder-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 9999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  pointer-events: none; }\n  .redux-templates-builder-modal.hidden {\n    display: none; }\n  .redux-templates-builder-modal .wp-full-overlay-sidebar .wp-core-ui .button-group.button-hero .button,\n  .redux-templates-builder-modal .wp-full-overlay-sidebar .wp-core-ui .button.button-hero {\n    text-align: center !important; }\n  .redux-templates-builder-modal * {\n    box-sizing: border-box;\n    pointer-events: all; }\n  .redux-templates-builder-modal .redux-templates-pagelist-modal-overlay {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background: #f00;\n    left: 0;\n    top: 0;\n    z-index: -1;\n    background: rgba(3, 8, 15, 0.75); }\n  .redux-templates-builder-modal .components-base-control__field {\n    display: flex; }\n  .redux-templates-builder-modal textarea {\n    width: 100%;\n    height: 80px; }\n  .redux-templates-builder-modal .redux-icon-wrapper {\n    display: inline-block; }\n  .redux-templates-builder-modal button.components-button {\n    z-index: unset; }\n\n.redux-templates-builder-modal-header {\n  display: flex;\n  border-bottom: 1px solid #e2e4e7;\n  background: #fff; }\n  .redux-templates-builder-modal-header .template-search-box {\n    position: relative;\n    width: 270px; }\n    .redux-templates-builder-modal-header .template-search-box > div {\n      padding: 10px; }\n    .redux-templates-builder-modal-header .template-search-box i {\n      font-size: 13px;\n      color: #757575;\n      position: absolute;\n      top: 50%;\n      right: 30px;\n      transform: translateY(-50%); }\n      .redux-templates-builder-modal-header .template-search-box i.challenge-dot {\n        right: 20px;\n        left: auto; }\n      .redux-templates-builder-modal-header .template-search-box i.clear-search {\n        right: 20px;\n        left: auto;\n        color: #fff;\n        font-size: 12px;\n        display: none;\n        cursor: pointer;\n        padding: 5px; }\n    .redux-templates-builder-modal-header .template-search-box input {\n      display: block;\n      width: 100%;\n      box-shadow: 0 0 0 transparent;\n      transition: box-shadow 0.1s linear;\n      border-radius: 2px;\n      line-height: normal;\n      display: block;\n      padding: 16px 48px 16px 16px;\n      background: #f3f4f5;\n      border: none;\n      width: 100%;\n      height: 40px;\n      font-size: 13px; }\n      .redux-templates-builder-modal-header .template-search-box input::-webkit-input-placeholder {\n        /* WebKit browsers */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:-moz-placeholder {\n        /* Mozilla Firefox 4 to 18 */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input::-moz-placeholder {\n        /* Mozilla Firefox 19+ */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:-ms-input-placeholder {\n        /* Internet Explorer 10+ */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:focus {\n        border-color: #007cba;\n        border-color: var(--wp-admin-theme-color);\n        background: #fff;\n        box-shadow: 0 0 0 1.5px #007cba;\n        box-shadow: 0 0 0 1.5px var(--wp-admin-theme-color);\n        outline: 2px solid transparent; }\n    .redux-templates-builder-modal-header .template-search-box:hover .clear-search {\n      display: block; }\n\n.redux-templates-pagelist-modal-inner {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #f1f1f1;\n  width: 85.9375%;\n  height: 89.537037%;\n  max-width: 1650px;\n  max-height: 967px;\n  box-shadow: 0 0 45px 10px rgba(3, 8, 15, 0.2);\n  animation: components-modal__appear-animation 0.1s ease-out;\n  animation-fill-mode: forwards; }\n  .redux-templates-pagelist-modal-inner .redux-templates-collection-modal-content-area {\n    flex-grow: 1;\n    max-height: 100%;\n    overflow-y: auto;\n    position: relative; }\n\n.redux-templates-template-list-header {\n  text-align: center;\n  position: relative;\n  flex-grow: 1;\n  padding-right: 50px; }\n  .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal) {\n    flex-grow: 1;\n    line-height: 28px;\n    margin-top: 6px;\n    padding: 14px 15px 13px 15px;\n    text-align: left;\n    font-weight: 600;\n    width: 150px;\n    align-items: center;\n    background: none;\n    position: relative;\n    margin-bottom: -1px;\n    border-width: 0;\n    z-index: 1;\n    cursor: pointer;\n    outline: none;\n    border-color: transparent;\n    box-shadow: none;\n    border-bottom: unset; }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal)::after {\n      content: attr(data-label);\n      display: block;\n      height: 0;\n      overflow: hidden;\n      speak: none;\n      visibility: hidden; }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal):hover {\n      color: #007cba;\n      color: var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal):focus {\n      box-shadow: inset 0 0 0 1.5px #007cba;\n      box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active {\n      box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n      box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active::before {\n        content: \"\";\n        position: absolute;\n        top: 0;\n        bottom: 1px;\n        right: 0;\n        left: 0;\n        border-bottom: 4px solid transparent; }\n      .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).disabled {\n      opacity: 0.5; }\n  .redux-templates-template-list-header .redux-templates-builder-close-modal {\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 60px;\n    height: 60px;\n    margin: 0;\n    padding: 0;\n    border: 1px solid transparent;\n    background: none;\n    font-size: 15px;\n    cursor: pointer;\n    outline: none;\n    transition: color 0.1s ease-in-out, background 0.1s ease-in-out; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal i {\n      -webkit-text-stroke: 1.2px #fff; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal svg {\n      margin-top: 4px; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal:hover, .redux-templates-template-list-header .redux-templates-builder-close-modal:active {\n      color: #00a0d2; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal:focus {\n      color: #00a0d2;\n      border-color: #5b9dd9;\n      box-shadow: 0 0 3px rgba(0, 115, 170, 0.8);\n      /* Only visible in Windows High Contrast mode */\n      outline: 2px solid transparent; }\n\n.redux-templates-template-list-sub-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 23px 25px 0; }\n  .redux-templates-template-list-sub-header h4 {\n    font-size: 21px;\n    color: #0e2244;\n    font-weight: 500;\n    margin: 0; }\n    .redux-templates-template-list-sub-header h4 i.challenge-dot {\n      margin-left: 10px; }\n  .redux-templates-template-list-sub-header .redux-templates-template-filters {\n    display: flex;\n    justify-content: space-between;\n    align-items: center; }\n  .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group {\n    background: #f8fafb;\n    display: inline-flex;\n    border: 1px solid #d8d8d8;\n    border-radius: 4px;\n    margin-left: 10px; }\n    .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button {\n      display: inline-flex;\n      line-height: 28px;\n      padding: 5px 18px;\n      align-items: center;\n      background: none;\n      border: none;\n      color: #587e97;\n      position: relative;\n      z-index: 1;\n      cursor: pointer; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:focus {\n        outline: none;\n        box-shadow: 0 0 0 1.5px #007cba;\n        box-shadow: 0 0 0 1.5px var(--wp-admin-theme-color);\n        outline: 1px solid transparent; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:last-child {\n        color: #f5a623; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active {\n        background: #f5a623;\n        color: #fff; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.5; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:not(:last-child)::after {\n        content: \"\";\n        height: 13px;\n        background-color: #c4cbcf;\n        width: 1px;\n        right: 0px;\n        top: 50%;\n        position: absolute;\n        transform: translateY(-50%); }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active::after {\n        display: none; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button::before {\n        content: \"\";\n        position: absolute;\n        background: #f5a623;\n        height: calc(100% + 4px);\n        width: calc(100% + 4px);\n        left: -2px;\n        top: -2px;\n        z-index: -1;\n        border-radius: 4px;\n        box-shadow: 0 0 4px rgba(33, 32, 249, 0.3);\n        opacity: 0; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active::before {\n        opacity: 1; }\n\n.redux-templates-modal-loader {\n  display: inline-block;\n  position: absolute;\n  width: 80px;\n  height: 80px;\n  line-height: 80px;\n  text-align: center;\n  left: 50%;\n  margin-left: -50px;\n  top: 50%;\n  margin-top: -50px;\n  font-size: 24px;\n  color: #1e7ed8; }\n\n.redux-templates-modal-loader img {\n  height: 80px;\n  width: 80px; }\n\n/*block style*/\n.redux-templates-builder-template-found-empty {\n  text-align: center;\n  border-color: transparent !important; }\n  .redux-templates-builder-template-found-empty .redux-templates-builder-empty-title {\n    display: block;\n    width: 100%; }\n\n.redux-templates-pro-badge {\n  position: absolute;\n  background: rgba(255, 0, 0, 0.75);\n  cursor: pointer;\n  padding: 5px 6px;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 10px;\n  right: 20px;\n  top: 20px;\n  line-height: 1;\n  transition: background 0.1s linear; }\n\n.redux-templates-missing-badge {\n  position: absolute;\n  cursor: pointer;\n  background: rgba(242, 168, 72, 0.75);\n  border-radius: 3px;\n  color: #fff;\n  font-size: 10px;\n  right: 20px;\n  top: 20px;\n  line-height: 1;\n  transition: background 0.1s linear; }\n  .redux-templates-missing-badge i {\n    margin: 5px; }\n\n.redux-templates-button-overlay .redux-templates-pro-badge {\n  background: rgba(255, 0, 0, 0.85); }\n\n.redux-templates-button-overlay .redux-templates-missing-badge {\n  background: rgba(242, 168, 72, 0.85); }\n\n.redux-templates-default-template-image {\n  /* background-image: url('/img/redux-templates-medium.jpg');\n    background-size: cover; */\n  background: #888;\n  transition: 300ms; }\n  .redux-templates-default-template-image img {\n    width: 100%;\n    display: block; }\n\n.redux-templates-item-wrapper {\n  position: relative; }\n  .redux-templates-item-wrapper .redux-templates-button-overlay {\n    position: absolute;\n    width: 100%;\n    opacity: 0;\n    background: rgba(0, 0, 0, 0.5);\n    height: 100%;\n    top: 0;\n    left: 0;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    transition: 300ms; }\n    .redux-templates-item-wrapper .redux-templates-button-overlay .redux-templates-tmpl-title {\n      margin: 0 0 15px;\n      color: #fff;\n      font-size: 19px;\n      font-weight: 400; }\n  .redux-templates-item-wrapper.focused .redux-templates-button-overlay, .redux-templates-item-wrapper:hover .redux-templates-button-overlay {\n    opacity: 1; }\n  .redux-templates-item-wrapper.focused .redux-templates-default-template-image, .redux-templates-item-wrapper:hover .redux-templates-default-template-image {\n    filter: blur(3px); }\n  .redux-templates-item-wrapper.missing_requirements .warn_notice {\n    opacity: 1; }\n  .redux-templates-item-wrapper.missing_requirements .redux-templates-button-download {\n    background-color: #fdbb05;\n    background-image: none;\n    border-color: #ffc107; }\n\n.redux-templates-template-option-header {\n  padding: 20px 20px 0; }\n  .redux-templates-template-option-header .redux-templates-template-back {\n    cursor: pointer; }\n    .redux-templates-template-option-header .redux-templates-template-back .dashicons {\n      vertical-align: text-bottom; }\n\n#wpwrap .edit-post-visual-editor .import-collection-btn-container {\n  text-align: center;\n  margin-top: 20px; }\n\n#wpwrap .edit-post-visual-editor .import-collection-btn-container #importCollectionBtn {\n  color: #fff;\n  font-size: 13px; }\n\n.redux-templates-template-back {\n  cursor: pointer; }\n  .redux-templates-template-back .dashicons {\n    vertical-align: text-bottom; }\n\n.spinner-wrapper {\n  position: absolute;\n  left: 0;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, ".redux-templates-collections-modal-body {\n  display: flex;\n  flex: 1;\n  overflow-y: auto; }\n\n.redux-templates-builder-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 9999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  pointer-events: none; }\n  .redux-templates-builder-modal.hidden {\n    display: none; }\n  .redux-templates-builder-modal .wp-full-overlay-sidebar .wp-core-ui .button-group.button-hero .button,\n  .redux-templates-builder-modal .wp-full-overlay-sidebar .wp-core-ui .button.button-hero {\n    text-align: center !important; }\n  .redux-templates-builder-modal * {\n    box-sizing: border-box;\n    pointer-events: all; }\n  .redux-templates-builder-modal .redux-templates-pagelist-modal-overlay {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background: #f00;\n    left: 0;\n    top: 0;\n    z-index: -1;\n    background: rgba(3, 8, 15, 0.75); }\n  .redux-templates-builder-modal .components-base-control__field {\n    display: flex; }\n  .redux-templates-builder-modal textarea {\n    width: 100%;\n    height: 80px; }\n  .redux-templates-builder-modal .redux-icon-wrapper {\n    display: inline-block; }\n  .redux-templates-builder-modal button.components-button {\n    z-index: unset; }\n\n.redux-templates-builder-modal-header {\n  display: flex;\n  border-bottom: 1px solid #e2e4e7;\n  background: #fff; }\n  .redux-templates-builder-modal-header .template-search-box {\n    position: relative;\n    width: 270px; }\n    .redux-templates-builder-modal-header .template-search-box > div {\n      padding: 10px; }\n    .redux-templates-builder-modal-header .template-search-box i {\n      font-size: 13px;\n      color: #757575;\n      position: absolute;\n      top: 50%;\n      right: 30px;\n      transform: translateY(-50%); }\n      .redux-templates-builder-modal-header .template-search-box i.challenge-dot {\n        right: 20px;\n        left: auto; }\n      .redux-templates-builder-modal-header .template-search-box i.clear-search {\n        right: 20px;\n        left: auto;\n        color: #fff;\n        font-size: 12px;\n        display: none;\n        cursor: pointer;\n        padding: 5px; }\n    .redux-templates-builder-modal-header .template-search-box input {\n      display: block;\n      width: 100%;\n      box-shadow: 0 0 0 transparent;\n      transition: box-shadow 0.1s linear;\n      border-radius: 2px;\n      line-height: normal;\n      display: block;\n      padding: 16px 48px 16px 16px;\n      background: #f3f4f5;\n      border: none;\n      width: 100%;\n      height: 40px;\n      font-size: 13px; }\n      .redux-templates-builder-modal-header .template-search-box input::-webkit-input-placeholder {\n        /* WebKit browsers */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:-moz-placeholder {\n        /* Mozilla Firefox 4 to 18 */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input::-moz-placeholder {\n        /* Mozilla Firefox 19+ */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:-ms-input-placeholder {\n        /* Internet Explorer 10+ */\n        color: #606a73;\n        font-style: italic;\n        opacity: 1; }\n      .redux-templates-builder-modal-header .template-search-box input:focus {\n        border-color: #007cba;\n        border-color: var(--wp-admin-theme-color);\n        background: #fff;\n        box-shadow: 0 0 0 1.5px #007cba;\n        box-shadow: 0 0 0 1.5px var(--wp-admin-theme-color);\n        outline: 2px solid transparent; }\n    .redux-templates-builder-modal-header .template-search-box:hover .clear-search {\n      display: block; }\n\n.redux-templates-pagelist-modal-inner {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #f1f1f1;\n  width: 85.9375%;\n  height: 89.537037%;\n  max-width: 1650px;\n  max-height: 967px;\n  box-shadow: 0 0 45px 10px rgba(3, 8, 15, 0.2);\n  animation: components-modal__appear-animation 0.1s ease-out;\n  animation-fill-mode: forwards; }\n  .redux-templates-pagelist-modal-inner .redux-templates-collection-modal-content-area {\n    flex-grow: 1;\n    max-height: 100%;\n    overflow-y: auto;\n    position: relative; }\n\n.redux-templates-template-list-header {\n  text-align: center;\n  position: relative;\n  flex-grow: 1;\n  padding-right: 50px; }\n  .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal) {\n    flex-grow: 1;\n    line-height: 28px;\n    margin-top: 6px;\n    padding: 14px 15px 13px 15px;\n    text-align: left;\n    font-weight: 600;\n    width: 150px;\n    align-items: center;\n    background: none;\n    position: relative;\n    margin-bottom: -1px;\n    border-width: 0;\n    z-index: 1;\n    cursor: pointer;\n    outline: none;\n    border-color: transparent;\n    box-shadow: none;\n    border-bottom: unset; }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal)::after {\n      content: attr(data-label);\n      display: block;\n      height: 0;\n      overflow: hidden;\n      speak: none;\n      visibility: hidden; }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal):hover {\n      color: #007cba;\n      color: var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal):focus {\n      box-shadow: inset 0 0 0 1.5px #007cba;\n      box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active {\n      box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 #007cba;\n      box-shadow: inset 0 0 0 1.5px transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n      .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active::before {\n        content: \"\";\n        position: absolute;\n        top: 0;\n        bottom: 1px;\n        right: 0;\n        left: 0;\n        border-bottom: 4px solid transparent; }\n      .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).active:focus {\n        box-shadow: inset 0 0 0 1.5px #007cba, inset 0 -4px 0 0 #007cba;\n        box-shadow: inset 0 0 0 1.5px var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color); }\n    .redux-templates-template-list-header button:not(.redux-templates-builder-close-modal).disabled {\n      opacity: 0.5; }\n  .redux-templates-template-list-header .redux-templates-builder-close-modal {\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 60px;\n    height: 60px;\n    margin: 0;\n    padding: 0;\n    border: 1px solid transparent;\n    background: none;\n    font-size: 15px;\n    cursor: pointer;\n    outline: none;\n    transition: color 0.1s ease-in-out, background 0.1s ease-in-out; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal i {\n      -webkit-text-stroke: 1.2px #fff; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal svg {\n      margin-top: 4px; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal:hover, .redux-templates-template-list-header .redux-templates-builder-close-modal:active {\n      color: #00a0d2; }\n    .redux-templates-template-list-header .redux-templates-builder-close-modal:focus {\n      color: #00a0d2;\n      border-color: #5b9dd9;\n      box-shadow: 0 0 3px rgba(0, 115, 170, 0.8);\n      /* Only visible in Windows High Contrast mode */\n      outline: 2px solid transparent; }\n\n.redux-templates-template-list-sub-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 23px 25px 0; }\n  .redux-templates-template-list-sub-header h4 {\n    font-size: 21px;\n    color: #0e2244;\n    font-weight: 500;\n    margin: 0; }\n    .redux-templates-template-list-sub-header h4 i.challenge-dot {\n      margin-left: 10px; }\n  .redux-templates-template-list-sub-header .redux-templates-template-filters {\n    display: flex;\n    justify-content: space-between;\n    align-items: center; }\n  .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group {\n    background: #f8fafb;\n    display: inline-flex;\n    border: 1px solid #d8d8d8;\n    border-radius: 4px;\n    margin-left: 10px; }\n    .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button {\n      display: inline-flex;\n      line-height: 28px;\n      padding: 5px 18px;\n      align-items: center;\n      background: none;\n      border: none;\n      color: #587e97;\n      position: relative;\n      z-index: 1;\n      cursor: pointer; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:focus {\n        outline: none;\n        box-shadow: 0 0 0 1.5px #007cba;\n        box-shadow: 0 0 0 1.5px var(--wp-admin-theme-color);\n        outline: 1px solid transparent; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:last-child {\n        color: #f5a623; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active {\n        background: #f5a623;\n        color: #fff; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.disabled {\n        opacity: 0.5; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button img {\n        display: inline-block;\n        width: auto;\n        height: 14px;\n        margin-right: 4px; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button:not(:last-child)::after {\n        content: \"\";\n        height: 13px;\n        background-color: #c4cbcf;\n        width: 1px;\n        right: 0px;\n        top: 50%;\n        position: absolute;\n        transform: translateY(-50%); }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active::after {\n        display: none; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button::before {\n        content: \"\";\n        position: absolute;\n        background: #f5a623;\n        height: calc(100% + 4px);\n        width: calc(100% + 4px);\n        left: -2px;\n        top: -2px;\n        z-index: -1;\n        border-radius: 4px;\n        box-shadow: 0 0 4px rgba(33, 32, 249, 0.3);\n        opacity: 0; }\n      .redux-templates-template-list-sub-header .redux-templates-template-filter-button-group button.active::before {\n        opacity: 1; }\n\n.redux-templates-modal-loader {\n  display: inline-block;\n  position: absolute;\n  width: 80px;\n  height: 80px;\n  line-height: 80px;\n  text-align: center;\n  left: 50%;\n  margin-left: -50px;\n  top: 50%;\n  margin-top: -50px;\n  font-size: 24px;\n  color: #1e7ed8; }\n\n.redux-templates-modal-loader img {\n  height: 80px;\n  width: 80px; }\n\n/*block style*/\n.redux-templates-builder-template-found-empty {\n  text-align: center;\n  border-color: transparent !important; }\n  .redux-templates-builder-template-found-empty .redux-templates-builder-empty-title {\n    display: block;\n    width: 100%; }\n\n.redux-templates-pro-badge {\n  position: absolute;\n  background: rgba(255, 0, 0, 0.75);\n  cursor: pointer;\n  padding: 5px 6px;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 10px;\n  right: 20px;\n  top: 20px;\n  line-height: 1;\n  transition: background 0.1s linear; }\n\n.redux-templates-missing-badge {\n  position: absolute;\n  cursor: pointer;\n  background: rgba(242, 168, 72, 0.75);\n  border-radius: 3px;\n  color: #fff;\n  font-size: 10px;\n  right: 20px;\n  top: 20px;\n  line-height: 1;\n  transition: background 0.1s linear; }\n  .redux-templates-missing-badge i {\n    margin: 5px; }\n\n.redux-templates-button-overlay .redux-templates-pro-badge {\n  background: rgba(255, 0, 0, 0.85); }\n\n.redux-templates-button-overlay .redux-templates-missing-badge {\n  background: rgba(242, 168, 72, 0.85); }\n\n.redux-templates-default-template-image {\n  /* background-image: url('/img/redux-templates-medium.jpg');\n    background-size: cover; */\n  background: #888;\n  transition: 300ms; }\n  .redux-templates-default-template-image .imageloader-loaded {\n    max-height: 285px; }\n  .redux-templates-default-template-image img {\n    width: 100%;\n    display: block; }\n\n.redux-templates-item-wrapper {\n  position: relative; }\n  .redux-templates-item-wrapper .redux-templates-button-overlay {\n    position: absolute;\n    width: 100%;\n    opacity: 0;\n    background: rgba(0, 0, 0, 0.5);\n    height: 100%;\n    top: 0;\n    left: 0;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    transition: 300ms; }\n    .redux-templates-item-wrapper .redux-templates-button-overlay .redux-templates-tmpl-title {\n      margin: 0 0 15px;\n      color: #fff;\n      font-size: 19px;\n      font-weight: 400; }\n  .redux-templates-item-wrapper.focused .redux-templates-button-overlay, .redux-templates-item-wrapper:hover .redux-templates-button-overlay {\n    opacity: 1; }\n  .redux-templates-item-wrapper.focused .redux-templates-default-template-image, .redux-templates-item-wrapper:hover .redux-templates-default-template-image {\n    filter: blur(3px); }\n  .redux-templates-item-wrapper.missing_requirements .warn_notice {\n    opacity: 1; }\n  .redux-templates-item-wrapper.missing_requirements .redux-templates-button-download {\n    background-color: #fdbb05;\n    background-image: none;\n    border-color: #ffc107; }\n\n.redux-templates-template-option-header {\n  padding: 20px 20px 0; }\n  .redux-templates-template-option-header .redux-templates-template-back {\n    cursor: pointer; }\n    .redux-templates-template-option-header .redux-templates-template-back .dashicons {\n      vertical-align: text-bottom; }\n\n#wpwrap .edit-post-visual-editor .import-collection-btn-container {\n  text-align: center;\n  margin-top: 20px; }\n\n#wpwrap .edit-post-visual-editor .import-collection-btn-container #importCollectionBtn {\n  color: #fff;\n  font-size: 13px; }\n\n.redux-templates-template-back {\n  cursor: pointer; }\n  .redux-templates-template-back .dashicons {\n    vertical-align: text-bottom; }\n\n.spinner-wrapper {\n  position: absolute;\n  left: 0;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.5); }\n", ""]);
 
 
 
@@ -509,7 +509,7 @@ exports.push([module.i, "#collections-sections-list {\n  width: 100%;\n  display
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".wp-full-overlay {\n  margin-left: 300px; }\n\n@media screen and (min-width: 1667px) {\n  .wp-full-overlay {\n    margin-left: 18%; } }\n\nbutton {\n  box-sizing: border-box;\n  pointer-events: all; }\n\n.wp-full-overlay.hide {\n  display: none; }\n\n.theme-screenshot-wrap {\n  overflow: hidden;\n  position: relative;\n  max-height: 300px;\n  margin: 15px 0;\n  border: 1px solid #ccc; }\n\n.install-theme-info h3 a {\n  float: right;\n  opacity: 0.6; }\n  .install-theme-info h3 a:hover {\n    opacity: 1; }\n\n.install-theme-info .theme-screenshot {\n  width: 100% !important;\n  border: none !important;\n  margin: 0 !important;\n  display: block; }\n\n.expanded .wp-full-overlay-footer {\n  height: 111px !important;\n  left: initial; }\n  .expanded .wp-full-overlay-footer .button-hero {\n    text-align: center; }\n\n.wp-full-overlay .wp-full-overlay-sidebar-content {\n  bottom: 100px; }\n  .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list {\n    border-top: 1px solid #eee;\n    color: #82878c;\n    font-size: 13px;\n    font-weight: 400;\n    margin: 30px 0 0 0; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list h4 {\n      color: #23282d;\n      font-size: 1.1em;\n      text-align: center; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list .redux-templates-dependency-blocks .redux-templates-dependency-name {\n      color: #444;\n      font-weight: 600;\n      margin-right: 5px; }\n\n.footer-import-button-wrap {\n  padding: 10px 20px;\n  display: flex;\n  justify-content: center; }\n\n.wp-full-overlay-footer .view-site,\n.wp-full-overlay-footer .go-pro,\n.wp-full-overlay-footer .redux-templates-import {\n  width: 100%; }\n\n.redux-templates-button-download {\n  border: 1px solid #3dbfe8;\n  background: #3dbfe8;\n  box-shadow: 0 1px 0 #165cb4;\n  color: #fff; }\n\n.wp-full-overlay-main {\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  height: 100%;\n  -webkit-transition: background-color 1000ms linear;\n  -ms-transition: background-color 1000ms linear;\n  transition: background-color 1000ms linear;\n  background-color: unset; }\n  .wp-full-overlay-main.loaded::before {\n    display: none !important; }\n  .wp-full-overlay-main.loaded iframe {\n    background-color: #fff; }\n  .wp-full-overlay-main .components-spinner {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%); }\n\n.theme-install-overlay iframe {\n  height: 100%;\n  width: 100%;\n  z-index: 20;\n  transition: opacity 0.3s; }\n\n.redux-templates-dependency-blocks {\n  display: flex; }\n  .redux-templates-dependency-blocks .block-head {\n    text-align: center;\n    width: 60px;\n    margin-right: 10px; }\n\n.requirements-list {\n  width: 100%; }\n  .requirements-list ul {\n    margin: 0;\n    padding: 0;\n    list-style: none; }\n    .requirements-list ul li {\n      cursor: pointer;\n      line-height: 20px;\n      padding-bottom: 25px;\n      clear: left;\n      transition: 300ms; }\n      .requirements-list ul li svg {\n        margin-right: 5px; }\n        .requirements-list ul li svg * {\n          fill: #9a9a9a; }\n      .requirements-list ul li svg,\n      .requirements-list ul li span,\n      .requirements-list ul li div {\n        float: left; }\n      .requirements-list ul li .redux-icon-wrapper {\n        display: inline; }\n      .requirements-list ul li span.pluginURL {\n        float: right; }\n      .requirements-list ul li i {\n        font-size: 1.1em; }\n      .requirements-list ul li .redux-icon-wrapper {\n        padding-left: 5px; }\n      .requirements-list ul li i.fa-exclamation-triangle {\n        font-size: 0.9em;\n        line-height: 1.5em;\n        color: #b27823; }\n      .requirements-list ul li:hover svg * {\n        fill: dimgray; }\n      .requirements-list ul li:hover i.fa-exclamation-triangle {\n        color: #f5a623; }\n\n.redux-block-pills ul {\n  margin: 0;\n  padding: 0; }\n  .redux-block-pills ul li {\n    margin: 0px 5px 10px 0;\n    float: left; }\n    .redux-block-pills ul li span {\n      --bg-opacity: 1 !important;\n      background-color: #edf2f7 !important;\n      background-color: rgba(237, 242, 247, var(--bg-opacity)) !important;\n      border-radius: 9999px !important;\n      padding-top: 0.25rem !important;\n      padding-bottom: 0.25rem !important;\n      padding-left: 0.75rem !important;\n      padding-right: 0.75rem !important;\n      --text-opacity: 1 !important;\n      color: #4a5568 !important;\n      color: rgba(74, 85, 104, var(--text-opacity)) !important; }\n\n.redux-templates-modal-preview-box {\n  background: #f1f1f1; }\n  .redux-templates-modal-preview-box img {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    max-width: 100%;\n    max-height: 100%; }\n\n.theme-hash {\n  text-align: center;\n  font-size: 14px;\n  position: relative; }\n  .theme-hash i {\n    cursor: pointer;\n    margin-right: 5px;\n    margin-left: 5px; }\n  .theme-hash .copied {\n    color: #656a6f;\n    position: absolute;\n    line-height: 75%;\n    margin-left: 10px;\n    opacity: 0.6; }\n  .theme-hash .the-copy {\n    border-bottom-right-radius: 0 !important;\n    border-top-right-radius: 0 !important; }\n  .theme-hash .the-hash {\n    border-bottom-left-radius: 0 !important;\n    border-top-left-radius: 0 !important;\n    border-left: 0 !important; }\n  .theme-hash .hideMe {\n    -webkit-animation: cssAnimation 3s forwards;\n    animation: cssAnimation 3s forwards; }\n\n@keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n@-webkit-keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n", ""]);
+exports.push([module.i, ".wp-full-overlay {\n  margin-left: 300px; }\n\n@media screen and (min-width: 1667px) {\n  .wp-full-overlay {\n    margin-left: 18%; } }\n\nbutton {\n  box-sizing: border-box;\n  pointer-events: all; }\n\n.wp-full-overlay.hide {\n  display: none; }\n\n.theme-screenshot-wrap {\n  overflow: hidden;\n  position: relative;\n  max-height: 300px;\n  margin: 15px 0;\n  border: 1px solid #ccc; }\n\n.install-theme-info {\n  padding-bottom: 0px; }\n  .install-theme-info h3 a {\n    float: right;\n    opacity: 0.6; }\n    .install-theme-info h3 a:hover {\n      opacity: 1; }\n\n.install-theme-info .theme-screenshot {\n  width: 100% !important;\n  border: none !important;\n  margin: 0 !important;\n  display: block; }\n\n.expanded .wp-full-overlay-footer {\n  height: 111px !important;\n  left: initial; }\n  .expanded .wp-full-overlay-footer .button-hero {\n    text-align: center; }\n\n.wp-full-overlay .wp-full-overlay-sidebar-content {\n  bottom: 100px; }\n  .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list {\n    border-top: 1px solid #eee;\n    color: #82878c;\n    font-size: 13px;\n    font-weight: 400;\n    margin: 30px 0 0 0; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list h4 {\n      color: #23282d;\n      font-size: 1.1em;\n      text-align: center; }\n    .wp-full-overlay .wp-full-overlay-sidebar-content .redux-templates-dependencies-list .redux-templates-dependency-blocks .redux-templates-dependency-name {\n      color: #444;\n      font-weight: 600;\n      margin-right: 5px; }\n\n.footer-import-button-wrap {\n  padding: 10px 20px;\n  display: flex;\n  justify-content: center; }\n\n.wp-full-overlay-footer .view-site,\n.wp-full-overlay-footer .go-pro,\n.wp-full-overlay-footer .redux-templates-import {\n  width: 100%; }\n\n.redux-templates-button-download {\n  border: 1px solid #3dbfe8;\n  background: #3dbfe8;\n  box-shadow: 0 1px 0 #165cb4;\n  color: #fff; }\n\n.wp-full-overlay-main {\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  height: 100%;\n  -webkit-transition: background-color 1000ms linear;\n  -ms-transition: background-color 1000ms linear;\n  transition: background-color 1000ms linear;\n  background-color: unset; }\n  .wp-full-overlay-main.loaded::before {\n    display: none !important; }\n  .wp-full-overlay-main.loaded iframe {\n    background-color: #fff; }\n  .wp-full-overlay-main .components-spinner {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%); }\n\n.theme-install-overlay iframe {\n  height: 100%;\n  width: 100%;\n  z-index: 20;\n  transition: opacity 0.3s; }\n\n.redux-templates-dependency-blocks {\n  display: flex; }\n  .redux-templates-dependency-blocks .block-head {\n    text-align: center;\n    width: 60px;\n    margin-right: 10px; }\n\n.requirements-list {\n  width: 100%; }\n  .requirements-list ul {\n    margin: 0;\n    padding: 0;\n    list-style: none; }\n    .requirements-list ul li {\n      cursor: pointer;\n      line-height: 20px;\n      padding-bottom: 25px;\n      clear: left;\n      transition: 300ms; }\n      .requirements-list ul li svg {\n        margin-right: 5px; }\n        .requirements-list ul li svg * {\n          fill: #9a9a9a; }\n      .requirements-list ul li svg,\n      .requirements-list ul li span,\n      .requirements-list ul li div {\n        float: left; }\n      .requirements-list ul li .redux-icon-wrapper {\n        display: inline; }\n      .requirements-list ul li span.pluginURL {\n        float: right; }\n      .requirements-list ul li i {\n        font-size: 1.1em; }\n      .requirements-list ul li .redux-icon-wrapper {\n        padding-left: 5px; }\n      .requirements-list ul li i.fa-exclamation-triangle {\n        font-size: 0.9em;\n        line-height: 1.5em;\n        color: #b27823; }\n      .requirements-list ul li:hover svg * {\n        fill: dimgray; }\n      .requirements-list ul li:hover i.fa-exclamation-triangle {\n        color: #f5a623; }\n\n.redux-block-pills ul {\n  margin: 0;\n  padding: 0; }\n  .redux-block-pills ul li {\n    margin: 0px 5px 10px 0;\n    float: left; }\n    .redux-block-pills ul li span {\n      --bg-opacity: 1 !important;\n      background-color: #edf2f7 !important;\n      background-color: rgba(237, 242, 247, var(--bg-opacity)) !important;\n      border-radius: 9999px !important;\n      padding-top: 0.25rem !important;\n      padding-bottom: 0.25rem !important;\n      padding-left: 0.75rem !important;\n      padding-right: 0.75rem !important;\n      --text-opacity: 1 !important;\n      color: #4a5568 !important;\n      color: rgba(74, 85, 104, var(--text-opacity)) !important; }\n\n.redux-templates-modal-preview-box {\n  background: #f1f1f1; }\n  .redux-templates-modal-preview-box img {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    max-width: 100%;\n    max-height: 100%; }\n\n.theme-hash {\n  text-align: center;\n  font-size: 14px;\n  position: relative; }\n  .theme-hash i {\n    cursor: pointer;\n    margin-right: 5px;\n    margin-left: 5px; }\n  .theme-hash .copied {\n    color: #656a6f;\n    position: absolute;\n    line-height: 75%;\n    margin-left: 10px;\n    opacity: 0.6; }\n  .theme-hash .the-copy {\n    border-bottom-right-radius: 0 !important;\n    border-top-right-radius: 0 !important; }\n  .theme-hash .the-hash {\n    border-bottom-left-radius: 0 !important;\n    border-top-left-radius: 0 !important;\n    border-left: 0 !important; }\n  .theme-hash .hideMe {\n    -webkit-animation: cssAnimation 3s forwards;\n    animation: cssAnimation 3s forwards; }\n\n@keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n@-webkit-keyframes cssAnimation {\n  0% {\n    opacity: 1; }\n  90% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n", ""]);
 
 
 
@@ -4952,6 +4952,40 @@ var SvgAdvancedGutenbergBlocks = function SvgAdvancedGutenbergBlocks(props) {
 
 /***/ }),
 
+/***/ "./redux-templates/src/icons/images/atomic-blocks.svg":
+/*!************************************************************!*\
+  !*** ./redux-templates/src/icons/images/atomic-blocks.svg ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+var _ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+  d: "M2.1 10c0-3.8 2.8-7.2 6.6-7.8 1.6-.3 3 0 4.5.6h.4c1.1-.6 2.4-.5 3.3.4.8.8 1.1 2.1.5 3.2-.1.2-.1.3 0 .5 2 4.7-.8 9.9-5.7 10.9-3 .6-5.6-.3-7.6-2.6-1.4-1.5-2-3.3-2-5.2zM16 7.6s-.1 0 0 0h-.2c-1 .3-2 .1-2.8-.6-.8-.8-1-1.7-.7-2.8.1-.2 0-.3-.2-.3-1-.4-2.1-.5-3.2-.3-3.5.6-5.9 4-5.3 7.5.6 3.3 3.7 5.6 6.9 5.3 1.8-.2 3.3-.9 4.4-2.3 1.2-1.4 1.6-3.1 1.4-5 0-.5-.1-1-.3-1.5zm-.3-2.7c.3-.2.5-.4.4-.7-.1-.3-.4-.5-.7-.5h-1.1c-.2 0-.3.1-.3.3v2c0 .2.1.3.3.3h1.2c.5 0 .7-.3.7-.7-.1-.4-.2-.5-.5-.7z"
+});
+
+var _ref2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+  d: "M10 6.2c.4 0 .7.2.9.5.8 1.6 1.5 3.2 2.3 4.7.2.5.1.9-.4 1.1-.4.2-.8 0-1-.4l-.3-.6c-.1-.1-.1-.2-.3-.2H8.8c-.1 0-.2.1-.3.2l-.3.6c-.2.5-.7.6-1.1.4-.4-.2-.6-.6-.3-1.1.7-1.4 1.3-2.7 2-4.1.1-.1.2-.3.3-.5.2-.4.5-.6.9-.6zm0 2c-.3.6-.6 1.2-.8 1.8h1.6c-.3-.6-.5-1.2-.8-1.8zM14.9 5.8h-.2c-.1 0-.1-.1-.1-.2 0-.5-.1-.5.4-.5h.3c.1.1.2.2.2.3 0 .1-.1.2-.2.3-.1.1-.2.1-.4.1zM14.9 4.7c-.4 0-.4-.1-.4-.5l.1-.1h.6c.2 0 .3.1.2.3 0 .1-.1.2-.2.3 0 .1-.2 0-.3 0z"
+});
+
+var SvgAtomicBlocks = function SvgAtomicBlocks(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", _extends({
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _ref, _ref2);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SvgAtomicBlocks);
+
+/***/ }),
+
 /***/ "./redux-templates/src/icons/images/block-options.svg":
 /*!************************************************************!*\
   !*** ./redux-templates/src/icons/images/block-options.svg ***!
@@ -5676,17 +5710,6 @@ var SvgGuteblock = function SvgGuteblock(props) {
 
 /***/ }),
 
-/***/ "./redux-templates/src/icons/images/gutenberg-blocks.png":
-/*!***************************************************************!*\
-  !*** ./redux-templates/src/icons/images/gutenberg-blocks.png ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "dist/images/src-icons-gutenberg-blocks.705557e.png";
-
-/***/ }),
-
 /***/ "./redux-templates/src/icons/images/gutentor.svg":
 /*!*******************************************************!*\
   !*** ./redux-templates/src/icons/images/gutentor.svg ***!
@@ -6085,13 +6108,14 @@ var SvgWordpress = function SvgWordpress(props) {
 /*!********************************************!*\
   !*** ./redux-templates/src/icons/index.js ***!
   \********************************************/
-/*! exports provided: redux, acfblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, editorplus, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize, core */
+/*! exports provided: redux, acfblocks, atomicblocks, advancedcustomfields, advancedgutenbergblocks, blockoptions, blockslider, coblocks, creativeblocks, editorplus, elegantblocks, enhancedblocks, essentialblocks, formsgutenberg, getwid, ghostkit, guteblock, gutenbergblock, gutentor, kadenceblocks, kiokenblocks, otterblocks, qodeblock, qubely, snowmonkeyblocks, stackableultimategutenbergblocks, ultimateaddonsforgutenberg, ultimateblocks, ultimatepost, wordpress, colorizeIcon, thirdPartyIcon, ReduxTemplatesIcon, ReduxTemplatesIconColor, ReduxTemplatesIconColorize, core */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "redux", function() { return redux; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "acfblocks", function() { return acfblocks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "atomicblocks", function() { return atomicblocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "advancedcustomfields", function() { return advancedcustomfields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "advancedgutenbergblocks", function() { return advancedgutenbergblocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockoptions", function() { return blockoptions; });
@@ -6129,22 +6153,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assets_img_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/img/icon.svg */ "./redux-templates/assets/img/icon.svg");
 /* harmony import */ var _images_acf_blocks_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./images/acf-blocks.svg */ "./redux-templates/src/icons/images/acf-blocks.svg");
-/* harmony import */ var _images_advanced_custom_fields_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images/advanced-custom-fields.svg */ "./redux-templates/src/icons/images/advanced-custom-fields.svg");
-/* harmony import */ var _images_advanced_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./images/advanced-gutenberg-blocks.svg */ "./redux-templates/src/icons/images/advanced-gutenberg-blocks.svg");
-/* harmony import */ var _images_block_options_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./images/block-options.svg */ "./redux-templates/src/icons/images/block-options.svg");
-/* harmony import */ var _images_block_slider_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/block-slider.svg */ "./redux-templates/src/icons/images/block-slider.svg");
-/* harmony import */ var _images_coblocks_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./images/coblocks.svg */ "./redux-templates/src/icons/images/coblocks.svg");
-/* harmony import */ var _images_creative_blocks_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/creative-blocks.svg */ "./redux-templates/src/icons/images/creative-blocks.svg");
-/* harmony import */ var _images_editorplus_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/editorplus.svg */ "./redux-templates/src/icons/images/editorplus.svg");
-/* harmony import */ var _images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/elegant-blocks.svg */ "./redux-templates/src/icons/images/elegant-blocks.svg");
-/* harmony import */ var _images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/enhanced-blocks.svg */ "./redux-templates/src/icons/images/enhanced-blocks.svg");
-/* harmony import */ var _images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/essential-blocks.svg */ "./redux-templates/src/icons/images/essential-blocks.svg");
-/* harmony import */ var _images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./images/forms-gutenberg.svg */ "./redux-templates/src/icons/images/forms-gutenberg.svg");
-/* harmony import */ var _images_getwid_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/getwid.svg */ "./redux-templates/src/icons/images/getwid.svg");
-/* harmony import */ var _images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./images/ghostkit.svg */ "./redux-templates/src/icons/images/ghostkit.svg");
-/* harmony import */ var _images_guteblock_svg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./images/guteblock.svg */ "./redux-templates/src/icons/images/guteblock.svg");
-/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./images/gutenberg-blocks.png */ "./redux-templates/src/icons/images/gutenberg-blocks.png");
-/* harmony import */ var _images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _images_atomic_blocks_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images/atomic-blocks.svg */ "./redux-templates/src/icons/images/atomic-blocks.svg");
+/* harmony import */ var _images_advanced_custom_fields_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./images/advanced-custom-fields.svg */ "./redux-templates/src/icons/images/advanced-custom-fields.svg");
+/* harmony import */ var _images_advanced_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./images/advanced-gutenberg-blocks.svg */ "./redux-templates/src/icons/images/advanced-gutenberg-blocks.svg");
+/* harmony import */ var _images_block_options_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/block-options.svg */ "./redux-templates/src/icons/images/block-options.svg");
+/* harmony import */ var _images_block_slider_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./images/block-slider.svg */ "./redux-templates/src/icons/images/block-slider.svg");
+/* harmony import */ var _images_coblocks_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/coblocks.svg */ "./redux-templates/src/icons/images/coblocks.svg");
+/* harmony import */ var _images_creative_blocks_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/creative-blocks.svg */ "./redux-templates/src/icons/images/creative-blocks.svg");
+/* harmony import */ var _images_editorplus_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/editorplus.svg */ "./redux-templates/src/icons/images/editorplus.svg");
+/* harmony import */ var _images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/elegant-blocks.svg */ "./redux-templates/src/icons/images/elegant-blocks.svg");
+/* harmony import */ var _images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/enhanced-blocks.svg */ "./redux-templates/src/icons/images/enhanced-blocks.svg");
+/* harmony import */ var _images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./images/essential-blocks.svg */ "./redux-templates/src/icons/images/essential-blocks.svg");
+/* harmony import */ var _images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/forms-gutenberg.svg */ "./redux-templates/src/icons/images/forms-gutenberg.svg");
+/* harmony import */ var _images_getwid_svg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./images/getwid.svg */ "./redux-templates/src/icons/images/getwid.svg");
+/* harmony import */ var _images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./images/ghostkit.svg */ "./redux-templates/src/icons/images/ghostkit.svg");
+/* harmony import */ var _images_guteblock_svg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./images/guteblock.svg */ "./redux-templates/src/icons/images/guteblock.svg");
 /* harmony import */ var _images_gutentor_svg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./images/gutentor.svg */ "./redux-templates/src/icons/images/gutentor.svg");
 /* harmony import */ var _images_kadence_blocks_svg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./images/kadence-blocks.svg */ "./redux-templates/src/icons/images/kadence-blocks.svg");
 /* harmony import */ var _images_kioken_blocks_svg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./images/kioken-blocks.svg */ "./redux-templates/src/icons/images/kioken-blocks.svg");
@@ -6183,6 +6206,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import SVGGutenbergBlock from './images/gutenberg-blocks.png'
 
 
 
@@ -6211,92 +6235,98 @@ const acfblocks = () => {
     height: "20"
   });
 };
+const atomicblocks = () => {
+  return wp.element.createElement(_images_atomic_blocks_svg__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "20",
+    height: "20"
+  });
+};
 const advancedcustomfields = () => {
-  return wp.element.createElement(_images_advanced_custom_fields_svg__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return wp.element.createElement(_images_advanced_custom_fields_svg__WEBPACK_IMPORTED_MODULE_4__["default"], {
     width: "20",
     height: "20"
   });
 };
 const advancedgutenbergblocks = () => {
-  return wp.element.createElement(_images_advanced_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return wp.element.createElement(_images_advanced_gutenberg_blocks_svg__WEBPACK_IMPORTED_MODULE_5__["default"], {
     width: "20",
     height: "20"
   });
 };
 const blockoptions = () => {
-  return wp.element.createElement(_images_block_options_svg__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return wp.element.createElement(_images_block_options_svg__WEBPACK_IMPORTED_MODULE_6__["default"], {
     width: "20",
     height: "20"
   });
 };
 const blockslider = () => {
-  return wp.element.createElement(_images_block_slider_svg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return wp.element.createElement(_images_block_slider_svg__WEBPACK_IMPORTED_MODULE_7__["default"], {
     width: "20",
     height: "20"
   });
 };
 const coblocks = () => {
-  return wp.element.createElement(_images_coblocks_svg__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return wp.element.createElement(_images_coblocks_svg__WEBPACK_IMPORTED_MODULE_8__["default"], {
     width: "20",
     height: "20"
   });
 };
 const creativeblocks = () => {
-  return wp.element.createElement(_images_creative_blocks_svg__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  return wp.element.createElement(_images_creative_blocks_svg__WEBPACK_IMPORTED_MODULE_9__["default"], {
     width: "20",
     height: "20"
   });
 };
 const editorplus = () => {
-  return wp.element.createElement(_images_editorplus_svg__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  return wp.element.createElement(_images_editorplus_svg__WEBPACK_IMPORTED_MODULE_10__["default"], {
     width: "20",
     height: "20"
   });
 };
 const elegantblocks = () => {
-  return wp.element.createElement(_images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  return wp.element.createElement(_images_elegant_blocks_svg__WEBPACK_IMPORTED_MODULE_11__["default"], {
     width: "20",
     height: "20"
   });
 };
 const enhancedblocks = () => {
-  return wp.element.createElement(_images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return wp.element.createElement(_images_enhanced_blocks_svg__WEBPACK_IMPORTED_MODULE_12__["default"], {
     width: "20",
     height: "20"
   });
 };
 const essentialblocks = () => {
-  return wp.element.createElement(_images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  return wp.element.createElement(_images_essential_blocks_svg__WEBPACK_IMPORTED_MODULE_13__["default"], {
     width: "20",
     height: "20"
   });
 };
 const formsgutenberg = () => {
-  return wp.element.createElement(_images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  return wp.element.createElement(_images_forms_gutenberg_svg__WEBPACK_IMPORTED_MODULE_14__["default"], {
     width: "20",
     height: "20"
   });
 };
 const getwid = () => {
-  return wp.element.createElement(_images_getwid_svg__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  return wp.element.createElement(_images_getwid_svg__WEBPACK_IMPORTED_MODULE_15__["default"], {
     width: "20",
     height: "20"
   });
 };
 const ghostkit = () => {
-  return wp.element.createElement(_images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  return wp.element.createElement(_images_ghostkit_svg__WEBPACK_IMPORTED_MODULE_16__["default"], {
     width: "20",
     height: "20"
   });
 };
 const guteblock = () => {
-  return wp.element.createElement(_images_guteblock_svg__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  return wp.element.createElement(_images_guteblock_svg__WEBPACK_IMPORTED_MODULE_17__["default"], {
     width: "20",
     height: "20"
   });
 };
 const gutenbergblock = () => {
-  return wp.element.createElement(_images_gutenberg_blocks_png__WEBPACK_IMPORTED_MODULE_17___default.a, {
+  return wp.element.createElement(SVGGutenbergBlock, {
     width: "20",
     height: "20"
   });
@@ -6629,6 +6659,11 @@ Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(() => {
     if (window.location.hash == '#redux_templates=1') {
       window.location.hash = '';
       _modal_manager__WEBPACK_IMPORTED_MODULE_12__["ModalManager"].open(wp.element.createElement(_modal_library__WEBPACK_IMPORTED_MODULE_13__["default"], null));
+    } // For frontenberg, we open the dialog automatically.
+
+
+    if (document.body.classList.contains('wp-admin') === false) {
+      _modal_manager__WEBPACK_IMPORTED_MODULE_12__["ModalManager"].open(wp.element.createElement(_modal_library__WEBPACK_IMPORTED_MODULE_13__["default"], null));
     }
 
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_challenge__WEBPACK_IMPORTED_MODULE_11__["default"], null), challengeWrapperDiv);
@@ -6948,14 +6983,20 @@ function InstallPluginStep(props) {
 
     for (let pluginKey of missingPlugins) {
       const pluginInstance = redux_templates.supported_plugins[pluginKey];
+      localWaitingList = localWaitingList.filter(key => key !== pluginKey);
+      setWaitingList(localWaitingList);
+
+      if (!pluginKey || !pluginInstance) {
+        setInstallingPlugin(null);
+        break;
+      }
+
       setInstallingPlugin(_objectSpread(_objectSpread({}, pluginInstance), {}, {
         pluginKey
       }));
-      localWaitingList = localWaitingList.filter(key => key !== pluginKey);
-      setWaitingList(localWaitingList);
-      let pluginSlug = pluginInstance.free_slug ? pluginInstance.free_slug : pluginKey;
+      const reduxProSurfix = pluginInstance.redux_pro ? '&redux_pro=1' : '';
       await apiFetch({
-        path: 'redux/v1/templates/plugin-install?slug=' + pluginSlug
+        path: 'redux/v1/templates/plugin-install?slug=' + pluginKey + reduxProSurfix
       }).then(res => {
         if (res.success) {
           setInstalledDependencies(true);
@@ -7305,9 +7346,22 @@ function ImportWizard(props) {
         activating = _useState6[0],
         setActivating = _useState6[1];
 
+  const _useState7 = useState([]),
+        _useState8 = _slicedToArray(_useState7, 2),
+        missingPlugins = _useState8[0],
+        setMissingPlugins = _useState8[1];
+
   useEffect(() => {
     if (importingTemplate) {
-      // IMPORTANT First check: can you use redux pro?
+      if (!importingTemplate.proDependenciesMissing) {
+        importingTemplate.proDependenciesMissing = [];
+      }
+
+      if (!importingTemplate.installDependenciesMissing) {
+        importingTemplate.installDependenciesMissing = [];
+      } // IMPORTANT First check: can you use redux pro?
+
+
       const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
 
       if (redux_templates.mokama !== '1' && leftTry < 1) {
@@ -7320,9 +7374,20 @@ function ImportWizard(props) {
       if (Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresReduxPro"])(importingTemplate)) {
         setCurrentStep(REDUX_PRO_STEP);
         return;
+      } // Start with Pro step
+      // When all OK with Pro Step, move to Plugin Step, on the way, prepare reduxProMergedPlugins.
+
+
+      if (importingTemplate && currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresPro"])(importingTemplate) === false) {
+        setCurrentStep(PLUGIN_STEP);
+
+        if (Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["isReduxProInstalled"])()) {
+          setMissingPlugins([].concat(importingTemplate.proDependenciesMissing, importingTemplate.installDependenciesMissing).filter(plugin => plugin));
+        } else {
+          setMissingPlugins(importingTemplate.installDependenciesMissing.filter(plugin => plugin));
+        }
       }
 
-      if (importingTemplate && currentStep === PRO_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresPro"])(importingTemplate) === false) setCurrentStep(PLUGIN_STEP);
       if (importingTemplate && currentStep === PLUGIN_STEP && Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_6__["requiresInstall"])(importingTemplate) === false) if (isPostEmpty === false) setCurrentStep(OPTION_STEP);else setCurrentStep(IMPORT_STEP);
       if (importingTemplate && currentStep === OPTION_STEP && isPostEmpty === true) setCurrentStep(IMPORT_STEP);
 
@@ -7408,7 +7473,7 @@ function ImportWizard(props) {
     missingPros: importingTemplate.proDependenciesMissing,
     onCloseWizard: onCloseWizard
   }), currentStep === PLUGIN_STEP && wp.element.createElement(_InstallPluginStep__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    missingPlugins: isChallengeOpen ? tourPlugins : importingTemplate.installDependenciesMissing || [],
+    missingPlugins: isChallengeOpen ? tourPlugins : missingPlugins,
     toNextStep: toNextStep,
     onCloseWizard: onCloseWizard
   }), currentStep === OPTION_STEP && wp.element.createElement(_OptionStep__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -7855,8 +7920,8 @@ function DependencyFilter(props) {
     position: "top right"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isSmall: true,
-    isSecondary: true,
-    isPressed: dependencyFilterRule === false,
+    isPrimary: dependencyFilterRule === false,
+    isSecondary: dependencyFilterRule,
     onClick: () => setDependencyFilterRule(false),
     disabled: activeItemType === 'collection'
   }, __('Any', redux_templates.i18n))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
@@ -7864,8 +7929,8 @@ function DependencyFilter(props) {
     position: "top right"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isSmall: true,
-    isSecondary: true,
-    isPressed: dependencyFilterRule,
+    isSecondary: dependencyFilterRule === false,
+    isPrimary: dependencyFilterRule,
     onClick: () => setDependencyFilterRule(true),
     disabled: activeItemType === 'collection'
   }, __('Only', redux_templates.i18n)))), wp.element.createElement("h3", null, __('Required Plugins', redux_templates.i18n), " ")), wp.element.createElement("div", {
@@ -8104,14 +8169,7 @@ function DependencyFilterRow(props) {
     label: pluginInstanceName,
     checked: isChecked,
     onChange: toggleChecked
-  }), pluginClassname.includes('missing-dependency') && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    position: 'top right',
-    text: __('Not Installed', redux_templates.i18n)
-  }, wp.element.createElement("div", {
-    className: "redux-icon-wrapper"
-  }, wp.element.createElement("i", {
-    className: "fa fa-exclamation-triangle"
-  }))), pluginInstanceURL ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+  }), pluginInstanceURL ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     position: 'top right',
     text: __('Visit Plugin Website', redux_templates.i18n)
   }, wp.element.createElement("span", null, wp.element.createElement("a", {
@@ -8119,7 +8177,14 @@ function DependencyFilterRow(props) {
     target: "_blank"
   }, wp.element.createElement("i", {
     className: "fas fa-external-link-alt"
-  })))) : null);
+  })))) : null, pluginClassname.includes('missing-dependency') && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    position: 'top right',
+    text: __('Not Installed', redux_templates.i18n)
+  }, wp.element.createElement("span", {
+    className: "redux-icon-wrapper"
+  }, wp.element.createElement("i", {
+    className: "fa fa-exclamation-triangle"
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (compose([withDispatch(dispatch => {
@@ -8403,7 +8468,7 @@ function CollectionView(props) {
       } else {
         setPreviewData(_objectSpread(_objectSpread({}, itemData), {}, {
           backgroundImage: itemData.image,
-          previewImageClassname: 'details-preview'
+          previewImageClassname: 'details-preview has_full'
         }));
         backgroundImage.src = itemData.image;
       }
@@ -9316,8 +9381,10 @@ function SidebarContent(props) {
     initialOpen: false
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelRow"], {
     className: "redux-block-pills"
-  }, wp.element.createElement("ul", null, blocks.map(block => {
-    return wp.element.createElement("li", null, wp.element.createElement("span", null, block));
+  }, wp.element.createElement("ul", null, blocks.map((block, i) => {
+    return wp.element.createElement("li", {
+      key: i
+    }, wp.element.createElement("span", null, block));
   })))), installDependencies && installDependencies.length > 0 && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__["PanelBody"], {
     title: __('Required Plugins', redux_templates.i18n),
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_1__["more"],
@@ -9641,7 +9708,7 @@ function PreviewModal(props) {
   }), wp.element.createElement("div", {
     className: "wp-full-overlay-main loaded"
   }, loading < FULLY_LOADED && wp.element.createElement(Spinner, null), state.itemData.url && wp.element.createElement("iframe", {
-    src: loading === LOADING_RESET ? '' : state.itemData.url,
+    src: loading === LOADING_RESET ? '' : state.itemData.url + '?preview=1',
     target: "Preview",
     onLoad: hideSpinner
   }), !state.itemData.url && wp.element.createElement("div", {
@@ -11030,7 +11097,7 @@ const actions = {
 /*!********************************************************!*\
   !*** ./redux-templates/src/stores/dependencyHelper.js ***!
   \********************************************************/
-/*! exports provided: getPluginInstance, needsPluginInstall, needsPluginPro, pluginInfo, processPlugin, requiresPro, requiresInstall, requiresReduxPro, isTemplateReadyToInstall, isTemplatePremium */
+/*! exports provided: getPluginInstance, needsPluginInstall, needsPluginPro, pluginInfo, processPlugin, requiresPro, requiresInstall, requiresReduxPro, isPluginReduxProMerged, isTemplateReadyToInstall, isTemplatePremium, isReduxProInstalled */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11043,8 +11110,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresPro", function() { return requiresPro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresInstall", function() { return requiresInstall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiresReduxPro", function() { return requiresReduxPro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPluginReduxProMerged", function() { return isPluginReduxProMerged; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTemplateReadyToInstall", function() { return isTemplateReadyToInstall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTemplatePremium", function() { return isTemplatePremium; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isReduxProInstalled", function() { return isReduxProInstalled; });
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -11099,38 +11168,58 @@ const processPlugin = pluginKey => {
   return pluginInstance;
 };
 const requiresPro = data => {
-  return data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0 ? true : false;
+  if (data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0) {
+    if (isReduxProInstalled()) {
+      // redux pro installed, then skip merged plugins
+      return data.proDependenciesMissing.filter(plugin => isPluginReduxProMerged(plugin) === false).length > 0;
+    }
+
+    return true;
+  }
+
+  return false;
 };
 const requiresInstall = data => {
-  return data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0 ? true : false;
+  if (data && data.installDependenciesMissing && data.installDependenciesMissing.length > 0) {
+    return true;
+  }
+
+  if (isReduxProInstalled() && data.proDependenciesMissing) {
+    // redux pro installed, then include merged plugins
+    return data.proDependenciesMissing.filter(plugin => isPluginReduxProMerged(plugin)).length > 0;
+  }
+
+  return false;
 }; // Check if redux pro should be installed.
 
 const requiresReduxPro = data => {
   if (!data) return false;
-  const reduxProNotInstalled = needsPluginInstall('redux-pro');
-  let missingDependencies = [];
-  if (requiresInstall(data) === true) missingDependencies = [...data.installDependenciesMissing];
-  if (requiresPro(data)) missingDependencies = [...missingDependencies, ...data.proDependenciesMissing];
+  const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
   return missingDependencies.reduce((acc, curKey) => {
     if (curKey === 'redux-pro') return true;
-    const pluginInstance = getPluginInstance(curKey);
-    if (pluginInstance === false) return acc || false; // handle exception case
-
-    return acc || pluginInstance.redux_pro === true && reduxProNotInstalled === true; // main logic, above were execpetion handling
+    return acc || isPluginReduxProMerged(curKey) && isReduxProInstalled() === false; // main logic, above were execpetion handling
   }, false);
+};
+const isPluginReduxProMerged = pluginKey => {
+  const pluginInstance = getPluginInstance(pluginKey);
+  return pluginInstance !== false && pluginInstance.redux_pro === true;
 };
 const isTemplateReadyToInstall = data => {
   return requiresInstall(data) || requiresPro(data) ? false : true;
 };
 const isTemplatePremium = (data, activeDependencyFilter) => {
-  if (data && data.proDependencies && data.proDependencies.length > 0) {
+  if (data && data.proDependencies !== undefined && data.proDependencies.length > 0) {
     return data.proDependencies.reduce((acc, cur) => {
       if (activeDependencyFilter[cur] === undefined) return false;
       return acc || activeDependencyFilter[cur].value;
     }, false);
   }
 
-  return data && data.proDependenciesMissing && data.proDependenciesMissing.length > 0;
+  return data && data.proDependenciesMissing !== undefined && data.proDependenciesMissing.length > 0;
+};
+const isReduxProInstalled = () => {
+  const reduxProPluginInstance = redux_templates.supported_plugins['redux-framework'];
+  return reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
 };
 
 /***/ }),
@@ -11314,11 +11403,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/flattenDeep */ "./node_modules/lodash/flattenDeep.js");
 /* harmony import */ var lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _actionHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actionHelper */ "./redux-templates/src/stores/actionHelper.js");
+/* harmony import */ var _dependencyHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dependencyHelper */ "./redux-templates/src/stores/dependencyHelper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -11572,7 +11663,8 @@ const getDefaultDependencies = dependencies => {
   return dependencies.reduce((acc, cur) => {
     // special handling for pro plugin not activated.
     let value = true;
-    if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY) value = false;
+    if (isProPlugin(cur) && cur !== REDUXTEMPLATES_PRO_KEY && Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["isPluginReduxProMerged"])(cur) === false) value = false; // Not including pro plugin in redux templates
+
     return _objectSpread(_objectSpread({}, acc), {}, {
       [cur]: {
         value,
@@ -11597,7 +11689,7 @@ const getInstalledDependencies = dependencies => {
   return dependencies.filter(key => key !== NONE_KEY).reduce((acc, cur) => {
     // special handling for pro plugin not activated.
     let value = true;
-    const pluginInstance = getPluginInstance(cur);
+    const pluginInstance = Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["getPluginInstance"])(cur);
 
     if (pluginInstance) {
       if (isProPlugin(cur) && unSupportedPlugins.indexOf(cur) !== -1) value = false;
@@ -11619,22 +11711,14 @@ const getInstalledDependencies = dependencies => {
   });
 };
 
-const getPluginInstance = pluginKey => {
-  if (pluginKey in redux_templates.supported_plugins) {
-    return redux_templates.supported_plugins[pluginKey];
-  }
-
-  return false; // Deal with unknown plugins
-};
-
 const isProPlugin = pluginKey => {
-  const pluginInstance = getPluginInstance(pluginKey);
+  const pluginInstance = Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["getPluginInstance"])(pluginKey);
   return pluginInstance && pluginInstance.hasOwnProperty('free_slug');
 };
 
 const isPluginProActivated = pluginKey => {
-  const pluginInstance = getPluginInstance(pluginKey);
-  const freePluginInstance = getPluginInstance(pluginInstance.free_slug);
+  const pluginInstance = Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["getPluginInstance"])(pluginKey);
+  const freePluginInstance = Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["getPluginInstance"])(pluginInstance.free_slug);
   return freePluginInstance.hasOwnProperty('version') && freePluginInstance.hasOwnProperty('is_pro') && freePluginInstance.is_pro !== false;
 };
 
@@ -12020,7 +12104,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_category', ''),
     dependencyFilters: {},
-    dependencyFilterRule: true,
+    dependencyFilterRule: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_filterRule', true),
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_sort', 'name'),
@@ -12032,7 +12116,7 @@ const initialState = {
     priceFilter: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_price', ''),
     activeCategory: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_category', ''),
     dependencyFilters: {},
-    dependencyFilterRule: true,
+    dependencyFilterRule: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_filterRule', true),
     searchContext: '',
     wholePlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_sort', 'name'),
@@ -12272,6 +12356,7 @@ const reducer = (state = initialState, action) => {
       });
 
     case 'SET_DEPENDENCY_FILTER_RULE':
+      Object(_helper__WEBPACK_IMPORTED_MODULE_0__["setWithExpiry"])(state.activeItemType + '_filterRule', action.data, EXIPRY_TIME);
       return _objectSpread(_objectSpread({}, state), {}, {
         [state.activeItemType]: _objectSpread(_objectSpread({}, state[state.activeItemType]), {}, {
           dependencyFilterRule: action.data
@@ -12329,7 +12414,7 @@ const reducer = (state = initialState, action) => {
         return _objectSpread(_objectSpread({}, acc), {}, {
           [cur]: _objectSpread(_objectSpread({}, state[cur]), {}, {
             searchContext: '',
-            dependencyFilterRule: state.activeItemType !== 'collection',
+            dependencyFilterRule: cur !== 'collection',
             // We must always use false for collection to get template kits to work.
             dependencyFilters: atomHandler(state[cur].wholePlugins)
           })

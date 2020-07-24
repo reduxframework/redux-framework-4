@@ -651,20 +651,12 @@ function makeBuild() {
 		'!./jest.config.js',
 		'!./babel.config.js',
 		'!./jsconfig.json',
-		'!vendor/composer/installers/**/*',
-		'!vendor/composer/LICENSE',
-		'!vendor/composer/installed.json',
+		'!./vendor/**/*',
+		'!./redux-core/assets/scss/**/*',
+		'!./redux-core/assets/img/raw/**/*',
+		'!./redux-templates/src/**/*',
+		'!./redux-templates/classes/*.json',
 	] ).pipe( gulp.dest( 'build/' ) );
-}
-
-function productionMode() {
-	// const replacement_string = '\n\t\t\twp_enqueue_style(\'redux-templates-bundle\', REDUXTEMPLATES_DIR_URL . \'assets/css/admin.min.css\', false, REDUXTEMPLATES_VERSION);\n\t\t\t';
-	return gulp.src( ['./build/redux-templates/core/Init.php'] )
-	// .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, replacement_string))
-	.pipe( replace( /redux_templates\.dev/g, 'redux_templates.min' ) )
-	.pipe( replace( /vendor\.dev/g, 'vendor.min' ) )
-	.pipe( replace( /map\.js/g, 'map.min.js' ) )
-	.pipe( gulp.dest( './build/redux-templates/core/' ) );
 }
 
 function admin_css() {
@@ -701,7 +693,6 @@ function makeZip() {
 }
 
 gulp.task( 'makeBuild', makeBuild );
-gulp.task( 'productionMode', productionMode );
 gulp.task( 'admin_css', admin_css );
 gulp.task( 'minify_js', minify_js );
 gulp.task( 'cleanBuild', cleanBuild );
@@ -710,7 +701,6 @@ gulp.task( 'makeZip', makeZip );
 gulp.task( 'templates', gulp.series(
 	'cleanBuild',
 	'makeBuild',
-	'productionMode',
 	'admin_css',
 	'minify_js',
 	'makeZip'
