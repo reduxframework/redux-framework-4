@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 
 import SVGRedux from '../../assets/img/icon.svg'
 import SVGAcfBlocks from './images/acf-blocks.svg'
+import SVGAtomicBlocks from './images/atomic-blocks.svg'
 import SVGAdvancedCustomFields from './images/advanced-custom-fields.svg'
 import SVGAdvancedGutenbergBlocks from './images/advanced-gutenberg-blocks.svg'
 import SVGBlockOptions from './images/block-options.svg'
@@ -40,6 +41,7 @@ import SVGWordPress from './images/wordpress.svg'
 
 export const redux = () => { return <SVGRedux width="20" height="20"/> }
 export const acfblocks = () => { return <SVGAcfBlocks width="20" height="20"/> }
+export const atomicblocks = () => { return <SVGAtomicBlocks width="20" height="20"/> }
 export const advancedcustomfields = () => { return <SVGAdvancedCustomFields width="20" height="20"/> }
 export const advancedgutenbergblocks = () => { return <SVGAdvancedGutenbergBlocks width="20" height="20"/> }
 export const blockoptions = () => { return <SVGBlockOptions width="20" height="20"/> }
