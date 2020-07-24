@@ -30,7 +30,7 @@ function CollectionView(props) {
                 setPreviewData({...itemData, backgroundImage: itemData.image_full, previewImageClassname: 'details-preview has_full'});
                 backgroundImage.src = itemData.image_full;
             } else {
-                setPreviewData({...itemData, backgroundImage: itemData.image, previewImageClassname: 'details-preview'})
+                setPreviewData({...itemData, backgroundImage: itemData.image, previewImageClassname: 'details-preview has_full'})
                 backgroundImage.src = itemData.image;
             }
             backgroundImage.onload = function () {
