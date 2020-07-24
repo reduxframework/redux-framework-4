@@ -65,9 +65,9 @@ export default function SidebarContent(props) {
 				<PanelRow className="redux-block-pills">
 					<ul>
 						{
-							blocks.map(block => {
+							blocks.map((block, i) => {
 								return (
-									<li><span>{block}</span></li>
+									<li key={i}><span>{block}</span></li>
 								)
 							} )
 						}
