@@ -784,7 +784,7 @@ class Api {
 				'callback' => 'plugin_install',
 			),
 		);
-		$fs  = \Redux_Filesystem::get_instance();
+		$fs    = \Redux_Filesystem::get_instance();
 
 		foreach ( $hooks as $route => $data ) {
 			$methods = array( 'GET', 'POST' );
@@ -795,9 +795,9 @@ class Api {
 			foreach ( $methods as $method ) {
 
 				$args = array(
-					'methods'             => $method,
-					'callback'            => array( $this, $data['callback'] ),
-					'args'                => array(
+					'methods'  => $method,
+					'callback' => array( $this, $data['callback'] ),
+					'args'     => array(
 						'route' => $route,
 					),
 				);

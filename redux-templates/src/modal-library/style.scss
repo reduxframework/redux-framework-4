@@ -485,7 +485,9 @@
     background: #888;
     //min-height: 200px;
     transition: 300ms;
-
+    .imageloader-loaded {
+        max-height: 285px;
+    }
     img {
         width: 100%;
         display: block;
