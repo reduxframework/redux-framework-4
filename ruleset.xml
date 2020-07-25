@@ -19,4 +19,5 @@
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>redux-core/appsero/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
+	<exclude-pattern>build/</exclude-pattern>
 </ruleset>
