@@ -1012,6 +1012,17 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			return $return;
 		}
 
+		/**
+		 * Shim: get_template.
+		 *
+		 * @param string $file Template name.
+		 * @return string Path to template file.
+		 */
+		public function get_template( $file ) {
+			$panel = new Redux_Panel( $this );
+			return $panel->get_template( $file );
+		}
+
 	}
 
 	Redux_Filesystem::get_instance();

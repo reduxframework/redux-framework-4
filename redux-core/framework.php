@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
-Redux_Core::$version    = '4.0.4';
+Redux_Core::$version    = '4.0.4.1';
 Redux_Core::$redux_path = dirname( __FILE__ );
 Redux_Core::instance();
 
@@ -544,7 +544,12 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * SHIM: _enqueue_output
 		 */
 		public function _enqueue_output() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
-			$this->output_class->enqueue();
+			if ( empty( $this->output_class ) ) {
+				$obj = new ReduxFramework( $this->sections, $this->args );
+				$obj->output_class->enqueue();
+			} else {
+				$this->output_class->enqueue();
+			}
 		}
 
 		/**
@@ -552,6 +557,17 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 */
 		public function _enqueue() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 			$this->enqueue_class->init();
+		}
+
+		/**
+		 * SHIM: generate_panel
+		 *
+		 * @since       1.0.0
+		 * @access      public
+		 * @return      void
+		 */
+		public function generate_panel() {
+			$this->render_class->generate_panel();
 		}
 
 		/**

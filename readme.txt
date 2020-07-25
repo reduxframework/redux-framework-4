@@ -5,7 +5,7 @@ Tags: admin, admin interface, options, theme options, plugin options, options fr
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.0.4
+Stable tag: 4.0.4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -130,6 +130,11 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 1. This is the demo mode of Redux Framework. Activate it and you will find a fully-functional admin panel that you can play with. On the Plugins page, beneath the description and an activated Redux Framework, you will find a Demo Mode link. Click that link to activate or deactivate the sample-config file Redux ships with.  Don't take our word for it, check out our online demo and try Redux without installing a thing! [**http://demo.redux.io/wp-admin/**](http://demo.redux.io/wp-admin/)
 
 == Changelog ==
+
+= 4.0.4.1 =
+
+* Fixed: Issues where the site crashes because of varied ways Redux was called.
+* Release date: July 25, 2020
 
 = 4.0.4 =
 

@@ -284,7 +284,6 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			settings_fields( "{$this->parent->args['opt_name']}_group" );
 		}
 
-
 		/**
 		 * Enable file deprecate warning from core.  This is necessary because the function is considered private.
 		 *
@@ -293,12 +292,13 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		public function tick_file_deprecate_warning() {
 			return true;
 		}
+
 		/**
 		 * Used to select the proper template. If it doesn't exist in the path, then the original template file is used.
 		 *
 		 * @param string $file Path to template file.
 		 */
-		private function get_template( $file ) {
+		public function get_template( $file ) {
 			if ( empty( $file ) ) {
 				return;
 			}
@@ -387,11 +387,11 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					$core_version      = Redux_Helpers::get_template_version( $this->original_path . $file );
 					$developer_version = Redux_Helpers::get_template_version( $developer_theme_file );
 
-					if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) ) {
+					if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) && isset( $this->parent->args['dev_mode'] ) && ! empty( $this->parent->args['dev_mode'] ) ) {
 						?>
 						<div id="message" class="error redux-message">
 							<p>
-								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'redux-framework' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please update them now as functionality issues could arise.', 'redux-framework' ); ?>&nbsp;&nbsp;<strong><a href="<?php echo esc_url( admin_url( 'tools.php?page=redux-status#panel-templates' ) ); ?>"><?php esc_html_e( 'Review out of date templates', 'redux-framework' ); ?></a></strong>
+								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'redux-framework' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please update them now as functionality issues could arise.', 'redux-framework' ); ?></a></strong>
 							</p>
 						</div>
 						<?php
