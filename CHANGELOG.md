@@ -1,10 +1,13 @@
 # Redux Framework v4 Changelog
 
+## 4.0.4.2
+* Fixed:    PHP issue when Redux was called in legacy methods.
+* Fixed:    CSS output not rendering properly.
+
 ## 4.0.4
 * Fixed:    PHPCS, all.
 * Added:    Redux Templates.
 * Added:    Complete rewrite of the underlying code base is complete and complies with all WordPress coding standards. 
-
 
 ## 4.0.3
 * Fixed:    PHPCS findings.

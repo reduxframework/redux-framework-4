@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
-Redux_Core::$version    = '4.0.4.1';
+Redux_Core::$version    = '4.0.4.2';
 Redux_Core::$redux_path = dirname( __FILE__ );
 Redux_Core::instance();
 
@@ -545,8 +545,10 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 */
 		public function _enqueue_output() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 			if ( empty( $this->output_class ) ) {
-				$obj = new ReduxFramework( $this->sections, $this->args );
+				$obj          = new ReduxFramework( $this->sections, $this->args );
+				$obj->options = $this->options;
 				$obj->output_class->enqueue();
+				$this->outputCSS = $obj->outputCSS; // phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			} else {
 				$this->output_class->enqueue();
 			}

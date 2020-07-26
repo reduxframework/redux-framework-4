@@ -1,12 +1,12 @@
 {
 	"name": "reduxframework/redux-framework-4",
-	"version": "4.0.4.1",
+	"version": "4.0.4.2",
 	"authors": [
 		{
 			"name": "Redux.io",
 			"homepage": "http://redux.io",
-			"email": "hi@redux.io",
-			"role": "Developer"
+			"email": "support@redux.io",
+			"role": "Support"
 		},
 		{
 			"name": "Dōvy Paukstys",
@@ -29,9 +29,10 @@
 		"plugin"
 	],
 	"support": {
-		"issues": "https://github.com/reduxframework/redux-framework-4/issues",
+		"issues": "https://github.com/reduxframework/redux-framework/issues",
 		"docs": "https://docs.redux.io",
-		"forum": "https://wordpress.org/support/plugin/redux-framework/"
+		"forum": "https://wordpress.org/support/plugin/redux-framework/",
+		"website": "https://redux.io/"
 	},
 	"require": {
 		"php": ">=5.2.0",
