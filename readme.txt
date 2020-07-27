@@ -5,7 +5,7 @@ Tags: admin, admin interface, options, theme options, plugin options, options fr
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.0.4.1
+Stable tag: 4.0.4.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,10 +131,11 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 == Changelog ==
 
-= 4.0.4.1 =
+= 4.0.4.3 =
 
 * Fixed: Issues where the site crashes because of varied ways Redux was called.
-* Release date: July 25, 2020
+* Fixed: Varied implementations of opt_names resulting in option panels not working as expected.
+* Release date: July 27, 2020
 
 = 4.0.4 =
 
