@@ -38,162 +38,163 @@
 .redux-container {
     background: $background;
 
-    .redux-main {
-        border-left-width: 0;
-    }
-}
+    // Sidebar background
+    .redux-sidebar {
+        font-size: 13px;
+        font-weight: 400 !important;
+        line-height: 18px;
 
-// Sidebar background
-.redux-sidebar {
-    background-color: $background;
-    font-size: 13px;
-    font-weight: 400 !important;
-    line-height: 18px;
+        .redux-group-menu {
+            background-color: $background;
 
-    .redux-group-menu {
-        li {
-            &.divide {
-                border-bottom-color: lighten($primary, 20%) !important;
-                border-top-color: lighten($primary, 20%) !important;
-            }
+            li {
+                &.divide {
+                    border-bottom-color: lighten($primary, 20%) !important;
+                    border-top-color: lighten($primary, 20%) !important;
+                }
 
-            &.activeChild {
-                &.hasSubSections {
+                &.activeChild {
+                    &.hasSubSections {
 
-                    // Menu item with closed subsection
+                        // Menu item with closed subsection
+                        a {
+                            background-color: $primary !important;
+
+                            //@if $text_shadow == 1 {
+                            //    text-shadow: 1px 1px darken($primary, 30%)!important;
+                            //} @else {
+                            //    text-shadow: 1px 1px transparent!important;
+                            //}
+
+                            color: $active_menu_text !important;
+                        }
+
+                        .subsection {
+                            li {
+                                &.active {
+
+                                    // Subsection selected item
+                                    a {
+                                        font-weight: 700 !important;
+                                        color: $active_submenu_text !important;
+
+                                        //@if $text_shadow == 1 {
+                                        //    text-shadow: 1px 1px darken($primary, 20%)!important;
+                                        //} @else {
+                                        //    text-shadow: 1px 1px transparent!important;
+                                        //}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Active menu item, no subsection
+                &.active {
                     a {
                         background-color: $primary !important;
-
-                        //@if $text_shadow == 1 {
-                        //    text-shadow: 1px 1px darken($primary, 30%)!important;
-                        //} @else {
-                        //    text-shadow: 1px 1px transparent!important;
-                        //}
-
                         color: $active_menu_text !important;
+                        opacity: 1 !important;
+                        font-weight: 700 !important;
+
+                        // Active menu item, no subsection hover
+                        &:hover {
+                            background-color: $primary;
+                            color: $menu_hover_text !important;
+                        }
                     }
+                }
 
-                    .subsection {
-                        li {
-                            &.active {
+                // Inactive menu item, no subsection
+                a {
+                    font-weight: 400 !important;
+                    color: $text !important;
+                    opacity: 0.9 !important;
+                    border-style: hidden !important;
+                    -webkit-transition: all 0.2s ease-in-out !important;
+                    -moz-transition: all 0.2s ease-in-out !important;
+                    -ms-transition: all 0.2s ease-in-out !important;
+                    -o-transition: all 0.2s ease-in-out !important;
+                    transition: all 0.2s ease-in-out !important;
 
-                                // Subsection selected item
-                                a {
-                                    font-weight: 700 !important;
-                                    color: $active_submenu_text !important;
+                    // Inactive menu item, no subsection hover
+                    &:hover {
+                        color: $menu_hover_text !important;
+                        background-color: $primary !important;
+                    }
+                }
 
-                                    //@if $text_shadow == 1 {
-                                    //    text-shadow: 1px 1px darken($primary, 20%)!important;
-                                    //} @else {
-                                    //    text-shadow: 1px 1px transparent!important;
-                                    //}
+                .subsection {
+                    background: $subsection_background;
+
+                    .redux-group-tab-link-li {
+
+                        // subsection inactive menu
+                        .redux-group-tab-link-a {
+                            font-weight: 400 !important;
+                            //opacity: 0.7!important;
+                            color: $subsection_text !important;
+                            background-color: $subsection_background !important;
+
+                            // subsection inactive menu hover
+                            &:hover {
+                                background-color: $subsection_background_hover !important;
+                                color: $menu_hover !important;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                &.hasSubSections {
+                    &.redux-section-hover {
+
+                        // subsection item with flyout inactive
+                        > a {
+                            background-color: $primary;
+                            color: $menu_hover_text !important;
+
+                            &::after {
+                                border-right-color: $subsection_background;
+                            }
+                        }
+
+                        // subsection item with flyout inactive hover
+                        .redux-group-tab-link-a {
+                            //color: $menu_hover_text!important;
+
+                            &:hover {
+                                color: $menu_hover_text !important;
+                            }
+                        }
+
+                        .subsection {
+                            background-color: $subsection_background;
+
+                            // flyout subsection inactive
+                            .redux-group-tab-link-a {
+                                -webkit-transition: all 0.2s ease-in-out;
+                                -moz-transition: all 0.2s ease-in-out;
+                                -ms-transition: all 0.2s ease-in-out;
+                                -o-transition: all 0.2s ease-in-out;
+                                transition: all 0.2s ease-in-out;
+
+                                // flyout subsection inactive hover
+                                &:hover {
+                                    background-color: $background;
+                                    color: $menu_hover !important;
                                 }
                             }
                         }
                     }
                 }
             }
-
-            // Active menu item, no subsection
-            &.active {
-                a {
-                    background-color: $primary !important;
-                    color: $active_menu_text !important;
-                    opacity: 1 !important;
-                    font-weight: 700 !important;
-
-                    // Active menu item, no subsection hover
-                    &:hover {
-                        background-color: $primary;
-                        color: $menu_hover_text !important;
-                    }
-                }
-            }
-
-            // Inactive menu item, no subsection
-            a {
-                font-weight: 400 !important;
-                color: $text !important;
-                opacity: 0.9 !important;
-                border-style: hidden !important;
-                -webkit-transition: all 0.2s ease-in-out !important;
-                -moz-transition: all 0.2s ease-in-out !important;
-                -ms-transition: all 0.2s ease-in-out !important;
-                -o-transition: all 0.2s ease-in-out !important;
-                transition: all 0.2s ease-in-out !important;
-
-                // Inactive menu item, no subsection hover
-                &:hover {
-                    color: $menu_hover_text !important;
-                    background-color: $primary !important;
-                }
-            }
-
-            .subsection {
-                background: $subsection_background;
-
-                .redux-group-tab-link-li {
-
-                    // subsection inactive menu
-                    .redux-group-tab-link-a {
-                        font-weight: 400 !important;
-                        //opacity: 0.7!important;
-                        color: $subsection_text !important;
-                        background-color: $subsection_background !important;
-
-                        // subsection inactive menu hover
-                        &:hover {
-                            background-color: $subsection_background_hover !important;
-                            color: $menu_hover !important;
-                            opacity: 1;
-                        }
-                    }
-                }
-            }
-
-            &.hasSubSections {
-                &.redux-section-hover {
-
-                    // subsection item with flyout inactive
-                    > a {
-                        background-color: $primary;
-                        color: $menu_hover_text !important;
-
-                        &::after {
-                            border-right-color: $subsection_background;
-                        }
-                    }
-
-                    // subsection item with flyout inactive hover
-                    .redux-group-tab-link-a {
-                        //color: $menu_hover_text!important;
-
-                        &:hover {
-                            color: $menu_hover_text !important;
-                        }
-                    }
-
-                    .subsection {
-                        background-color: $subsection_background;
-
-                        // flyout subsection inactive
-                        .redux-group-tab-link-a {
-                            -webkit-transition: all 0.2s ease-in-out;
-                            -moz-transition: all 0.2s ease-in-out;
-                            -ms-transition: all 0.2s ease-in-out;
-                            -o-transition: all 0.2s ease-in-out;
-                            transition: all 0.2s ease-in-out;
-
-                            // flyout subsection inactive hover
-                            &:hover {
-                                background-color: $background;
-                                color: $menu_hover !important;
-                            }
-                        }
-                    }
-                }
-            }
         }
+    }
+
+    .redux-main {
+        border-left-width: 0;
     }
 }
 
