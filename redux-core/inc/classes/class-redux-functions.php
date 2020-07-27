@@ -171,7 +171,6 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 				}
 			}
 
-
 			return $min;
 		}
 
