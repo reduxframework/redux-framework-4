@@ -757,7 +757,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			wp_localize_script(
 				'redux-js',
-				'redux_' . $core->args['opt_name'],
+				'redux_' . str_replace( '-', '_', $core->args['opt_name'] ),
 				$this->localize_data
 			);
 

@@ -150,26 +150,27 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		public static function is_min() {
 			$min      = '.min';
 			$dev_mode = false;
-			if ( ! isset( self::$parent ) ) {
-				$instances = Redux::all_instances();
 
-				if ( ! empty( $instances ) ) {
-					foreach ( $instances as $opt_name => $instance ) {
-						if ( empty( self::$parent ) ) {
-							self::$parent  = $instance;
-							self::$_parent = self::$parent;
-						}
-						if ( ! empty( $instance->args['dev_mode'] ) ) {
-							$dev_mode      = true;
-							self::$parent  = $instance;
-							self::$_parent = self::$parent;
-						}
+			$instances = Redux::all_instances();
+
+			if ( ! empty( $instances ) ) {
+				foreach ( $instances as $opt_name => $instance ) {
+
+					if ( empty( self::$parent ) ) {
+						self::$parent  = $instance;
+						self::$_parent = self::$parent;
 					}
-					if ( $dev_mode ) {
-						$min = '';
+					if ( ! empty( $instance->args['dev_mode'] ) ) {
+						$dev_mode      = true;
+						self::$parent  = $instance;
+						self::$_parent = self::$parent;
 					}
 				}
+				if ( $dev_mode ) {
+					$min = '';
+				}
 			}
+
 
 			return $min;
 		}

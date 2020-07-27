@@ -619,12 +619,9 @@ function colorNameToHex( colour ) {
 			$( '.redux-container' ).each(
 				function() {
 					opt_name = $.redux.getOptName( this );
-
 					if ( $.inArray( opt_name, tempArr ) === - 1 ) {
 						tempArr.push( opt_name );
-
-						redux.optName = window['redux_' + opt_name];
-
+						redux.optName = window['redux_' + opt_name.replace('-', '_')];
 						$.redux.checkRequired( $( this ) );
 						$.redux.initEvents( $( this ) );
 					}
@@ -635,8 +632,7 @@ function colorNameToHex( colour ) {
 				'click',
 				function() {
 					opt_name = $.redux.getOptName( this );
-
-					redux.optName = window['redux_' + opt_name];
+					redux.optName = window['redux_' + opt_name.replace('-', '_')];
 				}
 			);
 
@@ -1158,7 +1154,7 @@ function redux_change( variable ) {
 		} else {
 			opt_name = $.redux.getOptName( rContainer );
 		}
-		redux.optName = window['redux_' + opt_name];
+		redux.optName = window['redux_' + opt_name.replace('-', '_')];
 
 		$( 'body' ).trigger( 'check_dependencies', variable );
 
@@ -1320,7 +1316,6 @@ function redux_hook( object, functionName, callback, before ) {
 	};
 
 	$.redux.required = function() {
-
 		// Hide the fold elements on load.
 		// It's better to do this by PHP but there is no filter in tr tag , so is not possible
 		// we going to move each attributes we may need for folding to tr tag.
@@ -1903,7 +1898,7 @@ function redux_hook( object, functionName, callback, before ) {
 				opt_name = $.redux.getOptName( el );
 
 				// Change over redux object to correct opt_name.
-				redux.optName = window['redux_' + opt_name];
+				redux.optName = window['redux_' + opt_name.replace('-', '_')];
 
 				if ( oldid === relid ) {
 					return;
