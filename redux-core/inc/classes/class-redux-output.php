@@ -177,9 +177,9 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			}
 
 			if ( ! empty( $core->typography ) && ! empty( $core->typography ) && filter_var( $core->args['output'], FILTER_VALIDATE_BOOLEAN ) ) {
-				$version    = ! empty( $core->transients['last_save'] ) ? $core->transients['last_save'] : '';
+				$version = ! empty( $core->transients['last_save'] ) ? $core->transients['last_save'] : '';
 				if ( ! class_exists( 'Redux_Typography' ) ) {
-					require_once Redux_Core::$dir.'/inc/fields/typography/class-redux-typography.php';
+					require_once Redux_Core::$dir . '/inc/fields/typography/class-redux-typography.php';
 				}
 				$typography = new Redux_Typography( null, null, $core );
 
