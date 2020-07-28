@@ -48,7 +48,7 @@ function redux_change( variable ) {
 		} else {
 			opt_name = $.redux.getOptName( rContainer );
 		}
-		redux.optName = window['redux_' + opt_name];
+		redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 
 		$( 'body' ).trigger( 'check_dependencies', variable );
 

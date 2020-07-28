@@ -50,9 +50,7 @@
 
 					if ( $.inArray( opt_name, tempArr ) === - 1 ) {
 						tempArr.push( opt_name );
-
-						redux.optName = window['redux_' + opt_name];
-
+						redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 						$.redux.checkRequired( $( this ) );
 						$.redux.initEvents( $( this ) );
 					}
@@ -63,8 +61,7 @@
 				'click',
 				function() {
 					opt_name = $.redux.getOptName( this );
-
-					redux.optName = window['redux_' + opt_name];
+					redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 				}
 			);
 

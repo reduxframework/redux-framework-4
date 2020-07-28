@@ -40,7 +40,7 @@
 				opt_name = $.redux.getOptName( el );
 
 				// Change over redux object to correct opt_name.
-				redux.optName = window['redux_' + opt_name];
+				redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 
 				if ( oldid === relid ) {
 					return;
