@@ -376,7 +376,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				}
 
 				if ( file_exists( $class_path ) ) {
-					include $class_path;
+					require_once $class_path;
 				}
 			}
 

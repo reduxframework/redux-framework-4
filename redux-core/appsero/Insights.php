@@ -549,7 +549,7 @@ class Insights {
 	private function get_all_plugins() {
 		// Ensure get_plugins function is loaded
 		if ( ! function_exists( 'get_plugins' ) ) {
-			include ABSPATH . '/wp-admin/includes/plugin.php';
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
 		$plugins             = get_plugins();
