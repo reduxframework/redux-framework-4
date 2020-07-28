@@ -1446,5 +1446,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		}
 	}
 }
+if ( ! class_exists( 'ReduxFramework_Typography' ) ) {
+	class_alias( 'Redux_Typography', 'ReduxFramework_Typography' );
+}
 
-class_alias( 'Redux_Typography', 'ReduxFramework_Typography' );
