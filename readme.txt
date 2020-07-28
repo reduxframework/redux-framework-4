@@ -5,7 +5,7 @@ Tags: admin, admin interface, options, theme options, plugin options, options fr
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.0.6
+Stable tag: 4.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
