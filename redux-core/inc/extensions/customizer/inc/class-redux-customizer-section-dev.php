@@ -22,22 +22,9 @@ if ( ! class_exists( 'Redux_Customizer_Section_Dev', false ) ) {
 	class Redux_Customizer_Section_Dev extends WP_Customize_Section {
 
 		/**
-		 * Type of this section.
-		 *
-		 * @since  4.1.0
-		 * @access public
-		 * @var string
-		 */
-		public $type = 'redux-rAds';
-
-		/**
 		 * Field render.
 		 */
-		protected function render() {
-			?>
-			<li id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="accordion-section"></li>
-			<?php
-		}
+		protected function render() {}
 
 	}
 }

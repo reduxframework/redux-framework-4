@@ -903,10 +903,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return mixed
 		 */
 		public static function localize( $localize ) {
-			$redux            = Redux::instance( $localize['args']['opt_name'] );
-			$nonce            = wp_create_nonce( 'redux-ads-nonce' );
-			$base             = admin_url( 'admin-ajax.php' ) . '?t=' . $redux->core_thread . '&action=redux_p&nonce=' . $nonce . '&url=';
-			$localize['rAds'] = self::r_url_fix( $base, $redux->args['opt_name'] );
+			$redux = Redux::instance( $localize['args']['opt_name'] );
+			$nonce = wp_create_nonce( 'redux-ads-nonce' );
+			$base  = admin_url( 'admin-ajax.php' ) . '?t=' . $redux->core_thread . '&action=redux_p&nonce=' . $nonce . '&url=';
 
 			return $localize;
 		}
