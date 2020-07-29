@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
-Redux_Core::$version    = '4.0.9';
+Redux_Core::$version    = '4.1.0';
 Redux_Core::$redux_path = dirname( __FILE__ );
 Redux_Core::instance();
 
@@ -98,6 +98,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 			self::$_url        = Redux_Core::$url;
 			self::$_upload_dir = Redux_Core::$upload_dir;
 			self::$_upload_url = Redux_Core::$upload_url;
+			self::$_as_plugin  = Redux_Core::$as_plugin;
 		}
 
 		/**
@@ -360,6 +361,15 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @deprecated 4.0.0
 		 */
 		public $hidden_perm_sections = array();
+
+		/**
+		 * Deprecated shim for v3 as plugin check.
+		 *
+		 * @var bool
+		 *
+		 * @deprecated 4.0.0
+		 */
+		public static $_as_plugin = false;  // phpcs:ignore PSR2.Classes.PropertyDeclaration
 
 		/**
 		 * Cloning is forbidden.
