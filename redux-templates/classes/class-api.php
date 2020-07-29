@@ -223,7 +223,7 @@ class Api {
 
 		$last_modified = file_exists( $path ) ? $this->get_cache_time( $path ) : false;
 
-		$use_cache     = true;
+		$use_cache = true;
 		if ( isset( $parameters['no_cache'] ) ) {
 			$use_cache = false;
 		}
@@ -335,7 +335,7 @@ class Api {
 			$data = json_decode( ReduxTemplates\Init::get_local_file_contents( $test_path ), true );
 		} else {
 			$parameters['no_cache'] = 1;
-			$data = $this->api_cache_fetch( $parameters, $config, 'library.json' );
+			$data                   = $this->api_cache_fetch( $parameters, $config, 'library.json' );
 		}
 
 		if ( isset( $data['plugins'] ) ) {
