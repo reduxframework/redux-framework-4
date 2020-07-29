@@ -298,6 +298,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			}
 
 			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
+			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-extension-abstract.php';
 
 			spl_autoload_register( array( $this, 'register_classes' ) );
 			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) );

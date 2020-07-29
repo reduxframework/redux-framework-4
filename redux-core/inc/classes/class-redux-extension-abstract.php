@@ -251,3 +251,7 @@ abstract class Redux_Extension_Abstract {
 		return true;
 	}
 }
+
+if ( ! class_exists( 'Redux_Abstract_Extension' ) ) {
+	class_alias( 'Redux_Extension_Abstract', 'Redux_Abstract_Extension' );
+}
