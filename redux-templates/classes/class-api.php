@@ -221,7 +221,8 @@ class Api {
 			$filesystem->mkdir( dirname( $path ) );
 		}
 
-		$last_modified = $this->get_cache_time( $path );
+		$last_modified = file_exists( $path ) ? $this->get_cache_time( $path ) : false;
+
 		$use_cache     = true;
 		if ( isset( $parameters['no_cache'] ) ) {
 			$use_cache = false;
@@ -236,8 +237,9 @@ class Api {
 		if ( $cache_only ) {
 			$use_cache = true;
 		}
+
 		$data = array();
-		if ( $use_cache ) {
+		if ( file_exists( $path ) && $use_cache ) {
 			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$data = @json_decode( $filesystem->get_contents( $path ), true );
 		}
@@ -327,11 +329,12 @@ class Api {
 		$config    = array(
 			'path' => 'library/',
 		);
-		$test_path = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'library.json';
+		$test_path = dirname( __FILE__ ) . '/library.json';
 
 		if ( file_exists( $test_path ) ) {
 			$data = json_decode( ReduxTemplates\Init::get_local_file_contents( $test_path ), true );
 		} else {
+			$parameters['no_cache'] = 1;
 			$data = $this->api_cache_fetch( $parameters, $config, 'library.json' );
 		}
 
