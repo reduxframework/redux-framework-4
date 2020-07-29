@@ -294,7 +294,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'    }' . PHP_EOL .
 						'    // fake "extends Redux_Extension_Abstract\" using magic function' . PHP_EOL .
 						'    public function __call( $method, $args ) {' . PHP_EOL .
-						'        call_user_func_array( array( $this->c, $method ), $args );' . PHP_EOL .
+						'        return call_user_func_array( array( $this->c, $method ), $args );' . PHP_EOL .
 						'    }' . PHP_EOL .
 						'}' . PHP_EOL;
 					$template   = str_replace( '{{ext_class}}', $new_class_name, $class_file );
