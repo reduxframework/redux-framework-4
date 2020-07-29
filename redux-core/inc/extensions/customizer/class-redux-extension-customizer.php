@@ -803,14 +803,17 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		}
 	}
 
-	/**
-	 * Custom validation.
-	 *
-	 * @param mixed $field Field.
-	 *
-	 * @return mixed
-	 */
-	function redux_customizer_custom_validation( $field ) {
-		return $field;
+	if ( ! function_exists( 'redux_customizer_custom_validation' ) ) {
+		/**
+		 * Custom validation.
+		 *
+		 * @param mixed $field Field.
+		 *
+		 * @return mixed
+		 */
+		function redux_customizer_custom_validation( $field ) {
+			return $field;
+		}
 	}
+
 }
