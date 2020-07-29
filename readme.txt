@@ -5,7 +5,7 @@ Tags: admin, admin interface, options, theme options, plugin options, options fr
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,9 +131,13 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 == Changelog ==
 
+= 4.1.1 =
+* Fixed: CSS decode when esc_attr replaces the HTML characters and CSS outputs are set with >'s.
+* Release date: July 29, 2020
+
 = 4.1.0 =
 * Fixed: Compatibility with certain themes using the deprecated $_is_plugin variable.
-* Release date: July 28, 2020
+* Release date: July 29, 2020
 
 = 4.0.9 =
 * Fixed: Complete compatibility fix for older Redux extensions.
