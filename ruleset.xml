@@ -20,5 +20,6 @@
 	<exclude-pattern>redux-core/appsero/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>build/</exclude-pattern>
+	<exclude-pattern>tests/</exclude-pattern>
 	<exclude-pattern>redux-core/inc/fields/typography/field_typography.php</exclude-pattern>
 </ruleset>
