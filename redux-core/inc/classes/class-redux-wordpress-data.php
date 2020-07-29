@@ -252,6 +252,9 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						case 'terms':
 						case 'term':
+							if ( isset( $args['taxonomies'] ) ) {
+								$args = $args['taxonomies'];
+							}
 							$terms = get_terms( $args );
 							if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 								foreach ( $terms as $term ) {
@@ -263,6 +266,9 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						case 'taxonomies':
 						case 'taxonomy':
 						case 'tax':
+							if ( isset( $args['taxonomies'] ) ) {
+								$args = $args['taxonomies'];
+							}
 							$taxonomies = get_taxonomies( $args );
 							if ( ! empty( $taxonomies ) ) {
 								foreach ( $taxonomies as $key => $taxonomy ) {

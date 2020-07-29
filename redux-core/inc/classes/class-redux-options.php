@@ -102,6 +102,9 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			} else {
 				$result = get_option( $core->args['opt_name'], array() );
 			}
+			if ( empty( $result ) && empty( $defaults ) ) {
+				return;
+			}
 
 			if ( empty( $result ) && ! empty( $defaults ) ) {
 				$results = $defaults;
