@@ -35,6 +35,7 @@ define( 'REDUXTEMPLATES_DIR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) 
 
 // Version Check & Include Core.
 if ( version_compare( PHP_VERSION, '5.4', '>=' ) && version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
+	$core = Redux_Core::instance();
 	Redux_Functions_Ex::register_class_path( 'ReduxTemplates', REDUXTEMPLATES_DIR_PATH . 'classes/' );
 	new ReduxTemplates\Init();
 }
