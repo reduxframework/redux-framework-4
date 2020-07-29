@@ -815,5 +815,4 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			return $field;
 		}
 	}
-
 }
