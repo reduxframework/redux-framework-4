@@ -131,7 +131,11 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 == Changelog ==
 
-= 4.0.6 =
+= 4.0.8 =
+* Fixed: Initial library load was failing on some server setups.
+* Release date: July 28, 2020
+
+= 4.0.7 =
 * Fixed: Race condition for PHP include for Redux_Typography causing blank white screens.
 * Release date: July 28, 2020
 
