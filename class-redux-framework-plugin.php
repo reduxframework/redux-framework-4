@@ -87,8 +87,6 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 				self::$instance->hooks();
 			}
 
-			require_once plugin_dir_path( __FILE__ ) . 'redux-templates/redux-templates.php';
-
 			return self::$instance;
 		}
 
