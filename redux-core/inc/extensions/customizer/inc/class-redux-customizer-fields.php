@@ -1,6 +1,4 @@
-<?php /** @noinspection PhpCSValidationInspection */ // phpcs:ignore WordPress.Files.FileName
-// phpcs:ignoreFile
-
+<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
 /**
  * Redux Customizer Fields Class
  *
@@ -9,242 +7,249 @@
  * @package Redux Framework
  */
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Generic.Files.OneObjectStructurePerFile.MultipleFound
+// phpcs:disable Generic.Files.OneClassPerFile
+
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Class Redux_Customizer_Control_checkbox
- */
-class Redux_Customizer_Control_Checkbox extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Checkbox', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_checkbox
 	 */
-	public $type = 'redux-checkbox';
-
+	class Redux_Customizer_Control_Checkbox extends Redux_Customizer_Control {
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-checkbox';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_color_rgba
- */
-class Redux_Customizer_Control_Color_Rgba extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Color_Rgba', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_color_rgba
 	 */
-	public $type = 'redux-color_rgba';
-
+	class Redux_Customizer_Control_Color_Rgba extends Redux_Customizer_Control {
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-color_rgba';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_color
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Color extends Redux_Customizer_Control {
 
+if ( ! class_exists( 'Redux_Customizer_Control_Color', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_color
 	 */
-	public $type = 'redux-color';
-
+	class Redux_Customizer_Control_Color extends Redux_Customizer_Control {
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-color';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_media
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Media extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Media', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_media
 	 */
-	public $type = 'redux-media';
-
+	class Redux_Customizer_Control_Media extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-media';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_spinner
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Spinner extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Spinner', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_spinner
 	 */
-	public $type = 'redux-spinner';
-
+	class Redux_Customizer_Control_Spinner extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-spinner';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_palette
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Palette extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Palette', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_palette
 	 */
-	public $type = 'redux-palette';
-
+	class Redux_Customizer_Control_Palette extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-palette';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_button_set
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Button_Set extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Button_Set', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_button_set
 	 */
-	public $type = 'redux-button_set';
-
+	class Redux_Customizer_Control_Button_Set extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-button_set';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_image_select
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Image_Select extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Image_Select', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_image_select
 	 */
-	public $type = 'redux-image_select';
+	class Redux_Customizer_Control_Image_Select extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
 
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-image_select';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_radio
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Radio extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Radio', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_radio
 	 */
-	public $type = 'redux-radio';
-
+	class Redux_Customizer_Control_Radio extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-radio';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_select
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Select extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Select', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_select
 	 */
-	public $type = 'redux-select';
+	class Redux_Customizer_Control_Select extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
 
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-select';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_gallery
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Gallery extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Gallery', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_gallery
 	 */
-	public $type = 'redux-gallery';
-
+	class Redux_Customizer_Control_Gallery extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-gallery';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_slider
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Slider extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Slider', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_slider
 	 */
-	public $type = 'redux-slider';
-
+	class Redux_Customizer_Control_Slider extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-slider';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_sortable
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Sortable extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Sortable', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_sortable
 	 */
-	public $type = 'redux-sortable';
-
+	class Redux_Customizer_Control_Sortable extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-sortable';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_switch
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Switch extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Switch', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_switch
 	 */
-	public $type = 'redux-switch';
-
+	class Redux_Customizer_Control_Switch extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-switch';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_text
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Text extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Text', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_text
 	 */
-	public $type = 'redux-text';
-
+	class Redux_Customizer_Control_Text extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-text';
+	}
 }
 
-/**
- * Class Redux_Customizer_Control_textarea
- */
-// phpcs:ignore Generic.Files.OneClassPerFile
-class Redux_Customizer_Control_Textarea extends Redux_Customizer_Control {
-
+if ( ! class_exists( 'Redux_Customizer_Control_Textarea', false ) ) {
 	/**
-	 * Set control type.
-	 *
-	 * @var string
+	 * Class Redux_Customizer_Control_textarea
 	 */
-	public $type = 'redux-textarea';
+	class Redux_Customizer_Control_Textarea extends Redux_Customizer_Control {
+ // phpcs:ignore Generic.Files.OneClassPerFile
 
+		/**
+		 * Set control type.
+		 *
+		 * @var string
+		 */
+		public $type = 'redux-textarea';
+	}
 }
