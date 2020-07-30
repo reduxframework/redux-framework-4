@@ -1011,6 +1011,10 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			$font = $this->value;
 
 			if ( '' !== $style ) {
+				if ( ! empty( $field['output'] ) && ! is_array( $field['output'] ) ) {
+					$field['output'] = array( $field['output'] );
+				}
+
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
 					$keys                     = implode( ',', $this->field['output'] );
 					$this->parent->outputCSS .= $keys . '{' . $style . '}';
@@ -1036,6 +1040,10 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						$this->parent->outputCSS .= rtrim( $key_string, ',' ) . '{opacity: 0;}';
 						$this->parent->outputCSS .= rtrim( $key_string_ie, ',' ) . '{visibility: hidden;}';
 					}
+				}
+
+				if ( ! empty( $field['compiler'] ) && ! is_array( $field['compiler'] ) ) {
+					$field['compiler'] = array( $field['compiler'] );
 				}
 
 				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
