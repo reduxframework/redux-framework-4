@@ -656,6 +656,7 @@ function makeBuild() {
 		'!./local_developer.txt',
 		'!./jsconfig.json',
 		'!./vendor/**/*',
+		'!./tests/**/*',
 		'!./redux-core/assets/scss/**/*',
 		'!./redux-core/assets/img/raw/**/*',
 		'!./redux-templates/src/**/*',
