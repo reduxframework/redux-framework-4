@@ -209,9 +209,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					</script>
 					<?php
 				} elseif ( ! $core->args['disable_google_fonts_link'] ) {
-					$protocol = ( ! empty( Redux_Core::$server['HTTPS'] ) && 'off' !== Redux_Core::$server['HTTPS'] || 443 === Redux_Core::$server['SERVER_PORT'] ) ? 'https:' : 'http:';
-
-					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $protocol . $typography->make_google_web_font_link( $core->typography ), array(), $version, 'all' );
+					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $typography->make_google_web_font_link( $core->typography ), array(), $version, 'all' );
 				}
 			}
 		}

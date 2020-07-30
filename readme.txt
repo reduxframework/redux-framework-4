@@ -131,10 +131,13 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 == Changelog ==
 
+= 4.1.5 =
+* Fixed: Google fonts not working when old configs used string vs an array for output.
+* Release date: July 30, 2020
+
 = 4.1.4 =
 * Fixed: Google fonts loading over non-secure breaks fonts. Forced all SSL for Google fonts.  :)
 * Release date: July 30, 2020
-
 
 = 4.1.3 =
 * Fixed: Issue where theme devs tried to bypass the framework. Literally I made an empty file to fix their coding. :P

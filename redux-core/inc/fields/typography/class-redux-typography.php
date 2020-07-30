@@ -681,16 +681,10 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 								'subset'     => array( $this->value['subsets'] ),
 							);
 
-							if ( ( ! empty( Redux_Core::$server['HTTPS'] ) && 'off' !== Redux_Core::$server['HTTPS'] || 443 === Redux_Core::$server['SERVER_PORT'] ) ) {
-								$protocol = 'https:';
-							} else {
-								$protocol = 'http:';
-							}
-
 							wp_deregister_style( 'redux-typography-preview' );
 							wp_dequeue_style( 'redux-typography-preview' );
 
-							wp_enqueue_style( 'redux-typography-preview', $protocol . $this->make_google_web_font_link( $this->typography_preview ), array(), Redux_Core::$version, 'all' );
+							wp_enqueue_style( 'redux-typography-preview', $this->make_google_web_font_link( $this->typography_preview ), array(), Redux_Core::$version, 'all' );
 						}
 
 						$style = 'display: block; font-family: ' . esc_attr( $this->value['font-family'] ) . '; font-weight: ' . esc_attr( $this->value['font-weight'] ) . ';';
