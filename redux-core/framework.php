@@ -458,7 +458,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 
 				// Grab database values.
 				$this->options_defaults_class = new Redux_Options_Defaults();
-				$this->options_class          = new Redux_Options_Object( $this );
+				$this->options_class          = new Redux_Options_Constructor( $this );
 				$this->options_class->get();
 
 				$this->output_class  = new Redux_Output( $this );
@@ -535,7 +535,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		public function _default_values() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 			if ( ! isset( $this->options_class ) ) {
 				$this->options_defaults_class = new Redux_Options_Defaults();
-				$this->options_class          = new Redux_Options_Object( $this );
+				$this->options_class          = new Redux_Options_Constructor( $this );
 			}
 
 			return $this->options_class->default_values();

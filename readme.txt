@@ -133,6 +133,7 @@ That's because the real FAQ section is on our site! Please visit [http://docs.re
 
 = 4.1.6 =
 * Fixed: Issue with customizer double loading the PHP classes and causing an exception.
+* Fixed: Chanced a class name as to not conflict with a 6+ year old version of Redux.
 * Release date: July 30, 2020
 
 = 4.1.5 =

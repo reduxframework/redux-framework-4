@@ -9,12 +9,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'Redux_Options', false ) ) {
+if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 
 	/**
 	 * Class Redux_Options
 	 */
-	class Redux_Options_Object extends Redux_Class {
+	class Redux_Options_Constructor extends Redux_Class {
 
 		/**
 		 * Array to hold single panel data.
