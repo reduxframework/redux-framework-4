@@ -183,7 +183,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			Redux_Functions_Ex::generator();
 
 			if ( ! class_exists( 'ReduxAppsero\Client' ) ) {
-				require_once __DIR__ . '/appsero/Client.php';
+				require_once Redux_Path::get_path( '/appsero/Client.php' );
 			}
 
 			if ( defined( 'REDUX_PLUGIN_FILE' ) ) {
