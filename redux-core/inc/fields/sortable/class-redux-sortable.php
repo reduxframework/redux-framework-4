@@ -49,6 +49,13 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 			}
 
 			$no_sort = false;
+			if ( empty( $this->value ) && ! is_array( $this->value ) ) {
+				if ( ! empty( $this->field['options'] ) ) {
+					$this->value = $this->field['options'];
+				} else {
+					$this->value = array();
+				}
+			}
 			foreach ( $options as $k => $v ) {
 				if ( ! isset( $this->value[ $k ] ) ) {
 
@@ -114,7 +121,6 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 
 					$class .= ' checkbox_sortable';
 					$name   = '';
-
 					echo '<input 
 							type="hidden" 
 							name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . esc_attr( $k ) . ']" 
@@ -133,7 +139,14 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 						echo '<br />';
 					}
 
-					echo '<input rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden" class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . 'type="' . esc_attr( $this->field['mode'] ) . '" ' . esc_attr( $name ) . 'id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']" value="' . esc_attr( $value_display ) . '" placeholder="' . esc_attr( $nicename ) . '" />';
+					echo '<input 
+						rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden" 
+						class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . ' 
+						type="' . esc_attr( $this->field['mode'] ) . '" 
+						'. $name .'
+						id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']" 
+						value="' . esc_attr( $value_display ) . '" 
+						placeholder="' . esc_attr( $nicename ) . '" />';
 				}
 
 				echo '<span class="compact drag">';
