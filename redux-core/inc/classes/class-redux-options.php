@@ -7,6 +7,8 @@
  * @package Redux Framework/Classes
  */
 
+namespace ReduxCore;
+
 defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Redux_Options', false ) ) {
@@ -14,7 +16,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 	/**
 	 * Class Redux_Options
 	 */
-	class Redux_Options extends Redux_Class {
+	class Redux_Options extends \Redux_Class {
 
 		/**
 		 * Array to hold single panel data.
@@ -49,11 +51,23 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 		 *
 		 * @param object $parent ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
+		//$Redux_Options = new Redux_Options($redux_sections, $redux_args, $redux_tabs);
+		public function __construct( $parent, $args = array(), $tabs = array() ) {
+
+			if ( ! empty( $args ) && isset( $args['opt_name'] ) && ! empty( $args['opt_name'] ) ) {
+				// Redux 2.0.0 Shim.
+				\Redux::setArgs( $args['opt_name'], $args );
+				\Redux::setSections( $args['opt_name'], $parent );
+				\Redux::setHelpTab( $args['opt_name'], $tabs );
+				\Redux::init( $args['opt_name'] );
+				$instance = \Redux_Instances::get_instance( $args['opt_name'] );
+
+				return $instance;
+			}
 
 			parent::__construct( $parent );
-
 			add_action( 'admin_init', array( $this, 'register' ) );
+
 		}
 
 		/**
@@ -69,7 +83,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			foreach ( $sections as $key => $section ) {
 				if ( 'fields' === $key ) {
 					foreach ( $section as $field ) {
-						if ( ! empty( $field['id'] ) && ! empty( $field['data'] ) && ! empty( $options_values[ $field['id'] ] ) && Redux_Helpers::is_integer( $options_values[ $field['id'] ] ) ) {
+						if ( ! empty( $field['id'] ) && ! empty( $field['data'] ) && ! empty( $options_values[ $field['id'] ] ) && \Redux_Helpers::is_integer( $options_values[ $field['id'] ] ) ) {
 							$options_values[ $field['id'] ] = apply_filters( 'wpml_object_id', $options_values[ $field['id'] ], $field['data'], true );
 						}
 					}
@@ -89,6 +103,10 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 
 			if ( ! empty( $core->defaults ) ) {
 				$defaults = $core->defaults;
+			}
+
+			if ( empty( $core->args ) ) {
+				return;
 			}
 
 			if ( 'transient' === $core->args['database'] ) {
@@ -908,7 +926,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action_ref_array(
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				"redux/options/{$core->args['opt_name']}/validate",
 				array(
 					&$plugin_options,
