@@ -51,19 +51,7 @@ if ( ! class_exists( 'Redux_Options', false ) ) {
 		 *
 		 * @param object $parent ReduxFramework pointer.
 		 */
-		//$Redux_Options = new Redux_Options($redux_sections, $redux_args, $redux_tabs);
-		public function __construct( $parent, $args = array(), $tabs = array() ) {
-
-			if ( ! empty( $args ) && isset( $args['opt_name'] ) && ! empty( $args['opt_name'] ) ) {
-				// Redux 2.0.0 Shim.
-				\Redux::setArgs( $args['opt_name'], $args );
-				\Redux::setSections( $args['opt_name'], $parent );
-				\Redux::setHelpTab( $args['opt_name'], $tabs );
-				\Redux::init( $args['opt_name'] );
-				$instance = \Redux_Instances::get_instance( $args['opt_name'] );
-
-				return $instance;
-			}
+		public function __construct( $parent ) {
 
 			parent::__construct( $parent );
 			add_action( 'admin_init', array( $this, 'register' ) );
