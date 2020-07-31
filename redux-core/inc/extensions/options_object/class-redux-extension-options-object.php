@@ -76,4 +76,8 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 			);
 		}
 	}
+
+	if ( ! class_exists( 'ReduxFramework_Extension_options_object' ) ) {
+		class_alias( 'Redux_Extension_Options_Object', 'ReduxFramework_Extension_options_object' );
+	}
 }

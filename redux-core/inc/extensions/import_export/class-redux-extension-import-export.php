@@ -205,4 +205,8 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 			}
 		}
 	}
+
+	if ( ! class_exists( 'ReduxFramework_extension_import_export' ) ) {
+		class_alias( 'Redux_Extension_Import_Export', 'ReduxFramework_extension_import_export' );
+	}
 }

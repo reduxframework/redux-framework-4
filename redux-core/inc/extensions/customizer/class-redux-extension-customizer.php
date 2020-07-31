@@ -815,4 +815,8 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			return $field;
 		}
 	}
+
+	if ( ! class_exists( 'ReduxFramework_extension_customizer' ) ) {
+		class_alias( 'Redux_Extension_Customizer', 'ReduxFramework_extension_customizer' );
+	}
 }
