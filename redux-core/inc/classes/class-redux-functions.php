@@ -247,7 +247,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		 *
 		 * @return string CSS string
 		 */
-		public static function parseCSS( $css_array = array(), $style = '', $value = '' ) {
+		public static function parseCSS( $css_array = array(), $style = '', $value = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			return self::parse_css( $css_array, $style, $value );
 		}
 
