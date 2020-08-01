@@ -38,4 +38,8 @@ register_deactivation_hook( __FILE__, array( 'Redux_Framework_Plugin', 'deactiva
 
 // Get plugin instance.
 Redux_Framework_Plugin::instance();
-require_once plugin_dir_path( __FILE__ ) . 'redux-templates/redux-templates.php';
+
+if ( ! defined( 'REDUXTEMPLATES_VERSION' ) ) {
+	require_once plugin_dir_path( __FILE__ ) . 'redux-templates/redux-templates.php';
+}
+
