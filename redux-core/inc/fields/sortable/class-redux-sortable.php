@@ -143,8 +143,8 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 						rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden" 
 						class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . ' 
 						type="' . esc_attr( $this->field['mode'] ) . '" 
-						' . $name . '
-						id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']" 
+						' . $name . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						'id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']" 
 						value="' . esc_attr( $value_display ) . '" 
 						placeholder="' . esc_attr( $nicename ) . '" />';
 				}
