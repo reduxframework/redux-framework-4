@@ -568,24 +568,24 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$this->localize_data['core_thread']   = $core->core_thread;
 
 			$this->localize_data['required']       = $core->required;
-			$this->localize_data['fonts']          = $core->fonts;
+			$this->repeater_data['fonts']          = $core->fonts;
 			$this->localize_data['required_child'] = $core->required_child;
 			$this->localize_data['fields']         = $core->fields;
 
 			if ( isset( $core->font_groups['google'] ) ) {
-				$this->localize_data['googlefonts'] = $core->font_groups['google'];
+				$this->repeater_data['googlefonts'] = $core->font_groups['google'];
 			}
 
 			if ( isset( $core->font_groups['std'] ) ) {
-				$this->localize_data['stdfonts'] = $core->font_groups['std'];
+				$this->repeater_data['stdfonts'] = $core->font_groups['std'];
 			}
 
 			if ( isset( $core->font_groups['customfonts'] ) ) {
-				$this->localize_data['customfonts'] = $core->font_groups['customfonts'];
+				$this->repeater_data['customfonts'] = $core->font_groups['customfonts'];
 			}
 
 			if ( isset( $core->font_groups['typekitfonts'] ) ) {
-				$this->localize_data['typekitfonts'] = $core->font_groups['typekitfonts'];
+				$this->repeater_data['typekitfonts'] = $core->font_groups['typekitfonts'];
 			}
 
 			$this->localize_data['folds'] = $core->folds;
