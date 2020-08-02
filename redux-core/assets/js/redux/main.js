@@ -107,7 +107,7 @@
 	$.redux.getOptName = function( el ) {
 		var metabox;
 		var li;
-		var optName = $( el ).data( 'opt-name' );
+		var optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
 
 		// Backwards compatibility block for metaboxes
 		if ( undefined === optName ) {

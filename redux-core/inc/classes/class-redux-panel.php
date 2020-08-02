@@ -80,7 +80,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			echo '<div class="wrap"><h2></h2></div>'; // Stupid hack for WordPress alerts and warnings.
 
 			echo '<div class="clear"></div>';
-			echo '<div class="wrap">';
+			echo '<div class="wrap redux-wrap-div" data-opt-name="' . esc_attr( $this->parent->args['opt_name'] ) . '">';
 
 			// Do we support JS?
 			echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'redux-framework' ) . '</div></noscript>';
