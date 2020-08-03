@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 		 * @since ReduxFramework 1.0.0
 		 */
 		public function render() {
-			$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable"' : '';
+			$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable' : '';
 
 			if ( ! empty( $sortable ) ) { // Dummy proofing  :P.
 				$this->field['multi'] = true;
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					}
 				}
 
-				$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable"' : '';
+				$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable' : '';
 
 				echo '<select ' .
 					esc_html( $multi ) . ' 
