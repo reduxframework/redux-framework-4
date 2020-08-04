@@ -145,6 +145,10 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 == Changelog ==
 
 = 4.1.11 =
+* Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
+* Release date: Aug 4, 2020
+
+= 4.1.10 =
 * Fixed: Minified templates directory now loads.
 * Added: Shadow files from old repo to stop errors from previously included third-party developer includes.
 * Release date: Aug 4, 2020

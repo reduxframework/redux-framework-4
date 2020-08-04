@@ -1,7 +1,7 @@
-const externals = require('./externals')
-const rules = require('./rules')
-const path = require('path')
-const plugins = require('./plugins')
+const externals = require( './externals' )
+const rules = require( './rules' )
+const plugins = require( './plugins' )
+const path = require( 'path' )
 
 module.exports = [{
 
@@ -9,21 +9,21 @@ module.exports = [{
 
 	devtool: 'hidden-source-map',
 
-    entry: {
-        'redux-templates': path.join(__dirname, '../redux-templates/src/index.js')
-    },
+	entry: {
+		'redux-templates': path.join( __dirname, '../redux-templates/src/index.js' )
+	},
 
-    output: {
-        path: path.join(__dirname, '../redux-templates/assets/js'),
-        filename: '[name].min.js',
-    },
+	output: {
+		path: path.join( __dirname, '../redux-templates/assets/js' ),
+		filename: '[name].min.js',
+	},
 
 	// Permit importing @wordpress/* packages.
 	externals,
 
 	resolve: {
 		alias: {
-			'~redux-templates': path.resolve(__dirname, '../redux-templates/src/')
+			'~redux-templates': path.resolve( __dirname, '../redux-templates/src/' )
 		}
 	},
 
