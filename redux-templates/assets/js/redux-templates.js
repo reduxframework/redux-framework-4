@@ -12165,6 +12165,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_LIBRARY':
+      if (!action.library.dependencies) return state;
       redux_templates.supported_plugins = action.library.plugins;
       const dependencies = Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getDefaultDependencies"])(Object.keys(action.library.dependencies));
       const parsedSection = Object(_helper__WEBPACK_IMPORTED_MODULE_0__["parseSectionData"])(action.library.sections);

@@ -99,7 +99,6 @@ class Init {
 			}
 			$version = time();
 		}
-		$min = ''; // Fix since our min'd file isn't working.
 
 		wp_enqueue_script(
 			'redux-templates-js',

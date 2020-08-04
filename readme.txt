@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.9
+Stable tag: 4.1.10
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -135,9 +135,19 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Screenshots ==
 
-1. This is the demo mode of Redux Framework. Activate it and you will find a fully-functional admin panel that you can play with. On the Plugins page, beneath the description and an activated Redux Framework, you will find a Demo Mode link. Click that link to activate or deactivate the sample-config file Redux ships with.  Don't take our word for it, check out our online demo and try Redux without installing a thing! [**http://demo.redux.io/wp-admin/**](http://demo.redux.io/wp-admin/)
+1. With Redux you have access to hundreds of sections to help you create any type of page.
+2. Take the Redux challenge to learn your way around the Redux Templates Library.
+3. See instantly what required plugins each template requires on hover.
+4. Preview each template instantly in your own website.
+5. Template Kits give you full site templates, all grouped by a given style.
+6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+= 4.1.10 =
+* Fixed: Minified templates directory now loads.
+* Added: Shadow files from old repo to stop errors from previously included third-party developer includes.
+* Release date: Aug 4, 2020
 
 = 4.1.9 =
 * Fixed: Compatibility issue when developers made custom panel templates. The opt_name wasn't fetched and thus saving broke.
