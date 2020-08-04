@@ -69,6 +69,7 @@ export const reducer = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case 'SET_LIBRARY':
+            if (!action.library.dependencies) return state;
             redux_templates.supported_plugins = action.library.plugins;
             const dependencies = getDefaultDependencies(Object.keys(action.library.dependencies));
             const parsedSection = parseSectionData(action.library.sections);
