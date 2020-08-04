@@ -1,4 +1,75 @@
-# Redux Framework v4 Changelog
+# Redux Changelog
+
+## 4.1.11
+* Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
+* Added: `FS_METHOD` define method for environments where it is not properly defined.
+* Release date: Aug 4, 2020
+
+## 4.1.10
+* Fixed: Minified templates directory now loads.
+* Added: Shadow files from old repo to stop errors from previously included third-party developer includes.
+* Release date: Aug 4, 2020
+
+## 4.1.9
+* Fixed: Compatibility issue when developers made custom panel templates. The opt_name wasn't fetched and thus saving broke.
+* Release date: Aug 1, 2020
+
+## 4.1.8
+* Fixed: Map files are now all present.
+* Fixed: Path fix for how developers called the typography file directory.
+* Release date: Aug 1, 2020
+
+## 4.1.7
+* Fixed: Issue with sortable in text mode not properly passing the name attribute and thus not saving properly.
+* Fixed: Compatibility with old extension names to not crash other plugins.
+* Release date: July 31, 2020
+
+## 4.1.6
+* Fixed: Issue with customizer double loading the PHP classes and causing an exception.
+* Fixed: Chanced a class name as to not conflict with a 6+ year old version of Redux.
+* Release date: July 30, 2020
+
+## 4.1.5
+* Fixed: Google fonts not working when old configs used string vs an array for output.
+* Release date: July 30, 2020
+
+## 4.1.4
+* Fixed: Google fonts loading over non-secure breaks fonts. Forced all SSL for Google fonts.  :)
+* Release date: July 30, 2020
+
+## 4.1.3
+* Fixed: Issue where theme devs tried to bypass the framework. Literally I made an empty file to fix their coding. :P
+* Release date: July 29, 2020
+
+## 4.1.2
+* Fixed: Don't try to set empty defaults when none are present.
+* Fixed: Issue where the WP Data argument was misused.
+* Release date: July 29, 2020
+
+## 4.1.1
+* Fixed: CSS decode when esc_attr replaces the HTML characters and CSS outputs are set with >'s.
+* Release date: July 29, 2020
+
+## 4.1.0
+* Fixed: Compatibility with certain themes using the deprecated $_is_plugin variable.
+* Release date: July 29, 2020
+
+## 4.0.9
+* Fixed: Complete compatibility fix for older Redux extensions.
+* Release date: July 28, 2020
+
+## 4.0.8
+* Fixed: Initial library load was failing on some server setups.
+* Release date: July 28, 2020
+
+## 4.0.7
+* Fixed: Race condition for PHP include for Redux_Typography causing blank white screens.
+* Release date: July 28, 2020
+
+## 4.0.5
+* Fixed: Issues where the site crashes because of varied ways Redux was called.
+* Fixed: Varied implementations of opt_names resulting in option panels not working as expected.
+* Release date: July 28, 2020
 
 ## 4.0.4.2
 * Fixed:    PHP issue when Redux was called in legacy methods.

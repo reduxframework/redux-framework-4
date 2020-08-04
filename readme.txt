@@ -71,6 +71,8 @@ Though Redux will work with any theme that uses Gutenberg, we have done extra wo
 <li><a href="https://wordpress.org/plugins/block-options/"><strong>Gutenberg Page Building Toolkit – EditorsKit</strong></a> Plugin – <strong>Blocks</strong> (Templates &amp; Fields for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/block-slider/"><strong>WordPress Slider Plugin – Block Slider</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/coblocks/"><strong>Page Builder Gutenberg Blocks – CoBlocks</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
+<li><a href="https://wordpress.org/plugins/editorskit/"><strong>Gutenberg Page Building Toolkit – CoBlocks</strong></a> Plugin – <strong>Blocks</strong> (Blocks tools to supercharge the Gutenberg editor)</li>
+<li><a href="https://wordpress.org/plugins/editorplus/"><strong>Gutenberg Page Builder Toolkit – EditorPlus</strong></a> Plugin – <strong>EditorPlus</strong> (Toolkit and blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/forms-gutenberg/"><strong>WordPress Form Builder Plugin – Gutenberg Forms</strong></a> Plugin – <strong>Blocks</strong> (Blocks &amp; Forms for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/getwid/"><strong>Getwid – Gutenberg Blocks</strong></a> Plugin – <strong>Blocks</strong> (Templates &amp; Blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/gutentor/"><strong>Gutenberg Blocks – Gutentor Page Builder for Gutenberg Editor</strong></a> Plugin – <strong>Blocks</strong> (Gutenberg Blocks)</li>
@@ -82,6 +84,12 @@ Though Redux will work with any theme that uses Gutenberg, we have done extra wo
 <li><a href="https://wordpress.org/plugins/stackable-ultimate-gutenberg-blocks/"><strong>Stackable – Page Builder Gutenberg Blocks</strong></a> Plugin – <strong>Blocks &amp; Templates</strong> (Templates &amp; Blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/ultimate-blocks/"><strong>Ultimate Blocks – Gutenberg Blocks Plugin</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/ultimate-addons-for-gutenberg/"><strong>Gutenberg Blocks – Ultimate Addons for Gutenberg</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
+</ul>
+
+<h4>☀️ Supported Gutenberg-Specific Services / Websites</h4>
+<ul>
+<li><a href="https://gutenberghub.com/"><strong>GutenbergHub.com</strong></a> – <strong>GutenbergHub</strong> GutenbergHub is a one-stop resource for you need to work with Gutenberg WordPress editor.</li>
+<li><a href="https://shareablock.com/"><strong>ShareABlock</strong></a> by EditorsKit – <strong>ShareABlock</strong> Community submitted free block designs and templates for Gutenberg</li>
 </ul>
 
 <h4>👍 BE A CONTRIBUTOR</h4>
@@ -106,9 +114,9 @@ You can also contribute code-wise via our <a href="https://github.com/starterblo
 <h4>🔐 Privacy</h4>
 Redux does not interact with end users on your website. Our templates will continue to work even if Redux is uninstalled. If a product is using Redux the option panel will cease to function without Redux.
 
-Redux utilizes [AppSero](https://appsero.com/) for account management as well as to enable our premium offerings. You can find their privacy policy here: [https://appsero.com/privacy-policy/](https://appsero.com/privacy-policy/). Activation of Redux is not neccesary, but additional features such as Google Font Updates and increased access to the template library will be limited.
+Redux utilizes [AppSero](https://appsero.com/) for account management as well as to enable our premium offerings. You can find their privacy policy here: [https://appsero.com/privacy-policy/](https://appsero.com/privacy-policy/). Activation of Redux is not necessary, but additional features such as Google Font Updates and increased access to the template library will be limited.
 
-The Redux plugin uses a custom API to fetch our content library and our Gutenberg templates. To improve the service and stability we store logs which may or may not contain the following:"
+The Redux plugin uses a custom API to fetch our content library and our Gutenberg templates. To improve the service and stability we store logs which may or may not contain the following:
 <ul>
 <li>browser type</li>
 <li>referring site</li>
@@ -146,6 +154,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 = 4.1.11 =
 * Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
+* Added: `FS_METHOD` define method for environments where it is not properly defined.
 * Release date: Aug 4, 2020
 
 = 4.1.10 =
