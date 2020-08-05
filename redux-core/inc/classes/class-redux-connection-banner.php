@@ -193,7 +193,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				//if ( isset( $args['display_name'] ) && !empty( $args['display_name'] )) {
 				//	$name = $name . ' & '.$args['display_name'];
 				//}
-				$notice = sprintf( __( 'Activate <strong>%1$s</strong> now to unlock powerful features and build pages faster in WordPress with greater access to our massive block template library.', 'redux-framework' ), $name );
+				$notice = sprintf( __( 'Register <strong>%1$s</strong> to enable automatic Google Font updates service. Plus unlock all free block templates in the Redux template library.', 'redux-framework' ), $name );
 			} else {
 				$notice = $this->notice;
 			}
@@ -206,8 +206,8 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			echo '<div class="updated" id="redux-connect-message" data-nonce="' . wp_create_nonce( 'redux-panel-admin-notice' ) . '" style="border-left-color: #24b0a6;"><p>';
 			echo $notice;
 			echo '</p><p class="submit">';
-			echo '&nbsp;<a href="#" class="button-primary button-large redux-activate-connection redux-connection-banner-action" data-url="' . admin_url( 'admin-ajax.php' ) . '" data-activate="true">' . __( 'Activate', 'redux-framework' ) . '</a>';
-			echo '&nbsp;&nbsp;&nbsp;<a href="#" style="color: #aaa;" class="redux-connection-banner-action" data-activate="false" data-url="' . admin_url( 'admin-ajax.php' ) . '">' . __( 'Not now, thank you', 'redux-framework' ) . '</a>';
+			echo '&nbsp;<a href="#" class="button-primary button-large redux-activate-connection redux-connection-banner-action" data-url="' . admin_url( 'admin-ajax.php' ) . '" data-activate="true">' . __( 'Register Now', 'redux-framework' ) . '</a>';
+			echo '&nbsp;&nbsp;&nbsp;<a href="#" style="color: #aaa;" class="redux-connection-banner-action" data-activate="false" data-url="' . admin_url( 'admin-ajax.php' ) . '">' . __( 'No thanks', 'redux-framework' ) . '</a>';
 			echo '</p></div>';
 			echo '<style type="text/css">.wp-core-ui .button-primary.redux-activate-connection{background: #24b0a6;}.wp-core-ui .button-primary.redux-activate-connection:hover{background: #19837c;}</style>';
 
@@ -251,7 +251,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				<div class="redux-banner-container-top-text">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"/><g><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2l-.5-6h3l-.5 6z"/></g></svg>
 					<span>
-						<?php esc_html_e( 'You’re almost done. Activate Redux to enable powerful tools to help you build better sites faster in WordPress.', 'redux-framework' ); ?>
+						<?php esc_html_e( 'You’re almost done. Register for our service to unlock even more tools to help you build better sites faster in WordPress.', 'redux-framework' ); ?>
 					</span>
 				</div>
 				<div class="redux-banner-inner-container">
@@ -296,29 +296,36 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 							<div class="redux-banner-slide-text">
 								<h2><?php esc_html_e( 'Build better sites faster with Redux', 'redux-framework' ); ?></h2>
 
-								<p>
-									<?php
-									esc_html_e(
-										'Redux protects your site with best-in-class security while providing unchallenged customization. Redux Lite is always free while Redux Pro unlocks even more features.',
-										'redux-framework'
-									);
-									?>
-								</p>
+
 
 								<p>
 									<?php
 									esc_html_e(
-										'Our block templates library allows you to transform any site into whatever you need, with a click of a button. With over 1,000+ templates to choose from, Redux will help you build your website fast!',
+										'The Redux block library service allows you to build any site you want in minutes with a click of a button. With over 1,000+ templates, Redux helps you build sites fast!',
 										'redux_framework'
 									);
 									?>
 								</p>
 
+								<p><em>
+									<?php
+									esc_html_e(
+										'No registration is required to use Redux as you always have. By registering for our service you gain access to Google Font updates as well as access to all free templates in our block template library.',
+										'redux-framework'
+									);
+									?></em>
+								</p>
+
 								<div class="redux-banner-button-container">
 									<span class="redux-banner-tos-blurb"><?php echo self::tos_blurb( 'plugin_dashboard' ); ?></span>
-									<a href="#" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" data-activate="true"
-											class="dops-button is-primary redux-alt-connect-button redux-connection-banner-action">
-										<?php esc_html_e( 'Activate Redux', 'redux-framework' ); ?>
+
+									<a href="#" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>"
+									   class="button button-tiny button-link redux-connection-banner-action"
+									   title="<?php esc_attr_e( 'No thanks', 'redux-framework' ); ?>" data-activate="false"><?php esc_html_e( 'No Thanks', 'redux-framework' ); ?></a>&nbsp;&nbsp;
+
+									<a href="#" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" data-activate="main_banner"
+											class="button button-primary button-large redux-alt-connect-button redux-connection-banner-action">
+										<?php esc_html_e( 'Register', 'redux-framework' ); ?>
 									</a>
 								</div>
 
@@ -364,7 +371,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					<p class="redux-banner-button-container">
 						<a href=""
 						class="dops-button is-primary redux-button">
-							<?php esc_html_e( 'Activate Redux', 'redux-framework' ); ?>
+							<?php esc_html_e( 'Register', 'redux-framework' ); ?>
 						</a>
 					</p>
 
@@ -462,7 +469,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 */
 		public static function tos_blurb($campaign = "options_panel") {
 			return sprintf(
-				__( 'By clicking the <strong>Activate</strong> button, you agree to our <a href="%1$s" target="_blank">Terms of Service</a> and to <a href="%2$s" target="_blank">share details</a> with Redux.io.', 'redux-framework' ),
+				__( 'By clicking the <strong>Register</strong> button, you agree to our <a href="%1$s" target="_blank">terms of service</a>, to create an account, and to share details of your usage metrics with Redux.io.', 'redux-framework' ),
 				esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign ),
 				esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign )
 			);

@@ -7219,7 +7219,7 @@ function ReduxTemplatesActivateBox({
     className: "redux-templates-modal-body"
   }, wp.element.createElement("div", {
     className: "section-box premium-box"
-  }, wp.element.createElement("h3", null, __('Activation Required', redux_templates.i18n)), wp.element.createElement("p", null, __('To continue using our library, you must activate Redux.', redux_templates.i18n)), wp.element.createElement("ul", null, wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Unlimited', redux_templates.i18n)), " ", __('use of our free templates.', redux_templates.i18n)), wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Updates', redux_templates.i18n)), " ", __('to the library.', redux_templates.i18n)), wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Google Fonts', redux_templates.i18n)), " ", __('manual updates.', redux_templates.i18n)), wp.element.createElement("li", null, wp.element.createElement("strong", null, __('And so much more!', redux_templates.i18n)))), wp.element.createElement("p", null, wp.element.createElement("button", {
+  }, wp.element.createElement("h3", null, __('Registration Required to Import Templates', redux_templates.i18n)), wp.element.createElement("p", null, __(' Register now to import templates from the Redux template library in a single click.', redux_templates.i18n)), wp.element.createElement("ul", null, wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Unlimited', redux_templates.i18n)), " ", __('use of our free templates.', redux_templates.i18n)), wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Updates', redux_templates.i18n)), " ", __('to the library.', redux_templates.i18n)), wp.element.createElement("li", null, wp.element.createElement("strong", null, __('Google Fonts', redux_templates.i18n)), " ", __('manual updates.', redux_templates.i18n))), wp.element.createElement("p", null, wp.element.createElement("button", {
     className: "button button-primary",
     disabled: activating,
     onClick: () => onActivateRedux()
@@ -7228,13 +7228,13 @@ function ReduxTemplatesActivateBox({
     style: {
       marginRight: '5px'
     }
-  }), wp.element.createElement("span", null, __('Activate Redux for Free', redux_templates.i18n)))), wp.element.createElement("p", {
+  }), wp.element.createElement("span", null, __('Register for Free', redux_templates.i18n)))), wp.element.createElement("p", {
     style: {
       fontSize: '1.1em'
     }
   }, wp.element.createElement("small", null, wp.element.createElement("em", {
     dangerouslySetInnerHTML: {
-      __html: redux_templates.tos.replace('to our', 'to our<br />')
+      __html: redux_templates.tos
     }
   })))));
 }

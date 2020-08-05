@@ -615,13 +615,13 @@ class Api {
 			if ( \Redux_Functions_Ex::activated() ) {
 				$response['left'] = 999;
 			} else {
-				$count = get_user_meta( $parameters['uid'], '_redux_templates_count', true );
+				$count = get_user_meta( $parameters['uid'], '_redux_templates_counts', true );
 				if ( false === $count ) {
 					$count = ReduxTemplates\Init::$default_left;
 				}
 				$count = intval( $count ) - 1;
 				if ( intval( $count ) < 0 ) {
-					update_user_meta( $parameters['uid'], '_redux_templates_count', 0 );
+					update_user_meta( $parameters['uid'], '_redux_templates_counts', 0 );
 					wp_send_json_error(
 						array(
 							'message' => 'Please activate Redux',
@@ -629,7 +629,7 @@ class Api {
 						)
 					);
 				} else {
-					update_user_meta( $parameters['uid'], '_redux_templates_count', $count );
+					update_user_meta( $parameters['uid'], '_redux_templates_counts', $count );
 				}
 				$response['left'] = $count;
 			}
@@ -653,10 +653,10 @@ class Api {
 			if ( \Redux_Functions_Ex::activated() ) {
 				$response['left'] = 999;
 			} else {
-				$count = get_user_meta( get_current_user_id(), '_redux_templates_count', true );
+				$count = get_user_meta( get_current_user_id(), '_redux_templates_counts', true );
 				if ( false === $count ) {
 					$count = Init::$default_left;
-					update_user_meta( get_current_user_id(), '_redux_templates_count', $count );
+					update_user_meta( get_current_user_id(), '_redux_templates_counts', $count );
 				}
 				$response = array(
 					'left' => $count,

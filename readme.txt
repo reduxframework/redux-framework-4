@@ -128,7 +128,7 @@ The Redux plugin uses a custom API to fetch our content library and our Gutenber
 <li>Redux API keys</li>
 </ul>
 
-API requests are only made when a user clicks on the Library button or click to launch the Redux challenge.
+API requests are only made when a user clicks on the Library button, launches the Redux Challenge, or opts into Google Font updates.
 
 For more details on our privacy policy: [https://redux.io/privacy](https://redux.io/privacy)
 For more details on on our terms and conditions: [https://redux.io/terms](https://redux.io/terms)

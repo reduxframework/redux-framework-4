@@ -701,9 +701,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					$nonce = wp_create_nonce( 'redux_update_google_fonts' );
 
 					echo '<div data-nonce="' . esc_attr( $nonce ) . '" class="redux-update-google-fonts update-message notice inline notice-warning notice-alt">';
-					echo '<p>' . esc_html__( 'Your Google Fonts are out of date.', 'redux-framework' );
+					echo '<p>' . esc_html__( 'Your Google Fonts are out of date. In order to update them you must register for Redux to enable updates.', 'redux-framework' );
 					if ( ! Redux_Functions_Ex::activated() ) {
-						echo '&nbsp;<a href="#" class="update-google-fonts" data-action="activate" aria-label="' . esc_attr__( 'Activate', 'redux-framework' ) . '">' . esc_html__( 'Activate', 'redux-framework' ) . '</a> ' . esc_html__( 'to enable font updates', 'redux-framework' ) . '.';
+						echo '&nbsp;<a href="#" class="update-google-fonts" data-action="activate" aria-label="' . esc_attr__( 'Register', 'redux-framework' ) . '">' . esc_html__( 'Register', 'redux-framework' ) . '</a> ' . esc_html__( 'to enable font updates', 'redux-framework' ) . '.';
 						echo ' (<a class="redux-insights-data-we-collect-typography" href="#" style="white-space: nowrap;">' . esc_html__( 'learn more', 'redux-framework' ) . '</a>)';
 						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						echo '<small class="description" style="display:none;"><br />' . Redux_Connection_Banner::tos_blurb( 'google_fonts' ) . ' </small>';
