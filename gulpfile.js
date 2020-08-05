@@ -651,6 +651,7 @@ function makeBuild() {
 		'!./**/jest.config.js',
 		'!./**/babel.config.js',
 		'!./package.json',
+		'!./composer.json',
 		'!./ruleset.xml',
 		'!./codestyles/*',
 		'!./local_developer.txt',
