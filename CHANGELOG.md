@@ -1,5 +1,11 @@
 # Redux Changelog
 
+## 4.1.13
+* Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.
+* Fixed: Customizer issue with some external extensions.
+* Added: Removed `FS_METHOD` define completely.
+* Release date: Aug 5, 2020
+
 ## 4.1.12
 * Fixed: Direct calls to ReduxFramework were causing unexpected errors.
 * Fixed: JS error on .replace because opt_name wasn't found.

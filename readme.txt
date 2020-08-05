@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.12
+Stable tag: 4.1.13
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -151,6 +151,12 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+= 4.1.13 =
+* Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.
+* Fixed: Customizer issue with some external extensions.
+* Added: Removed `FS_METHOD` define completely.
+* Release date: Aug 5, 2020
 
 = 4.1.12 =
 * Fixed: Direct calls to ReduxFramework were causing unexpected errors.
