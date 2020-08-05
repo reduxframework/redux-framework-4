@@ -175,9 +175,6 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				$this->use_filesystem = true;
 				$this->generate_default_files();
 			}
-			if ( ! defined( 'FS_METHOD' ) ) {
-				define( 'FS_METHOD', 'direct' );
-			}
 		}
 
 		/**
