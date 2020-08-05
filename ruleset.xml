@@ -24,7 +24,6 @@
 	<exclude-pattern>redux-core/inc/fields/typography/field_typography.php</exclude-pattern>
 	<exclude-pattern>redux-core/inc/extensions/customizer/inc/customizer_panel.php</exclude-pattern>
 	<exclude-pattern>redux-core/inc/extensions/customizer/inc/customizer_section.php</exclude-pattern>
-	<exclude-pattern>redux-core/inc/fields/typography/field_typography.php</exclude-pattern>
 	<exclude-pattern>ReduxCore/</exclude-pattern>
 	<exclude-pattern>redux-core/core</exclude-pattern>
 </ruleset>
