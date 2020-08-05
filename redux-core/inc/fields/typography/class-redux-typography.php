@@ -540,8 +540,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						class="span2 redux-typography redux-typography-size mini typography-input ' . esc_attr( $this->field['class'] ) . '" 
 						title="' . esc_html__( 'Font Size', 'redux-framework' ) . '" 
 						placeholder="' . esc_html__( 'Size', 'redux-framework' ) . '" 
-						id="' . esc_attr( $this->field['id'] ) . '-size" 
-						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[font-size]" 
+						id="' . esc_attr( $this->field['id'] ) . '-size"  
 						value="' . esc_attr( str_replace( $unit, '', $this->value['font-size'] ) ) . '" 
 						data-value="' . esc_attr( str_replace( $unit, '', $this->value['font-size'] ) ) . '">';
 				echo '<span class="add-on">' . esc_html( $unit ) . '</span>';

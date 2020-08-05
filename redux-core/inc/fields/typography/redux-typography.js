@@ -48,6 +48,8 @@
 						// Init each typography field.
 						$( this ).find( '.redux-typography-container' ).each(
 							function() {
+								var el     = $( this );
+								var parent = el;
 								var key;
 								var obj;
 								var prop;
@@ -61,7 +63,6 @@
 								var data             = [{ id: 'none', text: 'none' }];
 								var thisID           = $( this ).find( '.redux-typography-family' ).parents( '.redux-container-typography:first' ).data( 'id' );
 								var usingGoogleFonts = $( '#' + thisID + ' .redux-typography-google' ).val();
-								var parent           = $( '#' + thisID ).parent();
 
 								// Set up data array.
 								var buildData = [];
@@ -70,7 +71,17 @@
 								// User included fonts?
 								var isUserFonts = $( '#' + thisID + ' .redux-typography-font-family' ).data( 'user-fonts' );
 
-								if ( ! parent.hasClass( 'redux-field-init' ) ) {
+								if ( ! el.hasClass( 'redux-field-container' ) ) {
+									parent = el.parents( '.redux-field-container:first' );
+								}
+
+								if ( parent.is( ':hidden' ) ) {
+									return;
+								}
+
+								if ( parent.hasClass( 'redux-field-init' ) ) {
+									parent.removeClass( 'redux-field-init' );
+								} else {
 									return;
 								}
 
