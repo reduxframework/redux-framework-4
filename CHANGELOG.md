@@ -1,5 +1,11 @@
 # Redux Changelog
 
+## 4.1.12
+* Fixed: Direct calls to ReduxFramework were causing unexpected errors.
+* Fixed: JS error on .replace because opt_name wasn't found.
+* Added: `FS_METHOD` define location, had to move lower in the stack.
+* Release date: Aug 5, 2020
+
 ## 4.1.11
 * Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
 * Added: `FS_METHOD` define method for environments where it is not properly defined.

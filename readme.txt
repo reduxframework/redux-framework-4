@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.11
+Stable tag: 4.1.12
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -151,6 +151,12 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+= 4.1.12 =
+* Fixed: Direct calls to ReduxFramework were causing unexpected errors.
+* Fixed: JS error on .replace because opt_name wasn't found.
+* Added: `FS_METHOD` define location, had to move lower in the stack.
+* Release date: Aug 5, 2020
 
 = 4.1.11 =
 * Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
