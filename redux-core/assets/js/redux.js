@@ -705,7 +705,9 @@ function colorNameToHex( colour ) {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
 			}
 		}
-
+		if ( undefined === optName ) {
+			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
+		}
 		return optName;
 	};
 })( jQuery );

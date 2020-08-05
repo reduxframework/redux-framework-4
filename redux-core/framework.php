@@ -413,13 +413,20 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 			}
 
 			if ( ! isset( Redux::$init[ $args['opt_name'] ] ) ) {
-				// For those not using the new API as they should...
-				Redux::set_sections( $args['opt_name'], $sections );
+				// Let's go back to the Redux API instead of having it run directly.
+				Redux_Functions_Ex::record_caller( $args['opt_name'] );
 				Redux::set_args( $args['opt_name'], $args );
+				if ( ! empty( $sections ) ) {
+					Redux::set_sections( $args['opt_name'], $sections );
+				}
 				$sections = Redux::construct_sections( $args['opt_name'] );
 				$args     = Redux::construct_args( $args['opt_name'] );
 				Redux::set_defaults( $args['opt_name'] );
 				Redux::$init[ $args['opt_name'] ] = 1;
+			}
+
+			if ( empty( $args ) ) {
+				return;
 			}
 
 			$args             = new Redux_Args( $this, $args );

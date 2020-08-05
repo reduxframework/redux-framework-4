@@ -71,7 +71,7 @@ Though Redux will work with any theme that uses Gutenberg, we have done extra wo
 <li><a href="https://wordpress.org/plugins/block-options/"><strong>Gutenberg Page Building Toolkit – EditorsKit</strong></a> Plugin – <strong>Blocks</strong> (Templates &amp; Fields for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/block-slider/"><strong>WordPress Slider Plugin – Block Slider</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/coblocks/"><strong>Page Builder Gutenberg Blocks – CoBlocks</strong></a> Plugin – <strong>Blocks</strong> (Blocks for Gutenberg Blocks)</li>
-<li><a href="https://wordpress.org/plugins/editorskit/"><strong>Gutenberg Page Building Toolkit – CoBlocks</strong></a> Plugin – <strong>Blocks</strong> (Blocks tools to supercharge the Gutenberg editor)</li>
+<li><a href="https://wordpress.org/plugins/editorskit/"><strong>Gutenberg Page Building Toolkit – EditorsKit</strong></a> Plugin – <strong>Blocks</strong> (Blocks tools to supercharge the Gutenberg editor)</li>
 <li><a href="https://wordpress.org/plugins/editorplus/"><strong>Gutenberg Page Builder Toolkit – EditorPlus</strong></a> Plugin – <strong>EditorPlus</strong> (Toolkit and blocks for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/forms-gutenberg/"><strong>WordPress Form Builder Plugin – Gutenberg Forms</strong></a> Plugin – <strong>Blocks</strong> (Blocks &amp; Forms for Gutenberg Blocks)</li>
 <li><a href="https://wordpress.org/plugins/getwid/"><strong>Getwid – Gutenberg Blocks</strong></a> Plugin – <strong>Blocks</strong> (Templates &amp; Blocks for Gutenberg Blocks)</li>

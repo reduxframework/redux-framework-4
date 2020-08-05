@@ -114,7 +114,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					Redux_Core::$callers[ $opt_name ] = array();
 				}
 
-				if ( strpos( $caller, 'class-redux-' ) !== false ) {
+				if ( strpos( $caller, 'class-redux-' ) !== false || strpos( $caller, 'redux-core/framework.php' ) ) {
 					return;
 				}
 

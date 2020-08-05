@@ -95,7 +95,6 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		public function __construct( $force_no_fs = false ) {
 
 			// This little number fixes some issues with certain filesystem setups.
-			if ( ! defined( 'FS_METHOD' ) ) define( 'FS_METHOD', 'direct' );
 
 			if ( ! function_exists( 'request_filesystem_credentials' ) ) {
 				require_once ABSPATH . '/wp-admin/includes/template.php';
@@ -175,6 +174,9 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				$this->wp_filesystem  = $wp_filesystem;
 				$this->use_filesystem = true;
 				$this->generate_default_files();
+			}
+			if ( ! defined( 'FS_METHOD' ) ) {
+				define( 'FS_METHOD', 'direct' );
 			}
 		}
 

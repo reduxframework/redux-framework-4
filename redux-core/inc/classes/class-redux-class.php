@@ -44,7 +44,6 @@ if ( ! class_exists( 'Redux_Class', false ) ) {
 		 */
 		public function __construct( $parent = null ) {
 			if ( null !== $parent && is_object( $parent ) ) {
-
 				$this->parent   = $parent;
 				$this->args     = $parent->args;
 				$this->opt_name = $this->args['opt_name'];
