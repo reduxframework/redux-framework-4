@@ -75,6 +75,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			 * @param string $data
 			 */
 
+			if ( wp_doing_ajax() && 'ajax' !== $args ) {
+				return array();
+			}
+
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$data = apply_filters( "redux/options/{$opt_name}/pre_data/$type", null );
 
@@ -399,7 +403,6 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						case 'capabilities':
 						case 'capability':
 							global $wp_roles;
-
 							foreach ( $wp_roles->roles as $role ) {
 								foreach ( $role['capabilities'] as $key => $cap ) {
 									$data[ $key ] = ucwords( str_replace( '_', ' ', $key ) );
