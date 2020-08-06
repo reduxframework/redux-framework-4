@@ -516,7 +516,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( ! empty( $opt_name ) && ! empty( $id ) ) {
 				if ( ! isset( self::$sections[ $opt_name ][ $id ] ) ) {
-					$id = strtolower( sanitize_html_class( $id ) );
+					$id = mb_strtolower( sanitize_html_class( $id ) );
 				}
 
 				return isset( self::$sections[ $opt_name ][ $id ] ) ? self::$sections[ $opt_name ][ $id ] : false;
@@ -686,7 +686,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					$section['id'] = time();
 				} else {
 					if ( isset( $section['title'] ) ) {
-						$section['id'] = strtolower( sanitize_title( $section['title'] ) );
+						$section['id'] = mb_strtolower( sanitize_title( $section['title'] ) );
 					} else {
 						$section['id'] = time();
 					}

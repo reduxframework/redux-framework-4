@@ -173,10 +173,10 @@ class Redux_Rest_Api_Builder {
 		$type = $request['type'];
 
 		$field_classes = $this->get_field_paths();
-		if ( isset( $field_classes[ strtolower( $type ) ] ) ) {
+		if ( isset( $field_classes[ mb_strtolower( $type ) ] ) ) {
 			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
 			if ( ! class_exists( $class ) ) {
-				require_once $field_classes[ strtolower( $type ) ];
+				require_once $field_classes[ mb_strtolower( $type ) ];
 			}
 			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class = Redux_Functions::class_exists_ex( $field_class );
@@ -244,10 +244,10 @@ class Redux_Rest_Api_Builder {
 	public function render_field( $request = array() ) {
 		$type          = $request['type'];
 		$field_classes = $this->get_field_paths();
-		if ( isset( $field_classes[ strtolower( $type ) ] ) ) {
+		if ( isset( $field_classes[ mb_strtolower( $type ) ] ) ) {
 			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
 			if ( ! class_exists( $class ) ) {
-				require_once $field_classes[ strtolower( $type ) ];
+				require_once $field_classes[ mb_strtolower( $type ) ];
 			}
 			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class = Redux_Functions::class_exists_ex( $field_class );

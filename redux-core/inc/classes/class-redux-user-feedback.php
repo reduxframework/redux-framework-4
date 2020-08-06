@@ -307,8 +307,8 @@ class Redux_User_Feedback {
 }
 
 /*
-* Instantiate the Redux_User_Feedback class.
-*/
+ * Instantiate the Redux_User_Feedback class.
+ */
 new Redux_User_Feedback(
 	array(
 		'slug'       => 'Redux_plugin_feedback',

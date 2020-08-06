@@ -515,7 +515,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			$result = preg_replace_callback(
 				'/[A-Z]/',
 				function ( $matches ) {
-					return '-' . strtolower( $matches[0] );
+					return '-' . mb_strtolower( $matches[0] );
 				},
 				$keys
 			);

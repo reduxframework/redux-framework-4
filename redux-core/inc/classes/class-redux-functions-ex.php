@@ -387,6 +387,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @param string $path Path to validate.
 		 */
 		public static function register_class_path( $prefix = '', $path = '' ) {
+			if ( ! class_exists( 'Redux_Autoloader' ) ) {
+				require_once Redux_Path::get_path( '/inc/classes/class-redux-autoloader.php' );
+			}
 			$loader = new Redux_Autoloader( $prefix, $path );
 			spl_autoload_register( array( $loader, 'load' ) );
 		}

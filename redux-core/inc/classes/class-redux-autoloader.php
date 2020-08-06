@@ -52,13 +52,10 @@ class Redux_Autoloader {
 	 * @param string $class Class to test and/or load.
 	 */
 	public function load( $class ) {
-		if ( strpos( $class, $this->prefix . self::NS_SEPARATOR ) !== 0 ) {
-			return;
-		}
 
 		// Strip prefix from the start (ala PSR-4).
 		$class = substr( $class, $this->prefix_length + 1 );
-		$class = strtolower( $class );
+		$class = mb_strtolower( $class );
 		$file  = '';
 
 		// Split on namespace separator.
@@ -68,12 +65,20 @@ class Redux_Autoloader {
 			$class     = substr( $class, $last_ns_pos + 1 );
 			$file      = str_replace( self::NS_SEPARATOR, DIRECTORY_SEPARATOR, $namespace ) . DIRECTORY_SEPARATOR;
 		}
-		$file .= 'class-' . str_replace( '_', '-', $class ) . '.php';
+		$file_prefix = $file;
+		$file        = $file_prefix . 'class-' . str_replace( '_', '-', $class ) . '.php';
 
 		$path = $this->path . $file;
 
 		if ( file_exists( $path ) ) {
 			require_once $path;
+		} else {
+			$file = $file_prefix . 'class-redux-' . str_replace( '_', '-', $class ) . '.php';
+			$path = $this->path . $file;
+
+			if ( file_exists( $path ) ) {
+				require_once $path;
+			}
 		}
 	}
 }

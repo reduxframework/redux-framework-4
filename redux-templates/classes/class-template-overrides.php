@@ -52,7 +52,7 @@ class Template_Overrides {
 			return;
 		}
 
-		$template = strtolower( get_template() );
+		$template = mb_strtolower( get_template() );
 
 		$css = '';
 		if ( method_exists( __CLASS__, $template ) ) {

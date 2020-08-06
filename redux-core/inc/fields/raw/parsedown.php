@@ -719,7 +719,7 @@ class Parsedown {
 		}
 
 		if ( preg_match( '/^<[\/]?+(\w*)(?:[ ]*+' . $this->regexHtmlAttribute . ')*+[ ]*+(\/)?>/', $Line['text'], $matches ) ) {
-			$element = strtolower( $matches[1] );
+			$element = mb_strtolower( $matches[1] );
 
 			if ( in_array( $element, $this->textLevelElements ) ) {
 				return;
@@ -754,7 +754,7 @@ class Parsedown {
 		if ( strpos( $Line['text'], ']' ) !== false
 		     and preg_match( '/^\[(.+?)\]:[ ]*+<'.'?(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*+$/', $Line['text'], $matches )
 		) {
-			$id = strtolower( $matches[1] );
+			$id = mb_strtolower( $matches[1] );
 
 			$Data = array(
 				'url'   => $matches[2],
@@ -1253,11 +1253,11 @@ class Parsedown {
 		} else {
 			if ( preg_match( '/^\s*\[(.*?)\]/', $remainder, $matches ) ) {
 				$definition = strlen( $matches[1] ) ? $matches[1] : $Element['handler']['argument'];
-				$definition = strtolower( $definition );
+				$definition = mb_strtolower( $definition );
 
 				$extent += strlen( $matches[0] );
 			} else {
-				$definition = strtolower( $Element['handler']['argument'] );
+				$definition = mb_strtolower( $Element['handler']['argument'] );
 			}
 
 			if ( ! isset( $this->DefinitionData['Reference'][ $definition ] ) ) {
@@ -1674,7 +1674,7 @@ class Parsedown {
 		if ( $len > strlen( $string ) ) {
 			return false;
 		} else {
-			return strtolower( substr( $string, 0, $len ) ) === strtolower( $needle );
+			return mb_strtolower( substr( $string, 0, $len ) ) === mb_strtolower( $needle );
 		}
 	}
 

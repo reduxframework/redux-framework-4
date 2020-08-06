@@ -298,10 +298,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			}
 
 			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
-			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-extension-abstract.php';
-
+			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-functions-ex.php';
+			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) . '/inc/classes' );
+			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) . '/inc/welcome' );
 			spl_autoload_register( array( $this, 'register_classes' ) );
-			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) );
 
 			self::$welcome = new Redux_Welcome();
 			new Redux_Rest_Api_Builder( $this );
@@ -325,10 +325,18 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @param string $class_name name of class.
 		 */
 		public function register_classes( $class_name ) {
-			if ( ! class_exists( $class_name ) ) {
 
+			if ( strpos( mb_strtolower( $class_name ), 'redux' ) === false ) {
+				return;
+			}
+
+			if ( ! class_exists( 'Redux_Functions_Ex' ) ) {
+				require_once Redux_Path::get_path( '/inc/classes/class-redux-functions-ex.php' );
+			}
+
+			if ( ! class_exists( $class_name ) ) {
 				// Backward compatibility for extensions sucks!
-				if ( 'Redux_Instances' === $class_name && ! class_exists( 'ReduxFrameworkInstances', false ) ) {
+				if ( 'Redux_Instances' === $class_name ) {
 					require_once Redux_Path::get_path( '/inc/classes/class-redux-instances.php' );
 					require_once Redux_Path::get_path( '/inc/lib/redux-instances.php' );
 
@@ -355,29 +363,34 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					return;
 				}
 
-				if ( 'Redux_Connection_Banner' === $class_name ) {
-					require_once Redux_Path::get_path( '/inc/classes/class-redux-connection-banner.php' );
-
-					return;
-				}
-
-				if ( class_exists( 'Redux_Framework_Plugin' ) && ! class_exists( 'Redux_User_Feedback' ) ) {
-					require_once Redux_Path::get_path( '/inc/classes/class-redux-user-feedback.php' );
+				$mappings = array(
+					'ReduxFrameworkInstances'  => 'Redux_Instances',
+					'reduxCoreEnqueue'         => '',
+					'reduxCorePanel'           => 'Redux_Panel',
+					'reduxCoreEnqueue'         => 'Redux_Enqueue',
+					'Redux_Abstract_Extension' => 'Redux_Extension_Abstract',
+				);
+				$alias    = false;
+				if ( isset( $mappings[ $class_name ] ) ) {
+					$alias      = $class_name;
+					$class_name = $mappings[ $class_name ];
 				}
 
 				// Everything else.
-				$file = 'class.' . strtolower( $class_name ) . '.php';
+				$file = 'class.' . mb_strtolower( $class_name ) . '.php';
 
 				$class_path = Redux_Path::get_path( '/inc/classes/' . $file );
 
 				if ( ! file_exists( $class_path ) ) {
-					$class_name = str_replace( '_', '-', $class_name );
-					$file       = 'class-' . strtolower( $class_name ) . '.php';
-					$class_path = Redux_Path::get_path( '/inc/classes/' . $file );
+					$class_file_name = str_replace( '_', '-', $class_name );
+					$file            = 'class-' . mb_strtolower( $class_file_name ) . '.php';
+					$class_path      = Redux_Path::get_path( '/inc/classes/' . $file );
 				}
 
 				if ( file_exists( $class_path ) ) {
-					require_once $class_path;
+					if ( ! empty( $alias ) && ! class_exists( $alias ) ) {
+						class_alias( $class_name, $alias );
+					}
 				}
 			}
 

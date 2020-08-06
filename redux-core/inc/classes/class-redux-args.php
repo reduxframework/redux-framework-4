@@ -309,7 +309,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 					foreach ( $args['admin_bar_links'] as $idx => $arr ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
-								if ( strpos( strtolower( $y ), 'redux' ) !== false ) {
+								if ( strpos( mb_strtolower( $y ), 'redux' ) !== false ) {
 									$msg = '<strong>' . esc_html__(
 										'Redux Framework Notice',
 										'redux-framework'
@@ -333,7 +333,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 					foreach ( $args['share_icons'] as $idx => $arr ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
-								if ( strpos( strtolower( $y ), 'redux' ) !== false ) {
+								if ( strpos( mb_strtolower( $y ), 'redux' ) !== false ) {
 									$msg = '<strong>' . esc_html__(
 										'Redux Framework Notice:',
 										'redux-framework'

@@ -411,8 +411,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					continue;
 				}
 				if ( false !== strpos( $part, '/' ) ) {
-					$chunk                               = explode( '/', $part );
-					$software[ strtolower( $chunk[0] ) ] = $chunk[1];
+					$chunk                                  = explode( '/', $part );
+					$software[ mb_strtolower( $chunk[0] ) ] = $chunk[1];
 				}
 			}
 			$data['server']     = Redux_Core::$server['SERVER_SOFTWARE'];

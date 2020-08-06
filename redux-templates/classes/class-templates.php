@@ -53,7 +53,7 @@ class Templates {
 		if ( ! empty( $post ) ) {
 			$template = get_page_template_slug( $post->ID );
 			if ( false !== strpos( $template, 'redux' ) ) {
-				$test = strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
+				$test = mb_strtolower( preg_replace( '/[^A-Za-z0-9 ]/', '', $template ) );
 				foreach ( $to_find as $key ) {
 					if ( false !== strpos( $test, $key ) ) {
 						return true;
