@@ -612,6 +612,18 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		}
 
 		/**
+		 * SHIM: get_default_value
+		 *
+		 * @param string $key Key value.
+		 * @param bool   $array_key Flag to determine array status.
+		 *
+		 * @return array
+		 */
+		public function get_default_value( $key, $array_key = false ) {
+			return $this->options_defaults_class->default_values( $key, $array_key );
+		}
+
+		/**
 		 * SHIM: get_wordpress_data
 		 *
 		 * @param bool   $type data type.

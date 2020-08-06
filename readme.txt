@@ -156,6 +156,9 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.
 * Fixed: Customizer issue with some external extensions.
 * Added: Removed `FS_METHOD` define completely.
+* Added: Shim for ReduxFramework->get_default_value()
+* Fixed: Local issue with WP and strtolower. Sites that couldn't find classes should work now.
+* Fixed: Ajax for select boxes is now working again.
 * Release date: Aug 5, 2020
 
 = 4.1.12 =
