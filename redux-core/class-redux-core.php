@@ -387,10 +387,11 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					$class_path      = Redux_Path::get_path( '/inc/classes/' . $file );
 				}
 
-				if ( file_exists( $class_path ) ) {
-					if ( ! empty( $alias ) && ! class_exists( $alias ) ) {
-						class_alias( $class_name, $alias );
-					}
+				if ( file_exists( $class_path ) && ! class_exists( $class_name ) ) {
+					require_once $class_path;
+				}
+				if ( class_exists( $class_name ) && ! empty( $alias ) && ! class_exists( $alias ) ) {
+					class_alias( $class_name, $alias );
 				}
 			}
 
