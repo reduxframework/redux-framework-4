@@ -411,7 +411,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					continue;
 				}
 				if ( false !== strpos( $part, '/' ) ) {
-					$chunk                                  = explode( '/', $part );
+					$chunk = explode( '/', $part );
 					$software[ Redux_Helpers::strtolower( $chunk[0] ) ] = $chunk[1];
 				}
 			}
@@ -1946,8 +1946,15 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			die();
 		}
 
+		/**
+		 * Helper method to check for mb_strtolower or to use the standard strtolower.
+		 *
+		 * @param string $str String to make lowercase.
+		 *
+		 * @return string
+		 */
 		public static function strtolower( $str ) {
-			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_strtolower' )  ) {
+			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_strtolower' ) ) {
 				return mb_strtolower( $str, mb_detect_encoding( $str ) );
 			} else {
 				return strtolower( $str );
