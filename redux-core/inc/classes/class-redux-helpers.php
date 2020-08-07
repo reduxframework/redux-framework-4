@@ -1954,7 +1954,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return string
 		 */
 		public static function strtolower( $str ) {
-			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_strtolower' ) ) {
+			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_detect_encoding' ) ) {
 				return mb_strtolower( $str, mb_detect_encoding( $str ) );
 			} else {
 				return strtolower( $str );
