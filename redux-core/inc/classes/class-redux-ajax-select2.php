@@ -42,10 +42,12 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 					wp_send_json_error( esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ) );
 				}
 
-				$return = array();
-
 				if ( isset( $_REQUEST['data'] ) ) {
-					$return = $core->wordpress_data->get( sanitize_text_field( wp_unslash( $_REQUEST['data'] ) ), 'ajax' );
+
+					$args = isset( $_REQUEST['data_args'] ) ? json_decode( sanitize_text_field( wp_unslash( $_REQUEST['data_args'] ) ), true ) : array();
+					$args = wp_parse_args( $args, array( 'ajax' => true ) );
+
+					$return = $core->wordpress_data->get( sanitize_text_field( wp_unslash( $_REQUEST['data'] ) ), $args );
 
 					if ( is_array( $return ) && ! empty( $_REQUEST['action'] ) ) {
 						if ( isset( $_REQUEST['q'] ) ) {
@@ -62,7 +64,7 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 								foreach ( $search_values as $id => $val ) {
 									$to_json[ $keys[ $id ] ] = array(
 										'id'   => $keys[ $id ],
-										'text' => $val,
+										'text' => $val . ' [' . $keys[ $id ] . ']',
 									);
 								}
 							}
@@ -72,11 +74,11 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 								foreach ( $search_keys as $id => $val ) {
 									$to_json[ $val ] = array(
 										'id'   => $val,
-										'text' => $values[ $id ],
+										'text' => $values[ $id ] . ' [' . $val . ']',
 									);
 								}
 							}
-							wp_send_json_success( $to_json );
+							wp_send_json_success( array_values( $to_json ) );
 						}
 					}
 				}

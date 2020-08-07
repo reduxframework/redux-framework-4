@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			 * @param string $data
 			 */
 
-			if ( wp_doing_ajax() && 'ajax' !== $args ) {
+			if ( wp_doing_ajax() && ! ( isset( $args['ajax'] ) && ! empty( $args['ajax'] ) ) ) {
 				return array();
 			}
 
