@@ -43,6 +43,17 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 		}
 
 		/**
+		 * Shim for old get_redux_instance method.
+		 *
+		 * @param  string|false $opt_name the defined opt_name.
+		 *
+		 * @return ReduxFramework class instance
+		 */
+		public static function get_redux_instance( $opt_name = '' ) {
+			return self::get_instance( $opt_name );
+		}
+
+		/**
 		 * Get all instantiated ReduxFramework instances (so far)
 		 *
 		 * @return [type] [description]
@@ -80,4 +91,17 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 
 if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
 	class_alias( 'Redux_Instances', 'ReduxFrameworkInstances' );
+}
+
+if ( ! function_exists( 'get_redux_instance' ) ) {
+	/**
+	 * Shim function that some theme oddly used.
+	 *
+	 * @param  string|false $opt_name the defined opt_name.
+	 *
+	 * @return ReduxFramework class instance
+	 */
+	function get_redux_instance( $opt_name ) {
+		return Redux_Instances::get_instance( $opt_name );
+	}
 }

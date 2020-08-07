@@ -55,8 +55,11 @@ class Redux_Autoloader {
 
 		// Strip prefix from the start (ala PSR-4).
 		$class = substr( $class, $this->prefix_length + 1 );
-		$class = Redux_Helpers::strtolower( $class );
-		$file  = '';
+		if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_detect_encoding' ) ) {
+			$class = mb_strtolower( $class, mb_detect_encoding( $class ) );
+		} else {
+			$class = strtolower( $class );
+		}
 
 		// Split on namespace separator.
 		$last_ns_pos = strripos( $class, self::NS_SEPARATOR );
