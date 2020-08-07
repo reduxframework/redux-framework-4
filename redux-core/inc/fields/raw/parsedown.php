@@ -719,7 +719,7 @@ class Parsedown {
 		}
 
 		if ( preg_match( '/^<[\/]?+(\w*)(?:[ ]*+' . $this->regexHtmlAttribute . ')*+[ ]*+(\/)?>/', $Line['text'], $matches ) ) {
-			$element = mb_strtolower( $matches[1] );
+			$element = Redux_Helpers::strtolower( $matches[1] );
 
 			if ( in_array( $element, $this->textLevelElements ) ) {
 				return;
@@ -754,7 +754,7 @@ class Parsedown {
 		if ( strpos( $Line['text'], ']' ) !== false
 		     and preg_match( '/^\[(.+?)\]:[ ]*+<'.'?(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*+$/', $Line['text'], $matches )
 		) {
-			$id = mb_strtolower( $matches[1] );
+			$id = Redux_Helpers::strtolower( $matches[1] );
 
 			$Data = array(
 				'url'   => $matches[2],
@@ -1253,11 +1253,11 @@ class Parsedown {
 		} else {
 			if ( preg_match( '/^\s*\[(.*?)\]/', $remainder, $matches ) ) {
 				$definition = strlen( $matches[1] ) ? $matches[1] : $Element['handler']['argument'];
-				$definition = mb_strtolower( $definition );
+				$definition = Redux_Helpers::strtolower( $definition );
 
 				$extent += strlen( $matches[0] );
 			} else {
-				$definition = mb_strtolower( $Element['handler']['argument'] );
+				$definition = Redux_Helpers::strtolower( $Element['handler']['argument'] );
 			}
 
 			if ( ! isset( $this->DefinitionData['Reference'][ $definition ] ) ) {
@@ -1674,7 +1674,7 @@ class Parsedown {
 		if ( $len > strlen( $string ) ) {
 			return false;
 		} else {
-			return mb_strtolower( substr( $string, 0, $len ) ) === mb_strtolower( $needle );
+			return Redux_Helpers::strtolower( substr( $string, 0, $len ) ) === Redux_Helpers::strtolower( $needle );
 		}
 	}
 

@@ -55,7 +55,7 @@ class Redux_Autoloader {
 
 		// Strip prefix from the start (ala PSR-4).
 		$class = substr( $class, $this->prefix_length + 1 );
-		$class = mb_strtolower( $class );
+		$class = Redux_Helpers::strtolower( $class );
 		$file  = '';
 
 		// Split on namespace separator.

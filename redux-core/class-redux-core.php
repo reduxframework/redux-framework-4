@@ -326,7 +326,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 */
 		public function register_classes( $class_name ) {
 
-			if ( strpos( mb_strtolower( $class_name ), 'redux' ) === false ) {
+			if ( strpos( Redux_Helpers::strtolower( $class_name ), 'redux' ) === false ) {
 				return;
 			}
 
@@ -377,13 +377,13 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				}
 
 				// Everything else.
-				$file = 'class.' . mb_strtolower( $class_name ) . '.php';
+				$file = 'class.' . Redux_Helpers::strtolower( $class_name ) . '.php';
 
 				$class_path = Redux_Path::get_path( '/inc/classes/' . $file );
 
 				if ( ! file_exists( $class_path ) ) {
 					$class_file_name = str_replace( '_', '-', $class_name );
-					$file            = 'class-' . mb_strtolower( $class_file_name ) . '.php';
+					$file            = 'class-' . Redux_Helpers::strtolower( $class_file_name ) . '.php';
 					$class_path      = Redux_Path::get_path( '/inc/classes/' . $file );
 				}
 

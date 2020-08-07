@@ -1102,7 +1102,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					$lc_fonts = array_change_key_case( $this->field['custom_fonts'] );
 					foreach ( $lc_fonts as $group => $font_arr ) {
 						foreach ( $font_arr as $key => $value ) {
-							$arr[ mb_strtolower( $key ) ] = $key;
+							$arr[ Redux_Helpers::strtolower( $key ) ] = $key;
 						}
 					}
 
@@ -1111,7 +1111,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					unset( $arr );
 
 					// lowercase chosen font for matching purposes.
-					$lc_font = mb_strtolower( $font['font-family'] );
+					$lc_font = Redux_Helpers::strtolower( $font['font-family'] );
 
 					// Remove spaces after commas in chosen font for mathcing purposes.
 					$lc_font = str_replace( ', ', ',', $lc_font );

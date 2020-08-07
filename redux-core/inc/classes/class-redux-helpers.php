@@ -412,7 +412,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				}
 				if ( false !== strpos( $part, '/' ) ) {
 					$chunk                                  = explode( '/', $part );
-					$software[ mb_strtolower( $chunk[0] ) ] = $chunk[1];
+					$software[ Redux_Helpers::strtolower( $chunk[0] ) ] = $chunk[1];
 				}
 			}
 			$data['server']     = Redux_Core::$server['SERVER_SOFTWARE'];
@@ -1944,6 +1944,14 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 			echo @htmlspecialchars( @wp_json_encode( $array, true ), ENT_QUOTES, 'UTF-8' );
 
 			die();
+		}
+
+		public function strtolower( $str ) {
+			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_strtolower' )  ) {
+				return mb_strtolower( $str, mb_detect_encoding( $str ) );
+			} else {
+				return strtolower( $str );
+			}
 		}
 	}
 }
