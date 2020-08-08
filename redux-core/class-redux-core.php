@@ -327,6 +327,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 */
 		public function register_classes( $class_name ) {
 
+			if ( ! class_exists( 'Redux_Helpers' ) ) {
+				require_once Redux_Path::get_path( '/inc/classes/class-redux-helpers.php' );
+			}
+
 			if ( strpos( Redux_Helpers::strtolower( $class_name ), 'redux' ) === false ) {
 				return;
 			}
