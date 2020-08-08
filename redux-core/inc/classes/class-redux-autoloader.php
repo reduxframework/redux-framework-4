@@ -61,7 +61,7 @@ class Redux_Autoloader {
 			$class = strtolower( $class );
 		}
 
-		$file  = '';
+		$file = '';
 		// Split on namespace separator.
 		$last_ns_pos = strripos( $class, self::NS_SEPARATOR );
 		if ( false !== $last_ns_pos ) {
