@@ -7,9 +7,7 @@
 	redux.field_objects.spacing = redux.field_objects.spacing || {};
 
 	redux.field_objects.spacing.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-spacing:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'spacing' );
 
 		$( selector ).each(
 			function() {

@@ -2,7 +2,7 @@
  * Field Link Color
  */
 
-/*global jQuery, document, redux_change, redux, colorValidate */
+/*global jQuery, redux_change, redux, colorValidate */
 
 (function( $ ) {
 	'use strict';
@@ -11,9 +11,7 @@
 	redux.field_objects.link_color = redux.field_objects.link_color || {};
 
 	redux.field_objects.link_color.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-link_color:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'link_color' );
 
 		$( selector ).each(
 			function() {

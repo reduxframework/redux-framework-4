@@ -21,9 +21,7 @@
 	redux.field_objects.typography = redux.field_objects.typography || {};
 
 	redux.field_objects.typography.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-typography:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'typography' );
 
 		$( selector ).each(
 			function() {

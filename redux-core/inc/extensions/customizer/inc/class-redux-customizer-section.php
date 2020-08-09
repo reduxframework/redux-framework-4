@@ -70,7 +70,8 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 	protected function render_template() {
 		?>
 		<li id="accordion-section-{{ data.id }}"
-			class="redux-section accordion-section control-section control-section-{{ data.type }}">
+			class="redux-standalone-section redux-section accordion-section control-section control-section-{{ data.type }}"
+			data-opt-name="{{{ data.opt_name }}}">
 			<h3 class="accordion-section-title" tabindex="0">
 				{{ data.title }}
 				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'redux-framework' ); ?></span>

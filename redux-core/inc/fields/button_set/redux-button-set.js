@@ -2,7 +2,7 @@
  * Field Button Set (button_set)
  */
 
-/*global jQuery, document, redux, redux_change */
+/*global jQuery, redux, redux_change */
 
 (function( $ ) {
 	'use strict';
@@ -11,9 +11,7 @@
 	redux.field_objects.button_set = redux.field_objects.button_set || {};
 
 	redux.field_objects.button_set.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-button_set:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'button_set' );
 
 		$( selector ).each(
 			function() {

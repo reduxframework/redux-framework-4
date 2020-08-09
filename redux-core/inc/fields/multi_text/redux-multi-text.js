@@ -40,9 +40,7 @@
 	};
 
 	redux.field_objects.multi_text.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-multi_text:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'multi_text' );
 
 		$( selector ).each(
 			function() {

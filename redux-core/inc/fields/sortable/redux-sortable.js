@@ -1,4 +1,4 @@
-/*global jQuery, document, redux_change, redux*/
+/*global jQuery, redux_change, redux*/
 
 (function( $ ) {
 	'use strict';
@@ -9,9 +9,7 @@
 	redux.field_objects.sortable = redux.field_objects.sortable || {};
 
 	redux.field_objects.sortable.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-sortable:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'sortable' );
 
 		$( selector ).each(
 			function() {

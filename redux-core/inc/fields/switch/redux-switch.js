@@ -14,9 +14,7 @@
 	redux.field_objects.switch = redux.field_objects.switch || {};
 
 	redux.field_objects.switch.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-switch:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'switch' );
 
 		$( selector ).each(
 			function() {

@@ -28,9 +28,7 @@
 	};
 
 	redux.field_objects.color_rgba.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-color_rgba:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'color_rgba' );
 
 		$( selector ).each(
 			function() {

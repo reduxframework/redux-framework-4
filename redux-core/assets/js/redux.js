@@ -570,9 +570,9 @@ function colorNameToHex( colour ) {
 	};
 })( jQuery );
 
-/* global redux */
+/* global redux, document */
 
-( function( $ ) {
+(function( $ ) {
 	'use strict';
 
 	$.redux = $.redux || {};
@@ -593,17 +593,17 @@ function colorNameToHex( colour ) {
 					return;
 				}
 
-				win      = $( window );
+				win = $( window );
 				viewport = {
 					top: win.scrollTop()
 				};
 
-				viewport.right  = viewport.left + win.width();
+				viewport.right = viewport.left + win.width();
 				viewport.bottom = viewport.top + win.height();
 
 				bounds = this.offset();
 
-				bounds.right  = bounds.left + this.outerWidth();
+				bounds.right = bounds.left + this.outerWidth();
 				bounds.bottom = bounds.top + this.outerHeight();
 
 				return ( ! ( viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom ) );
@@ -620,7 +620,7 @@ function colorNameToHex( colour ) {
 				function() {
 					opt_name = $.redux.getOptName( this );
 
-					if ( $.inArray( opt_name, tempArr ) === - 1 ) {
+					if ( $.inArray( opt_name, tempArr ) === -1 ) {
 						tempArr.push( opt_name );
 						redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 						$.redux.checkRequired( $( this ) );
@@ -694,12 +694,12 @@ function colorNameToHex( colour ) {
 				optName = metabox.attr( 'id' ).replace( 'redux-', '' ).split( '-metabox-' )[0];
 				if ( undefined === optName ) {
 					optName = metabox.attr( 'class' )
-						.replace( 'redux-metabox', '' )
-						.replace( 'postbox', '' )
-						.replace( 'redux-', '' )
-						.replace( 'hide', '' )
-						.replace( 'closed', '' )
-						.trim();
+					.replace( 'redux-metabox', '' )
+					.replace( 'postbox', '' )
+					.replace( 'redux-', '' )
+					.replace( 'hide', '' )
+					.replace( 'closed', '' )
+					.trim();
 				}
 			} else {
 				optName = $( '.redux-ajax-security' ).data( 'opt-name' );
@@ -709,6 +709,18 @@ function colorNameToHex( colour ) {
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
 		return optName;
+	};
+
+	$.redux.getSelector = function( selector, fieldType ) {
+		if ( ! selector ) {
+			selector = '.redux-container-' + fieldType + ':visible';
+			if ( redux.customizer ) {
+				selector = $( document ).find( '.control-section-redux.open' ).find( selector );
+			} else {
+				selector = $( document ).find( '.redux-group-tab:visible' ).find( selector );
+			}
+		}
+		return selector;
 	};
 })( jQuery );
 

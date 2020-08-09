@@ -1,4 +1,4 @@
-/* global jQuery, document, redux */
+/* global jQuery, redux */
 
 (function( $ ) {
 	'use strict';
@@ -7,9 +7,7 @@
 	redux.field_objects.dimensions = redux.field_objects.dimensions || {};
 
 	redux.field_objects.dimensions.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-dimensions:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'dimensions' );
 
 		$( selector ).each(
 			function() {

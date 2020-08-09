@@ -7,10 +7,7 @@
 	redux.field_objects.gallery = redux.field_objects.gallery || {};
 
 	redux.field_objects.gallery.init = function( selector ) {
-
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-gallery:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'gallery' );
 
 		$( selector ).each(
 			function() {

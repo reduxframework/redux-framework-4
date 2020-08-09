@@ -7,9 +7,7 @@
 	redux.field_objects.options_object.init = function( selector ) {
 		var parent;
 
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-options_object' );
-		}
+		selector = $.redux.getSelector( selector, 'options_object' );
 
 		parent = selector;
 

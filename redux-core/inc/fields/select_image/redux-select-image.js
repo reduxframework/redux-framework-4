@@ -7,9 +7,7 @@
 	redux.field_objects.select_image = redux.field_objects.select_image || {};
 
 	redux.field_objects.select_image.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-select_image:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'select_image' );
 
 		$( selector ).each(
 			function() {

@@ -14,9 +14,7 @@
 	redux.field_objects.background = redux.field_objects.background || {};
 
 	redux.field_objects.background.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-background:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'background' );
 
 		$( selector ).each(
 			function() {

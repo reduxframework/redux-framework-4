@@ -7,9 +7,7 @@
 	redux.field_objects.import_export = redux.field_objects.import_export || {};
 
 	redux.field_objects.import_export.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-import_export:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'import_export' );
 
 		$( selector ).each(
 			function() {

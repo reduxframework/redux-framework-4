@@ -15,9 +15,7 @@
 	redux.field_objects.sorter = redux.field_objects.sorter || {};
 
 	redux.field_objects.sorter.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-sorter:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'sorter' );
 
 		$( selector ).each(
 			function() {

@@ -7,9 +7,7 @@
 	redux.field_objects.select = redux.field_objects.select || {};
 
 	redux.field_objects.select.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-select:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'select' );
 
 		$( selector ).each(
 			function() {

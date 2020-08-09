@@ -1,4 +1,4 @@
-/*global jQuery, document, redux, redux_change, ace */
+/*global jQuery, redux, redux_change, ace */
 
 ( function( $ ) {
 	'use strict';
@@ -7,9 +7,7 @@
 	redux.field_objects.ace_editor = redux.field_objects.ace_editor || {};
 
 	redux.field_objects.ace_editor.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-ace_editor:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'ace_editor' );
 
 		$( selector ).each(
 			function() {

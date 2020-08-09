@@ -2,7 +2,7 @@
  * Field Palette (color)
  */
 
-/*global jQuery, document, redux*/
+/*global jQuery, redux*/
 
 (function( $ ) {
 	'use strict';
@@ -11,9 +11,7 @@
 	redux.field_objects.palette = redux.field_objects.palette || {};
 
 	redux.field_objects.palette.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-palette:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'palette' );
 
 		$( selector ).each(
 			function() {

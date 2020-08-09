@@ -1,4 +1,4 @@
-/*global jQuery, document, redux*/
+/*global jQuery, redux*/
 
 (function( $ ) {
 	'use strict';
@@ -7,9 +7,7 @@
 	redux.field_objects.date = redux.field_objects.date || {};
 
 	redux.field_objects.date.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-container-date:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'date' );
 
 		$( selector ).each(
 			function() {

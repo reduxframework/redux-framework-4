@@ -2,7 +2,7 @@
  * Field Color Gradient
  */
 
-/*global jQuery, document, redux, colorValidate */
+/*global jQuery, redux, colorValidate */
 
 ( function( $ ) {
 	'use strict';
@@ -13,10 +13,7 @@
 	redux.field_objects.color_gradient = redux.field_objects.color_gradient || {};
 
 	redux.field_objects.color_gradient.init = function( selector ) {
-
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-color_gradient:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'color_gradient' );
 
 		$( selector ).each(
 			function() {

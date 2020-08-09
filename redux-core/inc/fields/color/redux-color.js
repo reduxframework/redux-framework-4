@@ -2,7 +2,7 @@
  *  Field Color (color)
  */
 
-/*global jQuery, document, redux_change, redux, colorValidate */
+/*global jQuery, redux_change, redux, colorValidate */
 
 (function( $ ) {
 	'use strict';
@@ -11,10 +11,7 @@
 	redux.field_objects.color = redux.field_objects.color || {};
 
 	redux.field_objects.color.init = function( selector ) {
-
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-color:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'color' );
 
 		$( selector ).each(
 			function() {

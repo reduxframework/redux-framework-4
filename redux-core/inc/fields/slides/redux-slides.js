@@ -7,9 +7,7 @@
 	redux.field_objects.slides = redux.field_objects.slides || {};
 
 	redux.field_objects.slides.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-slides:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'slides' );
 
 		$( selector ).each(
 			function() {

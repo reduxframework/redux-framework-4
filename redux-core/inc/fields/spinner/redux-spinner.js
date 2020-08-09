@@ -7,10 +7,7 @@
 	redux.field_objects.spinner = redux.field_objects.spinner || {};
 
 	redux.field_objects.spinner.init = function( selector ) {
-
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-spinner:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'spinner' );
 
 		$( selector ).each(
 			function() {

@@ -14,9 +14,7 @@
 	redux.field_objects.checkbox = redux.field_objects.checkbox || {};
 
 	redux.field_objects.checkbox.init = function( selector ) {
-		if ( ! selector ) {
-			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-checkbox:visible' );
-		}
+		selector = $.redux.getSelector( selector, 'checkbox' );
 
 		$( selector ).each(
 			function() {
