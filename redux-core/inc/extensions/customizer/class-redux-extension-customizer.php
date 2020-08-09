@@ -368,7 +368,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 				// Let's make a section ID from the title.
 				if ( empty( $section['id'] ) ) {
-					$section['id'] = Redux_Helpers::strtolower( str_replace( ' ', '', $section['title'] ) );
+					$section['id'] = Redux_Core::strtolower( str_replace( ' ', '', $section['title'] ) );
 				}
 
 				// No title is present, let's show what section is missing a title.

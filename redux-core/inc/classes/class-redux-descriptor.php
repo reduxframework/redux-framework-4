@@ -77,7 +77,7 @@ class Redux_Descriptor {
 		} catch ( ReflectionException $e ) {
 			die ( $e->getMessage() ); // phpcs:ignore
 		}
-		$this->field_type = Redux_Helpers::strtolower( Redux_Helpers::remove_prefix( $this->reflection_class->getShortName(), 'Redux_' ) );
+		$this->field_type = Redux_Core::strtolower( Redux_Helpers::remove_prefix( $this->reflection_class->getShortName(), 'Redux_' ) );
 		$this->name       = ucfirst( $this->field_type );
 	}
 

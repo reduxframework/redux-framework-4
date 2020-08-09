@@ -123,7 +123,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 					// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 					if ( false !== strpos( $phpfile, 'class' . ' ReduxFramework {' ) ) {
 						self::$redux_details               = array(
-							'filename' => Redux_Helpers::strtolower( basename( $php_key ) ),
+							'filename' => Redux_Core::strtolower( basename( $php_key ) ),
 							'path'     => $php_key,
 						);
 						self::$redux_details['dir']        = str_replace( basename( $php_key ), '', $php_key );

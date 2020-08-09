@@ -326,12 +326,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @param string $class_name name of class.
 		 */
 		public function register_classes( $class_name ) {
-
-			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_detect_encoding' ) ) {
-				$class_name_test = mb_strtolower( $class_name, mb_detect_encoding( $class_name ) );
-			} else {
-				$class_name_test = strtolower( $class_name );
-			}
+			$class_name_test = Redux_Core::strtolower( $class_name );
 
 			if ( strpos( $class_name_test, 'redux' ) === false ) {
 				return;
@@ -445,6 +440,21 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			// Buh bye!
 			return false;
+		}
+
+		/**
+		 * Helper method to check for mb_strtolower or to use the standard strtolower.
+		 *
+		 * @param string $str String to make lowercase.
+		 *
+		 * @return string
+		 */
+		public static function strtolower( $str ) {
+			if ( function_exists( 'mb_strtolower' ) && function_exists( 'mb_detect_encoding' ) ) {
+				return mb_strtolower( $str, mb_detect_encoding( $str ) );
+			} else {
+				return strtolower( $str );
+			}
 		}
 	}
 

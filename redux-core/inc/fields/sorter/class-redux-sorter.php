@@ -30,7 +30,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 				foreach ( $arr as $id => $name ) {
 
 					if ( is_numeric( $id ) ) {
-						$slug = Redux_Helpers::strtolower( $name );
+						$slug = Redux_Core::strtolower( $name );
 						$slug = str_replace( ' ', '-', $slug );
 
 						$new_arr[ $slug ] = $name;

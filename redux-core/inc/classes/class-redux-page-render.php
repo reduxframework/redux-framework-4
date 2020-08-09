@@ -189,7 +189,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 				// Construct message.
 				// translators: %1$s: Mousr action.  %2$s: Hint status.
-				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'redux-framework' ), $event, Redux_Helpers::strtolower( $s ) ) . '<br/><br/>' . $url;
+				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'redux-framework' ), $event, Redux_Core::strtolower( $s ) ) . '<br/><br/>' . $url;
 
 				// Construct hint tab.
 				$tab = array(
@@ -243,7 +243,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 			$page_slug        = $core->args['page_slug'];
 
 			// Just in case. One never knows.
-			$page_parent = Redux_Helpers::strtolower( $page_parent );
+			$page_parent = Redux_Core::strtolower( $page_parent );
 
 			$test = array(
 				'index.php'               => 'dashboard',
