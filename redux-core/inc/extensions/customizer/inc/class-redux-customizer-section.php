@@ -137,13 +137,13 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 		$array['content']        = $this->get_content();
 		$array['active']         = $this->active();
 		$array['instanceNumber'] = $this->instance_number;
-		$array['opt_name']              = $this->opt_name;
+		$array['opt_name']       = $this->opt_name;
 
 		if ( $this->panel ) {
 			/* translators: &#9656; is the unicode right-pointing triangle. %s: Section title in the Customizer. */
-			$array['customizeAction'] = sprintf( __( 'Customizing &#9656; %s' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
+			$array['customizeAction'] = sprintf( __( 'Customizing &#9656; %s', 'redux-framework' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
 		} else {
-			$array['customizeAction'] = __( 'Customizing' );
+			$array['customizeAction'] = __( 'Customizing', 'redux-framework' );
 		}
 
 		return $array;

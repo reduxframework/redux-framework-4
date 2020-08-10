@@ -397,7 +397,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 						$wp_customize
 					);
 
-					$panel = $this->parent->args['opt_name'] . '-' .$section['id'];
+					$panel = $this->parent->args['opt_name'] . '-' . $section['id'];
 
 					$this->add_section(
 						$section['id'],
