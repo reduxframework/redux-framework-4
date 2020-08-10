@@ -94,8 +94,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$this->options_defaults[ $field['id'] ] = apply_filters( "redux/{$opt_name}/field/{$field['type']}/defaults", $field['default'], $field );
-			} elseif ( ( 'ace_editor' !== $field['type'] ) ) {
-				// Sorter data filter.
+			} elseif ( ( 'ace_editor' !== $field['type'] ) && ! ( $field['type'] == "select" && !empty ($field['ajax'] ) ) ) {
 				if ( isset( $field['data'] ) && ! empty( $field['data'] ) ) {
 					if ( ! isset( $field['args'] ) ) {
 						$field['args'] = array();
