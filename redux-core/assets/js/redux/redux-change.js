@@ -43,12 +43,11 @@ function redux_change( variable ) {
 
 		rContainer = $( variable ).parents( '.redux-container:first' );
 
-		if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
-			opt_name = $( '.panel-meta.customize-info.redux-panel.accordion-section' ).data( 'opt-name' );
+		if ( redux.customizer ) {
+			opt_name = $( '.redux-customizer-opt-name' ).data( 'opt-name' );
 		} else {
 			opt_name = $.redux.getOptName( rContainer );
 		}
-		redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 
 		$( 'body' ).trigger( 'check_dependencies', variable );
 

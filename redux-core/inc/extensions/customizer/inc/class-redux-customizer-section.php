@@ -25,6 +25,15 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 	public $type = 'redux';
 
 	/**
+	 * Panel opt_name.
+	 *
+	 * @since  4.0.0
+	 * @access public
+	 * @var string
+	 */
+	public $opt_name = '';
+
+	/**
 	 * Constructor.
 	 * Any supplied $args override class property defaults.
 	 *
@@ -57,51 +66,18 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 			$this->description = isset( $this->section['desc'] ) ? $this->section['desc'] : '';
 			$this->opt_name    = isset( $args['opt_name'] ) ? $args['opt_name'] : '';
 		}
+
 	}
 
 	/**
-	 * An Underscore (JS) template for rendering this section.
-	 * Class variables for this section class are available in the `data` JS object;
-	 * export custom variables by overriding {@see WP_Customize_Section::json()}.
-	 *
-	 * @see   WP_Customize_Section::print_template()
-	 * @since 4.3.0
+	 * WP < 4.3 Render
 	 */
-	protected function render_template() {
-		?>
-		<li id="accordion-section-{{ data.id }}"
-			class="redux-standalone-section redux-section accordion-section control-section control-section-{{ data.type }}"
-			data-opt-name="{{{ data.opt_name }}}">
-			<h3 class="accordion-section-title" tabindex="0">
-				{{ data.title }}
-				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'redux-framework' ); ?></span>
-			</h3>
-			<ul class="accordion-section-content redux-main">
-
-				<li class="customize-section-description-container">
-					<div class="customize-section-title">
-						<button class="customize-section-back" tabindex="-1">
-							<span class="screen-reader-text"><?php esc_html_e( 'Back', 'redux-framework' ); ?></span>
-						</button>
-						<h3>
-							<span class="customize-action">
-								{{{ data.customizeAction }}}
-							</span> {{ data.title }}
-						</h3>
-					</div>
-					<# if ( data.description ) { #>
-					<p class="description customize-section-description">{{{ data.description }}}</p>
-					<# } #>
-					<?php
-					if ( isset( $this->opt_name ) && isset( $this->section ) ) {
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
-						do_action( "redux/page/{$this->opt_name}/section/before", $this->section );
-					}
-					?>
-				</li>
-			</ul>
-		</li>
-		<?php
+	protected function render() {
+		global $wp_version;
+		$version = explode( '-', $wp_version );
+		if ( version_compare( $version[0], '4.3', '<' ) ) {
+			$this->render_fallback();
+		}
 	}
 
 	/**
@@ -147,14 +123,79 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 		<?php
 	}
 
+
 	/**
-	 * Field redner.
+	 * Gather the parameters passed to client JavaScript via JSON.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return array The array to be exported to the client as JSON.
 	 */
-	protected function render() {
-		global $wp_version;
-		$version = explode( '-', $wp_version );
-		if ( version_compare( $version[0], '4.3', '<' ) ) {
-			$this->render_fallback();
+	public function json() {
+		$array                   = wp_array_slice_assoc( (array) $this, array( 'id', 'description', 'priority', 'panel', 'type', 'description_hidden' ) );
+		$array['title']          = html_entity_decode( $this->title, ENT_QUOTES, get_bloginfo( 'charset' ) );
+		$array['content']        = $this->get_content();
+		$array['active']         = $this->active();
+		$array['instanceNumber'] = $this->instance_number;
+		$array['opt_name']              = $this->opt_name;
+
+		if ( $this->panel ) {
+			/* translators: &#9656; is the unicode right-pointing triangle. %s: Section title in the Customizer. */
+			$array['customizeAction'] = sprintf( __( 'Customizing &#9656; %s' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
+		} else {
+			$array['customizeAction'] = __( 'Customizing' );
 		}
+
+		return $array;
 	}
+
+	/**
+	 * An Underscore (JS) template for rendering this section.
+	 * Class variables for this section class are available in the `data` JS object;
+	 * export custom variables by overriding {@see WP_Customize_Section::json()}.
+	 *
+	 * @see   WP_Customize_Section::print_template()
+	 * @since 4.3.0
+	 */
+	protected function render_template() {
+
+		?>
+		<li id="accordion-section-{{ data.id }}"
+			class="redux-standalone-section redux-customizer-opt-name redux-section accordion-section control-section control-section-{{ data.type }}"
+			data-opt-name="{{ data.opt_name }}">
+			<h3 class="accordion-section-title" tabindex="0">
+				{{ data.title }}
+				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'redux-framework' ); ?></span>
+			</h3>
+			<ul class="accordion-section-content redux-main">
+
+				<li class="customize-section-description-container">
+					<div class="customize-section-title">
+						<button class="customize-section-back" tabindex="-1">
+							<span class="screen-reader-text"><?php esc_html_e( 'Back', 'redux-framework' ); ?></span>
+						</button>
+						<h3>
+							<span class="customize-action">
+								{{{ data.customizeAction }}}
+							</span> {{ data.title }}
+						</h3>
+					</div>
+					<# if ( data.description ) { #>
+					<p class="description customize-section-description">{{{ data.description }}}</p>
+					<# } #>
+					<?php
+					if ( isset( $this->opt_name ) && isset( $this->section ) ) {
+						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+						do_action( "redux/page/{$this->opt_name}/section/before", $this->section );
+					}
+					?>
+				</li>
+			</ul>
+		</li>
+		<?php
+	}
+
+
+
+
 }

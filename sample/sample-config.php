@@ -26,11 +26,10 @@ $dir = dirname( __FILE__ ) . '/';
 
 $sample_html = '';
 if ( file_exists( $dir . '/info-html.html' ) ) {
-	ob_start();
-
-	include $dir . '/info-html.html';
-
-	$sample_html = ob_get_clean();
+	$fs = Redux_Filesystem::get_instance();
+	if ( method_exists( $fs, 'get_contents' ) ) {
+		$sample_html = $fs->execute( 'get_contents', $dir . '/info-html.html' );
+	}
 }
 
 // Background Patterns Reader.

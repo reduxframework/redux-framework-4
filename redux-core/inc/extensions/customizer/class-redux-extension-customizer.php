@@ -381,10 +381,11 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 					$section['priority'] = $order['heading'];
 					$order['heading'] ++;
 				}
+				$section['id'] = $this->parent->args['opt_name'] . '-' . $section['id'];
 
 				if ( method_exists( $wp_customize, 'add_panel' ) && ( ! isset( $section['subsection'] ) || ( isset( $section['subsection'] ) && true !== $section['subsection'] ) ) && isset( $this->parent->sections[ ( $key + 1 ) ]['subsection'] ) && $this->parent->sections[ ( $key + 1 ) ]['subsection'] ) {
 					$this->add_panel(
-						$section['id'],
+						$this->parent->args['opt_name'] . '-' . $section['id'],
 						array(
 							'priority'    => $section['priority'],
 							'capability'  => $section['permissions'],
@@ -396,7 +397,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 						$wp_customize
 					);
 
-					$panel = $section['id'];
+					$panel = $this->parent->args['opt_name'] . '-' .$section['id'];
 
 					$this->add_section(
 						$section['id'],

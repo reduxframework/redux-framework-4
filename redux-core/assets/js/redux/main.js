@@ -40,7 +40,7 @@
 			$( 'fieldset.redux-container-divide' ).css( 'display', 'none' );
 
 			// Weed out multiple instances of duplicate Redux instance.
-			if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
+			if ( redux.customizer ) {
 				$( '.wp-full-overlay-sidebar' ).addClass( 'redux-container' );
 			}
 
@@ -50,7 +50,6 @@
 
 					if ( $.inArray( opt_name, tempArr ) === -1 ) {
 						tempArr.push( opt_name );
-						redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 						$.redux.checkRequired( $( this ) );
 						$.redux.initEvents( $( this ) );
 					}
@@ -61,7 +60,6 @@
 				'click',
 				function() {
 					opt_name = $.redux.getOptName( this );
-					redux.optName = window['redux_' + opt_name.replace( '-', '_' )];
 				}
 			);
 
@@ -107,18 +105,22 @@
 	$.redux.getOptName = function( el ) {
 		var metabox;
 		var li;
-		var optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
+		var optName;
+		var item = $( el );
 
-		// Backwards compatibility block for metaboxes
+		if ( redux.customizer ) {
+			optName = $( '.redux-customizer-opt-name:first-child' ).data( 'opt-name' );
+		} else {
+			optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
+		}
+
+		// Compatibility for metaboxes
 		if ( undefined === optName ) {
 			metabox = $( el ).parents( '.postbox' );
 			if ( 0 === metabox.length ) {
 				metabox = $( el ).parents( '.redux-metabox' );
 			}
-			if ( $( 'body' ).hasClass( 'wp-customizer' ) ) {
-				li = $( '.panel-meta.customize-info.redux-panel.accordion-section' );
-				optName = li.data( 'opt-name' );
-			} else if ( 0 !== metabox.length ) {
+			if ( 0 !== metabox.length ) {
 				optName = metabox.attr( 'id' ).replace( 'redux-', '' ).split( '-metabox-' )[0];
 				if ( undefined === optName ) {
 					optName = metabox.attr( 'class' )
@@ -136,6 +138,11 @@
 		if ( undefined === optName ) {
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
+
+		if ( undefined !== optName ) {
+			redux.optName = window['redux_' + optName.replace( '-', '_' )];
+		}
+
 		return optName;
 	};
 

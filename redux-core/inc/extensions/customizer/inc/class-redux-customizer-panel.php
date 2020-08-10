@@ -186,7 +186,7 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 	protected function content_template() {
 		?>
 		<li
-			class="panel-meta customize-info redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>"
+			class="panel-meta customize-info redux-customizer-opt-name redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>"
 			data-opt-name="{{{ data.opt_name }}}">
 			<button class="customize-panel-back" tabindex="-1">
 				<span class="screen-reader-text"><?php esc_attr_e( 'Back', 'redux-framework' ); ?></span></button>

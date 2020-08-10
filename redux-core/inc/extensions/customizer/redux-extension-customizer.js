@@ -391,6 +391,11 @@
 			}
 		);
 
+		if ( undefined === redux.optName ) {
+			console.log( 'Redux customizer extension failure' );
+			return;
+		}
+
 		redux.optName.args.disable_save_warn = true;
 		reduxChange                          = redux_change;
 		redux_change                         = function( variable ) {
