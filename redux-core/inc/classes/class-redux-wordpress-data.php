@@ -66,7 +66,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 *
 		 * @return array|mixed|string
 		 */
-		public function get( $type = false, $args = array(), $current_value = '' ) {
+
+		// Added by Daniel
+		// ADDED AJAX paramter
+		public function get( $type = false, $args = array(), $current_value = '', $ajax = false ) {
 			$opt_name = $this->opt_name;
 
 			/**
@@ -162,7 +165,9 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						if ( ! is_array( $current_value ) ) {
 							$current_value = array( $current_value );
 						}
-						$posts = get_posts( array( 'post__in' => $current_value ) );
+						// Added By Daniel
+						// Add post_type any to get all posts IDs
+						$posts = get_posts( array( 'post__in' => $current_value, 'post_type' => 'any' ) );
 						if ( ! empty( $posts ) ) {
 							foreach ( $posts as $post ) {
 								$current_data[ $post->ID ] = $post->post_title;
@@ -202,6 +207,19 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 						break;
 				}
+			}
+
+			// Added by Daniel
+			// if ajax is enabled AND not doing ajax, then get current set products only
+			// avoid query to get too many posts
+			if( $ajax && !wp_doing_ajax() ) {
+				// dummy needed ohterwise empty
+				if( empty( $current_data ) ) {
+					$current_data = array(
+						'dummy' => ''
+					);
+				}
+				return $current_data;
 			}
 
 			// phpcs:ignore Squiz.PHP.CommentedOutCode

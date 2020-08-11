@@ -79,7 +79,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 		 * @param object $wp_data_class WordPress data class.
 		 */
 		public function field_default_values( $opt_name = '', $field, $wp_data_class = null ) {
-			if ( null === $wp_data_class && class_exists( 'Redux_WordPress_Data' ) ) {
+			if ( null === $wp_data_class && class_exists( 'Redux_WordPress_Data' ) && ! ( $field['type'] == "select" && isset( $field['ajax'] ) && $field['ajax'] ) ) {
 				$wp_data_class = new Redux_WordPress_Data( $opt_name );
 			}
 
@@ -91,7 +91,6 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			}
 
 			if ( isset( $field['default'] ) ) {
-
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$this->options_defaults[ $field['id'] ] = apply_filters( "redux/{$opt_name}/field/{$field['type']}/defaults", $field['default'], $field );
 			} elseif ( ( 'ace_editor' !== $field['type'] ) && ! ( 'select' === $field['type'] && ! empty( $field['ajax'] ) ) ) {
