@@ -43,7 +43,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			// We want it to be clean each time this is run.
 			$this->options_defaults = array();
 
-			if ( ! is_null( $sections ) ) {
+			if ( ! is_null( $sections ) && ! wp_doing_ajax() ) {
 
 				// fill the cache.
 				foreach ( $sections as $sk => $section ) {

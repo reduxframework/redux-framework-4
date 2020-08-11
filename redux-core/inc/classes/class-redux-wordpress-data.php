@@ -75,10 +75,6 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			 * @param string $data
 			 */
 
-			if ( wp_doing_ajax() && ! ( isset( $args['ajax'] ) && ! empty( $args['ajax'] ) ) ) {
-				return array();
-			}
-
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$data = apply_filters( "redux/options/{$opt_name}/pre_data/$type", null );
 
