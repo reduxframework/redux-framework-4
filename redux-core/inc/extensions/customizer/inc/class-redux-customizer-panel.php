@@ -48,28 +48,14 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 	 * @param array                $args    Panel arguments.
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
-		$keys = array_keys( get_object_vars( $this ) );
-		foreach ( $keys as $key ) {
-			if ( isset( $args[ $key ] ) ) {
-				$this->$key = $args[ $key ];
-			}
-		}
-		$this->manager = $manager;
-		$this->id      = $id;
-		if ( empty( $this->active_callback ) ) {
-			$this->active_callback = array( $this, 'active_callback' );
-		}
-		self::$instance_count ++;
-		$this->instance_number = self::$instance_count;
+		parent::__construct( $manager, $id, $args );
 
-		$this->sections = array(); // Users cannot customize the $sections array.
-		// TODO: Redux addition.
+		// Redux addition.
 		if ( isset( $args['section'] ) ) {
 			$this->section     = $args['section'];
 			$this->description = isset( $this->section['desc'] ) ? $this->section['desc'] : '';
 			$this->opt_name    = isset( $args['opt_name'] ) ? $args['opt_name'] : '';
 		}
-		// TODO: END Redux Addition.
 	}
 
 	/**
@@ -155,23 +141,8 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 	 * @return array
 	 */
 	public function json() {
-		$array = wp_array_slice_assoc(
-			(array) $this,
-			array(
-				'id',
-				'description',
-				'priority',
-				'type',
-			)
-		);
-
-		$array['title']                 = html_entity_decode( $this->title, ENT_QUOTES, get_bloginfo( 'charset' ) );
-		$array['content']               = $this->get_content();
-		$array['active']                = $this->active();
-		$array['instanceNumber']        = $this->instance_number;
-		$array['autoExpandSoleSection'] = $this->auto_expand_sole_section;
-		$array['opt_name']              = $this->opt_name;
-
+		$array             = parent::json();
+		$array['opt_name'] = $this->opt_name;
 		return $array;
 	}
 

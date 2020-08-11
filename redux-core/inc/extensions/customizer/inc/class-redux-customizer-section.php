@@ -44,29 +44,13 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 	 * @param array                $args    Section arguments.
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
-		$keys = array_keys( get_object_vars( $this ) );
-		foreach ( $keys as $key ) {
-			if ( isset( $args[ $key ] ) ) {
-				$this->$key = $args[ $key ];
-			}
-		}
-
-		$this->manager = $manager;
-		$this->id      = $id;
-		if ( empty( $this->active_callback ) ) {
-			$this->active_callback = array( $this, 'active_callback' );
-		}
-		self::$instance_count ++;
-		$this->instance_number = self::$instance_count;
-
-		$this->controls = array(); // Users cannot customize the $controls array.
-		// TODO: Redux addition.
+		parent::__construct( $manager, $id, $args );
+		// Redux addition.
 		if ( isset( $args['section'] ) ) {
 			$this->section     = $args['section'];
 			$this->description = isset( $this->section['desc'] ) ? $this->section['desc'] : '';
 			$this->opt_name    = isset( $args['opt_name'] ) ? $args['opt_name'] : '';
 		}
-
 	}
 
 	/**
@@ -132,20 +116,8 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 	 * @return array The array to be exported to the client as JSON.
 	 */
 	public function json() {
-		$array                   = wp_array_slice_assoc( (array) $this, array( 'id', 'description', 'priority', 'panel', 'type', 'description_hidden' ) );
-		$array['title']          = html_entity_decode( $this->title, ENT_QUOTES, get_bloginfo( 'charset' ) );
-		$array['content']        = $this->get_content();
-		$array['active']         = $this->active();
-		$array['instanceNumber'] = $this->instance_number;
-		$array['opt_name']       = $this->opt_name;
-
-		if ( $this->panel ) {
-			/* translators: &#9656; is the unicode right-pointing triangle. %s: Section title in the Customizer. */
-			$array['customizeAction'] = sprintf( __( 'Customizing &#9656; %s', 'redux-framework' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
-		} else {
-			$array['customizeAction'] = __( 'Customizing', 'redux-framework' );
-		}
-
+		$array             = parent::json();
+		$array['opt_name'] = $this->opt_name;
 		return $array;
 	}
 
