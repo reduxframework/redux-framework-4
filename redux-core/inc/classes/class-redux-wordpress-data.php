@@ -63,7 +63,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 * @param bool       $type Type.
 		 * @param array      $args Args.
 		 * @param string|int $current_value Current value.
-		 * @param bool       $ajax Is this an AJAX call or not?
+		 * @param bool       $ajax Tells if this is a AJAX call.
 		 *
 		 * @return array|mixed|string
 		 */

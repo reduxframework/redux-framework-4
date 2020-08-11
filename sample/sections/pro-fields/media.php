@@ -59,7 +59,7 @@ Redux::set_section(
 					'grayscale' => true,
 					'blur'      => true,
 				),
-				'preview'  => false,
+				'preview'  => true,
 			),
 			array(
 				'id'       => 'pro-media-no-preview',
