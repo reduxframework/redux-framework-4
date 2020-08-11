@@ -808,6 +808,8 @@ class Api {
 					$args['permission_callback'] = function () {
 						return current_user_can( 'edit_posts' );
 					};
+				} else {
+					$args['permission_callback'] = '__return_true';
 				}
 
 				register_rest_route(
