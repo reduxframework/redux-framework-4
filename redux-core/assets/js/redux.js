@@ -712,7 +712,9 @@ function colorNameToHex( colour ) {
 		}
 
 		if ( undefined !== optName ) {
-			redux.optName = window['redux_' + optName.replace( '-', '_' )];
+			if ( undefined !== optName ) {
+				redux.optName = window['redux_' + optName.replace( /\-/g, '_' )];
+			}
 		}
 
 		return optName;

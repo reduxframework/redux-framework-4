@@ -1,5 +1,16 @@
 # Redux Changelog
 
+## 4.1.14
+* Added: Shim for ReduxFramework->get_default_value()
+* Fixed: Local issue with WP and strtolower. Sites that couldn't find classes should work now.
+* Fixed: Ajax for select boxes is now working again.
+* Fixed: Autoloading to bypass other embedded versions of Redux.
+* Fixed: Customizer interactions are MUCH faster now. Had a greedy CSS selector before.
+* Fixed: If opt_names had multiple dashes in them, JS errors occurred by a non-global replace.
+* Fixed: Fix for servers that disable output buffers.
+* Fixed: Ajax now does not load anything else, faster calls.
+* Fixed: .folds replace issue when opt_name selector wasn't properly found.
+
 ## 4.1.13
 * Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.
 * Fixed: Customizer issue with some external extensions.

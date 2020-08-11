@@ -569,6 +569,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			$this->localize_data['required']       = $core->required;
 			$this->repeater_data['fonts']          = $core->fonts;
+			$this->repeater_data['folds']          = array();
 			$this->localize_data['required_child'] = $core->required_child;
 			$this->localize_data['fields']         = $core->fields;
 
