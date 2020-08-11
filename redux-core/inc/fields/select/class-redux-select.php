@@ -60,8 +60,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					}
 				}
 
-				// Added by Daniel
-				// first one get with AJAX
+				// First one get with AJAX.
 				$ajax = false;
 				if( isset( $this->field['ajax'] ) && $this->field['ajax'] ) {
 					$ajax = true;
