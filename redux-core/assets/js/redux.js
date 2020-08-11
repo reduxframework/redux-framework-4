@@ -681,7 +681,7 @@ function colorNameToHex( colour ) {
 		var item = $( el );
 
 		if ( redux.customizer ) {
-			optName = $( '.redux-customizer-opt-name:first-child' ).data( 'opt-name' );
+			optName = item.find( '.redux-customizer-opt-name' ).data( 'opt-name' );
 		} else {
 			optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
 		}
