@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 				if ( isset( $_REQUEST['data'] ) ) {
 
 					$args = isset( $_REQUEST['data_args'] ) ? json_decode( sanitize_text_field( wp_unslash( $_REQUEST['data_args'] ) ), true ) : array();
-					$args = wp_parse_args( $args, array( ) );
+					$args = wp_parse_args( $args, array() );
 
 					$return = $core->wordpress_data->get( sanitize_text_field( wp_unslash( $_REQUEST['data'] ) ), $args );
 

@@ -63,6 +63,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 * @param bool       $type Type.
 		 * @param array      $args Args.
 		 * @param string|int $current_value Current value.
+		 * @param bool       $ajax Is this an AJAX call or not?
 		 *
 		 * @return array|mixed|string
 		 */
@@ -103,7 +104,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					case 'categories':
 					case 'category':
 						$this->maybe_translate( $current_value, 'category' );
-						$terms = get_categories( array( 'object_ids' => $current_value ) );
+						$terms = get_terms( array( 'include' => $current_value ) );
 						if ( ! empty( $terms ) ) {
 							foreach ( $terms as $term ) {
 								$current_data[ $term->term_id ] = $term->name;
@@ -163,7 +164,12 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							$current_value = array( $current_value );
 						}
 						// Add post_type any to get all posts IDs.
-						$posts = get_posts( array( 'post__in' => $current_value, 'post_type' => 'any' ) );
+						$posts = get_posts(
+							array(
+								'post__in'  => $current_value,
+								'post_type' => 'any',
+							)
+						);
 						if ( ! empty( $posts ) ) {
 							foreach ( $posts as $post ) {
 								$current_data[ $post->ID ] = $post->post_title;
@@ -204,12 +210,12 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				}
 			}
 
-			// If ajax is enabled AND empty, then get current set products only avoid query to get too many posts
-			if( $ajax && ! wp_doing_ajax() ) {
+			// If ajax is enabled AND empty, then get current set products only avoid query to get too many posts.
+			if ( $ajax && ! wp_doing_ajax() ) {
 				// Dummy is needed otherwise empty.
-				if( empty( $current_data ) ) {
+				if ( empty( $current_data ) ) {
 					$current_data = array(
-						'dummy' => ''
+						'dummy' => '',
 					);
 				}
 				return $current_data;

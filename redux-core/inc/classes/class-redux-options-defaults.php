@@ -79,7 +79,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 		 * @param object $wp_data_class WordPress data class.
 		 */
 		public function field_default_values( $opt_name = '', $field, $wp_data_class = null ) {
-			if ( null === $wp_data_class && class_exists( 'Redux_WordPress_Data' ) && ! ( $field['type'] == "select" && isset( $field['ajax'] ) && $field['ajax'] ) ) {
+			if ( null === $wp_data_class && class_exists( 'Redux_WordPress_Data' ) && ! ( 'select' === $field['type'] && isset( $field['ajax'] ) && $field['ajax'] ) ) {
 				$wp_data_class = new Redux_WordPress_Data( $opt_name );
 			}
 

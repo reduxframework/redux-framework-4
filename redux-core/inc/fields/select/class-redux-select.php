@@ -62,7 +62,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 
 				// First one get with AJAX.
 				$ajax = false;
-				if( isset( $this->field['ajax'] ) && $this->field['ajax'] ) {
+				if ( isset( $this->field['ajax'] ) && $this->field['ajax'] ) {
 					$ajax = true;
 				}
 				$this->field['options'] = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value, $ajax );
