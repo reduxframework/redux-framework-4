@@ -613,11 +613,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 * @return string
 		 */
 		public function get_local_file_contents( $abs_path ) {
-			ob_start();
-			require_once $abs_path;
-			$contents = ob_get_clean();
-
-			return $contents;
+			return file_get_contents( $abs_path );
 		}
 
 		/**
