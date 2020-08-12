@@ -478,6 +478,12 @@
 		var html                 = '<option value=""></option>';
 		var selected             = '';
 		var allowEmptyLineHeight = false;
+		var default_font_weights = {
+			'400': 'Normal 400',
+			'700': 'Bold 700',
+			'400italic': 'Normal 400 Italic',
+			'700italic': 'Bold 700 Italic'
+		};
 
 		// Main id for selected field.
 		mainID = $( selector ).parents( '.redux-container-typography:first' ).data( 'id' );
@@ -547,12 +553,7 @@
 					typekit = true;
 					details = redux.fonts.typekit[family];
 				} else {
-					details = {
-						'400': 'Normal 400',
-						'700': 'Bold 700',
-						'400italic': 'Normal 400 Italic',
-						'700italic': 'Bold 700 Italic'
-					};
+					details = default_font_weights;
 				}
 			}
 
@@ -645,9 +646,9 @@
 					that.find( '.redux-typography-subsets' ).parent().fadeOut( 'fast' );
 					that.find( '.typography-family-backup' ).fadeOut( 'fast' );
 				} else {
-					if ( details ) {
+					if ( that.find( '.redux-typography-style' ) ) {
 						$.each(
-							details,
+							default_font_weights,
 							function( index, value ) {
 								if ( style === index || 'normal' === index ) {
 									selected = ' selected="selected"';
@@ -667,16 +668,41 @@
 
 						// Insert new HTML.
 						that.find( '.redux-typography-style' ).html( html ).select2();
-
-						// Prettify things.
-						that.find( '.redux-typography-subsets' ).parent().fadeOut( 'fast' );
-						that.find( '.typography-family-backup' ).fadeOut( 'fast' );
 					}
 				}
 
 				that.find( '.redux-typography-font-family' ).val( family );
 			} else if ( $( selector ).hasClass( 'redux-typography-family-backup' ) && '' !== familyBackup ) {
 				that.find( '.redux-typography-font-family-backup' ).val( familyBackup );
+			} else {
+				details = default_font_weights;
+				if ( details ) {
+					$.each(
+						details,
+						function( index, value ) {
+							if ( style === index || 'normal' === index ) {
+								selected = ' selected="selected"';
+								that.find( '.typography-style select2-selection__rendered' ).text( value );
+							} else {
+								selected = '';
+							}
+
+							html += '<option value="' + index + '"' + selected + '>' + value.replace( '+', ' ' ) + '</option>';
+						}
+					);
+
+					// Destory select2.
+					if ( destroy ) {
+						that.find( '.redux-typography-style' ).select2( 'destroy' );
+					}
+
+					// Insert new HTML.
+					that.find( '.redux-typography-style' ).html( html ).select2();
+
+					// Prettify things.
+					that.find( '.redux-typography-subsets' ).parent().fadeOut( 'fast' );
+					that.find( '.typography-family-backup' ).fadeOut( 'fast' );
+				}
 			}
 		}
 

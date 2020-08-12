@@ -697,7 +697,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					$in_use = '0';
 				}
 
-				if ( Redux_Helpers::google_fonts_update_needed() && ! get_option( 'auto_update_redux_google_fonts', false ) ) {
+				if ( Redux_Helpers::google_fonts_update_needed() && ! get_option( 'auto_update_redux_google_fonts', false ) && $this->field['font-family'] && $this->field['google'] ) {
 					$nonce = wp_create_nonce( 'redux_update_google_fonts' );
 
 					echo '<div data-nonce="' . esc_attr( $nonce ) . '" class="redux-update-google-fonts update-message notice inline notice-warning notice-alt">';
