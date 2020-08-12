@@ -615,7 +615,7 @@
 					}
 
 					// Inset new HTML.
-					that.find( '.redux-typography-subsets' ).html( html ).select2();
+					that.find( '.redux-typography-subsets' ).html( html ).select2( { width:'100%' } );
 
 					that.find( '.redux-typography-subsets' ).parent().fadeIn( 'fast' );
 					that.find( '.typography-family-backup' ).fadeIn( 'fast' );

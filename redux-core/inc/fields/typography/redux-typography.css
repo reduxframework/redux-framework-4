@@ -26,7 +26,7 @@
 
 .redux-main .redux-typography-container .picker-wrapper { display: block; position: relative; margin: 0; padding: 0; width: 100%; min-width: 100%; clear: none; height: 57px; -webkit-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; vertical-align: baseline; }
 
-.redux-main .redux-typography-container label { position: relative; font-size: 12px !important; text-align: left; color: #999; cursor: default; }
+.redux-main .redux-typography-container label { width: 100%; position: relative; font-size: 12px !important; text-align: left; color: #999; cursor: default; }
 
 .redux-main .redux-typography-container .typography-preview { display: none; width: 100%; border: 1px dotted #d3d3d3; max-width: 850px; padding: 10px; font-size: 10pt; height: auto; margin: 5px 0 10px; -webkit-box-sizing: border-box; box-sizing: border-box; overflow: hidden; }
 
