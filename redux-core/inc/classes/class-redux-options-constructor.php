@@ -833,6 +833,10 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 			// Section reset to defaults.
 			if ( ! empty( $plugin_options['defaults-section'] ) ) {
 				if ( isset( $plugin_options['redux-section'] ) && isset( $core->sections[ $plugin_options['redux-section'] ]['fields'] ) ) {
+					if ( empty( $core->options_defaults ) ) {
+						$core->options_defaults = $core->_default_values();
+					}
+
 					foreach ( $core->sections[ $plugin_options['redux-section'] ]['fields'] as $field ) {
 						if ( isset( $core->options_defaults[ $field['id'] ] ) ) {
 							$plugin_options[ $field['id'] ] = $core->options_defaults[ $field['id'] ];

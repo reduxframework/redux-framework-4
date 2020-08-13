@@ -53,8 +53,10 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
-			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
-			add_action( 'wp_ajax_redux_activation', array( $this, 'admin_ajax' ) ); // executed when logged in
+			if ( ! class_exists( 'Redux_Framework_Plugin' ) || ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash  ) ) {
+				add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
+				add_action( 'wp_ajax_redux_activation', array( $this, 'admin_ajax' ) ); // executed when logged in
+			}
 		}
 
 		public function admin_ajax() {

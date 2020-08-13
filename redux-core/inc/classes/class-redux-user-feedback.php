@@ -76,9 +76,11 @@ class Redux_User_Feedback {
 			$this->time_limit = WEEK_IN_SECONDS;
 		}
 
-		// Add actions.
-		add_action( 'admin_init', array( $this, 'check_installation_date' ) );
-		add_action( 'admin_init', array( $this, 'set_no_bug' ), 5 );
+		if ( ! class_exists( 'Redux_Framework_Plugin' ) || ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash  ) ) {
+			// Add actions.
+			add_action( 'admin_init', array( $this, 'check_installation_date' ) );
+			add_action( 'admin_init', array( $this, 'set_no_bug' ), 5 );
+		}
 	}
 
 	/**
@@ -174,7 +176,6 @@ class Redux_User_Feedback {
 			$no_bug_url = wp_nonce_url( admin_url( 'plugins.php?' . $this->nobug_option . '=true' ), 'redux-feedback-nounce' );
 			$time       = $this->seconds_to_words( time() - get_site_option( $this->date_option ) );
 			?>
-
 			<style>
 				.notice.redux-notice {
 					border-left-color: #24b0a6 !important;

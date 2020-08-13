@@ -139,10 +139,13 @@
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
 
+		// Shim, let's just get an opt_name shall we?!
+		if ( undefined === optName ) {
+			optName = redux.opt_names[0];
+		}
+
 		if ( undefined !== optName ) {
-			if ( undefined !== optName ) {
-				redux.optName = window['redux_' + optName.replace( /\-/g, '_' )];
-			}
+			redux.optName = window['redux_' + optName.replace( /\-/g, '_' )];
 		}
 
 		return optName;

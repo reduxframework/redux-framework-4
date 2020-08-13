@@ -58,6 +58,15 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		private static $instance;
 
 		/**
+		 * Crash flag.
+		 *
+		 * @access      private
+		 * @var         \Redux_Framework_Plugin $crash Crash flag if inside a crash.
+		 * @since       4.1.15
+		 */
+		public static $crash = false;
+
+		/**
 		 * Get active instance
 		 *
 		 * @access      public

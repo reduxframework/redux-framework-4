@@ -567,8 +567,14 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$this->localize_data['core_instance'] = $core->core_instance;
 			$this->localize_data['core_thread']   = $core->core_thread;
 
+			$this->localize_data['font_weights'] = $this->args['font_weights'];
+
 			$this->localize_data['required']       = $core->required;
 			$this->repeater_data['fonts']          = $core->fonts;
+			if ( ! isset( $this->repeater_data['opt_names'] ) ) {
+				$this->repeater_data['opt_names'] = array();
+			}
+			$this->repeater_data['opt_names'][] = $core->args['opt_name'];
 			$this->repeater_data['folds']          = array();
 			$this->localize_data['required_child'] = $core->required_child;
 			$this->localize_data['fields']         = $core->fields;

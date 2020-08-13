@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				try {
 
 					// phpcs:ignore WordPress.NamingConventions.ValidVariableName
-					$compiler_css = $core->compilerCSS;  // I fucking hate backward compatibility sometimes.  >:(.
+					$compiler_css = $core->compilerCSS;  // Backward compatibility variable.
 
 					/**
 					 * Action 'redux/options/{opt_name}/compiler'

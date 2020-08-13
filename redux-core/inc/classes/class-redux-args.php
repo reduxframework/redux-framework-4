@@ -128,6 +128,24 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						),
 					),
 				),
+				'font_weights'                => array(
+					array(
+						'id' => '400',
+						'name' => __( 'Regular 400', 'redux-framework' )
+					),
+					array(
+						'id' => '400italic',
+						'name' => __( 'Regular 400 Italic', 'redux-framework' )
+					),
+					array(
+						'id' => '700',
+						'name' => __( 'Bold 700', 'redux-framework' )
+					),
+					array(
+						'id' => '700italic',
+						'name' => __( 'Bold 700 Italic', 'redux-framework' )
+					),
+				),
 				'show_import_export'               => true,
 				'show_options_object'              => true,
 				'dev_mode'                         => true,
