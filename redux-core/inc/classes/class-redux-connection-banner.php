@@ -53,10 +53,8 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
-			if ( ! class_exists( 'Redux_Framework_Plugin' ) || ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash  ) ) {
-				add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
-				add_action( 'wp_ajax_redux_activation', array( $this, 'admin_ajax' ) ); // executed when logged in
-			}
+			add_action( 'wp_ajax_redux_activation', array( $this, 'admin_ajax' ) ); // executed when logged in
+			add_action( 'current_screen', array( $this, 'maybe_initialize_hooks' ) );
 		}
 
 		public function admin_ajax() {
@@ -109,15 +107,18 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				return;
 			}
 
-			add_action( 'admin_notices', array( $this, 'render_banner' ) );
-			add_action( 'network_admin_notices', array( $this, 'network_connect_notice' ) );
-			add_action( 'admin_head', array( $this, 'admin_head' ) );
-			add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
+			// Only show this notice when the plugin is installed.
+			if ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash ) {
+				add_action( 'admin_notices', array( $this, 'render_banner' ) );
+				add_action( 'network_admin_notices', array( $this, 'network_connect_notice' ) );
+				add_action( 'admin_head', array( $this, 'admin_head' ) );
+				add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 
-			// Only fires immediately after plugin activation
-			if ( get_transient( 'activated_Redux' ) ) {
-				add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
-				delete_transient( 'activated_Redux' );
+				// Only fires immediately after plugin activation
+				if ( get_transient( 'activated_Redux' ) ) {
+					add_action( 'admin_notices', array( $this, 'render_connect_prompt_full_screen' ) );
+					delete_transient( 'activated_Redux' );
+				}
 			}
 		}
 
