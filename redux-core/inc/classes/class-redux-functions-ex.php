@@ -394,5 +394,29 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			spl_autoload_register( array( $loader, 'load' ) );
 		}
 
+		/**
+		 * Check if a string starts with another string.
+		 *
+		 * @param string $haystack Full string you are checking.
+		 * @param string $needle String you are searching for.
+		 *
+		 * @return bool
+		 */
+		function string_starts_with( $haystack, $needle ) {
+			return substr_compare( $haystack, $needle, 0, strlen( $needle ) ) === 0;
+		}
+
+		/**
+		 * Check if a string ends with another string.
+		 *
+		 * @param string $haystack Full string you are checking.
+		 * @param string $needle String you are searching for.
+		 *
+		 * @return bool
+		 */
+		function string_ends_with( $haystack, $needle ) {
+			return substr_compare( $haystack, $needle, -strlen( $needle ) ) === 0;
+		}
+
 	}
 }

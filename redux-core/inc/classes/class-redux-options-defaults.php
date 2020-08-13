@@ -44,8 +44,13 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			$this->options_defaults = array();
 
 			// Check to make sure we're not in the select2 action, we don't want defaults there.
-			$select2_action = 'redux_' . $opt_name . '_select2';
-			if ( ! is_null( $sections ) && ! ( ( isset( $_REQUEST['action'] ) && $select2_action == $_REQUEST['action'] ) ) ) {
+			if ( isset( $_REQUEST['action'] ) ) {
+				if ( Redux_Functions_Ex::string_ends_with( $_REQUEST['action'], '_select2' ) && Redux_Functions_Ex::string_starts_with( $_REQUEST['action'], 'redux_' ) ) {
+					return;
+				}
+			}
+
+			if ( ! is_null( $sections ) && ! ( ( isset( $_REQUEST['action'] ) ) ) ) {
 
 				// Fill the cache.
 				foreach ( $sections as $sk => $section ) {
