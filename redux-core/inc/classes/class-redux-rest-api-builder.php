@@ -54,8 +54,8 @@ class Redux_Rest_Api_Builder {
 			$this->get_namespace(),
 			'/fields',
 			array(
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'list_fields' ),
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'list_fields' ),
 				'permission_callback' => '__return_true',
 			)
 		);
@@ -63,14 +63,14 @@ class Redux_Rest_Api_Builder {
 			$this->get_namespace(),
 			'/field/(?P<type>[a-z0-9-_]+)',
 			array(
-				'args'     => array(
+				'args'                => array(
 					'type' => array(
 						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'get_field' ),
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_field' ),
 				'permission_callback' => '__return_true',
 			)
 		);
@@ -78,14 +78,14 @@ class Redux_Rest_Api_Builder {
 			$this->get_namespace(),
 			'/field/(?P<type>[a-z0-9-_]+)/render',
 			array(
-				'args'     => array(
+				'args'                => array(
 					'name' => array(
 						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),
-				'methods'  => WP_REST_Server::ALLMETHODS,
-				'callback' => array( $this, 'render_field' ),
+				'methods'             => WP_REST_Server::ALLMETHODS,
+				'callback'            => array( $this, 'render_field' ),
 				'permission_callback' => '__return_true',
 			)
 		);

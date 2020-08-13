@@ -402,7 +402,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @return bool
 		 */
-		function string_starts_with( $haystack, $needle ) {
+		public static function string_starts_with( $haystack, $needle ) {
 			return substr_compare( $haystack, $needle, 0, strlen( $needle ) ) === 0;
 		}
 
@@ -414,7 +414,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @return bool
 		 */
-		function string_ends_with( $haystack, $needle ) {
+		public static function string_ends_with( $haystack, $needle ) {
 			return substr_compare( $haystack, $needle, -strlen( $needle ) ) === 0;
 		}
 

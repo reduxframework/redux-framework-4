@@ -711,10 +711,13 @@ function colorNameToHex( colour ) {
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
 
+		// Shim, let's just get an opt_name shall we?!
+		if ( undefined === optName ) {
+			optName = redux.opt_names[0];
+		}
+
 		if ( undefined !== optName ) {
-			if ( undefined !== optName ) {
-				redux.optName = window['redux_' + optName.replace( /\-/g, '_' )];
-			}
+			redux.optName = window['redux_' + optName.replace( /\-/g, '_' )];
 		}
 
 		return optName;
@@ -1344,40 +1347,45 @@ function redux_hook( object, functionName, callback, before ) {
 		// It's better to do this by PHP but there is no filter in tr tag , so is not possible
 		// we going to move each attributes we may need for folding to tr tag.
 		$.each(
-			redux.optName.folds,
-			function( i, v ) {
-				var div;
-				var rawTable;
+			redux.opt_names,
+			function( i ) {
+				$.each(
+					window['redux_' + redux.opt_names[i].replace( /\-/g, '_' )].folds,
+					function( i, v ) {
+						var div;
+						var rawTable;
 
-				var fieldset = $( '#' + redux.optName.args.opt_name + '-' + i );
+						var fieldset = $( '#' + redux.opt_names[i] + '-' + i );
 
-				fieldset.parents( 'tr:first, li:first' ).addClass( 'fold' );
+						fieldset.parents( 'tr:first, li:first' ).addClass( 'fold' );
 
-				if ( 'hide' === v ) {
-					fieldset.parents( 'tr:first, li:first' ).addClass( 'hide' );
+						if ( 'hide' === v ) {
+							fieldset.parents( 'tr:first, li:first' ).addClass( 'hide' );
 
-					if ( fieldset.hasClass( 'redux-container-section' ) ) {
-						div = $( '#section-' + i );
+							if ( fieldset.hasClass( 'redux-container-section' ) ) {
+								div = $( '#section-' + i );
 
-						if ( div.hasClass( 'redux-section-indent-start' ) ) {
-							$( '#section-table-' + i ).hide().addClass( 'hide' );
-							div.hide().addClass( 'hide' );
+								if ( div.hasClass( 'redux-section-indent-start' ) ) {
+									$( '#section-table-' + i ).hide().addClass( 'hide' );
+									div.hide().addClass( 'hide' );
+								}
+							}
+
+							if ( fieldset.hasClass( 'redux-container-info' ) ) {
+								$( '#info-' + i ).hide().addClass( 'hide' );
+							}
+
+							if ( fieldset.hasClass( 'redux-container-divide' ) ) {
+								$( '#divide-' + i ).hide().addClass( 'hide' );
+							}
+
+							if ( fieldset.hasClass( 'redux-container-raw' ) ) {
+								rawTable = fieldset.parents().find( 'table#' + redux.opt_names[i] + '-' + i );
+								rawTable.hide().addClass( 'hide' );
+							}
 						}
 					}
-
-					if ( fieldset.hasClass( 'redux-container-info' ) ) {
-						$( '#info-' + i ).hide().addClass( 'hide' );
-					}
-
-					if ( fieldset.hasClass( 'redux-container-divide' ) ) {
-						$( '#divide-' + i ).hide().addClass( 'hide' );
-					}
-
-					if ( fieldset.hasClass( 'redux-container-raw' ) ) {
-						rawTable = fieldset.parents().find( 'table#' + redux.optName.args.opt_name + '-' + i );
-						rawTable.hide().addClass( 'hide' );
-					}
-				}
+				);
 			}
 		);
 	};

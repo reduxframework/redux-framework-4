@@ -76,7 +76,7 @@ class Redux_User_Feedback {
 			$this->time_limit = WEEK_IN_SECONDS;
 		}
 
-		if ( ! class_exists( 'Redux_Framework_Plugin' ) || ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash  ) ) {
+		if ( ! class_exists( 'Redux_Framework_Plugin' ) || ( class_exists( 'Redux_Framework_Plugin' ) && false === Redux_Framework_Plugin::$crash ) ) {
 			// Add actions.
 			add_action( 'admin_init', array( $this, 'check_installation_date' ) );
 			add_action( 'admin_init', array( $this, 'set_no_bug' ), 5 );

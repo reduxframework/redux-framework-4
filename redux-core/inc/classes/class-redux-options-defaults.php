@@ -43,14 +43,15 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			// We want it to be clean each time this is run.
 			$this->options_defaults = array();
 
-			// Check to make sure we're not in the select2 action, we don't want defaults there.
-			if ( isset( $_REQUEST['action'] ) ) {
-				if ( Redux_Functions_Ex::string_ends_with( $_REQUEST['action'], '_select2' ) && Redux_Functions_Ex::string_starts_with( $_REQUEST['action'], 'redux_' ) ) {
+			// Check to make sure we're not in the select2 action, we don't want to fetch any there.
+			if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if ( Redux_Functions_Ex::string_ends_with( $action, '_select2' ) && Redux_Functions_Ex::string_starts_with( $action, 'redux_' ) ) {
 					return;
 				}
 			}
 
-			if ( ! is_null( $sections ) && ! ( ( isset( $_REQUEST['action'] ) ) ) ) {
+			if ( ! is_null( $sections ) ) {
 
 				// Fill the cache.
 				foreach ( $sections as $sk => $section ) {
