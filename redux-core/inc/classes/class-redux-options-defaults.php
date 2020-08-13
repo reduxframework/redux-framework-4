@@ -43,9 +43,11 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 			// We want it to be clean each time this is run.
 			$this->options_defaults = array();
 
-			if ( ! is_null( $sections ) && ! wp_doing_ajax() ) {
+			// Check to make sure we're not in the select2 action, we don't want defaults there.
+			$select2_action = 'redux_' . $opt_name . '_select2';
+			if ( ! is_null( $sections ) && ! ( ( isset( $_REQUEST['action'] ) && $select2_action == $_REQUEST['action'] ) ) ) {
 
-				// fill the cache.
+				// Fill the cache.
 				foreach ( $sections as $sk => $section ) {
 					if ( ! isset( $section['id'] ) ) {
 						if ( ! is_numeric( $sk ) || ! isset( $section['title'] ) ) {
