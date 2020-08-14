@@ -43,16 +43,23 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 * @param string $post_type Post type.
 		 */
 		private function maybe_translate( &$value, $post_type ) {
-			if ( has_filter( 'wpml_object_id' ) ) {
-				if ( Redux_Helpers::is_integer( $value ) ) {
-					$value = apply_filters( 'wpml_object_id', $value, $post_type, true );
-				} elseif ( is_array( $value ) ) {
-					$value = array_map(
-						function ( $val ) use ( $post_type ) {
-							return apply_filters( 'wpml_object_id', $val, $post_type, true );
-						},
-						$value
-					);
+
+			// phpcs:ignore WordPress.NamingConventions.ValidHookName
+			$value = apply_filters( "redux/options/{$this->opt_name}/wordpress_data/translate/post_type_value", $value, $post_type );
+
+			// WPML Integration, see https://wpml.org/documentation/support/creating-multilingual-wordpress-themes/language-dependent-ids/.
+			if ( function_exists('icl_object_id') ) {
+				if ( has_filter( 'wpml_object_id' ) ) {
+					if ( Redux_Helpers::is_integer( $value ) ) {
+						$value = apply_filters( 'wpml_object_id', $value, $post_type, true );
+					} elseif ( is_array( $value ) ) {
+						$value = array_map(
+							function ( $val ) use ( $post_type ) {
+								return apply_filters( 'wpml_object_id', $val, $post_type, true );
+							},
+							$value
+						);
+					}
 				}
 			}
 		}
@@ -268,10 +275,13 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						case 'terms':
 						case 'term':
 							if ( isset( $args['taxonomies'] ) ) {
-								$args = $args['taxonomies'];
+								$taxonomies = $args['taxonomies'];
+								unset ( $args['taxonomies'] );
+								$terms = get_terms( $taxonomies, $args ); // this will get nothing
+							} else {
+								$terms = get_terms( $args );
 							}
-							$terms = get_terms( $args );
-							if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
+							if ( ! empty ( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 								foreach ( $terms as $term ) {
 									$data[ $term->term_id ] = $term->name;
 								}
