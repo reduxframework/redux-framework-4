@@ -116,13 +116,11 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					case 'term':
 						$this->maybe_translate( $current_value, isset( $args['taxonomy'] ) ? $args['taxonomy'] : '' );
 
-						$terms = get_terms(
-							array(
-								'object_ids' => $current_value,
-								'taxonomy'   => isset( $args['taxonomy'] ) ? $args['taxonomy'] : '',
-							)
-						);
-
+						if ( isset( $args['taxonomies'] ) ) {
+							$args = $args['taxonomies'];
+						}
+						$args['include'] = $current_value;
+						$terms = get_terms( $args );
 						if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 							foreach ( $terms as $term ) {
 								$current_data[ $term->term_id ] = $term->name;
