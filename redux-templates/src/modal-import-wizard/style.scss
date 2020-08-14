@@ -23,6 +23,12 @@
 
         .error {
             color: #f00;
+            i {
+                color: inherit;
+            }
+            &.installError {
+                text-align: center;
+            }
         }
     }
 
@@ -57,11 +63,6 @@
                 }
             }
 
-            &.failure {
-                i {
-                    color: #dc3232;
-                }
-            }
             &.info {
                 i {
                     color: #00a0d2;

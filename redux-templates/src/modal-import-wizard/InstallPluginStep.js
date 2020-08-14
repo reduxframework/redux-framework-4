@@ -69,8 +69,8 @@ function InstallPluginStep(props) {
                 <p>{__('Plugins needed to import this template are missing. Required plugins will be installed and activated automatically.', redux_templates.i18n)}</p>
                 {
                     (installingPlugin === null && failedList.length > 0) &&
-                    (<p className='error'>
-                        It's us, not you, we recommend you to try again later or contact us <a href='#'>here</a>
+                    (<p className='error installError'>
+	                    {__('The following plugin(s) failed to install properly. Please manually install them yourself before attempting another import.', redux_templates.i18n)}
                     </p>)
                 }
 
@@ -86,8 +86,7 @@ function InstallPluginStep(props) {
                                     <li className="installing" key={installingPlugin.pluginKey}>{installingPlugin.name}
                                         <i className="fas fa-spinner fa-pulse"/></li>);
                             if (failedList.includes(pluginKey))
-                                return (<li className="failure" key={pluginKey}>{plugin.name} <i
-                                    className="fas fa-exclamation-triangle"/></li>);
+                                return (<li className="failure" key={pluginKey}>{plugin.name} <a href={plugin.url} target="_blank"><i className="fas fa-external-link-alt"/></a></li>);
                             if (waitingList.includes(pluginKey))
                                 return (<li className="todo" key={pluginKey}>{plugin.name} {plugin.url &&
                                 <a href={plugin.url} target="_blank"><i className="fas fa-external-link-alt"/></a>

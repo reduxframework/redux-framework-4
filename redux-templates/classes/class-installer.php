@@ -115,7 +115,7 @@ class Installer {
 			$plugin_path  = $plugin_dir . '/' . $slug . '.php';
 			$plugin_check = $slug . '/' . $slug . '.php';
 		} elseif ( file_exists( $plugin_dir . '/plugin.php' ) ) {
-			$plugin_path  = $plugin_dir . '/' . $slug . '.php';
+			$plugin_path  = $plugin_dir . '/plugin.php';
 			$plugin_check = $slug . '/plugin.php';
 		} else {
 			$split        = explode( '-', $slug );
@@ -127,17 +127,21 @@ class Installer {
 			}
 			$plugin_path  = $plugin_dir . '/' . $new_filename . '.php';
 			$plugin_check = $slug . '/' . $new_filename . '.php';
+
+			if ( ! file_exists( $plugin_path ) ) {
+				$plugin_path  = $plugin_dir . '/index.php';
+				$plugin_check = $slug . '/index.php';
+			}
 		}
 
-		if ( ! empty( $plugin_path ) ) {
-			if ( is_plugin_active( $plugin_check ) && ! isset( $status['install'] ) ) {
-				$status['activate'] = 'active';
-			} else {
-				activate_plugin( $plugin_check );
-				$status['activate'] = 'success';
-			}
+		if ( ! empty( $plugin_path ) && file_exists( $plugin_path ) ) {
+			activate_plugin( $plugin_check );
+			$status['activate'] = 'success';
 		} else {
-			$status['error'] = 'Error: Plugin file not activated (' . $slug . '). The plugin file could not be found.';
+			$status['error'] = sprintf(
+				'The block plugin `%s` could not be activated. Please try installing it manually.',
+				$slug
+			);
 		}
 
 		return $status;
