@@ -68,7 +68,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 				$this->field['options'] = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value, $ajax );
 			}
 
-			if ( ! empty( $this->field['data'] ) && ( 'elusive-icons' === $this->field['data'] || 'elusive-icon' === $this->field['data'] || 'elusive' === $this->field['data'] ) ) {
+			if ( ! empty( $this->field['data'] ) && in_array($this->field['data'], array( 'elusive-icons', 'elusive-icon', 'elusive','dashicons','dashicon','dash' ) ) ) {
 				$this->field['class'] .= ' font-icons';
 			}
 

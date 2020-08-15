@@ -64,7 +64,7 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 								foreach ( $search_values as $id => $val ) {
 									$to_json[ $keys[ $id ] ] = array(
 										'id'   => $keys[ $id ],
-										'text' => $val . ' [' . $keys[ $id ] . ']',
+										'text' => $val,
 									);
 								}
 							}
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 								foreach ( $search_keys as $id => $val ) {
 									$to_json[ $val ] = array(
 										'id'   => $val,
-										'text' => $values[ $id ] . ' [' . $val . ']',
+										'text' => $values[ $id ],
 									);
 								}
 							}
