@@ -214,8 +214,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			echo '</p></div>';
 			echo '<style type="text/css">.wp-core-ui .button-primary.redux-activate-connection{background: #24b0a6;}.wp-core-ui .button-primary.redux-activate-connection:hover{background: #19837c;}</style>';
 
-			echo "
-		";
+			echo "<noscript><style type='text/css'>#redux-connect-message{display:none;}</style></noscript>";
 
 		}
 
@@ -337,6 +336,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					</div>
 				</div>
 			</div>
+			<noscript><style type='text/css'>#redux-connect-message{display:none;}</style></noscript>
 			<?php
 		}
 
@@ -460,6 +460,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					</h2>
 				</div>
 			</div>
+			<noscript><style type='text/css'>#message{display:none;}</style></noscript>
 			<?php
 		}
 
