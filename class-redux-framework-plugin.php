@@ -74,7 +74,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		 * @return      self::$instance The one true Redux_Framework_Plugin
 		 */
 		public static function instance() {
-			$path = WP_PLUGIN_DIR . 'redux-framework/redux-framework.php';
+			$path = REDUX_PLUGIN_FILE;
 
 			if ( function_exists( 'get_plugin_data' ) && file_exists( $path ) ) {
 				$data = get_plugin_data( $path );

@@ -412,5 +412,32 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			spl_autoload_register( array( $loader, 'load' ) );
 		}
 
+		/**
+		 * Check if a string starts with a string.
+		 *
+		 * @param string $haystack Full string.
+		 * @param string $needle String to check if it starts with.
+		 * @return string
+		 */
+		public static function string_starts_with( $haystack, $needle ) {
+			$length = strlen( $needle );
+			return substr( $haystack, 0, $length ) === $needle;
+		}
+
+		/**
+		 * Check if a string ends with a string.
+		 *
+		 * @param string $haystack Full string.
+		 * @param string $needle String to check if it starts with.
+		 * @return string
+		 */
+		public static function string_ends_with( $haystack, $needle ) {
+			$length = strlen( $needle );
+			if( !$length ) {
+				return true;
+			}
+			return substr( $haystack, -$length ) === $needle;
+		}
+
 	}
 }

@@ -47,12 +47,16 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 					$args = isset( $_REQUEST['data_args'] ) ? json_decode( sanitize_text_field( wp_unslash( $_REQUEST['data_args'] ) ), true ) : array();
 					$args = wp_parse_args( $args, array() );
 
+					$criteria = '';
+					if ( isset( $_REQUEST['q'] ) && ! empty( $_REQUEST['q'] ) ) {
+						$criteria = sanitize_text_field( wp_unslash( $_REQUEST['q'] ) );
+						$args['s'] = $criteria;
+					}
+
 					$return = $core->wordpress_data->get( sanitize_text_field( wp_unslash( $_REQUEST['data'] ) ), $args );
 
 					if ( is_array( $return ) && ! empty( $_REQUEST['action'] ) ) {
-						if ( isset( $_REQUEST['q'] ) ) {
-							$criteria = sanitize_text_field( wp_unslash( $_REQUEST['q'] ) );
-
+						if ( ! empty( $criteria ) ) {
 							$keys   = array_keys( $return );
 							$values = array_values( $return );
 
