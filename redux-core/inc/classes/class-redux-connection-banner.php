@@ -39,6 +39,8 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * @return Redux_Connection_Banner
 		 */
 		public static function init() {
+
+			Redux_Functions_Ex::set_deactivated();
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new Redux_Connection_Banner();
 			}
@@ -63,7 +65,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				die( __( 'Security check failed.', 'redux-framework' ) );
 			}
 			if ( 'true' === $_REQUEST['activate'] ) {
-				Redux_Functions_Ex::set_activated();
+				Redux_Functions_Ex::set_activated( $_REQUEST['activate'] );
 			} else {
 				Redux_Functions_Ex::set_deactivated();
 				update_option( 'redux-framework_tracking_notice', 'hide' );
@@ -204,7 +206,6 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			$notice .= ' (<a class="redux-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'redux-framework' ) . '</a>)';
 
 			$notice .= '<p class="description" style="display:none;">' . self::tos_blurb( 'option_panel' ) . ' </p>';
-
 
 			echo '<div class="updated" id="redux-connect-message" data-nonce="' . wp_create_nonce( 'redux-panel-admin-notice' ) . '" style="border-left-color: #24b0a6;"><p>';
 			echo $notice;

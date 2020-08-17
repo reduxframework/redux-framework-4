@@ -48,14 +48,14 @@
 		// we going to move each attributes we may need for folding to tr tag.
 		$.each(
 			redux.opt_names,
-			function( i ) {
+			function( x ) {
 				$.each(
-					window['redux_' + redux.opt_names[i].replace( /\-/g, '_' )].folds,
+					window['redux_' + redux.opt_names[x].replace( /\-/g, '_' )].folds,
 					function( i, v ) {
 						var div;
 						var rawTable;
 
-						var fieldset = $( '#' + redux.opt_names[i] + '-' + i );
+						var fieldset = $( '#' + redux.opt_names[x] + '-' + i );
 
 						fieldset.parents( 'tr:first, li:first' ).addClass( 'fold' );
 
@@ -80,7 +80,7 @@
 							}
 
 							if ( fieldset.hasClass( 'redux-container-raw' ) ) {
-								rawTable = fieldset.parents().find( 'table#' + redux.opt_names[i] + '-' + i );
+								rawTable = fieldset.parents().find( 'table#' + redux.opt_names[x] + '-' + i );
 								rawTable.hide().addClass( 'hide' );
 							}
 						}

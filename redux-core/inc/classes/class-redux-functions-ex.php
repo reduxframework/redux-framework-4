@@ -361,8 +361,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @access public
 		 * @since 4.0.0
+		 * @param string $source Source of optin.
 		 */
-		public static function set_activated() {
+		public static function set_activated( $source = "unknown" ) {
+			update_option( 'redux_optin_method', $source );
 			Redux_Core::$insights->optin();
 		}
 
