@@ -48,7 +48,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			$value = apply_filters( "redux/options/{$this->opt_name}/wordpress_data/translate/post_type_value", $value, $post_type );
 
 			// WPML Integration, see https://wpml.org/documentation/support/creating-multilingual-wordpress-themes/language-dependent-ids/.
-			if ( function_exists('icl_object_id') ) {
+			if ( function_exists( 'icl_object_id' ) ) {
 				if ( has_filter( 'wpml_object_id' ) ) {
 					if ( Redux_Helpers::is_integer( $value ) ) {
 						$value = apply_filters( 'wpml_object_id', $value, $post_type, true );
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							$args = $args['taxonomies'];
 						}
 						$args['include'] = $current_value;
-						$terms = get_terms( $args );
+						$terms           = get_terms( $args );
 						if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 							foreach ( $terms as $term ) {
 								$current_data[ $term->term_id ] = $term->name;
@@ -276,12 +276,12 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						case 'term':
 							if ( isset( $args['taxonomies'] ) ) {
 								$taxonomies = $args['taxonomies'];
-								unset ( $args['taxonomies'] );
-								$terms = get_terms( $taxonomies, $args ); // this will get nothing
+								unset( $args['taxonomies'] );
+								$terms = get_terms( $taxonomies, $args );
 							} else {
 								$terms = get_terms( $args );
 							}
-							if ( ! empty ( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
+							if ( ! empty( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
 								foreach ( $terms as $term ) {
 									$data[ $term->term_id ] = $term->name;
 								}

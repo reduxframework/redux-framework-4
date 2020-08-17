@@ -54,39 +54,36 @@ class Redux_Rest_Api_Builder {
 			$this->get_namespace(),
 			'/fields',
 			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'list_fields' ),
-				'permission_callback' => '__return_true',
+				'methods'  => WP_REST_Server::READABLE,
+				'callback' => array( $this, 'list_fields' ),
 			)
 		);
 		register_rest_route(
 			$this->get_namespace(),
 			'/field/(?P<type>[a-z0-9-_]+)',
 			array(
-				'args'                => array(
+				'args'     => array(
 					'type' => array(
 						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_field' ),
-				'permission_callback' => '__return_true',
+				'methods'  => WP_REST_Server::READABLE,
+				'callback' => array( $this, 'get_field' ),
 			)
 		);
 		register_rest_route(
 			$this->get_namespace(),
 			'/field/(?P<type>[a-z0-9-_]+)/render',
 			array(
-				'args'                => array(
+				'args'     => array(
 					'name' => array(
 						'description' => __( 'The field type', 'redux-framework' ),
 						'type'        => 'string',
 					),
 				),
-				'methods'             => WP_REST_Server::ALLMETHODS,
-				'callback'            => array( $this, 'render_field' ),
-				'permission_callback' => '__return_true',
+				'methods'  => WP_REST_Server::ALLMETHODS,
+				'callback' => array( $this, 'render_field' ),
 			)
 		);
 	}
@@ -151,13 +148,14 @@ class Redux_Rest_Api_Builder {
 			$field_class = Redux_Functions::class_exists_ex( $field_classes );
 			// Load it here to save some resources in autoloading!
 			if ( $field_class && is_subclass_of( $class, 'Redux_Field' ) ) {
-				$descriptor = call_user_func( array( $class, 'get_descriptor' ) );
-				if ( ! empty( $descriptor->get_field_type() ) ) {
+				$descriptor      = call_user_func( array( $class, 'get_descriptor' ) );
+				$descriptor_type = $descriptor->get_field_type();
+				if ( ! empty( $descriptor_type ) ) {
 					$field_data = $descriptor->to_array();
 					if ( isset( $field_data['fields'] ) && ! empty( $field_data['fields'] ) ) {
 						$field_data['fields'] = $this->prepare_fields_output( $field_data['fields'] );
 					}
-					$fields[ $descriptor->get_field_type() ] = $field_data;
+					$fields[ $descriptor_type ] = $field_data;
 				}
 			}
 		}
@@ -176,10 +174,10 @@ class Redux_Rest_Api_Builder {
 		$type = $request['type'];
 
 		$field_classes = $this->get_field_paths();
-		if ( isset( $field_classes[ Redux_Core::strtolower( $type ) ] ) ) {
+		if ( isset( $field_classes[ mb_strtolower( $type ) ] ) ) {
 			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
 			if ( ! class_exists( $class ) ) {
-				require_once $field_classes[ Redux_Core::strtolower( $type ) ];
+				require_once $field_classes[ mb_strtolower( $type ) ];
 			}
 			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class = Redux_Functions::class_exists_ex( $field_class );
@@ -247,10 +245,10 @@ class Redux_Rest_Api_Builder {
 	public function render_field( $request = array() ) {
 		$type          = $request['type'];
 		$field_classes = $this->get_field_paths();
-		if ( isset( $field_classes[ Redux_Core::strtolower( $type ) ] ) ) {
+		if ( isset( $field_classes[ mb_strtolower( $type ) ] ) ) {
 			$class = 'Redux_' . ucwords( str_replace( '-', '_', $type ) );
 			if ( ! class_exists( $class ) ) {
-				require_once $field_classes[ Redux_Core::strtolower( $type ) ];
+				require_once $field_classes[ mb_strtolower( $type ) ];
 			}
 			$field_class = array( 'Redux_' . ucwords( $type ), 'ReduxFramework_' . ucwords( $type ) );
 			$field_class = Redux_Functions::class_exists_ex( $field_class );

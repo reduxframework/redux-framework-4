@@ -107,9 +107,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
+			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 );
 
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
+				$caller = $caller[1]['file'];
 				if ( ! isset( Redux_Core::$callers[ $opt_name ] ) ) {
 					Redux_Core::$callers[ $opt_name ] = array();
 				}
