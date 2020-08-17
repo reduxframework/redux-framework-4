@@ -350,7 +350,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @since 4.0.0
 		 */
 		public static function activated() {
-			if ( Redux_Core::$insights->tracking_allowed() ) {
+			if ( class_exists( 'Redux_Core' ) && isset( Redux_Core::$insights ) && Redux_Core::$insights->tracking_allowed() ) {
 				return true;
 			}
 			return false;
