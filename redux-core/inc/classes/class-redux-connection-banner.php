@@ -39,8 +39,6 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * @return Redux_Connection_Banner
 		 */
 		public static function init() {
-
-			Redux_Functions_Ex::set_deactivated();
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new Redux_Connection_Banner();
 			}

@@ -107,10 +107,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 );
+			$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )[1]['file'];
 
 			if ( ! empty( $caller ) && ! empty( $opt_name ) && class_exists( 'Redux_Core' ) ) {
-				$caller = $caller[1]['file'];
 				if ( ! isset( Redux_Core::$callers[ $opt_name ] ) ) {
 					Redux_Core::$callers[ $opt_name ] = array();
 				}
@@ -168,6 +167,25 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
+		 * Run URL through a ssl check.
+		 *
+		 * @param     string $url URL to check.
+		 *
+		 * @return string
+		 */
+		public static function verify_url_protocol( $url ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+			$protocol = ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] || ( ! empty( $_SERVER['SERVER_PORT'] ) && 443 === $_SERVER['SERVER_PORT'] ) ? 'https://' : 'http://';
+			if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+				$new_protocol = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) . '://'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+				if ( 'http://' === $protocol && $new_protocol !== $protocol && false === strpos( $url, $new_protocol ) ) {
+					$url = str_replace( $protocol, $new_protocol, $url );
+				}
+			}
+			return $url;
+		}
+
+		/**
 		 * Is Redux embedded inside a plugin.
 		 *
 		 * @param     string $file File to check.
@@ -182,14 +200,13 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 				$slug = explode( '/', $plugin_basename );
 				$slug = $slug[0];
 
-				$data             = array(
+				$data = array(
 					'slug'      => $slug,
 					'basename'  => $plugin_basename,
-					'path'      => self::wp_normalize_path( $file ),
-					'url'       => plugins_url( $plugin_basename ),
+					'path'      => $file,
+					'url'       => self::verify_url_protocol( plugins_url( $plugin_basename ) ),
 					'real_path' => self::wp_normalize_path( dirname( realpath( $file ) ) ),
 				);
-				$data['realpath'] = $data['real_path'];  // Shim for old extensions.
 
 				return $data;
 			}
@@ -237,7 +254,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						'slug'      => $slug,
 						'path'      => trailingslashit( trailingslashit( $theme_path ) . $relative_path ) . $filename,
 						'real_path' => trailingslashit( trailingslashit( $real_path ) . $relative_path ) . $filename,
-						'url'       => trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename,
+						'url'       => self::verify_url_protocol( trailingslashit( trailingslashit( $url ) . $relative_path ) . $filename ),
 						'basename'  => trailingslashit( $slug ) . trailingslashit( $relative_path ) . $filename,
 					);
 					$data['realpath'] = $data['real_path'];  // Shim for old extensions.
@@ -350,7 +367,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @since 4.0.0
 		 */
 		public static function activated() {
-			if ( class_exists( 'Redux_Core' ) && isset( Redux_Core::$insights ) && Redux_Core::$insights->tracking_allowed() ) {
+			if ( Redux_Core::$insights->tracking_allowed() ) {
 				return true;
 			}
 			return false;
@@ -361,10 +378,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 *
 		 * @access public
 		 * @since 4.0.0
-		 * @param string $source Source of optin.
 		 */
-		public static function set_activated( $source = "unknown" ) {
-			update_option( 'redux_optin_method', $source );
+		public static function set_activated() {
 			Redux_Core::$insights->optin();
 		}
 
@@ -395,30 +410,6 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			}
 			$loader = new Redux_Autoloader( $prefix, $path );
 			spl_autoload_register( array( $loader, 'load' ) );
-		}
-
-		/**
-		 * Check if a string starts with another string.
-		 *
-		 * @param string $haystack Full string you are checking.
-		 * @param string $needle String you are searching for.
-		 *
-		 * @return bool
-		 */
-		public static function string_starts_with( $haystack, $needle ) {
-			return substr_compare( $haystack, $needle, 0, strlen( $needle ) ) === 0;
-		}
-
-		/**
-		 * Check if a string ends with another string.
-		 *
-		 * @param string $haystack Full string you are checking.
-		 * @param string $needle String you are searching for.
-		 *
-		 * @return bool
-		 */
-		public static function string_ends_with( $haystack, $needle ) {
-			return substr_compare( $haystack, $needle, -strlen( $needle ) ) === 0;
 		}
 
 	}
