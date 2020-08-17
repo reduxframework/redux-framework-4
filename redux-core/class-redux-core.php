@@ -260,6 +260,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			self::$is_plugin = apply_filters( 'redux/is_plugin', self::$is_plugin );
 
+			if ( ! function_exists( 'current_time' ) ) {
+				require_once ABSPATH . '/wp-includes/functions.php';
+			}
+
 			$upload_dir       = wp_upload_dir();
 			self::$upload_dir = $upload_dir['basedir'] . '/redux/';
 			self::$upload_url = str_replace( array( 'https://', 'http://' ), '//', $upload_dir['baseurl'] . '/redux/' );
