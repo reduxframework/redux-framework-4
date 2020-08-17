@@ -45,13 +45,16 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 				if ( isset( $_REQUEST['data'] ) ) {
 
 					$args = isset( $_REQUEST['data_args'] ) ? json_decode( sanitize_text_field( wp_unslash( $_REQUEST['data_args'] ) ), true ) : array();
-					$args = wp_parse_args( $args, array(
-						's' => isset( $_REQUEST['q'] ) && ! empty( $_REQUEST['q'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['q'] ) ) : ''
-					) );
+					$args = wp_parse_args(
+						$args,
+						array(
+							's' => isset( $_REQUEST['q'] ) && ! empty( $_REQUEST['q'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['q'] ) ) : '',
+						)
+					);
 
 					$criteria = '';
 					if ( isset( $_REQUEST['q'] ) && ! empty( $_REQUEST['q'] ) ) {
-						$criteria = sanitize_text_field( wp_unslash( $_REQUEST['q'] ) );
+						$criteria  = sanitize_text_field( wp_unslash( $_REQUEST['q'] ) );
 						$args['s'] = $criteria;
 					}
 

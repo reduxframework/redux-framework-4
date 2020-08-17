@@ -433,7 +433,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 */
 		public static function string_ends_with( $haystack, $needle ) {
 			$length = strlen( $needle );
-			if( !$length ) {
+			if ( ! $length ) {
 				return true;
 			}
 			return substr( $haystack, -$length ) === $needle;
