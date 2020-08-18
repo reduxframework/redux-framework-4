@@ -107,7 +107,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				'line-height'             => true,
 				'multi'                   => array(
 					'subsets' => false,
-					'weight' => false,
+					'weight'  => false,
 				),
 				'word-spacing'            => false,
 				'letter-spacing'          => false,
@@ -829,7 +829,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			if ( ! empty( $subsets ) ) {
 				$link .= '&subset=' . implode( ',', $subsets );
 			}
-			$link .= '&display=swap';
+			$link .= '&display=' . $this->parent->args['font_display'];
 
 			return 'https://fonts.googleapis.com/css?family=' . $link;
 		}
@@ -990,6 +990,8 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 				if ( isset( $this->parent->args['async_typography'] ) && $this->parent->args['async_typography'] ) {
 					$style .= 'opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;';
+				} else {
+					$style .= 'font-display:' . $this->parent->args['font_display'] . ';';
 				}
 			}
 
