@@ -830,7 +830,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				$link .= '&subset=' . implode( ',', $subsets );
 			}
 
-			return 'https://fonts.googleapis.com/css?family=' . $link;
+			return 'https://fonts.googleapis.com/css?family=' . urlencode( $link );
 		}
 
 		/**
