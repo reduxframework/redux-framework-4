@@ -101,7 +101,7 @@ $args = array(
 	'page_title'                => esc_html__( 'Sample Options', 'your-textdomain-here' ),
 
 	// Enabled the Webfonts typography module to use asynchronous fonts.
-	'async_typography'          => true,
+	'async_typography'          => false,
 
 	// Disable to create your own google fonts loader.
 	'disable_google_fonts_link' => false,

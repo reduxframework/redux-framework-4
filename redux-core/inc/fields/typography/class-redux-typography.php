@@ -829,8 +829,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			if ( ! empty( $subsets ) ) {
 				$link .= '&subset=' . implode( ',', $subsets );
 			}
+			$link .= "&display=swap";
 
-			return 'https://fonts.googleapis.com/css?family=' . urlencode( $link );
+			return 'https://fonts.googleapis.com/css?family=' . $link;
 		}
 
 		/**

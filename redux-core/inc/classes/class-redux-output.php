@@ -209,7 +209,12 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					</script>
 					<?php
 				} elseif ( ! $core->args['disable_google_fonts_link'] ) {
-					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $typography->make_google_web_font_link( $core->typography ), array(), $version, 'all' );
+					$url = $typography->make_google_web_font_link( $core->typography );
+					// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
+					echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />';
+					echo '<link rel="preload" as="style" href="' . $url . '" />';
+					echo '<link rel="stylesheet" href="' . $url . '" media="print" onload="this.media=\'all\'">';
+					echo '<noscript><link rel="stylesheet" href="' . $url . '" /></noscript>';
 				}
 			}
 		}
