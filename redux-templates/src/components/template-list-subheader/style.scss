@@ -16,3 +16,11 @@
 .tour-icon {
     font-size: 18px;
 }
+.trial_notice {
+    * {
+        vertical-align: middle;
+    }
+    .components-notice__content {
+        margin-right: 0;
+    }
+}

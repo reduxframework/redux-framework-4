@@ -1,13 +1,14 @@
-const {__} = wp.i18n;
+const {__, sprintf} = wp.i18n;
 const {compose} = wp.compose;
 const {withDispatch, withSelect} = wp.data;
 const {useState, useEffect} = wp.element;
 import ChallengeDot from '~redux-templates/challenge/tooltip/ChallengeDot';
-import {Button} from '@wordpress/components'
+import {Button, Notice} from '@wordpress/components'
 import SVGViewFew from './images/view-few.svg'
 import SVGViewMany from './images/view-many.svg'
 import SVGViewNormal from './images/view-normal.svg'
 import {reloadLibrary} from '~redux-templates/stores/actionHelper';
+import * as Icons from '~redux-templates/icons';
 import './style.scss'
 
 function TemplateListSubHeader(props) {
@@ -39,7 +40,35 @@ function TemplateListSubHeader(props) {
                 {pageTitle}
                 <ChallengeDot step={3} />
             </h4>
+
             <div className="redux-templates-template-filters">
+	            <div className='trial_notice'>
+		            { ! redux_templates.mokama &&
+		            <div style={{verticalAlign:'middle'}}>
+			            <Notice status="info" isDismissible={false}>
+				            <strong style={{display:'inline-block', marginRight:'10px', verticalAlign:'middle'}}>
+					            { redux_templates.left === "0" &&
+					            	<>
+							            {sprintf( __( 'You\'ve imported %d/%d Templates', redux_templates.i18n ), redux_templates.left, 5 )}
+						            </>
+					            }
+					            { redux_templates.left !== "0" &&
+					            <>
+						            {sprintf( __( 'Trial: %d/%d Imports Remaining', redux_templates.i18n ), redux_templates.left, 5 )}
+					            </>
+					            }
+				            </strong>
+				            <Button isPrimary
+				                    isSmall
+				                    icon={Icons.redux}
+				                    label={__('Upgrade to Redux Pro', redux_templates.i18n)}
+				                    onClick={()=> window.open( redux_templates.u + 'subheader', '_blank')}>Get Pro</Button>
+			            </Notice>
+
+
+		            </div>
+
+		            }</div>
                 <Button
                     icon={<i className={triggerTourClassname} />}
                     label={__('Take the Redux Challenge', redux_templates.i18n)}
@@ -77,6 +106,7 @@ function TemplateListSubHeader(props) {
                     </select>
                 </div>
             </div>
+
         </div>
     );
 }

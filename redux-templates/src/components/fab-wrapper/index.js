@@ -91,7 +91,7 @@ export default function FabWrapper() {
 			        style={actionButtonStyles}
 			        text={__('Visit our Website', redux_templates.i18n)}
 			        onClick={e => {
-				        window.open('https://redux.io?utm_source=plugin&utm_medium=modal&utm_campaign=tinyfab', '_blank')
+				        window.open( redux_templates.u + 'tinyfab', '_blank')
 			        }}
 		        >
 			        <i className="fas fa-external-link-alt"/>
@@ -117,7 +117,7 @@ export default function FabWrapper() {
 			        style={{backgroundColor:'#00a7e5'}}
 			        text={__('Upgrade to Redux Pro', redux_templates.i18n)}
 			        onClick={e => {
-				        window.open(redux_templates.u, '_blank')
+				        window.open(redux_templates.u + 'help_bubble', '_blank')
 			        }}
 		        >
 			        <i className="fa fa-star"/>

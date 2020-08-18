@@ -439,5 +439,58 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 			return substr( $haystack, -$length ) === $needle;
 		}
 
+		/**
+		 * Get the url where the Admin Columns website is hosted
+		 *
+		 * @param string $path Path to add to url.
+		 *
+		 * @return string
+		 */
+		private static function get_site_url( $path = '' ) {
+			$url = 'https://redux.io';
+
+			if ( ! empty( $path ) ) {
+				$url .= '/' . trim( $path, '/' ) . '/';
+			}
+
+			return $url;
+		}
+
+		/**
+		 * Url with utm tags
+		 *
+		 * @param string $path Path on site.
+		 * @param string $utm_medium Medium var.
+		 * @param string $utm_content Content var.
+		 * @param bool   $utm_campaign Campaign var.
+		 *
+		 * @return string
+		 */
+		public static function get_site_utm_url( $path, $utm_medium, $utm_content = null, $utm_campaign = false ) {
+			$url = self::get_site_url( $path );
+
+			if ( ! $utm_campaign ) {
+				$utm_campaign = 'plugin-installation';
+			}
+
+			$args = array(
+				// Referrer: plugin.
+				'utm_source'   => 'plugin-installation',
+
+				// Specific promotions or sales.
+				'utm_campaign' => $utm_campaign,
+
+				// Marketing medium: banner, documentation or email.
+				'utm_medium'   => $utm_medium,
+
+				// Used for differentiation of medium.
+				'utm_content'  => $utm_content,
+			);
+
+			$args = array_map( 'sanitize_key', array_filter( $args ) );
+
+			return add_query_arg( $args, $url );
+		}
+
 	}
 }

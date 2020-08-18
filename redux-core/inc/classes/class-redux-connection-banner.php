@@ -473,8 +473,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		public static function tos_blurb($campaign = "options_panel") {
 			return sprintf(
 				__( 'By clicking the <strong>Register</strong> button, you agree to our <a href="%1$s" target="_blank">terms of service</a>, to create an account, and to share details of your usage metrics with Redux.io.', 'redux-framework' ),
-				esc_url( 'https://redux.io/terms?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign ),
-				esc_url( 'https://redux.io/share-details?utm_source=plugin&utm_medium=appsero&utm_campaign=' . $campaign )
+				Redux_Functions_Ex::get_site_utm_url( 'terms', 'appsero', 'activate', $campaign )
 			);
 		}
 

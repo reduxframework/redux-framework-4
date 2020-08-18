@@ -43,7 +43,8 @@ function ImportWizard(props) {
             // IMPORTANT First check: can you use redux pro?
             const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
             if (redux_templates.mokama !== '1' && leftTry < 1) {
-                setCurrentStep(REDUX_ACTIVATE_STEP);
+                //setCurrentStep(REDUX_ACTIVATE_STEP);
+	            setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
             /* Redux pro check */

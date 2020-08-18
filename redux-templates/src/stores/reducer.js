@@ -75,6 +75,12 @@ export const reducer = ( state = initialState, action ) => {
             const parsedSection = parseSectionData(action.library.sections);
             const parsedPage = parsePageData(action.library.pages);
 			const parsedCollection = parseCollectionData(action.library);
+			redux_templates.stats = {
+				'dependencies': Object.keys(action.library.dependencies).length,
+				'pages': Object.keys(action.library.pages).length,
+				'sections': Object.keys(action.library.sections).length,
+				'collections': Object.keys(action.library.collections).length,
+			}
             return {
                 ...state,
                 loading: false,
