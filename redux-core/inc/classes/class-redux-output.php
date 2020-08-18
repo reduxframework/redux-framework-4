@@ -210,13 +210,60 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					<?php
 				} elseif ( ! $core->args['disable_google_fonts_link'] ) {
 					$url = $typography->make_google_web_font_link( $core->typography );
-					// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
-					echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />';
-					echo '<link rel="preload" as="style" href="' . $url . '" />';
-					echo '<link rel="stylesheet" href="' . $url . '" media="print" onload="this.media=\'all\'">';
-					echo '<noscript><link rel="stylesheet" href="' . $url . '" /></noscript>';
+					$url = 'https://fonts.googleapis.com/css?family=Montserrat:600,400|Lato:700|Cormorant+Garamond:400|Playfair+Display:800Playfair+Display&subset=800&ver=1597669755';
+					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $typography->make_google_web_font_link( $core->typography ), array(), $version, 'all' );
+					add_filter( 'style_loader_tag', array( $this, 'add_style_attributes' ), 10, 4 );
+					add_filter( 'wp_resource_hints', array( $this, 'google_fonts_preconnect' ), 10, 2 );
 				}
 			}
+		}
+
+		/**
+		 * Add Google Fonts preconnect link.
+		 *
+		 * @param array  $urls      HTML to be added.
+		 * @param string $relationship_type    Handle name.
+		 *
+		 * @return      array
+		 * @since       4.1.15
+		 * @access      public
+		 */
+		public function google_fonts_preconnect( $urls, $relationship_type ) {
+			if ( 'preconnect' !== $relationship_type ) {
+				return $urls;
+			}
+			$urls[] = array(
+				'rel'  => 'preconnect',
+				'href' => 'https://fonts.gstatic.com',
+				'crossorigin',
+			);
+			return $urls;
+		}
+
+		/**
+		 * Filter to enhance the google fonts enqueue.
+		 *
+		 * @param string $html      HTML to be added.
+		 * @param string $handle    Handle name.
+		 * @param string $href      HREF URL of script.
+		 * @param string $media     Media type.
+		 *
+		 * @return      string
+		 * @since       4.1.15
+		 * @access      public
+		 */
+		public function add_style_attributes( $html = '', $handle = '', $href = '', $media = '' ) {
+			if ( Redux_Functions_Ex::string_starts_with( $handle, 'redux-google-fonts-' ) ) {
+				// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
+				$href      = urldecode( $href );
+				$new_html  = '';
+				$new_html .= '<link rel="preload" as="style" href="' . esc_attr( $href ) . '" />';
+				$new_html .= '<link rel="stylesheet" href="' . esc_attr( $href ) . '" media="print" onload="this.media=\'all\'">';  // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
+				$new_html .= '<noscript><link rel="stylesheet" href="' . esc_attr( $href ) . '" /></noscript>'; // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
+				$html      = $new_html;
+			}
+
+			return $html;
 		}
 
 		/**

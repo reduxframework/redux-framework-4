@@ -30,23 +30,23 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 * @var array $std_fonts
 		 */
 		private $std_fonts = array(
-			'Arial, Helvetica, sans-serif'          => 'Arial, Helvetica, sans-serif',
-			'"Arial Black", Gadget, sans-serif'     => '"Arial Black", Gadget, sans-serif',
-			"'Bookman Old Style', serif"            => '"Bookman Old Style", serif',
-			'"Comic Sans MS", cursive'              => '"Comic Sans MS", cursive',
-			'Courier, monospace'                    => 'Courier, monospace',
-			'Garamond, serif'                       => 'Garamond, serif',
-			'Georgia, serif'                        => 'Georgia, serif',
-			'Impact, Charcoal, sans-serif'          => 'Impact, Charcoal, sans-serif',
-			'"Lucida Console", Monaco, monospace'   => '"Lucida Console", Monaco, monospace',
-			'"Lucida Sans Unicode", "Lucida Grande", sans-serif' => '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-			'"MS Sans Serif", Geneva, sans-serif'   => '"MS Sans Serif", Geneva, sans-serif',
-			'"MS Serif", "New York", sans-serif'    => '"MS Serif", "New York", sans-serif',
-			'"Palatino Linotype", "Book Antiqua", Palatino, serif' => '"Palatino Linotype", "Book Antiqua", Palatino, serif',
-			'Tahoma,Geneva, sans-serif'             => 'Tahoma, Geneva, sans-serif',
-			'"Times New Roman", Times,serif'        => '"Times New Roman", Times, serif',
-			'"Trebuchet MS", Helvetica, sans-serif' => '"Trebuchet MS", Helvetica, sans-serif',
-			'Verdana, Geneva, sans-serif'           => 'Verdana, Geneva, sans-serif',
+			'Arial, Helvetica, sans-serif'            => 'Arial, Helvetica, sans-serif',
+			'\'Arial Black\', Gadget, sans-serif'     => '\'Arial Black\', Gadget, sans-serif',
+			'\'Bookman Old Style\', serif'            => '\'Bookman Old Style\', serif',
+			'\'Comic Sans MS\', cursive'              => '\'Comic Sans MS\', cursive',
+			'Courier, monospace'                      => 'Courier, monospace',
+			'Garamond, serif'                         => 'Garamond, serif',
+			'Georgia, serif'                          => 'Georgia, serif',
+			'Impact, Charcoal, sans-serif'            => 'Impact, Charcoal, sans-serif',
+			'\'Lucida Console\', Monaco, monospace'   => '\'Lucida Console\', Monaco, monospace',
+			'\'Lucida Sans Unicode\', \'Lucida Grande\', sans-serif' => '\'Lucida Sans Unicode\', \'Lucida Grande\', sans-serif',
+			'\'MS Sans Serif\', Geneva, sans-serif'   => '\'MS Sans Serif\', Geneva, sans-serif',
+			'\'MS Serif\', \'New York\', sans-serif'  => '\'MS Serif\', \'New York\', sans-serif',
+			'\'Palatino Linotype\', \'Book Antiqua\', Palatino, serif' => '\'Palatino Linotype\', \'Book Antiqua\', Palatino, serif',
+			'Tahoma,Geneva, sans-serif'               => 'Tahoma, Geneva, sans-serif',
+			'\'Times New Roman\', Times,serif'        => '\'Times New Roman\', Times, serif',
+			'\'Trebuchet MS\', Helvetica, sans-serif' => '\'Trebuchet MS\', Helvetica, sans-serif',
+			'Verdana, Geneva, sans-serif'             => 'Verdana, Geneva, sans-serif',
 		);
 
 		/**
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				'preview'                 => true,
 				'line-height'             => true,
 				'multi'                   => array(
-					'subset' => false,
+					'subsets' => false,
 					'weight' => false,
 				),
 				'word-spacing'            => false,
@@ -393,7 +393,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 						data-id="' . esc_attr( $this->field['id'] ) . '"  /> ';
 
 				echo '<label>' . esc_html__( 'Font Subsets', 'redux-framework' ) . '</label>';
-				$multi = ( isset( $this->field['multi']['subset'] ) && $this->field['multi']['subset'] ) ? ' multiple="multiple"' : '';
+				$multi = ( isset( $this->field['multi']['subsets'] ) && $this->field['multi']['subsets'] ) ? ' multiple="multiple"' : '';
 				echo '<select' . esc_html( $multi ) . ' 
 						data-placeholder="' . esc_html__( 'Subsets', 'redux-framework' ) . '" 
 						class="redux-typography redux-typography-subsets ' . esc_attr( $this->field['class'] ) . '" 
@@ -829,7 +829,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			if ( ! empty( $subsets ) ) {
 				$link .= '&subset=' . implode( ',', $subsets );
 			}
-			$link .= "&display=swap";
+			$link .= '&display=swap';
 
 			return 'https://fonts.googleapis.com/css?family=' . $link;
 		}
@@ -866,13 +866,13 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				if ( ! empty( $font['subset'] ) || ! empty( $font['all-subsets'] ) ) {
 					if ( ! empty( $font['all-subsets'] ) ) {
 						foreach ( $font['all-subsets'] as $subset ) {
-							if ( ! in_array( $subset, $subsets, true ) ) {
+							if ( ! in_array( $subset, $subsets, true ) && ! is_numeric( $subset ) ) {
 								array_push( $subsets, $subset );
 							}
 						}
 					} elseif ( ! empty( $font['subset'] ) ) {
 						foreach ( $font['subset'] as $subset ) {
-							if ( ! in_array( $subset, $subsets, true ) ) {
+							if ( ! in_array( $subset, $subsets, true ) && ! is_numeric( $subset ) ) {
 								array_push( $subsets, $subset );
 							}
 						}
