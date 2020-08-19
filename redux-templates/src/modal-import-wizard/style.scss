@@ -119,7 +119,7 @@
             display: block;
             //margin: 0 auto;
             margin: 30px auto 0 auto;
-            max-width: 200px;
+            max-width: 250px;
             text-align: center;
             //font-size: calc(13px + 0.1vw);
             font-size: 1em;
@@ -129,6 +129,14 @@
                 box-shadow: none !important;
                 background: #19837c;
             }
+        }
+        .subscription_key {
+            margin-top: 40px;
+            button {
+                background: #f8f8f8;
+                border: 1px solid #ddd;
+            }
+
         }
     }
     .redux-templates-importmodal-content {

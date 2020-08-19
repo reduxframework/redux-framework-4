@@ -21,6 +21,7 @@ const PLUGIN_STEP = 1;
 const OPTION_STEP = 2;
 const IMPORT_STEP = 3;
 const REDUX_PRO_STEP = -1;
+const REDUX_PRO_ACTIVATE_STEP = 888;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 
@@ -84,7 +85,7 @@ function ImportWizard(props) {
         }
     }, [importingTemplate, currentStep, activateDialogDisplay])
 
-    // Activate dialog disply
+    // Activate dialog display
     useEffect(() => {
         if (activateDialogDisplay === true) { // Activate dialog hard reset case
             setCurrentStep(REDUX_ACTIVATE_STEP);
