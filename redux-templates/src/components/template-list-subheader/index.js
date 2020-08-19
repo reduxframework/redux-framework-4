@@ -49,7 +49,7 @@ function TemplateListSubHeader(props) {
 				            <strong style={{display:'inline-block', marginRight:'10px', verticalAlign:'middle'}}>
 					            { '0' === redux_templates.left &&
 					            	<>
-							            {sprintf( __( 'You\'ve imported %d/%d Templates', redux_templates.i18n ), redux_templates.left, 5 )}
+							            {sprintf( __( 'You\'ve imported %d/%d Templates', redux_templates.i18n ), 5-redux_templates.left, 5 )}
 						            </>
 					            }
 					            { '0' !== redux_templates.left &&
