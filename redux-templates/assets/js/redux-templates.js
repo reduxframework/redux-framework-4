@@ -4401,7 +4401,7 @@ function TemplateListSubHeader(props) {
       marginRight: '10px',
       verticalAlign: 'middle'
     }
-  }, redux_templates.left === "0" && wp.element.createElement(React.Fragment, null, sprintf(__('You\'ve imported %d/%d Templates', redux_templates.i18n), redux_templates.left, 5)), redux_templates.left !== "0" && wp.element.createElement(React.Fragment, null, sprintf(__('Trial: %d/%d Imports Remaining', redux_templates.i18n), redux_templates.left, 5))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  }, '0' === redux_templates.left && wp.element.createElement(React.Fragment, null, sprintf(__('You\'ve imported %d/%d Templates', redux_templates.i18n), redux_templates.left, 5)), '0' !== redux_templates.left && wp.element.createElement(React.Fragment, null, sprintf(__('Trial: %d/%d Imports Remaining', redux_templates.i18n), redux_templates.left, 5))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isPrimary: true,
     isSmall: true,
     icon: _redux_templates_icons__WEBPACK_IMPORTED_MODULE_6__["redux"],
