@@ -220,7 +220,48 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return bool
 		 */
 		public static function is_local_host() {
-			return ( isset( Redux_Core::$server['REMOTE_ADDR'] ) && ( '127.0.0.1' === Redux_Core::$server['REMOTE_ADDR'] || 'localhost' === Redux_Core::$server['REMOTE_ADDR'] || isset( Redux_Core::$server['SERVER_ADDR'] ) && '::1' === Redux_Core::$server['SERVER_ADDR'] ) ) ? true : false;
+			$is_local = false;
+
+			$domains_to_check = array_unique(
+				array(
+					'siteurl' => wp_parse_url( get_site_url(), PHP_URL_HOST ),
+					'homeurl' => wp_parse_url( get_home_url(), PHP_URL_HOST ),
+				)
+			);
+
+			$forbidden_domains = array(
+				'wordpress.com',
+				'localhost',
+				'localhost.localdomain',
+				'127.0.0.1',
+				'::1',
+				'local.wordpress.test',         // VVV pattern.
+				'local.wordpress-trunk.test',   // VVV pattern.
+				'src.wordpress-develop.test',   // VVV pattern.
+				'build.wordpress-develop.test', // VVV pattern.
+			);
+
+			foreach ( $domains_to_check as $domain ) {
+				// If it's empty, just fail out.
+				if ( ! $domain ) {
+					$is_local = true;
+					break;
+				}
+
+				// None of the explicit localhosts.
+				if ( in_array( $domain, $forbidden_domains, true ) ) {
+					$is_local = true;
+					break;
+				}
+
+				// No .test or .local domains.
+				if ( preg_match( '#\.(test|local)$#i', $domain ) ) {
+					$is_local = true;
+					break;
+				}
+			}
+
+			return $is_local;
 		}
 
 		/**
@@ -353,7 +394,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				'lang'            => get_locale(),
 				'wp_debug'        => ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? true : false : false ),
 				'memory'          => WP_MEMORY_LIMIT,
-				'localhost'       => ( '127.0.0.1' === Redux_Core::$server['REMOTE_ADDR'] ) ? 1 : 0,
+				'localhost'       => Redux_Helpers::is_local_host(),
 				'php'             => PHP_VERSION,
 				'posts'           => $pts,
 				'comments'        => array(
