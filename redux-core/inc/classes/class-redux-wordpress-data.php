@@ -579,10 +579,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 						$current_value    = array( $current_value );
 						$args['post__in'] = $current_value;
 						// Add post_type any to get all posts IDs.
-						$args['post_type'] = 'any';
+						//$args['post_type'] = 'any';
 					} elseif ( is_array( $current_value ) && ! empty( $current_value ) ) {
 						$args['post__in']  = $current_value;
-						$args['post_type'] = 'any';
+						//$args['post_type'] = 'any';
 					}
 					break;
 

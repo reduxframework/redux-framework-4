@@ -443,14 +443,6 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 
 				$this->filesystem = Redux_Filesystem::get_instance( $this );
 
-				// Shim to fix the late load of the WooCommerce autoloader.
-				if ( defined( 'WC_PLUGIN_FILE' ) && ! function_exists( 'wc_get_loop_prop' ) ) {
-					$woocommerce_file = dirname( WC_PLUGIN_FILE ) . '/includes/wc-template-functions.php';
-					if ( file_exists( $woocommerce_file ) ) {
-						require_once $woocommerce_file;
-					}
-				}
-
 				/**
 				 * Filter 'redux/options/{opt_name}/sections'
 				 *

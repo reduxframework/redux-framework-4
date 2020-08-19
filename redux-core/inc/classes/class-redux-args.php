@@ -158,7 +158,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'admin_theme'                      => 'wp',
 				'elusive_frontend'                 => false,
 				'pro'                              => array(),
-				'font_display'                     => 'optional', // block|swap|fallback|optional.
+				'font_display'                     => 'swap', // block|swap|fallback|optional.
 			);
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -173,7 +173,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				$args['font_display'] = 'swap';
 			}
 			if ( $args['async_typography'] ) { // TODO: Disable this for now. We'll rip it out completely shortly.
-				$args['font_display']     = 'optional';
 				$args['async_typography'] = false;
 			}
 
