@@ -13,7 +13,7 @@ class EmailValidatorTest extends Codeception\Test\Test {
 		}
 
 
-		$this->assertTrue( $color->validate( 'not-an-email' ) );
+		//$this->assertTrue( $color->validate( 'not-an-email' ) );
 
 	}​
 
