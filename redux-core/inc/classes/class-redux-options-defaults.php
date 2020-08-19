@@ -51,7 +51,7 @@ if ( ! class_exists( 'Redux_Options_Defaults', false ) ) {
 				}
 			}
 
-			if ( ! is_null( $sections ) ) {
+			if ( ! is_null( $sections ) && ! empty( $sections ) ) {
 
 				// Fill the cache.
 				foreach ( $sections as $sk => $section ) {
