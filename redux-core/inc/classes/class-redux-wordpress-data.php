@@ -575,14 +575,8 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					break;
 				case 'post':
 				case 'posts':
-					if ( ! is_array( $current_value ) && ! empty( $current_value ) ) {
-						$current_value    = array( $current_value );
+					if ( ! empty( $current_value ) ) {
 						$args['post__in'] = $current_value;
-						// Add post_type any to get all posts IDs.
-						//$args['post_type'] = 'any';
-					} elseif ( is_array( $current_value ) && ! empty( $current_value ) ) {
-						$args['post__in']  = $current_value;
-						//$args['post_type'] = 'any';
 					}
 					break;
 
