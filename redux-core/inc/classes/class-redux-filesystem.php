@@ -532,6 +532,10 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 */
 		public function put_contents( $abs_path, $contents, $perms = null ) {
 
+			if ( ! $this->is_dir( dirname( $abs_path ) ) ) {
+				$this->mkdir( dirname( $abs_path ) );
+			}
+
 			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			// @codingStandardsIgnoreStart
 			$return = @file_put_contents( $abs_path, $contents );
@@ -613,9 +617,12 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 * @return string
 		 */
 		public function get_local_file_contents( $abs_path ) {
+
 			try {
 				ob_start();
-				require_once $abs_path;
+				if ( $this->file_exists( $abs_path ) ) {
+					require_once $abs_path;
+				}
 				$contents = ob_get_clean();
 			} catch ( Exception $e ) {
 				// This means that ob_start has been disabled on the system. Let's fallback to good old file_get_contents.
@@ -670,6 +677,9 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 		 * @return bool
 		 */
 		public function chmod( $abs_path, $perms = null ) {
+			if ( ! $this->file_exists( $abs_path ) ) {
+				return false;
+			}
 			if ( is_null( $perms ) ) {
 				$perms = $this->is_file( $abs_path ) ? $this->chmod_file : $this->chmod_dir;
 			}
@@ -957,6 +967,10 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			if ( ! $overwrite && $this->file_exists( $destination_abs_path ) ) {
 				return false;
 			}
+			if ( ! $this->is_dir( dirname( $destination_abs_path ) ) ) {
+				$this->mkdir( dirname( $destination_abs_path ) );
+			}
+
 			// phpcs:ignore WordPress.PHP.NoSilencedErrors
 			$return = @copy( $source_abs_path, $destination_abs_path );
 			if ( $perms && $return ) {
