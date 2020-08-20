@@ -25,7 +25,6 @@ require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
 Redux_Core::$version    = '4.1.15';
 Redux_Core::$redux_path = dirname( __FILE__ );
-Redux_Core::$server     = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
 Redux_Core::instance();
 
 // Don't duplicate me!
