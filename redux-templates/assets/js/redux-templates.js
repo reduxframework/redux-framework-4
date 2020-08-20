@@ -7283,6 +7283,20 @@ function ReduxTemplatesPremiumBox(props) {
     className: "redux-templates-modal-body"
   }, wp.element.createElement("div", {
     className: "section-box premium-box"
+  }, wp.element.createElement("h3", null, __('Activate Redux Pro', redux_templates.i18n)), wp.element.createElement("p", null, __('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)), wp.element.createElement("p", null, wp.element.createElement("input", {
+    type: "text",
+    placeholder: "Your API Key"
+  })), wp.element.createElement("p", {
+    className: "subscription_key"
+  }, wp.element.createElement("button", {
+    type: "button",
+    className: "components-button",
+    "aria-label": "I have a subscription key"
+  }, "I have a subscription key"))));
+  return wp.element.createElement("div", {
+    className: "redux-templates-modal-body"
+  }, wp.element.createElement("div", {
+    className: "section-box premium-box"
   }, wp.element.createElement("h3", null, __('Upgrade to Redux Pro', redux_templates.i18n)), wp.element.createElement("p", null, __('Thanks for giving our library a try! Upgrade to Redux Pro to unlock even more designs and to continue using our library.', redux_templates.i18n)), wp.element.createElement("p", null, wp.element.createElement("a", {
     href: redux_templates.u + 'import_wizard',
     className: "redux-templates-upgrade-button",

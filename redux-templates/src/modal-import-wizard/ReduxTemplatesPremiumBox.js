@@ -1,7 +1,26 @@
 const {__} = wp.i18n
 
 export default function ReduxTemplatesPremiumBox(props) {
-    return (
+
+	return (
+		<div className="redux-templates-modal-body">
+			<div className="section-box premium-box">
+				<h3>{__('Activate Redux Pro', redux_templates.i18n)}</h3>
+
+				<p>{__('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)}</p>
+
+				<p>
+					<input type="text" placeholder="Your API Key" />
+				</p>
+				<p className="subscription_key">
+					<button type="button" className="components-button" aria-label="I have a subscription key">I have a subscription key
+					</button>
+				</p>
+			</div>
+		</div>
+	);
+
+	return (
         <div className="redux-templates-modal-body">
             <div className="section-box premium-box">
                 <h3>{__('Upgrade to Redux Pro', redux_templates.i18n)}</h3>
@@ -13,8 +32,6 @@ export default function ReduxTemplatesPremiumBox(props) {
                        target='_blank'>{__('Upgrade Now Just $49', redux_templates.i18n)}</a>
 	                <small><em>Limited time only</em></small>
                 </p>
-
-
 	            <p className="subscription_key">
 		            <button type="button" className="components-button" aria-label="I have a subscription key">I have a subscription key
 		            </button>
