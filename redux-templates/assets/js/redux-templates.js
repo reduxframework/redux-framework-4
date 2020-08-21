@@ -164,7 +164,7 @@
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".redux-template-library-block .components-placeholder__label svg {\n  margin-right: 8px; }\n\n.redux-template-library-block button.components-button {\n  height: auto;\n  font-weight: 600;\n  text-transform: uppercase;\n  font-size: 13px;\n  padding: 11px 20px;\n  background: #fff; }\n\n.redux-templates-insert-library-button {\n  margin-left: 10px;\n  margin-right: 10px; }\n  .redux-templates-insert-library-button svg {\n    width: 20px;\n    height: 20px; }\n\n.redux-insert-library-button {\n  margin-left: 10px;\n  margin-right: 10px; }\n", ""]);
+exports.push([module.i, ".redux-template-library-block .components-placeholder__label svg {\n  margin-right: 8px; }\n\n.redux-template-library-block button.components-button {\n  height: auto;\n  font-weight: 600;\n  text-transform: uppercase;\n  font-size: 13px;\n  padding: 11px 20px;\n  background: #fff; }\n\n.components-button.has-icon.redux-templates-insert-library-button {\n  height: 100%; }\n\n.redux-templates-insert-library-button {\n  margin-left: 10px;\n  margin-right: 10px; }\n  .redux-templates-insert-library-button svg {\n    width: 20px;\n    height: 20px; }\n\n.redux-insert-library-button {\n  margin-left: 10px;\n  margin-right: 10px; }\n", ""]);
 
 
 
@@ -7279,20 +7279,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ReduxTemplatesPremiumBox; });
 const __ = wp.i18n.__;
 function ReduxTemplatesPremiumBox(props) {
-  return wp.element.createElement("div", {
-    className: "redux-templates-modal-body"
-  }, wp.element.createElement("div", {
-    className: "section-box premium-box"
-  }, wp.element.createElement("h3", null, __('Activate Redux Pro', redux_templates.i18n)), wp.element.createElement("p", null, __('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)), wp.element.createElement("p", null, wp.element.createElement("input", {
-    type: "text",
-    placeholder: "Your API Key"
-  })), wp.element.createElement("p", {
-    className: "subscription_key"
-  }, wp.element.createElement("button", {
-    type: "button",
-    className: "components-button",
-    "aria-label": "I have a subscription key"
-  }, "I have a subscription key"))));
+  // return (
+  // 	<div className="redux-templates-modal-body">
+  // 		<div className="section-box premium-box">
+  // 			<h3>{__('Activate Redux Pro', redux_templates.i18n)}</h3>
+  //
+  // 			<p>{__('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)}</p>
+  //
+  // 			<p>
+  // 				<input type="text" placeholder="Your API Key" />
+  // 			</p>
+  // 			<p className="subscription_key">
+  // 				<button type="button" className="components-button" aria-label="I have a subscription key">I have a subscription key
+  // 				</button>
+  // 			</p>
+  // 		</div>
+  // 	</div>
+  // );
   return wp.element.createElement("div", {
     className: "redux-templates-modal-body"
   }, wp.element.createElement("div", {
