@@ -91,9 +91,13 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 
 			if ( ! self::$instance ) {
 				self::$instance = new self();
-				self::$instance->get_redux_options();
-				self::$instance->includes();
-				self::$instance->hooks();
+				if ( class_exists( 'ReduxFramework' ) ) {
+					self::$instance->load_first();
+				} else {
+					self::$instance->get_redux_options();
+					self::$instance->includes();
+					self::$instance->hooks();
+				}
 			}
 
 			return self::$instance;
@@ -192,6 +196,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		 * @return      void
 		 */
 		private function hooks() {
+			add_action( 'activated_plugin', array( $this, 'load_first' ) );
 			add_action( 'wp_loaded', array( $this, 'options_toggle_check' ) );
 
 			// Activate plugin when new blog is added.
@@ -205,8 +210,6 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 			add_filter( 'network_admin_plugin_action_links', array( $this, 'add_settings_link' ), 1, 2 );
 			add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 1, 2 );
 
-			add_action( 'activated_plugin', array( $this, 'load_first' ) );
-
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( 'redux/plugin/hooks', $this );
 		}
@@ -215,6 +218,10 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 		 * Pushes Redux to top of plugin load list, so it initializes before any plugin that may use it.
 		 */
 		public function load_first() {
+			if ( ! class_exists( 'Redux_Functions_Ex' ) ) {
+				require_once dirname( __FILE__ ) . '/redux-core/inc/classes/class-redux-functions-ex.php';
+			}
+
 			$plugin_dir = Redux_Functions_Ex::wp_normalize_path( WP_PLUGIN_DIR ) . '/';
 			$self_file  = Redux_Functions_Ex::wp_normalize_path( __FILE__ );
 
