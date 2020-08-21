@@ -184,15 +184,17 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				'REMOTE_ADDR'     => Redux_Helpers::is_local_host() ? '127.0.0.1' : '',
 				'HTTP_USER_AGENT' => '',
 			);
-			if ( isset( $_SEVER['SERVER_SOFTWARE'] ) && ! empty( $_SEVER['SERVER_SOFTWARE'] ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
-				self::$server['SERVER_SOFTWARE'] = $_SEVER['SERVER_SOFTWARE']; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+			// phpcs:disable WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+			if ( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
+				self::$server['SERVER_SOFTWARE'] = sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) );
 			}
-			if ( isset( $_SEVER['REMOTE_ADDR'] ) && ! empty( $_SEVER['REMOTE_ADDR'] ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
-				self::$server['REMOTE_ADDR'] = $_SEVER['REMOTE_ADDR']; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+			if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+				self::$server['REMOTE_ADDR'] = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
 			}
-			if ( isset( $_SEVER['HTTP_USER_AGENT'] ) && ! empty( $_SEVER['HTTP_USER_AGENT'] ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
-				self::$server['HTTP_USER_AGENT'] = $_SEVER['HTTP_USER_AGENT']; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+			if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+				self::$server['HTTP_USER_AGENT'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
 			}
+			// phpcs:enable
 
 			self::$dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
 

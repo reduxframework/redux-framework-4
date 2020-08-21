@@ -1,4 +1,4 @@
-=== Gutenberg Blocks Library & Framework – Redux Lite ===
+=== Redux - Gutenberg Blocks Library & Framework ===
 Contributors: dovyp, redux
 Donate link: https://paypal.me/ReduxFramework
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block editor, block library, editor, templates, library
