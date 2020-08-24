@@ -412,6 +412,10 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				return;
 			}
 
+			if ( empty( $args ) || ! isset( $args['opt_name'] ) || ( isset( $args['opt_name'] ) && empty( $args['opt_name'] ) ) ) {
+				return;
+			}
+
 			if ( ! isset( Redux::$init[ $args['opt_name'] ] ) ) {
 				// Let's go back to the Redux API instead of having it run directly.
 				Redux_Functions_Ex::record_caller( $args['opt_name'] );
@@ -423,10 +427,6 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				$args     = Redux::construct_args( $args['opt_name'] );
 				Redux::set_defaults( $args['opt_name'] );
 				Redux::$init[ $args['opt_name'] ] = 1;
-			}
-
-			if ( empty( $args ) ) {
-				return;
 			}
 
 			$args             = new Redux_Args( $this, $args );
