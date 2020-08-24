@@ -72,7 +72,7 @@
 									el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find( 'input[type="radio"]' ).attr( 'checked', true );
 									window.onbeforeunload = null;
 
-									importCodeValue = $( '#import-code-value' );
+									importCodeValue = $( 'textarea[name="' + redux.optName.args.opt_name + '[import_code]"' );
 
 									if ( 0 === importCodeValue.length ) {
 										$( this ).append( '<textarea id="import-code-value" style="display:none;" name="' + redux.optName.args.opt_name + '[import_code]">' + JSON.stringify( data ) + '</textarea>' );
