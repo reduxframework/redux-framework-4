@@ -14,10 +14,13 @@
         background: #fff;
     }
 }
-
+.components-button.has-icon.redux-templates-insert-library-button {
+    height: 100%;
+}
 .redux-templates-insert-library-button {
     margin-left: 10px;
     margin-right: 10px;
+
     svg {
         width: 20px;
         height: 20px;

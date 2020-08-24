@@ -25,7 +25,6 @@ require_once dirname( __FILE__ ) . '/class-redux-core.php';
 
 Redux_Core::$version    = '4.1.15';
 Redux_Core::$redux_path = dirname( __FILE__ );
-Redux_Core::$server     = filter_input_array( INPUT_SERVER, $_SERVER ); // phpcs:ignore WordPress.Security.EscapeOutput
 Redux_Core::instance();
 
 // Don't duplicate me!
@@ -413,6 +412,10 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				return;
 			}
 
+			if ( empty( $args ) || ! isset( $args['opt_name'] ) || ( isset( $args['opt_name'] ) && empty( $args['opt_name'] ) ) ) {
+				return;
+			}
+
 			if ( ! isset( Redux::$init[ $args['opt_name'] ] ) ) {
 				// Let's go back to the Redux API instead of having it run directly.
 				Redux_Functions_Ex::record_caller( $args['opt_name'] );
@@ -424,10 +427,6 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 				$args     = Redux::construct_args( $args['opt_name'] );
 				Redux::set_defaults( $args['opt_name'] );
 				Redux::$init[ $args['opt_name'] ] = 1;
-			}
-
-			if ( empty( $args ) ) {
-				return;
 			}
 
 			$args             = new Redux_Args( $this, $args );

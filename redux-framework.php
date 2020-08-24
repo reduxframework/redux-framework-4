@@ -4,7 +4,7 @@
  * for WordPress themes and plugins. Developed with WordPress coding
  * standards and PHP best practices in mind.
  *
- * Plugin Name:     Redux Lite
+ * Plugin Name:     Redux
  * Plugin URI:      http://wordpress.org/plugins/redux-framework
  * Github URI:      reduxframework/redux-framework
  * Description:     Build better sites in WordPress fast
@@ -38,8 +38,4 @@ register_deactivation_hook( __FILE__, array( 'Redux_Framework_Plugin', 'deactiva
 
 // Get plugin instance.
 Redux_Framework_Plugin::instance();
-
-if ( ! defined( 'REDUXTEMPLATES_VERSION' ) ) {
-	require_once plugin_dir_path( __FILE__ ) . 'redux-templates/redux-templates.php';
-}
 

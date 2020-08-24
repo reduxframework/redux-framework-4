@@ -307,7 +307,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							$site = (array) $site;
 							$k    = $site['blog_id'];
 							$v    = $site['domain'] . $site['path'];
-
+							$name = get_blog_option( $k, 'blogname' );
+							if ( ! empty( $name ) ) {
+								$v .= ' - [' . $name . ']';
+							}
 							$results[ $k ] = $v;
 						}
 						$data = $this->process_results( $results, '', '', $display_keys, $secondary_key );

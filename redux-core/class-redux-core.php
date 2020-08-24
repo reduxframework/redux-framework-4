@@ -178,6 +178,24 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * Class init.
 		 */
 		private function init() {
+
+			self::$server = array(
+				'SERVER_SOFTWARE' => '',
+				'REMOTE_ADDR'     => Redux_Helpers::is_local_host() ? '127.0.0.1' : '',
+				'HTTP_USER_AGENT' => '',
+			);
+			// phpcs:disable WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+			if ( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
+				self::$server['SERVER_SOFTWARE'] = sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) );
+			}
+			if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+				self::$server['REMOTE_ADDR'] = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+			}
+			if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+				self::$server['HTTP_USER_AGENT'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
+			}
+			// phpcs:enable
+
 			self::$dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
 
 			Redux_Functions_Ex::generator();
