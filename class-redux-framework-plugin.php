@@ -318,6 +318,7 @@ if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
 			}
 
 			delete_option( 'ReduxFrameworkPlugin' );
+			Redux_Enable_Gutenberg::cleanup_options( 'redux-framework' ); // Auto disable Gutenberg and all that.
 		}
 
 		/**
