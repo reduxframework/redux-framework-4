@@ -93,14 +93,14 @@ Though Redux will work with any theme that uses Gutenberg, we have done extra wo
 </ul>
 
 <h4>👍 BE A CONTRIBUTOR</h4>
-If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/starterblocks">go to the Translation Portal at translate.wordpress.org</a>.
+If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/redux-framework">go to the Translation Portal at translate.wordpress.org</a>.
 
-You can also contribute code-wise via our <a href="https://github.com/starterblocks/starterblocks/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
+You can also contribute code-wise via our <a href="https://github.com/reduxframework/redux-framework-4/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
 
 <h4>📝 Documentation and Support</h4>
 <ul>
-<li>For more information about features, FAQs and documentation, check out our website at <a href="https://starterblocks.io/" rel="nofollow ugc">Redux</a>.</li>
-<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/starterblocks">Plugin's Forum</a>.</li>
+<li>For more information about features, FAQs and documentation, check out our website at <a href="https://docs.redux.io/" rel="nofollow ugc">Redux</a>.</li>
+<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/redux-framework">Plugin's Forum</a>.</li>
 </ul>
 
 <h4>⚡ Like the Redux Plugin?</h4>
@@ -281,7 +281,7 @@ Redux is built to work wonderfully with all themes.
 
 = Can I use Redux for Gutenberg even while having another Page Builder? =
 
-The basic need or requirement for Redux for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://starterblocks.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
+The basic need or requirement for Redux for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://redux.io/contact/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
 
 = Can I use Redux for Gutenberg on client websites? =
 
