@@ -370,7 +370,6 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 
 			if ( isset( $_GET[ $this->nobug_option ] ) ) { // User doesn't want to see this anymore.
 				add_site_option( $this->nobug_option, true );
-
 				return; // No need to redirect.
 			} elseif ( isset( $_GET[ $this->autoenable_option ] ) ) { // User has opted to just auto-enable Gutenberg.
 				unset( $_GET[ $this->autoenable_option ] );
@@ -424,7 +423,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 		private function remove_filter() {
 			global $pagenow;
 
-			if ( is_admin() && ! self::$is_disabled && ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) ) {
+			if ( is_admin() && ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) ) {
 				// We only want to do this for posts or pages.
 				if ( ! isset( $_GET['post_type'] ) || ( isset( $_GET['post_type'] ) && 'page' === $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
