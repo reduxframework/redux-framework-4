@@ -24,7 +24,7 @@ import ReduxTemplatesChallenge from './challenge'
 import {ModalManager} from './modal-manager';
 import LibraryModal from './modal-library';
 import './custom-css'
-
+import WelcomeGuide from './components/welcome-guide';
 
 domReady(() => {
     setTimeout(() => {
@@ -50,7 +50,7 @@ domReady(() => {
         }
         render(<ReduxTemplatesChallenge />, challengeWrapperDiv);
         render(<TooltipBox />, challengeDiv);
-
+		render(<WelcomeGuide />, challengeDiv)
         handlingLocalStorageData();
     }, 500)
 });
