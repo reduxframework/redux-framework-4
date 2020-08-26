@@ -137,7 +137,6 @@ class Init {
 			'tos'               => \Redux_Connection_Banner::tos_blurb( 'import_wizard' ),
 		);
 
-		//delete_user_meta( get_current_user_id(), '_redux_welcome_guide' );
 		if ( \Redux_Helpers::is_gutenberg_page() ) {
 			$launched = get_user_meta( get_current_user_id(), '_redux_welcome_guide', true );
 			if ( '1' !== $launched ) {
