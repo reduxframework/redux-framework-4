@@ -152,7 +152,22 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Changelog ==
 
-## 4.1.15
+= 4.1.16 =
+* Fixed: Issue when null values were sent to Redux::set();
+* Fixed: Default for Google fonts is now swap.
+* Fixed: Fix for developers calling the API without checking for files.
+* Fixed: Edge case for filter var not working on some sites.
+* Fixed: Proper loading to override Redux 3 plugin.
+* Added: Site name to WP data return.
+* Fixed: Set height for library button when other plugins modify the CSS for the Gutenberg toolbar.
+* Fixed: Don't show template messages on the front-end if an extension is missing. How did that get through?
+* Fixed: Non-array values for WP data. Thanks @wilokecom.
+* Added: Notification so users can enable Gutenberg when disabled.
+* Added: Welcome guide to Gutenberg screen.
+* Fixed: Some readme issues.
+* Release date: Aug 26, 2020
+
+= 4.1.15 =
 * Fixed: Defaults were not saving in some situations.
 * Added: Various fallback calls for JS when fetching opt_names.
 * Fixed: Warnings with Rest API due to WP 5.5.

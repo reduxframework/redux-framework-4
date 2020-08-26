@@ -1,5 +1,34 @@
 # Redux Changelog
 
+## 4.1.16
+* Fixed: Issue when null values were sent to Redux::set();
+* Fixed: Default for Google fonts is now swap.
+* Fixed: Fix for developers calling the API without checking for files.
+* Fixed: Edge case for filter var not working on some sites.
+* Fixed: Proper loading to override Redux 3 plugin.
+* Added: Site name to WP data return.
+* Fixed: Set height for library button when other plugins modify the CSS for the Gutenberg toolbar.
+* Fixed: Don't show template messages on the front-end if an extension is missing. How did that get through?
+* Fixed: Non-array values for WP data. Thanks @wilokecom.
+* Added: Notification so users can enable Gutenberg when disabled.
+* Added: Welcome guide to Gutenberg screen.
+* Fixed: Some readme issues.
+
+## 4.1.15
+* Fixed: Defaults were not saving in some situations.
+* Added: Various fallback calls for JS when fetching opt_names.
+* Fixed: Warnings with Rest API due to WP 5.5.
+* Fixed: Subsets now are full-width in typography when rendered after page load.
+* Fixed: for subsets loading when font-family is not specified.
+* Added: No opt-in to tracking when embedded. Google Fonts and panel notices are still there though.
+* Fixed: Is local checks conflicting with some servers.
+* Fixed: WooCommerce race condition with their autoloader causing issues with some sites.
+* Updated: Complete overhaul of WordPress data class.
+* Fixed: Backtrace errors when blocked on servers.
+* Fixed: Select2 and required fixes.
+* Fixed: Customizer sidebar not showing in some cases.
+* Added: Google Fonts now load ~20% faster!!!
+
 ## 4.1.15
 * Fixed: Defaults were not saving in some situations.
 * Added: Various fallback calls for JS when fetching opt_names.
