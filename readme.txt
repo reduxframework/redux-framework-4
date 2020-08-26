@@ -181,6 +181,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Select2 and required fixes.
 * Fixed: Customizer sidebar not showing in some cases.
 * Added: Google Fonts now load ~20% faster!!!
+* Release date: Aug 19, 2020
 
 = 4.1.14 =
 * Added: Shim for ReduxFramework->get_default_value()
