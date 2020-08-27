@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.16
+Stable tag: 4.1.17
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -151,6 +151,9 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+= 4.1.17 =
+* Fixed: Edge case where enable Gutenberg notice doesn't disappear. Sorry everyone!
 
 = 4.1.16 =
 * Fixed: Issue when null values were sent to Redux::set();

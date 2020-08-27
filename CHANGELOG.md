@@ -1,5 +1,9 @@
 # Redux Changelog
 
+## 4.1.17
+* Fixed: Edge case where enable Gutenberg notice doesn't disappear.
+* Release date: Aug 27, 2020
+
 ## 4.1.16
 * Fixed: Issue when null values were sent to Redux::set();
 * Fixed: Default for Google fonts is now swap.

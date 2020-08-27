@@ -112,7 +112,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 			$this->autoenable_option = $this->slug . '-force-enable';
 			$this->decativate_option = $this->slug . '-deactivate-plugins';
 
-			if ( is_admin() && ! self::$is_disabled && ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) ) {
+			if ( is_admin() && ! self::$is_disabled && ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) && ! get_site_option( $this->nobug_option, false ) ) {
 				// We only want to do this for posts or pages.
 				if ( ! isset( $_GET['post_type'] ) || ( isset( $_GET['post_type'] ) && 'page' === $_GET['post_type'] ) ) { // phpcs:ignore
 					add_action( 'init', array( $this, 'check_init' ), 998 );
@@ -370,7 +370,6 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 
 			if ( isset( $_GET[ $this->nobug_option ] ) ) { // User doesn't want to see this anymore.
 				add_site_option( $this->nobug_option, true );
-				return; // No need to redirect.
 			} elseif ( isset( $_GET[ $this->autoenable_option ] ) ) { // User has opted to just auto-enable Gutenberg.
 				unset( $_GET[ $this->autoenable_option ] );
 				add_site_option( $this->autoenable_option, true );
