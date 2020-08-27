@@ -4,6 +4,7 @@
 const { useState } = wp.element;
 import { useSelect } from '@wordpress/data';
 import { ExternalLink, Guide } from '@wordpress/components';
+const {apiFetch} = wp;
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -25,7 +26,9 @@ export default function WelcomeGuide() {
 			select( 'core/edit-post' ).isFeatureActive( 'welcomeGuide' ),
 		[]
 	);
+
 	if ( isActive ) { // Don't want to show during the WP guide.
+		delete redux_templates.welcome; // In fact, we don't want to show it until the next page load!
 		return null;
 	}
 
@@ -39,6 +42,13 @@ export default function WelcomeGuide() {
 			contentLabel={ __( 'Say hello to the Redux template library', redux_templates.i18n ) }
 			onFinish={ () => {
 				setIsOpen( false );
+				const options = {
+					method: 'POST',
+					path: 'redux/v1/templates/welcome/?uid=' + window.userSettings.uid,
+				}
+				apiFetch(options).then(response => {
+				}).catch(error => {
+				});
 			} }
 			pages={ [
 				{
