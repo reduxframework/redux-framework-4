@@ -808,7 +808,7 @@ class Api {
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
-			'welcome'     => array(
+			'welcome'            => array(
 				'method'   => 'POST',
 				'callback' => 'welcome_guide',
 			),

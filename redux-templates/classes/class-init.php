@@ -140,12 +140,11 @@ class Init {
 		if ( ! $global_vars['mokama'] ) {
 
 			// phpcs:disable Squiz.PHP.CommentedOutCode
-		    // delete_user_meta( get_current_user_id(), '_redux_templates_counts'); // To test left.
+			// delete_user_meta( get_current_user_id(), '_redux_templates_counts'); // To test left.
 			if ( ! \Redux_Functions_Ex::activated() ) {
 				$count = get_user_meta( get_current_user_id(), '_redux_templates_counts', true );
 				if ( '' === $count ) {
 					$count = self::$default_left;
-					//update_user_meta( get_current_user_id(), '_redux_templates_counts', $count );
 				}
 				$global_vars['left'] = $count;
 			} else {
@@ -161,7 +160,6 @@ class Init {
 					$global_vars['welcome'] = 1;
 				}
 			}
-
 		}
 
 		if ( ! $global_vars['mokama'] ) {
