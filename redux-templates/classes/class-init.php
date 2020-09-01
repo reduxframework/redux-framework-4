@@ -138,18 +138,27 @@ class Init {
 		);
 
 		if ( ! $global_vars['mokama'] ) {
-			// phpcs:disable Squiz.PHP.CommentedOutCode
 
+			// phpcs:disable Squiz.PHP.CommentedOutCode
 			// delete_user_meta( get_current_user_id(), '_redux_templates_counts'); // To test left.
 			if ( ! \Redux_Functions_Ex::activated() ) {
 				$count = get_user_meta( get_current_user_id(), '_redux_templates_counts', true );
 				if ( '' === $count ) {
 					$count = self::$default_left;
-					update_user_meta( get_current_user_id(), '_redux_templates_counts', $count );
 				}
 				$global_vars['left'] = $count;
 			} else {
 				$global_vars['left'] = 999;
+			}
+
+			// phpcs:ignore
+			// delete_user_meta( get_current_user_id(), '_redux_welcome_guide' ); // For testing.
+			if ( \Redux_Helpers::is_gutenberg_page() && $global_vars['left'] === self::$default_left ) {
+				// We don't want to show unless Gutenberg is running and they haven't tried the library yet.
+				$launched = get_user_meta( get_current_user_id(), '_redux_welcome_guide', true );
+				if ( '1' !== $launched ) {
+					$global_vars['welcome'] = 1;
+				}
 			}
 		}
 

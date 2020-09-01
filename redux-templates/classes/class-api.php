@@ -745,6 +745,28 @@ class Api {
 	}
 
 	/**
+	 * Record that the user has used the welcome guide.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 *
+	 * @since 4.0.0
+	 */
+	public function welcome_guide( \WP_REST_Request $request ) {
+		$parameters = $request->get_params();
+		$attributes = $request->get_attributes();
+		if ( ! isset( $parameters['uid'] ) ) {
+			return wp_send_json_error(
+				array(
+					'status'  => 'error',
+					'message' => 'User ID required.',
+				)
+			);
+		}
+		update_user_meta( $parameters['uid'], '_redux_welcome_guide', '1' );
+		wp_send_json_success( array( 'status' => 'success' ) );
+	}
+
+	/**
 	 * Method used to register all rest endpoint hooks.
 	 *
 	 * @since 4.0.0
@@ -792,6 +814,7 @@ class Api {
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
+<<<<<<< HEAD
 			'license-validate'     => array(
 				'method'   => 'GET',
 				'callback' => 'validate_license',
@@ -811,6 +834,11 @@ class Api {
 			'opt_out'     => array(
 				'method'   => 'GET',
 				'callback' => 'opt_out_account',
+=======
+			'welcome'            => array(
+				'method'   => 'POST',
+				'callback' => 'welcome_guide',
+>>>>>>> cdfd8625dabf49e52e8d61c75d7968e6362bf710
 			),
 		);
 		$fs    = \Redux_Filesystem::get_instance();

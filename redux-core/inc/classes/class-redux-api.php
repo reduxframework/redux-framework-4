@@ -242,7 +242,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 								self::$extension_compatibility        = true;
 								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility( $redux_framework, $extension['path'], $ext_class, $new_class_name, $name );
 							}
-						} else {
+						} elseif ( is_admin() && true === $redux_framework->args['dev_mode'] ) {
 							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
 						}
 					}

@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.15
+Stable tag: 4.1.17
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -93,14 +93,14 @@ Though Redux will work with any theme that uses Gutenberg, we have done extra wo
 </ul>
 
 <h4>👍 BE A CONTRIBUTOR</h4>
-If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/starterblocks">go to the Translation Portal at translate.wordpress.org</a>.
+If you want to translate, <a href="https://translate.wordpress.org/projects/wp-plugins/redux-framework">go to the Translation Portal at translate.wordpress.org</a>.
 
-You can also contribute code-wise via our <a href="https://github.com/starterblocks/starterblocks/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
+You can also contribute code-wise via our <a href="https://github.com/reduxframework/redux-framework-4/">GitHub Repository</a> – and see where you can help. Be sure to use our develop branch to submit pull requests.
 
 <h4>📝 Documentation and Support</h4>
 <ul>
-<li>For more information about features, FAQs and documentation, check out our website at <a href="https://starterblocks.io/" rel="nofollow ugc">Redux</a>.</li>
-<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/starterblocks">Plugin's Forum</a>.</li>
+<li>For more information about features, FAQs and documentation, check out our website at <a href="https://docs.redux.io/" rel="nofollow ugc">Redux</a>.</li>
+<li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/redux-framework">Plugin's Forum</a>.</li>
 </ul>
 
 <h4>⚡ Like the Redux Plugin?</h4>
@@ -152,7 +152,25 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Changelog ==
 
-## 4.1.15
+= 4.1.17 =
+* Fixed: Edge case where enable Gutenberg notice doesn't disappear. Sorry everyone!
+
+= 4.1.16 =
+* Fixed: Issue when null values were sent to Redux::set();
+* Fixed: Default for Google fonts is now swap.
+* Fixed: Fix for developers calling the API without checking for files.
+* Fixed: Edge case for filter var not working on some sites.
+* Fixed: Proper loading to override Redux 3 plugin.
+* Added: Site name to WP data return.
+* Fixed: Set height for library button when other plugins modify the CSS for the Gutenberg toolbar.
+* Fixed: Don't show template messages on the front-end if an extension is missing. How did that get through?
+* Fixed: Non-array values for WP data. Thanks @wilokecom.
+* Added: Notification so users can enable Gutenberg when disabled.
+* Added: Welcome guide to Gutenberg screen.
+* Fixed: Some readme issues.
+* Release date: Aug 26, 2020
+
+= 4.1.15 =
 * Fixed: Defaults were not saving in some situations.
 * Added: Various fallback calls for JS when fetching opt_names.
 * Fixed: Warnings with Rest API due to WP 5.5.
@@ -166,6 +184,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Select2 and required fixes.
 * Fixed: Customizer sidebar not showing in some cases.
 * Added: Google Fonts now load ~20% faster!!!
+* Release date: Aug 19, 2020
 
 = 4.1.14 =
 * Added: Shim for ReduxFramework->get_default_value()
@@ -281,7 +300,7 @@ Redux is built to work wonderfully with all themes.
 
 = Can I use Redux for Gutenberg even while having another Page Builder? =
 
-The basic need or requirement for Redux for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://starterblocks.io/support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
+The basic need or requirement for Redux for Gutenberg is the latest WordPress version. Should you need help, you can <a href="https://redux.io/contact/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">get in touch with us.</a>
 
 = Can I use Redux for Gutenberg on client websites? =
 

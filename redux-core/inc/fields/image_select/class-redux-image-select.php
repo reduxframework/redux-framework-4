@@ -128,7 +128,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 						$v['presets']['redux-backup'] = 1;
 
-						$presets   = ' data-presets="' . htmlspecialchars( wp_json_encode( $v['presets'] ), ENT_QUOTES, 'UTF-8' ) . '"';
+						$presets   = ' data-presets="' . esc_attr( htmlspecialchars( wp_json_encode( $v['presets'] ), ENT_QUOTES, 'UTF-8' ) ) . '"';
 						$is_preset = true;
 
 						$this->field['class'] = trim( $this->field['class'] ) . ' redux-presets';
@@ -139,13 +139,13 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 					$merge = '';
 					if ( isset( $v['merge'] ) && false !== $v['merge'] ) {
 						$merge = is_array( $v['merge'] ) ? implode( '|', $v['merge'] ) : 'true';
-						$merge = ' data-merge="' . htmlspecialchars( $merge, ENT_QUOTES, 'UTF-8' ) . '"';
+						$merge = ' data-merge="' . esc_attr( htmlspecialchars( $merge, ENT_QUOTES, 'UTF-8' ) ) . '"';
 					}
 
 					echo '<li class="redux-image-select">';
 					echo '<label class="' . esc_attr( $selected ) . ' redux-image-select' . esc_attr( $is_preset_class ) . esc_attr( $this->field['id'] . '_' . $x ) . '" for="' . esc_attr( $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ), true ) + 1 ) ) . '">';
-
-					echo '<input type="radio" class="' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ), true ) + 1 ) ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" value="' . esc_attr( $the_value ) . '" ' . checked( $this->value, $the_value, false ) . esc_attr( $presets ) . esc_attr( $merge ) . '/>';
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<input type="radio" class="' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ), true ) + 1 ) ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" value="' . esc_attr( $the_value ) . '" ' . checked( $this->value, $the_value, false ) . $presets . $merge . '/>';
 					if ( ! empty( $this->field['tiles'] ) && true === $this->field['tiles'] ) {
 						echo '<span class="tiles ' . esc_attr( $v['class'] ) . '" style="background-image: url(' . esc_url( $v['img'] ) . ');" rel="' . esc_url( $v['img'] ) . '"">&nbsp;</span>';
 					} else {

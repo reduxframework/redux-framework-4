@@ -1,5 +1,24 @@
 # Redux Changelog
 
+## 4.1.17
+* Fixed: Edge case where enable Gutenberg notice doesn't disappear.
+* Release date: Aug 27, 2020
+
+## 4.1.16
+* Fixed: Issue when null values were sent to Redux::set();
+* Fixed: Default for Google fonts is now swap.
+* Fixed: Fix for developers calling the API without checking for files.
+* Fixed: Edge case for filter var not working on some sites.
+* Fixed: Proper loading to override Redux 3 plugin.
+* Added: Site name to WP data return.
+* Fixed: Set height for library button when other plugins modify the CSS for the Gutenberg toolbar.
+* Fixed: Don't show template messages on the front-end if an extension is missing. How did that get through?
+* Fixed: Non-array values for WP data. Thanks @wilokecom.
+* Added: Notification so users can enable Gutenberg when disabled.
+* Added: Welcome guide to Gutenberg screen.
+* Fixed: Some readme issues.
+* Release date: Aug 26, 2020
+
 ## 4.1.15
 * Fixed: Defaults were not saving in some situations.
 * Added: Various fallback calls for JS when fetching opt_names.
@@ -14,7 +33,7 @@
 * Fixed: Select2 and required fixes.
 * Fixed: Customizer sidebar not showing in some cases.
 * Added: Google Fonts now load ~20% faster!!!
-
+* Release date: Aug 19, 2020
 
 ## 4.1.14
 * Added: Shim for ReduxFramework->get_default_value()
@@ -26,6 +45,7 @@
 * Fixed: Fix for servers that disable output buffers.
 * Fixed: Ajax now does not load anything else, faster calls.
 * Fixed: .folds replace issue when opt_name selector wasn't properly found.
+* Release date: Aug 11, 2020
 
 ## 4.1.13
 * Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.

@@ -579,7 +579,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'post':
 				case 'posts':
 					if ( ! empty( $current_value ) ) {
-						$args['post__in'] = $current_value;
+						$args['post__in'] = is_array( $current_value ) ? $current_value : array( $current_value );
 					}
 					break;
 

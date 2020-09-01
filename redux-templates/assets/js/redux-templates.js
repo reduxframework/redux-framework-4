@@ -380,6 +380,21 @@ exports.push([module.i, ".redux-templates-template-filters .is-active {\n  backg
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./redux-templates/src/components/welcome-guide/style.scss":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./redux-templates/src/components/welcome-guide/style.scss ***!
+  \**********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".redux-edit-post-welcome-guide {\n  width: 412px; }\n  .redux-edit-post-welcome-guide__image {\n    background: #00a0d2;\n    width: 412px;\n    border-bottom: 1px solid #ddd; }\n    .redux-edit-post-welcome-guide__image__prm-r {\n      display: none; }\n    @media (prefers-reduced-motion: reduce) {\n      .redux-edit-post-welcome-guide__image__prm-r {\n        display: block; }\n      .redux-edit-post-welcome-guide__image__prm-np {\n        display: none; } }\n  .redux-edit-post-welcome-guide__heading {\n    font-family: \"Noto Serif\", serif;\n    font-size: 24px;\n    line-height: 1.4;\n    margin: 0 0 16px 0;\n    padding: 0 32px; }\n  .redux-edit-post-welcome-guide__text {\n    font-size: 16px;\n    line-height: 1.4;\n    margin: 0 0 24px 0;\n    padding: 0 32px;\n    font-weight: normal; }\n  .redux-edit-post-welcome-guide__inserter-icon {\n    margin: 0 4px;\n    vertical-align: text-top; }\n", ""]);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./redux-templates/src/custom-css/style.scss":
 /*!********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./redux-templates/src/custom-css/style.scss ***!
@@ -4535,6 +4550,179 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./redux-templates/src/components/welcome-guide/images.js":
+/*!****************************************************************!*\
+  !*** ./redux-templates/src/components/welcome-guide/images.js ***!
+  \****************************************************************/
+/*! exports provided: GuideImage1, GuideImage2, GuideImage3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GuideImage1", function() { return GuideImage1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GuideImage2", function() { return GuideImage2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GuideImage3", function() { return GuideImage3; });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/**
+ * WordPress dependencies
+ */
+
+const GuideImage1 = props => wp.element.createElement(React.Fragment, null, wp.element.createElement("img", _extends({
+  className: "redux-edit-post-welcome-guide__image redux-edit-post-welcome-guide__image__prm-np",
+  alt: "",
+  src: `${redux_templates.plugin}assets/img/welcome-guide-1.png`
+}, props)));
+const GuideImage2 = props => wp.element.createElement(React.Fragment, null, wp.element.createElement("img", _extends({
+  className: "redux-edit-post-welcome-guide__image redux-edit-post-welcome-guide__image__prm-np",
+  alt: "",
+  src: `${redux_templates.plugin}assets/img/welcome-guide-2.gif`
+}, props)));
+const GuideImage3 = props => wp.element.createElement(React.Fragment, null, wp.element.createElement("img", _extends({
+  className: "redux-edit-post-welcome-guide__image redux-edit-post-welcome-guide__image__prm-np",
+  alt: "",
+  src: `${redux_templates.plugin}assets/img/welcome-guide-3.png`
+}, props)));
+
+/***/ }),
+
+/***/ "./redux-templates/src/components/welcome-guide/index.js":
+/*!***************************************************************!*\
+  !*** ./redux-templates/src/components/welcome-guide/index.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WelcomeGuide; });
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _images__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images */ "./redux-templates/src/components/welcome-guide/images.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./redux-templates/src/components/welcome-guide/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_4__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/**
+ * WordPress dependencies
+ */
+const useState = wp.element.useState;
+
+
+const _wp = wp,
+      apiFetch = _wp.apiFetch;
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function WelcomeGuide() {
+  const _useState = useState(true),
+        _useState2 = _slicedToArray(_useState, 2),
+        isOpen = _useState2[0],
+        setIsOpen = _useState2[1];
+
+  const isActive = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["useSelect"])(select => select('core/edit-post').isFeatureActive('welcomeGuide'), []);
+
+  if (isActive) {
+    // Don't want to show during the WP guide.
+    delete redux_templates.welcome; // In fact, we don't want to show it until the next page load!
+
+    return null;
+  }
+
+  if (!isOpen || 'undefined' === typeof redux_templates.welcome) {
+    return null;
+  }
+
+  return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Guide"], {
+    className: "redux-edit-post-welcome-guide",
+    contentLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Say hello to the Redux template library', redux_templates.i18n),
+    onFinish: () => {
+      setIsOpen(false);
+      const options = {
+        method: 'POST',
+        path: 'redux/v1/templates/welcome/?uid=' + window.userSettings.uid
+      };
+      apiFetch(options).then(response => {}).catch(error => {});
+    },
+    pages: [{
+      image: wp.element.createElement(_images__WEBPACK_IMPORTED_MODULE_3__["GuideImage1"], null),
+      content: wp.element.createElement(React.Fragment, null, wp.element.createElement("h1", {
+        className: "redux-edit-post-welcome-guide__heading"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Try the Redux Template Library', redux_templates.i18n)), wp.element.createElement("h3", {
+        className: "redux-edit-post-welcome-guide__text"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Redux brings you over 1,000 importable templates and blocks that allow you to build Gutenberg powered pages and websites in minutes not days.', redux_templates.i18n)))
+    }, {
+      image: wp.element.createElement(_images__WEBPACK_IMPORTED_MODULE_3__["GuideImage2"], null),
+      content: wp.element.createElement(React.Fragment, null, wp.element.createElement("h1", {
+        className: "redux-edit-post-welcome-guide__heading"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Using the Template Library', redux_templates.i18n)), wp.element.createElement("h3", {
+        className: "redux-edit-post-welcome-guide__text"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('To use the template library click on the library button then pick your favourite template and import! Redux allows you to import beautiful Gutenberg pages in seconds.', redux_templates.i18n)))
+    }, {
+      image: wp.element.createElement(_images__WEBPACK_IMPORTED_MODULE_3__["GuideImage3"], null),
+      content: wp.element.createElement(React.Fragment, null, wp.element.createElement("h1", {
+        className: "redux-edit-post-welcome-guide__heading"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Import 5 templates for free or go Pro!', redux_templates.i18n)), wp.element.createElement("h3", {
+        className: "redux-edit-post-welcome-guide__text"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Redux allows you 5 free imports or you can go Pro now and import unlimited templates for just $49/year (limited time only).', redux_templates.i18n), wp.element.createElement("br", null), wp.element.createElement("br", null), wp.element.createElement("center", null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ExternalLink"], {
+        href: `${redux_templates.u}welcome-guide`
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Learn more at Redux.io', redux_templates.i18n)))))
+    }]
+  });
+}
+
+/***/ }),
+
+/***/ "./redux-templates/src/components/welcome-guide/style.scss":
+/*!*****************************************************************!*\
+  !*** ./redux-templates/src/components/welcome-guide/style.scss ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./redux-templates/src/components/welcome-guide/style.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./redux-templates/src/custom-css/editor.js":
 /*!**************************************************!*\
   !*** ./redux-templates/src/custom-css/editor.js ***!
@@ -6647,6 +6835,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_manager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal-manager */ "./redux-templates/src/modal-manager/index.js");
 /* harmony import */ var _modal_library__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal-library */ "./redux-templates/src/modal-library/index.js");
 /* harmony import */ var _custom_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./custom-css */ "./redux-templates/src/custom-css/index.js");
+/* harmony import */ var _components_welcome_guide__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/welcome-guide */ "./redux-templates/src/components/welcome-guide/index.js");
 /**
  * Library Button
  */
@@ -6659,6 +6848,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * External dependencies
  */
+
 
 
 
@@ -6699,6 +6889,7 @@ Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(() => {
 
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_challenge__WEBPACK_IMPORTED_MODULE_11__["default"], null), challengeWrapperDiv);
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_challenge_tooltip_TooltipBox__WEBPACK_IMPORTED_MODULE_9__["default"], null), challengeDiv);
+    Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_components_welcome_guide__WEBPACK_IMPORTED_MODULE_15__["default"], null), challengeDiv);
     Object(_stores_helper__WEBPACK_IMPORTED_MODULE_10__["handlingLocalStorageData"])();
   }, 500);
 });
