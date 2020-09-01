@@ -51,7 +51,7 @@ function ImportWizard(props) {
             }
             /* Redux pro check */
             if (requiresReduxPro(importingTemplate)) {
-                setCurrentStep(REDUX_PRO_STEP);
+	            if (currentStep !== REDUX_PRO_ACTIVATE_STEP) setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
             // Start with Pro step
@@ -151,8 +151,8 @@ function ImportWizard(props) {
                     {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
-                    {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
 	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toNextStep={toNextStep} />}
+	                {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
                     {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
             </div>

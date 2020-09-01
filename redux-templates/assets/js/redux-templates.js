@@ -7645,7 +7645,7 @@ function ImportWizard(props) {
 
 
       if (Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_7__["requiresReduxPro"])(importingTemplate)) {
-        setCurrentStep(REDUX_PRO_STEP);
+        if (currentStep !== REDUX_PRO_ACTIVATE_STEP) setCurrentStep(REDUX_PRO_STEP);
         return;
       } // Start with Pro step
       // When all OK with Pro Step, move to Plugin Step, on the way, prepare reduxProMergedPlugins.
@@ -7755,9 +7755,9 @@ function ImportWizard(props) {
   }), currentStep === IMPORT_STEP && wp.element.createElement(_ImportingStep__WEBPACK_IMPORTED_MODULE_3__["default"], null), currentStep === REDUX_ACTIVATE_STEP && wp.element.createElement(_ReduxTemplatesActivateBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onActivateRedux: activateReduxTracking,
     activating: activating
-  }), currentStep === REDUX_PRO_STEP && wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    toNextStep: toNextStep
   }), currentStep === REDUX_PRO_ACTIVATE_STEP && wp.element.createElement(_ReduxTemplatesPremiumActivate__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    toNextStep: toNextStep
+  }), currentStep === REDUX_PRO_STEP && wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
     toNextStep: toNextStep
   }), isInstalledDependencies && wp.element.createElement("iframe", {
     src: "./",
