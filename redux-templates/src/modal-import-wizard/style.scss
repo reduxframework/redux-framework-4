@@ -87,6 +87,24 @@
         //width: 60%;
         margin: 35px auto;
         text-align: center;
+
+        input {
+            display: block;
+            width: 100%;
+            box-shadow: 0 0 0 transparent;
+            transition: box-shadow 0.1s linear;
+            border-radius: 2px;
+            line-height: normal;
+            display: block;
+            padding: 16px 48px 16px 16px;
+            background: #f3f4f5;
+            border: none;
+            width: 100%;
+            height: 40px;
+            font-size: 13px;
+            text-align: center;
+        }
+
         h3 {
 
             font-size: 1.5em;

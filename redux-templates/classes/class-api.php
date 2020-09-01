@@ -814,7 +814,6 @@ class Api {
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
-<<<<<<< HEAD
 			'license-validate'     => array(
 				'method'   => 'GET',
 				'callback' => 'validate_license',
@@ -834,11 +833,10 @@ class Api {
 			'opt_out'     => array(
 				'method'   => 'GET',
 				'callback' => 'opt_out_account',
-=======
+			),
 			'welcome'            => array(
 				'method'   => 'POST',
 				'callback' => 'welcome_guide',
->>>>>>> cdfd8625dabf49e52e8d61c75d7968e6362bf710
 			),
 		);
 		$fs    = \Redux_Filesystem::get_instance();
@@ -1074,7 +1072,8 @@ class Api {
 
 	public function get_pro_url() {
 		$lic_status = get_option( 'redux_pro_license_status', 'inactive' );
-		if ( 'active' !== $lic_status ) {
+
+		if ( 'valid' !== $lic_status && 'active' !== $lic_status ) {
 			wp_send_json_error(
 				array(
 					'success'       => 'false',

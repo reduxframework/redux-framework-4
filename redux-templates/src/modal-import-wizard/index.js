@@ -9,7 +9,8 @@ import ProPluginStep from './ProPluginsStep';
 import OptionStep from './OptionStep';
 import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
-import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
+import ReduxTemplatesPremiumActivate from './ReduxTemplatesPremiumActivate';
+import ReduxTemplatesActivateBox from './ReduxTemplatesActivateBox';
 
 import {requiresInstall, requiresPro, requiresReduxPro, isReduxProInstalled} from '~redux-templates/stores/dependencyHelper'
 
@@ -20,8 +21,8 @@ const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
 const OPTION_STEP = 2;
 const IMPORT_STEP = 3;
-const REDUX_PRO_STEP = -1;
-const REDUX_PRO_ACTIVATE_STEP = 888;
+const REDUX_PRO_STEP = -10;
+const REDUX_PRO_ACTIVATE_STEP = -9;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 
@@ -150,7 +151,8 @@ function ImportWizard(props) {
                     {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
-                    {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
+                    {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
+	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toNextStep={toNextStep} />}
                     {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
             </div>
