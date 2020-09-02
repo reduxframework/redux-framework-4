@@ -7473,11 +7473,13 @@ function ReduxTemplatesPremiumActivate({
   onActivateRedux,
   activating
 }) {
+  const message_stats = 'success';
+  const status = 'STATUS MESSAGE GOES HERE';
   return wp.element.createElement("div", {
     className: "redux-templates-modal-body"
   }, wp.element.createElement("div", {
     className: "section-box premium-box"
-  }, wp.element.createElement("h3", null, __('Activate Redux Pro', redux_templates.i18n)), wp.element.createElement("p", null, __('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)), wp.element.createElement("div", null, "DISPLAY STATUS MESSAGE HERE OF EACH STEP"), wp.element.createElement("p", null, wp.element.createElement("input", {
+  }, wp.element.createElement("h3", null, __('Activate Redux Pro', redux_templates.i18n)), wp.element.createElement("p", null, __('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)), wp.element.createElement("div", null, status), wp.element.createElement("p", null, wp.element.createElement("input", {
     type: "text",
     placeholder: "Your subscription key"
   })), wp.element.createElement("p", {

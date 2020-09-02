@@ -3,6 +3,9 @@ const {__} = wp.i18n
 
 export default function ReduxTemplatesPremiumActivate({onActivateRedux, activating}) {
 
+	const message_stats = 'success';
+	const status = 'STATUS MESSAGE GOES HERE';
+
 	return (
 		<div className="redux-templates-modal-body">
 			<div className="section-box premium-box">
@@ -10,7 +13,7 @@ export default function ReduxTemplatesPremiumActivate({onActivateRedux, activati
 
 				<p>{__('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n)}</p>
 
-				<div>DISPLAY STATUS MESSAGE HERE OF EACH STEP</div>
+				<div>{status}</div>
 
 				<p>
 					<input type="text" placeholder="Your subscription key" />
