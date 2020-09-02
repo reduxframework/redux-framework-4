@@ -814,6 +814,10 @@ class Api {
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
+			'license'     => array(
+				'method'   => 'GET',
+				'callback' => 'license',
+			),
 			'license-validate'     => array(
 				'method'   => 'GET',
 				'callback' => 'validate_license',
@@ -895,7 +899,7 @@ class Api {
 
 		$slug = (string) sanitize_text_field( $data['slug'] );
 		if ( ! empty( $data['redux_pro'] ) ) {
-			if ( \Redux_Helpers::mokama() ) {
+			if ( \Redux_Helpers::mokama() || 'redux-pro' === $slug ) {
 				$config                 = array(
 					'path'        => 'installer/',
 					'slug'        => $slug,
@@ -903,18 +907,43 @@ class Api {
 				);
 				$parameters['no_cache'] = 1;
 
-				$response = $this->api_cache_fetch( $parameters, $config, false, false );
-				if ( isset( $response['message'] ) && false !== strpos( $response['message'], 'redux.io' ) ) {
-					$status = ReduxTemplates\Installer::run( $slug, $response['message'] );
-				} else {
-					if ( isset( $response['error'] ) && ! empty( $response['error'] ) ) {
+				if ( 'redux-pro' === $slug ) {
+
+					$lic_status = get_option( 'redux_pro_license_status', false );
+
+					if ( 'valid' !== $lic_status && 'active' !== $lic_status ) {
 						$status = array(
-							'error' => $response['error'],
+							'error' => __( 'Redux Pro license not active, please activate.', 'redux-framework' ),
 						);
 					} else {
-						$status = array(
-							'error' => __( 'A valid Redux Pro subscription is required.', 'redux-framework' ),
+						$array = array(
+							'edd_action' => 'get_version'
 						);
+						$request = $this->do_license_request( $array );
+
+						if ( isset( $request['download_link'] ) ) {
+							$status = ReduxTemplates\Installer::run( $slug, $request['download_link'] );
+						} else {
+							$status = array(
+								'error' => __( 'Invalid license key.', 'redux-framework' ),
+							);
+							delete_option( 'redux_pro_license_status' );
+						}
+					}
+				} else {
+					$response = $this->api_cache_fetch( $parameters, $config, false, false );
+					if ( isset( $response['message'] ) && false !== strpos( $response['message'], 'redux.io' ) ) {
+						$status = ReduxTemplates\Installer::run( $slug, $response['message'] );
+					} else {
+						if ( isset( $response['error'] ) && ! empty( $response['error'] ) ) {
+							$status = array(
+								'error' => $response['error'],
+							);
+						} else {
+							$status = array(
+								'error' => __( 'A valid Redux Pro subscription is required.', 'redux-framework' ),
+							);
+						}
 					}
 				}
 			} else {
@@ -970,6 +999,54 @@ class Api {
 			);
 		}
 		return true;
+	}
+
+	public function license( \WP_REST_Request $request ) {
+		$data = $request->get_params();
+
+		if ( ! isset( $data['key'] ) || ( isset( $data['key'] ) && empty( $data['key'] ) ) ) {
+			wp_send_json_error(
+				array(
+					'success'       => 'false',
+					'message'       => 'License key not provided or empty.',
+					'message_types' => 'error',
+				)
+			);
+		}
+		$array = array(
+			'edd_action' => 'check_license',
+			'license' => $data['key']
+		);
+		$response = $this->do_license_request( $array );
+
+		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ) ) ) {
+			update_option( 'redux_pro_license_key', $data['key'] );
+			if ( 'valid' === $response['license'] ) {
+				wp_send_json_success( array( 'status' => 'success' ) );
+			} elseif ( 'site_inactive' === $response['license'] ) {
+				if ( 0 === $response['activations_left'] ) {
+					wp_send_json_error( array(
+						'status' => 'error',
+						'message' => __( 'You have reached your activation limits for Redux Pro', 'redux-framework' )
+					) );
+				}
+				$array = array(
+					'edd_action' => 'activate_license'
+				);
+				$request = $this->do_license_request( $array );
+
+				if ( isset( $request['license'] ) && 'valid' === $request['license'] ) {
+					wp_send_json_success( $request );
+				}
+			}
+		}
+		wp_send_json_error(
+			array(
+				'status' => 'error',
+				'msg'    => __( 'Invalid license key.', 'redux-framework' ),
+				'response' => $response
+			)
+		);
 	}
 
 	public function validate_license( \WP_REST_Request $request ) {
