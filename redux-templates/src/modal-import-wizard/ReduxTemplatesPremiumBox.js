@@ -20,7 +20,7 @@ export default function ReduxTemplatesPremiumBox(props) {
                        target='_blank'>{__('Upgrade Now Just $49', redux_templates.i18n)}</a>
 	                <small><em>Limited time only</em></small>
                 </p>
-	            <p className="subscription_key">
+	            <p className="subscription_key_button">
 		            <button type="button" className="components-button" aria-label="I have a subscription key" onClick={() => onNextStep()}>I have a subscription key
 		            </button>
 	            </p>

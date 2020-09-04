@@ -104,6 +104,10 @@ function ImportWizard(props) {
         setCurrentStep(currentStep + 1);
     };
 
+	const toPluginStep = () => {
+		setCurrentStep(PLUGIN_STEP);
+	};
+
     const onCloseWizard = () => {
         if (isChallengeOpen) return; // When in tour mode, we don't accept mouse event.
         if (importing) return;
@@ -151,7 +155,7 @@ function ImportWizard(props) {
                     {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
-	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toNextStep={toNextStep} />}
+	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toPluginStep={toPluginStep} />}
 	                {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
                     {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
