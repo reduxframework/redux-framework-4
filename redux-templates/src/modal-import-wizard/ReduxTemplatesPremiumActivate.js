@@ -41,6 +41,7 @@ export default function ReduxTemplatesPremiumActivate(props) {
 				if (res.success) {
 					setStatus(__('Redux Pro successfully installed!', redux_templates.i18n));
 					redux_templates.mokama = true;
+					redux_templates.left = 999;
 					toPluginStep();
 				} else {
 					setStatus(__('Install of Redux Pro failed, please try again.', redux_templates.i18n));
@@ -52,6 +53,7 @@ export default function ReduxTemplatesPremiumActivate(props) {
 			});
 		} else {
 			redux_templates.mokama = true;
+			redux_templates.left = 999;
 			toPluginStep();
 		}
 	};
