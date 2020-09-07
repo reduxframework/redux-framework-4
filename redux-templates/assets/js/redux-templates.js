@@ -7537,7 +7537,7 @@ function ReduxTemplatesPremiumActivate(props) {
         if (res.success) {
           setStatus(__('Redux Pro successfully installed!', redux_templates.i18n));
           redux_templates.mokama = true;
-          redux_templates.left = 999;
+          delete redux_templates.left;
           toPluginStep();
         } else {
           setStatus(__('Install of Redux Pro failed, please try again.', redux_templates.i18n));
@@ -7548,7 +7548,7 @@ function ReduxTemplatesPremiumActivate(props) {
       });
     } else {
       redux_templates.mokama = true;
-      redux_templates.left = 999;
+      delete redux_templates.left;
       toPluginStep();
     }
   };
@@ -7752,7 +7752,7 @@ function ImportWizard(props) {
 
       const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
 
-      if (redux_templates.mokama !== '1' && leftTry < 1) {
+      if (!!redux_templates.mokama === false && leftTry < 1) {
         //setCurrentStep(REDUX_ACTIVATE_STEP);
         setCurrentStep(REDUX_PRO_STEP);
         return;
@@ -11593,7 +11593,7 @@ const requiresReduxPro = data => {
   if (!data) return false;
   const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
   return missingDependencies.reduce((acc, curKey) => {
-    if (curKey === 'redux-pro') return true;
+    if (isReduxProInstalled() === false && curKey === 'redux-pro') return true;
     return acc || isPluginReduxProMerged(curKey) && isReduxProInstalled() === false; // main logic, above were execpetion handling
   }, false);
 };
@@ -11616,7 +11616,7 @@ const isTemplatePremium = (data, activeDependencyFilter) => {
 };
 const isReduxProInstalled = () => {
   const reduxProPluginInstance = redux_templates.supported_plugins['redux-framework'];
-  return reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
+  return !!redux_templates.mokama == true || reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
 };
 
 /***/ }),

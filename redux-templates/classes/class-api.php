@@ -30,6 +30,12 @@ class Api {
 	 */
 	private $cache_time = 24 * 3600; // 24 hours
 	/**
+	 * Timeout for requests.
+	 *
+	 * @var int
+	 */
+	private $timeout = 145;
+	/**
 	 * API URL.
 	 *
 	 * @var string
@@ -460,7 +466,7 @@ class Api {
 		if ( isset( $data['path'] ) ) {
 			if ( 'library/' === $data['path'] ) {
 				$api_url = 'https://files.redux.io/library.json';
-				$request = wp_remote_get( $api_url );
+				$request = wp_remote_get( $api_url, array( 'timeout' => $this->timeout ) );
 				if ( is_wp_error( $request ) ) {
 					wp_send_json_error(
 						array(
@@ -515,7 +521,7 @@ class Api {
 		$headers['Redux-SiteURL'] = get_site_url( get_current_blog_id() );
 
 		$post_args = array(
-			'timeout'     => 120,
+			'timeout'     => $this->timeout,
 			'body'        => wp_json_encode( $data ),
 			'method'      => 'POST',
 			'data_format' => 'body',
@@ -530,7 +536,7 @@ class Api {
 			if ( isset( $data['no_redirect'] ) ) {
 				return $request['http_response']->get_response_object()->url;
 			} else {
-				$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => 145 ) );
+				$request = wp_remote_get( $request['http_response']->get_response_object()->url, array( 'timeout' => $this->timeout ) );
 			}
 		}
 
@@ -1209,7 +1215,7 @@ class Api {
 
 		$url = add_query_arg(  $args, $this->license_base_url );
 
-		$request = wp_remote_get( $url );
+		$request = wp_remote_get( $url, array( 'timeout' => $this->timeout ) );
 		if ( is_wp_error( $request ) ) {
 			wp_send_json_error(
 				array(
