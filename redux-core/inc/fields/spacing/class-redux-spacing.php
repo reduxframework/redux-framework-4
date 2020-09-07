@@ -358,13 +358,17 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 				if ( 'units' === $key ) {
 					continue;
 				}
+				$the_units = $units;
 
 				// Strip off any alpha for is_numeric test - kp.
 				$num_no_alpha = preg_replace( '/[^\d.-]/', '', $value );
+				if ( empty( $the_units ) ) {
+					$the_units = str_replace( $num_no_alpha, '', $value );
+				}
 
 				// Output if it's a numeric entry.
 				if ( isset( $value ) && is_numeric( $num_no_alpha ) ) {
-					$style .= $key . ':' . $num_no_alpha . $units . ';';
+					$style .= $key . ':' . $num_no_alpha . $the_units . ';';
 				}
 			}
 
