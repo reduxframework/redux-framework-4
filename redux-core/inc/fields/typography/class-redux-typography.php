@@ -1007,8 +1007,8 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			$font = $this->value;
 
 			if ( '' !== $style ) {
-				if ( ! empty( $field['output'] ) && ! is_array( $field['output'] ) ) {
-					$field['output'] = array( $field['output'] );
+				if ( ! empty( $this->field['output'] ) && ! is_array( $this->field['output'] ) ) {
+					$this->field['output'] = array( $this->field['output'] );
 				}
 
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
