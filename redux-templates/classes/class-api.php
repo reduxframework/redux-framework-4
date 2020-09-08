@@ -615,10 +615,7 @@ class Api {
 			if ( \Redux_Functions_Ex::activated() ) {
 				$response['left'] = 999;
 			} else {
-				$count = get_user_meta( $parameters['uid'], '_redux_templates_counts', true );
-				if ( false === $count ) {
-					$count = ReduxTemplates\Init::$default_left;
-				}
+				$count = ReduxTemplates\Init::left( $parameters['uid'] );
 				$count = intval( $count ) - 1;
 				if ( intval( $count ) < 0 ) {
 					update_user_meta( $parameters['uid'], '_redux_templates_counts', 0 );
