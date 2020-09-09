@@ -630,10 +630,10 @@ class Api {
 				$count = ReduxTemplates\Init::left( $parameters['uid'] );
 
 				$count = intval( $count ) - 1;
-				if ( $count === 0 ) {
+				if ( 0 === $count ) {
 					$response['left'] = $count;
 					update_user_meta( $parameters['uid'], '_redux_templates_counts', -1 );
-				} else if ( $count < 0 ) {
+				} elseif ( $count < 0 ) {
 					wp_send_json_error(
 						array(
 							'message' => 'Please activate Redux',
