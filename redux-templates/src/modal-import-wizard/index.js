@@ -105,7 +105,7 @@ function ImportWizard(props) {
     };
 
 	const toPluginStep = () => {
-		setCurrentStep(PLUGIN_STEP);
+		setCurrentStep(PRO_STEP);
 	};
 
     const onCloseWizard = () => {

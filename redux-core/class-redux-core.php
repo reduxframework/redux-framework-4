@@ -245,9 +245,13 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			// Activate insights.
 			self::$insights = self::$appsero->insights();
 
-			$metadata = array();
-			if ( defined( 'RDX_MOKAMA' ) ) {
-				self::$insights->add_extra( array( 'mokama' => RDX_MOKAMA ) );
+			if ( class_exists( 'Redux_Pro' ) ) {
+				self::$insights->add_extra(
+					array(
+						'pro'    => Redux_Pro::$version,
+						'mokama' => Redux_Helpers::mokama(),
+					)
+				);
 			}
 
 			self::$insights->hide_notice()->init();

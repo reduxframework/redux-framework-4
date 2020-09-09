@@ -326,7 +326,6 @@ class Insights {
 	 * @return boolean
 	 */
 	private function is_local_server() {
-		return false;
 
 		$is_local = false;
 

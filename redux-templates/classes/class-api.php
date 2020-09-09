@@ -966,31 +966,13 @@ class Api {
 		}
 		wp_send_json_success( $status );
 	}
-	/*
+
+	/**
+	 * Check the license key.
 	 *
-
-	'license-validate'     => array(
-				'method'   => 'GET',
-				'callback' => 'validate_license',
-			),
-			'license-activate'     => array(
-				'method'   => 'GET',
-				'callback' => 'activate_license',
-			),
-			'license-deactivate'     => array(
-				'method'   => 'GET',
-				'callback' => 'deactivate_license',
-			),
-			'get-pro-url' => array(
-				'method'   => 'GET',
-				'callback' => 'get_pro_url',
-			),
-			'opt_out'     => array(
-				'method'   => 'GET',
-				'callback' => 'opt_out_account',
-			),
-	*/
-
+	 * @since 4.1.18
+	 * @return bool|array
+	 */
 	protected function check_license_key() {
 		$lic = get_option( 'redux_pro_license_key' );
 		if ( empty( $lic ) ) {
@@ -1004,6 +986,12 @@ class Api {
 		return true;
 	}
 
+	/**
+	 * Run the license API calls.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.1.18
+	 */
 	public function license( \WP_REST_Request $request ) {
 		$data = $request->get_params();
 
@@ -1022,7 +1010,7 @@ class Api {
 		);
 		$response = $this->do_license_request( $array );
 
-		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ) ) ) {
+		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ), true ) ) {
 			update_option( 'redux_pro_license_key', $data['key'] );
 			if ( 'valid' === $response['license'] ) {
 				wp_send_json_success( array( 'status' => 'success' ) );
@@ -1041,6 +1029,7 @@ class Api {
 				$request = $this->do_license_request( $array );
 
 				if ( isset( $request['license'] ) && 'valid' === $request['license'] ) {
+					Redux_Functions_Ex::set_activated();
 					wp_send_json_success( $request );
 				}
 			}
@@ -1054,6 +1043,12 @@ class Api {
 		);
 	}
 
+	/**
+	 * Validate a license key.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.1.18
+	 */
 	public function validate_license( \WP_REST_Request $request ) {
 
 		$data = $request->get_params();
@@ -1074,7 +1069,7 @@ class Api {
 		);
 		$response = $this->do_license_request( $array );
 
-		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ) ) ) {
+		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ), true ) ) {
 			update_option( 'redux_pro_license_status', $data['license'] );
 			wp_send_json_success( $response );
 		} else {
@@ -1084,6 +1079,12 @@ class Api {
 		}
 	}
 
+	/**
+	 * Activate a license key.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.1.18
+	 */
 	public function activate_license( \WP_REST_Request $request ) {
 		$check = $this->check_license_key();
 		if ( is_array( $check ) ) {
@@ -1118,6 +1119,11 @@ class Api {
 		);
 	}
 
+	/**
+	 * Deactivate a license key.
+	 *
+	 * @since 4.1.18
+	 */
 	public function deactivate_license() {
 		$check = $this->check_license_key();
 		if ( is_array( $check ) ) {
@@ -1125,7 +1131,6 @@ class Api {
 		}
 		$lic = get_option( 'redux_pro_license_key' );
 		if ( empty( $lic ) ) {
-			// delete_option( 'redux_pro_license_status' );
 			wp_send_json_error(
 				array(
 					'success'       => 'false',
@@ -1152,6 +1157,11 @@ class Api {
 		);
 	}
 
+	/**
+	 * Get the Redux Pro download URL.
+	 *
+	 * @since 4.1.18
+	 */
 	public function get_pro_url() {
 		$lic_status = get_option( 'redux_pro_license_status', 'inactive' );
 
@@ -1181,10 +1191,15 @@ class Api {
 				'message_types' => 'error',
 			)
 		);
-
 	}
 
-
+	/**
+	 * Run the license API calls.
+	 *
+	 * @param array $args Array of args.
+	 * @since 4.1.18
+	 * @return mixed
+	 */
 	private function do_license_request( $args ) {
 
 		$defaults = array(
