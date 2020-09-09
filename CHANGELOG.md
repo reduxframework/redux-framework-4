@@ -1,5 +1,12 @@
 # Redux Changelog
 
+## 4.1.18
+* Fixed: Bug with typography output and non-array values for CSS selectors.
+* Fixed: Bug with spacing field not adding the units when a default is provided.
+* Added: Redux Pro install and activation flow.
+* Fixed: Templates trial wasn't working properly! It works now. :)
+* Release date: Sept 9, 2020
+
 ## 4.1.17
 * Fixed: Edge case where enable Gutenberg notice doesn't disappear.
 * Release date: Aug 27, 2020

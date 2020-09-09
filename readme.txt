@@ -152,6 +152,12 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Changelog ==
 
+= 4.1.18 =
+* Fixed: Bug with typography output and non-array values for CSS selectors.
+* Fixed: Bug with spacing field not adding the units when a default is provided.
+* Added: Redux Pro install and activation flow.
+* Fixed: Templates trial wasn't working properly! It works now. :)
+
 = 4.1.17 =
 * Fixed: Edge case where enable Gutenberg notice doesn't disappear. Sorry everyone!
 
