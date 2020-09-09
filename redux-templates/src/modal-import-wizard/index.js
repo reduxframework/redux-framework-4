@@ -44,10 +44,11 @@ function ImportWizard(props) {
 	        }
             // IMPORTANT First check: can you use redux pro?
             const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
-            if ((!!(redux_templates.mokama) === false) && leftTry < 1) {
-                //setCurrentStep(REDUX_ACTIVATE_STEP);
-	            setCurrentStep(REDUX_PRO_STEP);
-                return;
+            if ((!!(redux_templates.mokama) === false) && leftTry < 1 && currentStep !== REDUX_PRO_ACTIVATE_STEP ) {
+            	if ( currentStep !== REDUX_ACTIVATE_STEP ) {
+		            setCurrentStep(REDUX_PRO_STEP);
+		            return;
+	            }
             }
             /* Redux pro check */
             if (requiresReduxPro(importingTemplate)) {
@@ -107,6 +108,9 @@ function ImportWizard(props) {
 	const toPluginStep = () => {
 		setCurrentStep(PRO_STEP);
 	};
+	const toProActivateStep = () => {
+		setCurrentStep(REDUX_PRO_ACTIVATE_STEP);
+	};
 
     const onCloseWizard = () => {
         if (isChallengeOpen) return; // When in tour mode, we don't accept mouse event.
@@ -156,7 +160,7 @@ function ImportWizard(props) {
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
 	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toPluginStep={toPluginStep} />}
-	                {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
+	                {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toProActivateStep={toProActivateStep} />}
                     {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
             </div>

@@ -202,9 +202,13 @@ class Init {
 	 */
 	public static function left( $uid ) {
 		$count = get_user_meta( $uid, '_redux_templates_counts', true );
-		if ( 0 !== $count && empty( $count ) ) {
+		if ( empty( $count ) ) {
 			$count = self::$default_left;
 		}
+		if ( $count <= 0 ) {
+			$count = 0;
+		}
+
 		return $count;
 	}
 

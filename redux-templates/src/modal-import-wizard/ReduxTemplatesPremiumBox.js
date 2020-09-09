@@ -2,10 +2,10 @@ const {__} = wp.i18n
 
 export default function ReduxTemplatesPremiumBox(props) {
 
-	const {toNextStep} = props;
+	const {toProActivateStep} = props;
 
 	const onNextStep = () => {
-		toNextStep();
+		toProActivateStep();
 	}
 
 	return (

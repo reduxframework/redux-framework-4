@@ -11,7 +11,7 @@ export default function ReduxTemplatesPremiumActivate(props) {
 	const {toPluginStep} = props;
 
 	const installReduxPlugin = async () => {
-		if ( redux_templates.supported_plugins['redux-framework'].plugin ) {
+		if ( ! redux_templates.supported_plugins['redux-framework'].plugin ) {
 			setStatus(__('Installing the redux-framework plugin.', redux_templates.i18n));
 			await apiFetch({
 				path: 'redux/v1/templates/plugin-install?slug=redux-framework',

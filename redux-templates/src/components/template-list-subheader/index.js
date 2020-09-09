@@ -47,12 +47,12 @@ function TemplateListSubHeader(props) {
 		            <div style={{verticalAlign:'middle'}}>
 			            <Notice status="info" isDismissible={false}>
 				            <strong style={{display:'inline-block', marginRight:'10px', verticalAlign:'middle'}}>
-					            { '0' === redux_templates.left &&
+					            { redux_templates.left <= 0 &&
 					            	<>
-							            {sprintf( __( 'You\'ve imported %d/%d Templates', redux_templates.i18n ), 5-redux_templates.left, 5 )}
+							            {sprintf( __( 'Trial Ended: %d/%d Imported', redux_templates.i18n ), 5-redux_templates.left, 5 )}
 						            </>
 					            }
-					            { '0' !== redux_templates.left &&
+					            { redux_templates.left > 0 &&
 					            <>
 						            {sprintf( __( 'Trial: %d/%d Imports Remaining', redux_templates.i18n ), redux_templates.left, 5 )}
 					            </>

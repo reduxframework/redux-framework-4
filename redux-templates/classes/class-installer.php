@@ -101,6 +101,12 @@ class Installer {
 
 				return $status;
 			}
+
+			// Stop UAGB redirect.
+			if ( 'ultimate-addons-for-gutenberg' === $slug ) {
+				update_option( '__uagb_do_redirect', false );
+			}
+
 			$status['install'] = 'success';
 		}
 

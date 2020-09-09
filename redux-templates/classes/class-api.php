@@ -628,9 +628,12 @@ class Api {
 				$response['left'] = 999;
 			} else {
 				$count = ReduxTemplates\Init::left( $parameters['uid'] );
+
 				$count = intval( $count ) - 1;
-				if ( intval( $count ) < 0 ) {
-					update_user_meta( $parameters['uid'], '_redux_templates_counts', 0 );
+				if ( $count === 0 ) {
+					$response['left'] = $count;
+					update_user_meta( $parameters['uid'], '_redux_templates_counts', -1 );
+				} else if ( $count < 0 ) {
 					wp_send_json_error(
 						array(
 							'message' => 'Please activate Redux',
@@ -1004,6 +1007,7 @@ class Api {
 				)
 			);
 		}
+
 		$array    = array(
 			'edd_action' => 'check_license',
 			'license'    => $data['key'],

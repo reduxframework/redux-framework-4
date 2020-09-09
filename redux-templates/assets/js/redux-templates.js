@@ -4416,7 +4416,7 @@ function TemplateListSubHeader(props) {
       marginRight: '10px',
       verticalAlign: 'middle'
     }
-  }, '0' === redux_templates.left && wp.element.createElement(React.Fragment, null, sprintf(__('You\'ve imported %d/%d Templates', redux_templates.i18n), 5 - redux_templates.left, 5)), '0' !== redux_templates.left && wp.element.createElement(React.Fragment, null, sprintf(__('Trial: %d/%d Imports Remaining', redux_templates.i18n), redux_templates.left, 5))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  }, redux_templates.left <= 0 && wp.element.createElement(React.Fragment, null, sprintf(__('Trial Ended: %d/%d Imported', redux_templates.i18n), 5 - redux_templates.left, 5)), redux_templates.left > 0 && wp.element.createElement(React.Fragment, null, sprintf(__('Trial: %d/%d Imports Remaining', redux_templates.i18n), redux_templates.left, 5))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isPrimary: true,
     isSmall: true,
     icon: _redux_templates_icons__WEBPACK_IMPORTED_MODULE_6__["redux"],
@@ -7510,7 +7510,7 @@ function ReduxTemplatesPremiumActivate(props) {
   const toPluginStep = props.toPluginStep;
 
   const installReduxPlugin = async () => {
-    if (redux_templates.supported_plugins['redux-framework'].plugin) {
+    if (!redux_templates.supported_plugins['redux-framework'].plugin) {
       setStatus(__('Installing the redux-framework plugin.', redux_templates.i18n));
       await apiFetch({
         path: 'redux/v1/templates/plugin-install?slug=redux-framework'
@@ -7634,10 +7634,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ReduxTemplatesPremiumBox; });
 const __ = wp.i18n.__;
 function ReduxTemplatesPremiumBox(props) {
-  const toNextStep = props.toNextStep;
+  const toProActivateStep = props.toProActivateStep;
 
   const onNextStep = () => {
-    toNextStep();
+    toProActivateStep();
   };
 
   return wp.element.createElement("div", {
@@ -7767,10 +7767,11 @@ function ImportWizard(props) {
 
       const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
 
-      if (!!redux_templates.mokama === false && leftTry < 1) {
-        //setCurrentStep(REDUX_ACTIVATE_STEP);
-        setCurrentStep(REDUX_PRO_STEP);
-        return;
+      if (!!redux_templates.mokama === false && leftTry < 1 && currentStep !== REDUX_PRO_ACTIVATE_STEP) {
+        if (currentStep !== REDUX_ACTIVATE_STEP) {
+          setCurrentStep(REDUX_PRO_STEP);
+          return;
+        }
       }
       /* Redux pro check */
 
@@ -7829,6 +7830,10 @@ function ImportWizard(props) {
 
   const toPluginStep = () => {
     setCurrentStep(PRO_STEP);
+  };
+
+  const toProActivateStep = () => {
+    setCurrentStep(REDUX_PRO_ACTIVATE_STEP);
   };
 
   const onCloseWizard = () => {
@@ -7893,7 +7898,7 @@ function ImportWizard(props) {
   }), currentStep === REDUX_PRO_ACTIVATE_STEP && wp.element.createElement(_ReduxTemplatesPremiumActivate__WEBPACK_IMPORTED_MODULE_5__["default"], {
     toPluginStep: toPluginStep
   }), currentStep === REDUX_PRO_STEP && wp.element.createElement(_ReduxTemplatesPremiumBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    toNextStep: toNextStep
+    toProActivateStep: toProActivateStep
   }), isInstalledDependencies && wp.element.createElement("iframe", {
     src: "./",
     width: "0",
