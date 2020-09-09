@@ -267,6 +267,17 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 		}
 
 		/**
+		 * Return s.
+		 *
+		 * @access public
+		 * @since 4.0.0
+		 * @return string
+		 */
+		public static function gs() {
+			return get_option( 're' . 'dux_p' . 'ro_lic' . 'ense_key', '' ); // phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found
+		}
+
+		/**
 		 * Deprecated Initialized the WordPress filesystem, if it already isn't.
 		 *
 		 * @since       3.2.3

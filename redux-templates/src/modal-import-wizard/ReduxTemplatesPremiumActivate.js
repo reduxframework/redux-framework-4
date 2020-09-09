@@ -1,4 +1,4 @@
-const {__} = wp.i18n
+const {__, sprintf} = wp.i18n;
 const {useState} = wp.element;
 const {apiFetch} = wp;
 
@@ -7,7 +7,7 @@ export default function ReduxTemplatesPremiumActivate(props) {
 	const [installing, setInstalling] = useState(null);
 	const [status, setStatus] = useState(__('Enter your API key to activate and install your copy of Redux Pro.', redux_templates.i18n));
 	const [statusType, setStatusType] = useState('');
-	const [proKey, setProKey] = useState(redux_templates.key);
+	const [proKey, setProKey] = useState( atob( redux_templates.key ) );
 	const {toPluginStep} = props;
 
 	const installReduxPlugin = async () => {
@@ -93,7 +93,7 @@ export default function ReduxTemplatesPremiumActivate(props) {
 				<div className={statusType}>{status}</div>
 
 				<p>
-					<input type="text" placeholder="Your subscription key" value={proKey} onChange={updateProKey} disabled={installing !== null} />
+					<input type="text" placeholder={__('Enter your subscription key', redux_templates.i18n)} value={proKey} onChange={updateProKey} disabled={installing !== null} />
 				</p>
 				<p className="subscription_key">
 					<button className="redux-pro-activate-button" aria-label="Activate my key" disabled={installing !== null}
@@ -101,6 +101,8 @@ export default function ReduxTemplatesPremiumActivate(props) {
 						{installing !== null && <i className="fas fa-spinner fa-pulse"/>}
 						<span>{__('Activate & Install Pro', redux_templates.i18n)}</span>
 					</button>
+				</p>
+				<p style={{fontSize:'1.1em', paddingTop:'10px'}}><small><em dangerouslySetInnerHTML={{__html: redux_templates.tos.replace(__('Register', redux_templates.i18n), __('Activate', redux_templates.i18n))}} /> <br /><span dangerouslySetInnerHTML={{__html: sprintf( __( 'Visit the <a href="%s" target="_blank">account dashboard</a> to recover your subscription key.', redux_templates.i18n ), 'https://redux.io/account/?utm_source=plugin-installation&utm_campaign=import_wizard&utm_medium=appsero&utm_content=activate_pro' )}} /></small>
 				</p>
 			</div>
 		</div>

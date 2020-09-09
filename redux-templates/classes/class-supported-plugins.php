@@ -149,9 +149,9 @@ class Supported_Plugins {
 				}
 			}
 		}
-		self::$plugins[ 'redux-framework' ]['plugin'] = defined( 'REDUX_PLUGIN_FILE' );
-		if ( isset( self::$plugins[ 'redux-pro' ] ) ) {
-			self::$plugins[ 'redux-pro' ][ 'redux_pro' ] = true;
+		self::$plugins['redux-framework']['plugin'] = defined( 'REDUX_PLUGIN_FILE' );
+		if ( isset( self::$plugins['redux-pro'] ) ) {
+			self::$plugins['redux-pro']['redux_pro'] = true;
 		}
 	}
 

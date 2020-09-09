@@ -817,27 +817,27 @@ class Api {
 				'method'   => 'GET',
 				'callback' => 'plugin_install',
 			),
-			'license'     => array(
+			'license'            => array(
 				'method'   => 'GET',
 				'callback' => 'license',
 			),
-			'license-validate'     => array(
+			'license-validate'   => array(
 				'method'   => 'GET',
 				'callback' => 'validate_license',
 			),
-			'license-activate'     => array(
+			'license-activate'   => array(
 				'method'   => 'GET',
 				'callback' => 'activate_license',
 			),
-			'license-deactivate'     => array(
+			'license-deactivate' => array(
 				'method'   => 'GET',
 				'callback' => 'deactivate_license',
 			),
-			'get-pro-url' => array(
+			'get-pro-url'        => array(
 				'method'   => 'GET',
 				'callback' => 'get_pro_url',
 			),
-			'opt_out'     => array(
+			'opt_out'            => array(
 				'method'   => 'GET',
 				'callback' => 'opt_out_account',
 			),
@@ -919,8 +919,8 @@ class Api {
 							'error' => __( 'Redux Pro license not active, please activate.', 'redux-framework' ),
 						);
 					} else {
-						$array = array(
-							'edd_action' => 'get_version'
+						$array   = array(
+							'edd_action' => 'get_version',
 						);
 						$request = $this->do_license_request( $array );
 
@@ -1016,9 +1016,9 @@ class Api {
 				)
 			);
 		}
-		$array = array(
+		$array    = array(
 			'edd_action' => 'check_license',
-			'license' => $data['key']
+			'license'    => $data['key'],
 		);
 		$response = $this->do_license_request( $array );
 
@@ -1028,13 +1028,15 @@ class Api {
 				wp_send_json_success( array( 'status' => 'success' ) );
 			} elseif ( 'site_inactive' === $response['license'] ) {
 				if ( 0 === $response['activations_left'] ) {
-					wp_send_json_error( array(
-						'status' => 'error',
-						'message' => __( 'You have reached your activation limits for Redux Pro', 'redux-framework' )
-					) );
+					wp_send_json_error(
+						array(
+							'status'  => 'error',
+							'message' => __( 'You have reached your activation limits for Redux Pro', 'redux-framework' ),
+						)
+					);
 				}
-				$array = array(
-					'edd_action' => 'activate_license'
+				$array   = array(
+					'edd_action' => 'activate_license',
 				);
 				$request = $this->do_license_request( $array );
 
@@ -1045,9 +1047,9 @@ class Api {
 		}
 		wp_send_json_error(
 			array(
-				'status' => 'error',
-				'msg'    => __( 'Invalid license key.', 'redux-framework' ),
-				'response' => $response
+				'status'   => 'error',
+				'msg'      => __( 'Invalid license key.', 'redux-framework' ),
+				'response' => $response,
 			)
 		);
 	}
@@ -1066,14 +1068,14 @@ class Api {
 			);
 		}
 
-		$array = array(
+		$array    = array(
 			'edd_action' => 'check_license',
-			'license' => $data['license']
+			'license'    => $data['license'],
 		);
 		$response = $this->do_license_request( $array );
 
 		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ) ) ) {
-			update_option( 'redux_pro_license_key', $data['license'] );
+			update_option( 'redux_pro_license_status', $data['license'] );
 			wp_send_json_success( $response );
 		} else {
 			wp_send_json_error(
@@ -1099,8 +1101,8 @@ class Api {
 			);
 		}
 
-		$array = array(
-			'edd_action' => 'activate_license'
+		$array   = array(
+			'edd_action' => 'activate_license',
 		);
 		$request = $this->do_license_request( $array );
 
@@ -1123,7 +1125,7 @@ class Api {
 		}
 		$lic = get_option( 'redux_pro_license_key' );
 		if ( empty( $lic ) ) {
-			//delete_option( 'redux_pro_license_status' );
+			// delete_option( 'redux_pro_license_status' );
 			wp_send_json_error(
 				array(
 					'success'       => 'false',
@@ -1133,8 +1135,8 @@ class Api {
 			);
 		}
 
-		$array = array(
-			'edd_action' => 'deactivate_license'
+		$array   = array(
+			'edd_action' => 'deactivate_license',
 		);
 		$request = $this->do_license_request( $array );
 		if ( isset( $request['license'] ) && 'deactivated' === $request['license'] ) {
@@ -1163,8 +1165,8 @@ class Api {
 			);
 		}
 
-		$array = array(
-			'edd_action' => 'get_version'
+		$array   = array(
+			'edd_action' => 'get_version',
 		);
 		$request = $this->do_license_request( $array );
 
@@ -1180,18 +1182,17 @@ class Api {
 			)
 		);
 
-
 	}
 
 
 	private function do_license_request( $args ) {
 
 		$defaults = array(
-			'item_name'=> 'Redux Pro',
-			'url' => network_site_url(),
-			'license' => get_option( 'redux_pro_license_key' )
+			'item_name' => 'Redux Pro',
+			'url'       => network_site_url(),
+			'license'   => get_option( 'redux_pro_license_key' ),
 		);
-		$args = wp_parse_args( $args, $defaults );
+		$args     = wp_parse_args( $args, $defaults );
 
 		if ( ! isset( $args['edd_action'] ) || ( isset( $args['edd_action'] ) && empty( $args['edd_action'] ) ) ) {
 			wp_send_json_error(
@@ -1210,7 +1211,7 @@ class Api {
 			}
 		}
 
-		$url = add_query_arg(  $args, $this->license_base_url );
+		$url = add_query_arg( $args, $this->license_base_url );
 
 		$request = wp_remote_get( $url, array( 'timeout' => $this->timeout ) );
 		if ( is_wp_error( $request ) ) {
@@ -1233,7 +1234,7 @@ class Api {
 		}
 		$data = json_decode( $request['body'], true );
 		if ( isset( $data['license'] ) ) {
-			update_option( 'redux_pro_license_status',  $data['license'] );
+			update_option( 'redux_pro_license_status', $data['license'] );
 		}
 		return $data;
 	}

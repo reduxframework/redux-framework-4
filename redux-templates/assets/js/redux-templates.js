@@ -7480,7 +7480,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-const __ = wp.i18n.__;
+const _wp$i18n = wp.i18n,
+      __ = _wp$i18n.__,
+      sprintf = _wp$i18n.sprintf;
 const useState = wp.element.useState;
 const _wp = wp,
       apiFetch = _wp.apiFetch;
@@ -7500,7 +7502,7 @@ function ReduxTemplatesPremiumActivate(props) {
         statusType = _useState6[0],
         setStatusType = _useState6[1];
 
-  const _useState7 = useState(redux_templates.key),
+  const _useState7 = useState(atob(redux_templates.key)),
         _useState8 = _slicedToArray(_useState7, 2),
         proKey = _useState8[0],
         setProKey = _useState8[1];
@@ -7589,7 +7591,7 @@ function ReduxTemplatesPremiumActivate(props) {
     className: statusType
   }, status), wp.element.createElement("p", null, wp.element.createElement("input", {
     type: "text",
-    placeholder: "Your subscription key",
+    placeholder: __('Enter your subscription key', redux_templates.i18n),
     value: proKey,
     onChange: updateProKey,
     disabled: installing !== null
@@ -7602,7 +7604,20 @@ function ReduxTemplatesPremiumActivate(props) {
     onClick: () => activateKey()
   }, installing !== null && wp.element.createElement("i", {
     className: "fas fa-spinner fa-pulse"
-  }), wp.element.createElement("span", null, __('Activate & Install Pro', redux_templates.i18n))))));
+  }), wp.element.createElement("span", null, __('Activate & Install Pro', redux_templates.i18n)))), wp.element.createElement("p", {
+    style: {
+      fontSize: '1.1em',
+      paddingTop: '10px'
+    }
+  }, wp.element.createElement("small", null, wp.element.createElement("em", {
+    dangerouslySetInnerHTML: {
+      __html: redux_templates.tos.replace(__('Register', redux_templates.i18n), __('Activate', redux_templates.i18n))
+    }
+  }), " ", wp.element.createElement("br", null), wp.element.createElement("span", {
+    dangerouslySetInnerHTML: {
+      __html: sprintf(__('Visit the <a href="%s" target="_blank">account dashboard</a> to recover your subscription key.', redux_templates.i18n), 'https://redux.io/account/?utm_source=plugin-installation&utm_campaign=import_wizard&utm_medium=appsero&utm_content=activate_pro')
+    }
+  })))));
 }
 
 /***/ }),

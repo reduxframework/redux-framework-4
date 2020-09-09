@@ -132,7 +132,7 @@ class Init {
 			'i18n'              => 'redux-framework',
 			'plugin'            => REDUXTEMPLATES_DIR_URL,
 			'mokama'            => \Redux_Helpers::mokama(),
-			'key'            => get_option( 'redux_pro_license_key', '' ),
+			'key'               => \base64_encode( \Redux_Functions::gs() ),
 			'version'           => \Redux_Core::$version,
 			'supported_plugins' => array(), // Load the supported plugins.
 			'tos'               => \Redux_Connection_Banner::tos_blurb( 'import_wizard' ),
