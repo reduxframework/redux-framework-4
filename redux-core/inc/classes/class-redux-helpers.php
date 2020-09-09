@@ -992,13 +992,17 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @access public
 		 * @since 4.0.0
+		 * @return bool
 		 */
 		public static function mokama() {
-			return defined( 'RDX_MOKAMA' );
+			if ( defined( 'RDX_MOKAMA' ) ) {
+				return Redux_Functions_Ex::s();
+			}
+			return false;
 		}
 
 		/**
-		 * Deprecated. Compiles array of stsyem specs.
+		 * Deprecated. Compiles array of system specs.
 		 *
 		 * @param boolean $json_output   Enable/Disable return in JSON format.
 		 * @param boolean $remote_checks Enable/Disable remote URL testing.

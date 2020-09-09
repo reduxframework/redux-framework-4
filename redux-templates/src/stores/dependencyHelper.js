@@ -67,7 +67,7 @@ export const requiresReduxPro = (data) => {
     if (!data) return false;
     const missingDependencies = [].concat(data.installDependenciesMissing, data.proDependenciesMissing);
     return missingDependencies.reduce((acc, curKey) => {
-        if (curKey === 'redux-pro') return true;
+        if ((isReduxProInstalled() === false) && curKey === 'redux-pro') return true;
         return acc || (isPluginReduxProMerged(curKey) && isReduxProInstalled() === false); // main logic, above were execpetion handling
     }, false);
 }
@@ -94,5 +94,5 @@ export const isTemplatePremium = (data, activeDependencyFilter) => {
 
 export const isReduxProInstalled = () => {
     const reduxProPluginInstance = redux_templates.supported_plugins['redux-framework'];
-    return reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
+    return (!!(redux_templates.mokama) == true) || reduxProPluginInstance && reduxProPluginInstance.hasOwnProperty('is_pro');
 }

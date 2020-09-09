@@ -9,7 +9,8 @@ import ProPluginStep from './ProPluginsStep';
 import OptionStep from './OptionStep';
 import ImportingStep from './ImportingStep';
 import ReduxTemplatesPremiumBox from './ReduxTemplatesPremiumBox';
-import ReduxTemplatesActivateBox from './ReduxTeamplatesActivateBox';
+import ReduxTemplatesPremiumActivate from './ReduxTemplatesPremiumActivate';
+import ReduxTemplatesActivateBox from './ReduxTemplatesActivateBox';
 
 import {requiresInstall, requiresPro, requiresReduxPro, isReduxProInstalled} from '~redux-templates/stores/dependencyHelper'
 
@@ -20,7 +21,8 @@ const PRO_STEP = 0;
 const PLUGIN_STEP = 1;
 const OPTION_STEP = 2;
 const IMPORT_STEP = 3;
-const REDUX_PRO_STEP = -1;
+const REDUX_PRO_STEP = -10;
+const REDUX_PRO_ACTIVATE_STEP = -9;
 const REDUX_ACTIVATE_STEP = 999;
 const tourPlugins = ['qubely', 'kioken-blocks'];
 
@@ -42,14 +44,14 @@ function ImportWizard(props) {
 	        }
             // IMPORTANT First check: can you use redux pro?
             const leftTry = isNaN(redux_templates.left) === false ? parseInt(redux_templates.left) : 0;
-            if (redux_templates.mokama !== '1' && leftTry < 1) {
+            if ((!!(redux_templates.mokama) === false) && leftTry < 1) {
                 //setCurrentStep(REDUX_ACTIVATE_STEP);
 	            setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
             /* Redux pro check */
             if (requiresReduxPro(importingTemplate)) {
-                setCurrentStep(REDUX_PRO_STEP);
+	            if (currentStep !== REDUX_PRO_ACTIVATE_STEP) setCurrentStep(REDUX_PRO_STEP);
                 return;
             }
             // Start with Pro step
@@ -84,7 +86,7 @@ function ImportWizard(props) {
         }
     }, [importingTemplate, currentStep, activateDialogDisplay])
 
-    // Activate dialog disply
+    // Activate dialog display
     useEffect(() => {
         if (activateDialogDisplay === true) { // Activate dialog hard reset case
             setCurrentStep(REDUX_ACTIVATE_STEP);
@@ -101,6 +103,10 @@ function ImportWizard(props) {
         if (isChallengeOpen) return;
         setCurrentStep(currentStep + 1);
     };
+
+	const toPluginStep = () => {
+		setCurrentStep(PRO_STEP);
+	};
 
     const onCloseWizard = () => {
         if (isChallengeOpen) return; // When in tour mode, we don't accept mouse event.
@@ -149,7 +155,8 @@ function ImportWizard(props) {
                     {currentStep === OPTION_STEP && <OptionStep toNextStep={toNextStep} onCloseWizard={onCloseWizard} />}
                     {currentStep === IMPORT_STEP && <ImportingStep />}
 	                {currentStep === REDUX_ACTIVATE_STEP && <ReduxTemplatesActivateBox onActivateRedux={activateReduxTracking} activating={activating} />}
-                    {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox />}
+	                {currentStep === REDUX_PRO_ACTIVATE_STEP && <ReduxTemplatesPremiumActivate toPluginStep={toPluginStep} />}
+	                {currentStep === REDUX_PRO_STEP && <ReduxTemplatesPremiumBox toNextStep={toNextStep} />}
                     {isInstalledDependencies && <iframe src='./' width="0" height="0" />}
                 </div>
             </div>
