@@ -57,6 +57,7 @@ class Init {
 	public static function load() {
 		new ReduxTemplates\API();
 		new ReduxTemplates\Templates();
+		new ReduxTemplates\Notice_Overrides();
 	}
 
 	/**
