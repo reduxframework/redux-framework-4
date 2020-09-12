@@ -73,9 +73,9 @@ function DependencyFilter(props) {
                                 .sort((a, b) => {
                                     const pluginInstanceA = pluginInfo(a);
                                     const pluginInstanceB = pluginInfo(b);
-                                    if (pluginInstanceA.name < pluginInstanceB.name)
+                                    if (!pluginInstanceB.name || pluginInstanceA.name < pluginInstanceB.name)
                                         return -1;
-                                    if (pluginInstanceA.name > pluginInstanceB.name)
+                                    if (!pluginInstanceA.name || pluginInstanceA.name > pluginInstanceB.name)
                                         return 1;
                                     return 0;
                                 })
