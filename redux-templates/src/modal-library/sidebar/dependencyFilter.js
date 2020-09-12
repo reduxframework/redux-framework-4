@@ -10,7 +10,7 @@ import {pluginInfo} from '~redux-templates/stores/dependencyHelper';
 import {REDUXTEMPLATES_PRO_KEY, NONE_KEY} from '~redux-templates/stores/helper';
 
 function DependencyFilter(props) {
-    const {dependencyFilters, activeItemType, loading, wholePlugins, dependencyFilterRule} = props;
+    const {dependencyFilters, activeItemType, loading, wholePlugins, thirdPartyPlugins, dependencyFilterRule} = props;
     const {setDependencyFilters, selectDependencies, setDependencyFilterRule} = props;
     // Give the selected category(activeCategory) label className as "active"
     const isNoneChecked = () => {
@@ -24,7 +24,7 @@ function DependencyFilter(props) {
             [NONE_KEY]: { value: dependencyFilters[NONE_KEY].value === false, disabled: dependencyFilters[NONE_KEY]['disabled'] === true }
         });
     };
-   return (
+    return (
         <Fragment>
             {!loading && wholePlugins &&
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
@@ -84,6 +84,25 @@ function DependencyFilter(props) {
                                 )
                         }
                     </ul>
+                    <div role="group" className="components-button-group" style={{float: 'right'}}><i class="fa fa-info-circle"></i></div>
+                    <h3>Third-Party Premium</h3>
+                    <ul class="redux-templates-sidebar-dependencies">
+                        {
+                            thirdPartyPlugins
+                                .sort((a, b) => {
+                                    const pluginInstanceA = pluginInfo(a);
+                                    const pluginInstanceB = pluginInfo(b);
+                                    if (!pluginInstanceB.name || pluginInstanceA.name < pluginInstanceB.name)
+                                        return -1;
+                                    if (!pluginInstanceA.name || pluginInstanceA.name > pluginInstanceB.name)
+                                        return 1;
+                                    return 0;
+                                })
+                                .map(pluginKey =>
+                                    <DependencyFilterRow key={pluginKey} pluginKey={pluginKey} />
+                                )
+                        }
+                    </ul>
                 </div>
             }
         </Fragment>
@@ -101,11 +120,12 @@ export default compose([
     }),
 
     withSelect((select) => {
-        const {getDependencyFiltersStatistics, getLoading, getActiveItemType, getWholePlugins, getDependencyFilterRule} = select('redux-templates/sectionslist');
+        const {getDependencyFiltersStatistics, getLoading, getActiveItemType, getWholePlugins, getThirdPartyPlugins, getDependencyFilterRule} = select('redux-templates/sectionslist');
         return {
             loading: getLoading(),
             dependencyFilters: getDependencyFiltersStatistics(),
             wholePlugins: getWholePlugins(),
+            thirdPartyPlugins: getThirdPartyPlugins(),
             dependencyFilterRule: getDependencyFilterRule(),
 	        activeItemType: getActiveItemType()
         };

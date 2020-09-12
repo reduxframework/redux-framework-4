@@ -110,6 +110,9 @@ registerStore('redux-templates/sectionslist', {
         getWholePlugins(state) {
             return (state.activeItemType !== 'saved') ? getCurrentState(state).wholePlugins : null;
         },
+        getThirdPartyPlugins(state) {
+            return (state.activeItemType !== 'saved') ? getCurrentState(state).thirdPartyPlugins : null;
+        },
         // get categories from currentState, sortBy alphabetically, with the count of pageData within the current category
         getCategoryData(state) {
             let categories = [];

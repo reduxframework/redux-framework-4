@@ -59,22 +59,32 @@ export const categorizeData = (list) => {
     return {categories, data};
 }
 
+/* Parse section data */
+// - convert `sections` object to array
+// - make fullPluginsList from dependency, like ['redux-pro', 'qubely', 'getwid', ...]
+// -- filter wholePlugins from fullPluginsList
+// -- filter thirdPartyPlugins from fullPluginsList
+// - categorize the plugin information and save it to local storage
 export const parseSectionData = (sections) => {
     const librarySectionData = convertObjectToArray(sections);
-    const wholePlugins = uniq(flattenDeep(map(librarySectionData, 'dependencies')));
+    const fullPluginsList = uniq(flattenDeep(map(librarySectionData, 'dependencies')));
+    const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+    const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
     const toBeReturned = categorizeData(librarySectionData);
     const categoriesList = toBeReturned.categories.map((category) => {return {label: category.name, value: category.slug}; });
     setWithExpiry('section_categories_list', categoriesList, EXIPRY_TIME);
-    return {...toBeReturned, wholePlugins};
+    return {...toBeReturned, wholePlugins, thirdPartyPlugins};
 }
 
 export const parsePageData = (pages) => {
     const libraryPageData = convertObjectToArray(pages);
-    const wholePlugins = uniq(flattenDeep(map(libraryPageData, 'dependencies')));
+    const fullPluginsList = uniq(flattenDeep(map(libraryPageData, 'dependencies')));
+    const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+    const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
     const toBeReturned = categorizeData(libraryPageData);
     const categoriesList = toBeReturned.categories.map((category) => {return {label: category.name, value: category.slug}; });
     setWithExpiry('page_categories_list', categoriesList, EXIPRY_TIME);
-    return {...toBeReturned, wholePlugins};
+    return {...toBeReturned, wholePlugins, thirdPartyPlugins};
 }
 
 export const parseCollectionData = (library) => {
@@ -95,8 +105,10 @@ export const parseCollectionData = (library) => {
 
         return collection;
     });
-    const wholePlugins = uniq(flattenDeep(map(libraryCollectionData, 'dependencies')));
-    return {...categorizeData(libraryCollectionData), dependencyFilters: {[NONE_KEY]: true, ...library.dependencies}, wholePlugins};
+    const fullPluginsList = uniq(flattenDeep(map(libraryCollectionData, 'dependencies')));
+    const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+    const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
+    return {...categorizeData(libraryCollectionData), dependencyFilters: {[NONE_KEY]: true, ...library.dependencies}, wholePlugins, thirdPartyPlugins};
 }
 
 // one of important function
@@ -309,4 +321,10 @@ export const loadChallengeStep = () => {
  */
 export const saveChallengeStep = (step) => {
     localStorage.setItem( 'reduxChallengeStep', step );
+}
+
+
+const isThirdPartyPlugin = (pluginKey) => {
+    const pluginInstance = getPluginInstance(pluginKey);
+    return pluginInstance.free_slug && !pluginInstance.redux_pro && !pluginInstance.version;
 }

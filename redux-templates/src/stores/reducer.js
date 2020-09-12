@@ -17,6 +17,7 @@ export const initialState = {
         dependencyFilterRule: getWithExpiry('section_filterRule', true),
         searchContext: '',
         wholePlugins: [],
+        thirdPartyPlugins: [],
         sortBy: getWithExpiry('section_sort', 'name'),
         currentPage: getWithExpiry('section_page', 0)
     },
@@ -29,6 +30,7 @@ export const initialState = {
         dependencyFilterRule: getWithExpiry('page_filterRule', true),
         searchContext: '',
         wholePlugins: [],
+        thirdPartyPlugins: [],
         sortBy: getWithExpiry('page_sort', 'name'),
         currentPage: getWithExpiry('page_page', 0)
     },
@@ -41,6 +43,7 @@ export const initialState = {
         dependencyFilterRule: false,
         searchContext: '',
         wholePlugins: [],
+        thirdPartyPlugins: [],
         activeCollection: null,
         sortBy: getWithExpiry('collection_sort', 'name'),
         currentPage: getWithExpiry('collection_page', 0)
