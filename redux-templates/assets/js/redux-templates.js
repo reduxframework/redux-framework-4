@@ -8375,8 +8375,8 @@ function DependencyFilter(props) {
       float: 'right'
     }
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    text: __('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n),
-    position: "top right"
+    text: __('Templates which contain blocks from any of the selected plugins.', redux_templates.i18n),
+    position: "top center"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isSmall: true,
     isPrimary: dependencyFilterRule === false,
@@ -8384,8 +8384,8 @@ function DependencyFilter(props) {
     onClick: () => setDependencyFilterRule(false),
     disabled: activeItemType === 'collection'
   }, __('Any', redux_templates.i18n))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    text: __('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n),
-    position: "top right"
+    text: __('Templates that only contain blocks from the selected plugins.', redux_templates.i18n),
+    position: "top center"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     isSmall: true,
     isSecondary: dependencyFilterRule === false,
@@ -8396,25 +8396,25 @@ function DependencyFilter(props) {
     className: "redux-templates-select-actions"
   }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Select All', redux_templates.i18n),
-    position: "top right"
+    position: "top center"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('all')
   }, __('All', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Native Blocks Only', redux_templates.i18n),
-    position: "top right"
+    position: "top center"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('none')
   }, __('None', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Installed Dependencies', redux_templates.i18n),
-    position: "top right"
+    position: "top center"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('installed')
   }, __('Installed', redux_templates.i18n))), wp.element.createElement("span", null, "\xA0 / \xA0"), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Reset Dependencies', redux_templates.i18n),
-    position: "top right"
+    position: "top center"
   }, wp.element.createElement("a", {
     href: "#",
     onClick: () => selectDependencies('default')
@@ -8434,7 +8434,7 @@ function DependencyFilter(props) {
     onChange: toggleNoneChecked
   }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
     text: __('Only default WordPress blocks used.', redux_templates.i18n),
-    position: "right"
+    position: "top center"
   }, wp.element.createElement("span", {
     style: {
       float: 'right',
@@ -8457,9 +8457,18 @@ function DependencyFilter(props) {
     style: {
       float: 'right'
     }
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    text: __('Third-party premium plugins required.', redux_templates.i18n),
+    position: "top center"
+  }, wp.element.createElement("span", {
+    style: {
+      float: 'right',
+      marginRight: '15px',
+      cursor: 'pointer'
+    }
   }, wp.element.createElement("i", {
-    class: "fa fa-info-circle"
-  })), wp.element.createElement("h3", null, "Third-Party Premium"), wp.element.createElement("ul", {
+    className: "fa fa-info-circle"
+  })))), wp.element.createElement("h3", null, "Third-Party Premium"), wp.element.createElement("ul", {
     class: "redux-templates-sidebar-dependencies"
   }, thirdPartyPlugins.sort((a, b) => {
     const pluginInstanceA = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(a);
@@ -8650,7 +8659,7 @@ function DependencyFilterRow(props) {
     checked: isChecked,
     onChange: toggleChecked
   }), pluginInstanceURL ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    position: 'top right',
+    position: 'top center',
     text: __('Visit Plugin Website', redux_templates.i18n)
   }, wp.element.createElement("span", null, wp.element.createElement("a", {
     href: pluginInstanceURL,
@@ -8658,7 +8667,7 @@ function DependencyFilterRow(props) {
   }, wp.element.createElement("i", {
     className: "fas fa-external-link-alt"
   })))) : null, pluginClassname.includes('missing-dependency') && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
-    position: 'top right',
+    position: 'top center',
     text: __('Not Installed', redux_templates.i18n)
   }, wp.element.createElement("span", {
     className: "redux-icon-wrapper"

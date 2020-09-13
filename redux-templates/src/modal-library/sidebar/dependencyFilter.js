@@ -30,25 +30,25 @@ function DependencyFilter(props) {
                 <div id="redux-templates-filter-dependencies" data-tut="tour__filter_dependencies">
 	                <>
 		                <ButtonGroup style={{float:'right'}}>
-			                <Tooltip text={__('Find templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top right">
+			                <Tooltip text={__('Templates which contain blocks from any of the selected plugins.', redux_templates.i18n)} position="top center">
 				                <Button isSmall isPrimary={dependencyFilterRule === false} isSecondary={dependencyFilterRule} onClick={() => setDependencyFilterRule(false)} disabled={activeItemType === 'collection'}>{__('Any', redux_templates.i18n)}</Button>
 			                </Tooltip>
-			                <Tooltip text={__('Find templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top right">
+			                <Tooltip text={__('Templates that only contain blocks from the selected plugins.', redux_templates.i18n)} position="top center">
 				                <Button isSmall isSecondary={dependencyFilterRule === false} isPrimary={dependencyFilterRule} onClick={() => setDependencyFilterRule(true)} disabled={activeItemType === 'collection'}>{__('Only', redux_templates.i18n)}</Button>
 			                </Tooltip>
 		                </ButtonGroup>
 		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>
 	                </>
                     <div className='redux-templates-select-actions'>
-                        <Tooltip text={__('Select All', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)} position="top center"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
 		                    <span>&nbsp; / &nbsp;</span>
-		                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top right"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
+		                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top center"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top right"><a href="#"
+                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top center"><a href="#"
                             onClick={() => selectDependencies('installed')}>
                             {__('Installed', redux_templates.i18n)}</a></Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="top right">
+                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="top center">
                             <a href="#" onClick={() => selectDependencies('default')}>
                             <i className="fas fa-undo" /></a></Tooltip>
                         <ChallengeDot step={2} />
@@ -62,7 +62,7 @@ function DependencyFilter(props) {
                                     checked={isNoneChecked()}
                                     onChange={toggleNoneChecked}
                                 />
-                                <Tooltip text={__('Only default WordPress blocks used.', redux_templates.i18n)} position='right'>
+                                <Tooltip text={__('Only default WordPress blocks used.', redux_templates.i18n)} position='top center'>
                                     <span style={{float:'right', marginRight:'2px'}}><i className="fa fa-info-circle" /></span>
                                 </Tooltip>
                             </li>
@@ -84,7 +84,12 @@ function DependencyFilter(props) {
                                 )
                         }
                     </ul>
-                    <div role="group" className="components-button-group" style={{float: 'right'}}><i class="fa fa-info-circle"></i></div>
+                    <div role="group" className="components-button-group" style={{float: 'right'}}>
+	                    <Tooltip text={__('Third-party premium plugins required.', redux_templates.i18n)} position='top center'>
+		                    <span style={{float:'right', marginRight:'15px', cursor:'pointer'}}><i className="fa fa-info-circle" /></span>
+	                    </Tooltip>
+                    </div>
+
                     <h3>Third-Party Premium</h3>
                     <ul class="redux-templates-sidebar-dependencies">
                         {
