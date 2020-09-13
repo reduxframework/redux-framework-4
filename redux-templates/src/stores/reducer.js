@@ -336,14 +336,14 @@ export const reducer = ( state = initialState, action ) => {
             }
             const filtered = types.reduce( (acc, cur) => {
                 // save to the local storage as well
-                setWithExpiry(cur + '_plugin', atomHandler(state[cur].wholePlugins), EXIPRY_TIME);
+                setWithExpiry(cur + '_plugin', {...state[cur].dependencyFilters, ...atomHandler(state[cur].wholePlugins)}, EXIPRY_TIME);
                 return {
                     ...acc,
                     [cur]: {
                         ...state[cur],
                         searchContext: '',
                         dependencyFilterRule: cur !== 'collection', // We must always use false for collection to get template kits to work.
-                        dependencyFilters: atomHandler(state[cur].wholePlugins)
+                        dependencyFilters: {...state[cur].dependencyFilters, ...atomHandler(state[cur].wholePlugins)}
                     }
                 }
             }, {});
