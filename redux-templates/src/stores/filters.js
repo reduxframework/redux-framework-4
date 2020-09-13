@@ -116,3 +116,16 @@ export const valueOfDependencyFilter = (dependencyFilter) => {
 const truthyDependencyFiltersList = (dependencyFilters) => {
     return Object.keys(dependencyFilters).filter((key) => dependencyFilters[key].value === true);
 }
+
+export const flattenPageData = (pageData) => {
+    const currentPageData = [];
+    if (Array.isArray(pageData) === false) {
+        for (let key in pageData) {
+            Array.isArray(pageData[key]) && pageData[key].map(value => {
+                currentPageData.push(value);
+            })
+        }
+        return currentPageData;
+    }
+    return pageData;
+};

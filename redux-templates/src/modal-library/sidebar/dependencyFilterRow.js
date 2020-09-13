@@ -46,7 +46,7 @@ function DependencyFilterRow(props) {
             setIsChecked(false)
         let pluginClassnameList = [];
         pluginClassnameList.push(!pluginInstance.version && !('no_plugin' in pluginInstance) ? 'missing-dependency' : '');
-        // pluginClassnameList.push((!dependencyFilters[pluginKey] || dependencyFilters[pluginKey].disabled) ? 'disabled' : '');
+        pluginClassnameList.push((!dependencyFilters[pluginKey] || dependencyFilters[pluginKey].disabled) ? 'disabled' : '');
         setPluginClassname(pluginClassnameList.join(' '));
     }, [JSON.stringify(dependencyFilters)])
 

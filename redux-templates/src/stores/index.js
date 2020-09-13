@@ -10,7 +10,7 @@ import map from 'lodash/map';
 import flattenDeep from 'lodash/flattenDeep';
 import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
-import {applyCategoryFilter, applySearchFilter, applyHashFilter, applyPriceFilter, applyDependencyFilters, valueOfDependencyFilter} from './filters'
+import {applyCategoryFilter, applySearchFilter, applyHashFilter, applyPriceFilter, applyDependencyFilters, valueOfDependencyFilter, flattenPageData} from './filters'
 import {getCurrentState, getCollectionChildrenData, loadChallengeStep, NONE_KEY} from './helper';
 import {isTemplatePremium} from './dependencyHelper'
 import {installedBlocksTypes} from './actionHelper';
@@ -66,14 +66,15 @@ const getDependencyFilters = (state) => {
 };
 
 const getAllDependencFilters = (state) => {
-    return state[state.activeItemType || 'section'].wholePlugins.reduce((acc, cur) => {
+    const activeState =  state[state.activeItemType || 'section'];
+    return [...activeState.wholePlugins, ...activeState.thirdPartyPlugins].reduce((acc, cur) => {
         return {...acc, [cur]: {value: false} };
     }, undefined)
 };
 
 
 const getDependencyFiltersStatistics = (state) => {
-    const pageData = getPageData(state, false);
+    const pageData = flattenPageData(getOriginalPageData(state));
     const dependentPluginsArray = uniq(flattenDeep(map(pageData, 'dependencies')));
     let dependencyFilters = getDependencyFilters(state);
     Object.keys(dependencyFilters)
