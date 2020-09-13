@@ -176,6 +176,10 @@ class Init {
 			false,
 			$version
 		);
+		$extra_css = ReduxTemplates\Templates::inline_editor_css();
+		if ( ! empty( $extra_css ) ) {
+			wp_add_inline_style( 'redux-fontawesome', $extra_css );
+		}
 	}
 
 	/**

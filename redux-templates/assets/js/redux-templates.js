@@ -4219,6 +4219,44 @@ function TabHeader(props) {
 
 /***/ }),
 
+/***/ "./redux-templates/src/components/template-change/index.js":
+/*!*****************************************************************!*\
+  !*** ./redux-templates/src/components/template-change/index.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+const compose = wp.compose.compose;
+const withSelect = wp.data.withSelect;
+
+
+function TemplateChange(props) {
+  const template = props.template;
+  Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (template.includes('redux-templates_')) {
+      document.body.className += ' redux-template';
+    } else {
+      document.querySelector('body').classList.remove('redux-template');
+    }
+  }, [template]);
+  return wp.element.createElement("div", null);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (compose([withSelect(select => {
+  const _select = select('core/editor'),
+        getEditedPostAttribute = _select.getEditedPostAttribute;
+
+  return {
+    template: getEditedPostAttribute('template')
+  };
+})])(TemplateChange));
+
+/***/ }),
+
 /***/ "./redux-templates/src/components/template-list-subheader/images/view-few.svg":
 /*!************************************************************************************!*\
   !*** ./redux-templates/src/components/template-list-subheader/images/view-few.svg ***!
@@ -6834,8 +6872,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _challenge__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./challenge */ "./redux-templates/src/challenge/index.js");
 /* harmony import */ var _modal_manager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal-manager */ "./redux-templates/src/modal-manager/index.js");
 /* harmony import */ var _modal_library__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal-library */ "./redux-templates/src/modal-library/index.js");
-/* harmony import */ var _custom_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./custom-css */ "./redux-templates/src/custom-css/index.js");
-/* harmony import */ var _components_welcome_guide__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/welcome-guide */ "./redux-templates/src/components/welcome-guide/index.js");
+/* harmony import */ var _components_welcome_guide__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/welcome-guide */ "./redux-templates/src/components/welcome-guide/index.js");
+/* harmony import */ var _components_template_change__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/template-change */ "./redux-templates/src/components/template-change/index.js");
+/* harmony import */ var _custom_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./custom-css */ "./redux-templates/src/custom-css/index.js");
 /**
  * Library Button
  */
@@ -6848,6 +6887,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * External dependencies
  */
+
 
 
 
@@ -6889,7 +6929,8 @@ Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(() => {
 
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_challenge__WEBPACK_IMPORTED_MODULE_11__["default"], null), challengeWrapperDiv);
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_challenge_tooltip_TooltipBox__WEBPACK_IMPORTED_MODULE_9__["default"], null), challengeDiv);
-    Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_components_welcome_guide__WEBPACK_IMPORTED_MODULE_15__["default"], null), challengeDiv);
+    Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_components_welcome_guide__WEBPACK_IMPORTED_MODULE_14__["default"], null), challengeDiv);
+    Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["render"])(wp.element.createElement(_components_template_change__WEBPACK_IMPORTED_MODULE_15__["default"], null), challengeDiv);
     Object(_stores_helper__WEBPACK_IMPORTED_MODULE_10__["handlingLocalStorageData"])();
   }, 500);
 });
@@ -8306,6 +8347,7 @@ function DependencyFilter(props) {
         activeItemType = props.activeItemType,
         loading = props.loading,
         wholePlugins = props.wholePlugins,
+        thirdPartyPlugins = props.thirdPartyPlugins,
         dependencyFilterRule = props.dependencyFilterRule;
   const setDependencyFilters = props.setDependencyFilters,
         selectDependencies = props.selectDependencies,
@@ -8403,8 +8445,27 @@ function DependencyFilter(props) {
   })))), Object.keys(dependencyFilters).filter(pluginKey => wholePlugins.indexOf(pluginKey) !== -1 || pluginKey === _redux_templates_stores_helper__WEBPACK_IMPORTED_MODULE_4__["REDUXTEMPLATES_PRO_KEY"]).sort((a, b) => {
     const pluginInstanceA = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(a);
     const pluginInstanceB = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(b);
-    if (pluginInstanceA.name < pluginInstanceB.name) return -1;
-    if (pluginInstanceA.name > pluginInstanceB.name) return 1;
+    if (!pluginInstanceB.name || pluginInstanceA.name < pluginInstanceB.name) return -1;
+    if (!pluginInstanceA.name || pluginInstanceA.name > pluginInstanceB.name) return 1;
+    return 0;
+  }).map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    key: pluginKey,
+    pluginKey: pluginKey
+  }))), wp.element.createElement("div", {
+    role: "group",
+    className: "components-button-group",
+    style: {
+      float: 'right'
+    }
+  }, wp.element.createElement("i", {
+    class: "fa fa-info-circle"
+  })), wp.element.createElement("h3", null, "Third-Party Premium"), wp.element.createElement("ul", {
+    class: "redux-templates-sidebar-dependencies"
+  }, thirdPartyPlugins.sort((a, b) => {
+    const pluginInstanceA = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(a);
+    const pluginInstanceB = Object(_redux_templates_stores_dependencyHelper__WEBPACK_IMPORTED_MODULE_3__["pluginInfo"])(b);
+    if (!pluginInstanceB.name || pluginInstanceA.name < pluginInstanceB.name) return -1;
+    if (!pluginInstanceA.name || pluginInstanceA.name > pluginInstanceB.name) return 1;
     return 0;
   }).map(pluginKey => wp.element.createElement(_dependencyFilterRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: pluginKey,
@@ -8429,12 +8490,14 @@ function DependencyFilter(props) {
         getLoading = _select.getLoading,
         getActiveItemType = _select.getActiveItemType,
         getWholePlugins = _select.getWholePlugins,
+        getThirdPartyPlugins = _select.getThirdPartyPlugins,
         getDependencyFilterRule = _select.getDependencyFilterRule;
 
   return {
     loading: getLoading(),
     dependencyFilters: getDependencyFiltersStatistics(),
     wholePlugins: getWholePlugins(),
+    thirdPartyPlugins: getThirdPartyPlugins(),
     dependencyFilterRule: getDependencyFilterRule(),
     activeItemType: getActiveItemType()
   };
@@ -8546,8 +8609,8 @@ function DependencyFilterRow(props) {
     } else setIsChecked(false);
 
     let pluginClassnameList = [];
-    pluginClassnameList.push(!pluginInstance.version && !('no_plugin' in pluginInstance) ? 'missing-dependency' : '');
-    pluginClassnameList.push(!dependencyFilters[pluginKey] || dependencyFilters[pluginKey].disabled ? 'disabled' : '');
+    pluginClassnameList.push(!pluginInstance.version && !('no_plugin' in pluginInstance) ? 'missing-dependency' : ''); // pluginClassnameList.push((!dependencyFilters[pluginKey] || dependencyFilters[pluginKey].disabled) ? 'disabled' : '');
+
     setPluginClassname(pluginClassnameList.join(' '));
   }, [JSON.stringify(dependencyFilters)]);
 
@@ -11899,9 +11962,18 @@ const categorizeData = list => {
     data
   };
 };
+/* Parse section data */
+// - convert `sections` object to array
+// - make fullPluginsList from dependency, like ['redux-pro', 'qubely', 'getwid', ...]
+// -- filter wholePlugins from fullPluginsList
+// -- filter thirdPartyPlugins from fullPluginsList
+// - categorize the plugin information and save it to local storage
+
 const parseSectionData = sections => {
   const librarySectionData = convertObjectToArray(sections);
-  const wholePlugins = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(librarySectionData, 'dependencies')));
+  const fullPluginsList = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(librarySectionData, 'dependencies')));
+  const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+  const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
   const toBeReturned = categorizeData(librarySectionData);
   const categoriesList = toBeReturned.categories.map(category => {
     return {
@@ -11911,12 +11983,15 @@ const parseSectionData = sections => {
   });
   setWithExpiry('section_categories_list', categoriesList, EXIPRY_TIME);
   return _objectSpread(_objectSpread({}, toBeReturned), {}, {
-    wholePlugins
+    wholePlugins,
+    thirdPartyPlugins
   });
 };
 const parsePageData = pages => {
   const libraryPageData = convertObjectToArray(pages);
-  const wholePlugins = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(libraryPageData, 'dependencies')));
+  const fullPluginsList = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(libraryPageData, 'dependencies')));
+  const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+  const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
   const toBeReturned = categorizeData(libraryPageData);
   const categoriesList = toBeReturned.categories.map(category => {
     return {
@@ -11926,7 +12001,8 @@ const parsePageData = pages => {
   });
   setWithExpiry('page_categories_list', categoriesList, EXIPRY_TIME);
   return _objectSpread(_objectSpread({}, toBeReturned), {}, {
-    wholePlugins
+    wholePlugins,
+    thirdPartyPlugins
   });
 };
 const parseCollectionData = library => {
@@ -11946,12 +12022,15 @@ const parseCollectionData = library => {
 
     return collection;
   });
-  const wholePlugins = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(libraryCollectionData, 'dependencies')));
+  const fullPluginsList = lodash_uniq__WEBPACK_IMPORTED_MODULE_1___default()(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(libraryCollectionData, 'dependencies')));
+  const wholePlugins = fullPluginsList.filter(pluginKey => !isThirdPartyPlugin(pluginKey));
+  const thirdPartyPlugins = fullPluginsList.filter(pluginKey => isThirdPartyPlugin(pluginKey));
   return _objectSpread(_objectSpread({}, categorizeData(libraryCollectionData)), {}, {
     dependencyFilters: _objectSpread({
       [NONE_KEY]: true
     }, library.dependencies),
-    wholePlugins
+    wholePlugins,
+    thirdPartyPlugins
   });
 }; // one of important function
 // get collection children data upon clicking on collection in collections tab
@@ -12160,6 +12239,11 @@ const saveChallengeStep = step => {
   localStorage.setItem('reduxChallengeStep', step);
 };
 
+const isThirdPartyPlugin = pluginKey => {
+  const pluginInstance = Object(_dependencyHelper__WEBPACK_IMPORTED_MODULE_8__["getPluginInstance"])(pluginKey);
+  return pluginInstance.free_slug && !pluginInstance.redux_pro && !pluginInstance.version;
+};
+
 /***/ }),
 
 /***/ "./redux-templates/src/stores/index.js":
@@ -12320,6 +12404,10 @@ registerStore('redux-templates/sectionslist', {
 
     getWholePlugins(state) {
       return state.activeItemType !== 'saved' ? Object(_helper__WEBPACK_IMPORTED_MODULE_10__["getCurrentState"])(state).wholePlugins : null;
+    },
+
+    getThirdPartyPlugins(state) {
+      return state.activeItemType !== 'saved' ? Object(_helper__WEBPACK_IMPORTED_MODULE_10__["getCurrentState"])(state).thirdPartyPlugins : null;
     },
 
     // get categories from currentState, sortBy alphabetically, with the count of pageData within the current category
@@ -12524,6 +12612,7 @@ const initialState = {
     dependencyFilterRule: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_filterRule', true),
     searchContext: '',
     wholePlugins: [],
+    thirdPartyPlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('section_page', 0)
   },
@@ -12536,6 +12625,7 @@ const initialState = {
     dependencyFilterRule: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_filterRule', true),
     searchContext: '',
     wholePlugins: [],
+    thirdPartyPlugins: [],
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('page_page', 0)
   },
@@ -12548,6 +12638,7 @@ const initialState = {
     dependencyFilterRule: false,
     searchContext: '',
     wholePlugins: [],
+    thirdPartyPlugins: [],
     activeCollection: null,
     sortBy: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_sort', 'name'),
     currentPage: Object(_helper__WEBPACK_IMPORTED_MODULE_0__["getWithExpiry"])('collection_page', 0)
