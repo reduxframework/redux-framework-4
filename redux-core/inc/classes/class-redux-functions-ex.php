@@ -346,7 +346,8 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						return new $new_class_name( $parent, $path, $ext_class );
 					}
 				} else {
-					// TODO why doesn't the file exist?!
+					// Why doesn't the file exist? Gah permissions.
+					return;
 				}
 			}
 		}
