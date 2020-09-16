@@ -40,19 +40,18 @@ function DependencyFilter(props) {
 		                <h3>{__('Required Plugins', redux_templates.i18n)} </h3>
 	                </>
                     <div className='redux-templates-select-actions'>
-                        <Tooltip text={__('Select All', redux_templates.i18n)} position="top center"><a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a></Tooltip>
+                        <Tooltip text={__('Select All', redux_templates.i18n)} position="top center">
+	                        <a href="#" onClick={() => selectDependencies('all')}>{__('All', redux_templates.i18n)}</a>
+                        </Tooltip>
 		                    <span>&nbsp; / &nbsp;</span>
-		                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top center"><a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a></Tooltip>
+	                    <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top center">
+		                    <a href="#" onClick={() => selectDependencies('installed')}>{__('Installed', redux_templates.i18n)}</a>
+	                    </Tooltip>
                         <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Installed Dependencies', redux_templates.i18n)} position="top center"><a href="#"
-                            onClick={() => selectDependencies('installed')}>
-                            {__('Installed', redux_templates.i18n)}</a></Tooltip>
-                        <span>&nbsp; / &nbsp;</span>
-                        <Tooltip text={__('Reset Dependencies', redux_templates.i18n)} position="top center">
-                            <a href="#" onClick={() => selectDependencies('default')}>
-                            <i className="fas fa-undo" /></a></Tooltip>
+	                    <Tooltip text={__('Native Blocks Only', redux_templates.i18n)} position="top center">
+		                    <a href="#" onClick={() => selectDependencies('none')}>{__('None', redux_templates.i18n)}</a>
+	                    </Tooltip>
                         <ChallengeDot step={2} />
-
                     </div>
                     <ul className="redux-templates-sidebar-dependencies">
                         { (loading === false) &&

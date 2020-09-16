@@ -306,6 +306,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return object - Extended field class.
 		 */
 		public static function extension_compatibility( $parent, $path, $ext_class, $new_class_name, $name ) {
+			if ( empty( $new_class_name ) ) {
+				return;
+			}
 			$upload_dir = ReduxFramework::$_upload_dir . '/extension_compatibility/';
 			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
 				if ( ! is_dir( $upload_dir ) ) {
@@ -336,10 +339,15 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					$parent->filesystem->put_contents( $upload_dir . $new_class_name . '.php', $template );
 				}
 				if ( file_exists( $upload_dir . $new_class_name . '.php' ) ) {
-					include_once $upload_dir . $new_class_name . '.php';
+					if ( ! class_exists( $new_class_name ) ) {
+						require_once $upload_dir . $new_class_name . '.php';
+					}
+					if ( ! class_exists( $new_class_name ) ) {
+						return new $new_class_name( $parent, $path, $ext_class );
+					}
+				} else {
+					// TODO why doesn't the file exist?!
 				}
-
-				return new $new_class_name( $parent, $path, $ext_class );
 			}
 		}
 

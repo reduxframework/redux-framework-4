@@ -49,35 +49,20 @@ export default function SidebarContent(props) {
 				</div>
 
 				<h5 className="theme-hash">
-					<div className="button-container">
-                        <span className="button button-secondary the-copy" onClick={copyHash}
-							  title={__('Copy Identifier', redux_templates.i18n)}><i
-							className="fa fa-copy" aria-hidden="true"></i></span>
-						<span onClick={copyHash} className="button button-secondary the-hash"
-							  title={__('Identifier', redux_templates.i18n)}>{hash.substring(0, 7)}</span>
-						{copied && <span className="copied hideMe"><br/>{__('copied', redux_templates.i18n)}</span>}
-					</div>
-
+					<Tooltip position={'top center'} text={__('Copy the template identifier', redux_templates.i18n)}>
+						<div className="button-container" onClick={copyHash}>
+	                        <span className="button button-secondary the-copy">
+		                        <i className="fa fa-copy" aria-hidden="true"></i>
+	                        </span>
+							<span className="button button-secondary the-hash">{hash.substring(0, 7)}</span>
+							{copied && <span className="copied hideMe"><br/>{__('copied', redux_templates.i18n)}</span>}
+						</div>
+					</Tooltip>
 				</h5>
 			</div>
-			{ blocks && blocks.length > 0 &&
-			<PanelBody title={__('Blocks Used', redux_templates.i18n)} icon={more} initialOpen={false}>
-				<PanelRow className="redux-block-pills">
-					<ul>
-						{
-							blocks.map((block, i) => {
-								return (
-									<li key={i}><span>{block}</span></li>
-								)
-							} )
-						}
-					</ul>
-				</PanelRow>
-			</PanelBody>
-			}
 			{
 				installDependencies && installDependencies.length > 0 &&
-				<PanelBody title={__('Required Plugins', redux_templates.i18n)} icon={more} initialOpen={false}>
+				<PanelBody title={__('Required Plugins', redux_templates.i18n)} icon={more} initialOpen={true}>
 					<PanelRow className="requirements-list-div">
 						<div className="requirements-list">
 							<ul>
@@ -101,16 +86,16 @@ export default function SidebarContent(props) {
 													className="redux-templates-dependency-name">{pluginInstance.name}</span>
 												{requiresInstall(itemData) &&
 												<Tooltip position={'bottom center'}
-														 text={__('Not Installed', redux_templates.i18n)}>
+												         text={__('Not Installed', redux_templates.i18n)}>
 													<div className='redux-icon-wrapper'><i
 														className="fa fa-exclamation-triangle"/></div>
 												</Tooltip>
 												}
 												{pluginInstance.url ?
 													<Tooltip position={'top right'}
-															 text={__('Visit Plugin Website', redux_templates.i18n)}>
+													         text={__('Visit Plugin Website', redux_templates.i18n)}>
 															<span className="pluginURL"><a href={pluginInstance.url}
-																						   target="_blank"><i
+															                               target="_blank"><i
 																className="fas fa-external-link-alt"/></a></span>
 													</Tooltip> : null}
 											</li>);
@@ -121,6 +106,22 @@ export default function SidebarContent(props) {
 					</PanelRow>
 				</PanelBody>
 			}
+			{ blocks && blocks.length > 0 &&
+			<PanelBody title={__('Blocks Used', redux_templates.i18n)} icon={more} initialOpen={true}>
+				<PanelRow className="redux-block-pills">
+					<ul>
+						{
+							blocks.map((block, i) => {
+								return (
+									<li key={i}><span>{block}</span></li>
+								)
+							} )
+						}
+					</ul>
+				</PanelRow>
+			</PanelBody>
+			}
+
 			{
 				'redux' !== source &&
 				<PanelBody title={__('Template Details', redux_templates.i18n)} icon={more} initialOpen={false}>
