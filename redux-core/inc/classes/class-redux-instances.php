@@ -105,3 +105,15 @@ if ( ! function_exists( 'get_redux_instance' ) ) {
 		return Redux_Instances::get_instance( $opt_name );
 	}
 }
+
+if ( ! function_exists( 'get_all_redux_instances' ) ) {
+	/**
+	 * Fetch all instances of ReduxFramework
+	 * as an associative array.
+	 *
+	 * @return array        format ['opt_name' => $ReduxFramework]
+	 */
+	function get_all_redux_instances() {
+		return Redux_Instances::get_all_instances();
+	}
+}
