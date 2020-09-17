@@ -156,7 +156,6 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 = 4.1.19 =
 * Added: Properly adjust the blocked editor page width based on template selected.
-* Added: Remove Qubely Pro update notice if Redux Pro is installed.
 * Added: Broke out third-party premium plugins for filtering to help with understanding of what comes with Redux Pro.
 * Added: Update block editor width when selecting a Redux template.
 * Fixed: Some styling issues with preview modal.
