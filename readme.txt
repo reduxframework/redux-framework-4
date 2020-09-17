@@ -157,21 +157,25 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 = 4.1.19 =
 * Added: Properly adjust the blocked editor page width based on template selected.
 * Added: Remove Qubely Pro update notice if Redux Pro is installed.
-* Added: Broke out third-party premium plugins to help with understanding of what comes with Redux Pro.
+* Added: Broke out third-party premium plugins for filtering to help with understanding of what comes with Redux Pro.
 * Added: Update block editor width when selecting a Redux template.
 * Fixed: Some styling issues with preview modal.
 * Fixed: Issue where plugin titles were not alphabetical.
 * Fixed: Disabled third party premium dependencies.
 * Fixed: Issue where crash would occur when Redux could not write out a file.
+* Fixed: CSS selectors with HTML entities, like >, were not getting decoded for the passed compiler values.
+* Release date: Sep 17, 2020
 
 = 4.1.18 =
 * Fixed: Bug with typography output and non-array values for CSS selectors.
 * Fixed: Bug with spacing field not adding the units when a default is provided.
 * Added: Redux Pro install and activation flow.
 * Fixed: Templates trial wasn't working properly! It works now. :)
+* Release date: Sept 9, 2020
 
 = 4.1.17 =
 * Fixed: Edge case where enable Gutenberg notice doesn't disappear. Sorry everyone!
+* Release date: Aug 27, 2020
 
 = 4.1.16 =
 * Fixed: Issue when null values were sent to Redux::set();

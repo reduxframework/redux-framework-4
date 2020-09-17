@@ -168,8 +168,8 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							}
 						}
 					}
-					if ( ! empty( $core->outputCSS ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName
-						// phpcs:ignore WordPress.NamingConventions.ValidVariableName
+					if ( ! empty( $core->outputCSS ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+						// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 						$core->outputCSS = html_entity_decode( $core->outputCSS, ENT_QUOTES, 'UTF-8' );
 					}
 				}
