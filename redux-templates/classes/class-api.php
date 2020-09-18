@@ -1014,12 +1014,12 @@ class Api {
 		);
 		$response = $this->do_license_request( $array );
 
-		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ), true ) ) {
-			update_option( 'redux_pro_license_key', $data['key'] );
+		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive', 'inactive' ), true ) ) {
 			if ( 'valid' === $response['license'] ) {
 				wp_send_json_success( array( 'status' => 'success' ) );
-			} elseif ( 'site_inactive' === $response['license'] ) {
-				if ( 0 === $response['activations_left'] ) {
+			} else {
+				if ( 0 === $response['data']['activations_left'] ) {
+					delete_option( 'redux_pro_license_key' );
 					wp_send_json_error(
 						array(
 							'status'  => 'error',
@@ -1027,14 +1027,16 @@ class Api {
 						)
 					);
 				}
-				$array   = array(
-					'edd_action' => 'activate_license',
-				);
-				$request = $this->do_license_request( $array );
+				update_option( 'redux_pro_license_key', $data['key'] );
 
-				if ( isset( $request['license'] ) && 'valid' === $request['license'] ) {
-					Redux_Functions_Ex::set_activated();
-					wp_send_json_success( $request );
+				$array   = array(
+					'edd_action' => 'activate_license'
+				);
+
+				$response = $this->do_license_request( $array );
+				if ( isset( $response['license'] ) && 'valid' === $response['license'] ) {
+					\Redux_Functions_Ex::set_activated();
+					wp_send_json_success( $response );
 				}
 			}
 		}
@@ -1057,7 +1059,7 @@ class Api {
 
 		$data = $request->get_params();
 
-		if ( ! isset( $data['license'] ) || ( isset( $data['license'] ) && empty( $data['license'] ) ) ) {
+		if ( ! isset( $data['key'] ) || ( isset( $data['key'] ) && empty( $data['key'] ) ) ) {
 			wp_send_json_error(
 				array(
 					'success'       => 'false',
@@ -1069,12 +1071,12 @@ class Api {
 
 		$array    = array(
 			'edd_action' => 'check_license',
-			'license'    => $data['license'],
+			'license'    => $data['key'],
 		);
 		$response = $this->do_license_request( $array );
 
-		if ( isset( $response['license'] ) && in_array( $response['license'], array( 'valid', 'site_inactive' ), true ) ) {
-			update_option( 'redux_pro_license_status', $data['license'] );
+		if ( isset( $response['license'] ) && in_array( $response['key'], array( 'valid', 'site_inactive' ), true ) ) {
+			update_option( 'redux_pro_license_status', $data['key'] );
 			wp_send_json_success( $response );
 		} else {
 			wp_send_json_error(
