@@ -163,6 +163,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Disabled third party premium dependencies.
 * Fixed: Issue where crash would occur when Redux could not write out a file.
 * Fixed: CSS selectors with HTML entities, like >, were not getting decoded for the passed compiler values.
+* Fixed: Redux Pro activation issue.
 * Release date: Sep 17, 2020
 
 = 4.1.18 =
