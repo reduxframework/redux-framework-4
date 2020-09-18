@@ -342,7 +342,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 					if ( ! class_exists( $new_class_name ) ) {
 						require_once $upload_dir . $new_class_name . '.php';
 					}
-					if ( ! class_exists( $new_class_name ) ) {
+					if ( class_exists( $new_class_name ) ) {
 						return new $new_class_name( $parent, $path, $ext_class );
 					}
 				} else {

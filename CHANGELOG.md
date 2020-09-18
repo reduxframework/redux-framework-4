@@ -1,6 +1,6 @@
 # Redux Changelog
 
-## 4.1.19
+## 4.1.20
 * Added: Properly adjust the blocked editor page width based on template selected.
 * Added: Remove Qubely Pro update notice if Redux Pro is activated.
 * Added: Broke out third-party premium plugins for filtering to help with understanding of what comes with Redux Pro.
@@ -10,8 +10,8 @@
 * Fixed: Disabled third party premium dependencies.
 * Fixed: Issue where crash would occur when Redux could not write out a file.
 * Fixed: CSS selectors with HTML entities, like >, were not getting decoded for the passed compiler values.
-* Fixed: Redux Pro activation issue.
-* Release date: Sep 17, 2020
+* Fixed: Invalid logic causing some extensions not to run.
+* Release date: Sep 18, 2020
 
 ## 4.1.18
 * Fixed: Bug with typography output and non-array values for CSS selectors.
