@@ -313,21 +313,13 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			// *****************************************************************
 			// Spectrum JS
 			// *****************************************************************
-			$js_file = 'redux-spectrum.min.js';
-
-			if ( $core->args['dev_mode'] ) {
-				$js_file = 'redux-spectrum.js';
-			}
-
 			wp_register_script(
 				'redux-spectrum-js',
-				Redux_Core::$url . 'assets/js/vendor/spectrum/' . $js_file,
+				Redux_Core::$url . 'assets/js/vendor/spectrum/redux-spectrum' . $this->min . '.js',
 				array( 'jquery' ),
 				'1.3.3',
 				true
 			);
-
-			$dep_array = array( 'jquery' );
 
 			// *****************************************************************
 			// Vendor JS
@@ -340,15 +332,13 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				true
 			);
 
-			array_push( $dep_array, 'redux-vendor' );
-
 			// *****************************************************************
 			// Redux JS
 			// *****************************************************************
 			wp_register_script(
 				'redux-js',
 				Redux_Core::$url . 'assets/js/redux' . $this->min . '.js',
-				$dep_array,
+				array( 'jquery', 'redux-vendor' ),
 				$this->timestamp,
 				true
 			);
@@ -358,7 +348,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 					'webfontloader',
 					// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
 					'//' . 'ajax' . '.googleapis' . '.com/ajax/libs/webfont/1.6.26/webfont.js',
-					array( 'jquery' ),
+					array( 'jquery', 'redux-vendor' ),
 					'1.6.26',
 					true
 				);
