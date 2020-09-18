@@ -1029,8 +1029,8 @@ class Api {
 				}
 				update_option( 'redux_pro_license_key', $data['key'] );
 
-				$array   = array(
-					'edd_action' => 'activate_license'
+				$array = array(
+					'edd_action' => 'activate_license',
 				);
 
 				$response = $this->do_license_request( $array );
