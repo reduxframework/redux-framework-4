@@ -215,7 +215,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 				// Get the user id.
 				$userid = $current_user->ID;
 
-				if ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) {
+				if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) ) {
 					die( 0 );
 				} else {
 					// Add the dismiss request to the user meta.
