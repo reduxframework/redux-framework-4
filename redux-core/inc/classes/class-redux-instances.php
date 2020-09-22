@@ -39,7 +39,7 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 				return self::$instances[ $opt_name ];
 			}
 
-			return null;
+			return self;
 		}
 
 		/**

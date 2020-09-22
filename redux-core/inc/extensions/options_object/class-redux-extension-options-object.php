@@ -28,6 +28,14 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		public static $version = '4.0';
 
 		/**
+		 * Set the name of the field.  Ideally, this will also be your extension's name.
+		 * Please use underscores and NOT dashes.
+		 *
+		 * @var string
+		 */
+		private $field_name = 'my_extension';
+
+		/**
 		 * Is field bit.
 		 *
 		 * @var bool
@@ -47,9 +55,8 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		public function __construct( $parent ) {
 			parent::__construct( $parent, __FILE__ );
 
-			$this->add_field( 'options_object' );
-
-			$this->is_field = Redux_Helpers::is_field_in_use( $parent, 'options_object' );
+			$this->add_field( $this->field_name );
+			$this->is_field = Redux_Helpers::is_field_in_use( $parent, $this->field_name );
 
 			if ( ! $this->is_field && $this->parent->args['dev_mode'] && $this->parent->args['show_options_object'] ) {
 				$this->add_section();
