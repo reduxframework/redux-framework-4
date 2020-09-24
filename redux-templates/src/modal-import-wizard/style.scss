@@ -228,6 +228,19 @@
         flex-direction: column;
     }
 
+    .redux-templates-psmodal-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .redux-templates-modal-footer.nps-footer {
+        text-align: center;
+        justify-content: center;
+    }
 
 }
 .text-transition {
