@@ -848,7 +848,7 @@ class Api {
 				'method'   => 'POST',
 				'callback' => 'welcome_guide',
 			),
-			'nps'          => array(
+			'nps'                => array(
 				'method'   => 'POST',
 				'callback' => 'send_nps',
 			),
@@ -1267,9 +1267,8 @@ class Api {
 	/**
 	 * Send the NPS value.
 	 *
-	 * @param array $args Array of args.
-	 * @since 4.1.18
-	 * @return mixed
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.1.19
 	 */
 	public function send_nps( \WP_REST_Request $request ) {
 		$data = $request->get_params();
@@ -1282,10 +1281,10 @@ class Api {
 			);
 		}
 
-		$nps = (string) sanitize_text_field( $data['nps'] );
+		$nps         = (string) sanitize_text_field( $data['nps'] );
 		$the_request = array(
 			'path' => 'nps',
-			'nps'  => $nps
+			'nps'  => $nps,
 		);
 		if ( \Redux_Helpers::mokama() ) {
 			$the_request['pro'] = true;
