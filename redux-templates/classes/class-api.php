@@ -848,6 +848,10 @@ class Api {
 				'method'   => 'POST',
 				'callback' => 'welcome_guide',
 			),
+			'nps'          => array(
+				'method'   => 'POST',
+				'callback' => 'send_nps',
+			),
 		);
 		$fs    = \Redux_Filesystem::get_instance();
 
@@ -1258,6 +1262,37 @@ class Api {
 			update_option( 'redux_pro_license_status', $data['license'] );
 		}
 		return $data;
+	}
+
+	/**
+	 * Send the NPS value.
+	 *
+	 * @param array $args Array of args.
+	 * @since 4.1.18
+	 * @return mixed
+	 */
+	public function send_nps( \WP_REST_Request $request ) {
+		$data = $request->get_params();
+
+		if ( empty( $data['nps'] ) ) {
+			wp_send_json_error(
+				array(
+					'error' => __( 'NPS not specified.', 'redux-framework' ),
+				)
+			);
+		}
+
+		$nps = (string) sanitize_text_field( $data['nps'] );
+		$the_request = array(
+			'path' => 'nps',
+			'nps'  => $nps
+		);
+		if ( \Redux_Helpers::mokama() ) {
+			$the_request['pro'] = true;
+		}
+		$this->api_request( $the_request );
+
+		wp_send_json_success();
 	}
 
 }
