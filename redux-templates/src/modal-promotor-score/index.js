@@ -15,8 +15,6 @@ export default function PromotorScoreModal(props) {
 
 
     const afterPost = (response) => {
-        console.log(response);
-	    propOnClose();
         if (response.data && response.data.success) {
             createSuccessNotice(__('Thanks for your feedback, your input is very much valued.'), { type: 'snackbar' });
         } else {
@@ -28,10 +26,12 @@ export default function PromotorScoreModal(props) {
 
     const onCloseWizard = () => {
         apiFetch({path: 'redux/v1/templates/nps', method: 'POST', data: {nps: 'no-thanks'}}).then(afterPost).catch(afterPost);
+        propOnClose();
     };
 
     const submitScore = () => {
         apiFetch({path: 'redux/v1/templates/nps', method: 'POST', data: {nps: score + 1}}).then(afterPost).catch(afterPost);
+        propOnClose();
     }
 
 
