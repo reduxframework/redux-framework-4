@@ -752,7 +752,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 				if ( ! empty( $import ) ) {
 					$imported_options = json_decode( $import, true );
 				}
-				if ( ! empty( $imported_options ) && is_array( $imported_options ) && isset( $imported_options['redux-backup'] ) && (bool) $imported_options['redux-backup'] ) {
+				if ( ! empty( $imported_options ) && is_array( $imported_options ) && isset( $imported_options['redux-backup'] ) && '1' === $imported_options['redux-backup'] ) {
 					$core->transients['changed_values'] = array();
 					foreach ( $plugin_options as $key => $value ) {
 						if ( isset( $imported_options[ $key ] ) && $value !== $imported_options[ $key ] ) {
