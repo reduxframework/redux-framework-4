@@ -258,7 +258,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		public function add_style_attributes( $html = '', $handle = '', $href = '', $media = '' ) {
 			if ( Redux_Functions_Ex::string_starts_with( $handle, 'redux-google-fonts-' ) ) {
 				// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
-				$href      = urlencode( urldecode( $href ) );
+				$href      = str_replace( array( '|', ' ' ), array( '%7C', '%20' ), urldecode( $href ) );
 				$new_html  = '';
 				$new_html .= '<link rel="preload" as="style" href="' . esc_attr( $href ) . '" />';
 				$new_html .= '<link rel="stylesheet" href="' . esc_attr( $href ) . '" media="print" onload="this.media=\'all\'">';  // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
@@ -356,7 +356,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || ( isset( $_POST['customized'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'preview-customize_' . wp_get_theme()->get_stylesheet() ) ) ) ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
-				echo '<style type="text/css" id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
+				echo '<style id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
 			}
 		}
 

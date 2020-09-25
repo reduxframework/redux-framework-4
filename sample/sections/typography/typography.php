@@ -29,7 +29,7 @@ Redux::set_section(
 					'font-family' => 'Arial, Helvetica, sans-serif',
 					'font-weight' => 'Normal',
 				),
-				'output'            => array( '.site-description, .entry-title' ),
+				'output'            => array( 'p' ),
 			),
 			array(
 				'id'          => 'opt-typography',
@@ -74,7 +74,7 @@ Redux::set_section(
 				// Disable the font previewer
 				// 'preview'       => false,
 				// An array of CSS selectors to apply this font style to dynamically
-				// 'output'      => array( 'h2.site-description, .entry-title' ),
+				 'output'      => array( 'h2.site-description, .entry-title' ),
 				// An array of CSS selectors to apply this font style to dynamically
 				// 'compiler'    => array( 'h2.site-description-compiler' ),
 				// .

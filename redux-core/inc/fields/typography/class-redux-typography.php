@@ -796,7 +796,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			foreach ( $fonts as $family => $font ) {
 				if ( ! empty( $link ) ) {
-					$link .= '%7C'; // Append a new font to the string.
+					$link .= '|'; // Append a new font to the string.
 				}
 				$link .= $family;
 
