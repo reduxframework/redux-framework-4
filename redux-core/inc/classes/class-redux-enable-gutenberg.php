@@ -133,11 +133,6 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 		 */
 		public static function cleanup_options( $slug = '' ) {
 			if ( ! empty( $slug ) ) {
-				$data = array(
-					'slug' => $slug,
-					'name' => '',
-				);
-
 				$obj = new Redux_Enable_Gutenberg(
 					array(
 						'slug' => $slug,

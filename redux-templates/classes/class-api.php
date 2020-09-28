@@ -552,13 +552,7 @@ class Api {
 		}
 
 		if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
-			wp_send_json_error(
-				array(
-					'success'       => 'false',
-					'message'       => 'Error fetching template. Please try again',
-					'message_types' => 'error',
-				)
-			);
+			return false;
 		}
 
 		return $request['body'];
@@ -602,7 +596,16 @@ class Api {
 			$cache_path             = $config['type'] . DIRECTORY_SEPARATOR . $config['id'] . '.json';
 			$parameters['no_cache'] = 1;
 			$response               = $this->api_cache_fetch( $parameters, $config, $cache_path );
-			$response               = wp_parse_args( $response, $template_response );
+			if ( false === $response ) {
+				wp_send_json_error(
+					array(
+						'success'       => 'false',
+						'message'       => 'Error fetching template. Please try again',
+						'message_types' => 'error',
+					)
+				);
+			}
+			$response = wp_parse_args( $response, $template_response );
 		}
 
 		if ( ! empty( $response ) && isset( $response['message'] ) ) {
@@ -693,6 +696,8 @@ class Api {
 		$config = array(
 			'Redux-Version'   => REDUXTEMPLATES_VERSION,
 			'Redux-Multisite' => is_multisite(),
+			'Redux-Mokama'    => \Redux_Helpers::mokama(),
+			'Redux-Insights'  => \Redux_Core::$insights->tracking_allowed(),
 		);
 
 		// TODO - Update this with the EDD key or developer key.
@@ -1286,12 +1291,15 @@ class Api {
 			'path' => 'nps',
 			'nps'  => $nps,
 		);
-		if ( \Redux_Helpers::mokama() ) {
-			$the_request['pro'] = true;
+		$response    = $this->api_request( $the_request );
+		if ( false === $response ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Could not record score.', 'redux-framework' ),
+				)
+			);
 		}
-		$this->api_request( $the_request );
-
-		wp_send_json_success();
+		wp_send_json_success( json_decode( $response ) );
 	}
 
 }
