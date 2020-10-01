@@ -88,7 +88,7 @@
 						$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
 						alert( redux.optName.ajax.alert );
 					} else {
-						redux.optName.optName.args.ajax_save = false;
+						redux.optName.args.ajax_save = false;
 
 						$( button ).click();
 						$( '.redux-action_bar input' ).attr( 'disabled', 'disabled' );

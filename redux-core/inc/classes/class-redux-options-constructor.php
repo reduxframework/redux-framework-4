@@ -756,8 +756,8 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 					$core->transients['changed_values'] = array();
 					foreach ( $plugin_options as $key => $value ) {
 						if ( isset( $imported_options[ $key ] ) && $value !== $imported_options[ $key ] ) {
-							$core->transients['changed_values'][ $key ] = $value;
 							$plugin_options[ $key ]                     = $value;
+							$core->transients['changed_values'][ $key ] = $value;
 						}
 					}
 
