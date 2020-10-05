@@ -32,6 +32,12 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function __construct() {
+
+		if( ! function_exists( 'is_gutenberg_page' ) || ! is_gutenberg_page() ) {
+			// your gutenberg editor related CODE here
+			return;
+		}
+
 		// Include ReduxTemplates default template without wrapper.
 		add_filter( 'template_include', array( $this, 'template_include' ) );
 		// Override the default content-width when using Redux templates so the template doesn't look like crao.

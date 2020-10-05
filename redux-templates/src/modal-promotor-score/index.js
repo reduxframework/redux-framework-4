@@ -4,7 +4,8 @@ const { dispatch } = wp.data;
 const { useState } = wp.element;
 const { createSuccessNotice, createErrorNotice } = dispatch('core/notices');
 
-import { Button, ButtonGroup } from '@wordpress/components';
+import { Button, ButtonGroup, TextareaControl } from '@wordpress/components';
+import { withState } from '@wordpress/compose';
 
 import '../modals.scss';
 import './style.scss';
@@ -12,16 +13,16 @@ import './style.scss';
 export default function PromotorScoreModal(props) {
     const {propOnClose} = props; // from parent
     const [score, setScore] = useState(-1);
+	const message = useState('');
 
 
     const afterPost = (response) => {
-        if (response.data && response.data.success) {
+        if (response.success) {
             createSuccessNotice(__('Thanks for your feedback, your input is very much valued.'), { type: 'snackbar' });
         } else {
-            createErrorNotice(response.data.message || __('Error'), { type: 'snackbar' });
+            // createErrorNotice(response.data.message || __('Error'), { type: 'snackbar' });
         }
         delete redux_templates.nps;
-
     }
 
     const onCloseWizard = () => {
@@ -51,9 +52,17 @@ export default function PromotorScoreModal(props) {
                             [...Array(10).keys()].map((i) => <Button key={i} isPrimary={score === i} onClick={()=>setScore(i)}>{ i + 1 }</Button>)
                         }
                     </ButtonGroup>
+		                { -1 !== score && score < 5 &&
+			                <TextareaControl
+				                // label="Could you tell us more?"
+				                help="Could you give us more details?"
+				                value={ message }
+				                // onChange={() => setState( { message } ) }
+			                />
+		                }
                 </div>
                 <div className="redux-templates-modal-footer nps-footer">
-                    <button className="button button-primary" disabled={!score} onClick={() => submitScore()}>
+                    <button className="button button-primary" disabled={-1 === score} onClick={() => submitScore()}>
                         {__('Submit', redux_templates.i18n)}
                     </button>
                     <a href="#" onClick={onCloseWizard}>
