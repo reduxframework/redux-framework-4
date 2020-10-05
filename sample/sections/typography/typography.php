@@ -73,9 +73,9 @@ Redux::set_section(
 				// 'color'         => false,
 				// Disable the font previewer
 				// 'preview'       => false,
-				// An array of CSS selectors to apply this font style to dynamically
-				 'output'      => array( 'h2.site-description, .entry-title' ),
-				// An array of CSS selectors to apply this font style to dynamically
+				// An array of CSS selectors to apply this font style to dynamically.
+				'output'      => array( 'h2.site-description, .entry-title' ),
+				// An array of CSS selectors to apply this font style to dynamically.
 				// 'compiler'    => array( 'h2.site-description-compiler' ),
 				// .
 			),

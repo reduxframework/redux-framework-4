@@ -164,7 +164,7 @@ class Init {
 		}
 
 		// TODO - Only have this show up After 2 imports and Redux installed for a week. If they dismissed, then show up again in 30 days one last time.
-		//$global_vars['nps'] = __( 'Hey there. You\'ve been using Redux for a bit now, would you mind letting us know how likely you are to recommend Redux to a friend or colleague?', 'redux-framework' );
+		// $global_vars['nps'] = __( 'Hey there. You\'ve been using Redux for a bit now, would you mind letting us know how likely you are to recommend Redux to a friend or colleague?', 'redux-framework' );
 
 		wp_localize_script(
 			'redux-templates-js',
