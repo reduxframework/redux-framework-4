@@ -1,5 +1,16 @@
 # Redux Changelog
 
+## 4.1.21
+* Fixed: Resolved all remaining legacy extension compatibility issues.
+* Fixed: Custom callback with select field.
+* Fixed: Typography bug when style was hidden.
+* Fixed: Issue with text labels.
+* Fixed: Google fonts html validation issues.
+* Added: Feedback modal.
+* Fixed: Import logic flaw.
+* Fixed: Security bug. Thanks @lenonleite of www.lenonleite.com.br.
+* Release date: Oct 05, 2020
+
 ## 4.1.20
 * Added: Properly adjust the blocked editor page width based on template selected.
 * Added: Remove Qubely Pro update notice if Redux Pro is activated.

@@ -32,10 +32,11 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function __construct() {
-
-		if( ! function_exists( 'is_gutenberg_page' ) || ! is_gutenberg_page() ) {
-			// your gutenberg editor related CODE here
-			return;
+		if ( ! function_exists( 'is_gutenberg_page' ) ) {
+			if ( ! is_gutenberg_page() ) {
+				// We don't want to add templates unless it's a gutenberg page.
+				return;
+			}
 		}
 
 		// Include ReduxTemplates default template without wrapper.
