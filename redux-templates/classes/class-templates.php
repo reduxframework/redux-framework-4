@@ -32,11 +32,10 @@ class Templates {
 	 * @since 4.0.0
 	 */
 	public function __construct() {
-		if ( ! function_exists( 'is_gutenberg_page' ) ) {
-			if ( ! is_gutenberg_page() ) {
+		global $pagenow;
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && \Redux_Enable_Gutenberg::$is_disabled ) {
 				// We don't want to add templates unless it's a gutenberg page.
 				return;
-			}
 		}
 
 		// Include ReduxTemplates default template without wrapper.

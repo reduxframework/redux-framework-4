@@ -73,7 +73,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 		 *
 		 * @var bool
 		 */
-		protected static $is_disabled = false;
+		public static $is_disabled = false;
 
 		/**
 		 * Quick fix known plugins that disable.
@@ -216,10 +216,10 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 				$data['url'] = $deativate_url;
 				if ( 1 === count( self::$known_plugins ) ) {
 					$data['button']  = __( 'Disable Plugin', 'redux-framework' );
-					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugin</strong> button on the right.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
+					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugin</strong> button on the right and Redux will enable it for you.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
 				} else {
 					$data['button']  = __( 'Disable Plugins', 'redux-framework' );
-					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugins</strong> button on the right.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
+					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugins</strong> button on the right and Redux will enable it for you.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
 				}
 			}
 
