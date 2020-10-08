@@ -164,7 +164,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Added: Feedback modal.
 * Fixed: Import logic flaw.
 * Fixed: Security bug. Thanks @lenonleite of www.lenonleite.com.br.
-* Release date: Oct 05, 2020
+* Release date: Oct 08, 2020
 
 = 4.1.20 =
 * Added: Properly adjust the blocked editor page width based on template selected.
