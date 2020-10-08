@@ -33,7 +33,7 @@ class Templates {
 	 */
 	public function __construct() {
 		global $pagenow;
-		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && \Redux_Enable_Gutenberg::$is_disabled ) {
+		if ( ( 'post.php' === $pagenow  || 'post-new.php' === $pagenow ) && \Redux_Enable_Gutenberg::$is_disabled ) {
 				// We don't want to add templates unless it's a gutenberg page.
 				return;
 		}
