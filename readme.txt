@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.20
+Stable tag: 4.1.21
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -154,6 +154,18 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Changelog ==
 
+= 4.1.21 =
+* Fixed: Fixed connection banner to hide even if JS is broken by jQuery migrate issue (WP 5.5).
+* Fixed: Resolved all remaining legacy extension compatibility issues.
+* Fixed: Custom callback with select field.
+* Fixed: Typography bug when style was hidden.
+* Fixed: Issue with text labels.
+* Fixed: Google fonts html validation issues.
+* Added: Feedback modal.
+* Fixed: Import logic flaw.
+* Fixed: Security bug. Thanks @lenonleite of www.lenonleite.com.br.
+* Release date: Oct 08, 2020
+
 = 4.1.20 =
 * Added: Properly adjust the blocked editor page width based on template selected.
 * Added: Broke out third-party premium plugins for filtering to help with understanding of what comes with Redux Pro.
@@ -167,145 +179,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Invalid logic causing some extensions not to run.
 * Release date: Sep 18, 2020
 
-= 4.1.18 =
-* Fixed: Bug with typography output and non-array values for CSS selectors.
-* Fixed: Bug with spacing field not adding the units when a default is provided.
-* Added: Redux Pro install and activation flow.
-* Fixed: Templates trial wasn't working properly! It works now. :)
-* Release date: Sept 9, 2020
-
-= 4.1.17 =
-* Fixed: Edge case where enable Gutenberg notice doesn't disappear. Sorry everyone!
-* Release date: Aug 27, 2020
-
-= 4.1.16 =
-* Fixed: Issue when null values were sent to Redux::set();
-* Fixed: Default for Google fonts is now swap.
-* Fixed: Fix for developers calling the API without checking for files.
-* Fixed: Edge case for filter var not working on some sites.
-* Fixed: Proper loading to override Redux 3 plugin.
-* Added: Site name to WP data return.
-* Fixed: Set height for library button when other plugins modify the CSS for the Gutenberg toolbar.
-* Fixed: Don't show template messages on the front-end if an extension is missing. How did that get through?
-* Fixed: Non-array values for WP data. Thanks @wilokecom.
-* Added: Notification so users can enable Gutenberg when disabled.
-* Added: Welcome guide to Gutenberg screen.
-* Fixed: Some readme issues.
-* Release date: Aug 26, 2020
-
-= 4.1.15 =
-* Fixed: Defaults were not saving in some situations.
-* Added: Various fallback calls for JS when fetching opt_names.
-* Fixed: Warnings with Rest API due to WP 5.5.
-* Fixed: Subsets now are full-width in typography when rendered after page load.
-* Fixed: for subsets loading when font-family is not specified.
-* Added: No opt-in to tracking when embedded. Google Fonts and panel notices are still there though.
-* Fixed: Is local checks conflicting with some servers.
-* Fixed: WooCommerce race condition with their autoloader causing issues with some sites.
-* Updated: Complete overhaul of WordPress data class.
-* Fixed: Backtrace errors when blocked on servers.
-* Fixed: Select2 and required fixes.
-* Fixed: Customizer sidebar not showing in some cases.
-* Added: Google Fonts now load ~20% faster!!!
-* Release date: Aug 19, 2020
-
-= 4.1.14 =
-* Added: Shim for ReduxFramework->get_default_value()
-* Fixed: Local issue with WP and strtolower. Sites that couldn't find classes should work now.
-* Fixed: Ajax for select boxes is now working again.
-* Fixed: Autoloading to bypass other embedded versions of Redux.
-* Fixed: Customizer interactions are MUCH faster now. Had a greedy CSS selector before.
-* Fixed: If opt_names had multiple dashes in them, JS errors occurred by a non-global replace.
-* Fixed: Fix for servers that disable output buffers.
-* Fixed: Ajax now does not load anything else, faster calls.
-* Fixed: .folds replace issue when opt_name selector wasn't properly found.
-* Release date: Aug 11, 2020
-
-= 4.1.13 =
-* Fixed: Major typography bug affecting saving in the panel as well as third-party extensions.
-* Fixed: Customizer issue with some external extensions.
-* Added: Removed `FS_METHOD` define completely.
-* Release date: Aug 5, 2020
-
-= 4.1.12 =
-* Fixed: Direct calls to ReduxFramework were causing unexpected errors.
-* Fixed: JS error on .replace because opt_name wasn't found.
-* Added: `FS_METHOD` define location, had to move lower in the stack.
-* Release date: Aug 5, 2020
-
-= 4.1.11 =
-* Fixed: Templates JS not loading and conflicting with other plugins. Need to namespace or something.
-* Added: `FS_METHOD` define method for environments where it is not properly defined.
-* Release date: Aug 4, 2020
-
-= 4.1.10 =
-* Fixed: Minified templates directory now loads.
-* Added: Shadow files from old repo to stop errors from previously included third-party developer includes.
-* Release date: Aug 4, 2020
-
-= 4.1.9 =
-* Fixed: Compatibility issue when developers made custom panel templates. The opt_name wasn't fetched and thus saving broke.
-* Release date: Aug 1, 2020
-
-= 4.1.8 =
-* Fixed: Map files are now all present.
-* Fixed: Path fix for how developers called the typography file directory.
-* Release date: Aug 1, 2020
-
-= 4.1.7 =
-* Fixed: Issue with sortable in text mode not properly passing the name attribute and thus not saving properly.
-* Fixed: Compatibility with old extension names to not crash other plugins.
-* Release date: July 31, 2020
-
-= 4.1.6 =
-* Fixed: Issue with customizer double loading the PHP classes and causing an exception.
-* Fixed: Chanced a class name as to not conflict with a 6+ year old version of Redux.
-* Release date: July 30, 2020
-
-= 4.1.5 =
-* Fixed: Google fonts not working when old configs used string vs an array for output.
-* Release date: July 30, 2020
-
-= 4.1.4 =
-* Fixed: Google fonts loading over non-secure breaks fonts. Forced all SSL for Google fonts.  :)
-* Release date: July 30, 2020
-
-= 4.1.3 =
-* Fixed: Issue where theme devs tried to bypass the framework. Literally I made an empty file to fix their coding. :P
-* Release date: July 29, 2020
-
-= 4.1.2 =
-* Fixed: Don't try to set empty defaults when none are present.
-* Fixed: Issue where the WP Data argument was misused.
-* Release date: July 29, 2020
-
-= 4.1.1 =
-* Fixed: CSS decode when esc_attr replaces the HTML characters and CSS outputs are set with >'s.
-* Release date: July 29, 2020
-
-= 4.1.0 =
-* Fixed: Compatibility with certain themes using the deprecated $_is_plugin variable.
-* Release date: July 29, 2020
-
-= 4.0.9 =
-* Fixed: Complete compatibility fix for older Redux extensions.
-* Release date: July 28, 2020
-
-= 4.0.8 =
-* Fixed: Initial library load was failing on some server setups.
-* Release date: July 28, 2020
-
-= 4.0.7 =
-* Fixed: Race condition for PHP include for Redux_Typography causing blank white screens.
-* Release date: July 28, 2020
-
-= 4.0.5 =
-* Fixed: Issues where the site crashes because of varied ways Redux was called.
-* Fixed: Varied implementations of opt_names resulting in option panels not working as expected.
-* Release date: July 28, 2020
-
-= 4.0.4 =
-* Release date: July 24, 2020
+** For a full changelog, see https://github.com/reduxframework/redux-framework-4/blob/master/CHANGELOG.md **
 
 == Frequently Asked Questions ==
 

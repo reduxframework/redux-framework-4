@@ -95,17 +95,24 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 				return;
 			}
 
-			if ( 'transient' === $core->args['database'] ) {
-				$result = get_transient( $core->args['opt_name'] . '-transient' );
-			} elseif ( 'theme_mods' === $core->args['database'] ) {
-				$result = get_theme_mod( $core->args['opt_name'] . '-mods' );
-			} elseif ( 'theme_mods_expanded' === $core->args['database'] ) {
-				$result = get_theme_mods();
-			} elseif ( 'network' === $core->args['database'] ) {
-				$result = get_site_option( $core->args['opt_name'], array() );
-			} else {
-				$result = get_option( $core->args['opt_name'], array() );
+			switch ( $core->args['database'] ) {
+				case 'transient':
+					$result = get_transient( $core->args['opt_name'] . '-transient' );
+					break;
+				case 'theme_mods':
+					$result = get_theme_mod( $core->args['opt_name'] . '-mods' );
+					break;
+				case 'theme_mods_expanded':
+					$result = get_theme_mods();
+					break;
+				case 'network':
+					$result = get_site_option( $core->args['opt_name'], array() );
+					break;
+				default:
+					$result = get_option( $core->args['opt_name'], array() );
+
 			}
+
 			if ( empty( $result ) && empty( $defaults ) ) {
 				return;
 			}
@@ -153,18 +160,24 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 			if ( ! empty( $value ) ) {
 				$core->options = $value;
 
-				if ( 'transient' === $core->args['database'] ) {
-					set_transient( $core->args['opt_name'] . '-transient', $value, $core->args['transient_time'] );
-				} elseif ( 'theme_mods' === $core->args['database'] ) {
-					set_theme_mod( $core->args['opt_name'] . '-mods', $value );
-				} elseif ( 'theme_mods_expanded' === $core->args['database'] ) {
-					foreach ( $value as $k => $v ) {
-						set_theme_mod( $k, $v );
-					}
-				} elseif ( 'network' === $core->args['database'] ) {
-					update_site_option( $core->args['opt_name'], $value );
-				} else {
-					update_option( $core->args['opt_name'], $value );
+				switch ( $core->args['database'] ) {
+					case 'transient':
+						set_transient( $core->args['opt_name'] . '-transient', $value, $core->args['transient_time'] );
+						break;
+					case 'theme_mods':
+						set_theme_mod( $core->args['opt_name'] . '-mods', $value );
+						break;
+					case 'theme_mods_expanded':
+						foreach ( $value as $k => $v ) {
+							set_theme_mod( $k, $v );
+						}
+						break;
+					case 'network':
+						update_site_option( $core->args['opt_name'], $value );
+						break;
+					default:
+						update_option( $core->args['opt_name'], $value );
+
 				}
 
 				// Store the changed values in the transient.
@@ -716,12 +729,10 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 				foreach ( $keys as $key ) {
 					$plugin_options[ $key ] = $core->options[ $key ];
 				}
-				if ( isset( $plugin_options['redux-no_panel'] ) ) {
-					unset( $plugin_options['redux-no_panel'] );
-				}
+				unset( $plugin_options['redux-no_panel'] );
 			}
 
-			if ( ! empty( $this->hidden_perm_fields ) && is_array( $this->hidden_perm_fields ) ) {
+			if ( is_array( $this->hidden_perm_fields ) && ! empty( $this->hidden_perm_fields ) ) {
 				foreach ( $this->hidden_perm_fields as $id => $data ) {
 					$plugin_options[ $id ] = $data;
 				}
@@ -736,63 +747,62 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 			// Sets last saved time.
 			$core->transients['last_save'] = $time;
 
+			$imported_options = array();
+
+			if ( isset( $plugin_options['import_link'] ) && '' !== $plugin_options['import_link'] && ! ! wp_http_validate_url( $plugin_options['import_link'] ) ) {
+				$import           = wp_remote_retrieve_body( wp_remote_get( $plugin_options['import_link'] ) );
+				$imported_options = json_decode( $import, true );
+			}
+			if ( isset( $plugin_options['import_code'] ) && '' !== $plugin_options['import_code'] ) {
+				$imported_options = json_decode( $plugin_options['import_code'], true );
+			}
+
 			// Import.
-			if ( ( isset( $plugin_options['import_code'] ) && ! empty( $plugin_options['import_code'] ) ) || ( isset( $plugin_options['import_link'] ) && ! empty( $plugin_options['import_link'] ) ) ) {
-				$core->transients['last_save_mode'] = 'import'; // Last save mode.
-				$core->transients['last_compiler']  = $time;
-				$core->transients['last_import']    = $time;
-				$core->transients['run_compiler']   = 1;
+			$core->transients['last_save_mode'] = 'import'; // Last save mode.
+			$core->transients['last_compiler']  = $time;
+			$core->transients['last_import']    = $time;
+			$core->transients['run_compiler']   = 1;
 
-				if ( '' !== $plugin_options['import_code'] ) {
-					$import = $plugin_options['import_code'];
-				} elseif ( '' !== $plugin_options['import_link'] ) {
-					$import = wp_remote_retrieve_body( wp_remote_get( $plugin_options['import_link'] ) );
-				}
-
-				if ( ! empty( $import ) ) {
-					$imported_options = json_decode( $import, true );
-				}
-				if ( ! empty( $imported_options ) && is_array( $imported_options ) && isset( $imported_options['redux-backup'] ) && '1' === $imported_options['redux-backup'] ) {
-					$core->transients['changed_values'] = array();
-					foreach ( $plugin_options as $key => $value ) {
-						if ( isset( $imported_options[ $key ] ) && $value !== $imported_options[ $key ] ) {
-							$plugin_options[ $key ]                     = $value;
-							$core->transients['changed_values'][ $key ] = $value;
-						}
+			if ( is_array( $imported_options ) && ! empty( $imported_options ) && isset( $imported_options['redux-backup'] ) && '1' === $imported_options['redux-backup'] ) {
+				$core->transients['changed_values'] = array();
+				foreach ( $plugin_options as $key => $value ) {
+					if ( isset( $imported_options[ $key ] ) && $value !== $imported_options[ $key ] ) {
+						$plugin_options[ $key ]                     = $value;
+						$core->transients['changed_values'][ $key ] = $value;
 					}
-
-					/**
-					 * Action 'redux/options/{opt_name}/import'.
-					 *
-					 * @param  &array [&$plugin_options, redux_options]
-					 */
-
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					do_action_ref_array(
-						"redux/options/{$core->args['opt_name']}/import", // phpcs:ignore WordPress.NamingConventions.ValidHookName
-						array(
-							&$plugin_options,
-							$imported_options,
-							$core->transients['changed_values'],
-						)
-					);
-
-					setcookie( 'redux_current_tab_' . $core->args['opt_name'], '', 1, '/', $time + 1000, '/' );
-					$_COOKIE[ 'redux_current_tab_' . $core->args['opt_name'] ] = 1;
-
-					unset( $plugin_options['defaults'], $plugin_options['compiler'], $plugin_options['import'], $plugin_options['import_code'] );
-					if ( 'transient' === $core->args['database'] || 'theme_mods' === $core->args['database'] || 'theme_mods_expanded' === $core->args['database'] || 'network' === $core->args['database'] ) {
-						$this->set( $plugin_options );
-
-						return;
-					}
-
-					$plugin_options = wp_parse_args( $imported_options, $plugin_options );
-
-					$core->transient_class->set();
-
-					return $plugin_options;
 				}
+
+				/**
+				 * Action 'redux/options/{opt_name}/import'.
+				 *
+				 * @param  &array [&$plugin_options, redux_options]
+				 */
+
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
+				do_action_ref_array(
+					"redux/options/{$core->args['opt_name']}/import", // phpcs:ignore WordPress.NamingConventions.ValidHookName
+					array(
+						&$plugin_options,
+						$imported_options,
+						$core->transients['changed_values'],
+					)
+				);
+
+				setcookie( 'redux_current_tab_' . $core->args['opt_name'], '', 1, '/', $time + 1000, '/' );
+				$_COOKIE[ 'redux_current_tab_' . $core->args['opt_name'] ] = 1;
+
+				unset( $plugin_options['defaults'], $plugin_options['compiler'], $plugin_options['import'], $plugin_options['import_code'] );
+				if ( in_array( $core->args['database'], array( 'transient', 'theme_mods', 'theme_mods_expanded', 'network' ), true ) ) {
+					$this->set( $plugin_options );
+
+					return;
+				}
+
+				$plugin_options = wp_parse_args( $imported_options, $plugin_options );
+
+				$core->transient_class->set();
+
+				return $plugin_options;
 			}
 
 			// Reset all to defaults.

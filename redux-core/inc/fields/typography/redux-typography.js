@@ -767,7 +767,7 @@
 		}
 
 		// Weight and italic.
-		if ( - 1 !== style.indexOf( 'italic' ) ) {
+		if ( style && - 1 !== style.indexOf( 'italic' ) ) {
 			that.find( '.typography-preview' ).css( 'font-style', 'italic' );
 			that.find( '.typography-font-style' ).val( 'italic' );
 			style = style.replace( 'italic', '' );

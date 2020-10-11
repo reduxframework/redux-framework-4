@@ -299,13 +299,13 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'tools.php' ) ) ); ?>"
-						class=" button-text button-demo"><?php echo esc_html__( 'Disable Demo Mode', 'redux-framework' ); ?></a>
+						class=" button-text button-demo"><?php echo esc_html__( 'Disable Panel Demo', 'redux-framework' ); ?></a>
 					<?php
 				} else {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'tools.php' ) ) ); ?>"
-						class=" button-text button-demo active"><?php echo esc_html__( 'Activate Demo Mode', 'redux-framework' ); ?></a>
+						class=" button-text button-demo active"><?php echo esc_html__( 'Enable Panel Demo', 'redux-framework' ); ?></a>
 					<?php
 				}
 

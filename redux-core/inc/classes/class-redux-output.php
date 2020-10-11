@@ -214,8 +214,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 					<?php
 				} elseif ( ! $core->args['disable_google_fonts_link'] ) {
 					$url = $typography->make_google_web_font_link( $core->typography );
-					$url = 'https://fonts.googleapis.com/css?family=Montserrat:600,400|Lato:700|Cormorant+Garamond:400|Playfair+Display:800Playfair+Display&subset=800&ver=1597669755';
-					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $typography->make_google_web_font_link( $core->typography ), array(), $version, 'all' );
+					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $url, array(), $version, 'all' );
 					add_filter( 'style_loader_tag', array( $this, 'add_style_attributes' ), 10, 4 );
 					add_filter( 'wp_resource_hints', array( $this, 'google_fonts_preconnect' ), 10, 2 );
 				}
@@ -259,7 +258,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		public function add_style_attributes( $html = '', $handle = '', $href = '', $media = '' ) {
 			if ( Redux_Functions_Ex::string_starts_with( $handle, 'redux-google-fonts-' ) ) {
 				// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
-				$href      = urldecode( $href );
+				$href      = str_replace( array( '|', ' ' ), array( '%7C', '%20' ), urldecode( $href ) );
 				$new_html  = '';
 				$new_html .= '<link rel="preload" as="style" href="' . esc_attr( $href ) . '" />';
 				$new_html .= '<link rel="stylesheet" href="' . esc_attr( $href ) . '" media="print" onload="this.media=\'all\'">';  // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
@@ -357,7 +356,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || ( isset( $_POST['customized'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'preview-customize_' . wp_get_theme()->get_stylesheet() ) ) ) ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
-				echo '<style type="text/css" id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
+				echo '<style id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
 			}
 		}
 

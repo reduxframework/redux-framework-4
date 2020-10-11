@@ -552,13 +552,7 @@ class Api {
 		}
 
 		if ( 404 === wp_remote_retrieve_response_code( $request ) ) {
-			wp_send_json_error(
-				array(
-					'success'       => 'false',
-					'message'       => 'Error fetching template. Please try again',
-					'message_types' => 'error',
-				)
-			);
+			return false;
 		}
 
 		return $request['body'];
@@ -602,7 +596,16 @@ class Api {
 			$cache_path             = $config['type'] . DIRECTORY_SEPARATOR . $config['id'] . '.json';
 			$parameters['no_cache'] = 1;
 			$response               = $this->api_cache_fetch( $parameters, $config, $cache_path );
-			$response               = wp_parse_args( $response, $template_response );
+			if ( false === $response ) {
+				wp_send_json_error(
+					array(
+						'success'       => 'false',
+						'message'       => 'Error fetching template. Please try again',
+						'message_types' => 'error',
+					)
+				);
+			}
+			$response = wp_parse_args( $response, $template_response );
 		}
 
 		if ( ! empty( $response ) && isset( $response['message'] ) ) {
@@ -693,6 +696,8 @@ class Api {
 		$config = array(
 			'Redux-Version'   => REDUXTEMPLATES_VERSION,
 			'Redux-Multisite' => is_multisite(),
+			'Redux-Mokama'    => \Redux_Helpers::mokama(),
+			'Redux-Insights'  => \Redux_Core::$insights->tracking_allowed(),
 		);
 
 		// TODO - Update this with the EDD key or developer key.
@@ -847,6 +852,10 @@ class Api {
 			'welcome'            => array(
 				'method'   => 'POST',
 				'callback' => 'welcome_guide',
+			),
+			'nps'                => array(
+				'method'   => 'POST',
+				'callback' => 'send_nps',
 			),
 		);
 		$fs    = \Redux_Filesystem::get_instance();
@@ -1258,6 +1267,39 @@ class Api {
 			update_option( 'redux_pro_license_status', $data['license'] );
 		}
 		return $data;
+	}
+
+	/**
+	 * Send the NPS value.
+	 *
+	 * @param \WP_REST_Request $request WP Rest request.
+	 * @since 4.1.19
+	 */
+	public function send_nps( \WP_REST_Request $request ) {
+		$data = $request->get_params();
+
+		if ( empty( $data['nps'] ) ) {
+			wp_send_json_error(
+				array(
+					'error' => __( 'NPS not specified.', 'redux-framework' ),
+				)
+			);
+		}
+
+		$nps         = (string) sanitize_text_field( $data['nps'] );
+		$the_request = array(
+			'path' => 'nps',
+			'nps'  => $nps,
+		);
+		$response    = $this->api_request( $the_request );
+		if ( false === $response ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Could not record score.', 'redux-framework' ),
+				)
+			);
+		}
+		wp_send_json_success( json_decode( $response ) );
 	}
 
 }

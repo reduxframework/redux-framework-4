@@ -90,7 +90,7 @@ function DependencyFilter(props) {
                     </div>
 
                     <h3>Third-Party Premium</h3>
-                    <ul class="redux-templates-sidebar-dependencies">
+                    <ul className="redux-templates-sidebar-dependencies">
                         {
                             thirdPartyPlugins
                                 .sort((a, b) => {

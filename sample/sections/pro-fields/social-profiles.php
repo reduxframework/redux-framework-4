@@ -10,7 +10,6 @@ defined( 'ABSPATH' ) || exit;
 
 Redux::set_section(
 	$opt_name,
-
 	array(
 		'title'      => esc_html__( 'Social Profiles', 'your-textdomain-here' ),
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extensions/social-profiles" target="_blank">docs.reduxframework.com/extensions/social-profiles</a>',

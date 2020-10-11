@@ -34,26 +34,22 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 		public function save() {
 			$core = $this->core();
 
-			if ( ! isset( $_POST['nonce'] ) || ( isset( $_REQUEST['nonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'redux_ajax_nonce' . $this->args['opt_name'] ) ) ) {
-				echo wp_json_encode(
+			if ( isset( $_REQUEST['nonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'redux_ajax_nonce' . $this->args['opt_name'] ) ) {
+				wp_send_json(
 					array(
 						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ),
 						'action' => '',
 					)
 				);
-
-				die();
 			}
 
 			if ( ! Redux_Helpers::current_user_can( $core->args['page_permissions'] ) ) {
-				echo wp_json_encode(
+				wp_send_json(
 					array(
 						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ),
 						'action' => '',
 					)
 				);
-
-				die();
 			}
 
 			if ( isset( $_POST['opt_name'] ) && ! empty( $_POST['opt_name'] ) && isset( $_POST['data'] ) && ! empty( $_POST['data'] ) ) {
@@ -109,7 +105,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							$return_array = array( 'status' => $e->getMessage() );
 						}
 					} else {
-						echo wp_json_encode(
+						wp_send_json(
 							array(
 								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'redux-framework' ),
 							)
@@ -171,7 +167,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				}
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo wp_json_encode( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
+				wp_send_json( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
 			}
 
 			die();

@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 Redux::setSection(
 	$opt_name,
 	array(
-		'title'      => esc_html__( 'Typography', 'your-textdomain-here' ),
+		'title'      => esc_html__( 'Sidebar Typography', 'your-textdomain-here' ),
 		'id'         => 'pro-typography',
 		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
 		'subsection' => true,
@@ -36,7 +36,7 @@ Redux::setSection(
 					'margin-top'    => '2px',
 					'margin-bottom' => '2px',
 				),
-				'output'            => array( '.site-description, .entry-title' ),
+				'output'            => array( '.content-sidebar' ),
 			),
 		),
 	)

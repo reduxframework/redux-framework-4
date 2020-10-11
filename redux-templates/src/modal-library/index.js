@@ -9,6 +9,7 @@ import WithSidebarLayout from './layout-with-sidebar';
 import CollectionView from './view-collection';
 import SavedView from './view-saved';
 import ImportWizard from '../modal-import-wizard';
+import PromotorScoreModal from '../modal-promotor-score';
 import ErrorNotice from '../components/error-notice';
 import ChallengeFinalTemplate from '~redux-templates/challenge/final-templates';
 import FabWrapper from '../components/fab-wrapper';
@@ -23,6 +24,7 @@ function LibraryModal(props) {
     } = props;
     const [loaded, setLoaded] = useState(false);
     const [escKeyPressed, setEscKeyPressed] = useState(false);
+    const [isPSModalVisible, setPSModalVisible] = useState(false);
 
     let stateLibrary = null;
     useEffect(() => {
@@ -32,6 +34,7 @@ function LibraryModal(props) {
             setLoading(true);
             setLoaded(true);
         }
+        setPSModalVisible(!!redux_templates.nps);
         const handleKeyUp = ({keyCode}) => {
             if (keyCode === 27) {
                 setEscKeyPressed(true);
@@ -84,6 +87,9 @@ function LibraryModal(props) {
             </div>
             {
                 importingTemplate && <ImportWizard startImportTemplate={processImport} />
+            }
+            {
+                isPSModalVisible && <PromotorScoreModal propOnClose={() => setPSModalVisible(false)}/>
             }
             { (challengeFinalStatus !== '') && <ChallengeFinalTemplate finalStatus={challengeFinalStatus} /> }
             { !isChallengeOpen && <FabWrapper /> }

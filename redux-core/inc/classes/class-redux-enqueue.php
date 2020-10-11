@@ -741,8 +741,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			// Shim for extension compatibility.
 			if ( Redux::$extension_compatibility ) {
 				$this->repeater_data = Redux_Functions_Ex::nested_wp_parse_args(
-					$this->localize_data,
-					$core->repeater_data
+					$this->repeater_data,
+					$core->localize_data
 				);
 			}
 

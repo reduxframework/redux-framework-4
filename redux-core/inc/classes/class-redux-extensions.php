@@ -73,6 +73,19 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 
 				$path = untrailingslashit( $path );
 
+				// Backwards compatibility for extensions.
+				$instance_extensions = Redux::get_extensions( $core->args['opt_name'], '' );
+				if ( ! empty( $instance_extensions ) ) {
+					foreach ( $instance_extensions as $name => $extension ) {
+						if ( ! is_subclass_of( $core->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
+							$ext_class                      = get_class( $core->extensions[ $name ] );
+							$new_class_name                 = $ext_class . '_extended';
+							Redux::$extension_compatibility = true;
+							$core->extensions[ $name ]      = Redux_Functions_Ex::extension_compatibility( $core, $extension['path'], $ext_class, $new_class_name, $name );
+						}
+					}
+				}
+
 				Redux::set_extensions( $core->args['opt_name'], $path, true );
 
 				/**
