@@ -729,7 +729,9 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 				foreach ( $keys as $key ) {
 					$plugin_options[ $key ] = $core->options[ $key ];
 				}
-				unset( $plugin_options['redux-no_panel'] );
+				if ( isset( $plugin_options['redux-no_panel'] ) ) {
+					unset( $plugin_options['redux-no_panel'] );
+				}
 			}
 
 			if ( is_array( $this->hidden_perm_fields ) && ! empty( $this->hidden_perm_fields ) ) {
