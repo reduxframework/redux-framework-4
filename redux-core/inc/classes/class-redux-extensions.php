@@ -28,6 +28,8 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 
 		/**
 		 * Class load functions.
+		 *
+		 * @throws ReflectionException
 		 */
 		private function load() {
 			$core = $this->core();
@@ -77,6 +79,26 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 				$instance_extensions = Redux::get_extensions( $core->args['opt_name'], '' );
 				if ( ! empty( $instance_extensions ) ) {
 					foreach ( $instance_extensions as $name => $extension ) {
+						if ( ! isset( $core->extensions[ $name ] ) ) {
+							if ( class_exists(  'ReduxFramework_Extension_' . $name ) ) {
+								$a = new ReflectionClass( 'ReduxFramework_Extension_' . $name );
+								Redux::set_extensions( $core->args['opt_name'], dirname( $a->getFileName() ), true );
+							}
+						}
+						if ( ! isset( $core->extensions[ $name ] ) ) {
+							$msg = '<strong>' . sprintf( esc_html__( 'The `%1$s` extension was not located properly', 'redux-framework' ), $name ) . '</strong>';
+							$data = array(
+								'parent'  => $this->parent,
+								'type'    => 'error',
+								'msg'     => $msg,
+								'id'      => $name . '_notice_',
+								'dismiss' => false,
+							);
+							if ( method_exists( 'Redux_Admin_Notices', 'set_notice' ) ) {
+								Redux_Admin_Notices::set_notice( $data );
+							}
+							continue;
+						}
 						if ( ! is_subclass_of( $core->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
 							$ext_class                      = get_class( $core->extensions[ $name ] );
 							$new_class_name                 = $ext_class . '_extended';
