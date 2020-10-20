@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 		/**
 		 * Class load functions.
 		 *
-		 * @throws ReflectionException
+		 * @throws ReflectionException For fallback.
 		 */
 		private function load() {
 			$core = $this->core();
@@ -80,13 +80,14 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 				if ( ! empty( $instance_extensions ) ) {
 					foreach ( $instance_extensions as $name => $extension ) {
 						if ( ! isset( $core->extensions[ $name ] ) ) {
-							if ( class_exists(  'ReduxFramework_Extension_' . $name ) ) {
+							if ( class_exists( 'ReduxFramework_Extension_' . $name ) ) {
 								$a = new ReflectionClass( 'ReduxFramework_Extension_' . $name );
 								Redux::set_extensions( $core->args['opt_name'], dirname( $a->getFileName() ), true );
 							}
 						}
 						if ( ! isset( $core->extensions[ $name ] ) ) {
-							$msg = '<strong>' . sprintf( esc_html__( 'The `%1$s` extension was not located properly', 'redux-framework' ), $name ) . '</strong>';
+							/* translators: %s is the name of an extension */
+							$msg  = '<strong>' . sprintf( esc_html__( 'The `%s` extension was not located properly', 'redux-framework' ), $name ) . '</strong>';
 							$data = array(
 								'parent'  => $this->parent,
 								'type'    => 'error',

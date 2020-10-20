@@ -347,8 +347,12 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 				case 'menu_locations':
 				case 'menu_location':
-					$results = get_nav_menu_locations();
-					$data    = $this->process_results( $results, '', '', $display_keys, $secondary_key );
+					global $_wp_registered_nav_menus;
+
+					foreach ( $_wp_registered_nav_menus as $k => $v ) {
+						$data[ $k ] = $v;
+					}
+
 					break;
 
 				case 'image_sizes':
