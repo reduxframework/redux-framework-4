@@ -154,6 +154,13 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 
 == Changelog ==
 
+= 4.1.22 =
+* Fixed: Menu locations wp_data object not providing name.
+* Fixed: Another import/export edge case.
+* Fixed: Fix setField API value.
+* Fixed: Older extension compatibility.
+* Release date: Oct 20, 2020
+
 = 4.1.21 =
 * Fixed: Fixed connection banner to hide even if JS is broken by jQuery migrate issue (WP 5.5).
 * Fixed: Resolved all remaining legacy extension compatibility issues.
