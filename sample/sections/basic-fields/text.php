@@ -40,14 +40,11 @@ Redux::set_section(
 			array(
 				'id'          => 'text-placeholder',
 				'type'        => 'text',
-				'title'       => esc_html__( 'Text Field', 'your-textdomain-here' ),
+				'title'       => esc_html__( 'Text Field w/ placeholder using custom data object.', 'your-textdomain-here' ),
 				'subtitle'    => esc_html__( 'Subtitle', 'your-textdomain-here' ),
 				'desc'        => esc_html__( 'Field Description', 'your-textdomain-here' ),
 				'placeholder' => 'Placeholder Text',
-				'data' => array(
-					'box1',
-					'box2',
-				)
+				'data'        => array( 'box1', 'box2' ),
 			),
 		),
 	)
