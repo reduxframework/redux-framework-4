@@ -49,6 +49,11 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		public function get( $type = false, $args = array(), $current_value = '', $ajax = false ) {
 			$opt_name = $this->opt_name;
 
+			// We don't want to run this, it's not a string value. Send it back!
+			if ( is_array( $type ) ) {
+				return $type;
+			}
+
 			/**
 			 * Filter 'redux/options/{opt_name}/pre_data/{type}'
 			 *
