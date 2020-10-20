@@ -44,6 +44,10 @@ Redux::set_section(
 				'subtitle'    => esc_html__( 'Subtitle', 'your-textdomain-here' ),
 				'desc'        => esc_html__( 'Field Description', 'your-textdomain-here' ),
 				'placeholder' => 'Placeholder Text',
+				'data' => array(
+					'box1',
+					'box2',
+				)
 			),
 		),
 	)

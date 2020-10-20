@@ -69,12 +69,19 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 				$this->field['attributes']['qtip_text']  = isset( $this->field['text_hint']['content'] ) ? 'qtip-content="' . $this->field['text_hint']['content'] . '" ' : '';
 			}
 
+			if ( ! empty( $this->field['data'] ) && is_array( $this->field['data'] ) ) {
+				$this->field['options'] = $this->field['data'];
+				unset( $this->field['data'] );
+			}
+
 			if ( ! empty( $this->field['data'] ) && empty( $this->field['options'] ) ) {
 				if ( empty( $this->field['args'] ) ) {
 					$this->field['args'] = array();
 				}
-				$this->field['options']               = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value );
-				$this->field['attributes']['class'][] = 'hasOptions';
+				if ( is_array( $this->field['options'] ) && ! is_array( min( $this->field['options'] ) ) ) {
+					$this->field['options']               = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value );
+					$this->field['attributes']['class'][] = 'hasOptions';
+				}
 			}
 
 			if ( empty( $this->value ) && ! empty( $this->field['options'] ) ) {

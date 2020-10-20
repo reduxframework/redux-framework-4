@@ -5,6 +5,7 @@
 * Fixed: Another import/export edge case.
 * Fixed: Fix setField API value.
 * Fixed: Older extension compatibility.
+* Fixed: Text field error with data/options args not displaying properly.
 * Release date: Oct 20, 2020
 
 ## 4.1.21
