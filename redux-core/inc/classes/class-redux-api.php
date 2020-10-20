@@ -22,6 +22,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 	 */
 	class Redux {
 
+
 		/**
 		 *  Option fields.
 		 *
@@ -117,7 +118,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Code to run at creation in instance.
 		 */
 		public static function load() {
-			add_action( 'after_setup_theme', array( 'Redux', 'create_redux' ) );
+			 add_action( 'after_setup_theme', array( 'Redux', 'create_redux' ) );
 			add_action( 'init', array( 'Redux', 'create_redux' ) );
 			add_action( 'switch_theme', array( 'Redux', 'create_redux' ) );
 
@@ -231,11 +232,18 @@ if ( ! class_exists( 'Redux', false ) ) {
 					if ( isset( $extension['field'] ) ) {
 						require_once $extension['field'];
 					}
+
 					if ( ! isset( $redux_framework->extensions[ $name ] ) ) {
 						$field_classes = array( $extension['class'], $old_class );
 						$ext_class     = Redux_Functions::class_exists_ex( $field_classes );
 						if ( false !== $ext_class ) {
 							$redux_framework->extensions[ $name ] = new $ext_class( $redux_framework );
+							// Backwards compatibility for extensions.
+							if ( ! is_subclass_of( $redux_framework->extensions[ $name ], 'Redux_Extension_Abstract' ) ) {
+								$new_class_name                       = $ext_class . '_extended';
+								self::$extension_compatibility        = true;
+								$redux_framework->extensions[ $name ] = Redux_Functions_Ex::extension_compatibility( $redux_framework, $extension['path'], $ext_class, $new_class_name, $name );
+							}
 						} elseif ( is_admin() && true === $redux_framework->args['dev_mode'] ) {
 							echo '<div id="message" class="error"><p>No class named <strong>' . esc_html( $extension['class'] ) . '</strong> exists. Please verify your extension path.</p></div>';
 						}
@@ -381,7 +389,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 *
 		 * @deprecated No longer using camelCase naming convention.
 		 */
-		public static function createRedux() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+		public static function createRedux() {       // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
 			self::create_redux();
 		}
 
@@ -443,7 +451,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 				$p                 = $section['priority'];
 
 				while ( isset( $sections[ $p ] ) ) {
-					$p ++;
+					$p++;
 				}
 
 				$sections[ $p ] = $section;
@@ -471,7 +479,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 						$p = esc_html( $field['priority'] );
 
 						while ( isset( $fields[ $p ] ) ) {
-							echo intval( $p ++ );
+							echo intval( $p++ );
 						}
 
 						$fields[ $p ] = $field;
@@ -620,7 +628,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					foreach ( self::$sections[ $opt_name ] as $key => $section ) {
 						if ( $key === $id ) {
 							$priority = $section['priority'];
-							self::$priority[ $opt_name ]['sections'] --;
+							self::$priority[ $opt_name ]['sections']--;
 							unset( self::$sections[ $opt_name ][ $id ] );
 							continue;
 						}
@@ -692,7 +700,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 					while ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
 						$section['id'] = $orig . '_' . $i;
-						$i ++;
+						$i++;
 					}
 				} elseif ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) && $replace ) {
 					// If replace is set, let's update the default values with these ones!
@@ -885,7 +893,8 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $field      Field data.
 		 */
 		public static function set_field( $opt_name = '', $section_id = '', $field = array() ) {
-			if ( empty( $field ) && empty( $section_id ) ) {
+
+			if ( ! is_array( $field ) || empty( $field ) || $opt_name === '' || $section_id === '' ) {
 				return;
 			}
 
@@ -902,24 +911,14 @@ if ( ! class_exists( 'Redux', false ) ) {
 				}
 			}
 
-			if ( empty( $field ) ) {
-				return;
-			}
+			$field['section_id'] = $section_id;
 
-			if ( '' !== $opt_name && '' !== $section_id && is_array( $field ) && ! empty( $field ) ) {
-				if ( '' !== $section_id ) {
-					$field['section_id'] = $section_id;
-				}
-				if ( ! isset( $field['section_id'] ) || ( isset( $field['section_id'] ) && ! empty( $field['section_id'] ) ) ) {
-					if ( ! isset( $field['priority'] ) ) {
-						$field['priority'] = self::get_priority( $opt_name, 'fields' );
-					}
-
-					if ( isset( $field['id'] ) ) {
-						self::$fields[ $opt_name ][ $field['id'] ] = $field;
-					}
-				}
+			if ( ! isset( $field['priority'] ) ) {
+				$field['priority'] = self::get_priority( $opt_name, 'fields' );
 			}
+			$field['id'] = isset( $field['id'] ) ? $field['id'] : "{$opt_name}_{$section_id}_{$field['type']}_" . rand( 1, 9999 );
+
+			self::$fields[ $opt_name ][ $field['id'] ] = $field;
 		}
 
 		/**
@@ -930,7 +929,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $fields     Array of field arrays.
 		 */
 		public static function set_fields( $opt_name = '', $section_id = '', $fields = array() ) {
-			if ( empty( $fields ) ) {
+			if ( ! is_array( $fields ) || empty( $fields ) || $opt_name === '' || $section_id === '' ) {
 				return;
 			}
 			self::check_opt_name( $opt_name );
@@ -938,9 +937,9 @@ if ( ! class_exists( 'Redux', false ) ) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			Redux_Functions_Ex::record_caller( $opt_name );
 
-			if ( '' !== $opt_name && '' !== $section_id && is_array( $fields ) && ! empty( $fields ) ) {
-				foreach ( $fields as $field ) {
-					self::set_field( $opt_name, $field, $section_id );
+			foreach ( $fields as $field ) {
+				if ( is_array( $field ) ) {
+					self::set_field( $opt_name, $section_id, $field );
 				}
 			}
 		}
@@ -980,7 +979,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					foreach ( self::$fields[ $opt_name ] as $key => $field ) {
 						if ( $key === $id ) {
 							$priority = $field['priority'];
-							self::$priority[ $opt_name ]['fields'] --;
+							self::$priority[ $opt_name ]['fields']--;
 							unset( self::$fields[ $opt_name ][ $id ] );
 							continue;
 						}
@@ -1120,7 +1119,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 			Redux_Functions_Ex::record_caller( $opt_name );
 
 			self::$args[ $opt_name ]['developer'] = $arg;
-
 		}
 
 		/**
@@ -1684,7 +1682,6 @@ if ( ! class_exists( 'Redux', false ) ) {
 						}
 					}
 					$instance_extensions[ $extension ] = $the_data;
-
 				}
 
 				return $instance_extensions;
@@ -1697,7 +1694,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
-			add_action( 'ReduxFrameworkPlugin_admin_notice', 'Redux::remove_demo' );
+			 add_action( 'ReduxFrameworkPlugin_admin_notice', 'Redux::remove_demo' );
 			add_action( 'redux_framework_plugin_admin_notice', 'Redux::remove_demo' );
 		}
 
