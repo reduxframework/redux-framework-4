@@ -66,10 +66,7 @@
 							}
 
 							if ( undefined !== presets && null !== presets ) {
-								answer = confirm( redux.optName.args.preset_confirm );
-
-								if ( answer ) {
-									el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find( 'input[type="radio"]' ).attr( 'checked', true );
+								el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find( 'input[type="radio"]' ).attr( 'checked', true );
 									window.onbeforeunload = null;
 
 									importCodeValue = $( 'textarea[name="' + redux.optName.args.opt_name + '[import_code]"' );
@@ -85,7 +82,6 @@
 									} else {
 										$( '#redux-import' ).click();
 									}
-								}
 							}
 
 							return false;
