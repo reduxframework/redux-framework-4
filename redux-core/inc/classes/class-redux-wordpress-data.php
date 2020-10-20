@@ -348,11 +348,12 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'menu_locations':
 				case 'menu_location':
 					global $_wp_registered_nav_menus;
-
 					foreach ( $_wp_registered_nav_menus as $k => $v ) {
 						$data[ $k ] = $v;
+						if ( ! has_nav_menu( $k ) ) {
+							$data[ $k ] .= ' ' . __( '[unassigned]', 'redux-framework' );
+						}
 					}
-
 					break;
 
 				case 'image_sizes':
