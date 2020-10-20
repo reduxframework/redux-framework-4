@@ -118,7 +118,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Code to run at creation in instance.
 		 */
 		public static function load() {
-			 add_action( 'after_setup_theme', array( 'Redux', 'create_redux' ) );
+			add_action( 'after_setup_theme', array( 'Redux', 'create_redux' ) );
 			add_action( 'init', array( 'Redux', 'create_redux' ) );
 			add_action( 'switch_theme', array( 'Redux', 'create_redux' ) );
 
@@ -894,7 +894,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 */
 		public static function set_field( $opt_name = '', $section_id = '', $field = array() ) {
 
-			if ( ! is_array( $field ) || empty( $field ) || $opt_name === '' || $section_id === '' ) {
+			if ( ! is_array( $field ) || empty( $field ) || '' === $opt_name || '' === $section_id ) {
 				return;
 			}
 
@@ -916,7 +916,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 			if ( ! isset( $field['priority'] ) ) {
 				$field['priority'] = self::get_priority( $opt_name, 'fields' );
 			}
-			$field['id'] = isset( $field['id'] ) ? $field['id'] : "{$opt_name}_{$section_id}_{$field['type']}_" . rand( 1, 9999 );
+			$field['id'] = isset( $field['id'] ) ? $field['id'] : "{$opt_name}_{$section_id}_{$field['type']}_" . wp_rand( 1, 9999 );
 
 			self::$fields[ $opt_name ][ $field['id'] ] = $field;
 		}
@@ -929,7 +929,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * @param array  $fields     Array of field arrays.
 		 */
 		public static function set_fields( $opt_name = '', $section_id = '', $fields = array() ) {
-			if ( ! is_array( $fields ) || empty( $fields ) || $opt_name === '' || $section_id === '' ) {
+			if ( ! is_array( $fields ) || empty( $fields ) || '' === $opt_name || '' === $section_id ) {
 				return;
 			}
 			self::check_opt_name( $opt_name );
@@ -1694,7 +1694,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 		 * Method to disables Redux demo mode popup.
 		 */
 		public static function disable_demo() {
-			 add_action( 'ReduxFrameworkPlugin_admin_notice', 'Redux::remove_demo' );
+			add_action( 'ReduxFrameworkPlugin_admin_notice', 'Redux::remove_demo' );
 			add_action( 'redux_framework_plugin_admin_notice', 'Redux::remove_demo' );
 		}
 
