@@ -109,7 +109,7 @@
 								$('#redux_top_save').click();
 							}
 							setTimeout(() => {
-								location.href = $(this).attr('href');
+								window.open($(this).attr('href'));
 							}, 2000)
 						})
 						$(this).find('#redux-export-code-copy').click(
