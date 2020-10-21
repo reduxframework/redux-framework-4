@@ -138,7 +138,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			</div>
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
-				<a href="javascript:void(0);" id="redux-export-code-copy" class="button-secondary">
+				<a data-secret="<?php echo $secret; ?>" id="redux-export-code-copy" class="button-secondary">
 					<?php esc_html_e( 'Copy Data', 'redux-framework' ); ?>
 				</a>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
