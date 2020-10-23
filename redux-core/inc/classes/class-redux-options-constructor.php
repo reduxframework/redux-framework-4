@@ -765,7 +765,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 			$core->transients['last_import']    = $time;
 			$core->transients['run_compiler']   = 1;
 
-			if ( is_array( $imported_options ) && ! empty( $imported_options ) && isset( $imported_options['redux-backup'] ) && (1 === $imported_options['redux-backup'] || '1' === $imported_options['redux-backup'] )) {
+			if ( is_array( $imported_options ) && ! empty( $imported_options ) && isset( $imported_options['redux-backup'] ) && ( 1 === $imported_options['redux-backup'] || '1' === $imported_options['redux-backup'] ) ) {
 				$core->transients['changed_values'] = array();
 				foreach ( $plugin_options as $key => $value ) {
 					if ( isset( $imported_options[ $key ] ) && $value !== $imported_options[ $key ] ) {

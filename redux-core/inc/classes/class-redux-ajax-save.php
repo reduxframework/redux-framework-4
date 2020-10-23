@@ -53,7 +53,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				);
 				die();
 			}
-			
+
 			if ( isset( $_POST['opt_name'] ) && ! empty( $_POST['opt_name'] ) && isset( $_POST['data'] ) && ! empty( $_POST['data'] ) ) {
 				$redux = Redux::instance( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
 
@@ -70,7 +70,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							if ( isset( $redux->validation_ran ) ) {
 								unset( $redux->validation_ran );
 							}
-							
+
 							$redux->options_class->set( $redux->options_class->validate_options( $values ) );
 
 							$do_reload = false;

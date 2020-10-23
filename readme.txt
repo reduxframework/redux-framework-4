@@ -160,7 +160,8 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Fix setField API value.
 * Fixed: Older extension compatibility.
 * Fixed: Text field error with data/options args not displaying properly.
-* Release date: Oct 20, 2020
+* Fixed: Import/Export now properly respects order of objects. Now using PHP over JS json_encode.
+* Release date: Oct 22, 2020
 
 = 4.1.21 =
 * Fixed: Fixed connection banner to hide even if JS is broken by jQuery migrate issue (WP 5.5).
