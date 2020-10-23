@@ -161,7 +161,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 * Fixed: Older extension compatibility.
 * Fixed: Text field error with data/options args not displaying properly.
 * Fixed: Import/Export now properly respects order of objects. Now using PHP over JS json_encode.
-* Release date: Oct 22, 2020
+* Release date: Oct 23, 2020
 
 = 4.1.21 =
 * Fixed: Fixed connection banner to hide even if JS is broken by jQuery migrate issue (WP 5.5).
