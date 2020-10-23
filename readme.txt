@@ -155,7 +155,7 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 == Changelog ==
 
 = 4.1.22 =
-* Fixed: Menu locations WordPres data object not providing name.
+* Fixed: Menu locations WordPress data object not providing name.
 * Added: Undefined if menu location is not assigned to a menu.
 * Fixed: Another import/export edge case.
 * Fixed: Fix setField API value.
