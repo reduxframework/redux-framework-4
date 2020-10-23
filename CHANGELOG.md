@@ -1,7 +1,8 @@
 # Redux Changelog
 
 ## 4.1.22
-* Fixed: Menu locations wp_data object not providing name.
+* Fixed: Menu locations WordPres data object not providing name.
+* Added: Undefined if menu location is not assigned to a menu.
 * Fixed: Another import/export edge case.
 * Fixed: Fix setField API value.
 * Fixed: Older extension compatibility.
