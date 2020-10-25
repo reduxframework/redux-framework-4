@@ -138,15 +138,10 @@ class Init {
 			'supported_plugins' => array(), // Load the supported plugins.
 			'tos'               => \Redux_Connection_Banner::tos_blurb( 'import_wizard' ),
 		);
-
 		if ( ! $global_vars['mokama'] ) {
 			// phpcs:disable Squiz.PHP.CommentedOutCode
 			// delete_user_meta( get_current_user_id(), '_redux_templates_counts'); // To test left.
-			if ( ! \Redux_Functions_Ex::activated() ) {
-				$global_vars['left'] = ReduxTemplates\Init::left( get_current_user_id() );
-			} else {
-				$global_vars['left'] = 999;
-			}
+			$global_vars['left'] = ReduxTemplates\Init::left( get_current_user_id() );
 
 			// phpcs:ignore
 			// delete_user_meta( get_current_user_id(), '_redux_welcome_guide' ); // For testing.

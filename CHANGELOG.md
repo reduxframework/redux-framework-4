@@ -1,5 +1,10 @@
 # Redux Changelog
 
+## 4.1.23
+* Fixed: Massive speed improvement to the library.
+* Fixed: Pro template count error if previously activated and Redux Pro not enabled. 
+* Release date: Oct 24, 2020
+
 ## 4.1.22
 * Fixed: Menu locations WordPress data object not providing name.
 * Added: Undefined if menu location is not assigned to a menu.

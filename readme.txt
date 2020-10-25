@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 5.5
-Stable tag: 4.1.22
+Stable tag: 4.1.23
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +153,11 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+== 4.1.23 ==
+* Fixed: Massive speed improvement to the library.
+* Fixed: Pro template count error if previously activated and Redux Pro not enabled.
+* Release date: Oct 24, 2020
 
 = 4.1.22 =
 * Fixed: Menu locations WordPress data object not providing name.

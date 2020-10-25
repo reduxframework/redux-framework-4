@@ -347,7 +347,7 @@ class Api {
 			$data = json_decode( ReduxTemplates\Init::get_local_file_contents( $test_path ), true );
 		} else {
 			$parameters['no_cache'] = 1;
-			$data                   = $this->api_cache_fetch( $parameters, $config, 'library.json' );
+			$data                   = $this->api_cache_fetch( $parameters, $config, 'library/' );
 		}
 
 		if ( isset( $data['plugins'] ) ) {
