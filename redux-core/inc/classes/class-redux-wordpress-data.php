@@ -474,10 +474,9 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					break;
 
 				case 'callback':
-					if ( ! is_array( $args ) ) {
-						$args = array( $args );
+					if ( ! empty( $args ) ) {
+						$data = call_user_func( $args, $current_value );
 					}
-					$data = call_user_func( $args[0], $current_value );
 					break;
 			}
 
