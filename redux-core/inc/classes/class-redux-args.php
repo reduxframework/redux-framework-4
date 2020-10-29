@@ -199,6 +199,10 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 			$args = $this->filters( $args );
 
+			if ( ! function_exists( 'wp_rand' ) ) {
+				require_once ABSPATH . '/wp-includes/pluggable.php';
+			}
+
 			$this->parent->core_instance = chr( 64 + wp_rand( 1, 26 ) ) . time() . '_' . wp_rand( 0, 1000000 );
 			$this->parent->core_thread   = chr( 64 + wp_rand( 1, 26 ) ) . time() . '_' . wp_rand( 0, 1000000 );
 
