@@ -89,6 +89,14 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					class="button-secondary">
 					<?php esc_html_e( 'Import from URL', 'redux-framework' ); ?>
 				</a>
+
+				<a
+					href="#"
+					id="redux-import-upload"
+					class="button-secondary">
+					<?php esc_html_e( 'Upload file', 'redux-framework' ); ?>
+				</a>
+				<input type="file" id="redux-import-upload-file" multiple size="50" style='display:none;'>
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">
@@ -110,7 +118,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					class="large-text no-update"
 					id="import-link-value"
 					name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[import_link]"
-					rows="2" />
+					rows="2"/>
 			</div>
 			<p id="redux-import-action">
 				<input
@@ -138,19 +146,18 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			</div>
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
-				<button id="redux-export-code-copy" class="button-secondary" data-secret="<?php echo esc_attr( $secret ); ?>" data-copy="<?php esc_attr_e( 'Copy Data', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'Data Copied!', 'redux-framework' ); ?>">
+			<button id="redux-export-code-copy" class="button-secondary" data-secret="<?php echo esc_attr( $secret ); ?>" data-copy="<?php esc_attr_e( 'Copy Data', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'Data Copied!', 'redux-framework' ); ?>">	
 					<?php esc_html_e( 'Copy Data', 'redux-framework' ); ?>
-				</button>
+			</button>	
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
-					<?php esc_html_e( 'Export File', 'redux-framework' ); ?>
+				<?php esc_html_e( 'Export File', 'redux-framework' ); ?>	
 				</a>
-				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary" data-copy="<?php esc_attr_e( 'Copy Export URL', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'URL Copied!', 'redux-framework' ); ?>" data-url="<?php echo esc_url( $link ); ?>">
+				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary" data-copy="<?php esc_attr_e( 'Copy Export URL', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'URL Copied!', 'redux-framework' ); ?>" data-url="<?php echo esc_url( $link ); ?>">	
 					<?php esc_html_e( 'Copy Export URL', 'redux-framework' ); ?>
 				</a>
 			</p>
 			<p></p>
 			<textarea class="large-text no-update" id="redux-export-code" rows="1"></textarea>
-
 			<?php
 		}
 
