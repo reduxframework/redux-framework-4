@@ -217,7 +217,7 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 *
 		 * @return string
 		 */
-		function is_hex( $hex_code = '' ) {
+		public static function is_hex( $hex_code = '' ) {
 			return @preg_match( "/^[a-f0-9]{2,}$/i", strtolower( $hex_code ) ) && ! ( strlen( $hex_code ) & 1 );
 		}
 
