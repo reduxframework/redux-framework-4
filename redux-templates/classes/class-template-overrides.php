@@ -138,5 +138,20 @@ EOD;
 			}
 EOD;
 	}
+        
+        
+	/**
+	 * GeneratePress theme overrides.
+	 *
+	 * @since 3.0.2
+	 * @return string
+	 */
+	public static function generatepress() {
+		return <<<'EOD'
+			.site-content {
+                            display: block!important;
+                        }
+EOD;
+	}
 
 }
