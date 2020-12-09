@@ -202,12 +202,23 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 			for ( $i = 0; $i <= 5; $i ++ ) {
 				$default      = ( 0 === $i ) ? 'F' : ( $substr[ $i - 1 ] );
 				$substr[ $i ] = substr( $color, $i, 1 );
-				$substr[ $i ] = ( false === $substr[ $i ] || ! ctype_xdigit( $substr[ $i ] ) ) ? $default : $substr[ $i ];
+				$substr[ $i ] = ( false === $substr[ $i ] || ! self::is_hex( $substr[ $i ] ) ) ? $default : $substr[ $i ];
 			}
 
 			$hex = implode( '', $substr );
 
 			return ( ! $hash ) ? $hex : '#' . $hex;
+		}
+
+		/**
+		 * Checks if string is a hex.
+		 *
+		 * @param string $hex_code Hex string.
+		 *
+		 * @return string
+		 */
+		function is_hex( $hex_code = '' ) {
+			return @preg_match( "/^[a-f0-9]{2,}$/i", strtolower( $hex_code ) ) && ! ( strlen( $hex_code ) & 1 );
 		}
 
 		/**
