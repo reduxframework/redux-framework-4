@@ -78,7 +78,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 				if ( empty( $this->field['args'] ) ) {
 					$this->field['args'] = array();
 				}
-				if ( is_array( $this->field['options'] ) && ! is_array( min( $this->field['options'] ) ) ) {
+				if ( isset( $this->field['options'] ) && is_array( $this->field['options'] ) && ! is_array( min( $this->field['options'] ) ) ) {
 					$this->field['options']               = $this->parent->wordpress_data->get( $this->field['data'], $this->field['args'], $this->value );
 					$this->field['attributes']['class'][] = 'hasOptions';
 				}
