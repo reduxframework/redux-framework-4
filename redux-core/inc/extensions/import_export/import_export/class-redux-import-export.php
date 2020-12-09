@@ -23,8 +23,8 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		/**
 		 * Redux_Import_Export constructor.
 		 *
-		 * @param array  $field Field array.
-		 * @param string $value Value array.
+		 * @param array  $field  Field array.
+		 * @param string $value  Value array.
 		 * @param object $parent ReduxFramework object.
 		 *
 		 * @throws ReflectionException .
@@ -55,9 +55,9 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *
+		 * @return      void
 		 * @since       1.0.0
 		 * @access      public
-		 * @return      void
 		 */
 		public function render() {
 			$secret = md5( md5( Redux_Functions_Ex::hash_key() ) . '-' . $this->parent->args['opt_name'] );
@@ -80,7 +80,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					href="javascript:void(0);"
 					id="redux-import-code-button"
 					class="button-secondary">
-					<?php esc_html_e( 'Import from File', 'redux-framework' ); ?>
+					<?php esc_html_e( 'Import from Clipboard', 'redux-framework' ); ?>
 				</a>
 
 				<a
@@ -100,9 +100,8 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">
-
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Input your backup file below and hit Import to restore your sites options from a backup.', 'redux-framework' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'redux-framework' ) ) ); ?>
 				</p>
 				<textarea
 					id="import-code-value"
@@ -146,13 +145,19 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			</div>
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
-			<button id="redux-export-code-copy" class="button-secondary" data-secret="<?php echo esc_attr( $secret ); ?>" data-copy="<?php esc_attr_e( 'Copy Data', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'Data Copied!', 'redux-framework' ); ?>">	
-					<?php esc_html_e( 'Copy Data', 'redux-framework' ); ?>
-			</button>	
+				<button id="redux-export-code-copy" class="button-secondary"
+				        data-secret="<?php echo esc_attr( $secret ); ?>"
+				        data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'redux-framework' ); ?>"
+				        data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>">
+					<?php esc_html_e( 'Copy to Clipboard', 'redux-framework' ); ?>
+				</button>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
-				<?php esc_html_e( 'Export File', 'redux-framework' ); ?>	
+					<?php esc_html_e( 'Export File', 'redux-framework' ); ?>
 				</a>
-				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary" data-copy="<?php esc_attr_e( 'Copy Export URL', 'redux-framework' ); ?>" data-copied="<?php esc_attr_e( 'URL Copied!', 'redux-framework' ); ?>" data-url="<?php echo esc_url( $link ); ?>">	
+				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary"
+				   data-copy="<?php esc_attr_e( 'Copy Export URL', 'redux-framework' ); ?>"
+				   data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>"
+				   data-url="<?php echo esc_url( $link ); ?>">
 					<?php esc_html_e( 'Copy Export URL', 'redux-framework' ); ?>
 				</a>
 			</p>
@@ -165,26 +170,17 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * Enqueue Function.
 		 * If this field requires any scripts, or css define this function and register/enqueue the scripts/css
 		 *
+		 * @return      void
 		 * @since       1.0.0
 		 * @access      public
-		 * @return      void
 		 */
 		public function enqueue() {
-			wp_enqueue_script(
-				'redux-extension-import-export-js',
-				$this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js',
-				array( 'jquery', 'redux-js' ),
-				Redux_Extension_Import_Export::$version,
-				true
-			);
+			wp_enqueue_script( 'redux-extension-import-export-js', $this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js', array(
+					'jquery',
+					'redux-js',
+				), Redux_Extension_Import_Export::$version, true );
 
-			wp_enqueue_style(
-				'redux-import-export',
-				$this->url . 'redux-import-export.css',
-				array(),
-				Redux_Extension_Import_Export::$version,
-				'all'
-			);
+			wp_enqueue_style( 'redux-import-export', $this->url . 'redux-import-export.css', array(), Redux_Extension_Import_Export::$version, 'all' );
 		}
 	}
 }
