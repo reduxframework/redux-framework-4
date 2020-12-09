@@ -330,9 +330,9 @@ class Api {
 		$parameters = $request->get_params();
 		$attributes = $request->get_attributes();
 
-		if ( isset( $attributes['args']['route'] ) && ! empty( $attributes['args']['route'] ) ) {
-			$type = str_replace( '/', '', $attributes['args']['route'] );
-		}
+		$type = $request->get_route();
+		$type = explode( '/', $type );
+		$type = end( $type );
 
 		if ( empty( $type ) ) {
 			wp_send_json_error( 'No type specified.' );
@@ -867,13 +867,10 @@ class Api {
 			}
 
 			foreach ( $methods as $method ) {
-
 				$args = array(
 					'methods'  => $method,
 					'callback' => array( $this, $data['callback'] ),
-					'args'     => array(
-						'route' => $route,
-					),
+					'args'     => array(),
 				);
 				if ( ! $fs->file_exists( trailingslashit( dirname( REDUX_PLUGIN_FILE ) ) . 'local_developer.txt' ) ) {
 					$args['permission_callback'] = function () {
