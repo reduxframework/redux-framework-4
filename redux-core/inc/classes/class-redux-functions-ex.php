@@ -203,6 +203,22 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		}
 
 		/**
+		 * Is file in theme.
+		 *
+		 * @param     string $file File to check.
+		 *
+		 * @return bool
+		 */
+		public static function file_in_theme( $file ) {
+			if ( strpos( dirname( $file ), get_template_directory() ) !== false ) {
+				return true;
+			} elseif ( strpos( dirname( $file ), get_stylesheet_directory() ) !== false ) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
 		 * Is Redux embedded inside a plugin.
 		 *
 		 * @param     string $file File to check.
@@ -212,6 +228,10 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		public static function is_inside_plugin( $file ) {
 			$file            = self::wp_normalize_path( $file );
 			$plugin_basename = self::wp_normalize_path( plugin_basename( $file ) );
+
+			if ( self::file_in_theme( $file ) ) {
+				return false;
+			}
 
 			if ( $plugin_basename !== $file ) {
 				$slug = explode( '/', $plugin_basename );
@@ -239,6 +259,11 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return array|bool
 		 */
 		public static function is_inside_theme( $file = '' ) {
+
+			if ( ! self::file_in_theme( $file ) ) {
+				return false;
+			}
+
 			$theme_paths = array(
 				self::wp_normalize_path( get_template_directory() )   => get_template_directory_uri(),
 				// parent.
