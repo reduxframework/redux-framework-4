@@ -13,6 +13,9 @@
             }
         }
     }
+    .redux-section.open .redux-group-tab {
+        display: block !important;
+    }
 
     .redux-section {
         p.customize-section-description {
