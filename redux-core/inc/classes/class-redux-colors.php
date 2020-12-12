@@ -218,7 +218,8 @@ if ( ! class_exists( 'Redux_Colors', false ) ) {
 		 * @return string
 		 */
 		public static function is_hex( $hex_code = '' ) {
-			return @preg_match( "/^[a-f0-9]{2,}$/i", strtolower( $hex_code ) ) && ! ( strlen( $hex_code ) & 1 );
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			return @preg_match( '/^[a-f0-9]{2,}$/i', strtolower( $hex_code ) ) && ! ( strlen( $hex_code ) & 1 );
 		}
 
 		/**

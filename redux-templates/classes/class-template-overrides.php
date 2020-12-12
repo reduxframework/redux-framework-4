@@ -1,8 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName
+
 /**
  * CSS overrides for block plugins.
  *
- * @since 4.0.0
+ * @since   4.0.0
  * @package Redux Framework
  */
 
@@ -24,27 +25,29 @@ class Template_Overrides {
 	 *
 	 * @since 4.0.0
 	 */
-	public function __construct() { }
+	public function __construct() {
+	}
 
 	/**
 	 * Detects if the current page has blocks or not.
 	 *
-	 * @since 4.0.0
 	 * @return bool
+	 * @since 4.0.0
 	 */
 	public static function is_gutenberg() {
 		global $post;
 		if ( function_exists( 'has_blocks' ) && has_blocks( $post->ID ) ) {
 			return true;
 		}
+
 		return false;
 	}
 
 	/**
 	 * Detects the current theme and provides overrides.
 	 *
-	 * @since 4.0.0
 	 * @return string
+	 * @since 4.0.0
 	 */
 	public static function get_overrides() {
 
@@ -94,8 +97,8 @@ EOD;
 	/**
 	 * Consulting theme overrides.
 	 *
-	 * @since 4.0.0
 	 * @return string
+	 * @since 4.0.0
 	 */
 	public static function consulting() {
 		return <<<'EOD'
@@ -108,8 +111,8 @@ EOD;
 	/**
 	 * Avada theme overrides.
 	 *
-	 * @since 4.0.0
 	 * @return string
+	 * @since 4.0.0
 	 */
 	public static function avada() {
 		return <<<'EOD'
@@ -122,8 +125,8 @@ EOD;
 	/**
 	 * GeneratePress theme overrides.
 	 *
-	 * @since 4.1.24
 	 * @return string
+	 * @since 4.1.24
 	 */
 	public static function generatepress() {
 		return <<<'EOD'
@@ -136,8 +139,8 @@ EOD;
 	/**
 	 * TwentyTwenty theme overrides.
 	 *
-	 * @since 4.0.0
 	 * @return string
+	 * @since 4.0.0
 	 */
 	public static function twentytwenty() {
 		return <<<'EOD'

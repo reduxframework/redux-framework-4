@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable WordPress.WhiteSpace.PrecisionAlignment.Found
 /**
  * Import & Export for Option Panel
  *
@@ -146,9 +146,9 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
 				<button id="redux-export-code-copy" class="button-secondary"
-				        data-secret="<?php echo esc_attr( $secret ); ?>"
-				        data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'redux-framework' ); ?>"
-				        data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>">
+						data-secret="<?php echo esc_attr( $secret ); ?>"
+						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'redux-framework' ); ?>"
+						data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>">
 					<?php esc_html_e( 'Copy to Clipboard', 'redux-framework' ); ?>
 				</button>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
@@ -175,10 +175,16 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * @access      public
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'redux-extension-import-export-js', $this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js', array(
+			wp_enqueue_script(
+				'redux-extension-import-export-js',
+				$this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js',
+				array(
 					'jquery',
 					'redux-js',
-				), Redux_Extension_Import_Export::$version, true );
+				),
+				Redux_Extension_Import_Export::$version,
+				true
+			);
 
 			wp_enqueue_style( 'redux-import-export', $this->url . 'redux-import-export.css', array(), Redux_Extension_Import_Export::$version, 'all' );
 		}
