@@ -22,7 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php endif; ?>
 	<?php
 		wp_head();
-		echo '<style type="text/css" id="redux-template-overrides">' . esc_html( ReduxTemplates\Template_Overrides::get_overrides() ) . '</style>';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<style type="text/css" id="redux-template-overrides">' . ReduxTemplates\Template_Overrides::get_overrides() . '</style>';
 	?>
 </head>
 <body <?php echo body_class(); ?>>

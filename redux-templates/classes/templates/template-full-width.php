@@ -10,7 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 get_header();
-echo '<style type="text/css" id="redux-template-overrides">' . esc_html( ReduxTemplates\Template_Overrides::get_overrides() ) . '</style>';
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo '<style type="text/css" id="redux-template-overrides">' . ReduxTemplates\Template_Overrides::get_overrides() . '</style>';
 
 while ( have_posts() ) :
 	the_post();
