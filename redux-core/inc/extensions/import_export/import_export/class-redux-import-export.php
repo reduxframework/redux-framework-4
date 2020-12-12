@@ -94,9 +94,9 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					href="#"
 					id="redux-import-upload"
 					class="button-secondary">
-					<?php esc_html_e( 'Upload file', 'redux-framework' ); ?>
+					<?php esc_html_e( 'Upload file', 'redux-framework' ); ?><span></span>
 				</a>
-				<input type="file" id="redux-import-upload-file" multiple size="50" style='display:none;'>
+				<input type="file" id="redux-import-upload-file" size="50">
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">

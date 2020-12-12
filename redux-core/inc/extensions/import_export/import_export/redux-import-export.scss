@@ -5,12 +5,16 @@
     }
 
     #redux-export-code,
-    #redux-export-link-value {
+    #redux-export-link-value,
+    #redux-import-upload-file {
         display: none;
     }
 
     #redux-import-action span {
         color: #b94a48;
+    }
+    #redux-import-upload span {
+        font-weight: bold;
     }
 }
 
