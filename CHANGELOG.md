@@ -1,5 +1,18 @@
 # Redux Changelog
 
+## 4.1.24
+* Fixed: Select2 callback fix for select fields.
+* Added: Shim: empty field_*.php files to fix developers including files improperly.
+* Fixed: Changed use of ctype_xdigit to account for hosts where it's disabled.
+* Added: Shim for people using terms data key, but using taxonomies instead of taxonomy.
+* Fixed: Static call mismatch in redux colors.
+* Fixed: CSRF security issue with a flipped if conditional. Thanks @ErwanLR.
+* Fixed: WordPress 4.6 API warnings.
+* Fixed: WordPress 4.6 customizer issue where fields not displaying properly.
+* Fixed: Massive speed improvement to the library.
+* Fixed: Pro template count error if previously activated and Redux Pro not enabled. 
+* Release date: Dec 12, 2020
+
 ## 4.1.23
 * Fixed: Massive speed improvement to the library.
 * Fixed: Pro template count error if previously activated and Redux Pro not enabled. 

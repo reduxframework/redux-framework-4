@@ -4,8 +4,8 @@ Donate link: https://paypal.me/ReduxFramework
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block editor, block library, editor, templates, library
 Requires at least: 4.0
 Requires PHP: 5.3
-Tested up to: 5.5
-Stable tag: 4.1.23
+Tested up to: 5.7
+Stable tag: 4.1.24
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +153,19 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+== 4.1.24 ==
+* Fixed: Select2 callback fix for select fields.
+* Added: Shim: empty field_*.php files to fix developers including files improperly.
+* Fixed: Changed use of ctype_xdigit to account for hosts where it's disabled.
+* Added: Shim for people using terms data key, but using taxonomies instead of taxonomy.
+* Fixed: Static call mismatch in redux colors.
+* Fixed: CSRF security issue with a flipped if conditional. Thanks @ErwanLR.
+* Fixed: WordPress 4.6 API warnings.
+* Fixed: WordPress 4.6 customizer issue where fields not displaying properly.
+* Fixed: Massive speed improvement to the library.
+* Fixed: Pro template count error if previously activated and Redux Pro not enabled.
+* Release date: Dec 12, 2020
 
 == 4.1.23 ==
 * Fixed: Massive speed improvement to the library.
