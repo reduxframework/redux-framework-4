@@ -307,9 +307,9 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						if ( false !== $key ) {
 							unset( $theme_paths[ $key ] );
 						}
-
-						$data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
-						$data['parent_slug'] = end( explode( '/', end( $theme_paths ) ) );
+						$data['parent_slug'] = end( $theme_paths );
+						$data['parent_slug'] = explode( '/', $data['parent_slug'] );
+						$data['parent_slug'] = end( $data['parent_slug'] );
 					}
 
 					return $data;
