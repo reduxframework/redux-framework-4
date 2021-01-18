@@ -28,7 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php echo body_class(); ?>>
 <?php wp_body_open(); ?>
-<?php while ( have_posts() ) :
+<?php
+while ( have_posts() ) :
 	the_post();
 	the_content();
 
@@ -36,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	if ( comments_open() || get_comments_number() ) :
 		comments_template();
 	endif;
-?>
+	?>
 <?php endwhile; ?>
 <?php wp_footer(); ?>
 </body>
