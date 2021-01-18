@@ -28,11 +28,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php echo body_class(); ?>>
 <?php wp_body_open(); ?>
-<?php
-while ( have_posts() ) :
+<?php while ( have_posts() ) :
 	the_post();
-	?>
-	<?php the_content(); ?>
+	the_content();
+
+	// If comments are open or we have at least one comment, load up the comment template.
+	if ( comments_open() || get_comments_number() ) :
+		comments_template();
+	endif;
+?>
 <?php endwhile; ?>
 <?php wp_footer(); ?>
 </body>
