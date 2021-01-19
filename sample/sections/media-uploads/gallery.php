@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Gallery', 'your-textdomain-here' ),
 		'id'         => 'media-gallery',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/gallery/" target="_blank">docs.redux.io/core/fields/gallery/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/gallery.html" target="_blank">https://devs.redux.io/core-fields/gallery.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

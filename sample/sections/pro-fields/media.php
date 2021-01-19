@@ -2,7 +2,7 @@
 /**
  * Redux Pro Media Sample config.
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -14,7 +14,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Media', 'your-textdomain-here' ),
 		'id'         => 'pro-media-media',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/media/" target="_blank">docs.reduxframework.com/core/fields/media/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/media.html" target="_blank">https://devs.redux.io/core-fields/media.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'  => esc_html__( 'Typography', 'your-textdomain-here' ),
 		'id'     => 'typography',
-		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/typography/" target="_blank">docs.redux.io/core/fields/typography/</a>',
+		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/typography.html" target="_blank">https://devs.redux.io/core-fields/typography.html</a>',
 		'icon'   => 'el el-font',
 		'fields' => array(
 			array(

@@ -2,7 +2,7 @@
 /**
  * Redux Pro Typography Sample config.
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -14,7 +14,7 @@ Redux::setSection(
 	array(
 		'title'      => esc_html__( 'Sidebar Typography', 'your-textdomain-here' ),
 		'id'         => 'pro-typography',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/typography/" target="_blank">docs.reduxframework.com/core/fields/typography/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/typography.html" target="_blank">https://devs.redux.io/core-fields/typography.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

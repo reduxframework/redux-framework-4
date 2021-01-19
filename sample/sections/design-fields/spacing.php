@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Spacing', 'your-textdomain-here' ),
 		'id'         => 'design-spacing',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/spacing/" target="_blank">docs.redux.io/core/fields/spacing/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/spacing.html" target="_blank">https://devs.redux.io/core-fields/spacing.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

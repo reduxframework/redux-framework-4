@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Button Set', 'your-textdomain-here' ),
 		'id'         => 'switch_buttonset-set',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/button-set/" target="_blank">docs.redux.io/core/fields/button-set/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/button-set.html" target="_blank">https://devs.redux.io/core-fields/button-set.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

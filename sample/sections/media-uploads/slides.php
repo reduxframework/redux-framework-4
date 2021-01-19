@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Slides', 'your-textdomain-here' ),
 		'id'         => 'additional-slides',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/slides/" target="_blank">docs.redux.io/core/fields/slides/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/slides.html" target="_blank">https://devs.redux.io/core-fields/slides.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

@@ -101,7 +101,7 @@ You can also contribute code-wise via our <a href="https://github.com/reduxframe
 
 <h4>📝 Documentation and Support</h4>
 <ul>
-<li>For more information about features, FAQs and documentation, check out our website at <a href="https://docs.redux.io/" rel="nofollow ugc">Redux</a>.</li>
+<li>For more information about features, FAQs and documentation, check out our website at <a href="https://devs.redux.io/" rel="nofollow ugc">Redux</a>.</li>
 <li>If you have any more questions, visit our support on the <a href="https://wordpress.org/support/plugin/redux-framework">Plugin's Forum</a>.</li>
 </ul>
 

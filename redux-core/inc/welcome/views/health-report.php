@@ -62,7 +62,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			</a>
 			<a
 					class="skip button-primary"
-					href="//docs.redux.io/core/support/understanding-the-redux-framework-system-status-report/"
+					href="https://devs.redux.io/core/support/understanding-the-redux-framework-system-status-report/"
 					target="_blank">
 				<?php esc_html_e( 'Understanding the Status Report', 'redux-framework' ); ?>
 			</a>

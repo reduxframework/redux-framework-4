@@ -12,7 +12,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'            => esc_html__( 'Text', 'your-textdomain-here' ),
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">docs.redux.io/core/fields/text/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/text.html" target="_blank">https://devs.redux.io/core-fields/text.html</a>',
 		'id'               => 'basic-text',
 		'subsection'       => true,
 		'customizer_width' => '700px',

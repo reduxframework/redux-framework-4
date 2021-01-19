@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Spinner', 'your-textdomain-here' ),
 		'id'         => 'slider_spinner-spinner',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/spinner/" target="_blank">docs.redux.io/core/fields/spinner/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/spinner.html" target="_blank">https://devs.redux.io/core-fields/spinner.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
