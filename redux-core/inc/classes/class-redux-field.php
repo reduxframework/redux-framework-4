@@ -243,6 +243,13 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 				}
 
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
+					if ( isset( $this->field['output']['important'] ) ) {
+						if ( $this->field['output']['important'] ) {
+							$style = str_replace( ';', ' !important;', $style );
+						}
+						unset( $this->field['output']['important'] );
+					}
+
 					$keys                     = implode( ',', $this->field['output'] );
 					$this->parent->outputCSS .= $keys . '{' . $style . '}';
 				}

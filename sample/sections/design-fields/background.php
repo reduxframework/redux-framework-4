@@ -19,7 +19,10 @@ Redux::set_section(
 			array(
 				'id'       => 'opt-background',
 				'type'     => 'background',
-				'output'   => array( 'body' ),
+				'output'   => array(
+					'background-color' => 'body',
+					'important' => true,
+				),
 				'title'    => __( 'Body Background', 'your-textdomain-here' ),
 				'subtitle' => __( 'Body background with image, color, etc.', 'your-textdomain-here' ),
 			),
