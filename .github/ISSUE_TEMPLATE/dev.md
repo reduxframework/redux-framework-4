@@ -16,7 +16,7 @@ Are you a user reporting a bug with a theme or plugin?
 ======================================================
 Redux is a tool for developers to include an options panel in their project. Consequently, we do not offer support for folks who have purchased a theme or plugin that uses Redux. The responsibility of support for themes and plugins falls upon it's author. We realize that some authors have included support links for Redux in their projects when they should not have. We do apologize for that confusion and are taking steps to remedy that situtation. 
 
-If you have purchased a theme or plugin that utilizes Redux, please contact the author for support. If the author is unavailable for support or has discontinued support, please refer to this before posting to our issue tracker: https://devs.redux.io/core/support-defined/  If you are unable to get support for the author, we might be able to help you with a premium support purchase (https://redux.io/extension/premium-support).
+If you have purchased a theme or plugin that utilizes Redux, please contact the author for support. If the author is unavailable for support or has discontinued support, please refer to this before posting to our issue tracker: https://redux.io/contact/  If you are unable to get support for the author, we might be able to help you with a premium support purchase (https://redux.io/extension/premium-support).
 	
 Have a development usage question?
 ==================================
@@ -36,7 +36,7 @@ Think you found a bug?
 ======================
 Please use the "BUG REPORT" template below. Remember, we are rabid about backwards compatability. Do not submit fixes that break previous ways of doing so or they will be rejected.
 
-Also, unless you provide a Support Hash, your request will also be rejected.  NO exceptions.  If you do not including this information and we close your ticket, please do not ask why. See See https://devs.redux.io/core/generating-a-support-hash/ for more details.
+Also, unless you provide a Support Hash, your request will also be rejected.  NO exceptions.  If you do not including this information and we close your ticket, please do not ask why. See See https://docsv3.redux.io/core/generating-a-support-hash/index.html for more details.
 
 You MUST be using Redux in dev mode when submitting an issue to us. If you are not, or have circumvented our dev mode protocol, you are on your own. There could be information in your issue that requires dev move active (Compressed Javascript, for example. We are unable to diagnose issues with compressed Javascript and why dev mode needs to be enabled).
 
@@ -50,7 +50,7 @@ Sometimes, an issue may be tied to JavaScript. To make this determination, you w
 
 <!-- BUG TEMPLATE -->
 ## Support Hash
-<!-- Instructions:  https://devs.redux.io/core/generating-a-support-hash -->
+<!-- Instructions:  https://docsv3.redux.io/core/generating-a-support-hash/index.html -->
 
 ## Steps to reproduce
 <!-- Please list your steps clearly so that we are able to do the same things you do to reproduce the issue.  -->
