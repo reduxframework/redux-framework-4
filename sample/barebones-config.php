@@ -289,7 +289,7 @@ Redux::set_section( $opt_name, $section );
 
 $section = array(
 	'title'      => esc_html__( 'Text', 'your-textdomain-here' ),
-	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/text.html" target="_blank">//docs.redux.io/core-fields/text.html</a>', 
+	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/text.html" target="_blank">//docs.redux.io/core-fields/text.html</a>',
 	'id'         => 'opt-text-subsection',
 	'subsection' => true,
 	'fields'     => array(
