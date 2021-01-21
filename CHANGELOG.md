@@ -1,5 +1,10 @@
 # Redux Changelog
 
+## 4.1.25
+* Fixed: #186 - Erroneous icon on button_Set field after WP 5.6 update.
+* Fixed: PHP error in init_delay function during heartbeat API.
+* Release date: Jan 21, 2021
+
 ## 4.1.24
 * Fixed: Select2 callback fix for select fields.
 * Added: Shim: empty field_*.php files to fix developers including files improperly.
