@@ -1,7 +1,8 @@
 # Redux Changelog
 
 ## 4.1.25
-* Fixed: #186 - Erroneous icon on button_Set field after WP 5.6 update.
+* Fixed: #186 - Erroneous icon on button_set field after WP 5.6 update.
+* Fixed: #186 - Erroneous icon on palette field after WP 5.6 update.
 * Fixed: PHP error in init_delay function during heartbeat API.
 * Release date: Jan 21, 2021
 
