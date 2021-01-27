@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework divide config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */

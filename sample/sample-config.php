@@ -1,7 +1,7 @@
 <?php
 /**
  * ReduxFramework Sample Config File
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -225,7 +225,7 @@ $args = array(
 // If these are left unchanged, they will not display in your panel!
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-docs',
-	'href'  => '//docs.redux.io/',
+	'href'  => '//devs.redux.io/',
 	'title' => __( 'Documentation', 'your-textdomain-here' ),
 );
 
