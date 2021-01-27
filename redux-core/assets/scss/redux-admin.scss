@@ -15,6 +15,13 @@
 }
 
 .redux-container {
+    .redux-container-button_set,
+    .redux-container-palette {
+        .ui-icon {
+            height: auto;
+        }
+    }
+
     .form-table > tbody > tr > th {
         width: 30%;
     }

@@ -146,14 +146,17 @@ if ( ! class_exists( 'Redux', false ) ) {
 						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'redux-framework' ), '<code>plugins_loaded</code>' )
 					);
 
-					$data = array(
-						'parent'  => $parent,
-						'type'    => 'error',
-						'msg'     => $msg,
-						'id'      => 'redux_init',
-						'dismiss' => true,
-					);
-					Redux_Admin_Notices::set_notice( $data );
+					if ( isset( $parent->args ) ) {
+						$data = array(
+							'parent'  => $parent,
+							'type'    => 'error',
+							'msg'     => $msg,
+							'id'      => 'redux_init',
+							'dismiss' => true,
+						);
+
+						Redux_Admin_Notices::set_notice( $data );
+					}
 				}
 			}
 		}

@@ -33,7 +33,7 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		 *
 		 * @var string
 		 */
-		private $field_name = 'my_extension';
+		private $field_name = 'options_object';
 
 		/**
 		 * Is field bit.
