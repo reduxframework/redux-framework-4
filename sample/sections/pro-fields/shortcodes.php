@@ -18,7 +18,7 @@ Redux::set_section(
 		'customizer' => false,
 		'subsection' => true,
 		'title'      => esc_html__( 'Shortcodes', 'your-textdomain-here' ),
-		//'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/extensions/shortcodes.html" target="_blank">https://devs.redux.io/extensions/shortcodes.html</a>',
+//		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/extensions/shortcodes.html" target="_blank">https://devs.redux.io/extensions/shortcodes.html</a>',
 		'fields'     => array(
 			array(
 				'id'         => 'sc-bloginfo',

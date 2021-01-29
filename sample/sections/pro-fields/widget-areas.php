@@ -14,7 +14,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Widget Areas', 'your-textdomain-here' ),
-		//'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/extensions/widget-areas.html" target="_blank">https://devs.redux.io/extensions/widget-areas.html</a>',
+//		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/extensions/widget-areas.html" target="_blank">https://devs.redux.io/extensions/widget-areas.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
