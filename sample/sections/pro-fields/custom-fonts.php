@@ -2,7 +2,7 @@
 /**
  * Redux Pro Custom Fonts Sample config.
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Custom Fonts', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extensions/custom-fonts" target="_blank">docs.reduxframework.com/extensions/custom-fonts</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/premium/custom-fonts.html" target="_blank">https://devs.redux.io/premium/custom-fonts.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

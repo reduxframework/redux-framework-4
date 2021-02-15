@@ -131,7 +131,7 @@ defined( 'ABSPATH' ) || exit;
 				<p>
 					<em>
 						<?php // translators: %s: Support Defined URL. ?>
-						<?php echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'http://docs.redux.io/core/support-defined/' ) ); ?>
+						<?php echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'https://docsv3.redux.io/core/support-defined/' ) ); ?>
 					</em>
 				</p>
 				<input

@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework link color config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -12,7 +12,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Link Color', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/link-color/" target="_blank">docs.redux.io/core/fields/link-color/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/link-color.html" target="_blank">https://devs.redux.io/core-fields/link-color.html</a>',
 		'id'         => 'color-link',
 		'subsection' => true,
 		'fields'     => array(

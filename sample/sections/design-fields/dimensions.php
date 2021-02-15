@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework dimensions config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Dimensions', 'your-textdomain-here' ),
 		'id'         => 'design-dimensions',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/dimensions/" target="_blank">docs.redux.io/core/fields/dimensions/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/dimensions.html" target="_blank">https://devs.redux.io/core-fields/dimensions.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

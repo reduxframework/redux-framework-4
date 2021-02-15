@@ -1,7 +1,7 @@
 <?php
 /**
  * ReduxFramework Barebones Sample Config File
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -152,7 +152,7 @@ $args = array(
 // ADMIN BAR LINKS -> Setup custom links in the admin bar menu as external items.
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-docs',
-	'href'  => '//docs.redux.io/',
+	'href'  => '//devs.redux.io/',
 	'title' => esc_html__( 'Documentation', 'your-textdomain-here' ),
 );
 
@@ -289,7 +289,7 @@ Redux::set_section( $opt_name, $section );
 
 $section = array(
 	'title'      => esc_html__( 'Text', 'your-textdomain-here' ),
-	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/text/" target="_blank">//docs.redux.io/core/fields/text/</a>',
+	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/text.html" target="_blank">https://devs.redux.io/core-fields/text.html</a>',
 	'id'         => 'opt-text-subsection',
 	'subsection' => true,
 	'fields'     => array(
@@ -308,7 +308,7 @@ Redux::set_section( $opt_name, $section );
 
 $section = array(
 	'title'      => esc_html__( 'Text Area', 'your-textdomain-here' ),
-	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/textarea/" target="_blank">//docs.redux.io/core/fields/textarea/</a>',
+	'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/textarea.html" target="_blank">https://devs.redux.io/core-fields/textarea.html</a>',
 	'id'         => 'opt-textarea-subsection',
 	'subsection' => true,
 	'fields'     => array(

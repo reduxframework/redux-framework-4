@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework Sample Metabox Config File
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  * Metabox Lite support the following fields only:  checkbox, radio, text, textarea, media, & color
  * Post Format and Post Template options are not avaialble in Metabox Lite.
  * These advanced options are available in Redux Pro.

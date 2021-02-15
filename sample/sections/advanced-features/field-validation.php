@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework field validation config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Validation', 'your-textdomain-here' ),
 		'id'         => 'validation',
-		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/the-basics/validation/" target="_blank">docs.redux.io/core/the-basics/validation/</a>',
+		'desc'       => esc_html__( 'For full documentation on validation, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/configuration/fields/validate.html" target="_blank">https://devs.redux.io/configuration/fields/validate.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

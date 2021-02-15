@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework field sanitizing config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Sanitizing', 'your-textdomain-here' ),
 		'id'         => 'sanitizing',
-		'desc'       => esc_html__( 'For full documentation on sanitizing, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/the-basics/sanitizing/" target="_blank">docs.redux.io/core/the-basics/sanitizing/</a>',
+		// 'desc'       => esc_html__( 'For full documentation on sanitizing, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/configuration/fields/sanitizing/" target="_blank">https://devs.redux.io/configuration/fields/sanitizing/</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
