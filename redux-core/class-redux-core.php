@@ -194,6 +194,12 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
 				self::$server['HTTP_USER_AGENT'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
 			}
+			if ( ! empty( $_SERVER['HTTP_HOST']) ) {
+				self::$server['HTTP_HOST'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+			}
+			if ( ! empty( $_SERVER['REQUEST_URI']) ) {
+				self::$server['REQUEST_URI'] = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+			}
 			// phpcs:enable
 
 			self::$dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
