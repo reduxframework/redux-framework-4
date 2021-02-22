@@ -84,5 +84,5 @@ Future development of our extension library for new features and updates for Red
 #### What happens to Redux v3 when v4 is finished?
 Upon completion, Redux v4 will completely replace v3 in our primary repository and at wp.org.  At that time, we will no longer be offering v3 in any form nor will we be maintaining any code v3.  Any copies or forks out there will be considered deprecated and should be considered 'as is'. 
 
-#### Is Redux v4 free?
-Yes.  This is the 'core' and it remains free to use, fork, embed, etc.  However, what you see is what you get.  All new features, extensions, add-ons, etc will come in the form of Redux Pro, which will require a maintained subscription for licensed usage.  We do not yet have details to offer about availability or pricing at this time.  Please join our mailing list for updates on this and other Redux related news as it becomes available: [https://redux.io/subscribe-to-redux-framework](https://redux.io/subscribe-to-redux-framework)
+<!--#### Is Redux v4 free?
+Yes.  This is the 'core' and it remains free to use, fork, embed, etc.  However, what you see is what you get.  All new features, extensions, add-ons, etc will come in the form of Redux Pro, which will require a maintained subscription for licensed usage.  We do not yet have details to offer about availability or pricing at this time.  Please join our mailing list for updates on this and other Redux related news as it becomes available: [https://redux.io/subscribe-to-redux-framework](https://redux.io/subscribe-to-redux-framework) -->

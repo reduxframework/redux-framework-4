@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Pro User Meta config.
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */

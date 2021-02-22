@@ -30,7 +30,7 @@
 	],
 	"support": {
 		"issues": "https://github.com/reduxframework/redux-framework/issues",
-		"docs": "https://docs.redux.io",
+		"docs": "https://devs.redux.io",
 		"forum": "https://wordpress.org/support/plugin/redux-framework/",
 		"website": "https://redux.io/"
 	},

@@ -2,7 +2,7 @@
 /**
  * Redux Pro Date/Time Picker Sample config.
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Date / Time Picker', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extension/date-time" target="_blank">docs.reduxframework.com/extension/date-time/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/premium/date-time-picker.html" target="_blank">https://devs.redux.io/premium/date-time-picker.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

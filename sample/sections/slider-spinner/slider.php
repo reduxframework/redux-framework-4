@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework slider config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Slider', 'your-textdomain-here' ),
 		'id'         => 'slider_spinner-slider',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/slider/" target="_blank">docs.redux.io/core/fields/slider/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/slider.html" target="_blank">https://devs.redux.io/core-fields/slider.html</a>',
 		'fields'     => array(
 			array(
 				'id'            => 'opt-slider-label',

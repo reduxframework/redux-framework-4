@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework multi text config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Multi Text', 'your-textdomain-here' ),
 		'id'         => 'basic-multi-text',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/multi-text/" target="_blank">docs.redux.io/core/fields/multi-text/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/multi-text.html" target="_blank">https://devs.redux.io/core-fields/multi-text.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
