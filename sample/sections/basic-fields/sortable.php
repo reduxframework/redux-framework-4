@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework sortable config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -14,7 +14,7 @@ Redux::set_section(
 		'title'      => esc_html__( 'Sortable', 'your-textdomain-here' ),
 		'id'         => 'basic-sortable',
 		'subsection' => true,
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/sortable/" target="_blank">docs.redux.io/core/fields/sortable/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/sortable.html" target="_blank">https://devs.redux.io/core-fields/sortable.html</a>',
 		'fields'     => array(
 			array(
 				'id'       => 'opt-sortable',

@@ -2,7 +2,7 @@
 /**
  * Redux Pro Color Gradient Sample config.
  *
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'Color Gradient', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/core/fields/color-gradient/" target="_blank">docs.reduxframework.com/core/fields/color-gradient/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/color-gradient.html" target="_blank">https://devs.redux.io/core-fields/color-gradient.html</a>',
 		'id'         => 'pro-color-gradient',
 		'subsection' => true,
 		'fields'     => array(

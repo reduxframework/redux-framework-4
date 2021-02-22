@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Pro Search Sample config.
- * For full documentation, please visit: http://docs.reduxframework.com/
+ * For full documentation, please visit: http:https://devs.redux.io/
  *
  * @package Redux Pro
  */
@@ -18,7 +18,7 @@ Redux::set_section(
 		'customizer' => false,
 		'subsection' => true,
 		'title'      => esc_html__( 'Shortcodes', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.reduxframework.com/extensions/shortcodes" target="_blank">docs.reduxframework.com/extensions/shortcodes</a>',
+		// 'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/extensions/shortcodes.html" target="_blank">https://devs.redux.io/extensions/shortcodes.html</a>',
 		'fields'     => array(
 			array(
 				'id'         => 'sc-bloginfo',

@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework disable section config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -16,7 +16,7 @@ Redux::set_section(
 		'subsection'       => true,
 		'customizer_width' => '450px',
 		'disabled'         => true,
-		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/checkbox/" target="_blank">docs.redux.io/core/fields/checkbox/</a>',
+		'desc'             => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/checkbox.html" target="_blank">https://devs.redux.io/core-fields/checkbox.html</a>',
 		'fields'           => array(
 			array(
 				'id'       => 'opt-checkbox-section-disable',

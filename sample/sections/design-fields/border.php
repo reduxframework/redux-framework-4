@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework border config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -13,7 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Border', 'your-textdomain-here' ),
 		'id'         => 'design-border',
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/border/" target="_blank">docs.redux.io/core/fields/border/</a>',
+		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/border.html" target="_blank">https://devs.redux.io/core-fields/border.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(
@@ -35,9 +35,9 @@ Redux::set_section(
 			array(
 				'id'       => 'opt-header-border-expanded',
 				'type'     => 'border',
-				'title'    => esc_html__( 'Header Border Option', 'your-textdomain-here' ),
+				'title'    => esc_html__( 'Body Border Option', 'your-textdomain-here' ),
 				'subtitle' => esc_html__( 'Only color validation can be done on this field type', 'your-textdomain-here' ),
-				'output'   => array( '.site-header' ),
+				'output'   => array( 'body' ),
 				'all'      => false,
 				'desc'     => esc_html__( 'This is the description field, again good for additional info.', 'your-textdomain-here' ),
 				'default'  => array(

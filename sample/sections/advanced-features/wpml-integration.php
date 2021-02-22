@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework WPML integration config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -12,7 +12,7 @@ Redux::set_section(
 	$opt_name,
 	array(
 		'title'      => esc_html__( 'WPML Integration', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'These fields can be fully translated by WPML (WordPress Multi-Language). This serves as an example for you to implement. For extra details look at our <a href="//docs.redux.io/core/advanced/wpml-integration/" target="_blank">WPML Implementation</a> documentation.', 'your-textdomain-here' ),
+		'desc'       => esc_html__( 'These fields can be fully translated by WPML (WordPress Multi-Language). This serves as an example for you to implement. For extra details look at our WPML Implementation documentation: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/guides/advanced/wpml-integration.html" target="_blank" >https://devs.redux.io/guides/advanced/wpml-integration.html</a>',
 		'subsection' => true,
 		'fields'     => array(
 			array(

@@ -1,7 +1,7 @@
 <?php
 /**
  * Redux Framework ACE editor config.
- * For full documentation, please visit: http://docs.redux.io/
+ * For full documentation, please visit: http://devs.redux.io/
  *
  * @package Redux Framework
  */
@@ -14,7 +14,7 @@ Redux::set_section(
 		'title'      => esc_html__( 'ACE Editor', 'your-textdomain-here' ),
 		'id'         => 'editor-ace',
 		'subsection' => true,
-		'desc'       => esc_html__( 'For full documentation on the this field, visit: ', 'your-textdomain-here' ) . '<a href="//docs.redux.io/core/fields/ace-editor/" target="_blank">docs.redux.io/core/fields/ace-editor/</a>',
+		'desc'       => esc_html__( 'For full documentation on the this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-fields/ace-editor.html" target="_blank">https://devs.redux.io/core-fields/ace-editor.html</a>',
 		'fields'     => array(
 			array(
 				'id'       => 'opt-ace-editor-css',
