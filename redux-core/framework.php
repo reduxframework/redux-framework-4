@@ -409,7 +409,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 */
 		public function __construct( $sections = array(), $args = array() ) {
 			if ( Redux_Core::is_heartbeat() ) {
-				return;
+				exit;
 			}
 
 			if ( empty( $args ) || ! isset( $args['opt_name'] ) || ( isset( $args['opt_name'] ) && empty( $args['opt_name'] ) ) ) {
