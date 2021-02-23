@@ -194,7 +194,9 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 			if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
 				self::$server['REMOTE_ADDR'] = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
 			}
-
+			if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+				self::$server['HTTP_USER_AGENT'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
+			}
 			if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
 				self::$server['HTTP_HOST'] = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
 			}
