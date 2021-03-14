@@ -85,9 +85,12 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 			extract( $data );
 
 			if ( Redux_Core::$pro_loaded ) {
-				$field_type = str_replace( '_', '-', $field['type'] );
+				$field_filter = '';
+				$field_type   = str_replace( '_', '-', $field['type'] );
 
-				$field_filter = Redux_Pro::$dir . 'core/inc/fields/' . $field['type'] . '/class-redux-pro-' . $field_type . '.php';
+				if ( class_exists( 'Redux_Pro' ) ) {
+					$field_filter = Redux_Pro::$dir . 'core/inc/fields/' . $field['type'] . '/class-redux-pro-' . $field_type . '.php';
+				}
 
 				if ( file_exists( $field_filter ) ) {
 					require_once $field_filter;
