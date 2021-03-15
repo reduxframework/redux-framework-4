@@ -101,7 +101,7 @@ if ( ! class_exists( 'Redux_Color_Gradient', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 
 				echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $mode ) . '-saved-color" value="">';
 

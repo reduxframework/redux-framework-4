@@ -657,7 +657,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</div>';
 			}
 

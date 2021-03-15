@@ -81,7 +81,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -181,7 +181,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 				echo '</span>';
 			}
 		}

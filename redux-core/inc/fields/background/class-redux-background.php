@@ -112,7 +112,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo ' />';
+				echo '>';
 
 				echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color" value="">';
 
