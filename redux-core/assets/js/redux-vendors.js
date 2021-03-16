@@ -149,9 +149,12 @@
 
 		setupEventHandlers( $collection, trimNum, combinedSettings );
 
-		$collection.blur( function() {
-			numericField_Blur( this, settings );
-		} );
+		$collection.on(
+			'blur',
+			function() {
+				numericField_Blur( this, settings );
+			}
+		);
 
 		return this;
 	};
@@ -972,6 +975,7 @@
 	// for testing
 	$.fn.selection.getCharElement = getCharElement;
 })( jQuery );
+
 // jscs:disable
 // jshint ignore: start
 

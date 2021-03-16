@@ -5,7 +5,7 @@
  * qTip2 - Pretty powerful tooltips - v2.2.1
  * http://qtip2.com
  *
- * Copyright (c) 2014 
+ * Copyright (c) 2014
  * Released under the MIT licenses
  * http://jquery.org/license
  *
@@ -262,7 +262,7 @@
 		;
 
 		function invalidOpt( a ) {
-			return a === NULL || $.type( a ) !== 'object';
+			return a === NULL || typeof a !== 'object';
 		}
 
 		function invalidContent( c ) {
@@ -1350,7 +1350,7 @@
 
 		// Global delegation helper
 		function delegate( selector, events, method ) {
-			$( document.body ).delegate( selector, (events.split ? events : events.join( '.' + NAMESPACE + ' ' )) + '.' + NAMESPACE, function() {
+			$( document.body ).on( selector, (events.split ? events : events.join( '.' + NAMESPACE + ' ' )) + '.' + NAMESPACE, function() {
 				var api = QTIP.api[$.attr( this, ATTR_ID )];
 				api && ! api.disabled && method.apply( api, arguments );
 			} );
@@ -1406,8 +1406,8 @@
 
 		PROTOTYPE._assignInitialEvents = function( event ) {
 			var options                                                              = this.options, showTarget                                   = options.show.target, hideTarget = options.hide.target,
-			    showEvents                                                           = options.show.event ? $.trim( '' + options.show.event ).split( ' ' ) : [],
-			    hideEvents                                                           = options.hide.event ? $.trim( '' + options.hide.event ).split( ' ' ) : [];
+			    showEvents                                                           = options.show.event ? ( '' + options.show.event ).trim().split( ' ' ) : [],
+			    hideEvents                                                           = options.hide.event ? ( '' + options.hide.event ).trim().split( ' ' ) : [];
 
 			// Catch remove/removeqtip events on target element to destroy redundant tooltips
 			this._bind( this.elements.target, ['remove', 'removeqtip'], function( event ) {
@@ -2590,10 +2590,10 @@
 					} ).hide();
 
 					// Make sure we can't focus anything outside the tooltip
-					$( document.body ).bind( 'focusin' + MODALSELECTOR, stealFocus );
+					$( document.body ).on( 'focusin' + MODALSELECTOR, stealFocus );
 
 					// Apply keyboard "Escape key" close handler
-					$( document ).bind( 'keydown' + MODALSELECTOR, function( event ) {
+					$( document ).off( 'keydown' + MODALSELECTOR, function( event ) {
 						if ( current && current.options.show.modal.escape && event.keyCode === 27 ) {
 							current.hide( event );
 						}
