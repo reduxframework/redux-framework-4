@@ -5,6 +5,8 @@
  * @package     ReduxFramework
  * @author      Kevin Provance (kprovance)
  * @version     3.5.4
+ *
+ * @noinspection ALL
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,12 +25,12 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 		 * Redux_Options_Object constructor.
 		 *
 		 * @param array  $field Field array.
-		 * @param string $value Value array.
+		 * @param mixed  $value Value array.
 		 * @param object $parent ReduxFramework object.
 		 *
 		 * @throws ReflectionException .
 		 */
-		public function __construct( $field = array(), $value = '', $parent ) {
+		public function __construct( array $field, $value, $parent ) {
 			parent::__construct( $field, $value, $parent );
 
 			$this->is_field = $this->parent->extensions['options_object']->is_field;

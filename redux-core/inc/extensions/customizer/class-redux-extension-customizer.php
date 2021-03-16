@@ -567,11 +567,11 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		/**
 		 * Add customizer section.
 		 *
-		 * @param string $id ID.
-		 * @param array  $args Args.
+		 * @param string $id           ID.
+		 * @param array  $args         Args.
 		 * @param object $wp_customize .
 		 */
-		public function add_section( $id, $args, $wp_customize ) {
+		public function add_section( string $id, array $args, object $wp_customize ) {
 
 			if ( is_a( $id, 'WP_Customize_Section' ) ) {
 				$section = $id;
