@@ -256,7 +256,7 @@
 				}, 0 );
 			} );
 
-			$textbox.bind( "keypress", function( e ) {
+			$textbox.on( "keypress", function( e ) {
 
 				// Determine which key is pressed.
 				// If it's a control key, then allow the event's default action to occur eg backspace, tab
