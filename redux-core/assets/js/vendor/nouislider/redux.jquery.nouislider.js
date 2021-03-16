@@ -1226,7 +1226,7 @@
 					// parseFloat. Omitting this would result in a removal
 					// of decimals. This way, the developer can also
 					// input a comma separated string.
-					if ( $.type( to ) === 'string' ) {
+					if ( typeof to === 'string' ) {
 						to = to.replace( ',', '.' );
 					}
 
