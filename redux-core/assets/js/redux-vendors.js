@@ -244,7 +244,7 @@
 
 			var $textbox = $( this );
 
-			$textbox.bind( "keyup change paste", function( e ) {
+			$textbox.on( "keyup change paste", function( e ) {
 
 				var pastedText = "";
 
