@@ -94,7 +94,11 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 								}
 
 								if ( Redux_Core::$pro_loaded ) {
-									$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-{$field_type}.php";
+									$pro_path = '';
+
+									if ( class_exists( 'Redux_Pro' ) ) {
+										$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-{$field_type}.php";
+									}
 
 									if ( file_exists( $pro_path ) ) {
 										$filter_path = $pro_path;

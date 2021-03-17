@@ -228,7 +228,8 @@
 								);
 
 								// Init when value is changed.
-								$( this ).find( '.redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter' ).keyup(
+								$( this ).find( '.redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter' ).on(
+									'keyup',
 									function() {
 										redux.field_objects.typography.select( $( this ).parents( '.redux-container-typography:first' ) );
 									}

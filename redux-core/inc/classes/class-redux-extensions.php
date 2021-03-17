@@ -44,7 +44,9 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 				$path = Redux_Core::$dir . 'inc/extensions/';
 
 				if ( 2 === $i ) {
-					$path = Redux_Pro::$dir . 'core/inc/extensions/';
+					if ( class_exists( 'Redux_Pro' ) ) {
+						$path = Redux_Pro::$dir . 'core/inc/extensions/';
+					}
 				}
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName

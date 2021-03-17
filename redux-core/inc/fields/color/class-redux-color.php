@@ -43,11 +43,11 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 					'index' => '',
 				);
 
-				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+				echo apply_filters( 'redux/pro/render/color_alpha', $data );
 			}
 
-			echo '/>';
+			echo '>';
 
 			echo '<input type="hidden" class="redux-saved-color" id="' . esc_attr( $this->field['id'] ) . '-saved-color" value="">';
 

@@ -1,11 +1,11 @@
 === Redux - Gutenberg Blocks Library & Framework ===
-Contributors: dovyp, redux
+Contributors: dovyp, redux, kprovance
 Donate link: https://paypal.me/ReduxFramework
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block editor, block library, editor, templates, library
 Requires at least: 4.0
-Requires PHP: 5.3
+Requires PHP: 7.1
 Tested up to: 5.7
-Stable tag: 4.1.25
+Stable tag: 4.1.26
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +153,26 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+== 4.1.26 ==
+* Added: Menu accent introduced in WordPress 5.7.
+* Updated: ACE Editor 1.4.12.
+* Updated select2 to support cssContainer.
+* Fixed: Multiple submenus in metaboxes; the last submenu it cut off.
+* Fixed: Fatal error: Can't use function return value in write context.
+* Fixed: PHP 8.0 deprecation warnings.
+* Fixed: Malformed HTML causing Redux pro alpha color-picker to not render.
+* Fixed: IMproved class checks for Redux Pro.
+* Fixed: jQuery 3.x deprecation notices.
+* Fixed: Malformed SCSS.
+* Release date: March 17, 2021
+
+== 4.1.25 ==
+* Fixed: Erroneous icon on button_set field after WP 5.6 update.
+* Fixed: Erroneous icon on palette field after WP 5.6 update.
+* Fixed: PHP error in init_delay function during heartbeat API.
+* Fixed: Options object field not rendering.
+* Release date: Jan 21, 2021
 
 == 4.1.24 ==
 * Fixed: Select2 callback fix for select fields.

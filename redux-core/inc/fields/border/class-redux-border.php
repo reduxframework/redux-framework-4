@@ -209,11 +209,11 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 						'index' => '',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 			} else {
 				echo '<input type="hidden" id="' . esc_attr( $this->field['id'] ) . '[border-color]" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[border-color]" value="' . esc_attr( $this->value['color'] ) . '" data-id="' . esc_attr( $this->field['id'] ) . '">';
 			}

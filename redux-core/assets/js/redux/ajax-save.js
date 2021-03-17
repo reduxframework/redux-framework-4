@@ -17,7 +17,7 @@
 
 		// Add the loading mechanism.
 		$( '.redux-action_bar .spinner' ).addClass( 'is-active' );
-		$( '.redux-action_bar input' ).attr( 'disabled', 'disabled' );
+		$( '.redux-action_bar input' ).prop( 'disabled', true );
 
 		$notification_bar.slideUp();
 
@@ -79,7 +79,7 @@
 					data:       $data
 				},
 				error: function( response ) {
-					$( '.redux-action_bar input' ).removeAttr( 'disabled' );
+					$( '.redux-action_bar input' ).prop( 'disabled', false );
 
 					if ( true === redux.optName.args.dev_mode ) {
 						console.log( response.responseText );
@@ -91,7 +91,7 @@
 						redux.optName.args.ajax_save = false;
 
 						$( button ).click();
-						$( '.redux-action_bar input' ).attr( 'disabled', 'disabled' );
+						$( '.redux-action_bar input' ).prop( 'disabled', true );
 					}
 				},
 				success: function( response ) {
@@ -100,7 +100,7 @@
 					if ( response.action && 'reload' === response.action ) {
 						location.reload( true );
 					} else if ( 'success' === response.status ) {
-						$( '.redux-action_bar input' ).removeAttr( 'disabled' );
+						$( '.redux-action_bar input' ).prop( 'disabled', false );
 						overlay.fadeOut( 'fast' );
 						$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
 						redux.optName.options  = response.options;
@@ -122,7 +122,7 @@
 						$save_notice.slideDown();
 						$save_notice.delay( 4000 ).slideUp();
 					} else {
-						$( '.redux-action_bar input' ).removeAttr( 'disabled' );
+						$( '.redux-action_bar input' ).prop( 'disabled', false );
 						$( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
 						overlay.fadeOut( 'fast' );
 						$( '.wrap h2:first' ).parent().append( '<div class="error redux_ajax_save_error" style="display:none;"><p>' + response.status + '</p></div>' );

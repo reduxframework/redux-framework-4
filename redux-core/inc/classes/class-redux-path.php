@@ -34,8 +34,11 @@ if ( ! class_exists( 'Redux_Path', false ) ) {
 			$path = Redux_Core::$redux_path . $relative_path;
 
 			if ( Redux_Core::$pro_loaded ) {
+				$pro_path = '';
 
-				$pro_path = Redux_Pro::$dir . '/core' . $relative_path;
+				if ( class_exists( 'Redux_Pro' ) ) {
+					$pro_path = Redux_Pro::$dir . '/core' . $relative_path;
+				}
 
 				if ( file_exists( $pro_path ) ) {
 					$path = $pro_path;

@@ -36,7 +36,7 @@
 				}
 
 				// Remove the image button.
-				el.find( '.redux-remove-background' ).unbind( 'click' ).on(
+				el.find( '.redux-remove-background' ).off( 'click' ).on(
 					'click',
 					function( e ) {
 						e.preventDefault();
@@ -47,7 +47,7 @@
 				);
 
 				// Upload media button.
-				el.find( '.redux-background-upload' ).unbind().on(
+				el.find( '.redux-background-upload' ).off().on(
 					'click',
 					function( event ) {
 						redux.field_objects.background.addImage( event, $( this ).parents( '.redux-container-background:first' ) );
@@ -312,7 +312,7 @@
 		// Hide the screenshot.
 		screenshot.slideUp();
 
-		selector.find( '.remove-file' ).unbind();
+		selector.find( '.remove-file' ).off();
 
 		// We don't display the upload button if .upload-notice is present
 		// This means the user doesn't have the WordPress 3.5 Media Library Support.

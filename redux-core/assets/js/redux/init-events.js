@@ -137,13 +137,15 @@
 		el.find( '#redux-footer-sticky' ).removeClass( 'hide' );
 
 		if ( 0 !== el.find( '#redux-footer' ).length ) {
-			$( window ).scroll(
+			$( window ).on(
+				'scroll',
 				function() {
 					$.redux.stickyInfo();
 				}
 			);
 
-			$( window ).resize(
+			$( window ).on(
+				'resize',
 				function() {
 					$.redux.stickyInfo();
 				}

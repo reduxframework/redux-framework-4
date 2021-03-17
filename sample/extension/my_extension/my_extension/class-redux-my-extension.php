@@ -34,7 +34,7 @@ if ( ! class_exists( 'Redux_My_Extension', false ) ) {
 		 * @param mixed  $value Field values.
 		 * @param object $parent ReduxFramework pointer.
 		 */
-		public function __construct( $field = array(), $value = '', $parent ) {
+		public function __construct( array $field, $value, $parent ) {
 			parent::__construct( $field, $value, $parent );
 
 			// Set default args for this field to avoid bad indexes. Change this to anything you use.
@@ -78,8 +78,7 @@ if ( ! class_exists( 'Redux_My_Extension', false ) ) {
 				'redux-my-field',
 				$this->url . 'redux-my-extension.css',
 				array(),
-				ReduxFramework_Extension_my_extension::$version,
-				'all'
+				ReduxFramework_Extension_my_extension::$version
 			);
 		}
 	}

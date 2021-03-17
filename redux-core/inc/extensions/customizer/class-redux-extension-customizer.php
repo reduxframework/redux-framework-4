@@ -567,11 +567,11 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		/**
 		 * Add customizer section.
 		 *
-		 * @param string $id ID.
-		 * @param array  $args Args.
+		 * @param string $id           ID.
+		 * @param array  $args         Args.
 		 * @param object $wp_customize .
 		 */
-		public function add_section( $id, $args = array(), $wp_customize ) {
+		public function add_section( string $id, array $args, object $wp_customize ) {
 
 			if ( is_a( $id, 'WP_Customize_Section' ) ) {
 				$section = $id;
@@ -594,7 +594,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 * @param array                     $args Optional. Panel arguments. Default empty array.
 		 * @param object                    $wp_customize .
 		 */
-		public function add_panel( $id, $args = array(), $wp_customize ) {
+		public function add_panel( $id, $args, $wp_customize ) {
 			if ( is_a( $id, 'WP_Customize_Panel' ) ) {
 				$panel = $id;
 			} else {

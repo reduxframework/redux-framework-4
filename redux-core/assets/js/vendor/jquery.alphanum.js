@@ -40,9 +40,12 @@
 
 		setupEventHandlers( $collection, trimNum, combinedSettings );
 
-		$collection.blur( function() {
-			numericField_Blur( this, settings );
-		} );
+		$collection.on(
+			'blur',
+			function() {
+				numericField_Blur( this, settings );
+			}
+		);
 
 		return this;
 	};
@@ -132,7 +135,7 @@
 
 			var $textbox = $( this );
 
-			$textbox.bind( "keyup change paste", function( e ) {
+			$textbox.on( "keyup change paste", function( e ) {
 
 				var pastedText = "";
 
@@ -144,7 +147,7 @@
 				}, 0 );
 			} );
 
-			$textbox.bind( "keypress", function( e ) {
+			$textbox.on( "keypress", function( e ) {
 
 				// Determine which key is pressed.
 				// If it's a control key, then allow the event's default action to occur eg backspace, tab

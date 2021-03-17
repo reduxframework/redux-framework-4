@@ -77,11 +77,11 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						'index' => 'regular',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -102,11 +102,11 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						'index' => 'hover',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -127,11 +127,11 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						'index' => 'visited',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -152,11 +152,11 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						'index' => 'active',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 				echo '</span>';
 			}
 
@@ -177,11 +177,11 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						'index' => 'focus',
 					);
 
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo esc_html( apply_filters( 'redux/pro/render/color_alpha', $data ) );
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName, WordPress.Security.EscapeOutput
+					echo apply_filters( 'redux/pro/render/color_alpha', $data );
 				}
 
-				echo '/>';
+				echo '>';
 				echo '</span>';
 			}
 		}

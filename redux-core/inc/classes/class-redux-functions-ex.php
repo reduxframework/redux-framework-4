@@ -193,12 +193,14 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return bool
 		 */
 		public static function s() {
-			if ( ! empty( get_option( 'redux_p' . 'ro_lic' . 'ense_key', false ) ) ) { // phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found
+			if ( ! get_option( 'redux_p' . 'ro_lic' . 'ense_key', false ) ) { // phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found
 				$s = get_option( 'redux_p' . 'ro_l' . 'icense_status', false ); // phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found
-				if ( ! empty( $s ) && in_array( $s, array( 'valid', 'site_inactive' ), true ) ) {
+
+				if ( false !== $s && in_array( $s, array( 'valid', 'site_inactive' ), true ) ) {
 					return true;
 				}
 			}
+
 			return false;
 		}
 

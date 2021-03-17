@@ -13,6 +13,7 @@ Redux::set_section(
 	array(
 		'title'      => esc_html__( 'Field Sanitizing', 'your-textdomain-here' ),
 		'id'         => 'sanitizing',
+		// phpcs:ignore
 		// 'desc'       => esc_html__( 'For full documentation on sanitizing, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/configuration/fields/sanitizing/" target="_blank">https://devs.redux.io/configuration/fields/sanitizing/</a>',
 		'subsection' => true,
 		'fields'     => array(
