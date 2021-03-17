@@ -1,5 +1,18 @@
 # Redux Changelog
 
+## 4.1.26
+* Added: Menu accent introduced in WordPress 5.7.
+* Updated: ACE Editor 1.4.12.
+* Updated select2 to support cssContainer.
+* Fixed: Multiple submenus in metaboxes; the last submenu it cut off.
+* Fixed: #200 - Fatal error: Can't use function return value in write context.
+* Fixed: #203 - PHP 8.0 deprecation warnings.
+* Fixed: Malformed HTML causing Redux pro alpha color-picker to not render.
+* Fixed: IMproved class checks for Redux Pro.
+* Fixed: jQuery 3.x deprecation notices.
+* Fixed: Malformed SCSS.
+* Release date: March 17, 2021
+
 ## 4.1.25
 * Fixed: #186 - Erroneous icon on button_set field after WP 5.6 update.
 * Fixed: #179 - Erroneous icon on palette field after WP 5.6 update.
