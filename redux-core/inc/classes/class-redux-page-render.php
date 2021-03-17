@@ -61,7 +61,6 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 		 */
 		public function options_page() {
 			$core = $this->core();
-
 			// phpcs:ignore Generic.CodeAnalysis.EmptyStatement
 			if ( 'hidden' === $core->args['menu_type'] ) {
 				// No menu to add!
@@ -396,7 +395,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 */
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/{$field['type']}/callback/before",
 					array(
 						&$field,
@@ -412,7 +411,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 */
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/callback/before",
 					array(
 						&$field,
@@ -430,7 +429,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 */
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/{$field['type']}/callback/after",
 					array(
 						&$field,
@@ -446,7 +445,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				 */
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				do_action_ref_array(
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					"redux/field/{$core->args['opt_name']}/callback/after",
 					array(
 						&$field,
@@ -534,7 +533,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/render/before",
 						array(
 							&$field,
@@ -550,7 +549,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/render/before",
 						array(
 							&$field,
@@ -625,7 +624,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/fieldset/before/{$core->args['opt_name']}",
 						array(
 							&$field,
@@ -641,7 +640,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/fieldset/before/{$core->args['opt_name']}",
 						array(
 							&$field,
@@ -691,7 +690,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/{$field['type']}/fieldset/after/{$core->args['opt_name']}",
 						array(
 							&$field,
@@ -707,7 +706,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					 */
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					do_action_ref_array(
-						// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						"redux/field/{$core->args['opt_name']}/fieldset/after/{$core->args['opt_name']}",
 						array(
 							&$field,
@@ -1013,6 +1012,8 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 		 * @return      string
 		 */
 		public function section_menu( $k, $section, $suffix = '', $sections = array() ) {
+			$function_count = 0;
+
 			$core = $this->core();
 
 			$display = true;
@@ -1030,7 +1031,8 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 			}
 
 			if ( empty( $sections ) ) {
-				$sections = $core->sections;
+				$sections       = $core->sections;
+				$function_count = $k;
 			}
 
 			$string = '';
@@ -1068,7 +1070,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					$core->args['pro']['flyout_submenus'] = false;
 				}
 
-				$subsections        = ( isset( $sections[ ( $k + 1 ) ] ) && isset( $sections[ ( $k + 1 ) ]['subsection'] ) && true === $sections[ ( $k + 1 ) ]['subsection'] ) ? true : false;
+				$subsections        = isset( $sections[ ( $k + 1 ) ] ) && isset( $sections[ ( $k + 1 ) ]['subsection'] ) && true === $sections[ ( $k + 1 ) ]['subsection'];
 				$subsections_class  = $subsections ? ' hasSubSections' : '';
 				$subsections_class .= ( ! isset( $section['fields'] ) || empty( $section['fields'] ) ) ? ' empty_section' : '';
 				$rotate             = true === $core->args['pro']['flyout_submenus'] ? ' el-rotate' : '';
@@ -1080,12 +1082,14 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 				// Make sure you can make this a subsection.
 				if ( $subsections ) {
-
 					$string .= '<ul id="' . esc_attr( $next_k . $suffix ) . '_section_group_li_subsections" class="subsection">';
+
 					$do_loop = true;
 
 					while ( $do_loop ) {
 						$next_k ++;
+						$function_count++;
+
 						$display = true;
 
 						if ( isset( $_GET['page'] ) && $core->args['page_slug'] === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -1094,7 +1098,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 							}
 						}
 
-						if ( count( $sections ) < $next_k || ! isset( $sections[ $next_k ] ) || ! isset( $sections[ $next_k ]['subsection'] ) || true !== $sections[ $next_k ]['subsection'] ) {
+						if ( count( $sections ) < $function_count || ! isset( $sections[ $next_k ] ) || ! isset( $sections[ $next_k ]['subsection'] ) || true !== $sections[ $next_k ]['subsection'] ) {
 							$do_loop = false;
 						} else {
 							if ( ! $display ) {
