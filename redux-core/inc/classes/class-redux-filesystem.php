@@ -620,7 +620,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 
 			try {
 				ob_start();
-				if ( $this->file_exists( $abs_path ) ) {
+				if ( $this->file_exists( $abs_path ) && is_file( $abs_path ) ) {
 					require_once $abs_path;
 				}
 				$contents = ob_get_clean();
