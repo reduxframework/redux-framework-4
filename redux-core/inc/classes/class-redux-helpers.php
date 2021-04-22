@@ -887,15 +887,21 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @since ReduxFramework 3.0.4
 		 */
 		public static function hex2rgba( $hex, $alpha = '' ) {
-			$hex = str_replace( '#', '', $hex );
-			if ( 3 === strlen( $hex ) ) {
-				$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
-				$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
-				$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
+			$hex = ltrim($hex, '#');
+			if(ctype_xdigit($hex)){
+				if ( 3 === strlen( $hex ) ) {
+					$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
+					$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
+					$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
+				} else {
+					$r = hexdec( substr( $hex, 0, 2 ) );
+					$g = hexdec( substr( $hex, 2, 2 ) );
+					$b = hexdec( substr( $hex, 4, 2 ) );
+				}
 			} else {
-				$r = hexdec( substr( $hex, 0, 2 ) );
-				$g = hexdec( substr( $hex, 2, 2 ) );
-				$b = hexdec( substr( $hex, 4, 2 ) );
+				$r = 0;
+				$g = 0;
+				$b = 0;
 			}
 			$rgb = $r . ',' . $g . ',' . $b;
 
