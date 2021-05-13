@@ -19,10 +19,6 @@ If you would like to interact with us directly, you can join our Slack workspace
 
 Please check back nightly for new code pushes.
 
-## We still need your support!
-
-It is difficult and time consuming to continue development and support for this free plugin without contributions from users like yourself.  If you enjoy using Redux Framework, find it useful, and if it's saved you hours upon hours of development time, please consider [donating and helping us hit our fundraising goal](https://www.gofundme.com/development-of-redux-framework-v4). Your donations will help encourage and support the plugin’s continued development and better user support.
-
 ## Changelog ##
 
 See [Changelog.md](https://github.com/reduxframework/redux-framework-4/blob/master/CHANGELOG.md)
