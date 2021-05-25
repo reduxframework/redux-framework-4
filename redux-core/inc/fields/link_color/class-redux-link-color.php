@@ -333,7 +333,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 							}
 						}
 					}
-					$this->parent->compilerCSS .= esc_attr( $style_string );
+					$this->parent->compilerCSS .= $style_string;
 				}
 			}
 		}
