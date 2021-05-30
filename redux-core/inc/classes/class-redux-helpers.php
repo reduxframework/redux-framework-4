@@ -1683,7 +1683,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 
 			if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
 				if ( $download ) {
-					$url = 'http://api.redux.io/gfonts';
+					$url = apply_filter( 'redux/typography/google_fonts/url', 'https://api.redux.io/gfonts' );
 
 					$request = wp_remote_get(
 						$url,
