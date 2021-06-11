@@ -259,6 +259,13 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 					$this->field['compiler'] = array( $this->field['compiler'] );
 				}
 
+				if ( isset( $this->field['compiler']['important'] ) ) {
+					if ( $this->field['compiler']['important'] ) {
+						$style = str_replace( ';', ' !important;', $style );
+					}
+					unset( $this->field['compiler']['important'] );
+				}
+
 				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
 					$keys                       = implode( ',', $this->field['compiler'] );
 					$this->parent->compilerCSS .= $keys . '{' . $style . '}';

@@ -272,6 +272,13 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				if ( ! empty( $this->field['output'] ) && is_array( $this->field['output'] ) ) {
 					$style_string = '';
 
+					if ( isset( $this->field['output']['important'] ) ) {
+						if ( $this->field['output']['important'] ) {
+							$style = str_replace( ';', ' !important;', $style );
+						}
+						unset( $this->field['output']['important'] );
+					}
+
 					foreach ( $style as $key => $value ) {
 						if ( is_numeric( $key ) ) {
 							$style_string .= implode( ',', $this->field['output'] ) . '{' . $value . '}';
@@ -316,6 +323,13 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 				if ( ! empty( $this->field['compiler'] ) && is_array( $this->field['compiler'] ) ) {
 					$style_string = '';
 
+					if ( isset( $this->field['compiler']['important'] ) ) {
+						if ( $this->field['compiler']['important'] ) {
+							$style = str_replace( ';', ' !important;', $style );
+						}
+						unset( $this->field['compiler']['important'] );
+					}
+
 					foreach ( $style as $key => $value ) {
 						if ( is_numeric( $key ) ) {
 							$style_string .= implode( ',', $this->field['compiler'] ) . '{' . $value . '}';
@@ -333,7 +347,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 							}
 						}
 					}
-					$this->parent->compilerCSS .= esc_attr( $style_string );
+					$this->parent->compilerCSS .= $style_string;
 				}
 			}
 		}

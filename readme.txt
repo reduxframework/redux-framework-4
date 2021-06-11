@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block ed
 Requires at least: 4.0
 Requires PHP: 7.1
 Tested up to: 5.7.2
-Stable tag: 4.1.26
+Stable tag: 4.1.27
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +153,14 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+== 4.1.27 ==
+* Fixed: Image select not selecting default value.
+* Modified: #209 - Link color field overridden by theme.  Added 'important' arg to the output array to fix.  See sample config.
+* Fixed: #208 - Same config not setting footer background in Twenty-twenty theme due to incorrect class.
+* Fixed: #207 - Radio field not displaying text after save/refresh when displaying WordPress data.
+* Modified: #210 - Donation text removed.
+* Fixed: #206 - Link color CSS compiling incorrectly due to late escaping.
 
 == 4.1.26 ==
 * Added: Menu accent introduced in WordPress 5.7.

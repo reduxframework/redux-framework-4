@@ -41,12 +41,13 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 *
 		 * @param bool       $type          Type.
 		 * @param array      $args          Args.
+		 * @param array      $opt_name      Opt name.
 		 * @param string|int $current_value Current value.
 		 * @param bool       $ajax          Tells if this is a AJAX call.
 		 *
 		 * @return array|mixed|string
 		 */
-		public function get( $type = false, $args = array(), $current_value = '', $ajax = false ) {
+		public function get( $type = false, $args = array(), $opt_name = '', $current_value = '', $ajax = false ) {
 			$opt_name = $this->opt_name;
 
 			// We don't want to run this, it's not a string value. Send it back!
@@ -155,7 +156,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 *
 		 * @return array
 		 */
-		private function process_results( $results = array(), $id_key = '', $name_key = '', $add_key = true, $secondary_key = 'slug' ) {
+		private function process_results( array $results = array(), $id_key = '', $name_key = '', bool $add_key = true, $secondary_key = 'slug' ): array {
 			$data = array();
 			if ( ! empty( $results ) && ! is_a( $results, 'WP_Error' ) ) {
 				foreach ( $results as $k => $v ) {

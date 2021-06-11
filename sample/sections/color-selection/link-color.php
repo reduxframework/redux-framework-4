@@ -27,7 +27,10 @@ Redux::set_section(
 					'hover'   => '#bbb',
 					'active'  => '#ccc',
 				),
-				'output'   => 'a',
+				'output'   => array(
+					'a',
+					'important' => true,
+				),
 
 				// phpcs:ignore Squiz.PHP.CommentedOutCode
 				// 'regular'   => false, // Disable Regular Color.

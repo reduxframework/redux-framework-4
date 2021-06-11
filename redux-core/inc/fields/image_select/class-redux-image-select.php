@@ -78,11 +78,11 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 					$the_value = $k;
 
-					$selected = ( '' !== checked( $this->value, $the_value, false ) ) ? ' redux-image-select-selected' : '';
-
 					if ( ! empty( $this->field['tiles'] ) && true === $this->field['tiles'] ) {
 						$the_value = $v['img'];
 					}
+
+					$selected = ( '' !== checked( $this->value, $the_value, false ) ) ? ' redux-image-select-selected' : '';
 
 					$presets   = '';
 					$is_preset = false;
@@ -201,7 +201,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 		 *
 		 * @param string $data css string.
 		 *
-		 * @return string|void
+		 * @return string
 		 */
 		public function css_style( $data ) {
 			$css    = '';
@@ -212,7 +212,12 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 			if ( ! empty( $data ) && ! is_array( $data ) ) {
 				switch ( $mode ) {
 					case 'background-image':
-						$img = isset( $this->field['options'][ $data ]['img'] ) ? $this->field['options'][ $data ]['img'] : '';
+						if ( $this->field['tiles'] ) {
+							$img = $data;
+						} else {
+							$img = $this->field['options'][ $data ]['img'] ?? '';
+						}
+
 						if ( '' !== $img ) {
 							$output = "background-image: url('" . esc_url( $img ) . "');";
 						}
