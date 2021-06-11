@@ -156,7 +156,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 *
 		 * @return array
 		 */
-		private function process_results( $results = array(), $id_key = '', $name_key = '', $add_key = true, $secondary_key = 'slug' ) {
+		private function process_results( array $results = array(), $id_key = '', $name_key = '', bool $add_key = true, $secondary_key = 'slug' ): array {
 			$data = array();
 			if ( ! empty( $results ) && ! is_a( $results, 'WP_Error' ) ) {
 				foreach ( $results as $k => $v ) {
