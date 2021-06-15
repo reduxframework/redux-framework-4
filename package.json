@@ -28,6 +28,7 @@
     "bigpicture": "^2.5.3",
     "body-scroll-lock": "2.6.4",
     "browser-sync": "^2.26.13",
+    "caniuse-lite": "^1.0.30001237",
     "classnames": "^2.2.6",
     "clipboard-copy": "^3.2.0",
     "color-rgba": "^2.2.3",
