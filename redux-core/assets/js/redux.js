@@ -90,7 +90,7 @@
 					} else {
 						redux.optName.args.ajax_save = false;
 
-						$( button ).click();
+						$( button ).trigger( 'click' );
 						$( '.redux-action_bar input' ).prop( 'disabled', true );
 					}
 				},
@@ -373,7 +373,7 @@ function colorNameToHex( colour ) {
 	};
 })( jQuery );
 
-/* global redux, redux_change */
+/* global redux, redux_change, jQuery */
 
 (function( $ ) {
 	'use strict';
@@ -398,7 +398,8 @@ function colorNameToHex( colour ) {
 			}
 		);
 
-		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).click(
+		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).on(
+			'click',
 			function( e ) {
 				var url;
 
@@ -411,7 +412,7 @@ function colorNameToHex( colour ) {
 
 					e.preventDefault();
 
-					el.find( '#' + url[1] + '_section_group_li_a' ).click();
+					el.find( '#' + url[1] + '_section_group_li_a' ).trigger( 'click' );
 
 					$( this ).parents( 'ul:first' ).find( '.current' ).removeClass( 'current' );
 					$( this ).addClass( 'current' );
@@ -455,7 +456,8 @@ function colorNameToHex( colour ) {
 			}
 		);
 
-		$( '.expand_options' ).click(
+		$( '.expand_options' ).on(
+			'click',
 			function( e ) {
 				var tab;
 
@@ -1904,7 +1906,8 @@ function redux_hook( object, functionName, callback, before ) {
 		var cookieName;
 		var opt_name;
 
-		$( '.redux-group-tab-link-a' ).click(
+		$( '.redux-group-tab-link-a' ).on(
+			'click',
 			function() {
 				var elements;
 				var index;
@@ -2070,7 +2073,7 @@ function redux_hook( object, functionName, callback, before ) {
 		);
 
 		if ( undefined !== redux.optName.last_tab ) {
-			$( '#' + redux.optName.last_tab + '_section_group_li_a' ).click();
+			$( '#' + redux.optName.last_tab + '_section_group_li_a' ).trigger( 'click' );
 
 			return;
 		}
@@ -2106,7 +2109,7 @@ function redux_hook( object, functionName, callback, before ) {
 					}
 				);
 
-				$( '#' + tab + '_section_group_li' ).click();
+				$( '#' + tab + '_section_group_li' ).trigger( 'click' );
 			}
 		} else if ( '' !== $.cookie( 'redux_current_tab_get' ) ) {
 			$.removeCookie( 'redux_current_tab_get' );
@@ -2138,9 +2141,9 @@ function redux_hook( object, functionName, callback, before ) {
 
 				// Tab the first item or the saved one.
 				if ( null === $.cookie( cookieName ) || 'undefined' === typeof ( $.cookie( cookieName ) ) || 0 === sTab.length ) {
-					$( this ).find( '.redux-group-tab-link-a:first' ).click();
+					$( this ).find( '.redux-group-tab-link-a:first' ).trigger( 'click' );
 				} else {
-					sTab.click();
+					sTab.trigger( 'click' );
 				}
 			}
 		);

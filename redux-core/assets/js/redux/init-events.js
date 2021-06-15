@@ -1,4 +1,4 @@
-/* global redux, redux_change */
+/* global redux, redux_change, jQuery */
 
 (function( $ ) {
 	'use strict';
@@ -23,7 +23,8 @@
 			}
 		);
 
-		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).click(
+		el.find( '#toplevel_page_' + redux.optName.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.optName.args.slug + ' a.ab-item' ).on(
+			'click',
 			function( e ) {
 				var url;
 
@@ -36,7 +37,7 @@
 
 					e.preventDefault();
 
-					el.find( '#' + url[1] + '_section_group_li_a' ).click();
+					el.find( '#' + url[1] + '_section_group_li_a' ).trigger( 'click' );
 
 					$( this ).parents( 'ul:first' ).find( '.current' ).removeClass( 'current' );
 					$( this ).addClass( 'current' );
@@ -80,7 +81,8 @@
 			}
 		);
 
-		$( '.expand_options' ).click(
+		$( '.expand_options' ).on(
+			'click',
 			function( e ) {
 				var tab;
 

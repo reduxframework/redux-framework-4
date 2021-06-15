@@ -90,7 +90,7 @@
 					} else {
 						redux.optName.args.ajax_save = false;
 
-						$( button ).click();
+						$( button ).trigger( 'click' );
 						$( '.redux-action_bar input' ).prop( 'disabled', true );
 					}
 				},
