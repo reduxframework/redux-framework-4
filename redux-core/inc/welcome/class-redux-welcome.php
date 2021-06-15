@@ -277,9 +277,6 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 					class="review-us button button-primary"
 					target="_blank">Review Us</a>
 				<a
-					href="https://www.paypal.me/reduxframework"
-					class="review-us button button-primary" target="_blank">Donate</a>
-				<a
 					href="https://twitter.com/share"
 					class="twitter-share-button"
 					data-url="https://redux.io"

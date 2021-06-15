@@ -1,6 +1,5 @@
 === Gutenberg Template Library & Redux Framework ===
 Contributors: dovyp, redux, kprovance
-Donate link: https://paypal.me/ReduxFramework
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block editor, block library, editor, templates, library
 Requires at least: 4.0
 Requires PHP: 7.1
