@@ -19,7 +19,7 @@ Redux::set_section(
 		'fields'     => array(
 			array(
 				'id'           => 'pro-opt-media',
-				'type'         => 'pro-media',
+				'type'         => 'media',
 				'url'          => true,
 				'title'        => esc_html__( 'Media w/ URL', 'your-textdomain-here' ),
 				'compiler'     => 'true',
