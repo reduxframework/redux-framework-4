@@ -334,7 +334,7 @@
 			// Prevent the change event from flowing upward.
 			if ( typeof item === 'string' ) {
 
-				item = [$( '<input type="hidden" name="' + item + '">' ).appendTo( handle ).addClass( clsList[3] ).change( function( e ) {
+				item = [$( '<input type="hidden" name="' + item + '">' ).appendTo( handle ).addClass( clsList[3] ).on( 'change', function( e ) {
 					e.stopPropagation();
 				} ), 'val'];
 			}
@@ -465,7 +465,7 @@
 			// pass the target so that it is 'this'.
 			call( callbacks, base.data( 'target' ) );
 
-			base.data( 'target' ).change();
+			base.data( 'target' ).trigger( 'change' );
 		}
 
 		// Event handlers
@@ -557,7 +557,7 @@
 			doc.off( namespace );
 
 			// Trigger the change event.
-			Dt.target.removeClass( clsList[14] + ' ' + clsList[20] ).change();
+			Dt.target.removeClass( clsList[14] + ' ' + clsList[20] ).trigger( 'change' );
 
 			// Trigger the 'end' callback.
 			call( Op['set'], Dt.target );

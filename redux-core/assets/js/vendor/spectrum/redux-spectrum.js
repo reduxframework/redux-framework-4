@@ -9,68 +9,68 @@
 (function( window, $, undefined ) {
 	var defaultOpts                      = {
 
-		    // Callbacks
-		    beforeShow: noop,
-		    move: noop,
-		    change: noop,
-		    show: noop,
-		    hide: noop,
+			// Callbacks
+			beforeShow: noop,
+			move: noop,
+			change: noop,
+			show: noop,
+			hide: noop,
 
-		    // Options
-		    color: false,
-		    flat: false,
-		    showInput: false,
-		    allowEmpty: false,
-		    showButtons: true,
-		    clickoutFiresChange: false,
-		    showInitial: false,
-		    showPalette: false,
-		    showPaletteOnly: false,
-		    showSelectionPalette: true,
-		    localStorageKey: false,
-		    appendTo: 'body',
-		    maxSelectionSize: 7,
-		    cancelText: 'cancel',
-		    chooseText: 'choose',
-		    clearText: 'Clear Color Selection',
-		    preferredFormat: false,
-		    className: '', // Deprecated - use containerClassName and replacerClassName instead.
-		    containerClassName: '',
-		    replacerClassName: '',
-		    showAlpha: false,
-		    theme: 'sp-light',
-		    palette: [['#ffffff', '#000000', '#ff0000', '#ff8000', '#ffff00', '#008000', '#0000ff', '#4b0082', '#9400d3']],
-		    selectionPalette: [],
-		    disabled: false,
-		    inputText: ''
-	    }, spectrums                     = [], IE = ! ! /msie/i.exec( window.navigator.userAgent ),
-	    rgbaSupport                      = (function() {
-		    function contains( str, substr ) {
-			    return ! ! ~ ('' + str).indexOf( substr );
-		    }
+			// Options
+			color: false,
+			flat: false,
+			showInput: false,
+			allowEmpty: false,
+			showButtons: true,
+			clickoutFiresChange: false,
+			showInitial: false,
+			showPalette: false,
+			showPaletteOnly: false,
+			showSelectionPalette: true,
+			localStorageKey: false,
+			appendTo: 'body',
+			maxSelectionSize: 7,
+			cancelText: 'cancel',
+			chooseText: 'choose',
+			clearText: 'Clear Color Selection',
+			preferredFormat: false,
+			className: '', // Deprecated - use containerClassName and replacerClassName instead.
+			containerClassName: '',
+			replacerClassName: '',
+			showAlpha: false,
+			theme: 'sp-light',
+			palette: [['#ffffff', '#000000', '#ff0000', '#ff8000', '#ffff00', '#008000', '#0000ff', '#4b0082', '#9400d3']],
+			selectionPalette: [],
+			disabled: false,
+			inputText: ''
+		}, spectrums                     = [], IE = ! ! /msie/i.exec( window.navigator.userAgent ),
+		rgbaSupport                      = (function() {
+			function contains( str, substr ) {
+				return ! ! ~ ('' + str).indexOf( substr );
+			}
 
-		    var elem      = document.createElement( 'div' );
-		    var style     = elem.style;
-		    style.cssText = 'background-color:rgba(0,0,0,.5)';
-		    return contains( style.backgroundColor, 'rgba' ) || contains( style.backgroundColor, 'hsla' );
-	    })(), inputTypeColorSupport      = (function() {
-		    var colorInput = $( '<input type=\'color\' value=\'#ffffff\' />' )[0];
-		    return colorInput.type === 'color' && colorInput.value !== '#ffffff';
-	    })(),
-	    replaceInput                     = ['<div class=\'sp-replacer\'>', '<div class=\'sp-preview\'><div class=\'sp-preview-inner\'></div></div>', '<div class=\'sp-dd\'>&#9660;</div>', //"<div class='sp-dd'>" + opts.inputText + "</div>",
-		    '</div>'].join( '' ), markup = (function() {
+			var elem      = document.createElement( 'div' );
+			var style     = elem.style;
+			style.cssText = 'background-color:rgba(0,0,0,.5)';
+			return contains( style.backgroundColor, 'rgba' ) || contains( style.backgroundColor, 'hsla' );
+		})(), inputTypeColorSupport      = (function() {
+			var colorInput = $( '<input type=\'color\' value=\'#ffffff\' />' )[0];
+			return colorInput.type === 'color' && colorInput.value !== '#ffffff';
+		})(),
+		replaceInput                     = ['<div class=\'sp-replacer\'>', '<div class=\'sp-preview\'><div class=\'sp-preview-inner\'></div></div>', '<div class=\'sp-dd\'>&#9660;</div>', //"<div class='sp-dd'>" + opts.inputText + "</div>",
+			'</div>'].join( '' ), markup = (function() {
 
-		    // IE does not support gradients with multiple stops, so we need to simulate
-		    //  that for the rainbow slider with 8 divs that each have a single gradient
-		    var gradientFix = '';
-		    if ( IE ) {
-			    for ( var i = 1; i <= 6; i ++ ) {
-				    gradientFix += '<div class=\'sp-' + i + '\'></div>';
-			    }
-		    }
+			// IE does not support gradients with multiple stops, so we need to simulate
+			//  that for the rainbow slider with 8 divs that each have a single gradient
+			var gradientFix = '';
+			if ( IE ) {
+				for ( var i = 1; i <= 6; i ++ ) {
+					gradientFix += '<div class=\'sp-' + i + '\'></div>';
+				}
+			}
 
-		    return ['<div class=\'sp-container sp-hidden\'>', '<div class=\'sp-palette-container\'>', '<div class=\'sp-palette sp-thumb sp-cf\'></div>', '</div>', '<div class=\'sp-picker-container\'>', '<div class=\'sp-top sp-cf\'>', '<div class=\'sp-fill\'></div>', '<div class=\'sp-top-inner\'>', '<div class=\'sp-color\'>', '<div class=\'sp-sat\'>', '<div class=\'sp-val\'>', '<div class=\'sp-dragger\'></div>', '</div>', '</div>', '</div>', '<div class=\'sp-clear sp-clear-display\'>', '</div>', '<div class=\'sp-hue\'>', '<div class=\'sp-slider\'></div>', gradientFix, '</div>', '</div>', '<div class=\'sp-alpha\'><div class=\'sp-alpha-inner\'><div class=\'sp-alpha-handle\'></div></div></div>', '</div>', '<div class=\'sp-input-container sp-cf\'>', '<input class=\'sp-input\' type=\'text\' spellcheck=\'false\'  />', '</div>', '<div class=\'sp-initial sp-thumb sp-cf\'></div>', '<div class=\'sp-button-container sp-cf\'>', '<a class=\'sp-cancel\' href=\'#\'></a>', '<button type=\'button\' class=\'sp-choose\'></button>', '</div>', '</div>', '</div>'].join( '' );
-	    })();
+			return ['<div class=\'sp-container sp-hidden\'>', '<div class=\'sp-palette-container\'>', '<div class=\'sp-palette sp-thumb sp-cf\'></div>', '</div>', '<div class=\'sp-picker-container\'>', '<div class=\'sp-top sp-cf\'>', '<div class=\'sp-fill\'></div>', '<div class=\'sp-top-inner\'>', '<div class=\'sp-color\'>', '<div class=\'sp-sat\'>', '<div class=\'sp-val\'>', '<div class=\'sp-dragger\'></div>', '</div>', '</div>', '</div>', '<div class=\'sp-clear sp-clear-display\'>', '</div>', '<div class=\'sp-hue\'>', '<div class=\'sp-slider\'></div>', gradientFix, '</div>', '</div>', '<div class=\'sp-alpha\'><div class=\'sp-alpha-inner\'><div class=\'sp-alpha-handle\'></div></div></div>', '</div>', '<div class=\'sp-input-container sp-cf\'>', '<input class=\'sp-input\' type=\'text\' spellcheck=\'false\'  />', '</div>', '<div class=\'sp-initial sp-thumb sp-cf\'></div>', '<div class=\'sp-button-container sp-cf\'>', '<a class=\'sp-cancel\' href=\'#\'></a>', '<button type=\'button\' class=\'sp-choose\'></button>', '</div>', '</div>', '</div>'].join( '' );
+		})();
 
 	function paletteTemplate( p, color, className, tooltipFormat ) {
 		var html = [];
@@ -116,34 +116,34 @@
 	function spectrum( element, o ) {
 
 		var opts                                                                               = instanceOptions( o, element ), flat                                         = opts.flat,
-		    showSelectionPalette                                                               = opts.showSelectionPalette, localStorageKey = opts.localStorageKey,
-		    theme                                                                              = opts.theme, callbacks                                                      = opts.callbacks, resize                             = throttle( reflow, 10 ),
-		    visible                                                                            = false, dragWidth                                                         = 0, dragHeight                                         = 0, dragHelperHeight = 0, slideHeight = 0,
-		    slideWidth                                                                         = 0, alphaWidth = 0, alphaSlideHelperWidth                              = 0, slideHelperHeight = 0,
-		    currentHue = 0, currentSaturation = 0, currentValue = 0, currentAlpha = 1, palette = [],
-		    paletteArray                                                                       = [], paletteLookup = {}, selectionPalette = opts.selectionPalette.slice( 0 ),
-		    maxSelectionSize                                                                   = opts.maxSelectionSize, draggingClass                            = 'sp-dragging', inputText = opts.inputText,
-		    shiftMovementDirection                                                             = null;
+			showSelectionPalette                                                               = opts.showSelectionPalette, localStorageKey = opts.localStorageKey,
+			theme                                                                              = opts.theme, callbacks                                                      = opts.callbacks, resize                             = throttle( reflow, 10 ),
+			visible                                                                            = false, dragWidth                                                         = 0, dragHeight                                         = 0, dragHelperHeight = 0, slideHeight = 0,
+			slideWidth                                                                         = 0, alphaWidth = 0, alphaSlideHelperWidth                              = 0, slideHelperHeight = 0,
+			currentHue = 0, currentSaturation = 0, currentValue = 0, currentAlpha = 1, palette = [],
+			paletteArray                                                                       = [], paletteLookup = {}, selectionPalette = opts.selectionPalette.slice( 0 ),
+			maxSelectionSize                                                                   = opts.maxSelectionSize, draggingClass                            = 'sp-dragging', inputText = opts.inputText,
+			shiftMovementDirection                                                             = null;
 
 		var doc                                                                           = element.ownerDocument, body = doc.body, boundElement                    = $( element ),
-		    disabled                                                                      = false, container = $( markup, doc ).addClass( theme ),
-		    dragger                                                                       = container.find( '.sp-color' ), dragHelper = container.find( '.sp-dragger' ),
-		    slider                                                                        = container.find( '.sp-hue' ), slideHelper                             = container.find( '.sp-slider' ),
-		    alphaSliderInner                                                              = container.find( '.sp-alpha-inner' ), alphaSlider           = container.find( '.sp-alpha' ),
-		    alphaSlideHelper                                                              = container.find( '.sp-alpha-handle' ), textInput            = container.find( '.sp-input' ),
-		    paletteContainer                                                              = container.find( '.sp-palette' ),
-		    initialColorContainer                                                         = container.find( '.sp-initial' ), cancelButton = container.find( '.sp-cancel' ),
-		    clearButton                                                                   = container.find( '.sp-clear' ), chooseButton = container.find( '.sp-choose' ),
-		    isInput                                                                       = boundElement.is( 'input' ),
-		    isInputTypeColor                                                              = isInput && inputTypeColorSupport && boundElement.attr( 'type' ) === 'color',
-		    shouldReplace                                                                 = isInput && ! flat,
-		    replacer                                                                      = (shouldReplace) ? $( replaceInput ).addClass( theme ).addClass( opts.className ).addClass( opts.replacerClassName ) : $( [] ),
-		    offsetElement                                                                 = (shouldReplace) ? replacer : boundElement,
-		    previewElement                                                                = replacer.find( '.sp-preview-inner' ),
-		    initialColor                                                                  = opts.color || (isInput && boundElement.val()), colorOnShow     = false,
-		    preferredFormat                                                               = opts.preferredFormat, currentPreferredFormat = preferredFormat,
-		    clickoutFiresChange = ! opts.showButtons || opts.clickoutFiresChange, isEmpty = ! initialColor,
-		    allowEmpty                                                                    = opts.allowEmpty && ! isInputTypeColor;
+			disabled                                                                      = false, container = $( markup, doc ).addClass( theme ),
+			dragger                                                                       = container.find( '.sp-color' ), dragHelper = container.find( '.sp-dragger' ),
+			slider                                                                        = container.find( '.sp-hue' ), slideHelper                             = container.find( '.sp-slider' ),
+			alphaSliderInner                                                              = container.find( '.sp-alpha-inner' ), alphaSlider           = container.find( '.sp-alpha' ),
+			alphaSlideHelper                                                              = container.find( '.sp-alpha-handle' ), textInput            = container.find( '.sp-input' ),
+			paletteContainer                                                              = container.find( '.sp-palette' ),
+			initialColorContainer                                                         = container.find( '.sp-initial' ), cancelButton = container.find( '.sp-cancel' ),
+			clearButton                                                                   = container.find( '.sp-clear' ), chooseButton = container.find( '.sp-choose' ),
+			isInput                                                                       = boundElement.is( 'input' ),
+			isInputTypeColor                                                              = isInput && inputTypeColorSupport && boundElement.attr( 'type' ) === 'color',
+			shouldReplace                                                                 = isInput && ! flat,
+			replacer                                                                      = (shouldReplace) ? $( replaceInput ).addClass( theme ).addClass( opts.className ).addClass( opts.replacerClassName ) : $( [] ),
+			offsetElement                                                                 = (shouldReplace) ? replacer : boundElement,
+			previewElement                                                                = replacer.find( '.sp-preview-inner' ),
+			initialColor                                                                  = opts.color || (isInput && boundElement.val()), colorOnShow     = false,
+			preferredFormat                                                               = opts.preferredFormat, currentPreferredFormat = preferredFormat,
+			clickoutFiresChange = ! opts.showButtons || opts.clickoutFiresChange, isEmpty = ! initialColor,
+			allowEmpty                                                                    = opts.allowEmpty && ! isInputTypeColor;
 
 		if ( inputText !== '' ) {
 			var x = $( offsetElement ).find( 'div.sp-dd' );
@@ -211,7 +211,7 @@
 
 			updateSelectionPaletteFromStorage();
 
-			offsetElement.bind( 'click.spectrum touchstart.spectrum', function( e ) {
+			offsetElement.on( 'click.spectrum touchstart.spectrum', function( e ) {
 				if ( ! disabled ) {
 					toggle();
 				}
@@ -228,28 +228,28 @@
 			}
 
 			// Prevent clicks from bubbling up to document.  This would cause it to be hidden.
-			container.click( stopPropagation );
+			container.on( 'click', stopPropagation );
 
 			// Handle user typed input
-			textInput.change( setFromTextInput );
-			textInput.bind( 'paste', function() {
+			textInput.on( 'change', setFromTextInput );
+			textInput.on( 'paste', function() {
 				setTimeout( setFromTextInput, 1 );
 			} );
-			textInput.keydown( function( e ) {
+			textInput.on( 'keydown', function( e ) {
 				if ( e.keyCode == 13 ) {
 					setFromTextInput();
 				}
 			} );
 
 			cancelButton.text( opts.cancelText );
-			cancelButton.bind( 'click.spectrum', function( e ) {
+			cancelButton.on( 'click.spectrum', function( e ) {
 				e.stopPropagation();
 				e.preventDefault();
 				hide( 'cancel' );
 			} );
 
 			clearButton.attr( 'title', opts.clearText );
-			clearButton.bind( 'click.spectrum', function( e ) {
+			clearButton.on( 'click.spectrum', function( e ) {
 				e.stopPropagation();
 				e.preventDefault();
 				isEmpty = true;
@@ -262,7 +262,7 @@
 			} );
 
 			chooseButton.text( opts.chooseText );
-			chooseButton.bind( 'click.spectrum', function( e ) {
+			chooseButton.on( 'click.spectrum', function( e ) {
 				e.stopPropagation();
 				e.preventDefault();
 
@@ -355,8 +355,8 @@
 			}
 
 			var paletteEvent = IE ? 'mousedown.spectrum' : 'click.spectrum touchstart.spectrum';
-			paletteContainer.delegate( '.sp-thumb-el', paletteEvent, palletElementClick );
-			initialColorContainer.delegate( '.sp-thumb-el:nth-child(1)', paletteEvent, {ignore: true}, palletElementClick );
+			paletteContainer.on( paletteEvent, '.sp-thumb-el', palletElementClick );
+			initialColorContainer.on( paletteEvent, '.sp-thumb-el:nth-child(1)', {ignore: true}, palletElementClick );
 		}
 
 		function updateSelectionPaletteFromStorage() {
@@ -498,8 +498,8 @@
 			hideAll();
 			visible = true;
 
-			$( doc ).bind( 'click.spectrum', hide );
-			$( window ).bind( 'resize.spectrum', resize );
+			$( doc ).on( 'click.spectrum', hide );
+			$( window ).on( 'resize.spectrum', resize );
 			replacer.addClass( 'sp-active' );
 			container.removeClass( 'sp-hidden' );
 
@@ -526,8 +526,8 @@
 			}
 			visible = false;
 
-			$( doc ).unbind( 'click.spectrum', hide );
-			$( window ).unbind( 'resize.spectrum', resize );
+			$( doc ).off( 'click.spectrum', hide );
+			$( window ).off( 'resize.spectrum', resize );
 
 			replacer.removeClass( 'sp-active' );
 			container.addClass( 'sp-hidden' );
@@ -755,7 +755,7 @@
 
 		function destroy() {
 			boundElement.show();
-			offsetElement.unbind( 'click.spectrum touchstart.spectrum' );
+			offsetElement.off( 'click.spectrum touchstart.spectrum' );
 			container.remove();
 			replacer.remove();
 			spectrums[spect.id] = null;
@@ -927,7 +927,7 @@
 					maxWidth  = $( element ).width();
 					offset    = $( element ).offset();
 
-					$( doc ).bind( duringDragEvents );
+					$( doc ).on( duringDragEvents );
 					$( doc.body ).addClass( 'sp-dragging' );
 
 					if ( ! hasTouch ) {
@@ -941,14 +941,14 @@
 
 		function stop() {
 			if ( dragging ) {
-				$( doc ).unbind( duringDragEvents );
+				$( doc ).off( duringDragEvents );
 				$( doc.body ).removeClass( 'sp-dragging' );
 				onstop.apply( element, arguments );
 			}
 			dragging = false;
 		}
 
-		$( element ).bind( 'touchstart mousedown', start );
+		$( element ).on( 'touchstart mousedown', start );
 	}
 
 	function throttle( func, wait, debounce ) {
@@ -1042,7 +1042,7 @@
 	(function() {
 
 		var trimLeft = /^[\s,#]+/, trimRight = /\s+$/, tinyCounter = 0, math = Math, mathRound = math.round,
-		    mathMin                                                                            = math.min, mathMax = math.max, mathRandom                                 = math.random;
+			mathMin                                                                            = math.min, mathMax = math.max, mathRandom                                 = math.random;
 
 		function tinycolor( color, opts ) {
 
@@ -1056,7 +1056,7 @@
 
 			var rgb                                                = inputToRGB( color );
 			var r = rgb.r, g = rgb.g, b = rgb.b, a = rgb.a, roundA = mathRound( 100 * a ) / 100,
-			    format                                             = opts.format || rgb.format;
+				format                                             = opts.format || rgb.format;
 
 			// Don't let the range of [0,255] come back in [0,1].
 			// Potentially lose a little bit of precision here, but will fix issues where
@@ -1386,7 +1386,7 @@
 			v = bound01( v, 100 );
 
 			var i                                                                        = math.floor( h ), f = h - i, p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s),
-			    mod = i % 6, r = [v, q, p, p, t, v][mod], g = [t, v, v, q, p, p][mod], b = [p, p, t, v, v, q][mod];
+				mod = i % 6, r = [v, q, p, p, t, v][mod], g = [t, v, v, q, p, p][mod], b = [p, p, t, v, v, q][mod];
 
 			return {r: r * 255, g: g * 255, b: b * 255};
 		}
