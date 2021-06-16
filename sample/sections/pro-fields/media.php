@@ -26,7 +26,7 @@ Redux::set_section(
 				'desc'         => esc_html__( 'Basic media uploader with disabled URL input field.', 'your-textdomain-here' ),
 				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'your-textdomain-here' ),
 				'default'      => array(
-					'url'    => 'http://s.wordpress.org/style/images/codeispoetry.png',
+					'url'    => 'https://s.wordpress.org/style/images/codeispoetry.png',
 					'filter' => array(
 						'grayscale' => array(
 							'checked' => true,
