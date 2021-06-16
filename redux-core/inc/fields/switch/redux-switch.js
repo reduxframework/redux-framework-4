@@ -35,7 +35,8 @@
 					return;
 				}
 
-				el.find( '.cb-enable' ).click(
+				el.find( '.cb-enable' ).on(
+					'click',
 					function() {
 						var parent;
 						var obj;
@@ -61,7 +62,8 @@
 					}
 				);
 
-				el.find( '.cb-disable' ).click(
+				el.find( '.cb-disable' ).on(
+					'click',
 					function() {
 						var parent;
 						var obj;

@@ -42,7 +42,7 @@
 				isFiltered = false;
 
 				// Remove the image button.
-				el.find( '.remove-image, .remove-file' ).unbind( 'click' ).on(
+				el.find( '.remove-image, .remove-file' ).off( 'click' ).on(
 					'click',
 					function() {
 						redux.field_objects.media.removeFile( $( this ).parents( 'fieldset.redux-field:first' ) );
@@ -50,7 +50,7 @@
 				);
 
 				// Upload media button.
-				el.find( '.media_upload_button' ).unbind().on(
+				el.find( '.media_upload_button' ).off().on(
 					'click',
 					function( event ) {
 						redux.field_objects.media.addFile( event, $( this ).parents( 'fieldset.redux-field:first' ) );
@@ -225,7 +225,7 @@
 		// Hide the screenshot.
 		screenshot.slideUp();
 
-		selector.find( '.remove-file' ).unbind();
+		selector.find( '.remove-file' ).off();
 
 		// We don't display the upload button if .upload-notice is present.
 		// This means the user doesn't have the WordPress 3.5 Media Library Support.

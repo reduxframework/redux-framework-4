@@ -324,7 +324,7 @@
 	};
 
 	redux.field_objects.typography.updates = function( obj ) {
-		obj.find( '.update-google-fonts' ).bind(
+		obj.find( '.update-google-fonts' ).on(
 			'click',
 			function( e ) {
 				var $action        = $( this ).data( 'action' );
