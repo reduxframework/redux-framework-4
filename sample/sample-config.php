@@ -651,10 +651,10 @@ if ( ! function_exists( 'redux_validate_callback_function' ) ) {
 		$warning = false;
 
 		// Do your validation.
-		if ( 1 === $value ) {
+		if ( 1 === (int) $value ) {
 			$error = true;
 			$value = $existing_value;
-		} elseif ( 2 === $value ) {
+		} elseif ( 2 === (int) $value ) {
 			$warning = true;
 			$value   = $existing_value;
 		}

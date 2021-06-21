@@ -63,7 +63,8 @@
 
 				redux.field_objects.multi_text.remove( el );
 
-				el.find( '.redux-multi-text-add' ).click(
+				el.find( '.redux-multi-text-add' ).on(
+					'click',
 					function() {
 						var i;
 						var lis;
