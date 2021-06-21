@@ -309,9 +309,13 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 						if ( false !== $key ) {
 							unset( $theme_paths[ $key ] );
 						}
-						$data['parent_slug'] = end( $theme_paths );
-						$data['parent_slug'] = explode( '/', $data['parent_slug'] );
-						$data['parent_slug'] = end( $data['parent_slug'] );
+
+						$theme_paths_end = end( $theme_paths );
+						$parent_slug_end = explode( '/', $theme_paths_end );
+						$parent_slug_end = end( $parent_slug_end );
+
+						$data['parent_slug'] = $theme_paths_end;
+						$data['parent_slug'] = $parent_slug_end;
 					}
 
 					return $data;
