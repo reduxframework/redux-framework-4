@@ -31,6 +31,7 @@ class Redux_Full_Package implements themecheck {
 	 * @return bool
 	 */
 	public function check( $php_files, $css_files, $other_files ) {
+
 		$ret = true;
 
 		$check = Redux_ThemeCheck::get_instance();
@@ -84,7 +85,5 @@ class Redux_Full_Package implements themecheck {
 		return $this->error;
 	}
 }
-
-$themechecks = array();
 
 $themechecks[] = new Redux_Full_Package();

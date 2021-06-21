@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		 * @since   1.0.0
 		 * @var     string
 		 */
-		protected $version = '1.0.0';
+		protected string $version = '1.0.0';
 
 		/**
 		 * Instance of this class.
@@ -113,10 +113,10 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		 *
 		 * @param array $php_files Array of files to check.
 		 *
-		 * @since     1.0.0
 		 * @return    object    A single instance of this class.
+		 *@since     1.0.0
 		 */
-		public static function get_redux_details( $php_files = array() ) {
+		public static function get_redux_details( array $php_files = array() ) {
 			if ( null === self::$redux_details ) {
 				foreach ( $php_files as $php_key => $phpfile ) {
 
@@ -215,8 +215,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 
 				if ( ! isset( $_POST['themename'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 
-					$intro  = '';
-					$intro .= '<h2>Redux Theme-Check</h2>';
+					$intro  = '<h2>Redux Theme-Check</h2>';
 					$intro .= '<p>Extra checks for Redux to ensure you\'re ready for marketplace submission to marketplaces.</p>';
 
 					$redux_check_intro['text'] = $intro;
