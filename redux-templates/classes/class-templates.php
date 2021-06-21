@@ -33,9 +33,15 @@ class Templates {
 	 */
 	public function __construct() {
 		global $pagenow;
+
 		if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && \Redux_Enable_Gutenberg::$is_disabled ) {
+
 				// We don't want to add templates unless it's a gutenberg page.
 				return;
+		}
+
+		if ( ! $this->is_gutenberg_page() ) {
+			return;
 		}
 
 		// Include ReduxTemplates default template without wrapper.
@@ -45,6 +51,7 @@ class Templates {
 
 		// Add ReduxTemplates supported Post type in page template.
 		$post_types = get_post_types();
+
 		if ( ! empty( $post_types ) ) {
 			foreach ( $post_types as $post_type ) {
 				add_filter( "theme_{$post_type}_templates", array( $this, 'add_templates' ) );
@@ -56,6 +63,31 @@ class Templates {
 	}
 
 	/**
+	 * Is Gutenburg loaded via WordPress core.
+	 *
+	 * @return bool
+	 */
+	public function is_gutenberg_page(): bool {
+		if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) {
+			// The Gutenberg plugin is on.
+			return true;
+		}
+
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			require_once ABSPATH . '/wp-admin/includes/screen.php';
+		}
+
+		$current_screen = get_current_screen();
+
+		if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
+			// Gutenberg page on 5+.
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Add the redux-template class to the admin body if a redux-templates page type is selected.
 	 *
 	 * @param string $classes Classes string for admin panel.
@@ -63,9 +95,11 @@ class Templates {
 	 * @since 4.1.19
 	 * @return string
 	 */
-	public function add_body_class( $classes ) {
+	public function add_body_class( $classes ): string {
 		global $post;
+
 		$screen = get_current_screen();
+
 		if ( 'post' === $screen->base && get_current_screen()->is_block_editor() ) {
 			$check = get_post_meta( $post->ID, '_wp_page_template', true );
 			if ( strpos( $check, 'redux-templates_' ) !== false ) {

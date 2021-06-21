@@ -1,5 +1,8 @@
 # Redux Changelog
 
+## 4.1.28 RC
+* Fixed: #217 - Redux templates loading on post types with no block editor.
+
 ## 4.1.27
 * Fixed: Image select not selecting default value.
 * Modified: #209 - Link color field overridden by theme.  Added 'important' arg to the output array to fix.  See sample config.
