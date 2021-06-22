@@ -34,7 +34,7 @@
 
 				el.find( '.buttonset' ).each(
 					function() {
-						$( this ).buttonset();
+						$( this ).controlgroup();
 					}
 				);
 			}
