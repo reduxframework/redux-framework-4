@@ -408,11 +408,13 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @param       array $args     Class constructor arguments.
 		 */
 		public function __construct( $sections = array(), $args = array() ) {
+			global $pagenow;
+
 			if ( Redux_Core::is_heartbeat() ) {
-				exit;
+				return;
 			}
 
-			if ( empty( $args ) || ! isset( $args['opt_name'] ) || ( isset( $args['opt_name'] ) && empty( $args['opt_name'] ) ) ) {
+			if ( 'wp-cron.php' === $pagenow || empty( $args ) || ! isset( $args['opt_name'] ) || ( isset( $args['opt_name'] ) && empty( $args['opt_name'] ) ) ) {
 				return;
 			}
 

@@ -457,9 +457,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 *
 		 * @return bool
 		 */
-		public static function is_heartbeat() {
+		public static function is_heartbeat(): bool {
 			// Disregard WP AJAX 'heartbeat'call.  Why waste resources?
 			if ( isset( $_POST ) && isset( $_POST['_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_nonce'] ) ), 'heartbeat-nonce' ) ) {
+
 				if ( isset( $_POST['action'] ) && 'heartbeat' === sanitize_text_field( wp_unslash( $_POST['action'] ) ) ) {
 
 					// Hook, for purists.
