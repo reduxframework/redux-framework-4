@@ -169,8 +169,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 */
 		public static function is_field_in_use( $parent, $field ) {
 			if ( empty( $parent->sections ) ) {
-				return;
+				return false;
 			}
+
 			foreach ( $parent->sections as $k => $section ) {
 				if ( ! isset( $section['title'] ) ) {
 					continue;
@@ -182,6 +183,8 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					}
 				}
 			}
+
+			return false;
 		}
 
 		/**
