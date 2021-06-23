@@ -8,6 +8,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$sample_html = '';
+if ( file_exists( $dir . 'info-html.html' ) ) {
+	global $wp_filesystem;
+
+	$fs = Redux_Filesystem::get_instance();
+
+	$sample_html = $wp_filesystem->get_contents( $dir . 'info-html.html' );
+}
+
 Redux::set_section(
 	$opt_name,
 	array(
@@ -28,7 +37,7 @@ Redux::set_section(
 				'id'         => 'opt-raw_info_5',
 				'type'       => 'raw',
 				'full_width' => false,
-				'title'      => esc_html__( 'Raw Field <code>full_width</code> False', 'your-textdomain-here' ),
+				'title'      => wp_kses_post( __( 'Raw Field <code>full_width</code> set to <code>false</code>', 'your-textdomain-here' ) ),
 				'subtitle'   => esc_html__( 'Subtitle', 'your-textdomain-here' ),
 				'desc'       => esc_html__( 'Description', 'your-textdomain-here' ),
 				'content'    => $sample_html,
