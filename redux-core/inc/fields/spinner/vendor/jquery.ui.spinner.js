@@ -319,7 +319,8 @@ jQuery.uaMatch = function( ua ) {
 					);
 				}
 
-				buttons.hover(
+				buttons.on(
+					'hover',
 					function() {
 						_this.buttons.removeClass( hover );
 						if ( ! options.disabled ) {
@@ -329,10 +330,22 @@ jQuery.uaMatch = function( ua ) {
 					function() {
 						$( this ).removeClass( hover );
 					}
-				).mousedown( mouseDown ).mouseup( mouseUp ).mouseout( mouseUp );
+				)
+				.on(
+					'mousedown',
+					mouseDown
+				)
+				.on(
+					'mouseup',
+					mouseUp )
+				.on(
+					'mouseout',
+					mouseUp
+				);
 
 				if ( msie ) {
-					buttons.dblclick(
+					buttons.on(
+						'dblclick',
 						function() {
 							if ( ! options.disabled ) {
 								_this._change();
