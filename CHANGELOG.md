@@ -1,9 +1,17 @@
 # Redux Changelog
 
-## 4.1.28 RC
+## 4.1.28
 * Fixed: #217 - Redux templates loading on post types with no block editor.
 * Fixed: #158 - Redux theme checks no longer prevent theme check plugin from functioning.
-* 
+* Fixed: #215 - Heatbeat check no longer eats the function if disregarded.
+* Fixed: #222 - Background field image now hides preview image upon removal.
+* Fixed: RAW field in sample config now works.
+* Fixed: Helper function is_field_in_use now returns false, instead of null.
+* Fixed: Palette field rendering improperly.
+* Fixed: Google font update fail.
+* Modified: buttonset() jQuery widget deprecated.  Replaced with controlgroup().
+* Modified: Additional JavaScript updates to fix jQuery deprecation notices.
+
 ## 4.1.27
 * Fixed: Image select not selecting default value.
 * Modified: #209 - Link color field overridden by theme.  Added 'important' arg to the output array to fix.  See sample config.

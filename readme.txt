@@ -3,8 +3,8 @@ Contributors: dovyp, redux, kprovance
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, page builder, block editor, block library, editor, templates, library
 Requires at least: 4.0
 Requires PHP: 7.1
-Tested up to: 5.7.2
-Stable tag: 4.1.27
+Tested up to: 5.7.3
+Stable tag: 4.1.28
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -152,6 +152,18 @@ If you want, you can use the [Gutenberg](https://wordpress.org/plugins/gutenberg
 6. Within each template kit you can see the full page template types.
 
 == Changelog ==
+
+== 4.1.28 ==
+* Fixed: #217 - Redux templates loading on post types with no block editor.
+* Fixed: #158 - Redux theme checks no longer prevent theme check plugin from functioning.
+* Fixed: #215 - Heatbeat check no longer eats the function if disregarded.
+* Fixed: #222 - Background field image now hides preview image upon removal.
+* Fixed: RAW field in sample config now works.
+* Fixed: Helper function is_field_in_use now returns false, instead of null.
+* Fixed: Palette field rendering improperly.
+* Fixed: Google font update fail.
+* Modified: buttonset() jQuery widget deprecated.  Replaced with controlgroup().
+* Modified: Additional JavaScript updates to fix jQuery deprecation notices.
 
 == 4.1.27 ==
 * Fixed: Image select not selecting default value.
