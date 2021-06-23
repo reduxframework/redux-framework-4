@@ -64,7 +64,8 @@
 					}
 				);
 
-				el.find( '.redux-slides-add' ).off( 'click' ).click(
+				el.find( '.redux-slides-add' ).off( 'click' ).on(
+					'click',
 					function() {
 						var contentNewTitle;
 
@@ -96,7 +97,8 @@
 					}
 				);
 
-				el.find( '.slide-title' ).keyup(
+				el.find( '.slide-title' ).on(
+					'keyup',
 					function( event ) {
 						var newTitle = event.target.value;
 						$( this ).parents().eq( 3 ).find( '.redux-slides-header' ).text( newTitle );

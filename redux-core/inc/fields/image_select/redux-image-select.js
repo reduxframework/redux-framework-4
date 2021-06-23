@@ -1,9 +1,9 @@
-/* global redux, redux_change */
+/* global redux, redux_change, jQuery */
 
 (function( $ ) {
 	'use strict';
 
-	redux.field_objects = redux.field_objects || {};
+	redux.field_objects              = redux.field_objects || {};
 	redux.field_objects.image_select = redux.field_objects.image_select || {};
 
 	redux.field_objects.image_select.init = function( selector ) {
@@ -11,7 +11,7 @@
 
 		$( selector ).each(
 			function() {
-				var el = $( this );
+				var el     = $( this );
 				var parent = el;
 
 				if ( ! el.hasClass( 'redux-field-container' ) ) {
@@ -29,7 +29,8 @@
 				}
 
 				// On label click, change the input and class.
-				el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).click(
+				el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).on(
+					'click',
 					function( e ) {
 						var presets;
 						var data;
@@ -38,8 +39,8 @@
 
 						var id = $( this ).closest( 'label' ).attr( 'for' );
 
-						$( this ).parents( 'fieldset:first' ).find( '.redux-image-select-selected' ).removeClass(
-							'redux-image-select-selected' ).find( 'input[type="radio"]' ).prop( 'checked', false );
+						$( this ).parents( 'fieldset:first' ).find( '.redux-image-select-selected' )
+						.removeClass( 'redux-image-select-selected' ).find( 'input[type="radio"]' ).prop( 'checked', false );
 
 						$( this ).closest( 'label' ).find( 'input[type="radio"]' ).prop( 'checked' );
 
@@ -47,8 +48,8 @@
 							e.preventDefault();
 
 							presets = $( this ).closest( 'label' ).find( 'input' );
-							data = presets.data( 'presets' );
-							merge = presets.data( 'merge' );
+							data    = presets.data( 'presets' );
+							merge   = presets.data( 'merge' );
 
 							if ( undefined !== merge && null !== merge ) {
 								if ( 'string' === $.type( merge ) ) {
@@ -68,17 +69,15 @@
 							}
 
 							if ( undefined !== presets && null !== presets ) {
-								el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find(
-									'input[type="radio"]' ).attr( 'checked', true );
+								el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' )
+								.find( 'input[type="radio"]' ).attr( 'checked', true );
+
 								window.onbeforeunload = null;
 
-								importCodeValue = $(
-									'textarea[name="' + redux.optName.args.opt_name + '[import_code]"' );
+								importCodeValue = $( 'textarea[name="' + redux.optName.args.opt_name + '[import_code]"' );
 
 								if ( 0 === importCodeValue.length ) {
-									$( this ).append(
-										'<textarea id="import-code-value" style="display:none;" name="' + redux.optName.args.opt_name + '[import_code]">' + JSON.stringify(
-										data ) + '</textarea>' );
+									$( this ).append( '<textarea id="import-code-value" style="display:none;" name="' + redux.optName.args.opt_name + '[import_code]">' + JSON.stringify( data ) + '</textarea>' );
 								} else {
 									importCodeValue.val( JSON.stringify( data ) );
 								}
@@ -92,8 +91,7 @@
 
 							return false;
 						} else {
-							el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find(
-								'input[type="radio"]' ).prop( 'checked', true ).trigger( 'change' );
+							el.find( 'label[for="' + id + '"]' ).addClass( 'redux-image-select-selected' ).find( 'input[type="radio"]' ).prop( 'checked', true ).trigger( 'change' );
 
 							redux_change( $( this ).closest( 'label' ).find( 'input[type="radio"]' ) );
 						}
