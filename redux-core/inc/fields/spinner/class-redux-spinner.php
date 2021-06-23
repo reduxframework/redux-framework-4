@@ -123,7 +123,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'redux-field-spinner-custom-js',
 				Redux_Core::$url . 'inc/fields/spinner/vendor/jquery.ui.spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
-				$this->timestamp,
+				Redux_Core::$version,
 				true
 			);
 
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'redux-field-spinner-js',
 				Redux_Core::$url . 'inc/fields/spinner/redux-spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-field-spinner-custom-js', 'jquery-ui-core', 'jquery-ui-dialog', 'redux-js' ),
-				$this->timestamp,
+				Redux_Core::$version,
 				true
 			);
 
@@ -140,8 +140,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 					'redux-field-spinner-css',
 					Redux_Core::$url . 'inc/fields/spinner/redux-spinner.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -171,15 +170,15 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		 * Compile CSS data for output.
 		 *
 		 * @param mixed $value Value.
-		 * @param array $output .
+		 * @param mixed $output .
 		 *
 		 * @return string
 		 */
-		private function parse_css( $value, $output ) {
+		private function parse_css( $value, $output ): string {
 			// No notices.
 			$css = '';
 
-			$unit = isset( $this->field['output_unit'] ) ? $this->field['output_unit'] : 'px';
+			$unit = $this->field['output_unit'] ?? 'px';
 
 			// Must be an array.
 			if ( is_array( $output ) ) {

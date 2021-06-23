@@ -468,7 +468,7 @@ jQuery.uaMatch = function( ua ) {
 					'focus' + eventNamespace,
 					function() {
 						function selectAll() {
-							_this.element.select();
+							_this.element.trigger( 'select' );
 						}
 
 						if ( msie ) {
@@ -746,7 +746,7 @@ jQuery.uaMatch = function( ua ) {
 
 				if ( ! suppressFireEvent ) {
 					_this.selfChange = true;
-					_this.element.change();
+					_this.element.trigger( 'change' );
 					_this.selfChange = false;
 				}
 			},
