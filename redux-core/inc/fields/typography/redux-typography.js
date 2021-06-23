@@ -214,7 +214,7 @@
 												$( this ).hasClass( 'redux-typography-transform' ) ||
 												$( this ).hasClass( 'redux-typography-font-variant' ) ||
 												$( this ).hasClass( 'redux-typography-decoration' ) ) {
-												that.find( 'option[selected="selected"]' ).removeAttr( 'selected' );
+												that.find( 'option[selected="selected"]' ).attr( 'selected', false );
 												that.find( 'option[value="' + val + '"]' ).attr( 'selected', 'selected' );
 											}
 

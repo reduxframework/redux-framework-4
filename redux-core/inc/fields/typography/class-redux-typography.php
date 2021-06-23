@@ -751,7 +751,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			$dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js', 'redux-webfont-js' );
 
-			wp_enqueue_script( 'redux-field-typography-js', Redux_Core::$url . "inc/fields/typography/redux-typography$min.js", $dep_array, $this->timestamp, true );
+			wp_enqueue_script( 'redux-field-typography-js', Redux_Core::$url . "inc/fields/typography/redux-typography$min.js", $dep_array, Redux_Core::$version, true );
 
 			wp_localize_script(
 				'redux-field-typography-js',

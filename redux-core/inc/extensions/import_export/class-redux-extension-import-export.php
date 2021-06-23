@@ -31,7 +31,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 *
 		 * @var bool
 		 */
-		public $is_field = false;
+		public bool $is_field = false;
 
 		/**
 		 * Class Constructor. Defines the args for the extions class

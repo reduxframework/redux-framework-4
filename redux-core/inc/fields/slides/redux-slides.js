@@ -1,4 +1,4 @@
-/*global redux_change, redux*/
+/*global redux_change, redux, jQuery */
 
 (function( $ ) {
 	'use strict';
@@ -75,7 +75,7 @@
 
 						$( newSlide ).find( 'input[type="text"], input[type="hidden"], textarea' ).each(
 							function() {
-								$( this ).attr( 'name', jQuery( this ).attr( 'name' ).replace( /[0-9]+(?!.*[0-9])/, slideCount1 ) ).attr( 'id', $( this ).attr( 'id' ).replace( /[0-9]+(?!.*[0-9])/, slideCount1 ) );
+								$( this ).attr( 'name', $( this ).attr( 'name' ).replace( /[0-9]+(?!.*[0-9])/, slideCount1 ) ).attr( 'id', $( this ).attr( 'id' ).replace( /[0-9]+(?!.*[0-9])/, slideCount1 ) );
 
 								$( this ).val( '' );
 
