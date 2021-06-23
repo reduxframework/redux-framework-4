@@ -337,7 +337,8 @@ jQuery.uaMatch = function( ua ) {
 				)
 				.on(
 					'mouseup',
-					mouseUp )
+					mouseUp
+				)
 				.on(
 					'mouseout',
 					mouseUp
