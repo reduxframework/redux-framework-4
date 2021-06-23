@@ -38,7 +38,7 @@
 							$( this ).find( '.buttonset-item' ).button();
 						}
 
-						$( this ).buttonset();
+						$( this ).controlgroup();
 					}
 				);
 
