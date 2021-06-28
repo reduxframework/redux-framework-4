@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					'description' => true,
 					'url'         => true,
 				),
-				'content_title' => __( 'Slide', 'redux-framework' ),
+				'content_title' => esc_html__( 'Slide', 'redux-framework' ),
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -89,14 +89,14 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					}
 
 					$alt = wp_prepare_attachment_for_js( $slide['attachment_id'] );
-					$alt = isset( $alt['alt'] ) ? $alt['alt'] : '';
+					$alt = $alt['alt'] ?? '';
 
 					echo '<div class="screenshot' . esc_attr( $hide ) . '">';
 					echo '<a class="of-uploaded-image" href="' . esc_url( $slide['image'] ) . '">';
-					echo '<img 
-							class="redux-slides-image" 
-							id="image_image_id_' . esc_attr( $x ) . '" src="' . esc_url( $slide['thumb'] ) . '" 
-							alt="' . esc_attr( $alt ) . '" 
+					echo '<img
+							class="redux-slides-image"
+							id="image_image_id_' . esc_attr( $x ) . '" src="' . esc_url( $slide['thumb'] ) . '"
+							alt="' . esc_attr( $alt ) . '"
 							target="_blank" rel="external" />';
 
 					echo '</a>';
@@ -111,9 +111,9 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 						$hide = ' hide';
 					}
 
-					echo '<span 
-							class="button remove-image' . esc_attr( $hide ) . '" 
-							id="reset_' . esc_attr( $x ) . '" 
+					echo '<span
+							class="button remove-image' . esc_attr( $hide ) . '"
+							id="reset_' . esc_attr( $x ) . '"
 							rel="' . esc_attr( $slide['attachment_id'] ) . '">' .
 							esc_html__( 'Remove', 'redux-framework' ) . '</span>';
 
@@ -129,11 +129,11 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 
 					$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'redux-framework' );
 					echo '<li>';
-					echo '<input 
-							type="' . esc_attr( $title_type ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-title_' . esc_attr( $x ) . '" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][title]' . $this->field['name_suffix'] ) . '" 
-							value="' . esc_attr( $slide['title'] ) . '" 
+					echo '<input
+							type="' . esc_attr( $title_type ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-title_' . esc_attr( $x ) . '"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][title]' . $this->field['name_suffix'] ) . '"
+							value="' . esc_attr( $slide['title'] ) . '"
 							placeholder="' . esc_attr( $placeholder ) . '" class="full-text slide-title" />';
 
 					echo '</li>';
@@ -141,11 +141,11 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					if ( $this->field['show']['description'] ) {
 						$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'redux-framework' );
 						echo '<li>';
-						echo '<textarea 
-								name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '" 
-								id="' . esc_attr( $this->field['id'] ) . '-description_' . esc_attr( $x ) . '" 
-								placeholder="' . esc_attr( $placeholder ) . '" 
-								class="large-text" 
+						echo '<textarea
+								name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '"
+								id="' . esc_attr( $this->field['id'] ) . '-description_' . esc_attr( $x ) . '"
+								placeholder="' . esc_attr( $placeholder ) . '"
+								class="large-text"
 								rows="6">' . esc_textarea( $slide['description'] ) . '</textarea>';
 
 						echo '</li>';
@@ -159,57 +159,57 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					}
 
 					echo '<li>';
-					echo '<input 
-							type="' . esc_attr( $url_type ) . '" 
-							id="' . esc_attr( $this->field['id'] . '-url_' ) . esc_attr( $x ) . '" 
-							name="' . esc_attr( $this->field['name'] . '[' . esc_attr( $x ) . '][url]' . $this->field['name_suffix'] ) . '" 
-							value="' . esc_attr( $slide['url'] ) . '" 
+					echo '<input
+							type="' . esc_attr( $url_type ) . '"
+							id="' . esc_attr( $this->field['id'] . '-url_' ) . esc_attr( $x ) . '"
+							name="' . esc_attr( $this->field['name'] . '[' . esc_attr( $x ) . '][url]' . $this->field['name_suffix'] ) . '"
+							value="' . esc_attr( $slide['url'] ) . '"
 							class="full-text" placeholder="' . esc_attr( $placeholder ) . '" />';
 					echo '</li>';
 
 					echo '<li>';
-					echo '<input 
-							type="hidden" 
-							class="slide-sort" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][sort]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-sort_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="slide-sort"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][sort]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-sort_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['sort'] ) . '" />';
 
 					echo '<li>';
-					echo '<input 
-							type="hidden" 
-							class="upload-id" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][attachment_id]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-image_id_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="upload-id"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][attachment_id]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-image_id_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['attachment_id'] ) . '" />';
 
-					echo '<input 
-							type="hidden" 
-							class="upload" name="' . esc_attr( $this->field['name'] . '[' . $x . '][image]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-image_url_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="upload" name="' . esc_attr( $this->field['name'] . '[' . $x . '][image]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-image_url_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['image'] ) . '" readonly="readonly" />';
 
-					echo '<input 
-							type="hidden" 
-							class="upload-height" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][height]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-image_height_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="upload-height"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][height]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-image_height_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['height'] ) . '" />';
 
-					echo '<input 
-							type="hidden" 
-							class="upload-width" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][width]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-image_width_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="upload-width"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][width]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-image_width_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['width'] ) . '" />';
 
 					echo '</li>';
 
-					echo '<input 
-							type="hidden" 
-							class="upload-thumbnail" 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][thumb]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] ) . '-thumb_url_' . esc_attr( $x ) . '" 
+					echo '<input
+							type="hidden"
+							class="upload-thumbnail"
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][thumb]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] ) . '-thumb_url_' . esc_attr( $x ) . '"
 							value="' . esc_attr( $slide['thumb'] ) . '" readonly="readonly" />';
 					echo '</li>';
 
@@ -265,12 +265,12 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'redux-framework' );
 
 				echo '<li>';
-				echo '<input 
-						type="' . esc_attr( $title_type ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-title_' . $x ) . '" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][title]' . $this->field['name_suffix'] ) . '" 
-						value="" 
-						placeholder="' . esc_attr( $placeholder ) . '" 
+				echo '<input
+						type="' . esc_attr( $title_type ) . '"
+						id="' . esc_attr( $this->field['id'] . '-title_' . $x ) . '"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][title]' . $this->field['name_suffix'] ) . '"
+						value=""
+						placeholder="' . esc_attr( $placeholder ) . '"
 						class="full-text slide-title" />';
 				echo '</li>';
 
@@ -278,11 +278,11 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'redux-framework' );
 
 					echo '<li>';
-					echo '<textarea 
-							name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '" 
-							id="' . esc_attr( $this->field['id'] . '-description_' . $x ) . '" 
-							placeholder="' . esc_attr( $placeholder ) . '" 
-							class="large-text" 
+					echo '<textarea
+							name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '"
+							id="' . esc_attr( $this->field['id'] . '-description_' . $x ) . '"
+							placeholder="' . esc_attr( $placeholder ) . '"
+							class="large-text"
 							rows="6"></textarea>';
 					echo '</li>';
 				}
@@ -296,56 +296,56 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				}
 
 				echo '<li>';
-				echo '<input 
-						type="' . esc_attr( $url_type ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-url_' . $x ) . '" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][url]' . $this->field['name_suffix'] ) . '" 
+				echo '<input
+						type="' . esc_attr( $url_type ) . '"
+						id="' . esc_attr( $this->field['id'] . '-url_' . $x ) . '"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][url]' . $this->field['name_suffix'] ) . '"
 						value="" class="full-text" placeholder="' . esc_attr( $placeholder ) . '" />';
 				echo '</li>';
 
 				echo '<li>';
-				echo '<input 
-						type="hidden" 
-						class="slide-sort" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][sort]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-sort_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="slide-sort"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][sort]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-sort_' . $x ) . '"
 						value="' . esc_attr( $x ) . '" />';
 
 				echo '<li>';
-				echo '<input 
-						type="hidden" 
-						class="upload-id" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][attachment_id]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-image_id_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="upload-id"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][attachment_id]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-image_id_' . $x ) . '"
 						value="" />';
 
-				echo '<input 
-						type="hidden" 
-						class="upload" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][image]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-image_url_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="upload"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][image]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-image_url_' . $x ) . '"
 						value="" readonly="readonly" />';
 
-				echo '<input 
-						type="hidden" 
-						class="upload-height" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][height]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-image_height_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="upload-height"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][height]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-image_height_' . $x ) . '"
 						value="" />';
 
-				echo '<input 
-						type="hidden" 
-						class="upload-width" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][width]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-image_width_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="upload-width"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][width]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-image_width_' . $x ) . '"
 						value="" />';
 				echo '</li>';
 
-				echo '<input 
-						type="hidden" 
-						class="upload-thumbnail" 
-						name="' . esc_attr( $this->field['name'] . '[' . $x . '][thumb]' . $this->field['name_suffix'] ) . '" 
-						id="' . esc_attr( $this->field['id'] . '-thumb_url_' . $x ) . '" 
+				echo '<input
+						type="hidden"
+						class="upload-thumbnail"
+						name="' . esc_attr( $this->field['name'] . '[' . $x . '][thumb]' . $this->field['name_suffix'] ) . '"
+						id="' . esc_attr( $this->field['id'] . '-thumb_url_' . $x ) . '"
 						value="" />';
 				echo '</li>';
 
@@ -388,8 +388,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					'redux-field-slides-css',
 					Redux_Core::$url . 'inc/fields/slides/redux-slides.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 

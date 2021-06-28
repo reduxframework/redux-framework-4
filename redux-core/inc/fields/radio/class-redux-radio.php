@@ -37,7 +37,7 @@ if ( ! class_exists( 'Redux_Radio', false ) ) {
 
 			$this->field['data_class'] = ( isset( $this->field['multi_layout'] ) ) ? 'data-' . $this->field['multi_layout'] : 'data-full';
 
-			if ( ! empty( $this->field['options'] ) ) {
+			if ( isset( $this->field['options'] ) && ! empty( $this->field['options'] ) ) {
 				echo '<ul class="' . esc_attr( $this->field['data_class'] ) . '">';
 
 				foreach ( $this->field['options'] as $k => $v ) {

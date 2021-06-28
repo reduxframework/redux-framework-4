@@ -17,6 +17,18 @@ if ( ! class_exists( 'Redux_Raw', false ) ) {
 	class Redux_Raw extends Redux_Field {
 
 		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
+			$defaults = array(
+				'full_width' => true,
+				'markdown'   => false,
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
+		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *

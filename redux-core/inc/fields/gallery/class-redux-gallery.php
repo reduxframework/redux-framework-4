@@ -34,9 +34,9 @@ if ( ! class_exists( 'Redux_Gallery', false ) ) {
 				$ids = explode( ',', $this->value );
 
 				foreach ( $ids as $attachment_id ) {
-					$img = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
+					$img = wp_get_attachment_image_src( $attachment_id );
 					$alt = wp_prepare_attachment_for_js( $attachment_id );
-					$alt = isset( $alt['alt'] ) ? $alt['alt'] : '';
+					$alt = $alt['alt'] ?? '';
 
 					echo '<a class="of-uploaded-image" href="' . esc_url( $img[0] ) . '">';
 					echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '_' . esc_attr( $attachment_id ) . '" src="' . esc_url( $img[0] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" />';

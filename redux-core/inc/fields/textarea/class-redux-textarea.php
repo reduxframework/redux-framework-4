@@ -25,10 +25,10 @@ if ( ! class_exists( 'Redux_Textarea', false ) ) {
 		public function render() {
 
 			$this->field['attributes'] = wp_parse_args(
-				isset( $this->field['attributes'] ) ? $this->field['attributes'] : array(),
+				$this->field['attributes'] ?? array(),
 				array(
-					'placeholder'  => isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : '',
-					'rows'         => isset( $this->field['rows'] ) ? $this->field['rows'] : 6,
+					'placeholder'  => $this->field['placeholder'] ?? '',
+					'rows'         => $this->field['rows'] ?? 6,
 					'autocomplete' => ( isset( $this->field['autocomplete'] ) && false === $this->field['autocomplete'] ) ? 'off' : '',
 					'readonly'     => isset( $this->field['readonly'] ) && $this->field['readonly'] ? 'readonly' : '',
 					'name'         => esc_attr( $this->field['name'] . $this->field['name_suffix'] ),
@@ -48,13 +48,13 @@ if ( ! class_exists( 'Redux_Textarea', false ) ) {
 		/**
 		 * Santize value.
 		 *
-		 * @param array $field Field array.
-		 * @param array $value Values array.
+		 * @param array  $field Field array.
+		 * @param string $value Values array.
 		 *
-		 * @return mixed|string|void
+		 * @return string
 		 */
-		public function sanitize( $field, $value ) {
-			if ( ! isset( $value ) || empty( $value ) ) {
+		public function sanitize( array $field, string $value ): string {
+			if ( empty( $value ) ) {
 				$value = '';
 			} else {
 				$value = esc_textarea( $value );

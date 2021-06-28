@@ -92,7 +92,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					$this->value['background-color'] = $this->value['color'];
 				}
 
-				$def_bg_color = isset( $this->field['default']['background-color'] ) ? $this->field['default']['background-color'] : '';
+				$def_bg_color = $this->field['default']['background-color'] ?? '';
 
 				echo '<input ';
 				echo 'data-id="' . esc_attr( $this->field['id'] ) . '"';
@@ -287,7 +287,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					$hide = '';
 				}
 
-				$placeholder = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : esc_html__( 'No media selected', 'redux-framework' );
+				$placeholder = $this->field['placeholder'] ?? esc_html__( 'No media selected', 'redux-framework' );
 
 				echo '<input placeholder="' . esc_html( $placeholder ) . '" type="text" class="redux-background-input ' . esc_attr( $hide ) . 'upload ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-image]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][background-image]" value="' . esc_url( $this->value['background-image'] ) . '" />';
 				echo '<input type="hidden" class="upload-id ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][id]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][id]" value="' . esc_attr( $this->value['media']['id'] ) . '" />';
@@ -322,7 +322,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 				echo '<a class="of-uploaded-image" href="' . esc_url( $this->value['background-image'] ) . '" target="_blank">';
 
 				$alt = wp_prepare_attachment_for_js( $this->value['media']['id'] );
-				$alt = isset( $alt['alt'] ) ? $alt['alt'] : '';
+				$alt = $alt['alt'] ?? '';
 
 				echo '<img class="redux-option-image" id="image_' . esc_attr( $this->value['media']['id'] ) . '" src="' . esc_url( $this->value['media']['thumbnail'] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" />';
 				echo '</a>';
@@ -401,8 +401,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					'redux-field-background-css',
 					Redux_Core::$url . 'inc/fields/background/redux-background.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 
 				wp_enqueue_style( 'redux-color-picker-css' );
@@ -412,15 +411,15 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 		/**
 		 * Output CSS styling.
 		 *
-		 * @param array $value Value array.
+		 * @param array $data Value array.
 		 *
-		 * @return string|void
+		 * @return string
 		 */
-		public function css_style( $value = array() ) {
+		public function css_style( $data = array() ): string {
 			$css = '';
 
-			if ( ! empty( $value ) && is_array( $value ) ) {
-				foreach ( $value as $key => $val ) {
+			if ( ! empty( $data ) && is_array( $data ) ) {
+				foreach ( $data as $key => $val ) {
 					if ( ! empty( $val ) && 'media' !== $key ) {
 						if ( 'background-image' === $key ) {
 							$css .= $key . ":url('" . esc_url( $val ) . "');";

@@ -34,10 +34,10 @@ if ( ! class_exists( 'Redux_Switch', false ) ) {
 			}
 
 			// Label ON.
-			$this->field['on'] = isset( $this->field['on'] ) ? $this->field['on'] : esc_html__( 'On', 'redux-framework' );
+			$this->field['on'] = $this->field['on'] ?? esc_html__( 'On', 'redux-framework' );
 
 			// Label OFF.
-			$this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : esc_html__( 'Off', 'redux-framework' );
+			$this->field['off'] = $this->field['off'] ?? esc_html__( 'Off', 'redux-framework' );
 
 			echo '<div class="switch-options">';
 			echo '<label class="cb-enable' . esc_attr( $cb_enabled ) . '" data-id="' . esc_attr( $this->field['id'] ) . '"><span>' . esc_html( $this->field['on'] ) . '</span></label>';
@@ -66,8 +66,7 @@ if ( ! class_exists( 'Redux_Switch', false ) ) {
 					'redux-field-switch-css',
 					Redux_Core::$url . 'inc/fields/switch/redux-switch.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

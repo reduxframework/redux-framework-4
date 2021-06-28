@@ -128,8 +128,7 @@ if ( ! class_exists( 'Redux_Checkbox', false ) ) {
 					'redux-field-checkbox-css',
 					Redux_Core::$url . 'inc/fields/checkbox/redux-checkbox.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 

@@ -99,8 +99,8 @@ if ( ! class_exists( 'Redux_Info', false ) ) {
 			$indent = ( isset( $this->field['indent'] ) && $this->field['indent'] ) ? ' form-table-section-indented' : '';
 
 			echo '</td></tr></table>';
-			echo '<div 
-					id="info-' . esc_attr( $this->field['id'] ) . '" 
+			echo '<div
+					id="info-' . esc_attr( $this->field['id'] ) . '"
 					class="' . ( isset( $this->field['icon'] ) && ! empty( $this->field['icon'] ) && true !== $this->field['icon'] ? 'hasIcon ' : '' ) . esc_attr( $this->field['style'] ) . ' ' . esc_attr( $this->field['class'] ) . ' redux-field-' . esc_attr( $this->field['type'] ) . esc_attr( $indent ) . '"' . ( ! empty( $this->field['color'] ) ? ' style="' . esc_attr( $this->field['color'] ) . '"' : '' ) . '>';
 
 			if ( ! empty( $this->field['raw_html'] ) && $this->field['raw_html'] ) {
@@ -145,8 +145,7 @@ if ( ! class_exists( 'Redux_Info', false ) ) {
 					'redux-field-info-css',
 					Redux_Core::$url . 'inc/fields/info/redux-info.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

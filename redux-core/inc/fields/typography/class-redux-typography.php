@@ -22,14 +22,14 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 *
 		 * @var array
 		 */
-		private $typography_preview = array();
+		private array $typography_preview = array();
 
 		/**
 		 *  Standard font array.
 		 *
 		 * @var array $std_fonts
 		 */
-		private $std_fonts = array(
+		private array $std_fonts = array(
 			'Arial, Helvetica, sans-serif'            => 'Arial, Helvetica, sans-serif',
 			'\'Arial Black\', Gadget, sans-serif'     => '\'Arial Black\', Gadget, sans-serif',
 			'\'Bookman Old Style\', serif'            => '\'Bookman Old Style\', serif',
@@ -54,7 +54,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 *
 		 * @var bool $user_fonts
 		 */
-		private $user_fonts = true;
+		private bool $user_fonts = true;
 
 		/**
 		 * Redux_Field constructor.
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			$this->dir = trailingslashit( dirname( $path_info['real_path'] ) );
 			$this->url = trailingslashit( dirname( $path_info['url'] ) );
 
-			$this->timestamp = Redux_Core::$version;
+			$this->timestamp = $this->timestamp;
 			if ( $parent->args['dev_mode'] ) {
 				$this->timestamp .= '.' . time();
 			}
@@ -177,9 +177,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 * @param array  $field Field array.
 		 * @param string $value Value.
 		 *
-		 * @return array|void
+		 * @return array
 		 */
-		public function localize( $field, $value = '' ) {
+		public function localize( $field, $value = '' ): array {
 			$params = array();
 
 			if ( true === $this->user_fonts && ! empty( $this->field['fonts'] ) ) {
@@ -203,7 +203,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			// declarations.
 			// If field is set and not blank, then enqueue field.
 			if ( isset( $this->field['ext-font-css'] ) && '' !== $this->field['ext-font-css'] ) {
-				wp_enqueue_style( 'redux-external-fonts', $this->field['ext-font-css'], array(), Redux_Core::$version, 'all' );
+				wp_enqueue_style( 'redux-external-fonts', $this->field['ext-font-css'], array(), $this->timestamp );
 			}
 
 			if ( empty( $this->field['units'] ) && ! empty( $this->field['default']['units'] ) ) {
@@ -665,11 +665,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			/* Font Preview */
 			if ( ! isset( $this->field['preview'] ) || false !== $this->field['preview'] ) {
-				if ( isset( $this->field['preview']['text'] ) ) {
-					$g_text = $this->field['preview']['text'];
-				} else {
-					$g_text = '1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z';
-				}
+				$g_text = $this->field['preview']['text'] ?? '1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z';
 
 				$style = '';
 				if ( isset( $this->field['preview']['always_display'] ) ) {
@@ -683,7 +679,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 							wp_deregister_style( 'redux-typography-preview' );
 							wp_dequeue_style( 'redux-typography-preview' );
 
-							wp_enqueue_style( 'redux-typography-preview', $this->make_google_web_font_link( $this->typography_preview ), array(), Redux_Core::$version, 'all' );
+							wp_enqueue_style( 'redux-typography-preview', $this->make_google_web_font_link( $this->typography_preview ), array(), $this->timestamp );
 						}
 
 						$style = 'display: block; font-family: ' . esc_attr( $this->value['font-family'] ) . '; font-weight: ' . esc_attr( $this->value['font-weight'] ) . ';';
@@ -751,7 +747,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 			$dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js', 'redux-webfont-js' );
 
-			wp_enqueue_script( 'redux-field-typography-js', Redux_Core::$url . "inc/fields/typography/redux-typography$min.js", $dep_array, Redux_Core::$version, true );
+			wp_enqueue_script( 'redux-field-typography-js', Redux_Core::$url . "inc/fields/typography/redux-typography$min.js", $dep_array, $this->timestamp, true );
 
 			wp_localize_script(
 				'redux-field-typography-js',
@@ -776,21 +772,21 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style( 'redux-color-picker-css' );
 
-				wp_enqueue_style( 'redux-field-typography-css', Redux_Core::$url . 'inc/fields/typography/redux-typography.css', array(), $this->timestamp, 'all' );
+				wp_enqueue_style( 'redux-field-typography-css', Redux_Core::$url . 'inc/fields/typography/redux-typography.css', array(), $this->timestamp );
 			}
 		}
 
 		/**
 		 * Make_google_web_font_link Function.
-		 * Creates the google fonts link.
-		 *
-		 * @since ReduxFramework 3.0.0
+		 * Creates the Google fonts link.
 		 *
 		 * @param array $fonts Array of google fonts.
 		 *
 		 * @return string
+		 *
+		 * @since ReduxFramework 3.0.0
 		 */
-		public function make_google_web_font_link( $fonts ) {
+		public function make_google_web_font_link( array $fonts ): string {
 			$link    = '';
 			$subsets = array();
 
@@ -836,15 +832,15 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 
 		/**
 		 * Make_google_web_font_string Function.
-		 * Creates the google fonts link.
-		 *
-		 * @since ReduxFramework 3.1.8
+		 * Creates the Google fonts link.
 		 *
 		 * @param array $fonts Array of Google fonts.
 		 *
 		 * @return string
+		 *
+		 * @since ReduxFramework 3.1.8
 		 */
-		public function make_google_web_font_string( $fonts ) {
+		public function make_google_web_font_string( array $fonts ): string {
 			$link    = '';
 			$subsets = array();
 
@@ -892,9 +888,9 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 *
 		 * @param array $data Array of data to process.
 		 *
-		 * @return string|void
+		 * @return string
 		 */
-		public function css_style( $data ) {
+		public function css_style( $data ): string {
 			$style = '';
 
 			$font = $data;
@@ -1078,7 +1074,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		 *
 		 * @param array $font Array of font data.
 		 */
-		private function set_google_fonts( $font ) {
+		private function set_google_fonts( array $font ) {
 			// Google only stuff!
 			if ( ! empty( $font['font-family'] ) && ! empty( $this->field['google'] ) && filter_var( $this->field['google'], FILTER_VALIDATE_BOOLEAN ) ) {
 
@@ -1261,7 +1257,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		}
 
 		/**
-		 *   Construct the google array from the stored JSON/HTML
+		 *   Construct the Google array from the stored JSON/HTML
 		 */
 		private function get_google_array() {
 			if ( ( isset( $this->parent->fonts['google'] ) && ! empty( $this->parent->fonts['google'] ) ) || isset( $this->parent->fonts['google'] ) && false === $this->parent->fonts['google'] ) {
@@ -1280,7 +1276,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 				return;
 			}
 
-			if ( isset( $fonts ) && ! empty( $fonts ) && is_array( $fonts ) && false !== $fonts ) {
+			if ( isset( $fonts ) && ! empty( $fonts ) && is_array( $fonts ) ) {
 				$this->parent->fonts['google'] = $fonts;
 				$this->parent->google_array    = $fonts;
 
@@ -1302,15 +1298,15 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		}
 
 		/**
-		 * Clean up the Google Webfonts subsets to be human readable
-		 *
-		 * @since ReduxFramework 0.2.0
+		 * Clean up the Google Webfonts subsets to be human-readable
 		 *
 		 * @param array $var Font subset array.
 		 *
 		 * @return array
+		 *
+		 * @since ReduxFramework 0.2.0
 		 */
-		private function get_subsets( $var ) {
+		private function get_subsets( array $var ): array {
 			$result = array();
 
 			foreach ( $var as $v ) {
@@ -1333,15 +1329,15 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 		}
 
 		/**
-		 * Clean up the Google Webfonts variants to be human readable
-		 *
-		 * @since ReduxFramework 0.2.0
+		 * Clean up the Google Webfonts variants to be human-readable
 		 *
 		 * @param array $var Font variant array.
 		 *
 		 * @return array
+		 *
+		 * @since ReduxFramework 0.2.0
 		 */
-		private function get_variants( $var ) {
+		private function get_variants( array $var ): array {
 			$result = array();
 			$italic = array();
 

@@ -21,9 +21,9 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 		 */
 		public function set_defaults() {
 			$params = array(
-				'min'     => '',
-				'max'     => '',
-				'step'    => '',
+				'min'     => 0,
+				'max'     => 1,
+				'step'    => 1,
 				'default' => '',
 				'edit'    => true,
 				'plus'    => '+',
@@ -123,7 +123,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'redux-field-spinner-custom-js',
 				Redux_Core::$url . 'inc/fields/spinner/vendor/jquery.ui.spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
-				Redux_Core::$version,
+				$this->timestamp,
 				true
 			);
 
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Spinner', false ) ) {
 				'redux-field-spinner-js',
 				Redux_Core::$url . 'inc/fields/spinner/redux-spinner' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-field-spinner-custom-js', 'jquery-ui-core', 'jquery-ui-dialog', 'redux-js' ),
-				Redux_Core::$version,
+				$this->timestamp,
 				true
 			);
 

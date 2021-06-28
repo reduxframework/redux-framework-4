@@ -260,8 +260,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 					'redux-field-border-css',
 					Redux_Core::$url . 'inc/fields/border/redux-border.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

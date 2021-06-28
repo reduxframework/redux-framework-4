@@ -25,8 +25,7 @@ Redux::set_section(
 					'color' => '#7e33dd',
 					'alpha' => '.8',
 				),
-				'mode'     => 'color',
-				'validate' => 'colorrgba',
+				'output'   => array( 'color' => '.posted-on' ),
 			),
 		),
 	)

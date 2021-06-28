@@ -219,8 +219,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'redux-field-link_color-js',
 					Redux_Core::$url . 'inc/fields/link_color/redux-link-color.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -230,9 +229,9 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 		 *
 		 * @param string $data CSS data.
 		 *
-		 * @return array|void
+		 * @return array
 		 */
-		public function css_style( $data ) {
+		public function css_style( $data ): array {
 			$style = array();
 
 			if ( ! empty( $this->value['regular'] ) && true === $this->field['regular'] && false !== $this->field['default']['regular'] ) {
@@ -261,7 +260,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 		/**
 		 * Output CSS/compiler.
 		 *
-		 * @param string $style Style to output.
+		 * @param mixed $style Style to output.
 		 */
 		public function output( $style = '' ) {
 			if ( ! empty( $style ) ) {
@@ -285,7 +284,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 						} else {
 							if ( 1 === count( $this->field['output'] ) ) {
 								foreach ( $this->field['output'] as $sel => $elem ) {
-									continue;
+									break;
 								}
 
 								if ( false !== strpos( $elem, ',' ) ) {

@@ -39,7 +39,7 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 		public function render() {
 
 			$this->field['attributes']            = wp_parse_args(
-				isset( $this->field['attributes'] ) ? $this->field['attributes'] : array(),
+				$this->field['attributes'] ?? array(),
 				array(
 					'qtip_title'   => '',
 					'qtip_text'    => '',
@@ -128,7 +128,12 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 		 */
 		public function enqueue() {
 			if ( $this->parent->args['dev_mode'] ) {
-				wp_enqueue_style( 'redux-field-text-css', Redux_Core::$url . 'inc/fields/text/redux-text.css', array(), $this->timestamp, 'all' );
+				wp_enqueue_style(
+					'redux-field-text-css',
+					Redux_Core::$url . 'inc/fields/text/redux-text.css',
+					array(),
+					$this->timestamp
+				);
 			}
 		}
 

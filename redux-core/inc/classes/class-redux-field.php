@@ -276,7 +276,7 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 		/**
 		 * Unused for now.
 		 *
-		 * @param string $data CSS data.
+		 * @param mixed $data CSS data.
 		 */
 		public function css_style( $data ) {
 

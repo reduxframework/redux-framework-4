@@ -85,8 +85,7 @@ if ( ! class_exists( 'Redux_Ace_Editor', false ) ) {
 					'redux-field-ace-editor-css',
 					Redux_Core::$url . 'inc/fields/ace_editor/redux-ace-editor.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 

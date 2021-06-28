@@ -140,9 +140,9 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 
 			$select2_data = Redux_Functions::create_data_string( $this->field['select2'] );
 
-			echo '<input 
-					type="hidden" 
-					name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[units]" 
+			echo '<input
+					type="hidden"
+					name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[units]"
 					class="field-units" value="' . esc_attr( $this->value['units'] ) . '">';
 
 			if ( true === $this->field['all'] ) {
@@ -159,52 +159,52 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                         <span class="add-on">
                             <i class="el el-fullscreen icon-large"></i>
                         </span>
-                        <input 
-                            type="text" 
-                            class="redux-spacing-all redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" 
-                            placeholder="' . esc_html__( 'All', 'redux-framework' ) . '" 
-                            rel="' . esc_attr( $this->field['id'] ) . '-all" 
+                        <input
+                            type="text"
+                            class="redux-spacing-all redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
+                            placeholder="' . esc_html__( 'All', 'redux-framework' ) . '"
+                            rel="' . esc_attr( $this->field['id'] ) . '-all"
                             value="' . esc_attr( $this->value['top'] ) . '"
                         >
                       </div>';
 			}
 
 			if ( true === $this->field['top'] ) {
-				echo '<input 
-                        type="hidden" 
-                        class="redux-spacing-value" 
-                        id="' . esc_attr( $this->field['id'] ) . '-top" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'top]" 
+				echo '<input
+                        type="hidden"
+                        class="redux-spacing-value"
+                        id="' . esc_attr( $this->field['id'] ) . '-top"
+                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'top]"
                         value="' . esc_attr( $this->value['top'] ) . ( ! empty( $this->value['top'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
                       >';
 			}
 
 			if ( true === $this->field['right'] ) {
-				echo '<input 
-                        type="hidden" 
-                        class="redux-spacing-value" 
-                        id="' . esc_attr( $this->field['id'] ) . '-right" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'right]" 
+				echo '<input
+                        type="hidden"
+                        class="redux-spacing-value"
+                        id="' . esc_attr( $this->field['id'] ) . '-right"
+                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'right]"
                         value="' . esc_attr( $this->value['right'] ) . ( ! empty( $this->value['right'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
                       >';
 			}
 
 			if ( true === $this->field['bottom'] ) {
-				echo '<input 
-                        type="hidden" 
-                        class="redux-spacing-value" 
-                        id="' . esc_attr( $this->field['id'] ) . '-bottom" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'bottom]" 
+				echo '<input
+                        type="hidden"
+                        class="redux-spacing-value"
+                        id="' . esc_attr( $this->field['id'] ) . '-bottom"
+                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'bottom]"
                         value="' . esc_attr( $this->value['bottom'] ) . ( ! empty( $this->value['bottom'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
                       >';
 			}
 
 			if ( true === $this->field['left'] ) {
-				echo '<input 
-                        type="hidden" 
-                        class="redux-spacing-value" 
-                        id="' . esc_attr( $this->field['id'] ) . '-left" 
-                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'left]" 
+				echo '<input
+                        type="hidden"
+                        class="redux-spacing-value"
+                        id="' . esc_attr( $this->field['id'] ) . '-left"
+                        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] ) . 'left]"
                         value="' . esc_attr( $this->value['left'] ) . ( ! empty( $this->value['left'] ) ? esc_attr( $this->value['units'] ) : '' ) . '"
                       >';
 			}
@@ -218,7 +218,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-up icon-large"></i>
                             </span>
-                            <input type="text" 
+                            <input type="text"
                                    class="redux-spacing-top redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
                                    placeholder="' . esc_html__( 'Top', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-top"
@@ -234,7 +234,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-right icon-large"></i>
                             </span>
-                            <input type="text" 
+                            <input type="text"
                                    class="redux-spacing-right redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
                                    placeholder="' . esc_html__( 'Right', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-right"
@@ -250,7 +250,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-down icon-large"></i>
                             </span>
-                            <input type="text" 
+                            <input type="text"
                                    class="redux-spacing-bottom redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
                                    placeholder="' . esc_html__( 'Bottom', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-bottom"
@@ -266,7 +266,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-left icon-large"></i>
                             </span>
-                            <input type="text" 
+                            <input type="text"
                                    class="redux-spacing-left redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
                                    placeholder="' . esc_html__( 'Left', 'redux-framework' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-left"
@@ -328,8 +328,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 					'redux-field-spacing-css',
 					Redux_Core::$url . 'inc/fields/spacing/redux-spacing.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -352,7 +351,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			}
 
 			$mode  = ( 'absolute' !== $this->field['mode'] ) ? $this->field['mode'] : '';
-			$units = isset( $data['units'] ) ? $data['units'] : '';
+			$units = $data['units'] ?? '';
 
 			foreach ( $data as $key => $value ) {
 				if ( 'units' === $key ) {

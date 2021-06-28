@@ -20,6 +20,18 @@ if ( ! class_exists( 'Redux_Button_Set', false ) ) {
 	class Redux_Button_Set extends Redux_Field {
 
 		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
+			$defaults = array(
+				'options' => array(),
+				'multi'   => false,
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
+		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *
@@ -40,7 +52,7 @@ if ( ! class_exists( 'Redux_Button_Set', false ) ) {
 				}
 			}
 
-			$is_multi = ( isset( $this->field['multi'] ) && true === $this->field['multi'] ) ? true : false;
+			$is_multi = isset( $this->field['multi'] ) && true === (bool) $this->field['multi'];
 
 			$name = $this->field['name'] . $this->field['name_suffix'];
 

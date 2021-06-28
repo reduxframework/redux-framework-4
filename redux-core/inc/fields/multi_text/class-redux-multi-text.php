@@ -20,6 +20,18 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 	class Redux_Multi_Text extends Redux_Field {
 
 		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
+			$defaults = array(
+				'show_empty' => true,
+				'add_text'   => esc_html__( 'Add More', 'redux-framework' ),
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
+		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *
@@ -28,14 +40,11 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 		 * @return      void
 		 */
 		public function render() {
-			$this->add_text   = ( isset( $this->field['add_text'] ) ) ? $this->field['add_text'] : esc_html__( 'Add More', 'redux-framework' );
-			$this->show_empty = ( isset( $this->field['show_empty'] ) ) ? $this->field['show_empty'] : true;
-
 			echo '<ul id="' . esc_attr( $this->field['id'] ) . '-ul" class="redux-multi-text ' . esc_attr( $this->field['class'] ) . '">';
 
 			if ( isset( $this->value ) && is_array( $this->value ) ) {
 				foreach ( $this->value as $k => $value ) {
-					if ( '' !== $value || ( '' === $value && true === $this->show_empty ) ) {
+					if ( '' !== $value || ( true === $this->show_empty ) ) {
 						echo '<li>';
 						echo '<input
 								type="text"
@@ -94,7 +103,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 
 			echo '<span style="clear:both;display:block;height:0;"></span>';
 			$this->field['add_number'] = ( isset( $this->field['add_number'] ) && is_numeric( $this->field['add_number'] ) ) ? $this->field['add_number'] : 1;
-			echo '<a href="javascript:void(0);" class="button button-primary redux-multi-text-add" data-add_number="' . esc_attr( $this->field['add_number'] ) . '" data-id="' . esc_attr( $this->field['id'] ) . '-ul" data-name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '">' . esc_html( $this->add_text ) . '</a><br/>';
+			echo '<a href="javascript:void(0);" class="button button-primary redux-multi-text-add" data-add_number="' . esc_attr( $this->field['add_number'] ) . '" data-id="' . esc_attr( $this->field['id'] ) . '-ul" data-name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '">' . esc_html( $this->field['add_text'] ) . '</a><br/>';
 		}
 
 		/**
@@ -119,8 +128,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 					'redux-field-multi-text-css',
 					Redux_Core::$url . 'inc/fields/multi_text/redux-multi-text.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -128,4 +136,3 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 }
 
 class_alias( 'Redux_Multi_Text', 'ReduxFramework_Multi_Text' );
-

@@ -17,13 +17,30 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 	class Redux_Select extends Redux_Field {
 
 		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
+			$defaults = array(
+				'options'          => array(),
+				'width'            => '40%',
+				'multi'            => false,
+				'sortable'         => false,
+				'ajax'             => false,
+				'min-input-length' => 1,
+				'placeholder'      => '',
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
+		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *
 		 * @since ReduxFramework 1.0.0
 		 */
 		public function render() {
-			$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable' : '';
+			$sortable = ( isset( $this->field['sortable'] ) && true === (bool) $this->field['sortable'] ) ? ' select2-sortable' : '';
 
 			if ( ! empty( $sortable ) ) { // Dummy proofing  :P.
 				$this->field['multi'] = true;
@@ -40,7 +57,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					/**
 					 * Filter 'redux-font-icons-file}'
 					 *
-					 * @param  array $icon_file File for the icons
+					 * @param  array $icon_file The File for the icons
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -49,7 +66,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					/**
 					 * Filter 'redux/{opt_name}/field/font/icons/file'
 					 *
-					 * @param  array $icon_file File for the icons
+					 * @param  array $icon_file The file for the icons
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -97,7 +114,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 
 				if ( isset( $this->field['ajax'] ) && $this->field['ajax'] && isset( $this->field['data'] ) && '' !== $this->field['data'] ) {
 					$this->select2_config['ajax']             = true;
-					$this->select2_config['min-input-length'] = isset( $this->field['min_input_length'] ) ? $this->field['min_input_length'] : 1;
+					$this->select2_config['min-input-length'] = $this->field['min_input_length'] ?? 1;
 					$this->select2_config['action']           = "redux_{$this->parent->args['opt_name']}_select2";
 					if ( isset( $this->field['args'] ) ) {
 						$this->select2_config['args'] = wp_json_encode( $this->field['args'] );
@@ -136,10 +153,10 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 				$sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable' : '';
 
 				echo '<select ' .
-					esc_html( $multi ) . ' 
-			        id="' . esc_attr( $this->field['id'] ) . '-select" 
-			        data-placeholder="' . esc_attr( $placeholder ) . '" 
-			        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . esc_attr( $name_brackets ) . '" 
+					esc_html( $multi ) . '
+			        id="' . esc_attr( $this->field['id'] ) . '-select"
+			        data-placeholder="' . esc_attr( $placeholder ) . '"
+			        name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . esc_attr( $name_brackets ) . '"
 			        class="redux-select-item ' . esc_attr( $this->field['class'] ) . esc_attr( $sortable ) . '"' .
 					$width . ' rows="6"' . esc_attr( $select2_data ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
@@ -150,7 +167,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 						echo '<optgroup label="' . esc_attr( $k ) . '">';
 
 						foreach ( $v as $opt => $val ) {
-							$this->make_option( $opt, $val, $k );
+							$this->make_option( (string) $opt, $val, $k );
 						}
 
 						echo '</optgroup>';
@@ -158,7 +175,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 						continue;
 					}
 
-					$this->make_option( $k, $v );
+					$this->make_option( (string) $k, $v );
 				}
 
 				echo '</select>';
@@ -170,13 +187,11 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 		/**
 		 * Compile option HTML.
 		 *
-		 * @param string $id HTML ID.
-		 * @param array  $value Value array.
+		 * @param string $id         HTML ID.
+		 * @param mixed  $value      Value array.
 		 * @param string $group_name Group name.
 		 */
-		private function make_option( $id, $value, $group_name = '' ) {
-			$id = (string) $id;
-
+		private function make_option( string $id, $value, string $group_name = '' ) {
 			if ( is_array( $this->value ) ) {
 				$selected = ( is_array( $this->value ) && in_array( $id, $this->value, true ) ) ? ' selected="selected"' : '';
 			} else {
@@ -212,8 +227,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					'redux-field-select-css',
 					Redux_Core::$url . 'inc/fields/select/redux-select.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

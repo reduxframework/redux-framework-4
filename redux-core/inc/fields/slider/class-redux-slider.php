@@ -23,28 +23,28 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 		 *
 		 * @var int
 		 */
-		private $display_none = 0;
+		private int $display_none = 0;
 
 		/**
 		 * Label value readout.
 		 *
 		 * @var int
 		 */
-		private $display_label = 1;
+		private int $display_label = 1;
 
 		/**
 		 * Text value readout.
 		 *
 		 * @var int
 		 */
-		private $display_text = 2;
+		private int $display_text = 2;
 
 		/**
 		 * Select box value readout.
 		 *
 		 * @var int
 		 */
-		private $display_select = 3;
+		private int $display_select = 3;
 
 		/**
 		 * Set field and value defaults.
@@ -56,6 +56,9 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 				'display_value' => 'text',
 				'float_mark'    => '.',
 				'forced'        => true,
+				'min'           => 0,
+				'max'           => 1,
+				'step'          => 1,
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -139,9 +142,9 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 		 *
 		 * @param array $val Defaults.
 		 *
-		 * @return mixed
+		 * @return array
 		 */
-		private function clean_default_array( $val ) {
+		private function clean_default_array( array $val ): array {
 			$one = $this->value[1];
 			$two = $this->value[2];
 
@@ -230,8 +233,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 				'redux-nouislider-css',
 				Redux_Core::$url . "assets/css/vendor/nouislider$min.css",
 				array(),
-				'5.0.0',
-				'all'
+				'5.0.0'
 			);
 
 			wp_register_script(
@@ -255,8 +257,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 					'redux-field-slider-css',
 					Redux_Core::$url . 'inc/fields/slider/redux-slider.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -312,7 +313,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 			// TEXT output.
 			if ( $this->display_text === $this->field['display_value'] ) {
 				$show_input = true;
-				echo '<input 
+				echo '<input
 						type="text"
                         name="' . esc_attr( $name_one ) . '"
                         id="' . esc_attr( $id_one ) . '"
@@ -344,7 +345,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 				$select2_data = Redux_Functions::create_data_string( $this->field['select2'] );
 
-				echo '<select 
+				echo '<select
 						class="redux-slider-select-one redux-slider-select-one-' . esc_attr( $field_id ) . ' ' . esc_attr( $this->field['class'] ) . '"
                         name="' . esc_attr( $name_one ) . '"
                         id="' . esc_attr( $id_one ) . '" ' . esc_attr( $select2_data ) . '></select>';
@@ -370,7 +371,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 				// TEXT.
 				if ( true === $show_input ) {
-					echo '<input 
+					echo '<input
 							type="text"
                             name="' . esc_attr( $name_two ) . '"
                             id="' . esc_attr( $id_two ) . '"
@@ -380,7 +381,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 				// LABEL.
 				if ( true === $show_label ) {
-					echo '<div 
+					echo '<div
 							class="redux-slider-label-two"
                             id="redux-slider-label-two-' . esc_attr( $field_id ) . '"
                             name="' . esc_attr( $name_two ) . '"></div>';
@@ -388,7 +389,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 				// SELECT.
 				if ( true === $show_select ) {
-					echo '<select 
+					echo '<select
 								class="redux-slider-select-two redux-slider-select-two-' . esc_attr( $field_id ) . ' ' . esc_attr( $this->field['class'] ) . '"
                                 name="' . esc_attr( $name_two ) . '"
                                 id="' . esc_attr( $id_two ) . '" ' . esc_attr( $select2_data ) . '></select>';
@@ -397,7 +398,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 			// NO output (input hidden).
 			if ( $this->display_none === $this->field['display_value'] || $this->display_label === $this->field['display_value'] ) {
-				echo '<input 
+				echo '<input
 							type="hidden"
 	                        class="redux-slider-value-one-' . esc_attr( $field_id ) . ' ' . esc_attr( $this->field['class'] ) . '"
 	                        name="' . esc_attr( $name_one ) . '"
@@ -406,7 +407,7 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 
 				// double slider hidden output.
 				if ( true === $two_handles ) {
-					echo '<input 
+					echo '<input
 								type="hidden"
 	                            class="redux-slider-value-two-' . esc_attr( $field_id ) . ' ' . esc_attr( $this->field['class'] ) . '"
 	                            name="' . esc_attr( $name_two ) . '"

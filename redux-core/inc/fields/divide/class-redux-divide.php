@@ -47,8 +47,7 @@ if ( ! class_exists( 'Redux_Divide', false ) ) {
 					'redux-field-divide',
 					Redux_Core::$url . 'inc/fields/divide/redux-divide.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

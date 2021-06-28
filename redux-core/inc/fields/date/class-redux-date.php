@@ -30,12 +30,12 @@ if ( ! class_exists( 'Redux_Date', false ) ) {
 		public function render() {
 			$placeholder = ( isset( $this->field['placeholder'] ) ) ? ' placeholder="' . $this->field['placeholder'] . '" ' : '';
 
-			echo '<input 
-					data-id="' . esc_attr( $this->field['id'] ) . '" 
-					type="text" 
-					id="' . esc_attr( $this->field['id'] ) . '-date" 
+			echo '<input
+					data-id="' . esc_attr( $this->field['id'] ) . '"
+					type="text"
+					id="' . esc_attr( $this->field['id'] ) . '-date"
 					name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '"' . esc_attr( $placeholder ) . '
-					value="' . esc_attr( $this->value ) . '" 
+					value="' . esc_attr( $this->value ) . '"
 					class="redux-datepicker regular-text ' . esc_attr( $this->field['class'] ) . '" />';
 		}
 
@@ -53,8 +53,7 @@ if ( ! class_exists( 'Redux_Date', false ) ) {
 					'redux-field-date-css',
 					Redux_Core::$url . 'inc/fields/date/redux-date.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 

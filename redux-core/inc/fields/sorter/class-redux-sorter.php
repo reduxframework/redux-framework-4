@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 		 *
 		 * @return array
 		 */
-		private function replace_id_with_slug( $arr ) {
+		private function replace_id_with_slug( array $arr ): array {
 			$new_arr = array();
 
 			if ( ! empty( $arr ) ) {
@@ -50,7 +50,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 		 *
 		 * @return bool
 		 */
-		private function is_value_empty( $val ) {
+		private function is_value_empty( $val ): bool {
 			if ( ! empty( $val ) ) {
 				foreach ( $val as $section => $arr ) {
 					if ( ! empty( $arr ) ) {
@@ -167,9 +167,9 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 						}
 
 						foreach ( $sortlist as $key => $list ) {
-							echo '<input 
-									class="sorter-placebo" 
-									type="hidden" 
+							echo '<input
+									class="sorter-placebo"
+									type="hidden"
 									name="' . esc_attr( $this->field['name'] ) . '[' . esc_html( $group ) . '][placebo]' . esc_attr( $this->field['name_suffix'] ) . '"
 									value="placebo">';
 
@@ -198,8 +198,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 					'redux-field-sorder-css',
 					Redux_Core::$url . 'inc/fields/sorter/redux-sorter.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 
@@ -221,7 +220,7 @@ if ( ! class_exists( 'Redux_Sorter', false ) ) {
 		 * @return array Params to be saved as a javascript object accessable to the UI.
 		 * @since  Redux_Framework 3.1.5
 		 */
-		public function localize( $field, $value = '' ) {
+		public function localize( $field, $value = '' ): array {
 			$params = array();
 
 			if ( isset( $field['limits'] ) && ! empty( $field['limits'] ) ) {

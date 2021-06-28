@@ -25,7 +25,7 @@ if ( ! class_exists( 'Redux_Palette', false ) ) {
 		 * @return      void
 		 */
 		public function render() {
-			if ( empty( $this->field['palettes'] ) ) {
+			if ( ! isset( $this->field['palettes'] ) && empty( $this->field['palettes'] ) ) {
 				echo 'No palettes have been set.';
 
 				return;
@@ -36,11 +36,11 @@ if ( ! class_exists( 'Redux_Palette', false ) ) {
 			foreach ( $this->field['palettes'] as $value => $color_set ) {
 				$checked = checked( $this->value, $value, false );
 
-				echo '<input 
-						type="radio" 
-						value="' . esc_attr( $value ) . '" 
-						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" 
-						class="redux-palette-set ' . esc_attr( $this->field['class'] ) . '" 
+				echo '<input
+						type="radio"
+						value="' . esc_attr( $value ) . '"
+						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '"
+						class="redux-palette-set ' . esc_attr( $this->field['class'] ) . '"
 						id="' . esc_attr( $this->field['id'] . '-' . $value ) . '"' . esc_html( $checked ) . '>';
 
 				echo '<label for="' . esc_attr( $this->field['id'] . '-' . $value ) . '">';
@@ -80,8 +80,7 @@ if ( ! class_exists( 'Redux_Palette', false ) ) {
 					'redux-field-palette-css',
 					Redux_Core::$url . 'inc/fields/palette/redux-palette.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}

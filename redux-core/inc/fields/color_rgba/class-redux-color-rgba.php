@@ -57,7 +57,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 			// Convert empty array to null, if there.
 			$this->field['options']['palette'] = empty( $this->field['options']['palette'] ) ? null : $this->field['options']['palette'];
 
-			$this->field['output_transparent'] = isset( $this->field['output_transparent'] ) ? $this->field['output_transparent'] : false;
+			$this->field['output_transparent'] = $this->field['output_transparent'] ?? false;
 		}
 
 		/**
@@ -72,8 +72,8 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 			$field_id = $this->field['id'];
 
 			// Color picker container.
-			echo '<div 
-                  class="redux-color-rgba-container ' . esc_attr( $this->field['class'] ) . '" 
+			echo '<div
+                  class="redux-color-rgba-container ' . esc_attr( $this->field['class'] ) . '"
                   data-id="' . esc_attr( $field_id ) . '"
                   data-show-input="' . esc_attr( $this->field['options']['show_input'] ) . '"
                   data-show-initial="' . esc_attr( $this->field['options']['show_initial'] ) . '"
@@ -178,8 +178,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 					'redux-field-color-rgba-css',
 					Redux_Core::$url . 'inc/fields/color_rgba/redux-color-rgba.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -192,7 +191,7 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 		 * @access      private
 		 * @return      string
 		 */
-		private function get_color_val() {
+		private function get_color_val(): string {
 
 			// No notices.
 			$color = '';
@@ -230,12 +229,10 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 		 *
 		 * @param string $data Field data.
 		 *
-		 * @return array|void
+		 * @return string
 		 */
-		public function css_style( $data ) {
-			$style = array();
-
-			return $style;
+		public function css_style( $data ): string {
+			return '';
 		}
 
 		/**

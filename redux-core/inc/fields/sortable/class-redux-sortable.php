@@ -17,6 +17,19 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 	class Redux_Sortable extends Redux_Field {
 
 		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
+			$defaults = array(
+				'options' => array(),
+				'label'   => false,
+				'mode'    => 'text',
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
+		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
 		 *
@@ -121,15 +134,15 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 
 					$class .= ' checkbox_sortable';
 					$name   = '';
-					echo '<input 
-							type="hidden" 
-							name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . esc_attr( $k ) . ']" 
-							id="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden" 
+					echo '<input
+							type="hidden"
+							name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . esc_attr( $k ) . ']"
+							id="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden"
 							value="' . esc_attr( $value_display ) . '" />';
 
 					echo '<div class="checkbox-container">';
 				} else {
-					$value_display = isset( $this->value[ $k ] ) ? $this->value[ $k ] : '';
+					$value_display = $this->value[ $k ] ?? '';
 					$nicename      = $this->field['options'][ $k ];
 				}
 
@@ -139,13 +152,13 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 						echo '<br />';
 					}
 
-					echo '<input 
-						rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden" 
-						class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . ' 
-						type="' . esc_attr( $this->field['mode'] ) . '" 
+					echo '<input
+						rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden"
+						class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . '
+						type="' . esc_attr( $this->field['mode'] ) . '"
 						' . $name . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						'id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']" 
-						value="' . esc_attr( $value_display ) . '" 
+						'id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']"
+						value="' . esc_attr( $value_display ) . '"
 						placeholder="' . esc_attr( $nicename ) . '" />';
 				}
 
@@ -180,8 +193,7 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 					'redux-field-sortable-css',
 					Redux_Core::$url . 'inc/fields/sortable/redux-sortable.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 

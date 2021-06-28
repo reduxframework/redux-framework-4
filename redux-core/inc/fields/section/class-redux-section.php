@@ -25,7 +25,7 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 		public function set_defaults() {
 			// No errors please.
 			$defaults = array(
-				'indent'   => '',
+				'indent'   => true,
 				'style'    => '',
 				'class'    => '',
 				'title'    => '',
@@ -118,8 +118,7 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 					'redux-field-section-css',
 					Redux_Core::$url . 'inc/fields/section/redux-section.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
