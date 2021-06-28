@@ -19,7 +19,10 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 	 */
 	class Redux_Image_Select extends Redux_Field {
 
-		public function set_defaults(){
+		/**
+		 * Set field defaults.
+		 */
+		public function set_defaults() {
 			$defaults = array(
 				'tiles'   => false,
 				'mode'    => 'background-image',
@@ -91,7 +94,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 					$the_value = $k;
 
-					if ( ! empty( $this->field['tiles'] ) && true === (boolean) $this->field['tiles'] ) {
+					if ( ! empty( $this->field['tiles'] ) && true === (bool) $this->field['tiles'] ) {
 						$the_value = $v['img'];
 					}
 
@@ -141,7 +144,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 						$v['presets']['redux-backup'] = 1;
 
-						$presets   = ' data-presets="' . esc_attr( htmlspecialchars( wp_json_encode( $v['presets'] ), ENT_QUOTES, 'UTF-8' ) ) . '"';
+						$presets   = ' data-presets="' . esc_attr( htmlspecialchars( wp_json_encode( $v['presets'] ), ENT_QUOTES ) ) . '"';
 						$is_preset = true;
 
 						$this->field['class'] = trim( $this->field['class'] ) . ' redux-presets';
@@ -152,7 +155,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 					$merge = '';
 					if ( isset( $v['merge'] ) && false !== $v['merge'] ) {
 						$merge = is_array( $v['merge'] ) ? implode( '|', $v['merge'] ) : 'true';
-						$merge = ' data-merge="' . esc_attr( htmlspecialchars( $merge, ENT_QUOTES, 'UTF-8' ) ) . '"';
+						$merge = ' data-merge="' . esc_attr( htmlspecialchars( $merge, ENT_QUOTES ) ) . '"';
 					}
 
 					echo '<li class="redux-image-select">';
@@ -203,8 +206,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 					'redux-field-image-select-css',
 					Redux_Core::$url . 'inc/fields/image_select/redux-image-select.css',
 					array(),
-					$this->timestamp,
-					'all'
+					$this->timestamp
 				);
 			}
 		}
@@ -216,7 +218,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 		 *
 		 * @return string
 		 */
-		public function css_style( $data ) {
+		public function css_style( $data ): string {
 			$css    = '';
 			$output = '';
 
@@ -225,7 +227,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 			if ( ! empty( $data ) && ! is_array( $data ) ) {
 				switch ( $mode ) {
 					case 'background-image':
-						if ( isset($this->field['tiles'] ) && true === (boolean) $this->field['tiles'] ) {
+						if ( isset( $this->field['tiles'] ) && true === (bool) $this->field['tiles'] ) {
 							$img = $data;
 						} else {
 							$img = $this->field['options'][ $data ]['img'] ?? '';
