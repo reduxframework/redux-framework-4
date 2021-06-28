@@ -19,6 +19,19 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 	 */
 	class Redux_Image_Select extends Redux_Field {
 
+		public function set_defaults(){
+			$defaults = array(
+				'tiles'   => false,
+				'mode'    => 'background-image',
+				'presets' => false,
+				'options' => array(),
+				'width'   => '',
+				'height'  => '',
+			);
+
+			$this->field = wp_parse_args( $this->field, $defaults );
+		}
+
 		/**
 		 * Field Render Function.
 		 * Takes the vars and outputs the HTML for the field in the settings
@@ -78,7 +91,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 
 					$the_value = $k;
 
-					if ( ! empty( $this->field['tiles'] ) && true === $this->field['tiles'] ) {
+					if ( ! empty( $this->field['tiles'] ) && true === (boolean) $this->field['tiles'] ) {
 						$the_value = $v['img'];
 					}
 
@@ -212,7 +225,7 @@ if ( ! class_exists( 'Redux_Image_Select', false ) ) {
 			if ( ! empty( $data ) && ! is_array( $data ) ) {
 				switch ( $mode ) {
 					case 'background-image':
-						if ( $this->field['tiles'] ) {
+						if ( isset($this->field['tiles'] ) && true === (boolean) $this->field['tiles'] ) {
 							$img = $data;
 						} else {
 							$img = $this->field['options'][ $data ]['img'] ?? '';
