@@ -55,6 +55,7 @@ Redux::set_section(
 					'font-size'   => '33px',
 					'line-height' => '40px',
 				),
+				'output'      => array( 'h2.site-description, h2.entry-title' ),
 				// Disable google fonts.
 				// 'google'      => false,
 				// Includes font-style and weight. Can use font-style or font-weight to declare.
@@ -74,7 +75,6 @@ Redux::set_section(
 				// Disable the font previewer
 				// 'preview'       => false,
 				// An array of CSS selectors to apply this font style to dynamically.
-				'output'      => array( 'h2.site-description, .entry-title' ),
 				// An array of CSS selectors to apply this font style to dynamically.
 				// 'compiler'    => array( 'h2.site-description-compiler' ),
 				// .
