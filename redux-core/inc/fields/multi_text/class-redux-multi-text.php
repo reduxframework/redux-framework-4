@@ -44,7 +44,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 
 			if ( isset( $this->value ) && is_array( $this->value ) ) {
 				foreach ( $this->value as $k => $value ) {
-					if ( '' !== $value || ( true === $this->show_empty ) ) {
+					if ( '' !== $value || ( true === $this->field['show_empty'] ) ) {
 						echo '<li>';
 						echo '<input
 								type="text"
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 						echo '</li>';
 					}
 				}
-			} elseif ( true === $this->show_empty ) {
+			} elseif ( true === $this->field['show_empty'] ) {
 				echo '<li>';
 				echo '<input
 						type="text"
@@ -80,7 +80,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 			}
 
 			$the_name = '';
-			if ( isset( $this->value ) && empty( $this->value ) && false === $this->show_empty ) {
+			if ( isset( $this->value ) && empty( $this->value ) && false === $this->field['show_empty'] ) {
 				$the_name = $this->field['name'] . $this->field['name_suffix'];
 			}
 
