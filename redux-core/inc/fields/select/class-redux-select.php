@@ -93,9 +93,9 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 				$multi = ( isset( $this->field['multi'] ) && $this->field['multi'] ) ? ' multiple="multiple"' : '';
 
 				if ( ! empty( $this->field['width'] ) ) {
-					$width = ' style="' . esc_attr( $this->field['width'] ) . '"';
+					$width = ' style="width:' . esc_attr( $this->field['width'] ) . '"';
 				} else {
-					$width = ' style="width: 40%;"';
+					$width = ' style="width:40%;"';
 				}
 
 				$name_brackets = '';
