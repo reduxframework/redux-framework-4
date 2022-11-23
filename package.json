@@ -27,7 +27,7 @@
     "@wordpress/dom-ready": "^2.12.0",
     "bigpicture": "^2.5.3",
     "body-scroll-lock": "2.6.4",
-    "browser-sync": "^2.26.13",
+    "browser-sync": "^2.27.10",
     "caniuse-lite": "^1.0.30001237",
     "classnames": "^2.2.6",
     "clipboard-copy": "^3.2.0",
